@@ -20,13 +20,23 @@
     ]
   },
   {
+    "objectID": "chapters/chapter2.html",
+    "href": "chapters/chapter2.html",
+    "title": "Unidad 2: bases",
+    "section": "",
+    "text": "Este capítulo cubre los conceptos básicos de los datos de árboles.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Unidad 2: bases</span>"
+    ]
+  },
+  {
     "objectID": "chapters/chapter3.html",
     "href": "chapters/chapter3.html",
-    "title": "Capítulo 3: Análisis de datos",
+    "title": "Unidad 3: Análisis de datos",
     "section": "",
     "text": "Análisis de datos\nEn este capítulo aprenderás cómo analizar datos de árboles utilizando técnicas modernas.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Capítulo 3: Análisis de datos</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Unidad 3: Análisis de datos</span>"
     ]
   }
 ]
