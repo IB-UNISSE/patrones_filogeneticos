@@ -10,13 +10,23 @@
     ]
   },
   {
+    "objectID": "chapters/install.html",
+    "href": "chapters/install.html",
+    "title": "Unidad 1: Patrones de diversificación",
+    "section": "",
+    "text": "1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa\nR Plot Function\nIn this article, you will learn to use the plot function in R programming with the help of examples.\nThe most used plotting function in R programming is the plot() function. It is a generic function, meaning, it has many methods which are called according to the type of object passed to plot().\nIn the simplest case, we can pass in a vector and get a scatter plot of magnitude vs index. But generally, we pass in two vectors, and a scatter plot of these points is plotted.\nFor example, the command plot(c(1,2),c(3,5)) would plot the points (1,3) and (2,5).\nHere is a more concrete example where we plot a sine function ranging from -pi to pi.\nx &lt;- seq(-pi,pi,0.1)\nplot(x, sin(x),\nmain=\"Overlaying Graphs\",\nylab=\"\",\ntype=\"l\",\ncol=\"blue\")\nlines(x,cos(x), col=\"red\")\nlegend(\"topleft\",\nc(\"sin(x)\",\"cos(x)\"),\nfill=c(\"blue\",\"red\")\n)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Unidad 1: Patrones de diversificación</span>"
+    ]
+  },
+  {
     "objectID": "chapters/chapter1.html",
     "href": "chapters/chapter1.html",
     "title": "Unidad 1: Patrones de diversificación",
     "section": "",
     "text": "1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa\nR Plot Function\nIn this article, you will learn to use the plot function in R programming with the help of examples.\nThe most used plotting function in R programming is the plot() function. It is a generic function, meaning, it has many methods which are called according to the type of object passed to plot().\nIn the simplest case, we can pass in a vector and get a scatter plot of magnitude vs index. But generally, we pass in two vectors, and a scatter plot of these points is plotted.\nFor example, the command plot(c(1,2),c(3,5)) would plot the points (1,3) and (2,5).\nHere is a more concrete example where we plot a sine function ranging from -pi to pi.\nx &lt;- seq(-pi,pi,0.1)\nplot(x, sin(x),\nmain=\"Overlaying Graphs\",\nylab=\"\",\ntype=\"l\",\ncol=\"blue\")\nlines(x,cos(x), col=\"red\")\nlegend(\"topleft\",\nc(\"sin(x)\",\"cos(x)\"),\nfill=c(\"blue\",\"red\")\n)",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Unidad 1: Patrones de diversificación</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Unidad 1: Patrones de diversificación</span>"
     ]
   },
   {
@@ -26,7 +36,7 @@
     "section": "",
     "text": "Este capítulo cubre los conceptos básicos de los datos de árboles.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Unidad 2: bases</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Unidad 2: bases</span>"
     ]
   },
   {
@@ -36,7 +46,7 @@
     "section": "",
     "text": "Análisis de datos\nEn este capítulo aprenderás cómo analizar datos de árboles utilizando técnicas modernas.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Unidad 3: Análisis de datos</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Unidad 3: Análisis de datos</span>"
     ]
   }
 ]
