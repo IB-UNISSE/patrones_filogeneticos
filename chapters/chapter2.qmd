@@ -1,0 +1,6 @@
+---
+title: "Unidad 2: bases"
+format: html
+---
+
+Este capítulo cubre los conceptos básicos de los datos de árboles.

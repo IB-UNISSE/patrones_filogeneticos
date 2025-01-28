@@ -1,0 +1,10 @@
+---
+title: "Unidad 3: Análisis de datos"
+format: html
+---
+
+# Análisis de datos
+
+En este capítulo aprenderás cómo analizar datos de árboles utilizando técnicas modernas.
+
+------------------------------------------------------------------------
