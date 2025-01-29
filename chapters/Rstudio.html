@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Unidad 1: Patrones de diversificación – Patrones filogenéticos: macroevolución y adaptación</title>
+<title>Apuntes sobre R y Rstudio – Patrones filogenéticos: macroevolución y adaptación</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/chapter2.html" rel="next">
-<link href="../chapters/revbayes.html" rel="prev">
+<link href="../chapters/revbayes.html" rel="next">
+<link href="../chapters/install.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter1.html"><span class="chapter-title">Unidad 1: Patrones de diversificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/Rstudio.html"><span class="chapter-title">Apuntes sobre R y Rstudio</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/Rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apuntes sobre R y Rstudio</span></a>
+  <a href="../chapters/Rstudio.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Apuntes sobre R y Rstudio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/chapter1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Unidad 1: Patrones de diversificación</span></a>
+  <a href="../chapters/chapter1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Unidad 1: Patrones de diversificación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -186,7 +186,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa" id="toc-introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa" class="nav-link active" data-scroll-target="#introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa">1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa</a></li>
+  <li><a href="#qué-es-r-y-qué-es-rstudio" id="toc-qué-es-r-y-qué-es-rstudio" class="nav-link active" data-scroll-target="#qué-es-r-y-qué-es-rstudio">¿Qué es R y qué es RStudio?</a></li>
+  <li><a href="#partes-de-rstudio" id="toc-partes-de-rstudio" class="nav-link" data-scroll-target="#partes-de-rstudio">Partes de RStudio</a></li>
+  <li><a href="#creación-de-un-proyecto-en-rstudio" id="toc-creación-de-un-proyecto-en-rstudio" class="nav-link" data-scroll-target="#creación-de-un-proyecto-en-rstudio">Creación de un Proyecto en RStudio</a></li>
+  <li><a href="#organización-de-proyectos-en-rstudio" id="toc-organización-de-proyectos-en-rstudio" class="nav-link" data-scroll-target="#organización-de-proyectos-en-rstudio">Organización de Proyectos en RStudio</a></li>
+  <li><a href="#rutas-absolutas-y-relativas" id="toc-rutas-absolutas-y-relativas" class="nav-link" data-scroll-target="#rutas-absolutas-y-relativas">Rutas Absolutas y Relativas</a></li>
+  <li><a href="#principales-objetos-en-r" id="toc-principales-objetos-en-r" class="nav-link" data-scroll-target="#principales-objetos-en-r">Principales Objetos en R</a></li>
+  <li><a href="#asignación-de-variables" id="toc-asignación-de-variables" class="nav-link" data-scroll-target="#asignación-de-variables">Asignación de Variables</a></li>
+  <li><a href="#uso-de-funciones-en-r" id="toc-uso-de-funciones-en-r" class="nav-link" data-scroll-target="#uso-de-funciones-en-r">Uso de Funciones en R</a></li>
+  <li><a href="#instalación-y-uso-de-paquetes" id="toc-instalación-y-uso-de-paquetes" class="nav-link" data-scroll-target="#instalación-y-uso-de-paquetes">Instalación y Uso de Paquetes</a></li>
+  <li><a href="#mini-ejercicio" id="toc-mini-ejercicio" class="nav-link" data-scroll-target="#mini-ejercicio">Mini-ejercicio</a></li>
   </ul>
 </nav>
     </div>
@@ -195,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Unidad 1: Patrones de diversificación</span></h1>
+<h1 class="title"><span class="chapter-title">Apuntes sobre R y Rstudio</span></h1>
 </div>
 
 
@@ -212,34 +221,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa" class="level2">
-<h2 class="anchored" data-anchor-id="introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa">1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa</h2>
-<p><strong>R Plot Function</strong></p>
-<p><strong>In this article, you will learn to use the plot function in R programming with the help of examples.</strong></p>
-<p>The most used plotting function in R programming is the <code>plot()</code> function. It is a generic function, meaning, it has many methods which are called according to the type of object passed to <code>plot()</code>.</p>
-<p>In the simplest case, we can pass in a vector and get a scatter plot of magnitude vs index. But generally, we pass in two vectors, and a scatter plot of these points is plotted.</p>
-<p>For example, the command <code>plot(c(1,2),c(3,5))</code> would plot the points <code>(1,3)</code> and <code>(2,5)</code>.</p>
-<p>Here is a more concrete example where we plot a sine function ranging from <code>-pi</code> to <code>pi</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span>pi,pi,<span class="fl">0.1</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">sin</span>(x),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">"Overlaying Graphs"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">""</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">type=</span><span class="st">"l"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">"blue"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,<span class="fu">cos</span>(x), <span class="at">col=</span><span class="st">"red"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"sin(x)"</span>,<span class="st">"cos(x)"</span>),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">fill=</span><span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"red"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
+<section id="qué-es-r-y-qué-es-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-r-y-qué-es-rstudio">¿Qué es R y qué es RStudio?</h2>
+<ul>
+<li><strong>R</strong> es un lenguaje de programación enfocado en el análisis de datos y estadísticas.</li>
+<li><strong>RStudio</strong> es un entorno de desarrollo integrado (IDE) que facilita el trabajo con R y permite organiza los proyectos y facilita la ejecución de código, la visualización de gráficos y la gestión de paquetes.</li>
+</ul>
+</section>
+<section id="partes-de-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="partes-de-rstudio">Partes de RStudio</h2>
+<p>RStudio tiene cuatro paneles principales:</p>
+<ol type="1">
+<li><p><strong>Console</strong>: Donde se ejecuta el código en tiempo real.</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="chapter1_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="../images/Rstudio/rstudiocon.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
 </figure>
-</div>
-</div>
-</div>
+</div></li>
+<li><p><strong>Editor de scripts</strong>: Para escribir y guardar código en archivos <code>.r</code>, <code>.R</code> o <code>.Rmd</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Rstudio/rstudioscript.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
+</figure>
+</div></li>
+<li><p><strong>Environment/History</strong>: Muestra variables y comandos previos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Rstudio/rstudiohistory.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
+</figure>
+</div></li>
+<li><p><strong>Files/Plots/Packages/Help</strong>: Para manejar archivos, visualizar gráficos, instalar programas y acceder a documentación.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Rstudio/rstudioplots.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="creación-de-un-proyecto-en-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="creación-de-un-proyecto-en-rstudio">Creación de un Proyecto en RStudio</h2>
+<p>Beneficios de trabajar con proyectos:</p>
+<ul>
+<li>Organización de archivos y código.</li>
+<li>Facilita la reproducibilidad.</li>
+<li>Evita problemas con rutas de archivos.</li>
+</ul>
+<p>Para crear un proyecto:</p>
+<ol type="1">
+<li><p>En RStudio, ir a <code>File &gt; New Project</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Rstudio/rstudiosproject.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div></li>
+<li><p>Elegir un directorio nuevo o existente.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/Rstudio/rstudiosprojectselect.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
+</figure>
+</div></li>
+<li><p>Trabajar siempre dentro del proyecto para evitar problemas de rutas.</p></li>
+</ol>
+</section>
+<section id="organización-de-proyectos-en-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="organización-de-proyectos-en-rstudio">Organización de Proyectos en RStudio</h2>
+<p>Mantener una estructura organizada en los proyectos es clave para la reproducibilidad y eficiencia. Se recomienda la siguiente estructura de carpetas:</p>
+<pre><code>proyecto/
+│── data/         # Datos crudos y procesados
+│── scripts/      # Código fuente en R
+│── output/       # Resultados y gráficos
+│── reports/      # Documentación y reportes
+│── README.md     # Descripción del proyecto</code></pre>
+<p>Además, para lograr una nomenclatura eficiente y consistente en archivos, se pueden seguir algunas pautas:</p>
+<ul>
+<li><strong>Consistencia</strong>: Usar un esquema de nombres consistente en todo el proyecto.</li>
+<li><strong>Evitar Espacios</strong>: Usar guiones bajos (_) o guiones (-) en lugar de espacios.</li>
+<li><strong>Prefijos y Sufijos</strong>: Usar prefijos y sufijos estandarizados para identificar el estado o versión del archivo.</li>
+<li><strong>Evitar Acentos y Caracteres Especiales</strong>: No utilizar acentos, eñes ni caracteres especiales que puedan causar problemas de compatibilidad en diferentes sistemas operativos o herramientas de software.</li>
+</ul>
+<p>Ejemplos:</p>
+<pre><code>bears_cytb.nex
+tree_BD.Rev
+multifig.R
+qw_feature2.csv</code></pre>
+</section>
+<section id="rutas-absolutas-y-relativas" class="level2">
+<h2 class="anchored" data-anchor-id="rutas-absolutas-y-relativas">Rutas Absolutas y Relativas</h2>
+<p>Las rutas de archivos en R pueden ser absolutas o relativas:</p>
+<ul>
+<li><p><strong>Ruta absoluta</strong>: Define la ubicación exacta de un archivo, por ejemplo:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/TuUsuario/Documents/data/datos.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Ruta relativa</strong>: Se basa en la ubicación del proyecto:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"data/datos.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>Siempre es recomendable usar proyectos para evitar errores con rutas.</p>
+</section>
+<section id="principales-objetos-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="principales-objetos-en-r">Principales Objetos en R</h2>
+<section id="vectores" class="level3">
+<h3 class="anchored" data-anchor-id="vectores">Vectores</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="matrices" class="level3">
+<h3 class="anchored" data-anchor-id="matrices">Matrices</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="data-frames">Data Frames</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Nombre=</span><span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">Edad=</span><span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="listas" class="level3">
+<h3 class="anchored" data-anchor-id="listas">Listas</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lista <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Nombre=</span><span class="st">"Juan"</span>, <span class="at">Edad=</span><span class="dv">30</span>, <span class="at">Notas=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="asignación-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="asignación-de-variables">Asignación de Variables</h2>
+<p>Diferencia entre <code>&lt;-</code> y <code>=</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">10</span>   <span class="co"># Recomendado para asignaciones</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">20</span>    <span class="co"># También funciona, pero es mejor evitarlo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="uso-de-funciones-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="uso-de-funciones-en-r">Uso de Funciones en R</h2>
+<p>Ejemplo de funciones básicas:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(numeros)  <span class="co"># Media</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(numeros)  <span class="co"># Resumen estadístico</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="instalación-y-uso-de-paquetes" class="level2">
+<h2 class="anchored" data-anchor-id="instalación-y-uso-de-paquetes">Instalación y Uso de Paquetes</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(ggplot2)  <span class="co"># Consultar documentación</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mini-ejercicio" class="level2">
+<h2 class="anchored" data-anchor-id="mini-ejercicio">Mini-ejercicio</h2>
+<ol type="1">
+<li><p>Crear un nuevo script en RStudio.</p></li>
+<li><p>Definir un vector y calcular su media.</p></li>
+<li><p>Crear un Data Frame y explorarlo con <code>summary()</code>.</p></li>
+<li><p>Guardar y cargar un archivo CSV:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(df, <span class="st">"datos.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_cargado <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datos.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<hr>
 
 
 </section>
@@ -664,13 +793,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/revbayes.html" class="pagination-link" aria-label="Apuntes sobre RevBayes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Apuntes sobre RevBayes</span></span>
+      <a href="../chapters/install.html" class="pagination-link" aria-label="Instalación de Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Instalación de Software</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/chapter2.html" class="pagination-link" aria-label="Unidad 2: bases">
-        <span class="nav-page-text"><span class="chapter-title">Unidad 2: bases</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/revbayes.html" class="pagination-link" aria-label="Apuntes sobre RevBayes">
+        <span class="nav-page-text"><span class="chapter-title">Apuntes sobre RevBayes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

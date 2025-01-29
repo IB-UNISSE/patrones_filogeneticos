@@ -74,7 +74,7 @@
     "href": "chapters/install.html#verificar-si-la-virtualización-está-habilitada",
     "title": "Instalación de Software",
     "section": "1. Verificar si la virtualización está habilitada",
-    "text": "1. Verificar si la virtualización está habilitada\n\nAbrir el Administrador de Tareas:\n\nPresiona Ctrl + Shift + Esc para abrir el Administrador de Tareas.\nVe a la pestaña Rendimiento y selecciona CPU.\nEn la esquina inferior derecha, verifica si la opción “Virtualización” está habilitada.\n\n\nHabilitar la virtualización (si está deshabilitada):\n\nReinicia tu computadora y accede al BIOS/UEFI.\nPara procesadores Intel, busca una opción como “Intel Virtualization Technology” o “VT-x” y actívala.\nPara procesadores AMD, busca “SVM Mode” o una opción similar y actívala.\nGuarda los cambios y reinicia.",
+    "text": "1. Verificar si la virtualización está habilitada\n\nAbrir el Administrador de Tareas:\n\nPresiona Ctrl + Shift + Esc para abrir el Administrador de Tareas.\nVe a la pestaña Rendimiento y selecciona CPU.\nEn la esquina inferior derecha, verifica si la opción “Virtualización” está habilitada.\n\n\n\n\n\n\nHabilitar la virtualización (si está deshabilitada):\n\nReinicia tu computadora y accede al BIOS/UEFI.\nPara procesadores Intel, busca una opción como “Intel Virtualization Technology” o “VT-x” y actívala.\nPara procesadores AMD, busca “SVM Mode” o una opción similar y actívala.\nGuarda los cambios y reinicia.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
     ]
@@ -140,13 +140,123 @@
     ]
   },
   {
+    "objectID": "chapters/Rstudio.html",
+    "href": "chapters/Rstudio.html",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "",
+    "text": "¿Qué es R y qué es RStudio?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#qué-es-r-y-qué-es-rstudio",
+    "href": "chapters/Rstudio.html#qué-es-r-y-qué-es-rstudio",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "",
+    "text": "R es un lenguaje de programación enfocado en el análisis de datos y estadísticas.\nRStudio es un entorno de desarrollo integrado (IDE) que facilita el trabajo con R y permite organiza los proyectos y facilita la ejecución de código, la visualización de gráficos y la gestión de paquetes.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#partes-de-rstudio",
+    "href": "chapters/Rstudio.html#partes-de-rstudio",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Partes de RStudio",
+    "text": "Partes de RStudio\nRStudio tiene cuatro paneles principales:\n\nConsole: Donde se ejecuta el código en tiempo real.\n\n\n\n\n\nEditor de scripts: Para escribir y guardar código en archivos .r, .R o .Rmd.\n\n\n\n\n\nEnvironment/History: Muestra variables y comandos previos.\n\n\n\n\n\nFiles/Plots/Packages/Help: Para manejar archivos, visualizar gráficos, instalar programas y acceder a documentación.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#creación-de-un-proyecto-en-rstudio",
+    "href": "chapters/Rstudio.html#creación-de-un-proyecto-en-rstudio",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Creación de un Proyecto en RStudio",
+    "text": "Creación de un Proyecto en RStudio\nBeneficios de trabajar con proyectos:\n\nOrganización de archivos y código.\nFacilita la reproducibilidad.\nEvita problemas con rutas de archivos.\n\nPara crear un proyecto:\n\nEn RStudio, ir a File &gt; New Project.\n\n\n\n\n\nElegir un directorio nuevo o existente.\n\n\n\n\n\nTrabajar siempre dentro del proyecto para evitar problemas de rutas.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#organización-de-proyectos-en-rstudio",
+    "href": "chapters/Rstudio.html#organización-de-proyectos-en-rstudio",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Organización de Proyectos en RStudio",
+    "text": "Organización de Proyectos en RStudio\nMantener una estructura organizada en los proyectos es clave para la reproducibilidad y eficiencia. Se recomienda la siguiente estructura de carpetas:\nproyecto/\n│── data/         # Datos crudos y procesados\n│── scripts/      # Código fuente en R\n│── output/       # Resultados y gráficos\n│── reports/      # Documentación y reportes\n│── README.md     # Descripción del proyecto\nAdemás, para lograr una nomenclatura eficiente y consistente en archivos, se pueden seguir algunas pautas:\n\nConsistencia: Usar un esquema de nombres consistente en todo el proyecto.\nEvitar Espacios: Usar guiones bajos (_) o guiones (-) en lugar de espacios.\nPrefijos y Sufijos: Usar prefijos y sufijos estandarizados para identificar el estado o versión del archivo.\nEvitar Acentos y Caracteres Especiales: No utilizar acentos, eñes ni caracteres especiales que puedan causar problemas de compatibilidad en diferentes sistemas operativos o herramientas de software.\n\nEjemplos:\nbears_cytb.nex\ntree_BD.Rev\nmultifig.R\nqw_feature2.csv",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#rutas-absolutas-y-relativas",
+    "href": "chapters/Rstudio.html#rutas-absolutas-y-relativas",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Rutas Absolutas y Relativas",
+    "text": "Rutas Absolutas y Relativas\nLas rutas de archivos en R pueden ser absolutas o relativas:\n\nRuta absoluta: Define la ubicación exacta de un archivo, por ejemplo:\nread.csv(\"C:/Users/TuUsuario/Documents/data/datos.csv\")\nRuta relativa: Se basa en la ubicación del proyecto:\nread.csv(\"data/datos.csv\")\n\nSiempre es recomendable usar proyectos para evitar errores con rutas.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#principales-objetos-en-r",
+    "href": "chapters/Rstudio.html#principales-objetos-en-r",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Principales Objetos en R",
+    "text": "Principales Objetos en R\n\nVectores\nx &lt;- c(1, 2, 3, 4, 5)\nprint(x)\n\n\nMatrices\nm &lt;- matrix(1:9, nrow=3)\nprint(m)\n\n\nData Frames\ndf &lt;- data.frame(Nombre=c(\"A\", \"B\", \"C\"), Edad=c(25, 30, 22))\nprint(df)\n\n\nListas\nlista &lt;- list(Nombre=\"Juan\", Edad=30, Notas=c(8, 9, 10))\nprint(lista)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#asignación-de-variables",
+    "href": "chapters/Rstudio.html#asignación-de-variables",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Asignación de Variables",
+    "text": "Asignación de Variables\nDiferencia entre &lt;- y =:\na &lt;- 10   # Recomendado para asignaciones\nb = 20    # También funciona, pero es mejor evitarlo",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#uso-de-funciones-en-r",
+    "href": "chapters/Rstudio.html#uso-de-funciones-en-r",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Uso de Funciones en R",
+    "text": "Uso de Funciones en R\nEjemplo de funciones básicas:\nnumeros &lt;- c(1, 2, 3, 4, 5)\nmean(numeros)  # Media\nsummary(numeros)  # Resumen estadístico",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#instalación-y-uso-de-paquetes",
+    "href": "chapters/Rstudio.html#instalación-y-uso-de-paquetes",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Instalación y Uso de Paquetes",
+    "text": "Instalación y Uso de Paquetes\ninstall.packages(\"ggplot2\")\nlibrary(ggplot2)\nhelp(ggplot2)  # Consultar documentación",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Rstudio.html#mini-ejercicio",
+    "href": "chapters/Rstudio.html#mini-ejercicio",
+    "title": "Apuntes sobre R y Rstudio",
+    "section": "Mini-ejercicio",
+    "text": "Mini-ejercicio\n\nCrear un nuevo script en RStudio.\nDefinir un vector y calcular su media.\nCrear un Data Frame y explorarlo con summary().\nGuardar y cargar un archivo CSV:\nwrite.csv(df, \"datos.csv\", row.names = FALSE)\ndf_cargado &lt;- read.csv(\"datos.csv\")",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+    ]
+  },
+  {
     "objectID": "chapters/chapter1.html",
     "href": "chapters/chapter1.html",
     "title": "Unidad 1: Patrones de diversificación",
     "section": "",
     "text": "1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa\nR Plot Function\nIn this article, you will learn to use the plot function in R programming with the help of examples.\nThe most used plotting function in R programming is the plot() function. It is a generic function, meaning, it has many methods which are called according to the type of object passed to plot().\nIn the simplest case, we can pass in a vector and get a scatter plot of magnitude vs index. But generally, we pass in two vectors, and a scatter plot of these points is plotted.\nFor example, the command plot(c(1,2),c(3,5)) would plot the points (1,3) and (2,5).\nHere is a more concrete example where we plot a sine function ranging from -pi to pi.\nx &lt;- seq(-pi,pi,0.1)\nplot(x, sin(x),\nmain=\"Overlaying Graphs\",\nylab=\"\",\ntype=\"l\",\ncol=\"blue\")\nlines(x,cos(x), col=\"red\")\nlegend(\"topleft\",\nc(\"sin(x)\",\"cos(x)\"),\nfill=c(\"blue\",\"red\")\n)",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Unidad 1: Patrones de diversificación</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Unidad 1: Patrones de diversificación</span>"
     ]
   },
   {
@@ -156,7 +266,7 @@
     "section": "",
     "text": "Este capítulo cubre los conceptos básicos de los datos de árboles.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Unidad 2: bases</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Unidad 2: bases</span>"
     ]
   },
   {
@@ -166,7 +276,7 @@
     "section": "",
     "text": "Análisis de datos\nEn este capítulo aprenderás cómo analizar datos de árboles utilizando técnicas modernas.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Unidad 3: Análisis de datos</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Unidad 3: Análisis de datos</span>"
     ]
   }
 ]
