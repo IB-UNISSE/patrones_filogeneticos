@@ -176,7 +176,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa" id="toc-introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa" class="nav-link active" data-scroll-target="#introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa">1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#visual-studio-code" id="toc-visual-studio-code" class="nav-link" data-scroll-target="#visual-studio-code">Visual Studio Code</a>
+  <ul class="collapse">
+  <li><a href="#descripción" id="toc-descripción" class="nav-link" data-scroll-target="#descripción">Descripción</a></li>
+  <li><a href="#pasos-de-instalación" id="toc-pasos-de-instalación" class="nav-link" data-scroll-target="#pasos-de-instalación">Pasos de instalación</a></li>
+  </ul></li>
+  <li><a href="#r-y-rstudio" id="toc-r-y-rstudio" class="nav-link" data-scroll-target="#r-y-rstudio">R y RStudio</a>
+  <ul class="collapse">
+  <li><a href="#descripción-1" id="toc-descripción-1" class="nav-link" data-scroll-target="#descripción-1">Descripción</a></li>
+  <li><a href="#pasos-de-instalación-1" id="toc-pasos-de-instalación-1" class="nav-link" data-scroll-target="#pasos-de-instalación-1">Pasos de instalación</a></li>
+  </ul></li>
+  <li><a href="#revbayes" id="toc-revbayes" class="nav-link" data-scroll-target="#revbayes">RevBayes</a>
+  <ul class="collapse">
+  <li><a href="#descripción-2" id="toc-descripción-2" class="nav-link" data-scroll-target="#descripción-2">Descripción</a></li>
+  <li><a href="#verificar-la-virtualización" id="toc-verificar-la-virtualización" class="nav-link" data-scroll-target="#verificar-la-virtualización">Verificar la virtualización</a></li>
+  <li><a href="#instalar-wsl-y-ubuntu" id="toc-instalar-wsl-y-ubuntu" class="nav-link" data-scroll-target="#instalar-wsl-y-ubuntu">Instalar WSL y Ubuntu</a></li>
+  <li><a href="#instalar-revbayes-en-ubuntu" id="toc-instalar-revbayes-en-ubuntu" class="nav-link" data-scroll-target="#instalar-revbayes-en-ubuntu">Instalar RevBayes en Ubuntu</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -202,36 +219,197 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa" class="level2">
-<h2 class="anchored" data-anchor-id="introducción-al-proceso-de-diversificación-y-que-herramientas-tenemos-para-calcular-una-tasa">1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa</h2>
-<p><strong>R Plot Function</strong></p>
-<p><strong>In this article, you will learn to use the plot function in R programming with the help of examples.</strong></p>
-<p>The most used plotting function in R programming is the <code>plot()</code> function. It is a generic function, meaning, it has many methods which are called according to the type of object passed to <code>plot()</code>.</p>
-<p>In the simplest case, we can pass in a vector and get a scatter plot of magnitude vs index. But generally, we pass in two vectors, and a scatter plot of these points is plotted.</p>
-<p>For example, the command <code>plot(c(1,2),c(3,5))</code> would plot the points <code>(1,3)</code> and <code>(2,5)</code>.</p>
-<p>Here is a more concrete example where we plot a sine function ranging from <code>-pi</code> to <code>pi</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span>pi,pi,<span class="fl">0.1</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">sin</span>(x),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">"Overlaying Graphs"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">""</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">type=</span><span class="st">"l"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">"blue"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,<span class="fu">cos</span>(x), <span class="at">col=</span><span class="st">"red"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"sin(x)"</span>,<span class="st">"cos(x)"</span>),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">fill=</span><span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"red"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="install_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>Este es el manual para la instalación de los programas que se utilizarán durante el curso <strong>Patrones filogenéticos: macroevolución y adaptación</strong>. Los programas seleccionados son herramientas esenciales para el desarrollo de análisis y actividades dentro del curso.</p>
+<p>Los programas a instalar incluyen:</p>
+<ul>
+<li><strong>Visual Studio Code</strong>: Un editor de código versátil y personalizable.</li>
+<li><strong>R y RStudio</strong>: Software estadístico y su entorno integrado para análisis y visualización de datos.</li>
+<li><strong>RevBayes</strong>: Herramienta para realizar análisis bayesianos avanzados en filogenética.</li>
+<li><strong>BAMM (Bayesian Analysis of Macroevolutionary Mixtures)</strong>: Programa diseñado para explorar dinámicas macroevolutivas, como tasas de diversificación y evolución de rasgos.</li>
+</ul>
+<p>A continuación, se presentan las instrucciones detalladas para instalar y configurar cada uno de estos programas, asegurando que los participantes cuenten con todas las herramientas necesarias para aprovechar al máximo el curso.</p>
+<hr>
+</section>
+<section id="visual-studio-code" class="level1">
+<h1>Visual Studio Code</h1>
+<section id="descripción" class="level2">
+<h2 class="anchored" data-anchor-id="descripción">Descripción</h2>
+<p>Visual Studio Code (VS Code) es un editor de código fuente ligero pero potente, desarrollado por Microsoft. Es compatible con varios lenguajes de programación y ofrece características como autocompletado de código, depuración integrada, control de versiones con Git y una amplia variedad de extensiones que permiten personalizar y ampliar su funcionalidad.</p>
+</section>
+<section id="pasos-de-instalación" class="level2">
+<h2 class="anchored" data-anchor-id="pasos-de-instalación">Pasos de instalación</h2>
+<ol type="1">
+<li><p><strong>Descargar el instalador</strong>:</p>
+<ul>
+<li>Ve al sitio oficial de Visual Studio Code: <a href="https://code.visualstudio.com/" class="uri">https://code.visualstudio.com/</a>.</li>
+<li>Haz clic en el botón para descargar el archivo ejecutable.</li>
+</ul></li>
+<li><p><strong>Ejecutar el instalador</strong>:</p>
+<ul>
+<li>Localiza el archivo descargado (por lo general, estará en la carpeta <code>Descargas</code>).</li>
+<li>Haz doble clic en el archivo para iniciar el asistente de instalación.</li>
+</ul></li>
+<li><p><strong>Configurar las opciones de instalación</strong>:</p>
+<ul>
+<li>Acepta los términos y condiciones.</li>
+<li>Elige una carpeta de instalación o deja la predeterminada.</li>
+<li>Selecciona las opciones adicionales como:
+<ul>
+<li>Crear un ícono en el escritorio.</li>
+<li>Agregar “Code” al menú contextual para abrir archivos y carpetas.</li>
+<li>Registrar el programa como editor por defecto de ciertos archivos.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Completar la instalación</strong>:</p>
+<ul>
+<li>Haz clic en “Instalar”.</li>
+<li>Espera a que el proceso finalice y haz clic en “Finalizar” para abrir Visual Studio Code.</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="r-y-rstudio" class="level1">
+<h1>R y RStudio</h1>
+<section id="descripción-1" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-1">Descripción</h2>
+<p>R es un lenguaje de programación y software para el análisis estadístico y la visualización de datos. RStudio es un entorno de desarrollo integrado (IDE) que facilita trabajar con R gracias a su interfaz amigable y herramientas adicionales como depuración de código, manejo de proyectos y soporte para Markdown.</p>
+</section>
+<section id="pasos-de-instalación-1" class="level2">
+<h2 class="anchored" data-anchor-id="pasos-de-instalación-1">Pasos de instalación</h2>
+<section id="instalación-de-r" class="level3">
+<h3 class="anchored" data-anchor-id="instalación-de-r">Instalación de R</h3>
+<ol type="1">
+<li><strong>Descargar el instalador</strong>:
+<ul>
+<li>Ve al sitio oficial de CRAN: <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>.</li>
+<li>Selecciona “Download R for Windows” y luego “base”.</li>
+<li>Haz clic en el enlace para descargar el instalador más reciente.</li>
+</ul></li>
+<li><strong>Ejecutar el instalador</strong>:
+<ul>
+<li>Localiza el archivo descargado y haz doble clic para ejecutarlo.</li>
+<li>Sigue las instrucciones del asistente, aceptando los valores predeterminados a menos que necesites personalizar la instalación.</li>
+</ul></li>
+<li><strong>Completar la instalación</strong>:
+<ul>
+<li>Haz clic en “Finalizar” al terminar el proceso.</li>
+</ul></li>
+</ol>
+</section>
+<section id="instalación-de-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="instalación-de-rstudio">Instalación de RStudio</h3>
+<ol type="1">
+<li><strong>Descargar el instalador</strong>:
+<ul>
+<li>Ve al sitio oficial de RStudio: <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>.</li>
+<li>Descarga la versión gratuita de RStudio Desktop.</li>
+</ul></li>
+<li><strong>Ejecutar el instalador</strong>:
+<ul>
+<li>Localiza el archivo descargado y haz doble clic para ejecutarlo.</li>
+<li>Sigue las instrucciones del asistente de instalación.</li>
+</ul></li>
+<li><strong>Completar la instalación</strong>:
+<ul>
+<li>Haz clic en “Finalizar” al terminar el proceso.</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+</section>
+<section id="revbayes" class="level1">
+<h1>RevBayes</h1>
+<section id="descripción-2" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-2">Descripción</h2>
+<p>RevBayes es un software diseñado para realizar análisis filogenéticos avanzados utilizando métodos bayesianos. Ofrece flexibilidad para modelar procesos evolutivos complejos y es ampliamente utilizado en investigaciones de filogenética y macroevolución.</p>
+<p>Para instalar RevBayes en Windows, utilizaremos Ubuntu mediante Windows Subsystem for Linux (WSL).</p>
+</section>
+<section id="verificar-la-virtualización" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-la-virtualización">Verificar la virtualización</h2>
+<ol type="1">
+<li><strong>Abrir el Administrador de Tareas</strong>:
+<ul>
+<li>Presiona <code>Ctrl + Shift + Esc</code> para abrir el Administrador de Tareas.</li>
+<li>Ve a la pestaña <strong>Rendimiento</strong> y selecciona <strong>CPU</strong>.</li>
+<li>En la esquina inferior derecha, busca si la opción “Virtualización” está habilitada.</li>
+</ul></li>
+<li><strong>Habilitar la virtualización</strong> (si está deshabilitada):
+<ul>
+<li>Reinicia tu computadora y accede al BIOS/UEFI.</li>
+<li>Para procesadores <strong>Intel</strong>, busca una opción como “Intel Virtualization Technology” o “VT-x” y actívala.</li>
+<li>Para procesadores <strong>AMD</strong>, busca “SVM Mode” o una opción similar y actívala.</li>
+<li>Guarda los cambios y reinicia.</li>
+</ul></li>
+</ol>
+</section>
+<section id="instalar-wsl-y-ubuntu" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-wsl-y-ubuntu">Instalar WSL y Ubuntu</h2>
+<ol type="1">
+<li><strong>Habilitar WSL</strong>:
+<ul>
+<li><p>Abre PowerShell como administrador.</p></li>
+<li><p>Ejecuta el siguiente comando:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Esto instalará automáticamente WSL2 y descargará una distribución de Ubuntu.</p></li>
+</ul></li>
+<li><strong>Seleccionar Ubuntu</strong>:
+<ul>
+<li>Si no se instala automáticamente, descárgalo desde la Microsoft Store:
+<ul>
+<li>Busca “Ubuntu” en la tienda.</li>
+<li>Selecciona la versión más reciente y haz clic en “Obtener”.</li>
+</ul></li>
+</ul></li>
+<li><strong>Configurar Ubuntu</strong>:
+<ul>
+<li>Abre Ubuntu desde el menú de inicio.</li>
+<li>Crea un nombre de usuario y contraseña cuando se te solicite.</li>
+</ul></li>
+</ol>
+</section>
+<section id="instalar-revbayes-en-ubuntu" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-revbayes-en-ubuntu">Instalar RevBayes en Ubuntu</h2>
+<ol type="1">
+<li><strong>Actualizar paquetes</strong>:
+<ul>
+<li><p>Ejecuta:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+<li><strong>Descargar RevBayes</strong>:
+<ul>
+<li><p>Usa el siguiente comando para descargar la versión 1.2.5:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/revbayes/revbayes/releases/download/v1.2.5/revbayes-v1.2.5-linux64.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+<li><strong>Instalar RevBayes</strong>:
+<ul>
+<li><p>Extrae el archivo descargado y navega a la carpeta:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> revbayes-v1.2.5-linux64.tar.gz</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> revbayes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Haz que el ejecutable sea ejecutable:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x rb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+<li><strong>Agregar RevBayes al PATH</strong>:
+<ul>
+<li><p>Para que <code>rb</code> esté disponible en cualquier sesión de Ubuntu, agrega su ruta al archivo <code>~/.bashrc</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="$HOME/revbayes:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Esto permitirá ejecutar <code>rb</code> desde cualquier directorio en futuras sesiones de terminal.</p></li>
+</ul></li>
+<li><strong>Verificar la instalación</strong>:
+<ul>
+<li><p>Ejecuta el programa:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Deberías ver la interfaz de línea de comandos de RevBayes.</p></li>
+</ul></li>
+</ol>
+<hr>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

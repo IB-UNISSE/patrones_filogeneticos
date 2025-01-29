@@ -14,7 +14,87 @@
     "href": "chapters/install.html",
     "title": "Instalación de Software",
     "section": "",
-    "text": "1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa\nR Plot Function\nIn this article, you will learn to use the plot function in R programming with the help of examples.\nThe most used plotting function in R programming is the plot() function. It is a generic function, meaning, it has many methods which are called according to the type of object passed to plot().\nIn the simplest case, we can pass in a vector and get a scatter plot of magnitude vs index. But generally, we pass in two vectors, and a scatter plot of these points is plotted.\nFor example, the command plot(c(1,2),c(3,5)) would plot the points (1,3) and (2,5).\nHere is a more concrete example where we plot a sine function ranging from -pi to pi.\nx &lt;- seq(-pi,pi,0.1)\nplot(x, sin(x),\nmain=\"Overlaying Graphs\",\nylab=\"\",\ntype=\"l\",\ncol=\"blue\")\nlines(x,cos(x), col=\"red\")\nlegend(\"topleft\",\nc(\"sin(x)\",\"cos(x)\"),\nfill=c(\"blue\",\"red\")\n)",
+    "text": "Introducción\nEste es el manual para la instalación de los programas que se utilizarán durante el curso Patrones filogenéticos: macroevolución y adaptación. Los programas seleccionados son herramientas esenciales para el desarrollo de análisis y actividades dentro del curso.\nLos programas a instalar incluyen:\nA continuación, se presentan las instrucciones detalladas para instalar y configurar cada uno de estos programas, asegurando que los participantes cuenten con todas las herramientas necesarias para aprovechar al máximo el curso.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#descripción",
+    "href": "chapters/install.html#descripción",
+    "title": "Instalación de Software",
+    "section": "Descripción",
+    "text": "Descripción\nVisual Studio Code (VS Code) es un editor de código fuente ligero pero potente, desarrollado por Microsoft. Es compatible con varios lenguajes de programación y ofrece características como autocompletado de código, depuración integrada, control de versiones con Git y una amplia variedad de extensiones que permiten personalizar y ampliar su funcionalidad.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#pasos-de-instalación",
+    "href": "chapters/install.html#pasos-de-instalación",
+    "title": "Instalación de Software",
+    "section": "Pasos de instalación",
+    "text": "Pasos de instalación\n\nDescargar el instalador:\n\nVe al sitio oficial de Visual Studio Code: https://code.visualstudio.com/.\nHaz clic en el botón para descargar el archivo ejecutable.\n\nEjecutar el instalador:\n\nLocaliza el archivo descargado (por lo general, estará en la carpeta Descargas).\nHaz doble clic en el archivo para iniciar el asistente de instalación.\n\nConfigurar las opciones de instalación:\n\nAcepta los términos y condiciones.\nElige una carpeta de instalación o deja la predeterminada.\nSelecciona las opciones adicionales como:\n\nCrear un ícono en el escritorio.\nAgregar “Code” al menú contextual para abrir archivos y carpetas.\nRegistrar el programa como editor por defecto de ciertos archivos.\n\n\nCompletar la instalación:\n\nHaz clic en “Instalar”.\nEspera a que el proceso finalice y haz clic en “Finalizar” para abrir Visual Studio Code.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#descripción-1",
+    "href": "chapters/install.html#descripción-1",
+    "title": "Instalación de Software",
+    "section": "Descripción",
+    "text": "Descripción\nR es un lenguaje de programación y software para el análisis estadístico y la visualización de datos. RStudio es un entorno de desarrollo integrado (IDE) que facilita trabajar con R gracias a su interfaz amigable y herramientas adicionales como depuración de código, manejo de proyectos y soporte para Markdown.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#pasos-de-instalación-1",
+    "href": "chapters/install.html#pasos-de-instalación-1",
+    "title": "Instalación de Software",
+    "section": "Pasos de instalación",
+    "text": "Pasos de instalación\n\nInstalación de R\n\nDescargar el instalador:\n\nVe al sitio oficial de CRAN: https://cran.r-project.org/.\nSelecciona “Download R for Windows” y luego “base”.\nHaz clic en el enlace para descargar el instalador más reciente.\n\nEjecutar el instalador:\n\nLocaliza el archivo descargado y haz doble clic para ejecutarlo.\nSigue las instrucciones del asistente, aceptando los valores predeterminados a menos que necesites personalizar la instalación.\n\nCompletar la instalación:\n\nHaz clic en “Finalizar” al terminar el proceso.\n\n\n\n\nInstalación de RStudio\n\nDescargar el instalador:\n\nVe al sitio oficial de RStudio: https://posit.co/download/rstudio-desktop/.\nDescarga la versión gratuita de RStudio Desktop.\n\nEjecutar el instalador:\n\nLocaliza el archivo descargado y haz doble clic para ejecutarlo.\nSigue las instrucciones del asistente de instalación.\n\nCompletar la instalación:\n\nHaz clic en “Finalizar” al terminar el proceso.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#descripción-2",
+    "href": "chapters/install.html#descripción-2",
+    "title": "Instalación de Software",
+    "section": "Descripción",
+    "text": "Descripción\nRevBayes es un software diseñado para realizar análisis filogenéticos avanzados utilizando métodos bayesianos. Ofrece flexibilidad para modelar procesos evolutivos complejos y es ampliamente utilizado en investigaciones de filogenética y macroevolución.\nPara instalar RevBayes en Windows, utilizaremos Ubuntu mediante Windows Subsystem for Linux (WSL).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#verificar-la-virtualización",
+    "href": "chapters/install.html#verificar-la-virtualización",
+    "title": "Instalación de Software",
+    "section": "Verificar la virtualización",
+    "text": "Verificar la virtualización\n\nAbrir el Administrador de Tareas:\n\nPresiona Ctrl + Shift + Esc para abrir el Administrador de Tareas.\nVe a la pestaña Rendimiento y selecciona CPU.\nEn la esquina inferior derecha, busca si la opción “Virtualización” está habilitada.\n\nHabilitar la virtualización (si está deshabilitada):\n\nReinicia tu computadora y accede al BIOS/UEFI.\nPara procesadores Intel, busca una opción como “Intel Virtualization Technology” o “VT-x” y actívala.\nPara procesadores AMD, busca “SVM Mode” o una opción similar y actívala.\nGuarda los cambios y reinicia.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#instalar-wsl-y-ubuntu",
+    "href": "chapters/install.html#instalar-wsl-y-ubuntu",
+    "title": "Instalación de Software",
+    "section": "Instalar WSL y Ubuntu",
+    "text": "Instalar WSL y Ubuntu\n\nHabilitar WSL:\n\nAbre PowerShell como administrador.\nEjecuta el siguiente comando:\nwsl --install\nEsto instalará automáticamente WSL2 y descargará una distribución de Ubuntu.\n\nSeleccionar Ubuntu:\n\nSi no se instala automáticamente, descárgalo desde la Microsoft Store:\n\nBusca “Ubuntu” en la tienda.\nSelecciona la versión más reciente y haz clic en “Obtener”.\n\n\nConfigurar Ubuntu:\n\nAbre Ubuntu desde el menú de inicio.\nCrea un nombre de usuario y contraseña cuando se te solicite.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#instalar-revbayes-en-ubuntu",
+    "href": "chapters/install.html#instalar-revbayes-en-ubuntu",
+    "title": "Instalación de Software",
+    "section": "Instalar RevBayes en Ubuntu",
+    "text": "Instalar RevBayes en Ubuntu\n\nActualizar paquetes:\n\nEjecuta:\nsudo apt update && sudo apt upgrade -y\n\nDescargar RevBayes:\n\nUsa el siguiente comando para descargar la versión 1.2.5:\nwget https://github.com/revbayes/revbayes/releases/download/v1.2.5/revbayes-v1.2.5-linux64.tar.gz\n\nInstalar RevBayes:\n\nExtrae el archivo descargado y navega a la carpeta:\ntar -xzf revbayes-v1.2.5-linux64.tar.gz\ncd revbayes\nHaz que el ejecutable sea ejecutable:\nchmod +x rb\n\nAgregar RevBayes al PATH:\n\nPara que rb esté disponible en cualquier sesión de Ubuntu, agrega su ruta al archivo ~/.bashrc:\necho 'export PATH=\"$HOME/revbayes:$PATH\"' &gt;&gt; ~/.bashrc\nsource ~/.bashrc\nEsto permitirá ejecutar rb desde cualquier directorio en futuras sesiones de terminal.\n\nVerificar la instalación:\n\nEjecuta el programa:\nrb\nDeberías ver la interfaz de línea de comandos de RevBayes.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
     ]
