@@ -194,10 +194,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#instalar-wsl-y-ubuntu" id="toc-instalar-wsl-y-ubuntu" class="nav-link" data-scroll-target="#instalar-wsl-y-ubuntu">Instalar WSL y Ubuntu</a></li>
   <li><a href="#instalar-revbayes-en-ubuntu" id="toc-instalar-revbayes-en-ubuntu" class="nav-link" data-scroll-target="#instalar-revbayes-en-ubuntu">Instalar RevBayes en Ubuntu</a></li>
   </ul></li>
-  <li><a href="#bamm" id="toc-bamm" class="nav-link" data-scroll-target="#bamm">BAMM</a></li>
-  <li><a href="#descripción-3" id="toc-descripción-3" class="nav-link" data-scroll-target="#descripción-3">Descripción</a>
+  <li><a href="#bamm-bayesian-analysis-of-macroevolutionary-mixtures" id="toc-bamm-bayesian-analysis-of-macroevolutionary-mixtures" class="nav-link" data-scroll-target="#bamm-bayesian-analysis-of-macroevolutionary-mixtures">BAMM (Bayesian Analysis of Macroevolutionary Mixtures)</a>
   <ul class="collapse">
-  <li><a href="#instalación-de-bamm-en-windows" id="toc-instalación-de-bamm-en-windows" class="nav-link" data-scroll-target="#instalación-de-bamm-en-windows">Instalación de BAMM en Windows</a></li>
+  <li><a href="#descripción-3" id="toc-descripción-3" class="nav-link" data-scroll-target="#descripción-3">Descripción</a></li>
+  <li><a href="#instalación-de-bamm-en-ubuntu-wsl-o-nativo" id="toc-instalación-de-bamm-en-ubuntu-wsl-o-nativo" class="nav-link" data-scroll-target="#instalación-de-bamm-en-ubuntu-wsl-o-nativo">Instalación de BAMM en Ubuntu (WSL o nativo)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -414,47 +414,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="bamm" class="level1">
-<h1>BAMM</h1>
-</section>
-<section id="descripción-3" class="level1">
-<h1>Descripción</h1>
+<section id="bamm-bayesian-analysis-of-macroevolutionary-mixtures" class="level1">
+<h1>BAMM (Bayesian Analysis of Macroevolutionary Mixtures)</h1>
+<section id="descripción-3" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-3">Descripción</h2>
 <p>BAMM es un software diseñado para analizar tasas de diversificación y evolución de rasgos en filogenias de gran tamaño. Utiliza métodos bayesianos para estimar patrones heterogéneos de evolución y es ampliamente utilizado en estudios de macroevolución.</p>
-<section id="instalación-de-bamm-en-windows" class="level2">
-<h2 class="anchored" data-anchor-id="instalación-de-bamm-en-windows">Instalación de BAMM en Windows</h2>
+</section>
+<section id="instalación-de-bamm-en-ubuntu-wsl-o-nativo" class="level2">
+<h2 class="anchored" data-anchor-id="instalación-de-bamm-en-ubuntu-wsl-o-nativo">Instalación de BAMM en Ubuntu (WSL o nativo)</h2>
 <ol type="1">
-<li><strong>Descargar el instalador de BAMM</strong>:
+<li><strong>Actualizar el sistema y dependencias</strong>:
 <ul>
-<li>Ve al sitio oficial de BAMM: <a href="http://bamm-project.org/download.html" class="uri">http://bamm-project.org/download.html</a>.</li>
-<li>Descarga la versión más reciente para Windows.</li>
+<li><p>Ejecuta los siguientes comandos para asegurarte de que el sistema esté actualizado y las dependencias necesarias estén instaladas:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git build-essential cmake libgsl-dev <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
-<li><strong>Ejecutar el instalador</strong>:
+<li><strong>Clonar el repositorio de BAMM</strong>:
 <ul>
-<li>Localiza el archivo descargado (generalmente en la carpeta <code>Descargas</code>).</li>
-<li>Haz doble clic en el archivo para iniciar el asistente de instalación.</li>
+<li><p>Clona el repositorio oficial de BAMM desde GitHub:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/macroevolution/bamm.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
-<li><strong>Seguir las instrucciones del asistente</strong>:
+<li><strong>Crear el directorio de compilación</strong>:
 <ul>
-<li>Acepta los términos y condiciones.</li>
-<li>Elige una ubicación para instalar BAMM o usa la ubicación predeterminada.</li>
-<li>Completa el proceso de instalación haciendo clic en “Finalizar”.</li>
+<li><p>Navega al directorio raíz del proyecto, crea un directorio llamado <code>build</code> y accede a él:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bamm</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> build</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> build</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
-<li><strong>Configurar el entorno de trabajo</strong>:
+<li><strong>Compilar BAMM</strong>:
 <ul>
-<li>Asegúrate de que el directorio de instalación de BAMM esté agregado al <code>PATH</code> del sistema:
-<ul>
-<li>Abre el Panel de Control y ve a <strong>Sistema y Seguridad</strong> &gt; <strong>Sistema</strong> &gt; <strong>Configuración avanzada del sistema</strong>.</li>
-<li>Haz clic en <strong>Variables de entorno</strong>.</li>
-<li>En la sección <strong>Variables del sistema</strong>, selecciona la variable <code>Path</code> y haz clic en <strong>Editar</strong>.</li>
-<li>Agrega la ruta al directorio donde se instaló BAMM (por ejemplo, <code>C:\Program Files\BAMM</code>).</li>
-<li>Haz clic en <strong>Aceptar</strong> para guardar los cambios.</li>
+<li><p>Ejecuta los siguientes comandos para compilar BAMM:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> ..</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>El ejecutable final se generará con el nombre <code>bamm</code>.</p></li>
 </ul></li>
+<li><strong>Instalar BAMM (opcional)</strong>:
+<ul>
+<li><p>Para instalar el ejecutable en una ubicación permanente, ejecuta este comando desde el directorio <code>build</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> make install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Verificar la instalación</strong>:
 <ul>
-<li><p>Abre una ventana de <strong>Símbolo del sistema</strong> (Cmd) o <strong>PowerShell</strong>.</p></li>
-<li><p>Escribe el comando:</p>
-<pre><code>bamm -h</code></pre></li>
+<li><p>Asegúrate de que BAMM esté correctamente instalado ejecutando:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bamm</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Deberías ver la pantalla de ayuda de BAMM.</p></li>
 </ul></li>
 </ol>

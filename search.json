@@ -100,11 +100,21 @@
     ]
   },
   {
-    "objectID": "chapters/install.html#instalación-de-bamm-en-windows",
-    "href": "chapters/install.html#instalación-de-bamm-en-windows",
+    "objectID": "chapters/install.html#descripción-3",
+    "href": "chapters/install.html#descripción-3",
     "title": "Instalación de Software",
-    "section": "Instalación de BAMM en Windows",
-    "text": "Instalación de BAMM en Windows\n\nDescargar el instalador de BAMM:\n\nVe al sitio oficial de BAMM: http://bamm-project.org/download.html.\nDescarga la versión más reciente para Windows.\n\nEjecutar el instalador:\n\nLocaliza el archivo descargado (generalmente en la carpeta Descargas).\nHaz doble clic en el archivo para iniciar el asistente de instalación.\n\nSeguir las instrucciones del asistente:\n\nAcepta los términos y condiciones.\nElige una ubicación para instalar BAMM o usa la ubicación predeterminada.\nCompleta el proceso de instalación haciendo clic en “Finalizar”.\n\nConfigurar el entorno de trabajo:\n\nAsegúrate de que el directorio de instalación de BAMM esté agregado al PATH del sistema:\n\nAbre el Panel de Control y ve a Sistema y Seguridad &gt; Sistema &gt; Configuración avanzada del sistema.\nHaz clic en Variables de entorno.\nEn la sección Variables del sistema, selecciona la variable Path y haz clic en Editar.\nAgrega la ruta al directorio donde se instaló BAMM (por ejemplo, C:\\Program Files\\BAMM).\nHaz clic en Aceptar para guardar los cambios.\n\n\nVerificar la instalación:\n\nAbre una ventana de Símbolo del sistema (Cmd) o PowerShell.\nEscribe el comando:\nbamm -h\nDeberías ver la pantalla de ayuda de BAMM.",
+    "section": "Descripción",
+    "text": "Descripción\nBAMM es un software diseñado para analizar tasas de diversificación y evolución de rasgos en filogenias de gran tamaño. Utiliza métodos bayesianos para estimar patrones heterogéneos de evolución y es ampliamente utilizado en estudios de macroevolución.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#instalación-de-bamm-en-ubuntu-wsl-o-nativo",
+    "href": "chapters/install.html#instalación-de-bamm-en-ubuntu-wsl-o-nativo",
+    "title": "Instalación de Software",
+    "section": "Instalación de BAMM en Ubuntu (WSL o nativo)",
+    "text": "Instalación de BAMM en Ubuntu (WSL o nativo)\n\nActualizar el sistema y dependencias:\n\nEjecuta los siguientes comandos para asegurarte de que el sistema esté actualizado y las dependencias necesarias estén instaladas:\nsudo apt update && sudo apt upgrade -y\nsudo apt install git build-essential cmake libgsl-dev -y\n\nClonar el repositorio de BAMM:\n\nClona el repositorio oficial de BAMM desde GitHub:\ngit clone https://github.com/macroevolution/bamm.git\n\nCrear el directorio de compilación:\n\nNavega al directorio raíz del proyecto, crea un directorio llamado build y accede a él:\ncd bamm\nmkdir build\ncd build\n\nCompilar BAMM:\n\nEjecuta los siguientes comandos para compilar BAMM:\ncmake ..\nmake -j\nEl ejecutable final se generará con el nombre bamm.\n\nInstalar BAMM (opcional):\n\nPara instalar el ejecutable en una ubicación permanente, ejecuta este comando desde el directorio build:\nsudo make install\n\nVerificar la instalación:\n\nAsegúrate de que BAMM esté correctamente instalado ejecutando:\nbamm -h\nDeberías ver la pantalla de ayuda de BAMM.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
     ]
