@@ -194,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#instalar-wsl-y-ubuntu" id="toc-instalar-wsl-y-ubuntu" class="nav-link" data-scroll-target="#instalar-wsl-y-ubuntu">Instalar WSL y Ubuntu</a></li>
   <li><a href="#instalar-revbayes-en-ubuntu" id="toc-instalar-revbayes-en-ubuntu" class="nav-link" data-scroll-target="#instalar-revbayes-en-ubuntu">Instalar RevBayes en Ubuntu</a></li>
   </ul></li>
-  <li><a href="#bamm-bayesian-analysis-of-macroevolutionary-mixtures" id="toc-bamm-bayesian-analysis-of-macroevolutionary-mixtures" class="nav-link" data-scroll-target="#bamm-bayesian-analysis-of-macroevolutionary-mixtures">BAMM (Bayesian Analysis of Macroevolutionary Mixtures)</a>
+  <li><a href="#bamm" id="toc-bamm" class="nav-link" data-scroll-target="#bamm">BAMM</a>
   <ul class="collapse">
   <li><a href="#descripción-3" id="toc-descripción-3" class="nav-link" data-scroll-target="#descripción-3">Descripción</a></li>
   <li><a href="#instalación-de-bamm-en-ubuntu-wsl-o-nativo" id="toc-instalación-de-bamm-en-ubuntu-wsl-o-nativo" class="nav-link" data-scroll-target="#instalación-de-bamm-en-ubuntu-wsl-o-nativo">Instalación de BAMM en Ubuntu (WSL o nativo)</a></li>
@@ -414,8 +414,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="bamm-bayesian-analysis-of-macroevolutionary-mixtures" class="level1">
-<h1>BAMM (Bayesian Analysis of Macroevolutionary Mixtures)</h1>
+<section id="bamm" class="level1">
+<h1>BAMM</h1>
 <section id="descripción-3" class="level2">
 <h2 class="anchored" data-anchor-id="descripción-3">Descripción</h2>
 <p>BAMM es un software diseñado para analizar tasas de diversificación y evolución de rasgos en filogenias de gran tamaño. Utiliza métodos bayesianos para estimar patrones heterogéneos de evolución y es ampliamente utilizado en estudios de macroevolución.</p>
@@ -446,12 +446,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Ejecuta los siguientes comandos para compilar BAMM:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> ..</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>El ejecutable final se generará con el nombre <code>bamm</code>.</p></li>
+<li><p>El ejecutable final se generará con el nombre <code>bamm</code> dentro del directorio <code>build</code>.</p></li>
 </ul></li>
-<li><strong>Instalar BAMM (opcional)</strong>:
+<li><strong>Agregar BAMM al PATH</strong>:
 <ul>
-<li><p>Para instalar el ejecutable en una ubicación permanente, ejecuta este comando desde el directorio <code>build</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> make install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Para que el ejecutable <code>bamm</code> esté disponible desde cualquier directorio, agrega su ruta al archivo <code>~/.bashrc</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="$HOME/bamm/build:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Esto asegurará que puedas ejecutar <code>bamm</code> desde cualquier lugar en futuras sesiones.</p></li>
 </ul></li>
 <li><strong>Verificar la instalación</strong>:
 <ul>
