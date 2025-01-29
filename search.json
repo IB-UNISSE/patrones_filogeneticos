@@ -100,6 +100,16 @@
     ]
   },
   {
+    "objectID": "chapters/install.html#instalación-de-bamm-en-windows",
+    "href": "chapters/install.html#instalación-de-bamm-en-windows",
+    "title": "Instalación de Software",
+    "section": "Instalación de BAMM en Windows",
+    "text": "Instalación de BAMM en Windows\n\nDescargar el instalador de BAMM:\n\nVe al sitio oficial de BAMM: http://bamm-project.org/download.html.\nDescarga la versión más reciente para Windows.\n\nEjecutar el instalador:\n\nLocaliza el archivo descargado (generalmente en la carpeta Descargas).\nHaz doble clic en el archivo para iniciar el asistente de instalación.\n\nSeguir las instrucciones del asistente:\n\nAcepta los términos y condiciones.\nElige una ubicación para instalar BAMM o usa la ubicación predeterminada.\nCompleta el proceso de instalación haciendo clic en “Finalizar”.\n\nConfigurar el entorno de trabajo:\n\nAsegúrate de que el directorio de instalación de BAMM esté agregado al PATH del sistema:\n\nAbre el Panel de Control y ve a Sistema y Seguridad &gt; Sistema &gt; Configuración avanzada del sistema.\nHaz clic en Variables de entorno.\nEn la sección Variables del sistema, selecciona la variable Path y haz clic en Editar.\nAgrega la ruta al directorio donde se instaló BAMM (por ejemplo, C:\\Program Files\\BAMM).\nHaz clic en Aceptar para guardar los cambios.\n\n\nVerificar la instalación:\n\nAbre una ventana de Símbolo del sistema (Cmd) o PowerShell.\nEscribe el comando:\nbamm -h\nDeberías ver la pantalla de ayuda de BAMM.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
     "objectID": "chapters/chapter1.html",
     "href": "chapters/chapter1.html",
     "title": "Unidad 1: Patrones de diversificación",
