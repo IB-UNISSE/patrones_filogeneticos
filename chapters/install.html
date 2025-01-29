@@ -190,8 +190,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#revbayes" id="toc-revbayes" class="nav-link" data-scroll-target="#revbayes">RevBayes</a>
   <ul class="collapse">
   <li><a href="#descripción-2" id="toc-descripción-2" class="nav-link" data-scroll-target="#descripción-2">Descripción</a></li>
-  <li><a href="#verificar-la-virtualización" id="toc-verificar-la-virtualización" class="nav-link" data-scroll-target="#verificar-la-virtualización">Verificar la virtualización</a></li>
-  <li><a href="#instalar-wsl-y-ubuntu" id="toc-instalar-wsl-y-ubuntu" class="nav-link" data-scroll-target="#instalar-wsl-y-ubuntu">Instalar WSL y Ubuntu</a></li>
+  <li><a href="#verificar-si-la-virtualización-está-habilitada" id="toc-verificar-si-la-virtualización-está-habilitada" class="nav-link" data-scroll-target="#verificar-si-la-virtualización-está-habilitada">1. Verificar si la virtualización está habilitada</a></li>
+  <li><a href="#verificar-si-wsl-está-instalado-y-actualizado" id="toc-verificar-si-wsl-está-instalado-y-actualizado" class="nav-link" data-scroll-target="#verificar-si-wsl-está-instalado-y-actualizado">2. Verificar si WSL está instalado y actualizado</a></li>
+  <li><a href="#instalar-wsl-desde-cero-si-no-está-disponible" id="toc-instalar-wsl-desde-cero-si-no-está-disponible" class="nav-link" data-scroll-target="#instalar-wsl-desde-cero-si-no-está-disponible">3. Instalar WSL desde cero (si no está disponible)</a></li>
+  <li><a href="#actualizar-wsl-y-establecer-la-versión-por-defecto" id="toc-actualizar-wsl-y-establecer-la-versión-por-defecto" class="nav-link" data-scroll-target="#actualizar-wsl-y-establecer-la-versión-por-defecto">4. Actualizar WSL y establecer la versión por defecto</a></li>
   <li><a href="#instalar-revbayes-en-ubuntu" id="toc-instalar-revbayes-en-ubuntu" class="nav-link" data-scroll-target="#instalar-revbayes-en-ubuntu">Instalar RevBayes en Ubuntu</a></li>
   </ul></li>
   <li><a href="#bamm" id="toc-bamm" class="nav-link" data-scroll-target="#bamm">BAMM</a>
@@ -333,16 +335,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>RevBayes es un software diseñado para realizar análisis filogenéticos avanzados utilizando métodos bayesianos. Ofrece flexibilidad para modelar procesos evolutivos complejos y es ampliamente utilizado en investigaciones de filogenética y macroevolución.</p>
 <p>Para instalar RevBayes en Windows, utilizaremos Ubuntu mediante Windows Subsystem for Linux (WSL).</p>
 </section>
-<section id="verificar-la-virtualización" class="level2">
-<h2 class="anchored" data-anchor-id="verificar-la-virtualización">Verificar la virtualización</h2>
+<section id="verificar-si-la-virtualización-está-habilitada" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-si-la-virtualización-está-habilitada">1. Verificar si la virtualización está habilitada</h2>
 <ol type="1">
 <li><strong>Abrir el Administrador de Tareas</strong>:
 <ul>
-<li>Presiona <code>Ctrl + Shift + Esc</code> para abrir el Administrador de Tareas.</li>
-<li>Ve a la pestaña <strong>Rendimiento</strong> y selecciona <strong>CPU</strong>.</li>
-<li>En la esquina inferior derecha, busca si la opción “Virtualización” está habilitada.</li>
+<li><p>Presiona <code>Ctrl + Shift + Esc</code> para abrir el Administrador de Tareas.</p></li>
+<li><p>Ve a la pestaña <strong>Rendimiento</strong> y selecciona <strong>CPU</strong>.</p></li>
+<li><p>En la esquina inferior derecha, verifica si la opción <strong>“Virtualización”</strong> está habilitada.</p>
+<p><img src="../images/install/vitual_hab.png" class="img-fluid" width="450"></p></li>
 </ul></li>
-<li><strong>Habilitar la virtualización</strong> (si está deshabilitada):
+<li><strong>Habilitar la virtualización (si está deshabilitada)</strong>:
 <ul>
 <li>Reinicia tu computadora y accede al BIOS/UEFI.</li>
 <li>Para procesadores <strong>Intel</strong>, busca una opción como “Intel Virtualization Technology” o “VT-x” y actívala.</li>
@@ -351,28 +354,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol>
 </section>
-<section id="instalar-wsl-y-ubuntu" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-wsl-y-ubuntu">Instalar WSL y Ubuntu</h2>
+<section id="verificar-si-wsl-está-instalado-y-actualizado" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-si-wsl-está-instalado-y-actualizado">2. Verificar si WSL está instalado y actualizado</h2>
 <ol type="1">
-<li><strong>Habilitar WSL</strong>:
+<li><strong>Abrir PowerShell como administrador</strong>
 <ul>
-<li><p>Abre PowerShell como administrador.</p></li>
-<li><p>Ejecuta el siguiente comando:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Esto instalará automáticamente WSL2 y descargará una distribución de Ubuntu.</p></li>
+<li><p>Presiona <code>Win + X</code> y selecciona “Windows PowerShell (Admin)”.</p></li>
+<li><p>Ejecuta el siguiente comando para verificar si WSL está instalado y funcionando:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Si el comando muestra un error o indica que WSL no está disponible, sigue el <strong>Paso 3</strong> para instalarlo desde cero.</p></li>
+<li><p>Si WSL ya está habilitado, pasa al <strong>Paso 4</strong> para actualizarlo y asegurarte de que esté en la versión 2.</p></li>
 </ul></li>
-<li><strong>Seleccionar Ubuntu</strong>:
+</ol>
+</section>
+<section id="instalar-wsl-desde-cero-si-no-está-disponible" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-wsl-desde-cero-si-no-está-disponible">3. Instalar WSL desde cero (si no está disponible)</h2>
+<p>Si <code>wsl --status</code> muestra un error, sigue estos pasos para habilitar WSL desde cero:</p>
+<ol type="1">
+<li><p><strong>Abrir PowerShell como administrador</strong> y ejecutar los siguientes comandos:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>Microsoft-Windows-Subsystem-Linux <span class="op">/</span>all <span class="op">/</span>norestart</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>VirtualMachinePlatform <span class="op">/</span>all <span class="op">/</span>norestart</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>Microsoft-Hyper-V <span class="op">/</span>all <span class="op">/</span>norestart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Reiniciar la computadora</strong> para aplicar los cambios.</p></li>
+<li><p><strong>Verificar la instalación</strong>:</p>
 <ul>
-<li>Si no se instala automáticamente, descárgalo desde la Microsoft Store:
-<ul>
-<li>Busca “Ubuntu” en la tienda.</li>
-<li>Selecciona la versión más reciente y haz clic en “Obtener”.</li>
+<li><p>Ejecuta nuevamente:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Si el comando muestra que WSL está instalado correctamente puedes proceder con el paso 4.</p></li>
 </ul></li>
+</ol>
+</section>
+<section id="actualizar-wsl-y-establecer-la-versión-por-defecto" class="level2">
+<h2 class="anchored" data-anchor-id="actualizar-wsl-y-establecer-la-versión-por-defecto">4. Actualizar WSL y establecer la versión por defecto</h2>
+<p>Si WSL ya estaba habilitado, sigue estos pasos para actualizarlo y asegurarte de que esté en la versión 2:</p>
+<ol type="1">
+<li><strong>Actualizar el kernel de WSL 2</strong>
+<ul>
+<li>Descarga la actualización oficial desde Microsoft:
+<ul>
+<li>🔗 <a href="https://aka.ms/wsl2kernel">Descargar actualización de WSL 2</a></li>
+</ul></li>
+<li>Guarda el archivo <code>wsl_update_x64.msi</code> en tu computadora.</li>
+<li>Ejecuta el archivo descargado y sigue las instrucciones de instalación.</li>
+<li>Una vez instalado, reinicia tu computadora.</li>
+</ul></li>
+<li><strong>Configurar WSL para usar la versión 2</strong>
+<ul>
+<li><p>Abre PowerShell como administrador y ejecuta:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>set-default-version <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Esto asegurará que todas las distribuciones nuevas de Linux usen WSL 2 por defecto.</p></li>
+</ul></li>
+<li><strong>Instalación de Ubuntu</strong>:
+<ul>
+<li><p>Una vez reiniciado el equipo, abre PowerShell como administrador y ejecuta:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install <span class="op">-</span>d Ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Esto instalará automáticamente WSL2 y descargará la distribución de Ubuntu más reciente.</p></li>
 </ul></li>
 <li><strong>Configurar Ubuntu</strong>:
 <ul>
-<li>Abre Ubuntu desde el menú de inicio.</li>
-<li>Crea un nombre de usuario y contraseña cuando se te solicite.</li>
+<li><p>Abre Ubuntu desde el menú de inicio.</p></li>
+<li><p>Crea un nombre de usuario y contraseña cuando se te solicite.</p>
+<p><img src="../images/install/ubuntu_win1.png" class="img-fluid" width="500"></p></li>
 </ul></li>
 </ol>
 </section>
@@ -382,32 +424,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Actualizar paquetes</strong>:
 <ul>
 <li><p>Ejecuta:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Descargar RevBayes</strong>:
 <ul>
 <li><p>Usa el siguiente comando para descargar la versión 1.2.5:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/revbayes/revbayes/releases/download/v1.2.5/revbayes-v1.2.5-linux64.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/revbayes/revbayes/releases/download/v1.2.5/revbayes-v1.2.5-linux64.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Instalar RevBayes</strong>:
 <ul>
 <li><p>Extrae el archivo descargado y navega a la carpeta:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> revbayes-v1.2.5-linux64.tar.gz</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> revbayes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> revbayes-v1.2.5-linux64.tar.gz</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> revbayes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Haz que el ejecutable sea ejecutable:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x rb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x rb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Agregar RevBayes al PATH</strong>:
 <ul>
 <li><p>Para que <code>rb</code> esté disponible en cualquier sesión de Ubuntu, agrega su ruta al archivo <code>~/.bashrc</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="$HOME/revbayes:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="$HOME/revbayes:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Esto permitirá ejecutar <code>rb</code> desde cualquier directorio en futuras sesiones de terminal.</p></li>
 </ul></li>
 <li><strong>Verificar la instalación</strong>:
 <ul>
 <li><p>Ejecuta el programa:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Deberías ver la interfaz de línea de comandos de RevBayes.</p></li>
 </ul></li>
 </ol>
@@ -426,39 +468,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Actualizar el sistema y dependencias</strong>:
 <ul>
 <li><p>Ejecuta los siguientes comandos para asegurarte de que el sistema esté actualizado y las dependencias necesarias estén instaladas:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git build-essential cmake libgsl-dev <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade <span class="at">-y</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git build-essential cmake libgsl-dev <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Clonar el repositorio de BAMM</strong>:
 <ul>
 <li><p>Clona el repositorio oficial de BAMM desde GitHub:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/macroevolution/bamm.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/macroevolution/bamm.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Crear el directorio de compilación</strong>:
 <ul>
 <li><p>Navega al directorio raíz del proyecto, crea un directorio llamado <code>build</code> y accede a él:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bamm</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> build</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> build</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bamm</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> build</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> build</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Compilar BAMM</strong>:
 <ul>
 <li><p>Ejecuta los siguientes comandos para compilar BAMM:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> ..</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> ..</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>El ejecutable final se generará con el nombre <code>bamm</code> dentro del directorio <code>build</code>.</p></li>
 </ul></li>
 <li><strong>Agregar BAMM al PATH</strong>:
 <ul>
 <li><p>Para que el ejecutable <code>bamm</code> esté disponible desde cualquier directorio, agrega su ruta al archivo <code>~/.bashrc</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="$HOME/bamm/build:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="$HOME/bamm/build:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Esto asegurará que puedas ejecutar <code>bamm</code> desde cualquier lugar en futuras sesiones.</p></li>
 </ul></li>
 <li><strong>Verificar la instalación</strong>:
 <ul>
 <li><p>Asegúrate de que BAMM esté correctamente instalado ejecutando:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bamm</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bamm</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Deberías ver la pantalla de ayuda de BAMM.</p></li>
 </ul></li>
 </ol>

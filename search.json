@@ -70,21 +70,41 @@
     ]
   },
   {
-    "objectID": "chapters/install.html#verificar-la-virtualización",
-    "href": "chapters/install.html#verificar-la-virtualización",
+    "objectID": "chapters/install.html#verificar-si-la-virtualización-está-habilitada",
+    "href": "chapters/install.html#verificar-si-la-virtualización-está-habilitada",
     "title": "Instalación de Software",
-    "section": "Verificar la virtualización",
-    "text": "Verificar la virtualización\n\nAbrir el Administrador de Tareas:\n\nPresiona Ctrl + Shift + Esc para abrir el Administrador de Tareas.\nVe a la pestaña Rendimiento y selecciona CPU.\nEn la esquina inferior derecha, busca si la opción “Virtualización” está habilitada.\n\nHabilitar la virtualización (si está deshabilitada):\n\nReinicia tu computadora y accede al BIOS/UEFI.\nPara procesadores Intel, busca una opción como “Intel Virtualization Technology” o “VT-x” y actívala.\nPara procesadores AMD, busca “SVM Mode” o una opción similar y actívala.\nGuarda los cambios y reinicia.",
+    "section": "1. Verificar si la virtualización está habilitada",
+    "text": "1. Verificar si la virtualización está habilitada\n\nAbrir el Administrador de Tareas:\n\nPresiona Ctrl + Shift + Esc para abrir el Administrador de Tareas.\nVe a la pestaña Rendimiento y selecciona CPU.\nEn la esquina inferior derecha, verifica si la opción “Virtualización” está habilitada.\n\n\nHabilitar la virtualización (si está deshabilitada):\n\nReinicia tu computadora y accede al BIOS/UEFI.\nPara procesadores Intel, busca una opción como “Intel Virtualization Technology” o “VT-x” y actívala.\nPara procesadores AMD, busca “SVM Mode” o una opción similar y actívala.\nGuarda los cambios y reinicia.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
     ]
   },
   {
-    "objectID": "chapters/install.html#instalar-wsl-y-ubuntu",
-    "href": "chapters/install.html#instalar-wsl-y-ubuntu",
+    "objectID": "chapters/install.html#verificar-si-wsl-está-instalado-y-actualizado",
+    "href": "chapters/install.html#verificar-si-wsl-está-instalado-y-actualizado",
     "title": "Instalación de Software",
-    "section": "Instalar WSL y Ubuntu",
-    "text": "Instalar WSL y Ubuntu\n\nHabilitar WSL:\n\nAbre PowerShell como administrador.\nEjecuta el siguiente comando:\nwsl --install\nEsto instalará automáticamente WSL2 y descargará una distribución de Ubuntu.\n\nSeleccionar Ubuntu:\n\nSi no se instala automáticamente, descárgalo desde la Microsoft Store:\n\nBusca “Ubuntu” en la tienda.\nSelecciona la versión más reciente y haz clic en “Obtener”.\n\n\nConfigurar Ubuntu:\n\nAbre Ubuntu desde el menú de inicio.\nCrea un nombre de usuario y contraseña cuando se te solicite.",
+    "section": "2. Verificar si WSL está instalado y actualizado",
+    "text": "2. Verificar si WSL está instalado y actualizado\n\nAbrir PowerShell como administrador\n\nPresiona Win + X y selecciona “Windows PowerShell (Admin)”.\nEjecuta el siguiente comando para verificar si WSL está instalado y funcionando:\nwsl --status\nSi el comando muestra un error o indica que WSL no está disponible, sigue el Paso 3 para instalarlo desde cero.\nSi WSL ya está habilitado, pasa al Paso 4 para actualizarlo y asegurarte de que esté en la versión 2.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#instalar-wsl-desde-cero-si-no-está-disponible",
+    "href": "chapters/install.html#instalar-wsl-desde-cero-si-no-está-disponible",
+    "title": "Instalación de Software",
+    "section": "3. Instalar WSL desde cero (si no está disponible)",
+    "text": "3. Instalar WSL desde cero (si no está disponible)\nSi wsl --status muestra un error, sigue estos pasos para habilitar WSL desde cero:\n\nAbrir PowerShell como administrador y ejecutar los siguientes comandos:\ndism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart\ndism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart\ndism.exe /online /enable-feature /featurename:Microsoft-Hyper-V /all /norestart\nReiniciar la computadora para aplicar los cambios.\nVerificar la instalación:\n\nEjecuta nuevamente:\nwsl --status\nSi el comando muestra que WSL está instalado correctamente puedes proceder con el paso 4.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/install.html#actualizar-wsl-y-establecer-la-versión-por-defecto",
+    "href": "chapters/install.html#actualizar-wsl-y-establecer-la-versión-por-defecto",
+    "title": "Instalación de Software",
+    "section": "4. Actualizar WSL y establecer la versión por defecto",
+    "text": "4. Actualizar WSL y establecer la versión por defecto\nSi WSL ya estaba habilitado, sigue estos pasos para actualizarlo y asegurarte de que esté en la versión 2:\n\nActualizar el kernel de WSL 2\n\nDescarga la actualización oficial desde Microsoft:\n\n🔗 Descargar actualización de WSL 2\n\nGuarda el archivo wsl_update_x64.msi en tu computadora.\nEjecuta el archivo descargado y sigue las instrucciones de instalación.\nUna vez instalado, reinicia tu computadora.\n\nConfigurar WSL para usar la versión 2\n\nAbre PowerShell como administrador y ejecuta:\nwsl --set-default-version 2\nEsto asegurará que todas las distribuciones nuevas de Linux usen WSL 2 por defecto.\n\nInstalación de Ubuntu:\n\nUna vez reiniciado el equipo, abre PowerShell como administrador y ejecuta:\nwsl --install -d Ubuntu\nEsto instalará automáticamente WSL2 y descargará la distribución de Ubuntu más reciente.\n\nConfigurar Ubuntu:\n\nAbre Ubuntu desde el menú de inicio.\nCrea un nombre de usuario y contraseña cuando se te solicite.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
     ]
