@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Karen Lopez y Cristian Cervantes">
 
-<title>Patrones filogenéticos: macroevolución y adaptación</title>
+<title>Apuntes Comandos Básicos en Bash – Patrones filogenéticos: macroevolución y adaptación</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,26 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/install.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c6cbc1d6fb8db58f958c455fce091558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/Rstudio.html" rel="next">
+<link href="../chapters/install.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c6cbc1d6fb8db58f958c455fce091558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Inicio</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/commandline.html"><span class="chapter-title">Apuntes Comandos Básicos en Bash</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -97,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Patrones filogenéticos: macroevolución y adaptación</a> 
+      <a href="../">Patrones filogenéticos: macroevolución y adaptación</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -109,42 +143,42 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Inicio</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inicio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/install.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Instalación de Software</span></a>
+  <a href="../chapters/install.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Instalación de Software</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/commandline.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apuntes Comandos Básicos en Bash</span></a>
+  <a href="../chapters/commandline.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Apuntes Comandos Básicos en Bash</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/Rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apuntes sobre R y Rstudio</span></a>
+  <a href="../chapters/Rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apuntes sobre R y Rstudio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/revbayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apuntes sobre RevBayes</span></a>
+  <a href="../chapters/revbayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apuntes sobre RevBayes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/chapter1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Unidad 1: Patrones de diversificación</span></a>
+  <a href="../chapters/chapter1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Unidad 1: Patrones de diversificación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/chapter2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Unidad 2: bases</span></a>
+  <a href="../chapters/chapter2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Unidad 2: bases</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/chapter3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Unidad 3: Análisis de datos</span></a>
+  <a href="../chapters/chapter3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Unidad 3: Análisis de datos</span></a>
   </div>
 </li>
     </ul>
@@ -157,8 +191,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#presentación-del-curso-patrones-filogenéticos-macroevolución-y-adaptación" id="toc-presentación-del-curso-patrones-filogenéticos-macroevolución-y-adaptación" class="nav-link active" data-scroll-target="#presentación-del-curso-patrones-filogenéticos-macroevolución-y-adaptación">Presentación del Curso: Patrones Filogenéticos, Macroevolución y Adaptación</a></li>
-  <li><a href="#índice-del-curso" id="toc-índice-del-curso" class="nav-link" data-scroll-target="#índice-del-curso">Índice del Curso</a></li>
+  <li><a href="#navegación-en-el-sistema-de-archivos" id="toc-navegación-en-el-sistema-de-archivos" class="nav-link active" data-scroll-target="#navegación-en-el-sistema-de-archivos">1. Navegación en el sistema de archivos</a></li>
+  <li><a href="#manipulación-de-archivos-y-directorios" id="toc-manipulación-de-archivos-y-directorios" class="nav-link" data-scroll-target="#manipulación-de-archivos-y-directorios">2. Manipulación de archivos y directorios</a></li>
+  <li><a href="#visualización-y-edición-de-archivos" id="toc-visualización-y-edición-de-archivos" class="nav-link" data-scroll-target="#visualización-y-edición-de-archivos">3. Visualización y edición de archivos</a></li>
+  <li><a href="#limpiar-la-terminal" id="toc-limpiar-la-terminal" class="nav-link" data-scroll-target="#limpiar-la-terminal">4. Limpiar la terminal</a></li>
+  <li><a href="#historial-de-comandos" id="toc-historial-de-comandos" class="nav-link" data-scroll-target="#historial-de-comandos">5. Historial de comandos</a></li>
+  <li><a href="#permisos-y-propiedades-de-archivos" id="toc-permisos-y-propiedades-de-archivos" class="nav-link" data-scroll-target="#permisos-y-propiedades-de-archivos">6. Permisos y propiedades de archivos</a></li>
   </ul>
 </nav>
     </div>
@@ -167,19 +205,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Patrones filogenéticos: macroevolución y adaptación</h1>
+<h1 class="title"><span class="chapter-title">Apuntes Comandos Básicos en Bash</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Karen Lopez y Cristian Cervantes </p>
-          </div>
-  </div>
     
   
     
@@ -190,22 +222,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="presentación-del-curso-patrones-filogenéticos-macroevolución-y-adaptación" class="level1">
-<h1>Presentación del Curso: Patrones Filogenéticos, Macroevolución y Adaptación</h1>
+<section id="navegación-en-el-sistema-de-archivos" class="level2">
+<h2 class="anchored" data-anchor-id="navegación-en-el-sistema-de-archivos">1. Navegación en el sistema de archivos</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="docs/inicio/tempoModeEvolPCB.pdf"><img src="images/inicio/presentacion.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></a></p>
+<p><img src="../images/bash/folders.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="550"></p>
 </figure>
 </div>
-<p>Haz clic en la imagen para ver el PDF de la presentación del curso</p>
-</section>
-<section id="índice-del-curso" class="level1">
-<h1>Índice del Curso</h1>
-<p>Aquí puedes encontrar los temas del curso y sus respectivos enlaces:</p>
 <ul>
-<li><p><a href="https://ib-unisse.github.io/patrones_filogeneticos/chapters/install.html">Instalación de Software</a></p></li>
-<li><p><a href="https://ib-unisse.github.io/patrones_filogeneticos/chapters/Rstudio.html">Apuntes sobre R y Rstudio</a></p></li>
-<li><p><a href="https://ib-unisse.github.io/patrones_filogeneticos/chapters/revbayes.html">Apuntes sobre RevBayes</a></p></li>
+<li><p><strong><code>pwd</code></strong> → Muestra el directorio actual.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>ls</code></strong> → Lista los archivos y carpetas en el directorio actual.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span>     <span class="co"># Muestra detalles (permisos, dueño, tamaño, fecha)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span>     <span class="co"># Muestra archivos ocultos</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-h</span>     <span class="co"># Muestra tamaños en formato legible </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>cd</code></strong> → Cambia de directorio.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /   <span class="co"># Ir a la raiz</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/usuario/proyecto/data <span class="co"># ir a la carpeta data ruta absoluta</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> data/ <span class="co"># ir a la carpeta data ruta relativa</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..      <span class="co"># Subir un nivel</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="manipulación-de-archivos-y-directorios" class="level2">
+<h2 class="anchored" data-anchor-id="manipulación-de-archivos-y-directorios">2. Manipulación de archivos y directorios</h2>
+<ul>
+<li><p><strong><code>mkdir</code></strong> → Crea un directorio.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nueva_carpeta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>rm</code></strong> → Borra archivos y carpetas.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> archivo.txt        <span class="co"># Borra un archivo</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> carpeta         <span class="co"># Borra una carpeta y su contenido</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-i</span> archivo.txt     <span class="co"># Pregunta antes de borrar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>cp</code></strong> → Copia archivos o carpetas.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> archivo.txt copia.txt   <span class="co"># Copia un archivo</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> carpeta destino/     <span class="co"># Copia una carpeta</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>mv</code></strong> → Mueve o renombra archivos y carpetas.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> archivo.txt nueva_ubicacion/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> archivo.txt nuevo_nombre.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="visualización-y-edición-de-archivos" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-y-edición-de-archivos">3. Visualización y edición de archivos</h2>
+<ul>
+<li><p><strong><code>cat</code></strong> → Muestra el contenido de un archivo.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> archivo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>less</code></strong> → Permite visualizar archivos grandes de manera interactiva.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> archivo.txt   <span class="co"># Usa las teclas ↑ ↓ para moverte, "q" para salir</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>nano</code></strong> → Editor de texto en terminal.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> archivo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="limpiar-la-terminal" class="level2">
+<h2 class="anchored" data-anchor-id="limpiar-la-terminal">4. Limpiar la terminal</h2>
+<ul>
+<li><p><strong><code>clear</code></strong> → Borra la pantalla de la terminal, pero no elimina procesos ni historial.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>Ctrl + L</code></strong> → Hace lo mismo que <code>clear</code>, pero sin ejecutar un comando explícito.</p>
+<ul>
+<li><strong>En macOS:</strong> <code>Cmd + K</code> también limpia la terminal.</li>
+</ul></li>
+</ul>
+</section>
+<section id="historial-de-comandos" class="level2">
+<h2 class="anchored" data-anchor-id="historial-de-comandos">5. Historial de comandos</h2>
+<ul>
+<li><p><strong>Cómo moverse en el historial</strong></p>
+<ul>
+<li><strong><code>↑ (Flecha arriba)</code></strong> → Muestra el último comando ejecutado.</li>
+<li><strong><code>↓ (Flecha abajo)</code></strong> → Avanza en la lista de comandos previos.</li>
+<li><strong><code>Ctrl + R</code></strong> → Búsqueda rápida en el historial. Escribe parte del comando y pulsa <code>Enter</code> cuando encuentres el que necesitas.
+<ul>
+<li><strong>Ejemplo:</strong> Presiona <code>Ctrl + R</code> y escribe <code>nano</code>, mostrará el último comando que usaste con <code>nano</code>.</li>
+</ul></li>
+</ul></li>
+<li><p><strong><code>history</code></strong> → Muestra los últimos comandos ejecutados.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">history</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Buscar en el historial rápidamente con <code>grep</code></strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">history</span> <span class="kw">|</span> <span class="fu">grep</span> ls   <span class="co"># Filtra los comandos que contienen "ls"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">history</span> <span class="kw">|</span> <span class="fu">grep</span> nano <span class="co"># Filtra los comandos con "nano"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="permisos-y-propiedades-de-archivos" class="level2">
+<h2 class="anchored" data-anchor-id="permisos-y-propiedades-de-archivos">6. Permisos y propiedades de archivos</h2>
+<ul>
+<li><p><strong><code>chmod</code></strong> → Cambia permisos de ejecucion.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x script.Rev  <span class="co"># Permisos de ejecución</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>chown</code></strong> → Cambia el dueño de un archivo.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown usuario archivo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 
 
@@ -631,10 +733,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../chapters/install.html" class="pagination-link" aria-label="Instalación de Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Instalación de Software</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/install.html" class="pagination-link" aria-label="Instalación de Software">
-        <span class="nav-page-text"><span class="chapter-title">Instalación de Software</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/Rstudio.html" class="pagination-link" aria-label="Apuntes sobre R y Rstudio">
+        <span class="nav-page-text"><span class="chapter-title">Apuntes sobre R y Rstudio</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

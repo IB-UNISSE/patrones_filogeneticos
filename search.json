@@ -104,7 +104,7 @@
     "href": "chapters/install.html#actualizar-wsl-y-establecer-la-versión-por-defecto",
     "title": "Instalación de Software",
     "section": "4. Actualizar WSL y establecer la versión por defecto",
-    "text": "4. Actualizar WSL y establecer la versión por defecto\nSi WSL ya estaba habilitado, sigue estos pasos para actualizarlo y asegurarte de que esté en la versión 2:\n\nActualizar el kernel de WSL 2\n\nDescarga la actualización oficial desde Microsoft: Descargar actualización de WSL-2\nGuarda el archivo wsl_update_x64.msi en tu computadora.\nEjecuta el archivo descargado y sigue las instrucciones de instalación.\nUna vez instalado, reinicia tu computadora.\n\nConfigurar WSL para usar la versión 2\n\nAbre PowerShell como administrador y ejecuta:\nwsl --set-default-version 2\nEsto asegurará que todas las distribuciones nuevas de Linux usen WSL 2 por defecto.\n\nInstalación de Ubuntu:\n\nUna vez reiniciado el equipo, abre PowerShell como administrador y ejecuta:\nwsl --install -d Ubuntu\nEsto instalará automáticamente WSL2 y descargará la distribución de Ubuntu más reciente.\n\nConfigurar Ubuntu:\n\nAbre Ubuntu desde el menú de inicio.\nCrea un nombre de usuario y contraseña cuando se te solicite.",
+    "text": "4. Actualizar WSL y establecer la versión por defecto\nSi WSL ya estaba habilitado, sigue estos pasos para actualizarlo y asegurarte de que esté en la versión 2:\n\nActualizar el kernel de WSL 2 (en caso de que se necesite)\n\nDescarga la actualización oficial desde Microsoft: Descargar actualización de WSL-2\nGuarda el archivo wsl_update_x64.msi en tu computadora.\nEjecuta el archivo descargado y sigue las instrucciones de instalación.\nUna vez instalado, reinicia tu computadora.\n\nConfigurar WSL para usar la versión 2\n\nAbre PowerShell como administrador y ejecuta:\nwsl --set-default-version 2\nEsto asegurará que todas las distribuciones nuevas de Linux usen WSL 2 por defecto.\n\nInstalación de Ubuntu:\n\nUna vez reiniciado el equipo, abre PowerShell como administrador y ejecuta:\nwsl --install -d Ubuntu\nEsto instalará automáticamente WSL2 y descargará la distribución de Ubuntu más reciente,\nEn caso de que no se instale, descarga Ubuntu (se recomienda la versión 22.04) desde la aplicación de Microsoft Store e instálala manualmente.\n\nEstablecer el usuario por defecto en WSL\n\nAsegúrate de que WSL esté configurado para que siempre uses tu usuario por defecto y no root:\nwsl -d Ubuntu --user tu_usuario\nSi no recuerdas que verion de Ubuntu tines instalada, usa:\nwsl -l -v\nSi no recuerdas tu usuario en WSL, usa:\nwhoami\n\nConfigurar Ubuntu:\n\nAbre Ubuntu desde el menú de inicio.\nCrea un nombre de usuario y contraseña cuando se te solicite.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Instalación de Software</span>"
     ]
@@ -140,13 +140,83 @@
     ]
   },
   {
+    "objectID": "chapters/commandline.html",
+    "href": "chapters/commandline.html",
+    "title": "Apuntes Comandos Básicos en Bash",
+    "section": "",
+    "text": "1. Navegación en el sistema de archivos",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/commandline.html#navegación-en-el-sistema-de-archivos",
+    "href": "chapters/commandline.html#navegación-en-el-sistema-de-archivos",
+    "title": "Apuntes Comandos Básicos en Bash",
+    "section": "",
+    "text": "pwd → Muestra el directorio actual.\npwd\nls → Lista los archivos y carpetas en el directorio actual.\nls -l     # Muestra detalles (permisos, dueño, tamaño, fecha)\nls -a     # Muestra archivos ocultos\nls -h     # Muestra tamaños en formato legible \ncd → Cambia de directorio.\ncd /   # Ir a la raiz\ncd /home/usuario/proyecto/data # ir a la carpeta data ruta absoluta\ncd data/ # ir a la carpeta data ruta relativa\ncd ..      # Subir un nivel",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/commandline.html#manipulación-de-archivos-y-directorios",
+    "href": "chapters/commandline.html#manipulación-de-archivos-y-directorios",
+    "title": "Apuntes Comandos Básicos en Bash",
+    "section": "2. Manipulación de archivos y directorios",
+    "text": "2. Manipulación de archivos y directorios\n\nmkdir → Crea un directorio.\nmkdir nueva_carpeta\nrm → Borra archivos y carpetas.\nrm archivo.txt        # Borra un archivo\nrm -r carpeta         # Borra una carpeta y su contenido\nrm -i archivo.txt     # Pregunta antes de borrar\ncp → Copia archivos o carpetas.\ncp archivo.txt copia.txt   # Copia un archivo\ncp -r carpeta destino/     # Copia una carpeta\nmv → Mueve o renombra archivos y carpetas.\nmv archivo.txt nueva_ubicacion/\nmv archivo.txt nuevo_nombre.txt",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/commandline.html#visualización-y-edición-de-archivos",
+    "href": "chapters/commandline.html#visualización-y-edición-de-archivos",
+    "title": "Apuntes Comandos Básicos en Bash",
+    "section": "3. Visualización y edición de archivos",
+    "text": "3. Visualización y edición de archivos\n\ncat → Muestra el contenido de un archivo.\ncat archivo.txt\nless → Permite visualizar archivos grandes de manera interactiva.\nless archivo.txt   # Usa las teclas ↑ ↓ para moverte, \"q\" para salir\nnano → Editor de texto en terminal.\nnano archivo.txt",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/commandline.html#limpiar-la-terminal",
+    "href": "chapters/commandline.html#limpiar-la-terminal",
+    "title": "Apuntes Comandos Básicos en Bash",
+    "section": "4. Limpiar la terminal",
+    "text": "4. Limpiar la terminal\n\nclear → Borra la pantalla de la terminal, pero no elimina procesos ni historial.\nclear\nCtrl + L → Hace lo mismo que clear, pero sin ejecutar un comando explícito.\n\nEn macOS: Cmd + K también limpia la terminal.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/commandline.html#historial-de-comandos",
+    "href": "chapters/commandline.html#historial-de-comandos",
+    "title": "Apuntes Comandos Básicos en Bash",
+    "section": "5. Historial de comandos",
+    "text": "5. Historial de comandos\n\nCómo moverse en el historial\n\n↑ (Flecha arriba) → Muestra el último comando ejecutado.\n↓ (Flecha abajo) → Avanza en la lista de comandos previos.\nCtrl + R → Búsqueda rápida en el historial. Escribe parte del comando y pulsa Enter cuando encuentres el que necesitas.\n\nEjemplo: Presiona Ctrl + R y escribe nano, mostrará el último comando que usaste con nano.\n\n\nhistory → Muestra los últimos comandos ejecutados.\nhistory\nBuscar en el historial rápidamente con grep\nhistory | grep ls   # Filtra los comandos que contienen \"ls\"\nhistory | grep nano # Filtra los comandos con \"nano\"",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/commandline.html#permisos-y-propiedades-de-archivos",
+    "href": "chapters/commandline.html#permisos-y-propiedades-de-archivos",
+    "title": "Apuntes Comandos Básicos en Bash",
+    "section": "6. Permisos y propiedades de archivos",
+    "text": "6. Permisos y propiedades de archivos\n\nchmod → Cambia permisos de ejecucion.\nchmod +x script.Rev  # Permisos de ejecución\nchown → Cambia el dueño de un archivo.\nsudo chown usuario archivo.txt",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+    ]
+  },
+  {
     "objectID": "chapters/Rstudio.html",
     "href": "chapters/Rstudio.html",
     "title": "Apuntes sobre R y Rstudio",
     "section": "",
     "text": "¿Qué es R y qué es RStudio?",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -156,7 +226,7 @@
     "section": "",
     "text": "R es un lenguaje de programación enfocado en el análisis de datos y estadísticas.\nRStudio es un entorno de desarrollo integrado (IDE) que facilita el trabajo con R y permite organiza los proyectos y facilita la ejecución de código, la visualización de gráficos y la gestión de paquetes.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -166,7 +236,7 @@
     "section": "Partes de RStudio",
     "text": "Partes de RStudio\nRStudio tiene cuatro paneles principales:\n\nConsole: Donde se ejecuta el código en tiempo real.\n\n\n\n\n\nEditor de scripts: Para escribir y guardar código en archivos .r, .R o .Rmd.\n\n\n\n\n\nEnvironment/History: Muestra variables y comandos previos.\n\n\n\n\n\nFiles/Plots/Packages/Help: Para manejar archivos, visualizar gráficos, instalar programas y acceder a documentación.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -176,7 +246,7 @@
     "section": "Creación de un Proyecto en RStudio",
     "text": "Creación de un Proyecto en RStudio\nBeneficios de trabajar con proyectos:\n\nOrganización de archivos y código.\nFacilita la reproducibilidad.\nEvita problemas con rutas de archivos.\n\nPara crear un proyecto:\n\nEn RStudio, ir a File &gt; New Project.\n\n\n\n\n\nElegir un directorio nuevo o existente.\n\n\n\n\n\nTrabajar siempre dentro del proyecto para evitar problemas de rutas.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -186,7 +256,7 @@
     "section": "Organización de Proyectos en RStudio",
     "text": "Organización de Proyectos en RStudio\nMantener una estructura organizada en los proyectos es clave para la reproducibilidad y eficiencia. Se recomienda la siguiente estructura de carpetas:\nproyecto/\n│── data/         # Datos crudos y procesados\n│── scripts/      # Código fuente en R\n│── output/       # Resultados y gráficos\n│── reports/      # Documentación y reportes\n│── README.md     # Descripción del proyecto\nAdemás, para lograr una nomenclatura eficiente y consistente en archivos, se pueden seguir algunas pautas:\n\nConsistencia: Usar un esquema de nombres consistente en todo el proyecto.\nEvitar Espacios: Usar guiones bajos (_) o guiones (-) en lugar de espacios.\nPrefijos y Sufijos: Usar prefijos y sufijos estandarizados para identificar el estado o versión del archivo.\nEvitar Acentos y Caracteres Especiales: No utilizar acentos, eñes ni caracteres especiales que puedan causar problemas de compatibilidad en diferentes sistemas operativos o herramientas de software.\n\nEjemplos:\nbears_cytb.nex\ntree_BD.Rev\nmultifig.R\nqw_feature2.csv",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -196,7 +266,7 @@
     "section": "Rutas Absolutas y Relativas",
     "text": "Rutas Absolutas y Relativas\nLas rutas de archivos en R pueden ser absolutas o relativas:\n\nRuta absoluta: Define la ubicación exacta de un archivo, por ejemplo:\nread.csv(\"C:/Users/TuUsuario/Documents/data/datos.csv\")\nRuta relativa: Se basa en la ubicación del proyecto:\nread.csv(\"data/datos.csv\")\n\nSiempre es recomendable usar proyectos para evitar errores con rutas.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -206,7 +276,7 @@
     "section": "Principales Objetos en R",
     "text": "Principales Objetos en R\n\nVectores\nx &lt;- c(1, 2, 3, 4, 5)\nprint(x)\n\n\nMatrices\nm &lt;- matrix(1:9, nrow=3)\nprint(m)\n\n\nData Frames\ndf &lt;- data.frame(Nombre=c(\"A\", \"B\", \"C\"), Edad=c(25, 30, 22))\nprint(df)\n\n\nListas\nlista &lt;- list(Nombre=\"Juan\", Edad=30, Notas=c(8, 9, 10))\nprint(lista)",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -216,7 +286,7 @@
     "section": "Asignación de Variables",
     "text": "Asignación de Variables\nDiferencia entre &lt;- y =:\na &lt;- 10   # Recomendado para asignaciones\nb = 20    # También funciona, pero es mejor evitarlo",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -226,7 +296,7 @@
     "section": "Uso de Funciones en R",
     "text": "Uso de Funciones en R\nEjemplo de funciones básicas:\nnumeros &lt;- c(1, 2, 3, 4, 5)\nmean(numeros)  # Media\nsummary(numeros)  # Resumen estadístico",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -236,7 +306,7 @@
     "section": "Instalación y Uso de Paquetes",
     "text": "Instalación y Uso de Paquetes\ninstall.packages(\"ggplot2\")\nlibrary(ggplot2)\nhelp(ggplot2)  # Consultar documentación",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -246,7 +316,7 @@
     "section": "Mini-ejercicio",
     "text": "Mini-ejercicio\n\nCrear un nuevo script en RStudio.\nDefinir un vector y calcular su media.\nCrear un Data Frame y explorarlo con summary().\nGuardar y cargar un archivo CSV:\nwrite.csv(df, \"datos.csv\", row.names = FALSE)\ndf_cargado &lt;- read.csv(\"datos.csv\")",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
   },
   {
@@ -256,7 +326,7 @@
     "section": "",
     "text": "Introducción a la Inferencia Bayesiana\nLa inferencia bayesiana es un enfoque de la estadística que permite actualizar nuestras creencias sobre un parámetro desconocido a medida que obtenemos nueva información. Se basa en el Teorema de Bayes, que nos dice cómo combinar la información previa con la evidencia observada.\nEl Teorema de Bayes se expresa matemáticamente como:\n\\[\nP(\\theta | D) = \\frac{P(D | \\theta) P(\\theta)}{P(D)}\n\\]\nEl objetivo de la inferencia bayesiana es calcular la distribución posterior, que nos proporciona una estimación más precisa del parámetro \\(\\theta\\) al incorporar tanto datos como conocimiento previo.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -266,7 +336,7 @@
     "section": "¿Por qué se necesita MCMC?",
     "text": "¿Por qué se necesita MCMC?\nEn inferencia bayesiana, la distribución posterior de un parámetro \\(\\theta\\) se calcula usando:\n\\[\nP(\\theta | D) = \\frac{P(D | \\theta) P(\\theta)}{P(D)}\n\\]\nPero en la práctica, el denominador \\(P(D)\\) es difícil de calcular, ya que requiere integrar sobre todos los valores posibles de \\(\\theta\\):\n\\[\nP(D) = \\int P(D | \\theta) P(\\theta) d\\theta\n\\]\nCuando el espacio de parámetros es muy grande, esta integral es imposible de resolver analíticamente. MCMC nos ayuda a aproximar la distribución posterior sin necesidad de calcular \\(P(D)\\).",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -276,7 +346,7 @@
     "section": "¿Cómo funciona MCMC?",
     "text": "¿Cómo funciona MCMC?\nMCMC simula valores de los parámetros siguiendo estos pasos:\n\nEmpieza en un valor inicial .\nPropone un nuevo valor basado en una distribución de transición.\nDecide si acepta o rechaza según la regla de aceptación.\nRepite el proceso muchas veces para construir una cadena de valores que sigan la distribución posterior.\n\n🔹 Importante:\nCon suficientes iteraciones, la cadena converge a la distribución posterior, permitiendo estimar parámetros de manera precisa.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -286,7 +356,7 @@
     "section": "Métodos populares de MCMC",
     "text": "Métodos populares de MCMC\nExisten varias formas de implementar MCMC. Las más comunes son:\n✅ 1. Algoritmo de Metropolis-Hastings\n\nPropone un nuevo valor \\(\\theta^*\\).\nDecide si lo acepta o no comparando la razón de aceptación:\n\\[\nr = \\frac{P(D | \\theta^*) P(\\theta^*)}{P(D | \\theta) P(\\theta)}\n\\]\n\nSi \\(r \\geq 1\\), acepta \\(\\theta^*\\).\nSi \\(r &lt; 1\\), acepta \\(\\theta^*\\) con probabilidad \\(r\\).\n\n\nSe usa cuando no se conoce la forma exacta de la distribución posterior.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -296,7 +366,7 @@
     "section": "¿Cómo saber si una cadena ha convergido?",
     "text": "¿Cómo saber si una cadena ha convergido?\n\n\n\n\n\nAlgunas técnicas comunes para evaluar la convergencia incluyen:\n\nInspección visual de trazas: un gráfico de trazas muestra si la cadena ha alcanzado un comportamiento estable sin tendencias obvias.\nTamaño de muestra efectivo (Effective Sample Size, ESS): Dado que las muestras en MCMC están correlacionadas, el número real de muestras independientes es menor que el número total de iteraciones. El tamaño de muestra efectivo (ESS) estima cuántas muestras independientes equivalentes hay en la cadena.\n\nSe calcula como:\n\\[\nESS = \\frac{N}{1 + 2 \\sum \\rho_k}\n\\]\nDonde \\(N\\) es el número total de iteraciones y \\(\\rho_k\\) es la autocorrelación en el retraso \\(k\\). Un ESS alto (\\(ESS &gt; 200\\)) indica que la cadena ha explorado bien el espacio de parámetros y proporciona estimaciones confiables.\nUn ESS bajo sugiere que las muestras están altamente correlacionadas y que se necesitan más iteraciones o una mejor parametrización del algoritmo para obtener estimaciones más precisas.\nPara visualizar estos valores y generar gráficos, se puede utilizar Tracer, una herramienta que facilita el análisis de convergencia de cadenas MCMC. Se puede descargar en el siguiente enlace:\nTracer v1.7.2",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -306,7 +376,7 @@
     "section": "Tipos de Nodos en RevBayes",
     "text": "Tipos de Nodos en RevBayes\n\n👉 Nodos Constantes\nSon valores fijos dentro del modelo. No tienen incertidumbre.\nn = 10  # Número de observaciones\n\n\n👉 Nodos Estocásticos\nRepresentan variables aleatorias con una distribución. Son los parámetros del modelo.\ntheta ~ dnBeta(2,2)  # Prior Beta(2,2)\nEn este caso, theta es una variable aleatoria con una distribución Beta.\n\n\n👉 Nodos Deterministas\nSon valores calculados a partir de otros nodos.\nmu := theta * n  # Media esperada\nAquí, mu se calcula a partir de theta y n.\n\n\n👉 Nodos Clamped (Observados)\nSe utilizan para fijar valores observados en el modelo.\nD ~ dnBinomial(n, theta)  # Modelo Binomial\nD.clamp(7)  # Observamos 7 éxitos\nEn este caso, D es una variable aleatoria Binomial, pero la fijamos en 7.\n\n\n👉 Nodos Plate\nLos plates se usan para repetir estructuras en modelos jerárquicos.\nfor (i in 1:10) {\n    theta[i] ~ dnBeta(2,2)\n}\nAquí, estamos creando 10 valores de theta, cada uno con una distribución Beta(2,2).",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -316,7 +386,7 @@
     "section": "🔹 1. Definiendo el Modelo en RevBayes",
     "text": "🔹 1. Definiendo el Modelo en RevBayes\n\n📌 Distribución Prior\nAntes de ver los datos, asumimos una creencia previa sobre la probabilidad ( p ).\nUtilizamos una distribución Beta(8,2), basada en la suposición de que aproximadamente el 80% de las personas disfrutarán del ambiente.\n\\[\np \\sim \\text{Beta}(8,2)\n\\]\nLa media de esta distribución es:\n\\[\nE[p] = \\frac{\\alpha}{\\alpha + \\beta} = \\frac{8}{8+2} = 0.8\n\\]\n\n\n\n📌 Verosimilitud (Likelihood)\nLa verosimilitud describe la probabilidad de observar los datos dados un valor específico de ( p ).\nComo cada estudiante puede estar satisfecho (éxito) o insatisfecho (fracaso), usamos una distribución Binomial:\n\\[\nk \\sim \\text{Binomial}(n = 10, p)\n\\]\nDonde: - ( k = 7 ) es el número de estudiantes satisfechos observados. - ( n = 10 ) es el número total de encuestados.\n\n\n\n📌 Posterior Bayesiana\nAplicamos el Teorema de Bayes:\n\\[\nP(p | D) \\propto P(D | p) P(p)\n\\]\nDado que usamos un prior Beta y una verosimilitud Binomial, la posterior también sigue una distribución Beta con parámetros actualizados:\n\\[\np | D \\sim \\text{Beta}(8+7, 2+3) = \\text{Beta}(15,5)\n\\]\nLa media de la posterior nos da la mejor estimación después de observar los datos:\n\\[\nE[p] = \\frac{15}{15 + 5} = 0.75\n\\]\nEsto significa que, después de observar que 7 de 10 estudiantes disfrutaron el ambiente, nuestra mejor estimación de la probabilidad de que tú disfrutes del ambiente es 75%.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -326,7 +396,7 @@
     "section": "🔹 2. Código en RevBayes",
     "text": "🔹 2. Código en RevBayes\nA continuación, presentamos el código en RevBayes para implementar este modelo y ejecutar un análisis MCMC.\n\n\n\n\n\n# ------------------------------------------------\n# RevBayes - Algoritmo de Metropolis-Hastings para estimar\n# la probabilidad de disfrutar el ambiente en las micheladas de Tepito\n# ------------------------------------------------\n\n# Datos observados\ntotal_clientes &lt;- 10  # Número total de encuestados\nsatisfechos &lt;- 7      # Número de estudiantes que disfrutaron el ambiente\n\n# Especificar la distribución prior\nalpha &lt;- 8   # Basado en la creencia previa de 80% satisfacción\nbeta  &lt;- 2   # Complemento del prior\np ~ dnBeta(alpha, beta)  # Prior Beta(8,2)\n\n# Definir la propuesta de MCMC con Metropolis-Hastings\nmoves[1] = mvSlide(p, delta=0.1, weight=1)  # Movimiento en la distribución de p\n\n# Especificar el modelo de verosimilitud (distribución Binomial)\nk ~ dnBinomial(p, total_clientes)\nk.clamp(satisfechos)  # Fijar la observación de 7 estudiantes satisfechos\n\n# Crear el modelo\nmy_model = model(p)\n\n# Definir monitores para el MCMC\nmonitors[1] = mnModel(filename=\"micheladas_MH.log\", printgen=10, separator = TAB)  # Guardar resultados\nmonitors[2] = mnScreen(printgen=100, p)  # Mostrar progreso cada 100 generaciones\n\n# Crear el análisis MCMC con Metropolis-Hastings\nanalysis = mcmc(my_model, monitors, moves)\n\n# Ejecutar el MCMC con 100,000 iteraciones\nanalysis.run(100000)\n\n# Mostrar el resumen de los operadores de MCMC\nanalysis.operatorSummary()",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -336,7 +406,7 @@
     "section": "Mini-ejercicio",
     "text": "Mini-ejercicio\n\nCrea un script para RevBayes (.Rev) utilizando Visual Studio Code y copia el codigo.\nModifica el prior dnBeta(alpha, beta) con los valores que reflejen tu creencia sobre la probabilidad de satisfacción.\nGuarda el archivo micheladas_MH.log en la carpeta asiganada para guardar resultados.\nGuarda el script en la carpeta de scripts.\nEjecuta el análisis MCMC en RevBayes.\nVisualiza los resultados usando Tracer para observar la distribución posterior.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
   },
   {
@@ -346,7 +416,7 @@
     "section": "",
     "text": "1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa\nR Plot Function\nIn this article, you will learn to use the plot function in R programming with the help of examples.\nThe most used plotting function in R programming is the plot() function. It is a generic function, meaning, it has many methods which are called according to the type of object passed to plot().\nIn the simplest case, we can pass in a vector and get a scatter plot of magnitude vs index. But generally, we pass in two vectors, and a scatter plot of these points is plotted.\nFor example, the command plot(c(1,2),c(3,5)) would plot the points (1,3) and (2,5).\nHere is a more concrete example where we plot a sine function ranging from -pi to pi.\nx &lt;- seq(-pi,pi,0.1)\nplot(x, sin(x),\nmain=\"Overlaying Graphs\",\nylab=\"\",\ntype=\"l\",\ncol=\"blue\")\nlines(x,cos(x), col=\"red\")\nlegend(\"topleft\",\nc(\"sin(x)\",\"cos(x)\"),\nfill=c(\"blue\",\"red\")\n)",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Unidad 1: Patrones de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Unidad 1: Patrones de diversificación</span>"
     ]
   },
   {
@@ -356,7 +426,7 @@
     "section": "",
     "text": "Este capítulo cubre los conceptos básicos de los datos de árboles.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Unidad 2: bases</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Unidad 2: bases</span>"
     ]
   },
   {
@@ -366,7 +436,7 @@
     "section": "",
     "text": "Análisis de datos\nEn este capítulo aprenderás cómo analizar datos de árboles utilizando técnicas modernas.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Unidad 3: Análisis de datos</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Unidad 3: Análisis de datos</span>"
     ]
   }
 ]
