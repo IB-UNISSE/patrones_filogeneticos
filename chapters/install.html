@@ -387,8 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p><strong>Abrir PowerShell como administrador</strong> y ejecutar los siguientes comandos:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>Microsoft-Windows-Subsystem-Linux <span class="op">/</span>all <span class="op">/</span>norestart</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>VirtualMachinePlatform <span class="op">/</span>all <span class="op">/</span>norestart</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>Microsoft-Hyper-V <span class="op">/</span>all <span class="op">/</span>norestart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>VirtualMachinePlatform <span class="op">/</span>all <span class="op">/</span>norestart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Reiniciar la computadora</strong> para aplicar los cambios.</p></li>
 <li><p><strong>Verificar la instalación</strong>:</p>
 <ul>
@@ -450,14 +449,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Extrae el archivo descargado y navega a la carpeta:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> revbayes-v1.2.5-linux64.tar.gz</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> revbayes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> revbayes-v1.2.5/bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Haz que el ejecutable sea ejecutable:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x rb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Agregar RevBayes al PATH</strong>:
 <ul>
 <li><p>Para que <code>rb</code> esté disponible en cualquier sesión de Ubuntu, agrega su ruta al archivo <code>~/.bashrc</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="$HOME/revbayes:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export PATH="$HOME/revbayes-v1.2.5/bin:$PATH"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Esto permitirá ejecutar <code>rb</code> desde cualquier directorio en futuras sesiones de terminal.</p></li>
 </ul></li>
