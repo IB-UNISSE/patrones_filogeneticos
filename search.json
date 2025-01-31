@@ -250,6 +250,46 @@
     ]
   },
   {
+    "objectID": "chapters/revbayes.html",
+    "href": "chapters/revbayes.html",
+    "title": "Apuntes sobre RevBayes",
+    "section": "",
+    "text": "Introducción a la Inferencia Bayesiana\nLa inferencia bayesiana es un enfoque de la estadística que permite actualizar nuestras creencias sobre un parámetro desconocido a medida que obtenemos nueva información. Se basa en el Teorema de Bayes, que nos dice cómo combinar la información previa con la evidencia observada.\nEl Teorema de Bayes se expresa matemáticamente como:\n\\[\nP(\\theta | D) = \\frac{P(D | \\theta) P(\\theta)}{P(D)}\n\\]\nEl objetivo de la inferencia bayesiana es calcular la distribución posterior, que nos proporciona una estimación más precisa del parámetro \\(\\theta\\) al incorporar tanto datos como conocimiento previo.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/revbayes.html#tipos-de-nodos-en-revbayes",
+    "href": "chapters/revbayes.html#tipos-de-nodos-en-revbayes",
+    "title": "Apuntes sobre RevBayes",
+    "section": "Tipos de Nodos en RevBayes",
+    "text": "Tipos de Nodos en RevBayes\n\n👉 Nodos Constantes\nSon valores fijos dentro del modelo. No tienen incertidumbre.\nn = 10  # Número de observaciones\n\n\n👉 Nodos Estocásticos\nRepresentan variables aleatorias con una distribución. Son los parámetros del modelo.\ntheta ~ dnBeta(2,2)  # Prior Beta(2,2)\nEn este caso, theta es una variable aleatoria con una distribución Beta.\n\n\n👉 Nodos Deterministas\nSon valores calculados a partir de otros nodos.\nmu := theta * n  # Media esperada\nAquí, mu se calcula a partir de theta y n.\n\n\n👉 Nodos Clamped (Observados)\nSe utilizan para fijar valores observados en el modelo.\nD ~ dnBinomial(n, theta)  # Modelo Binomial\nD.clamp(7)  # Observamos 7 éxitos\nEn este caso, D es una variable aleatoria Binomial, pero la fijamos en 7.\n\n\n👉 Nodos Plate\nLos plates se usan para repetir estructuras en modelos jerárquicos.\nfor (i in 1:10) {\n    theta[i] ~ dnBeta(2,2)\n}\nAquí, estamos creando 10 valores de theta, cada uno con una distribución Beta(2,2).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/revbayes.html#definiendo-el-modelo-en-revbayes",
+    "href": "chapters/revbayes.html#definiendo-el-modelo-en-revbayes",
+    "title": "Apuntes sobre RevBayes",
+    "section": "🔹 1. Definiendo el Modelo en RevBayes",
+    "text": "🔹 1. Definiendo el Modelo en RevBayes\n\n📌 Distribución Prior\nAntes de ver los datos, asumimos una creencia previa sobre la probabilidad ( p ).\nUtilizamos una distribución Beta(8,2), basada en la suposición de que aproximadamente el 80% de las personas disfrutarán del ambiente.\n\\[\np \\sim \\text{Beta}(8,2)\n\\]\nLa media de esta distribución es:\n\\[\nE[p] = \\frac{\\alpha}{\\alpha + \\beta} = \\frac{8}{8+2} = 0.8\n\\]\n\n\n\n📌 Verosimilitud (Likelihood)\nLa verosimilitud describe la probabilidad de observar los datos dados un valor específico de ( p ).\nComo cada estudiante puede estar satisfecho (éxito) o insatisfecho (fracaso), usamos una distribución Binomial:\n\\[\nk \\sim \\text{Binomial}(n = 10, p)\n\\]\nDonde: - ( k = 7 ) es el número de estudiantes satisfechos observados. - ( n = 10 ) es el número total de encuestados.\n\n\n\n📌 Posterior Bayesiana\nAplicamos el Teorema de Bayes:\n\\[\nP(p | D) \\propto P(D | p) P(p)\n\\]\nDado que usamos un prior Beta y una verosimilitud Binomial, la posterior también sigue una distribución Beta con parámetros actualizados:\n\\[\np | D \\sim \\text{Beta}(8+7, 2+3) = \\text{Beta}(15,5)\n\\]\nLa media de la posterior nos da la mejor estimación después de observar los datos:\n\\[\nE[p] = \\frac{15}{15 + 5} = 0.75\n\\]\nEsto significa que, después de observar que 7 de 10 estudiantes disfrutaron el ambiente, nuestra mejor estimación de la probabilidad de que tú disfrutes del ambiente es 75%.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/revbayes.html#código-en-revbayes",
+    "href": "chapters/revbayes.html#código-en-revbayes",
+    "title": "Apuntes sobre RevBayes",
+    "section": "🔹 2. Código en RevBayes",
+    "text": "🔹 2. Código en RevBayes\nA continuación, presentamos el código en RevBayes para implementar este modelo y ejecutar un análisis MCMC.\n\n\n\n\n\n# ------------------------------------------------\n# RevBayes - Algoritmo de Metropolis-Hastings para estimar\n# la probabilidad de disfrutar el ambiente en las micheladas de Tepito\n# ------------------------------------------------\n\n# Datos observados\ntotal_clientes &lt;- 10  # Número total de encuestados\nsatisfechos &lt;- 7      # Número de estudiantes que disfrutaron el ambiente\n\n# Especificar la distribución prior\nalpha &lt;- 8   # Basado en la creencia previa de 80% satisfacción\nbeta  &lt;- 2   # Complemento del prior\np ~ dnBeta(alpha, beta)  # Prior Beta(8,2)\n\n# Definir la propuesta de MCMC con Metropolis-Hastings\nmoves[1] = mvSlide(p, delta=0.1, weight=1)  # Movimiento en la distribución de p\n\n# Especificar el modelo de verosimilitud (distribución Binomial)\nk ~ dnBinomial(p, total_clientes)\nk.clamp(satisfechos)  # Fijar la observación de 7 estudiantes satisfechos\n\n# Crear el modelo\nmy_model = model(p)\n\n# Definir monitores para el MCMC\nmonitors[1] = mnModel(filename=\"micheladas_MH.log\", printgen=10, separator = TAB)  # Guardar resultados\nmonitors[2] = mnScreen(printgen=100, p)  # Mostrar progreso cada 100 generaciones\n\n# Crear el análisis MCMC con Metropolis-Hastings\nanalysis = mcmc(my_model, monitors, moves)\n\n# Ejecutar el MCMC con 100,000 iteraciones\nanalysis.run(100000)\n\n# Mostrar el resumen de los operadores de MCMC\nanalysis.operatorSummary()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
     "objectID": "chapters/chapter1.html",
     "href": "chapters/chapter1.html",
     "title": "Unidad 1: Patrones de diversificación",
