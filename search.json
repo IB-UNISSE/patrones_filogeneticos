@@ -334,7 +334,7 @@
     "href": "chapters/revbayes.html#mini-ejercicio",
     "title": "Apuntes sobre RevBayes",
     "section": "Mini-ejercicio",
-    "text": "Mini-ejercicio\n\nModifica el prior dnBeta(alpha, beta) con los valores que reflejen tu creencia sobre la probabilidad de satisfacción.\nGuarda el script en la carpeta de scripts.\nEjecuta el análisis MCMC en RevBayes.\nVisualiza los resultados usando Tracer para observar la distribución posterior.",
+    "text": "Mini-ejercicio\n\nCrea un script para RevBayes (.Rev) utilizando Visual Studio Code y copia el codigo.\nModifica el prior dnBeta(alpha, beta) con los valores que reflejen tu creencia sobre la probabilidad de satisfacción.\nGuarda el archivo micheladas_MH.log en la carpeta asiganada para guardar resultados.\nGuarda el script en la carpeta de scripts.\nEjecuta el análisis MCMC en RevBayes.\nVisualiza los resultados usando Tracer para observar la distribución posterior.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
