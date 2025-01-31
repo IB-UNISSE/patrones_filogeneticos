@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Patrones filogenéticos: macroevolución y adaptación",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2",
+    "text": "Índice del Curso Patrones filogenéticos: macroevolución y adaptación\nAquí puedes encontrar los temas del curso y sus respectivos enlaces:\n\nInstalación de Software\nApuntes sobre R y Rstudio\nApuntes sobre RevBayes\n\nTambién puedes navegar por las secciones en el menú de la izquierda.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Inicio</span>"
     ]
