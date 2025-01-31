@@ -218,6 +218,13 @@ window.Quarto = {
   <li><a href="#introducción-a-la-inferencia-bayesiana" id="toc-introducción-a-la-inferencia-bayesiana" class="nav-link active" data-scroll-target="#introducción-a-la-inferencia-bayesiana">Introducción a la Inferencia Bayesiana</a></li>
   <li><a href="#diferencia-entre-inferencia-bayesiana-y-máxima-verosimilitud" id="toc-diferencia-entre-inferencia-bayesiana-y-máxima-verosimilitud" class="nav-link" data-scroll-target="#diferencia-entre-inferencia-bayesiana-y-máxima-verosimilitud">Diferencia entre Inferencia Bayesiana y Máxima Verosimilitud</a></li>
   <li><a href="#qué-es-revbayes" id="toc-qué-es-revbayes" class="nav-link" data-scroll-target="#qué-es-revbayes">¿Qué es RevBayes?</a></li>
+  <li><a href="#qué-es-el-muestreo-mcmc" id="toc-qué-es-el-muestreo-mcmc" class="nav-link" data-scroll-target="#qué-es-el-muestreo-mcmc">¿Qué es el Muestreo MCMC?</a>
+  <ul class="collapse">
+  <li><a href="#por-qué-se-necesita-mcmc" id="toc-por-qué-se-necesita-mcmc" class="nav-link" data-scroll-target="#por-qué-se-necesita-mcmc">¿Por qué se necesita MCMC?</a></li>
+  <li><a href="#cómo-funciona-mcmc" id="toc-cómo-funciona-mcmc" class="nav-link" data-scroll-target="#cómo-funciona-mcmc">¿Cómo funciona MCMC?</a></li>
+  <li><a href="#métodos-populares-de-mcmc" id="toc-métodos-populares-de-mcmc" class="nav-link" data-scroll-target="#métodos-populares-de-mcmc">Métodos populares de MCMC</a></li>
+  <li><a href="#cómo-saber-si-una-cadena-ha-convergido" id="toc-cómo-saber-si-una-cadena-ha-convergido" class="nav-link" data-scroll-target="#cómo-saber-si-una-cadena-ha-convergido">¿Cómo saber si una cadena ha convergido?</a></li>
+  </ul></li>
   <li><a href="#modelos-gráficos-en-revbayes" id="toc-modelos-gráficos-en-revbayes" class="nav-link" data-scroll-target="#modelos-gráficos-en-revbayes">Modelos Gráficos en RevBayes</a>
   <ul class="collapse">
   <li><a href="#tipos-de-nodos-en-revbayes" id="toc-tipos-de-nodos-en-revbayes" class="nav-link" data-scroll-target="#tipos-de-nodos-en-revbayes">Tipos de Nodos en RevBayes</a></li>
@@ -227,6 +234,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#definiendo-el-modelo-en-revbayes" id="toc-definiendo-el-modelo-en-revbayes" class="nav-link" data-scroll-target="#definiendo-el-modelo-en-revbayes">🔹 1. Definiendo el Modelo en RevBayes</a></li>
   <li><a href="#código-en-revbayes" id="toc-código-en-revbayes" class="nav-link" data-scroll-target="#código-en-revbayes">🔹 2. Código en RevBayes</a></li>
+  <li><a href="#mini-ejercicio" id="toc-mini-ejercicio" class="nav-link" data-scroll-target="#mini-ejercicio">Mini-ejercicio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -327,6 +335,67 @@ P(\theta | D) = \frac{P(D | \theta) P(\theta)}{P(D)}
 <li><p>Permite definir relaciones entre variables mediante <strong>nodos</strong>.</p></li>
 <li><p>Utiliza <strong>muestreo MCMC</strong> para estimar distribuciones posteriores.</p></li>
 </ul>
+</section>
+<section id="qué-es-el-muestreo-mcmc" class="level1">
+<h1>¿Qué es el Muestreo MCMC?</h1>
+<p>El <strong>Muestreo MCMC (Markov Chain Monte Carlo)</strong> es un conjunto de métodos computacionales utilizados para <strong>aproximar distribuciones de probabilidad complejas</strong>, especialmente en <strong>inferencia bayesiana</strong> y problemas donde el espacio de parámetros es muy grande.</p>
+<section id="por-qué-se-necesita-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-se-necesita-mcmc">¿Por qué se necesita MCMC?</h2>
+<p>En inferencia bayesiana, la distribución posterior de un parámetro <span class="math inline">\(\theta\)</span> se calcula usando:</p>
+<p><span class="math display">\[
+P(\theta | D) = \frac{P(D | \theta) P(\theta)}{P(D)}
+\]</span></p>
+<p>Pero en la práctica, el denominador <span class="math inline">\(P(D)\)</span> es difícil de calcular, ya que requiere integrar sobre todos los valores posibles de <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math display">\[
+P(D) = \int P(D | \theta) P(\theta) d\theta
+\]</span></p>
+<p>Cuando el espacio de parámetros es muy grande, esta integral es imposible de resolver analíticamente. MCMC nos ayuda a aproximar la distribución posterior sin necesidad de calcular <span class="math inline">\(P(D)\)</span>.</p>
+</section>
+<section id="cómo-funciona-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-funciona-mcmc">¿Cómo funciona MCMC?</h2>
+<p>MCMC <strong>simula valores</strong> de los parámetros siguiendo estos pasos:</p>
+<ol type="1">
+<li><p><strong>Empieza en un valor inicial</strong> .</p></li>
+<li><p><strong>Propone un nuevo valor</strong> basado en una distribución de transición.</p></li>
+<li><p><strong>Decide si acepta o rechaza</strong> según la regla de aceptación.</p></li>
+<li><p><strong>Repite el proceso muchas veces</strong> para construir una cadena de valores que sigan la distribución posterior.</p></li>
+</ol>
+<p>🔹 <strong>Importante:</strong><br>
+Con suficientes iteraciones, la cadena <strong>converge</strong> a la distribución posterior, permitiendo estimar parámetros de manera precisa.</p>
+</section>
+<section id="métodos-populares-de-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="métodos-populares-de-mcmc">Métodos populares de MCMC</h2>
+<p>Existen varias formas de implementar MCMC. Las más comunes son:</p>
+<p>✅ <strong>1. Algoritmo de Metropolis-Hastings</strong></p>
+<ul>
+<li><p>Propone un nuevo valor <span class="math inline">\(\theta^*\)</span>.</p></li>
+<li><p>Decide si lo acepta o no comparando la razón de aceptación:</p>
+<p><span class="math display">\[
+r = \frac{P(D | \theta^*) P(\theta^*)}{P(D | \theta) P(\theta)}
+\]</span></p>
+<ul>
+<li>Si <span class="math inline">\(r \geq 1\)</span>, acepta <span class="math inline">\(\theta^*\)</span>.</li>
+<li>Si <span class="math inline">\(r &lt; 1\)</span>, acepta <span class="math inline">\(\theta^*\)</span> con probabilidad <span class="math inline">\(r\)</span>.</li>
+</ul></li>
+</ul>
+<p>Se usa cuando no se conoce la forma exacta de la distribución posterior.</p>
+</section>
+<section id="cómo-saber-si-una-cadena-ha-convergido" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-saber-si-una-cadena-ha-convergido">¿Cómo saber si una cadena ha convergido?</h2>
+<p>Algunas técnicas comunes para evaluar la convergencia incluyen:</p>
+<ul>
+<li><p><strong>Inspección visual de trazas</strong>: un gráfico de trazas muestra si la cadena ha alcanzado un comportamiento estable sin tendencias obvias.</p></li>
+<li><p><strong>Tamaño de muestra efectivo (Effective Sample Size, ESS)</strong>: Dado que las muestras en MCMC están correlacionadas, el número real de muestras independientes es menor que el número total de iteraciones. El tamaño de muestra efectivo (ESS) estima cuántas muestras independientes equivalentes hay en la cadena.</p></li>
+</ul>
+<p>Se calcula como:</p>
+<p><span class="math display">\[
+ESS = \frac{N}{1 + 2 \sum \rho_k}
+\]</span></p>
+<p>Donde <span class="math inline">\(N\)</span> es el número total de iteraciones y <span class="math inline">\(\rho_k\)</span> es la autocorrelación en el retraso <span class="math inline">\(k\)</span>. <strong>Un ESS alto (</strong><span class="math inline">\(ESS &gt; 200\)</span>) indica que la cadena ha explorado bien el espacio de parámetros y proporciona estimaciones confiables.</p>
+<p>Un ESS bajo sugiere que las muestras están altamente correlacionadas y que se necesitan más iteraciones o una mejor parametrización del algoritmo para obtener estimaciones más precisas.</p>
+<p>Para visualizar estos valores y generar gráficos, se puede utilizar <strong>Tracer</strong>, una herramienta que facilita el análisis de convergencia de cadenas MCMC. Se puede descargar en el siguiente enlace:</p>
+<p><a href="https://github.com/beast-dev/tracer/releases/tag/v1.7.2">Tracer v1.7.2</a></p>
+</section>
 </section>
 <section id="modelos-gráficos-en-revbayes" class="level1">
 <h1>Modelos Gráficos en RevBayes</h1>
@@ -510,6 +579,15 @@ E[p] = \frac{15}{15 + 5} = 0.75
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el resumen de los operadores de MCMC</span></span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">analysis.operatorSummary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mini-ejercicio" class="level2">
+<h2 class="anchored" data-anchor-id="mini-ejercicio">Mini-ejercicio</h2>
+<ol type="1">
+<li><p><strong>Modifica el prior</strong> <code>dnBeta(alpha, beta)</code> con los valores que reflejen tu creencia sobre la probabilidad de satisfacción.</p></li>
+<li><p><strong>Guarda el script</strong> en la carpeta de <code>scripts</code>.</p></li>
+<li><p><strong>Ejecuta el análisis</strong> MCMC en RevBayes.</p></li>
+<li><p><strong>Visualiza los resultados</strong> usando <code>Tracer</code> para observar la distribución posterior.</p></li>
+</ol>
 
 
 </section>

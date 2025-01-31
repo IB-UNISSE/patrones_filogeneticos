@@ -260,6 +260,46 @@
     ]
   },
   {
+    "objectID": "chapters/revbayes.html#por-qué-se-necesita-mcmc",
+    "href": "chapters/revbayes.html#por-qué-se-necesita-mcmc",
+    "title": "Apuntes sobre RevBayes",
+    "section": "¿Por qué se necesita MCMC?",
+    "text": "¿Por qué se necesita MCMC?\nEn inferencia bayesiana, la distribución posterior de un parámetro \\(\\theta\\) se calcula usando:\n\\[\nP(\\theta | D) = \\frac{P(D | \\theta) P(\\theta)}{P(D)}\n\\]\nPero en la práctica, el denominador \\(P(D)\\) es difícil de calcular, ya que requiere integrar sobre todos los valores posibles de \\(\\theta\\):\n\\[\nP(D) = \\int P(D | \\theta) P(\\theta) d\\theta\n\\]\nCuando el espacio de parámetros es muy grande, esta integral es imposible de resolver analíticamente. MCMC nos ayuda a aproximar la distribución posterior sin necesidad de calcular \\(P(D)\\).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/revbayes.html#cómo-funciona-mcmc",
+    "href": "chapters/revbayes.html#cómo-funciona-mcmc",
+    "title": "Apuntes sobre RevBayes",
+    "section": "¿Cómo funciona MCMC?",
+    "text": "¿Cómo funciona MCMC?\nMCMC simula valores de los parámetros siguiendo estos pasos:\n\nEmpieza en un valor inicial .\nPropone un nuevo valor basado en una distribución de transición.\nDecide si acepta o rechaza según la regla de aceptación.\nRepite el proceso muchas veces para construir una cadena de valores que sigan la distribución posterior.\n\n🔹 Importante:\nCon suficientes iteraciones, la cadena converge a la distribución posterior, permitiendo estimar parámetros de manera precisa.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/revbayes.html#métodos-populares-de-mcmc",
+    "href": "chapters/revbayes.html#métodos-populares-de-mcmc",
+    "title": "Apuntes sobre RevBayes",
+    "section": "Métodos populares de MCMC",
+    "text": "Métodos populares de MCMC\nExisten varias formas de implementar MCMC. Las más comunes son:\n✅ 1. Algoritmo de Metropolis-Hastings\n\nPropone un nuevo valor \\(\\theta^*\\).\nDecide si lo acepta o no comparando la razón de aceptación:\n\\[\nr = \\frac{P(D | \\theta^*) P(\\theta^*)}{P(D | \\theta) P(\\theta)}\n\\]\n\nSi \\(r \\geq 1\\), acepta \\(\\theta^*\\).\nSi \\(r &lt; 1\\), acepta \\(\\theta^*\\) con probabilidad \\(r\\).\n\n\nSe usa cuando no se conoce la forma exacta de la distribución posterior.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/revbayes.html#cómo-saber-si-una-cadena-ha-convergido",
+    "href": "chapters/revbayes.html#cómo-saber-si-una-cadena-ha-convergido",
+    "title": "Apuntes sobre RevBayes",
+    "section": "¿Cómo saber si una cadena ha convergido?",
+    "text": "¿Cómo saber si una cadena ha convergido?\nAlgunas técnicas comunes para evaluar la convergencia incluyen:\n\nInspección visual de trazas: un gráfico de trazas muestra si la cadena ha alcanzado un comportamiento estable sin tendencias obvias.\nTamaño de muestra efectivo (Effective Sample Size, ESS): Dado que las muestras en MCMC están correlacionadas, el número real de muestras independientes es menor que el número total de iteraciones. El tamaño de muestra efectivo (ESS) estima cuántas muestras independientes equivalentes hay en la cadena.\n\nSe calcula como:\n\\[\nESS = \\frac{N}{1 + 2 \\sum \\rho_k}\n\\]\nDonde \\(N\\) es el número total de iteraciones y \\(\\rho_k\\) es la autocorrelación en el retraso \\(k\\). Un ESS alto (\\(ESS &gt; 200\\)) indica que la cadena ha explorado bien el espacio de parámetros y proporciona estimaciones confiables.\nUn ESS bajo sugiere que las muestras están altamente correlacionadas y que se necesitan más iteraciones o una mejor parametrización del algoritmo para obtener estimaciones más precisas.\nPara visualizar estos valores y generar gráficos, se puede utilizar Tracer, una herramienta que facilita el análisis de convergencia de cadenas MCMC. Se puede descargar en el siguiente enlace:\nTracer v1.7.2",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
     "objectID": "chapters/revbayes.html#tipos-de-nodos-en-revbayes",
     "href": "chapters/revbayes.html#tipos-de-nodos-en-revbayes",
     "title": "Apuntes sobre RevBayes",
@@ -285,6 +325,16 @@
     "title": "Apuntes sobre RevBayes",
     "section": "🔹 2. Código en RevBayes",
     "text": "🔹 2. Código en RevBayes\nA continuación, presentamos el código en RevBayes para implementar este modelo y ejecutar un análisis MCMC.\n\n\n\n\n\n# ------------------------------------------------\n# RevBayes - Algoritmo de Metropolis-Hastings para estimar\n# la probabilidad de disfrutar el ambiente en las micheladas de Tepito\n# ------------------------------------------------\n\n# Datos observados\ntotal_clientes &lt;- 10  # Número total de encuestados\nsatisfechos &lt;- 7      # Número de estudiantes que disfrutaron el ambiente\n\n# Especificar la distribución prior\nalpha &lt;- 8   # Basado en la creencia previa de 80% satisfacción\nbeta  &lt;- 2   # Complemento del prior\np ~ dnBeta(alpha, beta)  # Prior Beta(8,2)\n\n# Definir la propuesta de MCMC con Metropolis-Hastings\nmoves[1] = mvSlide(p, delta=0.1, weight=1)  # Movimiento en la distribución de p\n\n# Especificar el modelo de verosimilitud (distribución Binomial)\nk ~ dnBinomial(p, total_clientes)\nk.clamp(satisfechos)  # Fijar la observación de 7 estudiantes satisfechos\n\n# Crear el modelo\nmy_model = model(p)\n\n# Definir monitores para el MCMC\nmonitors[1] = mnModel(filename=\"micheladas_MH.log\", printgen=10, separator = TAB)  # Guardar resultados\nmonitors[2] = mnScreen(printgen=100, p)  # Mostrar progreso cada 100 generaciones\n\n# Crear el análisis MCMC con Metropolis-Hastings\nanalysis = mcmc(my_model, monitors, moves)\n\n# Ejecutar el MCMC con 100,000 iteraciones\nanalysis.run(100000)\n\n# Mostrar el resumen de los operadores de MCMC\nanalysis.operatorSummary()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/revbayes.html#mini-ejercicio",
+    "href": "chapters/revbayes.html#mini-ejercicio",
+    "title": "Apuntes sobre RevBayes",
+    "section": "Mini-ejercicio",
+    "text": "Mini-ejercicio\n\nModifica el prior dnBeta(alpha, beta) con los valores que reflejen tu creencia sobre la probabilidad de satisfacción.\nGuarda el script en la carpeta de scripts.\nEjecuta el análisis MCMC en RevBayes.\nVisualiza los resultados usando Tracer para observar la distribución posterior.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
