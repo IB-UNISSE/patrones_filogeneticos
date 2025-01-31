@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Patrones filogenéticos: macroevolución y adaptación",
     "section": "",
-    "text": "Presentación del Curso: Patrones Filogenéticos, Macroevolución y Adaptación\n\n\n\n\n\nHaz clic en la imagen para ver el PDF de la presentación del curso\n\n\nÍndice del Curso\nAquí puedes encontrar los temas del curso y sus respectivos enlaces:\n\nInstalación de Software\nApuntes sobre R y Rstudio\nApuntes sobre RevBayes",
+    "text": "Presentación del Curso: Patrones Filogenéticos, Macroevolución y Adaptación\n\n\n\n\n\nHaz clic en la imagen para ver el PDF de la presentación del curso\n\n\nÍndice del Curso\nAquí puedes encontrar los temas del curso y sus respectivos enlaces:\n\nInstalación de Software\nApuntes sobre comandos básicos en Bash\nApuntes sobre R y Rstudio\nApuntes sobre RevBayes",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Inicio</span>"
     ]
@@ -142,71 +142,71 @@
   {
     "objectID": "chapters/commandline.html",
     "href": "chapters/commandline.html",
-    "title": "Apuntes Comandos Básicos en Bash",
+    "title": "Apuntes sobre comandos básicos en Bash",
     "section": "",
     "text": "1. Navegación en el sistema de archivos",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
   },
   {
     "objectID": "chapters/commandline.html#navegación-en-el-sistema-de-archivos",
     "href": "chapters/commandline.html#navegación-en-el-sistema-de-archivos",
-    "title": "Apuntes Comandos Básicos en Bash",
+    "title": "Apuntes sobre comandos básicos en Bash",
     "section": "",
     "text": "pwd → Muestra el directorio actual.\npwd\nls → Lista los archivos y carpetas en el directorio actual.\nls -l     # Muestra detalles (permisos, dueño, tamaño, fecha)\nls -a     # Muestra archivos ocultos\nls -h     # Muestra tamaños en formato legible \ncd → Cambia de directorio.\ncd /   # Ir a la raiz\ncd /home/usuario/proyecto/data # ir a la carpeta data ruta absoluta\ncd data/ # ir a la carpeta data ruta relativa\ncd ..      # Subir un nivel",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
   },
   {
     "objectID": "chapters/commandline.html#manipulación-de-archivos-y-directorios",
     "href": "chapters/commandline.html#manipulación-de-archivos-y-directorios",
-    "title": "Apuntes Comandos Básicos en Bash",
+    "title": "Apuntes sobre comandos básicos en Bash",
     "section": "2. Manipulación de archivos y directorios",
     "text": "2. Manipulación de archivos y directorios\n\nmkdir → Crea un directorio.\nmkdir nueva_carpeta\nrm → Borra archivos y carpetas.\nrm archivo.txt        # Borra un archivo\nrm -r carpeta         # Borra una carpeta y su contenido\nrm -i archivo.txt     # Pregunta antes de borrar\ncp → Copia archivos o carpetas.\ncp archivo.txt copia.txt   # Copia un archivo\ncp -r carpeta destino/     # Copia una carpeta\nmv → Mueve o renombra archivos y carpetas.\nmv archivo.txt nueva_ubicacion/\nmv archivo.txt nuevo_nombre.txt",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
   },
   {
     "objectID": "chapters/commandline.html#visualización-y-edición-de-archivos",
     "href": "chapters/commandline.html#visualización-y-edición-de-archivos",
-    "title": "Apuntes Comandos Básicos en Bash",
+    "title": "Apuntes sobre comandos básicos en Bash",
     "section": "3. Visualización y edición de archivos",
     "text": "3. Visualización y edición de archivos\n\ncat → Muestra el contenido de un archivo.\ncat archivo.txt\nless → Permite visualizar archivos grandes de manera interactiva.\nless archivo.txt   # Usa las teclas ↑ ↓ para moverte, \"q\" para salir\nnano → Editor de texto en terminal.\nnano archivo.txt",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
   },
   {
     "objectID": "chapters/commandline.html#limpiar-la-terminal",
     "href": "chapters/commandline.html#limpiar-la-terminal",
-    "title": "Apuntes Comandos Básicos en Bash",
+    "title": "Apuntes sobre comandos básicos en Bash",
     "section": "4. Limpiar la terminal",
     "text": "4. Limpiar la terminal\n\nclear → Borra la pantalla de la terminal, pero no elimina procesos ni historial.\nclear\nCtrl + L → Hace lo mismo que clear, pero sin ejecutar un comando explícito.\n\nEn macOS: Cmd + K también limpia la terminal.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
   },
   {
     "objectID": "chapters/commandline.html#historial-de-comandos",
     "href": "chapters/commandline.html#historial-de-comandos",
-    "title": "Apuntes Comandos Básicos en Bash",
+    "title": "Apuntes sobre comandos básicos en Bash",
     "section": "5. Historial de comandos",
     "text": "5. Historial de comandos\n\nCómo moverse en el historial\n\n↑ (Flecha arriba) → Muestra el último comando ejecutado.\n↓ (Flecha abajo) → Avanza en la lista de comandos previos.\nCtrl + R → Búsqueda rápida en el historial. Escribe parte del comando y pulsa Enter cuando encuentres el que necesitas.\n\nEjemplo: Presiona Ctrl + R y escribe nano, mostrará el último comando que usaste con nano.\n\n\nhistory → Muestra los últimos comandos ejecutados.\nhistory\nBuscar en el historial rápidamente con grep\nhistory | grep ls   # Filtra los comandos que contienen \"ls\"\nhistory | grep nano # Filtra los comandos con \"nano\"",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
   },
   {
     "objectID": "chapters/commandline.html#permisos-y-propiedades-de-archivos",
     "href": "chapters/commandline.html#permisos-y-propiedades-de-archivos",
-    "title": "Apuntes Comandos Básicos en Bash",
+    "title": "Apuntes sobre comandos básicos en Bash",
     "section": "6. Permisos y propiedades de archivos",
     "text": "6. Permisos y propiedades de archivos\n\nchmod → Cambia permisos de ejecucion.\nchmod +x script.Rev  # Permisos de ejecución\nchown → Cambia el dueño de un archivo.\nsudo chown usuario archivo.txt",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes Comandos Básicos en Bash</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
   },
   {
