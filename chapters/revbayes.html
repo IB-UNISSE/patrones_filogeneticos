@@ -285,9 +285,9 @@ P(\theta | D) = \frac{P(D | \theta) P(\theta)}{P(D)}
 <h1>Diferencia entre Inferencia Bayesiana y Máxima Verosimilitud</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 40%">
-<col style="width: 34%">
+<col style="width: 23%">
+<col style="width: 37%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -511,6 +511,8 @@ Utilizamos una <strong>distribución Beta(8,2)</strong>, basada en la suposició
 <p><span class="math display">\[
 p \sim \text{Beta}(8,2)
 \]</span></p>
+<p><a href="https://mikeryanmay.shinyapps.io/plotprior/">Página para visualizar las distribuciones para RevBayes</a>, pega el siguiente código en Rev code:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">~</span> <span class="fu">dnBeta</span>(<span class="dv">8</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La media de esta distribución es:</p>
 <p><span class="math display">\[
 E[p] = \frac{\alpha}{\alpha + \beta} = \frac{8}{8+2} = 0.8
@@ -553,42 +555,42 @@ E[p] = \frac{15}{15 + 5} = 0.75
 <p><img src="../images/rebvayes/binomial_graphical_model.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Modelo Grafico" width="250"></p>
 </figure>
 </div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># RevBayes - Algoritmo de Metropolis-Hastings para estimar</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># la probabilidad de disfrutar el ambiente en las micheladas de Tepito</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos observados</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>total_clientes <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># Número total de encuestados</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>satisfechos <span class="ot">&lt;-</span> <span class="dv">7</span>      <span class="co"># Número de estudiantes que disfrutaron el ambiente</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar la distribución prior</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># Basado en la creencia previa de 80% satisfacción</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>beta  <span class="ot">&lt;-</span> <span class="dv">2</span>   <span class="co"># Complemento del prior</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>p <span class="sc">~</span> <span class="fu">dnBeta</span>(alpha, beta)  <span class="co"># Prior Beta(8,2)</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir la propuesta de MCMC con Metropolis-Hastings</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>moves[<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">mvSlide</span>(p, <span class="at">delta=</span><span class="fl">0.1</span>, <span class="at">weight=</span><span class="dv">1</span>)  <span class="co"># Movimiento en la distribución de p</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar el modelo de verosimilitud (distribución Binomial)</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>k <span class="sc">~</span> <span class="fu">dnBinomial</span>(p, total_clientes)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">k.clamp</span>(satisfechos)  <span class="co"># Fijar la observación de 7 estudiantes satisfechos</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el modelo</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>my_model <span class="ot">=</span> <span class="fu">model</span>(p)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir monitores para el MCMC</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>monitors[<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"micheladas_MH.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB)  <span class="co"># Guardar resultados</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>monitors[<span class="dv">2</span>] <span class="ot">=</span> <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">100</span>, p)  <span class="co"># Mostrar progreso cada 100 generaciones</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el análisis MCMC con Metropolis-Hastings</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>analysis <span class="ot">=</span> <span class="fu">mcmc</span>(my_model, monitors, moves)</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar el MCMC con 100,000 iteraciones</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">analysis.run</span>(<span class="dv">100000</span>)</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el resumen de los operadores de MCMC</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">analysis.operatorSummary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># RevBayes - Algoritmo de Metropolis-Hastings para estimar</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># la probabilidad de disfrutar el ambiente en las micheladas de Tepito</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos observados</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>total_clientes <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># Número total de encuestados</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>satisfechos <span class="ot">&lt;-</span> <span class="dv">7</span>      <span class="co"># Número de estudiantes que disfrutaron el ambiente</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar la distribución prior</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># Basado en la creencia previa de 80% satisfacción</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>beta  <span class="ot">&lt;-</span> <span class="dv">2</span>   <span class="co"># Complemento del prior</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>p <span class="sc">~</span> <span class="fu">dnBeta</span>(alpha, beta)  <span class="co"># Prior Beta(8,2)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir la propuesta de MCMC con Metropolis-Hastings</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>moves[<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">mvSlide</span>(p, <span class="at">delta=</span><span class="fl">0.1</span>, <span class="at">weight=</span><span class="dv">1</span>)  <span class="co"># Movimiento en la distribución de p</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar el modelo de verosimilitud (distribución Binomial)</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>k <span class="sc">~</span> <span class="fu">dnBinomial</span>(p, total_clientes)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">k.clamp</span>(satisfechos)  <span class="co"># Fijar la observación de 7 estudiantes satisfechos</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el modelo</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>my_model <span class="ot">=</span> <span class="fu">model</span>(p)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir monitores para el MCMC</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>monitors[<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"micheladas_MH.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB)  <span class="co"># Guardar resultados</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>monitors[<span class="dv">2</span>] <span class="ot">=</span> <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">100</span>, p)  <span class="co"># Mostrar progreso cada 100 generaciones</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el análisis MCMC con Metropolis-Hastings</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>analysis <span class="ot">=</span> <span class="fu">mcmc</span>(my_model, monitors, moves)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar el MCMC con 100,000 iteraciones</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="fu">analysis.run</span>(<span class="dv">100000</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el resumen de los operadores de MCMC</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">analysis.operatorSummary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="mini-ejercicio" class="level2">
 <h2 class="anchored" data-anchor-id="mini-ejercicio">Mini-ejercicio</h2>
