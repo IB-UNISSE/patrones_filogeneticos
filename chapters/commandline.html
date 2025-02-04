@@ -203,7 +203,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio" id="toc-uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio" class="nav-link" data-scroll-target="#uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio">Uso de Ubuntu en Windows con Visual Studio Code y RStudio</a>
   <ul class="collapse">
   <li><a href="#iniciar-ubuntu-en-la-terminal-de-vs-code." id="toc-iniciar-ubuntu-en-la-terminal-de-vs-code." class="nav-link" data-scroll-target="#iniciar-ubuntu-en-la-terminal-de-vs-code.">Iniciar <strong>Ubuntu</strong> en la terminal de VS Code.</a></li>
-  <li><a href="#acceder-a-los-archivos-de-ubuntu-en-rstudio" id="toc-acceder-a-los-archivos-de-ubuntu-en-rstudio" class="nav-link" data-scroll-target="#acceder-a-los-archivos-de-ubuntu-en-rstudio">Acceder a los archivos de Ubuntu en RStudio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -357,17 +356,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="../images/bash/vsc_ext5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
 </figure>
 </div></li>
-</ol>
-</section>
-<section id="acceder-a-los-archivos-de-ubuntu-en-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="acceder-a-los-archivos-de-ubuntu-en-rstudio">Acceder a los archivos de Ubuntu en RStudio</h2>
-<ol type="1">
-<li><p>Ejecuta el siguiente comando en PowerShell:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wsl<span class="op">.</span><span class="fu">exe</span> wslpath <span class="op">-</span>w <span class="op">~</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Mostrará una dirección como la que se muestra:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>\\wsl<span class="op">.</span><span class="fu">localhost</span>\Ubuntu\home\tu_usuario</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>En <strong>RStudio</strong> puedes establecer el directorio de trabajo en la carpeta de Ubuntu (WSL) usando <code>setwd()</code>. Ten cuidado en las diuagonales, en powershell las diagonales son invertidas <em>* y cuando las utilices en R utiliza las diagonales normales</em> /*:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"//wsl.localhost/Ubuntu/home/tu_usuario/mi_proyecto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 
 

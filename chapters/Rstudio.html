@@ -200,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#asignación-de-variables" id="toc-asignación-de-variables" class="nav-link" data-scroll-target="#asignación-de-variables">Asignación de Variables</a></li>
   <li><a href="#uso-de-funciones-en-r" id="toc-uso-de-funciones-en-r" class="nav-link" data-scroll-target="#uso-de-funciones-en-r">Uso de Funciones en R</a></li>
   <li><a href="#instalación-y-uso-de-paquetes" id="toc-instalación-y-uso-de-paquetes" class="nav-link" data-scroll-target="#instalación-y-uso-de-paquetes">Instalación y Uso de Paquetes</a></li>
-  <li><a href="#mini-ejercicio" id="toc-mini-ejercicio" class="nav-link" data-scroll-target="#mini-ejercicio">Mini-ejercicio</a></li>
+  <li><a href="#acceder-a-los-archivos-de-ubuntu-en-rstudio" id="toc-acceder-a-los-archivos-de-ubuntu-en-rstudio" class="nav-link" data-scroll-target="#acceder-a-los-archivos-de-ubuntu-en-rstudio">Acceder a los archivos de Ubuntu en RStudio</a></li>
   </ul>
 </nav>
     </div>
@@ -363,17 +363,16 @@ qw_feature2.csv</code></pre>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(ggplot2)  <span class="co"># Consultar documentación</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="mini-ejercicio" class="level2">
-<h2 class="anchored" data-anchor-id="mini-ejercicio">Mini-ejercicio</h2>
+<section id="acceder-a-los-archivos-de-ubuntu-en-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="acceder-a-los-archivos-de-ubuntu-en-rstudio">Acceder a los archivos de Ubuntu en RStudio</h2>
 <ol type="1">
-<li><p>Crear un nuevo script en RStudio.</p></li>
-<li><p>Definir un vector y calcular su media.</p></li>
-<li><p>Crear un Data Frame y explorarlo con <code>summary()</code>.</p></li>
-<li><p>Guardar y cargar un archivo CSV:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(df, <span class="st">"datos.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_cargado <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datos.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Ejecuta el siguiente comando en PowerShell:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wsl<span class="op">.</span><span class="fu">exe</span> wslpath <span class="op">-</span>w <span class="op">~</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Mostrará una dirección como la que se muestra:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>\\wsl<span class="op">.</span><span class="fu">localhost</span>\Ubuntu\home\tu_usuario</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>En <strong>RStudio</strong> puedes establecer el directorio de trabajo en la carpeta de Ubuntu (WSL) usando <code>setwd()</code>. Ten cuidado en las diuagonales, en powershell las diagonales son invertidas <em>* y cuando las utilices en R utiliza las diagonales normales</em> /*:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"//wsl.localhost/Ubuntu/home/tu_usuario/mi_proyecto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<hr>
 
 
 </section>

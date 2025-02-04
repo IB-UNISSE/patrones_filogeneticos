@@ -220,16 +220,6 @@
     ]
   },
   {
-    "objectID": "chapters/commandline.html#acceder-a-los-archivos-de-ubuntu-en-rstudio",
-    "href": "chapters/commandline.html#acceder-a-los-archivos-de-ubuntu-en-rstudio",
-    "title": "Apuntes sobre comandos básicos en Bash",
-    "section": "Acceder a los archivos de Ubuntu en RStudio",
-    "text": "Acceder a los archivos de Ubuntu en RStudio\n\nEjecuta el siguiente comando en PowerShell:\nwsl.exe wslpath -w ~\nMostrará una dirección como la que se muestra:\n\\\\wsl.localhost\\Ubuntu\\home\\tu_usuario\nEn RStudio puedes establecer el directorio de trabajo en la carpeta de Ubuntu (WSL) usando setwd(). Ten cuidado en las diuagonales, en powershell las diagonales son invertidas * y cuando las utilices en R utiliza las diagonales normales /*:\nsetwd(\"//wsl.localhost/Ubuntu/home/tu_usuario/mi_proyecto\")",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
-    ]
-  },
-  {
     "objectID": "chapters/Rstudio.html",
     "href": "chapters/Rstudio.html",
     "title": "Apuntes sobre R y Rstudio",
@@ -330,11 +320,11 @@
     ]
   },
   {
-    "objectID": "chapters/Rstudio.html#mini-ejercicio",
-    "href": "chapters/Rstudio.html#mini-ejercicio",
+    "objectID": "chapters/Rstudio.html#acceder-a-los-archivos-de-ubuntu-en-rstudio",
+    "href": "chapters/Rstudio.html#acceder-a-los-archivos-de-ubuntu-en-rstudio",
     "title": "Apuntes sobre R y Rstudio",
-    "section": "Mini-ejercicio",
-    "text": "Mini-ejercicio\n\nCrear un nuevo script en RStudio.\nDefinir un vector y calcular su media.\nCrear un Data Frame y explorarlo con summary().\nGuardar y cargar un archivo CSV:\nwrite.csv(df, \"datos.csv\", row.names = FALSE)\ndf_cargado &lt;- read.csv(\"datos.csv\")",
+    "section": "Acceder a los archivos de Ubuntu en RStudio",
+    "text": "Acceder a los archivos de Ubuntu en RStudio\n\nEjecuta el siguiente comando en PowerShell:\nwsl.exe wslpath -w ~\nMostrará una dirección como la que se muestra:\n\\\\wsl.localhost\\Ubuntu\\home\\tu_usuario\nEn RStudio puedes establecer el directorio de trabajo en la carpeta de Ubuntu (WSL) usando setwd(). Ten cuidado en las diuagonales, en powershell las diagonales son invertidas * y cuando las utilices en R utiliza las diagonales normales /*:\nsetwd(\"//wsl.localhost/Ubuntu/home/tu_usuario/mi_proyecto\")",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Apuntes sobre R y Rstudio</span>"
     ]
