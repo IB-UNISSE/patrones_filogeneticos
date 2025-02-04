@@ -144,7 +144,7 @@
     "href": "chapters/commandline.html",
     "title": "Apuntes sobre comandos básicos en Bash",
     "section": "",
-    "text": "1. Navegación en el sistema de archivos",
+    "text": "Comandos básicos en Bash",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
@@ -153,8 +153,8 @@
     "objectID": "chapters/commandline.html#navegación-en-el-sistema-de-archivos",
     "href": "chapters/commandline.html#navegación-en-el-sistema-de-archivos",
     "title": "Apuntes sobre comandos básicos en Bash",
-    "section": "",
-    "text": "pwd → Muestra el directorio actual.\npwd\nls → Lista los archivos y carpetas en el directorio actual.\nls -l     # Muestra detalles (permisos, dueño, tamaño, fecha)\nls -a     # Muestra archivos ocultos\nls -h     # Muestra tamaños en formato legible \ncd → Cambia de directorio.\ncd /   # Ir a la raiz\ncd /home/usuario/proyecto/data # ir a la carpeta data ruta absoluta\ncd data/ # ir a la carpeta data ruta relativa\ncd ..      # Subir un nivel",
+    "section": "1. Navegación en el sistema de archivos",
+    "text": "1. Navegación en el sistema de archivos\n\n\n\n\n\n\npwd → Muestra el directorio actual.\npwd\nls → Lista los archivos y carpetas en el directorio actual.\nls -l     # Muestra detalles (permisos, dueño, tamaño, fecha)\nls -a     # Muestra archivos ocultos\nls -h     # Muestra tamaños en formato legible \ncd → Cambia de directorio.\ncd /   # Ir a la raiz\ncd /home/usuario/proyecto/data # ir a la carpeta data ruta absoluta\ncd data/ # ir a la carpeta data ruta relativa\ncd ..      # Subir un nivel",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]
@@ -205,6 +205,26 @@
     "title": "Apuntes sobre comandos básicos en Bash",
     "section": "6. Permisos y propiedades de archivos",
     "text": "6. Permisos y propiedades de archivos\n\nchmod → Cambia permisos de ejecucion.\nchmod +x script.Rev  # Permisos de ejecución\nchown → Cambia el dueño de un archivo.\nsudo chown usuario archivo.txt",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/commandline.html#iniciar-ubuntu-en-la-terminal-de-vs-code.",
+    "href": "chapters/commandline.html#iniciar-ubuntu-en-la-terminal-de-vs-code.",
+    "title": "Apuntes sobre comandos básicos en Bash",
+    "section": "Iniciar Ubuntu en la terminal de VS Code.",
+    "text": "Iniciar Ubuntu en la terminal de VS Code.\n\nAbre VS Code y ve a Extensions (Ctrl + Shift + X)\n\n\n\n\n\nBusca WSL e instala la extensión oficial de Microsoft.\n\n\n\n\n\nTeclea el comando Ctrl + Shift + P y selecciona WSL: Connect to WSL\n\n\n\n\n\nSe abrirá una nueva ventana, ve a **Terminal** y selecciona una nueva **Terminal**\n\n\n\n\n\nEn la parte inferior se abrirá la terminal de Ubuntu",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/commandline.html#acceder-a-los-archivos-de-ubuntu-en-rstudio",
+    "href": "chapters/commandline.html#acceder-a-los-archivos-de-ubuntu-en-rstudio",
+    "title": "Apuntes sobre comandos básicos en Bash",
+    "section": "Acceder a los archivos de Ubuntu en RStudio",
+    "text": "Acceder a los archivos de Ubuntu en RStudio\n\nEjecuta el siguiente comando en PowerShell:\nwsl.exe wslpath -w ~\nMostrará una dirección como la que se muestra:\n\\\\wsl.localhost\\Ubuntu\\home\\tu_usuario\nEn RStudio puedes establecer el directorio de trabajo en la carpeta de Ubuntu (WSL) usando setwd(). Ten cuidado en las diuagonales, en powershell las diagonales son invertidas * y cuando las utilices en R utiliza las diagonales normales /*:\nsetwd(\"//wsl.localhost/Ubuntu/home/tu_usuario/mi_proyecto\")",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Apuntes sobre comandos básicos en Bash</span>"
     ]

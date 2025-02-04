@@ -191,12 +191,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#navegación-en-el-sistema-de-archivos" id="toc-navegación-en-el-sistema-de-archivos" class="nav-link active" data-scroll-target="#navegación-en-el-sistema-de-archivos">1. Navegación en el sistema de archivos</a></li>
+  <li><a href="#comandos-básicos-en-bash" id="toc-comandos-básicos-en-bash" class="nav-link active" data-scroll-target="#comandos-básicos-en-bash">Comandos básicos en Bash</a>
+  <ul class="collapse">
+  <li><a href="#navegación-en-el-sistema-de-archivos" id="toc-navegación-en-el-sistema-de-archivos" class="nav-link" data-scroll-target="#navegación-en-el-sistema-de-archivos">1. Navegación en el sistema de archivos</a></li>
   <li><a href="#manipulación-de-archivos-y-directorios" id="toc-manipulación-de-archivos-y-directorios" class="nav-link" data-scroll-target="#manipulación-de-archivos-y-directorios">2. Manipulación de archivos y directorios</a></li>
   <li><a href="#visualización-y-edición-de-archivos" id="toc-visualización-y-edición-de-archivos" class="nav-link" data-scroll-target="#visualización-y-edición-de-archivos">3. Visualización y edición de archivos</a></li>
   <li><a href="#limpiar-la-terminal" id="toc-limpiar-la-terminal" class="nav-link" data-scroll-target="#limpiar-la-terminal">4. Limpiar la terminal</a></li>
   <li><a href="#historial-de-comandos" id="toc-historial-de-comandos" class="nav-link" data-scroll-target="#historial-de-comandos">5. Historial de comandos</a></li>
   <li><a href="#permisos-y-propiedades-de-archivos" id="toc-permisos-y-propiedades-de-archivos" class="nav-link" data-scroll-target="#permisos-y-propiedades-de-archivos">6. Permisos y propiedades de archivos</a></li>
+  </ul></li>
+  <li><a href="#uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio" id="toc-uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio" class="nav-link" data-scroll-target="#uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio">Uso de Ubuntu en Windows con Visual Studio Code y RStudio</a>
+  <ul class="collapse">
+  <li><a href="#iniciar-ubuntu-en-la-terminal-de-vs-code." id="toc-iniciar-ubuntu-en-la-terminal-de-vs-code." class="nav-link" data-scroll-target="#iniciar-ubuntu-en-la-terminal-de-vs-code.">Iniciar <strong>Ubuntu</strong> en la terminal de VS Code.</a></li>
+  <li><a href="#acceder-a-los-archivos-de-ubuntu-en-rstudio" id="toc-acceder-a-los-archivos-de-ubuntu-en-rstudio" class="nav-link" data-scroll-target="#acceder-a-los-archivos-de-ubuntu-en-rstudio">Acceder a los archivos de Ubuntu en RStudio</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -222,6 +230,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="comandos-básicos-en-bash" class="level1">
+<h1>Comandos básicos en Bash</h1>
 <section id="navegación-en-el-sistema-de-archivos" class="level2">
 <h2 class="anchored" data-anchor-id="navegación-en-el-sistema-de-archivos">1. Navegación en el sistema de archivos</h2>
 <div class="quarto-figure quarto-figure-center">
@@ -309,8 +319,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong><code>chown</code></strong> → Cambia el dueño de un archivo.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown usuario archivo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
+</section>
+</section>
+<section id="uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio" class="level1">
+<h1>Uso de Ubuntu en Windows con Visual Studio Code y RStudio</h1>
+<p>Si tienes <strong>Ubuntu instalado en Windows</strong> a través de <strong>WSL (Windows Subsystem for Linux)</strong>, sigue estas instrucciones para trabajar con tu entorno de desarrollo en <strong>Visual Studio Code</strong>.</p>
+<section id="iniciar-ubuntu-en-la-terminal-de-vs-code." class="level2">
+<h2 class="anchored" data-anchor-id="iniciar-ubuntu-en-la-terminal-de-vs-code.">Iniciar <strong>Ubuntu</strong> en la terminal de VS Code.</h2>
+<ol type="1">
+<li><p>Abre <strong>VS Code</strong> y ve a <strong>Extensions</strong> (Ctrl + Shift + X)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/bash/vsc_ext1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div></li>
+<li><p>Busca <strong>WSL</strong> e instala la extensión oficial de Microsoft.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/bash/vsc_ext2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div></li>
+<li><p>Teclea el comando <strong>Ctrl + Shift + P</strong> y selecciona <strong>WSL: Connect to WSL</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/bash/vsc_ext3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div></li>
+<li><p>Se abrirá una nueva ventana, ve a **Terminal** y selecciona una nueva **Terminal**</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/bash/vsc_ext4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div></li>
+<li><p>En la parte inferior se abrirá la terminal de <strong>Ubuntu</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/bash/vsc_ext5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="acceder-a-los-archivos-de-ubuntu-en-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="acceder-a-los-archivos-de-ubuntu-en-rstudio">Acceder a los archivos de Ubuntu en RStudio</h2>
+<ol type="1">
+<li><p>Ejecuta el siguiente comando en PowerShell:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wsl<span class="op">.</span><span class="fu">exe</span> wslpath <span class="op">-</span>w <span class="op">~</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Mostrará una dirección como la que se muestra:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>\\wsl<span class="op">.</span><span class="fu">localhost</span>\Ubuntu\home\tu_usuario</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>En <strong>RStudio</strong> puedes establecer el directorio de trabajo en la carpeta de Ubuntu (WSL) usando <code>setwd()</code>. Ten cuidado en las diuagonales, en powershell las diagonales son invertidas <em>* y cuando las utilices en R utiliza las diagonales normales </em>/*:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"//wsl.localhost/Ubuntu/home/tu_usuario/mi_proyecto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
