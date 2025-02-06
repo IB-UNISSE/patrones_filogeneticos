@@ -420,33 +420,102 @@
     ]
   },
   {
-    "objectID": "chapters/chapter1.html",
-    "href": "chapters/chapter1.html",
-    "title": "Unidad 1: Patrones de diversificación",
+    "objectID": "chapters/u1_intro_diversification.html",
+    "href": "chapters/u1_intro_diversification.html",
+    "title": "Introducción al proceso de diversificación",
     "section": "",
-    "text": "1.1 Introducción al proceso de diversificación y que herramientas tenemos para calcular una tasa\nR Plot Function\nIn this article, you will learn to use the plot function in R programming with the help of examples.\nThe most used plotting function in R programming is the plot() function. It is a generic function, meaning, it has many methods which are called according to the type of object passed to plot().\nIn the simplest case, we can pass in a vector and get a scatter plot of magnitude vs index. But generally, we pass in two vectors, and a scatter plot of these points is plotted.\nFor example, the command plot(c(1,2),c(3,5)) would plot the points (1,3) and (2,5).\nHere is a more concrete example where we plot a sine function ranging from -pi to pi.\nx &lt;- seq(-pi,pi,0.1)\nplot(x, sin(x),\nmain=\"Overlaying Graphs\",\nylab=\"\",\ntype=\"l\",\ncol=\"blue\")\nlines(x,cos(x), col=\"red\")\nlegend(\"topleft\",\nc(\"sin(x)\",\"cos(x)\"),\nfill=c(\"blue\",\"red\")\n)",
+    "text": "Presentación: Introducción al proceso de diversificación\nHaz clic en la imagen para ver el PDF de la presentación",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Unidad 1: Patrones de diversificación</span>"
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
-    "objectID": "chapters/chapter2.html",
-    "href": "chapters/chapter2.html",
-    "title": "Unidad 2: bases",
-    "section": "",
-    "text": "Este capítulo cubre los conceptos básicos de los datos de árboles.",
+    "objectID": "chapters/u1_intro_diversification.html#descargar-el-paquete-treepar",
+    "href": "chapters/u1_intro_diversification.html#descargar-el-paquete-treepar",
+    "title": "Introducción al proceso de diversificación",
+    "section": "1️⃣ Descargar el paquete TreePar",
+    "text": "1️⃣ Descargar el paquete TreePar\nPuedes descargar el paquete desde el siguiente enlace:\n📥 Descargar TreePar 3.3\nGuarda el archivo en una carpeta de tu elección (por ejemplo, en ~/Descargas/ o C:/Users/TuUsuario/Downloads/).",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Unidad 2: bases</span>"
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
-    "objectID": "chapters/chapter3.html",
-    "href": "chapters/chapter3.html",
-    "title": "Unidad 3: Análisis de datos",
-    "section": "",
-    "text": "Análisis de datos\nEn este capítulo aprenderás cómo analizar datos de árboles utilizando técnicas modernas.",
+    "objectID": "chapters/u1_intro_diversification.html#instalar-treepar-desde-el-archivo-descargado",
+    "href": "chapters/u1_intro_diversification.html#instalar-treepar-desde-el-archivo-descargado",
+    "title": "Introducción al proceso de diversificación",
+    "section": "2️⃣ Instalar TreePar desde el archivo descargado",
+    "text": "2️⃣ Instalar TreePar desde el archivo descargado\nUna vez que hayas descargado el archivo TreePar_3.3.tar.gz, abre R y ejecuta el siguiente código para instalarlo:\n# Definir la ruta donde se descargó el archivo\nruta_archivo &lt;- \"~/Descargas/TreePar_3.3.tar.gz\"  # Cambia esta ruta según tu sistema operativo\n\n# Instalar el paquete desde el archivo .tar.gz\ninstall.packages(ruta_archivo, repos = NULL, type = \"source\")",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Unidad 3: Análisis de datos</span>"
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#descarga-del-árbol-filogenético",
+    "href": "chapters/u1_intro_diversification.html#descarga-del-árbol-filogenético",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Descarga del Árbol Filogenético",
+    "text": "Descarga del Árbol Filogenético\n📥 Puedes descargar el archivo NEXUS con el árbol de estudio en el siguiente enlace:\n📥 Descargar Árbol Filogenético\nGuarda el archivo en la carpeta correspondiente y verifica su ubicación antes de continuar.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#cargar-y-visualizar-el-árbol-en-r",
+    "href": "chapters/u1_intro_diversification.html#cargar-y-visualizar-el-árbol-en-r",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Cargar y Visualizar el Árbol en R",
+    "text": "Cargar y Visualizar el Árbol en R\nEjecuta el siguiente código en R para cargar el archivo y visualizar el árbol completo:\n\n# Cargar los paquetes necesarios\nlibrary(ape)\nlibrary(ggtree)\nlibrary(treeio)\nlibrary(tidyverse)\n\n# Definir la ruta del archivo NEXUS\narchivo_nexus &lt;- \"../docs/u1_PatDiv/allSamples.tre\"  # Asegúrate de cambiar esta ruta si es necesario\n\n# Cargar el árbol\narbol &lt;- read.nexus(archivo_nexus)\n\n# Calcular el Límite Máximo del Eje X\nmax_edge_length &lt;- max(arbol$edge.length, na.rm = TRUE)\n\n# Graficar el árbol\np &lt;- ggtree(arbol) +\n  geom_tiplab(size = 3) +\n  geom_text2(aes(subset = !isTip, label = node), hjust = -0.3) +  # Etiquetar nodos internos\n  xlim(-0.5, max_edge_length * 1.4) +\n  theme_tree2()\n\n# Mostrar en pantalla\np",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#extraer-los-nombres-de-las-terminales-de-un-nodo-específico",
+    "href": "chapters/u1_intro_diversification.html#extraer-los-nombres-de-las-terminales-de-un-nodo-específico",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Extraer los nombres de las terminales de un nodo específico:",
+    "text": "Extraer los nombres de las terminales de un nodo específico:\nUtilizar la función getDescendants para obtener los nombres de todas la terminales del nodo interno 61:\n\nlibrary(phytools)\n\nnodo_interes &lt;- 61  # Reemplaza este valor por el nodo de tu interés\n\n# Obtener los índices de los nodos descendientes\nnodos_internos &lt;- getDescendants(arbol, nodo_interes)\n\n# Filtrar solo los índices que corresponden a las terminales (tips)\nindices_tips &lt;- nodos_internos[nodos_internos &lt;= length(arbol$tip.label)]\n\n# Obtener los nombres de las terminales\nnombres_tips &lt;- arbol$tip.label[indices_tips]\n\n# Mostrar los nombres de las terminales\nprint(nombres_tips)\n\n [1] \"06166_50_120_Phod_marmorata\" \"KRN15_107_Phod_marmorata\"   \n [3] \"KRN52_Phod_alticeps\"         \"KRN10_118_Phod_alticeps\"    \n [5] \"KRN14_Phod_alticeps\"         \"KRN24_Cyste_armatus\"        \n [7] \"KRN02_Cyste_armatus\"         \"KRN25_Cyste_armatus\"        \n [9] \"KRN28_Cyste_wislizeni\"       \"KRN03_Cyste_wislizeni\"      \n[11] \"KRN26_Cyste_wislizeni\"       \"KRN100_101_Tegro_aloga\"     \n[13] \"KRN96_97_98_Tegro_aloga\"     \"KRN11_Tegro_erosa\"          \n[15] \"KRN12_Tegro_erosa\"           \"KRN13_Tegro_latecincta\"     \n[17] \"KRN53_Tegro_latecincta\"      \"KRN01_Cordy_opaca\"          \n[19] \"KRN112_Cordy_opaca\"          \"KRN111_Cordy_fulleri\"       \n[21] \"KRN23_Cordy_fulleri\"         \"KRN09_Mege_vittata\"         \n[23] \"KRN08_Mege_puncta\"           \"KRN07_133_Mege_cancell\"     \n[25] \"KRN129_Mege_cancell_h\"       \"KRN51_Pleu_reticulata\"      \n[27] \"KRN48_Pleu_mirabilis\"        \"KRN47_119_Pleu_mirabilis\"   \n[29] \"KRN49_Pleu_mirabilis\"        \"KRN19_Eup_sulciphrons\"      \n[31] \"KRN131_Eup_schwarzi\"         \"KRN88_89_Eup_histrionica\"   \n[33] \"KRN90_Eup_histrionica\"       \"KRN43_108_Eup_fissiceps\"    \n[35] \"KRN45_Eup_fissiceps\"         \"KRN44_Eup_fissiceps\"        \n[37] \"KRN54_121_Eup_fissiceps\"     \"KRN20_Eup_imperialis\"       \n[39] \"KRN06_Eup_imperialis\"        \"KRN42_Eup_imperialis\"       \n[41] \"KRN30_113_Eup_elegans\"       \"KRN38_115_Eup_elegans_p\"    \n[43] \"KRN29_Eup_elegans_p\"         \"KRN21_114_Eup_elegans_p\"    \n[45] \"KRN40_Eup_elegans_p\"         \"KRN92_93_Eup_edmundsi\"      \n[47] \"KRN18_135_Eup_viridis\"       \"KRN59_Eup_viridis\"",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#uso-de-getmrca-y-extract.clade-para-extraer-subárboles-filogenéticos",
+    "href": "chapters/u1_intro_diversification.html#uso-de-getmrca-y-extract.clade-para-extraer-subárboles-filogenéticos",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Uso de getMRCA y extract.clade para extraer Subárboles Filogenéticos",
+    "text": "Uso de getMRCA y extract.clade para extraer Subárboles Filogenéticos\n\n# Obtener el nodo más reciente en común del ingroup\nmrca_ingroup &lt;- getMRCA(arbol, nombres_tips)\n\n# Extraer el subárbol del ingroup\nsubarbol &lt;- extract.clade(arbol, mrca_ingroup)\n\n# Calcular la longitud máxima de las ramas del subárbol\nmax_edge_length &lt;- max(subarbol$edge.length, na.rm = TRUE)\n\n# Graficar el subárbol\nsp &lt;- ggtree(subarbol) +\n  geom_tiplab(size = 3) +\n  xlim(-0.5, max_edge_length * 2) +\n  theme_tree2()\n\nsp",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#remover-especies-duplicadas",
+    "href": "chapters/u1_intro_diversification.html#remover-especies-duplicadas",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Remover especies duplicadas",
+    "text": "Remover especies duplicadas\n\n# Separar los nombres de las especies (asumiendo el formato \"ID_Especie\")\nspecies_info &lt;- data.frame(\n  tip_label = nombres_tips,\n  species = str_extract(nombres_tips, \"[A-Za-z]+_[A-Za-z]+(?:_[A-Za-z]+)?$\")\n)\n\n# Seleccionar solo una muestra por especie\nunique_species &lt;- species_info %&gt;% \n  group_by(species) %&gt;% \n  slice(1) %&gt;%  # Selecciona solo la primera aparición de cada especie\n  ungroup()\n\n# Extraer los nombres de los tips que queremos conservar\nselected_tips &lt;- unique_species$tip_label\n\n# Remover duplicados\nsubarbol_final &lt;- drop.tip(subarbol, setdiff(subarbol$tip.label, selected_tips))\n\nsfp &lt;- ggtree(subarbol_final) + \n  geom_tiplab(size = 3) + \n  xlim(-0.5, max(subarbol_final$edge.length) * 2)  # Expande el espacio a la izquierda\n\nsfp",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#guardar-el-árbol-resultante-en-formato-nexus",
+    "href": "chapters/u1_intro_diversification.html#guardar-el-árbol-resultante-en-formato-nexus",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Guardar el árbol resultante en formato NEXUS",
+    "text": "Guardar el árbol resultante en formato NEXUS\n\nwrite.nexus(subarbol_final, file=\"../docs/u1_PatDiv/subarbol_ingroup.nex\")",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   }
 ]
