@@ -468,7 +468,7 @@
     "href": "chapters/u1_intro_diversification.html#cargar-y-visualizar-el-árbol-en-r",
     "title": "Introducción al proceso de diversificación",
     "section": "Cargar y Visualizar el Árbol en R",
-    "text": "Cargar y Visualizar el Árbol en R\nEjecuta el siguiente código en R para cargar el archivo y visualizar el árbol completo:\n\n# Cargar los paquetes necesarios\nlibrary(ape)\nlibrary(ggtree)\nlibrary(treeio)\nlibrary(tidyverse)\n\n# Definir la ruta del archivo NEXUS\narchivo_nexus &lt;- \"../docs/u1_PatDiv/allSamples.tre\"  # Asegúrate de cambiar esta ruta si es necesario\n\n# Cargar el árbol\narbol &lt;- read.nexus(archivo_nexus)\n\n# Calcular el Límite Máximo del Eje X\nmax_edge_length &lt;- max(arbol$edge.length, na.rm = TRUE)\n\n# Graficar el árbol\np &lt;- ggtree(arbol) +\n  geom_tiplab(size = 3) +\n  geom_text2(aes(subset = !isTip, label = node), hjust = -0.3) +  # Etiquetar nodos internos\n  xlim(-0.5, max_edge_length * 1.4) +\n  theme_tree2()\n\n# Mostrar en pantalla\np",
+    "text": "Cargar y Visualizar el Árbol en R\nEjecuta el siguiente código en R para cargar el archivo y visualizar el árbol completo:\n\n# Cargar los paquetes necesarios\nlibrary(ape)\nlibrary(ggtree)\nlibrary(treeio)\nlibrary(tidyverse)\n\n# Definir la ruta del archivo NEXUS\narchivo_nexus &lt;- \"../docs/u1_PatDiv/allSamples.tre\"  # Asegúrate de cambiar esta ruta si es necesario\n\n# Cargar el árbol\narbol &lt;- read.nexus(archivo_nexus)\n\n# Calcular el Límite Máximo del Eje X\nmax_edge_length &lt;- max(arbol$edge.length, na.rm = TRUE)\n\n# Graficar el árbol\nggtree(arbol) +\n  geom_tiplab(size = 3) +\n  geom_text2(aes(subset = !isTip, label = node), hjust = -0.3) +  # Etiquetar nodos internos\n  xlim(-0.5, max_edge_length * 1.4) +\n  theme_tree2()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -490,7 +490,7 @@
     "href": "chapters/u1_intro_diversification.html#uso-de-getmrca-y-extract.clade-para-extraer-subárboles-filogenéticos",
     "title": "Introducción al proceso de diversificación",
     "section": "Uso de getMRCA y extract.clade para extraer Subárboles Filogenéticos",
-    "text": "Uso de getMRCA y extract.clade para extraer Subárboles Filogenéticos\n\n# Obtener el nodo más reciente en común del ingroup\nmrca_ingroup &lt;- getMRCA(arbol, nombres_tips)\n\n# Extraer el subárbol del ingroup\nsubarbol &lt;- extract.clade(arbol, mrca_ingroup)\n\n# Calcular la longitud máxima de las ramas del subárbol\nmax_edge_length &lt;- max(subarbol$edge.length, na.rm = TRUE)\n\n# Graficar el subárbol\nsp &lt;- ggtree(subarbol) +\n  geom_tiplab(size = 3) +\n  xlim(-0.5, max_edge_length * 2) +\n  theme_tree2()\n\nsp",
+    "text": "Uso de getMRCA y extract.clade para extraer Subárboles Filogenéticos\n\n# Obtener el nodo más reciente en común del ingroup\nmrca_ingroup &lt;- getMRCA(arbol, nombres_tips)\n\n# Extraer el subárbol del ingroup\nsubarbol &lt;- extract.clade(arbol, mrca_ingroup)\n\n# Calcular la longitud máxima de las ramas del subárbol\nmax_edge_length &lt;- max(subarbol$edge.length, na.rm = TRUE)\n\n# Graficar el subárbol\nggtree(subarbol) +\n  geom_tiplab(size = 3) +\n  xlim(-0.5, max_edge_length * 2) +\n  theme_tree2()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -501,7 +501,7 @@
     "href": "chapters/u1_intro_diversification.html#remover-especies-duplicadas",
     "title": "Introducción al proceso de diversificación",
     "section": "Remover especies duplicadas",
-    "text": "Remover especies duplicadas\n\n# Separar los nombres de las especies (asumiendo el formato \"ID_Especie\")\nspecies_info &lt;- data.frame(\n  tip_label = nombres_tips,\n  species = str_extract(nombres_tips, \"[A-Za-z]+_[A-Za-z]+(?:_[A-Za-z]+)?$\")\n)\n\n# Eliminar las ssp _h y _p\n# Seleccionar solo una muestra por especie\nunique_species &lt;- species_info %&gt;%\n  filter(!str_detect(species, \"_[hp]$\")) %&gt;%\n  group_by(species) %&gt;% \n  slice(1) %&gt;%  # Selecciona solo la primera aparición de cada especie\n  ungroup()\n\n# Extraer los nombres de los tips que queremos conservar\nselected_tips &lt;- unique_species$tip_label\n\n# Remover duplicados\nsubarbol_final &lt;- drop.tip(subarbol, setdiff(subarbol$tip.label, selected_tips))\n\nsfp &lt;- ggtree(subarbol_final) + \n  geom_tiplab(size = 3) + \n  xlim(-0.5, max(subarbol_final$edge.length) * 2)  # Expande el espacio a la izquierda\n\nsfp",
+    "text": "Remover especies duplicadas\n\n# Separar los nombres de las especies (asumiendo el formato \"ID_Especie\")\nspecies_info &lt;- data.frame(\n  tip_label = nombres_tips,\n  species = str_extract(nombres_tips, \"[A-Za-z]+_[A-Za-z]+(?:_[A-Za-z]+)?$\")\n)\n\n# Eliminar las ssp _h y _p\n# Seleccionar solo una muestra por especie\nunique_species &lt;- species_info %&gt;%\n  filter(!str_detect(species, \"_[hp]$\")) %&gt;%\n  group_by(species) %&gt;% \n  slice(1) %&gt;%  # Selecciona solo la primera aparición de cada especie\n  ungroup()\n\n# Extraer los nombres de los tips que queremos conservar\nselected_tips &lt;- unique_species$tip_label\n\n# Remover duplicados\nsubarbol_final &lt;- drop.tip(subarbol, setdiff(subarbol$tip.label, selected_tips))\n\nggtree(subarbol_final) + \n  geom_tiplab(size = 3) + \n  xlim(-0.5, max(subarbol_final$edge.length) * 2)  # Expande el espacio a la izquierda",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -513,6 +513,50 @@
     "title": "Introducción al proceso de diversificación",
     "section": "Guardar el árbol resultante en formato NEXUS",
     "text": "Guardar el árbol resultante en formato NEXUS\n\nwrite.nexus(subarbol_final, file=\"../docs/u1_PatDiv/subarbol_ingroup.nex\")",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#carga-del-árbol-filogenético",
+    "href": "chapters/u1_intro_diversification.html#carga-del-árbol-filogenético",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Carga del Árbol Filogenético",
+    "text": "Carga del Árbol Filogenético\n\n# Carga de paquetes\nlibrary(subplex)\nlibrary(TreeSim)\nlibrary(deSolve)\nlibrary(TreePar)\n\n# Cargar el árbol desde un archivo Nexus\ntree &lt;- read.nexus(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")\n\n# Visualizar el árbol\nggtree(tree) + theme_tree()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#obtención-de-los-tiempos-de-especiación",
+    "href": "chapters/u1_intro_diversification.html#obtención-de-los-tiempos-de-especiación",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Obtención de los Tiempos de Especiación",
+    "text": "Obtención de los Tiempos de Especiación\nExtraeremos y ordenaremos los tiempos de especiación (tiempos de ramificación) del árbol:\n\n# Obtener y ordenar los tiempos de especiación\n# La función getx() extrae los tiempos de ramificación del árbol.\ntimes &lt;- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.\ntimes &lt;- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.\nprint(times)\n\n [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969\n [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686\n[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760\n[19]  6.2512423  1.9309798  0.9252293",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#configuración-de-parámetros-para-el-análisis",
+    "href": "chapters/u1_intro_diversification.html#configuración-de-parámetros-para-el-análisis",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Configuración de Parámetros para el Análisis",
+    "text": "Configuración de Parámetros para el Análisis\nDefiniremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:\n\nrho &lt;- 22/26  # Proporción de especies muestreadas (22 de 26 especies)\ngrid &lt;- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)\nstart &lt;- min(times) + 1.5  # Tiempo inicial para la búsqueda de cambios de tasa\nend &lt;- max(times) - 1.5    # Tiempo final para la búsqueda de cambios de tasa",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#ejecución-del-análisis-con-bd.shifts.optim",
+    "href": "chapters/u1_intro_diversification.html#ejecución-del-análisis-con-bd.shifts.optim",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Ejecución del Análisis con bd.shifts.optim",
+    "text": "Ejecución del Análisis con bd.shifts.optim\nUtilizaremos la función bd.shifts.optim para estimar las tasas de especiación y extinción, así como los puntos en el tiempo donde ocurren cambios significativos en estas tasas:\n\n# Ejecutar el análisis de cambios en las tasas de diversificación\nresult_shifts &lt;- bd.shifts.optim(times, rho, grid, start, end)\n\n[1] \"startest\"\n[1] \"test\"\n\n# Mostrar los resultados\nresult_shifts[[2]][[1]]\n\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n\nA continuación se presentan los valores obtenidos en la estimación de las tasas de diversificación, utilizando las letras griegas correspondientes para las tasas de especiación y extinción:\n\nValor de la función de verosimilitud negativa: 7.002138e+01\nTasa de extinción \\(\\mu\\) : 3.102841e-07\nTasa de especiación \\(\\lambda\\) : 8.909817e-02\n\nEn este contexto:\nEstos valores indican que la tasa de especiación estimada es aproximadamente \\(0.0891\\), mientras que la tasa de extinción es considerablemente más baja, alrededor de \\(0.0000003103\\). El valor de la función de verosimilitud negativa es \\(70.02138\\), lo que proporciona una medida del ajuste del modelo a los datos.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"

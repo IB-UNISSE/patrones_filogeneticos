@@ -102,6 +102,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles/custom.css">
 </head>
@@ -207,6 +236,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#uso-de-getmrca-y-extract.clade-para-extraer-subárboles-filogenéticos" id="toc-uso-de-getmrca-y-extract.clade-para-extraer-subárboles-filogenéticos" class="nav-link" data-scroll-target="#uso-de-getmrca-y-extract.clade-para-extraer-subárboles-filogenéticos">Uso de <code>getMRCA</code> y <code>extract.clade</code> para extraer Subárboles Filogenéticos</a></li>
   <li><a href="#remover-especies-duplicadas" id="toc-remover-especies-duplicadas" class="nav-link" data-scroll-target="#remover-especies-duplicadas">Remover especies duplicadas</a></li>
   <li><a href="#guardar-el-árbol-resultante-en-formato-nexus" id="toc-guardar-el-árbol-resultante-en-formato-nexus" class="nav-link" data-scroll-target="#guardar-el-árbol-resultante-en-formato-nexus">Guardar el árbol resultante en formato NEXUS</a></li>
+  </ul></li>
+  <li><a href="#estimar-tasas-de-especiación-y-extinción-a-lo-largo-del-tiempo." id="toc-estimar-tasas-de-especiación-y-extinción-a-lo-largo-del-tiempo." class="nav-link" data-scroll-target="#estimar-tasas-de-especiación-y-extinción-a-lo-largo-del-tiempo.">Estimar tasas de especiación y extinción a lo largo del tiempo.</a>
+  <ul class="collapse">
+  <li><a href="#carga-del-árbol-filogenético" id="toc-carga-del-árbol-filogenético" class="nav-link" data-scroll-target="#carga-del-árbol-filogenético">Carga del Árbol Filogenético</a></li>
+  <li><a href="#obtención-de-los-tiempos-de-especiación" id="toc-obtención-de-los-tiempos-de-especiación" class="nav-link" data-scroll-target="#obtención-de-los-tiempos-de-especiación">Obtención de los Tiempos de Especiación</a></li>
+  <li><a href="#configuración-de-parámetros-para-el-análisis" id="toc-configuración-de-parámetros-para-el-análisis" class="nav-link" data-scroll-target="#configuración-de-parámetros-para-el-análisis">Configuración de Parámetros para el Análisis</a></li>
+  <li><a href="#ejecución-del-análisis-con-bd.shifts.optim" id="toc-ejecución-del-análisis-con-bd.shifts.optim" class="nav-link" data-scroll-target="#ejecución-del-análisis-con-bd.shifts.optim">Ejecución del Análisis con <code>bd.shifts.optim</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -363,14 +399,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>max_edge_length <span class="ot">&lt;-</span> <span class="fu">max</span>(arbol<span class="sc">$</span>edge.length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el árbol</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(arbol) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(arbol) <span class="sc">+</span></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text2</span>(<span class="fu">aes</span>(<span class="at">subset =</span> <span class="sc">!</span>isTip, <span class="at">label =</span> node), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.3</span>) <span class="sc">+</span>  <span class="co"># Etiquetar nodos internos</span></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, max_edge_length <span class="sc">*</span> <span class="fl">1.4</span>) <span class="sc">+</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>()</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar en pantalla</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -440,12 +473,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>max_edge_length <span class="ot">&lt;-</span> <span class="fu">max</span>(subarbol<span class="sc">$</span>edge.length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el subárbol</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>sp <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(subarbol) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(subarbol) <span class="sc">+</span></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, max_edge_length <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>()</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>sp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -478,11 +509,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Remover duplicados</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>subarbol_final <span class="ot">&lt;-</span> <span class="fu">drop.tip</span>(subarbol, <span class="fu">setdiff</span>(subarbol<span class="sc">$</span>tip.label, selected_tips))</span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>sfp <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(subarbol_final) <span class="sc">+</span> </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(subarbol_final) <span class="sc">+</span> </span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fu">max</span>(subarbol_final<span class="sc">$</span>edge.length) <span class="sc">*</span> <span class="dv">2</span>)  <span class="co"># Expande el espacio a la izquierda</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>sfp </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fu">max</span>(subarbol_final<span class="sc">$</span>edge.length) <span class="sc">*</span> <span class="dv">2</span>)  <span class="co"># Expande el espacio a la izquierda</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -497,6 +526,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.nexus</span>(subarbol_final, <span class="at">file=</span><span class="st">"../docs/u1_PatDiv/subarbol_ingroup.nex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+</section>
+<section id="estimar-tasas-de-especiación-y-extinción-a-lo-largo-del-tiempo." class="level1">
+<h1>Estimar tasas de especiación y extinción a lo largo del tiempo.</h1>
+<section id="carga-del-árbol-filogenético" class="level2">
+<h2 class="anchored" data-anchor-id="carga-del-árbol-filogenético">Carga del Árbol Filogenético</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de paquetes</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(subplex)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TreeSim)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TreePar)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el árbol desde un archivo Nexus</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">read.nexus</span>(<span class="st">"../docs/u1_PatDiv/subarbol_ingroup.nex"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar el árbol</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">theme_tree</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u1_intro_diversification_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="obtención-de-los-tiempos-de-especiación" class="level2">
+<h2 class="anchored" data-anchor-id="obtención-de-los-tiempos-de-especiación">Obtención de los Tiempos de Especiación</h2>
+<p>Extraeremos y ordenaremos los tiempos de especiación (tiempos de ramificación) del árbol:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener y ordenar los tiempos de especiación</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La función getx() extrae los tiempos de ramificación del árbol.</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">getx</span>(tree), <span class="at">decreasing =</span> <span class="cn">TRUE</span>) <span class="co"># sort () rdena los tiempos en orden descendente.</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">unname</span>(times) <span class="co"># elimina los nombres de los elementos del vector para simplificar su manipulación.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969
+ [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686
+[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760
+[19]  6.2512423  1.9309798  0.9252293</code></pre>
+</div>
+</div>
+</section>
+<section id="configuración-de-parámetros-para-el-análisis" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-de-parámetros-para-el-análisis">Configuración de Parámetros para el Análisis</h2>
+<p>Definiremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="dv">22</span><span class="sc">/</span><span class="dv">26</span>  <span class="co"># Proporción de especies muestreadas (22 de 26 especies)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fl">0.2</span>   <span class="co"># Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">min</span>(times) <span class="sc">+</span> <span class="fl">1.5</span>  <span class="co"># Tiempo inicial para la búsqueda de cambios de tasa</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">max</span>(times) <span class="sc">-</span> <span class="fl">1.5</span>    <span class="co"># Tiempo final para la búsqueda de cambios de tasa</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ejecución-del-análisis-con-bd.shifts.optim" class="level2">
+<h2 class="anchored" data-anchor-id="ejecución-del-análisis-con-bd.shifts.optim">Ejecución del Análisis con <code>bd.shifts.optim</code></h2>
+<p>Utilizaremos la función <code>bd.shifts.optim</code> para estimar las tasas de especiación y extinción, así como los puntos en el tiempo donde ocurren cambios significativos en estas tasas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar el análisis de cambios en las tasas de diversificación</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>result_shifts <span class="ot">&lt;-</span> <span class="fu">bd.shifts.optim</span>(times, rho, grid, start, end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "startest"
+[1] "test"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar los resultados</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>result_shifts[[<span class="dv">2</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.002138e+01 3.102841e-07 8.909817e-02</code></pre>
+</div>
+</div>
+<p>A continuación se presentan los valores obtenidos en la estimación de las tasas de diversificación, utilizando las letras griegas correspondientes para las tasas de especiación y extinción:</p>
+<ul>
+<li><p><strong>Valor de la función de verosimilitud negativa</strong>: 7.002138e+01</p></li>
+<li><p><strong>Tasa de extinción <span class="math inline">\(\mu\)</span> </strong>: 3.102841e-07</p></li>
+<li><p><strong>Tasa de especiación <span class="math inline">\(\lambda\)</span> </strong>: 8.909817e-02</p></li>
+</ul>
+<p>En este contexto:</p>
+<p>Estos valores indican que la tasa de especiación estimada es aproximadamente <span class="math inline">\(0.0891\)</span>, mientras que la tasa de extinción es considerablemente más baja, alrededor de <span class="math inline">\(0.0000003103\)</span>. El valor de la función de verosimilitud negativa es <span class="math inline">\(70.02138\)</span>, lo que proporciona una medida del ajuste del modelo a los datos.</p>
 
 
 </section>
