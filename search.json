@@ -431,22 +431,22 @@
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification.html#descargar-el-paquete-treepar",
-    "href": "chapters/u1_intro_diversification.html#descargar-el-paquete-treepar",
+    "objectID": "chapters/u1_intro_diversification.html#mediante-la-liberia-remotes",
+    "href": "chapters/u1_intro_diversification.html#mediante-la-liberia-remotes",
     "title": "Introducción al proceso de diversificación",
-    "section": "1️⃣ Descargar el paquete TreePar",
-    "text": "1️⃣ Descargar el paquete TreePar\nPuedes descargar el paquete desde el siguiente enlace:\n📥 Descargar TreePar 3.3\nGuarda el archivo en una carpeta de tu elección (por ejemplo, en ~/Descargas/ o C:/Users/TuUsuario/Downloads/).",
+    "section": "1.- Mediante la liberia remotes",
+    "text": "1.- Mediante la liberia remotes\n\n# Instalar remotes si no está instalado\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n  install.packages(\"remotes\")\n}\n\n# Instalar TreePar\nremotes::install_github(\"tanja819/TreePar\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification.html#instalar-treepar-desde-el-archivo-descargado",
-    "href": "chapters/u1_intro_diversification.html#instalar-treepar-desde-el-archivo-descargado",
+    "objectID": "chapters/u1_intro_diversification.html#descargar-el-paquete-treepar",
+    "href": "chapters/u1_intro_diversification.html#descargar-el-paquete-treepar",
     "title": "Introducción al proceso de diversificación",
-    "section": "2️⃣ Instalar TreePar desde el archivo descargado",
-    "text": "2️⃣ Instalar TreePar desde el archivo descargado\nUna vez que hayas descargado el archivo TreePar_3.3.tar.gz, abre R y ejecuta el siguiente código para instalarlo:\n# Definir la ruta donde se descargó el archivo\nruta_archivo &lt;- \"~/Descargas/TreePar_3.3.tar.gz\"  # Cambia esta ruta según tu sistema operativo\n\n# Instalar el paquete desde el archivo .tar.gz\ninstall.packages(ruta_archivo, repos = NULL, type = \"source\")",
+    "section": "2.- Descargar el paquete TreePar",
+    "text": "2.- Descargar el paquete TreePar\n\nPuedes descargar el paquete desde el siguiente enlace:\n📥 Descargar TreePar 3.3\nGuarda el archivo en una carpeta de tu elección (por ejemplo, en ~/Descargas/ o C:/Users/TuUsuario/Downloads/).\n\n\n\nInstalar TreePar desde el archivo descargado\nUna vez que hayas descargado el archivo TreePar_3.3.tar.gz, abre R y ejecuta el siguiente código para instalarlo:\n# Definir la ruta donde se descargó el archivo\nruta_archivo &lt;- \"~/Descargas/TreePar_3.3.tar.gz\"  # Cambia esta ruta según tu sistema operativo\n\n# Instalar el paquete desde el archivo .tar.gz\ninstall.packages(ruta_archivo, repos = NULL, type = \"source\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
