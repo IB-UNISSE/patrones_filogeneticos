@@ -4,7 +4,17 @@
     "href": "index.html",
     "title": "Patrones filogenéticos: macroevolución y adaptación",
     "section": "",
-    "text": "Presentación del Curso: Patrones Filogenéticos, Macroevolución y Adaptación\n\n\n\n\n\nHaz clic en la imagen para ver el PDF de la presentación del curso\n\n\nÍndice del Curso\nAquí puedes encontrar los temas del curso y sus respectivos enlaces:\n\nInstalación de Software\nApuntes sobre comandos básicos en Bash\nApuntes sobre R y Rstudio\nApuntes sobre RevBayes",
+    "text": "Presentación del Curso: Patrones Filogenéticos, Macroevolución y Adaptación\nHaz clic en la imagen para ver el PDF de la presentación del curso",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Inicio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#unidad-1-patrones-de-diversificación",
+    "href": "index.html#unidad-1-patrones-de-diversificación",
+    "title": "Patrones filogenéticos: macroevolución y adaptación",
+    "section": "Unidad 1: Patrones de diversificación",
+    "text": "Unidad 1: Patrones de diversificación\n\nIntroducción al proceso de diversificación",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Inicio</span>"
     ]
@@ -710,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09138031    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139497    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
