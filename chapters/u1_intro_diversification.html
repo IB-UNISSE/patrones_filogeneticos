@@ -258,7 +258,9 @@ window.Quarto = {
   <li><a href="#definir-el-modelo-gráfico" id="toc-definir-el-modelo-gráfico" class="nav-link" data-scroll-target="#definir-el-modelo-gráfico">Definir el modelo gráfico</a></li>
   <li><a href="#especificar-los-monitores" id="toc-especificar-los-monitores" class="nav-link" data-scroll-target="#especificar-los-monitores">Especificar los Monitores</a></li>
   <li><a href="#configurar-y-ejecutar-el-mcmc" id="toc-configurar-y-ejecutar-el-mcmc" class="nav-link" data-scroll-target="#configurar-y-ejecutar-el-mcmc">Configurar y ejecutar el MCMC</a></li>
-  <li><a href="#cargar-los-resultados-en-revgadgets-r" id="toc-cargar-los-resultados-en-revgadgets-r" class="nav-link" data-scroll-target="#cargar-los-resultados-en-revgadgets-r">Cargar los resultados en RevGadgets (R)</a></li>
+  <li><a href="#cargar-los-resultados-en-revgadgets" id="toc-cargar-los-resultados-en-revgadgets" class="nav-link" data-scroll-target="#cargar-los-resultados-en-revgadgets">Cargar los resultados en RevGadgets</a></li>
+  <li><a href="#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density" id="toc-calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density" class="nav-link" data-scroll-target="#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density">Calcular la media y el intervalo de HPD (Highest Posterior Density)</a></li>
+  <li><a href="#comparar-la-distribución-previa-y-posterior" id="toc-comparar-la-distribución-previa-y-posterior" class="nav-link" data-scroll-target="#comparar-la-distribución-previa-y-posterior">Comparar la distribución previa y posterior</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -731,8 +733,77 @@ window.Quarto = {
 <li><p><strong><code>tuningInterval=200</code></strong> → Ajusta los movimientos cada 200 generaciones para mejorar la eficiencia del muestreo.</p></li>
 </ul>
 </section>
-<section id="cargar-los-resultados-en-revgadgets-r" class="level2">
-<h2 class="anchored" data-anchor-id="cargar-los-resultados-en-revgadgets-r">Cargar los resultados en RevGadgets (R)</h2>
+<section id="cargar-los-resultados-en-revgadgets" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-los-resultados-en-revgadgets">Cargar los resultados en RevGadgets</h2>
+<p>Después de correr el MCMC en RevBayes, usar <strong>RevGadgets</strong> en <strong>R</strong> para analizar la distribución posterior:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar librerías necesarias</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer los datos del MCMC</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>mcmc_trace <span class="ot">&lt;-</span> <span class="fu">readTrace</span>(<span class="st">"../docs/u1_PatDiv/output/diversification_Yule.log"</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar la distribución posterior de birth_rate</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plotTrace</span>(mcmc_trace, <span class="at">vars=</span><span class="st">"birth_rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u1_intro_diversification_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density" class="level2">
+<h2 class="anchored" data-anchor-id="calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density">Calcular la media y el intervalo de HPD (Highest Posterior Density)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la media posterior y el HPD del 95%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> <span class="fu">summarizeTrace</span>(mcmc_trace, <span class="at">vars=</span><span class="st">"birth_rate"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$birth_rate
+$birth_rate$trace_1
+         mean        median           MAP  quantile_2.5 quantile_97.5 
+   0.09313312    0.09214016    0.09139446    0.05919603    0.13341000 </code></pre>
+</div>
+</div>
+</section>
+<section id="comparar-la-distribución-previa-y-posterior" class="level2">
+<h2 class="anchored" data-anchor-id="comparar-la-distribución-previa-y-posterior">Comparar la distribución previa y posterior</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer los datos del MCMC combinando las dos cadenas</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>posterior_trace <span class="ot">&lt;-</span> <span class="fu">readTrace</span>(<span class="fu">c</span>(<span class="st">"../docs/u1_PatDiv/output/diversification_Yule_run_1.log"</span>, <span class="st">"../docs/u1_PatDiv/output/diversification_Yule_run_2.log"</span>))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer el primer conjunto de muestras (lista de data frames)</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>yule_posterior <span class="ot">&lt;-</span> posterior_trace[[<span class="dv">1</span>]]</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular 10,000 valores de la distribución previa</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>yule_prior <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">birth_rate =</span> <span class="fu">runif</span>(<span class="dv">10000</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">100</span>))</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar la columna de la distribución previa en el posterior</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>yule_posterior<span class="sc">$</span>birth_rate_prior <span class="ot">&lt;-</span> <span class="fu">sample</span>(yule_prior<span class="sc">$</span>birth_rate, <span class="at">size =</span> <span class="fu">nrow</span>(yule_posterior), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar la comparación</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plotTrace</span>(<span class="fu">list</span>(yule_posterior), <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">"birth_rate"</span>, <span class="st">"birth_rate_prior"</span>))[[<span class="dv">1</span>]] <span class="sc">+</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.80</span>, <span class="fl">0.80</span>),  <span class="co"># Ubicación de la leyenda</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span><span class="dv">20</span>),  <span class="co"># Tamaño del texto de la leyenda</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>)) <span class="sc">+</span>  <span class="co"># Tamaño del título de la leyenda</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>)  <span class="co"># Ajusta el límite según los valores observados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u1_intro_diversification_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
