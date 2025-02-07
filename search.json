@@ -561,5 +561,148 @@
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev",
+    "href": "chapters/u1_intro_diversification.html#crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Crear un script de RevBayes en Visual Studio Code: divrate.Rev",
+    "text": "Crear un script de RevBayes en Visual Studio Code: divrate.Rev",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#cargar-el-archivo-nexus",
+    "href": "chapters/u1_intro_diversification.html#cargar-el-archivo-nexus",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Cargar el archivo NEXUS",
+    "text": "Cargar el archivo NEXUS\n# Cargar la filogenia desde el archivo NEXUS\nT &lt;- readTrees(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")[1]\n\n# Obtener la lista de taxones en la filogenia\ntaxa &lt;- T.taxa()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#inicializar-los-vectores-de-moves-y-monitors",
+    "href": "chapters/u1_intro_diversification.html#inicializar-los-vectores-de-moves-y-monitors",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Inicializar los vectores de moves y monitors",
+    "text": "Inicializar los vectores de moves y monitors\n# Inicializar un vector vacío para los movimientos (moves)\nmoves = VectorMoves()\n\n# Inicializar un vector vacío para los monitores (monitors)\nmonitors = VectorMonitors()\n\n\n\n\n\nRepresentación del modelo gráfico para el proceso Yule (Pure-Birth) en RevBayes, donde la tasa de especiación (\\(\\lambda\\)) es tratada como una variable aleatoria extraída de una distribución uniforme.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#especificar-la-tasa-de-especiación-lambda",
+    "href": "chapters/u1_intro_diversification.html#especificar-la-tasa-de-especiación-lambda",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Especificar la tasa de especiación (\\(\\lambda\\))",
+    "text": "Especificar la tasa de especiación (\\(\\lambda\\))\n# Especificar la tasa de especiación λ con una distribución uniforme\nbirth_rate ~ dnUniform(0, 100.0)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#asignar-un-movimiento-mcmc-a-la-tasa-de-especiación",
+    "href": "chapters/u1_intro_diversification.html#asignar-un-movimiento-mcmc-a-la-tasa-de-especiación",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Asignar un movimiento MCMC a la tasa de especiación",
+    "text": "Asignar un movimiento MCMC a la tasa de especiación\n# Agregar un movimiento MCMC para la tasa de especiación\nmoves.append( mvScale(birth_rate, lambda=1.0, tune=true, weight=3.0) )",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#especificar-la-proporción-de-especies-muestreadas-rho",
+    "href": "chapters/u1_intro_diversification.html#especificar-la-proporción-de-especies-muestreadas-rho",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Especificar la proporción de especies muestreadas (\\(\\rho\\))",
+    "text": "Especificar la proporción de especies muestreadas (\\(\\rho\\))\n# Obtener el número de taxones en la filogenia\nnum_taxa &lt;- T.ntips()\n\n# Estimar la proporción de especies muestreadas\nrho &lt;- num_taxa / 26",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#obtener-la-edad-de-la-raíz",
+    "href": "chapters/u1_intro_diversification.html#obtener-la-edad-de-la-raíz",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Obtener la edad de la raíz",
+    "text": "Obtener la edad de la raíz\n# Obtener la edad de la raíz del árbol\nroot_time &lt;- T.rootAge()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#definir-el-modelo-de-tiempo-de-especiación",
+    "href": "chapters/u1_intro_diversification.html#definir-el-modelo-de-tiempo-de-especiación",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Definir el modelo de tiempo de especiación",
+    "text": "Definir el modelo de tiempo de especiación\nEl modelo Yule (pure-birth) en RevBayes se define con el proceso de nacimiento y muerte (dnBDP), pero con la tasa de extinción (mu) fijada en 0.\n# Definir el modelo de diversificación usando un proceso de nacimiento-muerte (BDP)\ntimetree ~ dnBDP(lambda=birth_rate, mu=0.0, rho=rho, rootAge=root_time, samplingStrategy=\"uniform\", condition=\"survival\", taxa=taxa)\nExplicación\n\nlambda = birth_rate → Tasa de especiación es una variable aleatoria con dnUniform(0, 100.0).\nmu = 0.0 → Asumimos que no hay extinción (modelo Yule).\nrho = rho → Se ajusta según el número de especies muestreadas.\nrootAge = root_time → Condicionamos el modelo en la edad de la raíz.\nsamplingStrategy = \"uniform\" → Asumimos muestreo uniforme.\ncondition = \"survival\" → Solo analizamos árboles que sobrevivieron hasta el presente.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#fijar-la-filogenia-observada",
+    "href": "chapters/u1_intro_diversification.html#fijar-la-filogenia-observada",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Fijar la filogenia observada",
+    "text": "Fijar la filogenia observada\n# Fijar la filogenia observada\ntimetree.clamp(T)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#definir-el-modelo-gráfico",
+    "href": "chapters/u1_intro_diversification.html#definir-el-modelo-gráfico",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Definir el modelo gráfico",
+    "text": "Definir el modelo gráfico\n# Crear el objeto de modelo\nmymodel = model(birth_rate)\nEsto crea un modelo gráfico dirigido acíclico (DAG) donde birth_rate es el nodo principal, y RevBayes automáticamente encuentra todos los otros nodos conectados.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#especificar-los-monitores",
+    "href": "chapters/u1_intro_diversification.html#especificar-los-monitores",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Especificar los Monitores",
+    "text": "Especificar los Monitores\n# Monitor para registrar los estados del modelo en un archivo de salida\nmonitors.append( mnModel(filename=\"output/diversification_Yule.log\", printgen=10, separator=TAB) )\n\n# Monitor para imprimir la tasa de especiación en la pantalla cada 1000 generaciones\nmonitors.append( mnScreen(printgen=1000, birth_rate) )\nExplicación\n\nmnModel guarda el registro de la ejecución en \"output/diversification_Yule.log\", escribiendo cada 10 generaciones.\nmnScreen imprime la tasa de especiación (birth_rate) en la consola cada 1000 generaciones.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#configurar-y-ejecutar-el-mcmc",
+    "href": "chapters/u1_intro_diversification.html#configurar-y-ejecutar-el-mcmc",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Configurar y ejecutar el MCMC",
+    "text": "Configurar y ejecutar el MCMC\n# Inicializar el MCMC con dos cadenas combinadas en un solo análisis\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")\n\n# Ejecutar el MCMC por 50,000 generaciones, ajustando los movimientos cada 200 generaciones\nmymcmc.run(generations=50000, tuningInterval=200)\nExplicación\n\nnruns=2 → Corre dos cadenas independientes.\ncombine=\"mixed\" → Combina las cadenas en un solo conjunto de muestras.\ngenerations=50000 → Ejecuta la simulación por 50,000 generaciones.\ntuningInterval=200 → Ajusta los movimientos cada 200 generaciones para mejorar la eficiencia del muestreo.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification.html#cargar-los-resultados-en-revgadgets-r",
+    "href": "chapters/u1_intro_diversification.html#cargar-los-resultados-en-revgadgets-r",
+    "title": "Introducción al proceso de diversificación",
+    "section": "Cargar los resultados en RevGadgets (R)",
+    "text": "Cargar los resultados en RevGadgets (R)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+    ]
   }
 ]

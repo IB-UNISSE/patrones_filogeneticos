@@ -244,6 +244,22 @@ window.Quarto = {
   <li><a href="#configuración-de-parámetros-para-el-análisis" id="toc-configuración-de-parámetros-para-el-análisis" class="nav-link" data-scroll-target="#configuración-de-parámetros-para-el-análisis">Configuración de Parámetros para el Análisis</a></li>
   <li><a href="#ejecución-del-análisis-con-bd.shifts.optim" id="toc-ejecución-del-análisis-con-bd.shifts.optim" class="nav-link" data-scroll-target="#ejecución-del-análisis-con-bd.shifts.optim">Ejecución del Análisis con <code>bd.shifts.optim</code></a></li>
   </ul></li>
+  <li><a href="#estimación-simple-de-la-tasa-de-diversificación-con-revbayes" id="toc-estimación-simple-de-la-tasa-de-diversificación-con-revbayes" class="nav-link" data-scroll-target="#estimación-simple-de-la-tasa-de-diversificación-con-revbayes">Estimación simple de la tasa de diversificación con RevBayes</a>
+  <ul class="collapse">
+  <li><a href="#crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev" id="toc-crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev" class="nav-link" data-scroll-target="#crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev">Crear un script de <code>RevBayes</code> en Visual Studio Code: <code>divrate.Rev</code></a></li>
+  <li><a href="#cargar-el-archivo-nexus" id="toc-cargar-el-archivo-nexus" class="nav-link" data-scroll-target="#cargar-el-archivo-nexus">Cargar el archivo NEXUS</a></li>
+  <li><a href="#inicializar-los-vectores-de-moves-y-monitors" id="toc-inicializar-los-vectores-de-moves-y-monitors" class="nav-link" data-scroll-target="#inicializar-los-vectores-de-moves-y-monitors">Inicializar los vectores de moves y monitors</a></li>
+  <li><a href="#especificar-la-tasa-de-especiación-lambda" id="toc-especificar-la-tasa-de-especiación-lambda" class="nav-link" data-scroll-target="#especificar-la-tasa-de-especiación-lambda">Especificar la tasa de especiación (<span class="math inline">\(\lambda\)</span>)</a></li>
+  <li><a href="#asignar-un-movimiento-mcmc-a-la-tasa-de-especiación" id="toc-asignar-un-movimiento-mcmc-a-la-tasa-de-especiación" class="nav-link" data-scroll-target="#asignar-un-movimiento-mcmc-a-la-tasa-de-especiación">Asignar un movimiento MCMC a la tasa de especiación</a></li>
+  <li><a href="#especificar-la-proporción-de-especies-muestreadas-rho" id="toc-especificar-la-proporción-de-especies-muestreadas-rho" class="nav-link" data-scroll-target="#especificar-la-proporción-de-especies-muestreadas-rho">Especificar la proporción de especies muestreadas <strong>(</strong><span class="math inline">\(\rho\)</span>)</a></li>
+  <li><a href="#obtener-la-edad-de-la-raíz" id="toc-obtener-la-edad-de-la-raíz" class="nav-link" data-scroll-target="#obtener-la-edad-de-la-raíz">Obtener la edad de la raíz</a></li>
+  <li><a href="#definir-el-modelo-de-tiempo-de-especiación" id="toc-definir-el-modelo-de-tiempo-de-especiación" class="nav-link" data-scroll-target="#definir-el-modelo-de-tiempo-de-especiación">Definir el modelo de tiempo de especiación</a></li>
+  <li><a href="#fijar-la-filogenia-observada" id="toc-fijar-la-filogenia-observada" class="nav-link" data-scroll-target="#fijar-la-filogenia-observada">Fijar la filogenia observada</a></li>
+  <li><a href="#definir-el-modelo-gráfico" id="toc-definir-el-modelo-gráfico" class="nav-link" data-scroll-target="#definir-el-modelo-gráfico">Definir el modelo gráfico</a></li>
+  <li><a href="#especificar-los-monitores" id="toc-especificar-los-monitores" class="nav-link" data-scroll-target="#especificar-los-monitores">Especificar los Monitores</a></li>
+  <li><a href="#configurar-y-ejecutar-el-mcmc" id="toc-configurar-y-ejecutar-el-mcmc" class="nav-link" data-scroll-target="#configurar-y-ejecutar-el-mcmc">Configurar y ejecutar el MCMC</a></li>
+  <li><a href="#cargar-los-resultados-en-revgadgets-r" id="toc-cargar-los-resultados-en-revgadgets-r" class="nav-link" data-scroll-target="#cargar-los-resultados-en-revgadgets-r">Cargar los resultados en RevGadgets (R)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -332,7 +348,12 @@ window.Quarto = {
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar DDD si no está instalado</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"DDD"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"DDD"</span>)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar RevGadgets si no está instalado</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"RevGadgets"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"RevGadgets"</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="instalación-de-treepar-en-r" class="level1">
 <h1>Instalación de TreePar en R</h1>
@@ -599,11 +620,119 @@ window.Quarto = {
 <p>A continuación se presentan los valores obtenidos en la estimación de las tasas de diversificación, utilizando las letras griegas correspondientes para las tasas de especiación y extinción:</p>
 <ul>
 <li><p><strong>Valor de la función de verosimilitud negativa</strong>: 7.002138e+01</p></li>
-<li><p><strong>Tasa de extinción <span class="math inline">\(\mu\)</span> </strong>: 3.102841e-07</p></li>
-<li><p><strong>Tasa de especiación <span class="math inline">\(\lambda\)</span> </strong>: 8.909817e-02</p></li>
+<li><p><strong>Tasa de extinción</strong> <span class="math inline">\(\mu\)</span> : 3.102841e-07</p></li>
+<li><p><strong>Tasa de especiación</strong> <span class="math inline">\(\lambda\)</span> : 8.909817e-02</p></li>
 </ul>
 <p>En este contexto:</p>
 <p>Estos valores indican que la tasa de especiación estimada es aproximadamente <span class="math inline">\(0.0891\)</span>, mientras que la tasa de extinción es considerablemente más baja, alrededor de <span class="math inline">\(0.0000003103\)</span>. El valor de la función de verosimilitud negativa es <span class="math inline">\(70.02138\)</span>, lo que proporciona una medida del ajuste del modelo a los datos.</p>
+</section>
+</section>
+<section id="estimación-simple-de-la-tasa-de-diversificación-con-revbayes" class="level1">
+<h1>Estimación simple de la tasa de diversificación con RevBayes</h1>
+<section id="crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev" class="level2">
+<h2 class="anchored" data-anchor-id="crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev">Crear un script de <code>RevBayes</code> en Visual Studio Code: <code>divrate.Rev</code></h2>
+</section>
+<section id="cargar-el-archivo-nexus" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-el-archivo-nexus">Cargar el archivo NEXUS</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar la filogenia desde el archivo NEXUS</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="st">"../docs/u1_PatDiv/subarbol_ingroup.nex"</span>)[<span class="dv">1</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener la lista de taxones en la filogenia</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>taxa <span class="ot">&lt;-</span> <span class="fu">T.taxa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="inicializar-los-vectores-de-moves-y-monitors" class="level2">
+<h2 class="anchored" data-anchor-id="inicializar-los-vectores-de-moves-y-monitors">Inicializar los vectores de moves y monitors</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar un vector vacío para los movimientos (moves)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>moves <span class="ot">=</span> <span class="fu">VectorMoves</span>()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar un vector vacío para los monitores (monitors)</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/u1_PatDiv/u1_PatDiv_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
+</figure>
+</div>
+<p>Representación del modelo gráfico para el proceso Yule (Pure-Birth) en RevBayes, donde la tasa de especiación (<span class="math inline">\(\lambda\)</span>) es tratada como una variable aleatoria extraída de una distribución uniforme.</p>
+</section>
+<section id="especificar-la-tasa-de-especiación-lambda" class="level2">
+<h2 class="anchored" data-anchor-id="especificar-la-tasa-de-especiación-lambda">Especificar la tasa de especiación (<span class="math inline">\(\lambda\)</span>)</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar la tasa de especiación λ con una distribución uniforme</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>birth_rate <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="dv">0</span>, <span class="fl">100.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="asignar-un-movimiento-mcmc-a-la-tasa-de-especiación" class="level2">
+<h2 class="anchored" data-anchor-id="asignar-un-movimiento-mcmc-a-la-tasa-de-especiación">Asignar un movimiento MCMC a la tasa de especiación</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar un movimiento MCMC para la tasa de especiación</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(birth_rate, <span class="at">lambda=</span><span class="fl">1.0</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">3.0</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="especificar-la-proporción-de-especies-muestreadas-rho" class="level2">
+<h2 class="anchored" data-anchor-id="especificar-la-proporción-de-especies-muestreadas-rho">Especificar la proporción de especies muestreadas <strong>(</strong><span class="math inline">\(\rho\)</span>)</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener el número de taxones en la filogenia</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>num_taxa <span class="ot">&lt;-</span> <span class="fu">T.ntips</span>()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar la proporción de especies muestreadas</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> num_taxa <span class="sc">/</span> <span class="dv">26</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="obtener-la-edad-de-la-raíz" class="level2">
+<h2 class="anchored" data-anchor-id="obtener-la-edad-de-la-raíz">Obtener la edad de la raíz</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener la edad de la raíz del árbol</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>root_time <span class="ot">&lt;-</span> <span class="fu">T.rootAge</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="definir-el-modelo-de-tiempo-de-especiación" class="level2">
+<h2 class="anchored" data-anchor-id="definir-el-modelo-de-tiempo-de-especiación">Definir el modelo de tiempo de especiación</h2>
+<p>El modelo Yule (pure-birth) en RevBayes se define con el <strong>proceso de nacimiento y muerte (<code>dnBDP</code>)</strong>, pero con la tasa de extinción (<code>mu</code>) fijada en <strong>0</strong>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el modelo de diversificación usando un proceso de nacimiento-muerte (BDP)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>timetree <span class="sc">~</span> <span class="fu">dnBDP</span>(<span class="at">lambda=</span>birth_rate, <span class="at">mu=</span><span class="fl">0.0</span>, <span class="at">rho=</span>rho, <span class="at">rootAge=</span>root_time, <span class="at">samplingStrategy=</span><span class="st">"uniform"</span>, <span class="at">condition=</span><span class="st">"survival"</span>, <span class="at">taxa=</span>taxa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Explicación</strong></p>
+<ul>
+<li><p><code>lambda = birth_rate</code> → Tasa de especiación es una variable aleatoria con <code>dnUniform(0, 100.0)</code>.</p></li>
+<li><p><code>mu = 0.0</code> → Asumimos que no hay extinción (modelo Yule).</p></li>
+<li><p><code>rho = rho</code> → Se ajusta según el número de especies muestreadas.</p></li>
+<li><p><code>rootAge = root_time</code> → Condicionamos el modelo en la edad de la raíz.</p></li>
+<li><p><code>samplingStrategy = "uniform"</code> → Asumimos muestreo uniforme.</p></li>
+<li><p><code>condition = "survival"</code> → Solo analizamos árboles que sobrevivieron hasta el presente.</p></li>
+</ul>
+</section>
+<section id="fijar-la-filogenia-observada" class="level2">
+<h2 class="anchored" data-anchor-id="fijar-la-filogenia-observada">Fijar la filogenia observada</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fijar la filogenia observada</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clamp</span>(T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="definir-el-modelo-gráfico" class="level2">
+<h2 class="anchored" data-anchor-id="definir-el-modelo-gráfico">Definir el modelo gráfico</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el objeto de modelo</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(birth_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto crea un modelo gráfico dirigido acíclico (DAG) donde birth_rate es el nodo principal, y RevBayes automáticamente encuentra todos los otros nodos conectados.</p>
+</section>
+<section id="especificar-los-monitores" class="level2">
+<h2 class="anchored" data-anchor-id="especificar-los-monitores">Especificar los Monitores</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor para registrar los estados del modelo en un archivo de salida</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"output/diversification_Yule.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator=</span>TAB) )</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor para imprimir la tasa de especiación en la pantalla cada 1000 generaciones</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">1000</span>, birth_rate) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Explicación</strong></p>
+<ul>
+<li><p><strong><code>mnModel</code></strong> guarda el registro de la ejecución en <code>"output/diversification_Yule.log"</code>, escribiendo cada <strong>10</strong> generaciones.</p></li>
+<li><p><strong><code>mnScreen</code></strong> imprime la tasa de especiación (<code>birth_rate</code>) en la consola cada <strong>1000</strong> generaciones.</p></li>
+</ul>
+</section>
+<section id="configurar-y-ejecutar-el-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="configurar-y-ejecutar-el-mcmc">Configurar y ejecutar el MCMC</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar el MCMC con dos cadenas combinadas en un solo análisis</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">2</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar el MCMC por 50,000 generaciones, ajustando los movimientos cada 200 generaciones</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">50000</span>, <span class="at">tuningInterval=</span><span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Explicación</strong></p>
+<ul>
+<li><p><strong><code>nruns=2</code></strong> → Corre dos cadenas independientes.</p></li>
+<li><p><strong><code>combine="mixed"</code></strong> → Combina las cadenas en un solo conjunto de muestras.</p></li>
+<li><p><strong><code>generations=50000</code></strong> → Ejecuta la simulación por 50,000 generaciones.</p></li>
+<li><p><strong><code>tuningInterval=200</code></strong> → Ajusta los movimientos cada 200 generaciones para mejorar la eficiencia del muestreo.</p></li>
+</ul>
+</section>
+<section id="cargar-los-resultados-en-revgadgets-r" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-los-resultados-en-revgadgets-r">Cargar los resultados en RevGadgets (R)</h2>
 
 
 </section>
