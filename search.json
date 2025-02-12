@@ -14,7 +14,7 @@
     "href": "index.html#unidad-1-patrones-de-diversificación",
     "title": "Patrones filogenéticos: macroevolución y adaptación",
     "section": "Unidad 1: Patrones de diversificación",
-    "text": "Unidad 1: Patrones de diversificación\n\nIntroducción al proceso de diversificación",
+    "text": "Unidad 1: Patrones de diversificación\n\nIntroducción al proceso de diversificación parte 1\nIntroducción al proceso de diversificación parte 2",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Inicio</span>"
     ]
@@ -432,309 +432,342 @@
   {
     "objectID": "chapters/u1_intro_diversification.html",
     "href": "chapters/u1_intro_diversification.html",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "",
-    "text": "Presentación: Introducción al proceso de diversificación\nHaz clic en la imagen para ver el PDF de la presentación",
+    "text": "Presentación: Introducción al proceso de diversificación parte 1\nHaz clic en la imagen para ver el PDF de la presentación",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#mediante-la-liberia-remotes",
     "href": "chapters/u1_intro_diversification.html#mediante-la-liberia-remotes",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "1.- Mediante la liberia remotes",
     "text": "1.- Mediante la liberia remotes\n\n# Instalar remotes si no está instalado\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n  install.packages(\"remotes\")\n}\n\n# Instalar TreePar\nremotes::install_github(\"tanja819/TreePar\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#descargar-el-paquete-treepar",
     "href": "chapters/u1_intro_diversification.html#descargar-el-paquete-treepar",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "2.- Descargar el paquete TreePar",
     "text": "2.- Descargar el paquete TreePar\n\nPuedes descargar el paquete desde el siguiente enlace:\n📥 Descargar TreePar 3.3\nGuarda el archivo en una carpeta de tu elección (por ejemplo, en ~/Descargas/ o C:/Users/TuUsuario/Downloads/).\n\n\n\nInstalar TreePar desde el archivo descargado\nUna vez que hayas descargado el archivo TreePar_3.3.tar.gz, abre R y ejecuta el siguiente código para instalarlo:\n# Definir la ruta donde se descargó el archivo\nruta_archivo &lt;- \"~/Descargas/TreePar_3.3.tar.gz\"  # Cambia esta ruta según tu sistema operativo\n\n# Instalar el paquete desde el archivo .tar.gz\ninstall.packages(ruta_archivo, repos = NULL, type = \"source\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#descarga-del-árbol-filogenético",
     "href": "chapters/u1_intro_diversification.html#descarga-del-árbol-filogenético",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Descarga del Árbol Filogenético",
     "text": "Descarga del Árbol Filogenético\n📥 Puedes descargar el archivo NEXUS con el árbol de estudio en el siguiente enlace:\n📥 Descargar Árbol Filogenético\nGuarda el archivo en la carpeta correspondiente y verifica su ubicación antes de continuar.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#cargar-y-visualizar-el-árbol-en-r",
     "href": "chapters/u1_intro_diversification.html#cargar-y-visualizar-el-árbol-en-r",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Cargar y Visualizar el Árbol en R",
     "text": "Cargar y Visualizar el Árbol en R\nEjecuta el siguiente código en R para cargar el archivo y visualizar el árbol completo:\n\n# Cargar los paquetes necesarios\nlibrary(ape)\nlibrary(ggtree)\nlibrary(treeio)\nlibrary(tidyverse)\n\n# Definir la ruta del archivo NEXUS\narchivo_nexus &lt;- \"../docs/u1_PatDiv/allSamples.tre\"  # Asegúrate de cambiar esta ruta si es necesario\n\n# Cargar el árbol\narbol &lt;- read.nexus(archivo_nexus)\n\n# Calcular el Límite Máximo del Eje X\nmax_edge_length &lt;- max(arbol$edge.length, na.rm = TRUE)\n\n# Graficar el árbol\nggtree(arbol) +\n  geom_tiplab(size = 3) +\n  geom_text2(aes(subset = !isTip, label = node), hjust = -0.3) +  # Etiquetar nodos internos\n  xlim(-0.5, max_edge_length * 1.4) +\n  theme_tree2()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#extraer-los-nombres-de-las-terminales-de-un-nodo-específico",
     "href": "chapters/u1_intro_diversification.html#extraer-los-nombres-de-las-terminales-de-un-nodo-específico",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Extraer los nombres de las terminales de un nodo específico:",
     "text": "Extraer los nombres de las terminales de un nodo específico:\nUtilizar la función getDescendants para obtener los nombres de todas la terminales del nodo interno 61:\n\nlibrary(phytools)\n\nnodo_interes &lt;- 61  # Reemplaza este valor por el nodo de tu interés\n\n# Obtener los índices de los nodos descendientes\nnodos_internos &lt;- getDescendants(arbol, nodo_interes)\n\n# Filtrar solo los índices que corresponden a las terminales (tips)\nindices_tips &lt;- nodos_internos[nodos_internos &lt;= length(arbol$tip.label)]\n\n# Obtener los nombres de las terminales\nnombres_tips &lt;- arbol$tip.label[indices_tips]\n\n# Mostrar los nombres de las terminales\nprint(nombres_tips)\n\n [1] \"06166_50_120_Phod_marmorata\" \"KRN15_107_Phod_marmorata\"   \n [3] \"KRN52_Phod_alticeps\"         \"KRN10_118_Phod_alticeps\"    \n [5] \"KRN14_Phod_alticeps\"         \"KRN24_Cyste_armatus\"        \n [7] \"KRN02_Cyste_armatus\"         \"KRN25_Cyste_armatus\"        \n [9] \"KRN28_Cyste_wislizeni\"       \"KRN03_Cyste_wislizeni\"      \n[11] \"KRN26_Cyste_wislizeni\"       \"KRN100_101_Tegro_aloga\"     \n[13] \"KRN96_97_98_Tegro_aloga\"     \"KRN11_Tegro_erosa\"          \n[15] \"KRN12_Tegro_erosa\"           \"KRN13_Tegro_latecincta\"     \n[17] \"KRN53_Tegro_latecincta\"      \"KRN01_Cordy_opaca\"          \n[19] \"KRN112_Cordy_opaca\"          \"KRN111_Cordy_fulleri\"       \n[21] \"KRN23_Cordy_fulleri\"         \"KRN09_Mege_vittata\"         \n[23] \"KRN08_Mege_puncta\"           \"KRN07_133_Mege_cancell\"     \n[25] \"KRN129_Mege_cancell_h\"       \"KRN51_Pleu_reticulata\"      \n[27] \"KRN48_Pleu_mirabilis\"        \"KRN47_119_Pleu_mirabilis\"   \n[29] \"KRN49_Pleu_mirabilis\"        \"KRN19_Eup_sulciphrons\"      \n[31] \"KRN131_Eup_schwarzi\"         \"KRN88_89_Eup_histrionica\"   \n[33] \"KRN90_Eup_histrionica\"       \"KRN43_108_Eup_fissiceps\"    \n[35] \"KRN45_Eup_fissiceps\"         \"KRN44_Eup_fissiceps\"        \n[37] \"KRN54_121_Eup_fissiceps\"     \"KRN20_Eup_imperialis\"       \n[39] \"KRN06_Eup_imperialis\"        \"KRN42_Eup_imperialis\"       \n[41] \"KRN30_113_Eup_elegans\"       \"KRN38_115_Eup_elegans_p\"    \n[43] \"KRN29_Eup_elegans_p\"         \"KRN21_114_Eup_elegans_p\"    \n[45] \"KRN40_Eup_elegans_p\"         \"KRN92_93_Eup_edmundsi\"      \n[47] \"KRN18_135_Eup_viridis\"       \"KRN59_Eup_viridis\"",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#uso-de-getmrca-y-extract.clade-para-extraer-subárboles-filogenéticos",
     "href": "chapters/u1_intro_diversification.html#uso-de-getmrca-y-extract.clade-para-extraer-subárboles-filogenéticos",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Uso de getMRCA y extract.clade para extraer Subárboles Filogenéticos",
     "text": "Uso de getMRCA y extract.clade para extraer Subárboles Filogenéticos\n\n# Obtener el nodo más reciente en común del ingroup\nmrca_ingroup &lt;- getMRCA(arbol, nombres_tips)\n\n# Extraer el subárbol del ingroup\nsubarbol &lt;- extract.clade(arbol, mrca_ingroup)\n\n# Calcular la longitud máxima de las ramas del subárbol\nmax_edge_length &lt;- max(subarbol$edge.length, na.rm = TRUE)\n\n# Graficar el subárbol\nggtree(subarbol) +\n  geom_tiplab(size = 3) +\n  xlim(-0.5, max_edge_length * 2) +\n  theme_tree2()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#remover-especies-duplicadas",
     "href": "chapters/u1_intro_diversification.html#remover-especies-duplicadas",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Remover especies duplicadas",
     "text": "Remover especies duplicadas\n\n# Separar los nombres de las especies (asumiendo el formato \"ID_Especie\")\nspecies_info &lt;- data.frame(\n  tip_label = nombres_tips,\n  species = str_extract(nombres_tips, \"[A-Za-z]+_[A-Za-z]+(?:_[A-Za-z]+)?$\")\n)\n\n# Eliminar las ssp _h y _p\n# Seleccionar solo una muestra por especie\nunique_species &lt;- species_info %&gt;%\n  filter(!str_detect(species, \"_[hp]$\")) %&gt;%\n  group_by(species) %&gt;% \n  slice(1) %&gt;%  # Selecciona solo la primera aparición de cada especie\n  ungroup()\n\n# Extraer los nombres de los tips que queremos conservar\nselected_tips &lt;- unique_species$tip_label\n\n# Remover duplicados\nsubarbol_final &lt;- drop.tip(subarbol, setdiff(subarbol$tip.label, selected_tips))\n\nggtree(subarbol_final) + \n  geom_tiplab(size = 3) + \n  xlim(-0.5, max(subarbol_final$edge.length) * 2)  # Expande el espacio a la izquierda",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#guardar-el-árbol-resultante-en-formato-nexus",
     "href": "chapters/u1_intro_diversification.html#guardar-el-árbol-resultante-en-formato-nexus",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Guardar el árbol resultante en formato NEXUS",
     "text": "Guardar el árbol resultante en formato NEXUS\n\nwrite.nexus(subarbol_final, file=\"../docs/u1_PatDiv/subarbol_ingroup.nex\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#carga-del-árbol-filogenético",
     "href": "chapters/u1_intro_diversification.html#carga-del-árbol-filogenético",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Carga del Árbol Filogenético",
     "text": "Carga del Árbol Filogenético\n\n# Carga de paquetes\nlibrary(subplex)\nlibrary(TreeSim)\nlibrary(deSolve)\nlibrary(TreePar)\n\n# Cargar el árbol desde un archivo Nexus\ntree &lt;- read.nexus(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")\n\n# Visualizar el árbol\nggtree(tree) + theme_tree()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#obtención-de-los-tiempos-de-especiación",
     "href": "chapters/u1_intro_diversification.html#obtención-de-los-tiempos-de-especiación",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Obtención de los Tiempos de Especiación",
     "text": "Obtención de los Tiempos de Especiación\nExtraeremos y ordenaremos los tiempos de especiación (tiempos de ramificación) del árbol:\n\n# Obtener y ordenar los tiempos de especiación\n# La función getx() extrae los tiempos de ramificación del árbol.\ntimes &lt;- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.\ntimes &lt;- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.\nprint(times)\n\n [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969\n [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686\n[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760\n[19]  6.2512423  1.9309798  0.9252293",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#configuración-de-parámetros-para-el-análisis",
     "href": "chapters/u1_intro_diversification.html#configuración-de-parámetros-para-el-análisis",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Configuración de Parámetros para el Análisis",
     "text": "Configuración de Parámetros para el Análisis\nDefiniremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:\n\nrho &lt;- 22/26  # Proporción de especies muestreadas (22 de 26 especies)\ngrid &lt;- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)\nstart &lt;- min(times) + 1.5  # Tiempo inicial para la búsqueda de cambios de tasa\nend &lt;- max(times) - 1.5    # Tiempo final para la búsqueda de cambios de tasa",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#ejecución-del-análisis-con-bd.shifts.optim",
     "href": "chapters/u1_intro_diversification.html#ejecución-del-análisis-con-bd.shifts.optim",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Ejecución del Análisis con bd.shifts.optim",
     "text": "Ejecución del Análisis con bd.shifts.optim\nUtilizaremos la función bd.shifts.optim para estimar las tasas de especiación y extinción, así como los puntos en el tiempo donde ocurren cambios significativos en estas tasas:\n\n# Ejecutar el análisis de cambios en las tasas de diversificación\nresult_shifts &lt;- bd.shifts.optim(times, rho, grid, start, end, yule=TRUE)\n\n[1] \"startest\"\n[1] \"test\"\n\n# Mostrar los resultados\nresult_shifts[[2]][[1]]\n\n[1] 70.02138042  0.08912957\n\n\nA continuación se presentan los valores obtenidos en la estimación de la tasa de diversificación. Dado que el modelo Yule asume que no hay extinción, la tasa de extinción no está definida en este análisis.\n\nValor de la función de verosimilitud negativa: 70.02138\nTasa de especiación \\(\\lambda\\): 0.08913\n\nEn este contexto:\nEstos valores indican que la tasa de especiación estimada (\\(\\lambda\\)) es aproximadamente 0.08913.\nEl valor de la función de verosimilitud negativa (70.02138) proporciona una medida del ajuste del modelo a los datos, donde valores más bajos generalmente indican un mejor ajuste.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev",
     "href": "chapters/u1_intro_diversification.html#crear-un-script-de-revbayes-en-visual-studio-code-divrate.rev",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Crear un script de RevBayes en Visual Studio Code: divrate.Rev",
     "text": "Crear un script de RevBayes en Visual Studio Code: divrate.Rev",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#cargar-el-archivo-nexus",
     "href": "chapters/u1_intro_diversification.html#cargar-el-archivo-nexus",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Cargar el archivo NEXUS",
     "text": "Cargar el archivo NEXUS\n# Cargar la filogenia desde el archivo NEXUS\nT &lt;- readTrees(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")[1]\n\n# Obtener la lista de taxones en la filogenia\ntaxa &lt;- T.taxa()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#inicializar-los-vectores-de-moves-y-monitors",
     "href": "chapters/u1_intro_diversification.html#inicializar-los-vectores-de-moves-y-monitors",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Inicializar los vectores de moves y monitors",
     "text": "Inicializar los vectores de moves y monitors\n# Inicializar un vector vacío para los movimientos (moves)\nmoves = VectorMoves()\n\n# Inicializar un vector vacío para los monitores (monitors)\nmonitors = VectorMonitors()\n\n\n\n\n\nRepresentación del modelo gráfico para el proceso Yule (Pure-Birth) en RevBayes, donde la tasa de especiación (\\(\\lambda\\)) es tratada como una variable aleatoria extraída de una distribución uniforme.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#especificar-la-tasa-de-especiación-lambda",
     "href": "chapters/u1_intro_diversification.html#especificar-la-tasa-de-especiación-lambda",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Especificar la tasa de especiación (\\(\\lambda\\))",
     "text": "Especificar la tasa de especiación (\\(\\lambda\\))\n# Especificar la tasa de especiación λ con una distribución uniforme\nbirth_rate ~ dnUniform(0, 100.0)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#asignar-un-movimiento-mcmc-a-la-tasa-de-especiación",
     "href": "chapters/u1_intro_diversification.html#asignar-un-movimiento-mcmc-a-la-tasa-de-especiación",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Asignar un movimiento MCMC a la tasa de especiación",
     "text": "Asignar un movimiento MCMC a la tasa de especiación\n# Agregar un movimiento MCMC para la tasa de especiación\nmoves.append( mvScale(birth_rate, lambda=1.0, tune=true, weight=3.0) )",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#especificar-la-proporción-de-especies-muestreadas-rho",
     "href": "chapters/u1_intro_diversification.html#especificar-la-proporción-de-especies-muestreadas-rho",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Especificar la proporción de especies muestreadas (\\(\\rho\\))",
     "text": "Especificar la proporción de especies muestreadas (\\(\\rho\\))\n# Obtener el número de taxones en la filogenia\nnum_taxa &lt;- T.ntips()\n\n# Estimar la proporción de especies muestreadas\nrho &lt;- num_taxa / 26",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#obtener-la-edad-de-la-raíz",
     "href": "chapters/u1_intro_diversification.html#obtener-la-edad-de-la-raíz",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Obtener la edad de la raíz",
     "text": "Obtener la edad de la raíz\n# Obtener la edad de la raíz del árbol\nroot_time &lt;- T.rootAge()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#definir-el-modelo-de-tiempo-de-especiación",
     "href": "chapters/u1_intro_diversification.html#definir-el-modelo-de-tiempo-de-especiación",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Definir el modelo de tiempo de especiación",
     "text": "Definir el modelo de tiempo de especiación\nEl modelo Yule (pure-birth) en RevBayes se define con el proceso de nacimiento y muerte (dnBDP), pero con la tasa de extinción (mu) fijada en 0.\n# Definir el modelo de diversificación usando un proceso de nacimiento-muerte (BDP)\ntimetree ~ dnBDP(lambda=birth_rate, mu=0.0, rho=rho, rootAge=root_time, samplingStrategy=\"uniform\", condition=\"survival\", taxa=taxa)\nExplicación\n\nlambda = birth_rate → Tasa de especiación es una variable aleatoria con dnUniform(0, 100.0).\nmu = 0.0 → Asumimos que no hay extinción (modelo Yule).\nrho = rho → Se ajusta según el número de especies muestreadas.\nrootAge = root_time → Condicionamos el modelo en la edad de la raíz.\nsamplingStrategy = \"uniform\" → Asumimos muestreo uniforme.\ncondition = \"survival\" → Solo analizamos árboles que sobrevivieron hasta el presente.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#fijar-la-filogenia-observada",
     "href": "chapters/u1_intro_diversification.html#fijar-la-filogenia-observada",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Fijar la filogenia observada",
     "text": "Fijar la filogenia observada\n# Fijar la filogenia observada\ntimetree.clamp(T)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#definir-el-modelo-gráfico",
     "href": "chapters/u1_intro_diversification.html#definir-el-modelo-gráfico",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Definir el modelo gráfico",
     "text": "Definir el modelo gráfico\n# Crear el objeto de modelo\nmymodel = model(birth_rate)\nEsto crea un modelo gráfico dirigido acíclico (DAG) donde birth_rate es el nodo principal, y RevBayes automáticamente encuentra todos los otros nodos conectados.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#especificar-los-monitores",
     "href": "chapters/u1_intro_diversification.html#especificar-los-monitores",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Especificar los Monitores",
     "text": "Especificar los Monitores\n# Monitor para registrar los estados del modelo en un archivo de salida\nmonitors.append( mnModel(filename=\"output/diversification_Yule.log\", printgen=10, separator=TAB) )\n\n# Monitor para imprimir la tasa de especiación en la pantalla cada 1000 generaciones\nmonitors.append( mnScreen(printgen=1000, birth_rate) )\nExplicación\n\nmnModel guarda el registro de la ejecución en \"output/diversification_Yule.log\", escribiendo cada 10 generaciones.\nmnScreen imprime la tasa de especiación (birth_rate) en la consola cada 1000 generaciones.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#configurar-y-ejecutar-el-mcmc",
     "href": "chapters/u1_intro_diversification.html#configurar-y-ejecutar-el-mcmc",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Configurar y ejecutar el MCMC",
     "text": "Configurar y ejecutar el MCMC\n# Inicializar el MCMC con dos cadenas combinadas en un solo análisis\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")\n\n# Ejecutar el MCMC por 50,000 generaciones, ajustando los movimientos cada 200 generaciones\nmymcmc.run(generations=50000, tuningInterval=200)\nExplicación\n\nnruns=2 → Corre dos cadenas independientes.\ncombine=\"mixed\" → Combina las cadenas en un solo conjunto de muestras.\ngenerations=50000 → Ejecuta la simulación por 50,000 generaciones.\ntuningInterval=200 → Ajusta los movimientos cada 200 generaciones para mejorar la eficiencia del muestreo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#cargar-los-resultados-en-revgadgets",
     "href": "chapters/u1_intro_diversification.html#cargar-los-resultados-en-revgadgets",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Cargar los resultados en RevGadgets",
     "text": "Cargar los resultados en RevGadgets\nDespués de correr el MCMC en RevBayes, usar RevGadgets en R para analizar la distribución posterior:\n\n# Cargar librerías necesarias\nlibrary(RevGadgets)\nlibrary(ggplot2)\n\n# Leer los datos del MCMC\nmcmc_trace &lt;- readTrace(\"../docs/u1_PatDiv/output/diversification_Yule.log\")\n\n# Visualizar la distribución posterior de birth_rate\nplotTrace(mcmc_trace, vars=\"birth_rate\")\n\n[[1]]",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139751    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139322    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification.html#comparar-la-distribución-previa-y-posterior",
     "href": "chapters/u1_intro_diversification.html#comparar-la-distribución-previa-y-posterior",
-    "title": "Introducción al proceso de diversificación",
+    "title": "Introducción al proceso de diversificación parte 1",
     "section": "Comparar la distribución previa y posterior",
     "text": "Comparar la distribución previa y posterior\n\nlibrary(RevGadgets)\nlibrary(ggplot2)\n\n# Leer los datos del MCMC combinando las dos cadenas\nposterior_trace &lt;- readTrace(c(\"../docs/u1_PatDiv/output/diversification_Yule_run_1.log\", \"../docs/u1_PatDiv/output/diversification_Yule_run_2.log\"))\n\n# Extraer el primer conjunto de muestras (lista de data frames)\nyule_posterior &lt;- posterior_trace[[1]]\n\n# Simular 10,000 valores de la distribución previa\nyule_prior &lt;- data.frame(birth_rate = runif(10000, min=0, max=100))\n\n# Agregar la columna de la distribución previa en el posterior\nyule_posterior$birth_rate_prior &lt;- sample(yule_prior$birth_rate, size = nrow(yule_posterior), replace = TRUE)\n\n# Graficar la comparación\nplotTrace(list(yule_posterior), vars = c(\"birth_rate\", \"birth_rate_prior\"))[[1]] +\n  theme(legend.position = c(0.80, 0.80),  # Ubicación de la leyenda\n        legend.text = element_text(size =20),  # Tamaño del texto de la leyenda\n        legend.title = element_text(size = 22)) +  # Tamaño del título de la leyenda\n  xlim(0, 1)  # Ajusta el límite según los valores observados",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_2.html",
+    "href": "chapters/u1_intro_diversification_2.html",
+    "title": "Introducción al proceso de diversificación parte 2",
+    "section": "",
+    "text": "Presentación: Introducción al proceso de diversificación parte 2\nHaz clic en la imagen para ver el PDF de la presentación",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_2.html#introducción",
+    "href": "chapters/u1_intro_diversification_2.html#introducción",
+    "title": "Introducción al proceso de diversificación parte 2",
+    "section": "Introducción",
+    "text": "Introducción\nEl modelo de nacimiento-muerte epísodico es un proceso en el cual las tasas de diversificación varían epísodicamente a lo largo del tiempo y se modelan como tasas constantes por intervalos de tiempo (Stadler 2011; Höhna 2015). Siguiendo el tutorial oficial Episodic Diversification Rate Estimation.\nAsumimos que las tasas transformadas logarítmicamente siguen una distribución previa de campo aleatorio de Markov en forma de herradura (Horseshoe Markov random field, HSMRF) según Magee et al. (2020).\n\nTasas transformadas logarítmicamente:\n\nEn muchos modelos evolutivos, las tasas de especiación y extinción pueden variar en órdenes de magnitud.\nPara modelar mejor estos cambios, se toma el logaritmo de las tasas en lugar de usarlas directamente.\nEsto ayuda a evitar valores negativos y hace que la distribución de las tasas sea más manejable.\n\nDistribución previa (prior) de campo aleatorio de Markov en forma de herradura (HSMRF):\n\nDistribución previa (prior): En un enfoque bayesiano, los parámetros desconocidos (como las tasas de especiación/extinción) tienen distribuciones previas que reflejan nuestras creencias antes de ver los datos.\nCampo aleatorio de Markov (Markov Random Field, MRF): Este término indica que las tasas en un intervalo de tiempo dependen de las tasas en el intervalo anterior. En otras palabras, las tasas están autocorrelacionadas temporalmente.\nForma de herradura (Horseshoe): Es un tipo de distribución previa diseñada para manejar datos donde algunos valores pueden ser cercanos a cero (relativamente constantes), pero también permite valores extremos (cambios bruscos en las tasas).\n¿Por qué se usa? El HSMRF permite capturar patrones donde las tasas cambian lentamente la mayor parte del tiempo, pero ocasionalmente pueden dar saltos grandes, lo cual es biológicamente realista en muchos sistemas evolutivos.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_2.html#lectura-del-árbol",
+    "href": "chapters/u1_intro_diversification_2.html#lectura-del-árbol",
+    "title": "Introducción al proceso de diversificación parte 2",
+    "section": "Lectura del árbol",
+    "text": "Lectura del árbol\nComenzamos cargando el árbol filogenético previamente filtrado.\n# Cargar el árbol filogenético desde un archivo en formato NEXUS\nT &lt;- readTrees(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")[1]\n\n# Extraer la información taxonómica del árbol\n taxa &lt;- T.taxa(\nDefinir vectores para almacenar los movimientos de MCMC y los monitores de resultados.\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\nDefinir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.\nNUM_INTERVALS = 10  # Número total de intervalos de tiempo\nNUM_BREAKS := NUM_INTERVALS - 1  # Número de puntos de cambio entre intervalos\n\n\n\n\n\n\n\n\n\nDefinimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte.\n# Hiperprior para controlar la variabilidad global de las tasas de especiación y extinción\nspeciation_global_scale_hyperprior &lt;- 0.044\nextinction_global_scale_hyperprior &lt;- 0.044\n\n# Distribuciones previas de Cauchy truncadas para los parámetros de escala global\nspeciation_global_scale ~ dnHalfCauchy(0,1)\nextinction_global_scale ~ dnHalfCauchy(0,1)\nLas tasas de especiación y extinción en el presente se modelan mediante una distribución uniforme.\n# Definir tasas iniciales de especiación y extinción en el presente\nlog_speciation_at_present ~ dnUniform(-10.0,10.0)\nlog_speciation_at_present.setValue(0.0)\nlog_extinction_at_present ~ dnUniform(-10.0,10.0)\nlog_extinction_at_present.setValue(-1.0)\nOptimizar movimientos para la exploración de los parámetros en MCMC.\nmoves.append( mvScaleBactrian(log_speciation_at_present,weight=5))\nmoves.append( mvScaleBactrian(log_extinction_at_present,weight=5))\nUsamos una parametrización no centrada para el modelo HSMRF, especificando los cambios en las tasas logarítmicas entre intervalos.\n# Modelar la variabilidad de tasas en cada intervalo de tiempo\nfor (i in 1:NUM_BREAKS) {\n  sigma_speciation[i] ~ dnHalfCauchy(0,1)\n  sigma_extinction[i] ~ dnHalfCauchy(0,1)\n  delta_log_speciation[i] ~ dnNormal(mean=0, sd=sigma_speciation[i]*speciation_global_scale*speciation_global_scale_hyperprior)\n  delta_log_extinction[i] ~ dnNormal(mean=0, sd=sigma_extinction[i]*extinction_global_scale*extinction_global_scale_hyperprior)\n}\nLas tasas finales se ensamblan sumando los valores anteriores y exponenciando.\n# Ensamblar la serie de tasas de especiación y extinción\nspeciation := fnassembleContinuousMRF(log_speciation_at_present, delta_log_speciation, initialValueIsLogScale=TRUE, order=1)\nextinction := fnassembleContinuousMRF(log_extinction_at_present, delta_log_extinction, initialValueIsLogScale=TRUE, order=1)\nConfiguración de Intervalos de Tiempo y MCMC.\n# Definir los puntos de tiempo de los intervalos de modelado\ninterval_times &lt;- abs(T.rootAge() * seq(1, NUM_BREAKS, 1)/NUM_INTERVALS)\nDefinimos el modelo de nacimiento-muerte epísodico:\n# Especificar el modelo de nacimiento-muerte epísodico\ntimetree ~ dnEpisodicBirthDeath(rootAge=T.rootAge(), lambdaRates=speciation, lambdaTimes=interval_times, muRates=extinction, muTimes=interval_times, rho=rho, samplingStrategy=\"uniform\", condition=\"survival\", taxa=taxa)\nIniciamos y ejecutamos el MCMC.\n# Definir el algoritmo de MCMC para estimar los parámetros\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")\nmymcmc.run(generations=50000, tuningInterval=200)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 2</span>"
     ]
   }
 ]
