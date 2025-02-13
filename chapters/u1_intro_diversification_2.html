@@ -281,47 +281,167 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte.</p>
+<p>Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hiperprior para controlar la variabilidad global de las tasas de especiación y extinción</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>speciation_global_scale_hyperprior <span class="ot">&lt;-</span> <span class="fl">0.044</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>extinction_global_scale_hyperprior <span class="ot">&lt;-</span> <span class="fl">0.044</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuciones previas de Cauchy truncadas para los parámetros de escala global</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>speciation_global_scale <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>extinction_global_scale <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Las tasas de especiación y extinción en el presente se modelan mediante una distribución uniforme.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir tasas iniciales de especiación y extinción en el presente</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>log_speciation_at_present <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="fl">10.0</span>,<span class="fl">10.0</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">log_speciation_at_present.setValue</span>(<span class="fl">0.0</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>log_extinction_at_present <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="fl">10.0</span>,<span class="fl">10.0</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">log_extinction_at_present.setValue</span>(<span class="sc">-</span><span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Optimizar movimientos para la exploración de los parámetros en MCMC.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScaleBactrian</span>(log_speciation_at_present,<span class="at">weight=</span><span class="dv">5</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScaleBactrian</span>(log_extinction_at_present,<span class="at">weight=</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Usamos una parametrización no centrada para el modelo HSMRF, especificando los cambios en las tasas logarítmicas entre intervalos.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelar la variabilidad de tasas en cada intervalo de tiempo</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_BREAKS) {</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  sigma_speciation[i] <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  sigma_extinction[i] <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  delta_log_speciation[i] <span class="sc">~</span> <span class="fu">dnNormal</span>(<span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_speciation[i]<span class="sc">*</span>speciation_global_scale<span class="sc">*</span>speciation_global_scale_hyperprior)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  delta_log_extinction[i] <span class="sc">~</span> <span class="fu">dnNormal</span>(<span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_extinction[i]<span class="sc">*</span>extinction_global_scale<span class="sc">*</span>extinction_global_scale_hyperprior)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Las tasas finales se ensamblan sumando los valores anteriores y exponenciando.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensamblar la serie de tasas de especiación y extinción</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>speciation <span class="sc">:</span><span class="er">=</span> <span class="fu">fnassembleContinuousMRF</span>(log_speciation_at_present, delta_log_speciation, <span class="at">initialValueIsLogScale=</span><span class="cn">TRUE</span>, <span class="at">order=</span><span class="dv">1</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>extinction <span class="sc">:</span><span class="er">=</span> <span class="fu">fnassembleContinuousMRF</span>(log_extinction_at_present, delta_log_extinction, <span class="at">initialValueIsLogScale=</span><span class="cn">TRUE</span>, <span class="at">order=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Configuración de Intervalos de Tiempo y MCMC.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir los puntos de tiempo de los intervalos de modelado</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>interval_times <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">T.rootAge</span>() <span class="sc">*</span> <span class="fu">seq</span>(<span class="dv">1</span>, NUM_BREAKS, <span class="dv">1</span>)<span class="sc">/</span>NUM_INTERVALS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Definimos el modelo de nacimiento-muerte epísodico:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar el modelo de nacimiento-muerte epísodico</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>timetree <span class="sc">~</span> <span class="fu">dnEpisodicBirthDeath</span>(<span class="at">rootAge=</span><span class="fu">T.rootAge</span>(), <span class="at">lambdaRates=</span>speciation, <span class="at">lambdaTimes=</span>interval_times, <span class="at">muRates=</span>extinction, <span class="at">muTimes=</span>interval_times, <span class="at">rho=</span>rho, <span class="at">samplingStrategy=</span><span class="st">"uniform"</span>, <span class="at">condition=</span><span class="st">"survival"</span>, <span class="at">taxa=</span>taxa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Iniciamos y ejecutamos el MCMC.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el algoritmo de MCMC para estimar los parámetros</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">2</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">50000</span>, <span class="at">tuningInterval=</span><span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>extinction_global_scale_hyperprior <span class="ot">&lt;-</span> <span class="fl">0.044</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Estos hiperpriors controlan la <strong>variabilidad global</strong> de las tasas de especiación y extinción:</p>
+<ul>
+<li><p>Un <strong>valor mayor</strong> permite <strong>más cambios abruptos</strong> entre intervalos.</p></li>
+<li><p>Un <strong>valor menor</strong> suaviza las tasas a lo largo del tiempo.</p></li>
+</ul>
+<p>Función <code>setMRFGlobalScaleHyperpriorNShifts()</code> del paquete <code>RevGadgets</code> en <strong>R</strong> para calcular el hiperprior automáticamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Ejecutar en R, no agregar a RevBayes!!!</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Calcula el hiperprior que utilizaremos en RevBayes</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 numero intervalos</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## "HSMRF" Horseshoe Markov random field </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setMRFGlobalScaleHyperpriorNShifts</span>(<span class="dv">10</span>, <span class="st">"HSMRF"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.04446432</code></pre>
+</div>
+</div>
+<p>Asignar distribuciones previas Half-Cauchy (dnHalfCauchy(0,1)) a los parámetros de escala global, permite valores pequeños pero también acepta valores más grandes ocasionalmente.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuciones previas de Cauchy truncadas para los parámetros de escala global</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>speciation_global_scale <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>extinction_global_scale <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En esta sección se definen las tasas iniciales de especiación y extinción en el modelo HSMRF. En este enfoque, comenzamos con la tasa de especiación y extinción en el presente y luego modelamos cómo cambian hacia el pasado.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir tasas iniciales de especiación y extinción en el presente</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>log_speciation_at_present <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="fl">10.0</span>,<span class="fl">10.0</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">log_speciation_at_present.setValue</span>(<span class="fl">0.0</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>log_extinction_at_present <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="fl">10.0</span>,<span class="fl">10.0</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">log_extinction_at_present.setValue</span>(<span class="sc">-</span><span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="por-qué-se-usa-dnuniform-10.010.0" class="level4">
+<h4 class="anchored" data-anchor-id="por-qué-se-usa-dnuniform-10.010.0">¿Por qué se usa <code>dnUniform(-10.0,10.0)</code>?</h4>
+<p>Se establece una distribución uniforme como prior para las tasas iniciales de especiación y extinción.</p>
+<ul>
+<li>Como estamos modelando las tasas en <strong>escala logarítmica</strong>, esto implica que los valores de especiación/extinción reales estarán entre:
+<ul>
+<li>(e^{-10}) (casi 0, evolución extremadamente lenta)</li>
+<li>(e^{10}) (tasa de diversificación muy rápida)</li>
+</ul></li>
+<li>Permitir este rango amplio cubre la mayoría de los valores posibles sin asumir un conocimiento previo específico sobre la tasa de diversificación en el presente.</li>
+</ul>
+</section>
+<section id="por-qué-los-valores-iniciales-0.0-y--1.0" class="level4">
+<h4 class="anchored" data-anchor-id="por-qué-los-valores-iniciales-0.0-y--1.0">¿Por qué los valores iniciales <code>0.0</code> y <code>-1.0</code>?</h4>
+<ul>
+<li><code>log_speciation_at_present.setValue(0.0)</code>: Equivale a establecer la tasa inicial de especiación en ( e^0 = 1.0 ), lo cual es un punto razonable para comenzar.</li>
+<li><code>log_extinction_at_present.setValue(-1.0)</code>: Equivale a una tasa inicial de extinción de ( e^{-1} &nbsp;approx 0.37 ), lo que implica que la extinción es menor que la especiación en el punto de partida.</li>
+</ul>
+<p>Movimientos eficientes en MCMC para explorar estas tasas</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScaleBactrian</span>(log_speciation_at_present,<span class="at">weight=</span><span class="dv">5</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScaleBactrian</span>(log_extinction_at_present,<span class="at">weight=</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el código de RevBayes para modelar la diversificación episódica, se utiliza un bucle <code>for</code> para definir los cambios en las tasas de especiación y extinción en cada intervalo de tiempo.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_BREAKS) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Variabilidad local en cada intervalo</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  sigma_speciation[i] <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  sigma_extinction[i] <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Se inicializan valores aleatorios en un rango de 0.005 a 0.1, para evitar valores extremos en el inicio del MCMC</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  sigma_speciation[i]<span class="fu">.setValue</span>(<span class="fu">runif</span>(<span class="dv">1</span>,<span class="fl">0.005</span>,<span class="fl">0.1</span>)[<span class="dv">1</span>])</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  sigma_extinction[i]<span class="fu">.setValue</span>(<span class="fu">runif</span>(<span class="dv">1</span>,<span class="fl">0.005</span>,<span class="fl">0.1</span>)[<span class="dv">1</span>])</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Especificar los cambios en log-especiación y log-extinción mediante una distribución normal</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  delta_log_speciation[i] <span class="sc">~</span> <span class="fu">dnNormal</span>( <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_speciation[i]<span class="sc">*</span>speciation_global_scale<span class="sc">*</span>speciation_global_scale_hyperprior )</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  delta_log_extinction[i] <span class="sc">~</span> <span class="fu">dnNormal</span>( <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_extinction[i]<span class="sc">*</span>extinction_global_scale<span class="sc">*</span>extinction_global_scale_hyperprior )</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Calcular las tasas de especiación y extinción a lo largo del tiempo a partir de los cambios en log-escala.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>speciation <span class="sc">:</span><span class="er">=</span> <span class="fu">fnassembleContinuousMRF</span>(log_speciation_at_present, delta_log_speciation, <span class="at">initialValueIsLogScale=</span><span class="cn">TRUE</span>, <span class="at">order=</span><span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>extinction <span class="sc">:</span><span class="er">=</span> <span class="fu">fnassembleContinuousMRF</span>(log_extinction_at_present, delta_log_extinction, <span class="at">initialValueIsLogScale=</span><span class="cn">TRUE</span>, <span class="at">order=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Movimientos de MCMC para el Modelo HSMRF</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento para los cambios en log-escala de especiación y extinción</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvEllipticalSliceSamplingSimple</span>(delta_log_speciation, <span class="at">weight=</span><span class="dv">5</span>, <span class="at">tune=</span><span class="cn">FALSE</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvEllipticalSliceSamplingSimple</span>(delta_log_extinction, <span class="at">weight=</span><span class="dv">5</span>, <span class="at">tune=</span><span class="cn">FALSE</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento Gibbs para los hiperparámetros globales y locales</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvHSRFHyperpriorsGibbs</span>(speciation_global_scale, sigma_speciation , delta_log_speciation , speciation_global_scale_hyperprior, <span class="at">propGlobalOnly=</span><span class="fl">0.75</span>, <span class="at">weight=</span><span class="dv">10</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvHSRFHyperpriorsGibbs</span>(extinction_global_scale, sigma_extinction , delta_log_extinction , extinction_global_scale_hyperprior, <span class="at">propGlobalOnly=</span><span class="fl">0.75</span>, <span class="at">weight=</span><span class="dv">10</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento de intercambio entre intervalos adyacentes</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvHSRFIntervalSwap</span>(delta_log_speciation, sigma_speciation, <span class="at">weight=</span><span class="dv">5</span>))</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvHSRFIntervalSwap</span>(delta_log_extinction, sigma_extinction, <span class="at">weight=</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Se utilizan <strong>tres tipos principales de movimientos</strong> en este código:</p>
+<ol type="1">
+<li><p><strong>Muestreo Elíptico Slice (<code>mvEllipticalSliceSamplingSimple</code>)</strong></p>
+<ul>
+<li><p>Optimiza la exploración de los cambios en log-escala de las tasas de especiación y extinción.</p></li>
+<li><p>Funciona bien en modelos con alta correlación entre parámetros.</p></li>
+</ul></li>
+<li><p><strong>Muestreo Gibbs (<code>mvHSRFHyperpriorsGibbs</code>)</strong></p>
+<ul>
+<li><p>Se usa para actualizar los hiperparámetros globales y locales del modelo.</p></li>
+<li><p>Permite ajustes eficientes en la escala de variabilidad de las tasas.</p></li>
+</ul></li>
+<li><p><strong>Intercambio de intervalos (<code>mvHSRFIntervalSwap</code>)</strong></p>
+<ul>
+<li><p>Intercambia valores entre intervalos de tiempo adyacentes.</p></li>
+<li><p>Ayuda a evitar que la cadena de MCMC se quede atrapada en un estado subóptimo.</p></li>
+</ul></li>
+</ol>
+<p>Configuración de los Intervalos de Tiempo</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>interval_times <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">T.rootAge</span>() <span class="sc">*</span> <span class="fu">seq</span>(<span class="dv">1</span>, NUM_BREAKS, <span class="dv">1</span>)<span class="sc">/</span>NUM_INTERVALS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><strong><code>T.rootAge()</code></strong> → Obtiene la edad de la raíz del árbol filogenético (es decir, el tiempo en el pasado en que el linaje común más reciente existió).</p></li>
+<li><p><strong><code>seq(1, NUM_BREAKS, 1)</code></strong> → Genera una secuencia de números del <code>1</code> al <code>NUM_BREAKS</code> (el número de puntos de cambio entre intervalos).</p></li>
+<li><p><strong>Multiplica la raíz del árbol <code>T.rootAge()</code> por esta secuencia</strong> para escalar los intervalos al tiempo evolutivo real.</p></li>
+<li><p><strong>Divide entre <code>NUM_INTERVALS</code></strong> para normalizar y hacer que los intervalos sean de igual tamaño.</p></li>
+<li><p><strong><code>abs(...)</code></strong> → Convierte los valores a positivos porque las edades van en dirección del presente al pasado.</p></li>
+</ul>
+<p>Corrección por Muestreo Incompleto</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fu">T.ntips</span>()<span class="sc">/</span><span class="dv">26</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Estableciendo la Edad de la Raíz</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>root_time <span class="ot">&lt;-</span> <span class="fu">T.rootAge</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Inicializando el Nodo Estocástico del Árbol de Tiempos</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>timetree <span class="sc">~</span> <span class="fu">dnEpisodicBirthDeath</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">rootAge=</span><span class="fu">T.rootAge</span>(),         <span class="co"># Edad del nodo raíz del árbol filogenético</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">lambdaRates=</span>speciation,      <span class="co"># Tasa de especiación en cada intervalo</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">lambdaTimes=</span>interval_times,  <span class="co"># Momentos en que cambian las tasas de especiación</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">muRates=</span>extinction,          <span class="co"># Tasa de extinción en cada intervalo</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">muTimes=</span>interval_times,      <span class="co"># Momentos en que cambian las tasas de extinción</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">rho=</span>rho,                     <span class="co"># Fracción de especies muestreadas</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">samplingStrategy=</span><span class="st">"uniform"</span>,  <span class="co"># Estrategia de muestreo uniforme</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">condition=</span><span class="st">"survival"</span>,        <span class="co"># Condición de que el linaje ha sobrevivido hasta el presente</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">taxa=</span>taxa                    <span class="co"># Información de los taxones en el árbol</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Asignando Datos Observados al Árbol</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clamp</span>(T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Creando el Modelo Completo, Encuentra todas las conexiones en la red bayesiana y las agrupa en un solo objeto <code>model()</code></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(speciation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Configuración de los Monitores</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"output/primates_EBD.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Crea un monitor (<code>mnModel</code>) que guarda los valores de todos los parámetros del modelo</strong>.<br>
+✔ Guarda los resultados en el archivo <code>"output/primates_EBD.log"</code>.<br>
+✔ <strong><code>printgen=10</code></strong> → Especifica que se guardará un estado cada 10 generaciones.<br>
+✔ <strong><code>separator=TAB</code></strong> → Usa tabulaciones para separar los valores en el archivo de salida.</p>
+<p>Creación de Monitores para las Tasas de Especiación y Extinción</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasas de especiación</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"output/primates_EBD_speciation_rates.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, speciation))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalos de tiempo de especiación</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"output/primates_EBD_speciation_times.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, interval_times))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasas de extinción</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"output/primates_EBD_extinction_rates.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, extinction))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Intervalos de tiempo de extinción</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"output/primates_EBD_extinction_times.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, interval_times))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Creación de un Monitor en Pantalla</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">1000</span>, extinction_global_scale, speciation_global_scale))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Configuración del MCMC</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">2</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Crea el objeto MCMC <code>mymcmc</code></strong> que utilizará:</p>
+<ul>
+<li><p><strong><code>mymodel</code></strong> → El modelo definido anteriormente.</p></li>
+<li><p><strong><code>monitors</code></strong> → Los monitores configurados.</p></li>
+<li><p><strong><code>moves</code></strong> → Los movimientos de MCMC definidos antes.</p></li>
+<li><p><strong><code>nruns=2</code></strong> → Ejecuta <strong>dos cadenas independientes de MCMC</strong>.</p></li>
+<li><p><strong><code>combine="mixed"</code></strong> → Mezcla las cadenas al final del proceso para mejorar la estimación de parámetros.</p></li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
