@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modelos con cambios en las Tasas de Especiación – Patrones filogenéticos: macroevolución y adaptación</title>
+<title>Modelos con cambios en las tasas de diversificación – Patrones filogenéticos: macroevolución y adaptación</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/u1_intro_diversification.html">Unidad 1: Patrones de diversificación</a></li><li class="breadcrumb-item"><a href="../chapters/u1_intro_diversification_2.html"><span class="chapter-title">Modelos con cambios en las Tasas de Especiación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/u1_intro_diversification.html">Unidad 1: Patrones de diversificación</a></li><li class="breadcrumb-item"><a href="../chapters/u1_intro_diversification_2.html"><span class="chapter-title">Modelos con cambios en las tasas de diversificación</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -210,7 +210,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/u1_intro_diversification_2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Modelos con cambios en las Tasas de Especiación</span></a>
+  <a href="../chapters/u1_intro_diversification_2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Modelos con cambios en las tasas de diversificación</span></a>
   </div>
 </li>
       </ul>
@@ -225,8 +225,8 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#presentación-modelos-con-cambios-en-las-tasas-de-especiación" id="toc-presentación-modelos-con-cambios-en-las-tasas-de-especiación" class="nav-link active" data-scroll-target="#presentación-modelos-con-cambios-en-las-tasas-de-especiación">Presentación: Modelos con cambios en las Tasas de Especiación</a></li>
-  <li><a href="#modelos-con-cambios-en-las-tasas-de-especiación-y-extinción-en-r-con-treepar" id="toc-modelos-con-cambios-en-las-tasas-de-especiación-y-extinción-en-r-con-treepar" class="nav-link" data-scroll-target="#modelos-con-cambios-en-las-tasas-de-especiación-y-extinción-en-r-con-treepar">Modelos con cambios en las Tasas de Especiación y Extinción en <strong>R</strong> con <strong>TreePar</strong></a>
+  <li><a href="#presentación-modelos-con-cambios-en-las-tasas-de-diversificación" id="toc-presentación-modelos-con-cambios-en-las-tasas-de-diversificación" class="nav-link active" data-scroll-target="#presentación-modelos-con-cambios-en-las-tasas-de-diversificación">Presentación: Modelos con cambios en las tasas de diversificación</a></li>
+  <li><a href="#modelos-con-cambios-en-las-tasas-de-diversificación-en-r-con-treepar" id="toc-modelos-con-cambios-en-las-tasas-de-diversificación-en-r-con-treepar" class="nav-link" data-scroll-target="#modelos-con-cambios-en-las-tasas-de-diversificación-en-r-con-treepar">Modelos con cambios en las Tasas de diversificación en <strong>R</strong> con <strong>TreePar</strong></a>
   <ul class="collapse">
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a></li>
   <li><a href="#cargar-librerías-y-el-árbol-filogenético" id="toc-cargar-librerías-y-el-árbol-filogenético" class="nav-link" data-scroll-target="#cargar-librerías-y-el-árbol-filogenético">Cargar librerías y el árbol filogenético</a></li>
@@ -245,10 +245,10 @@ window.Quarto = {
   <li><a href="#definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación." id="toc-definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación." class="nav-link" data-scroll-target="#definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación.">Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.</a></li>
   <li><a href="#definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala" id="toc-definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala" class="nav-link" data-scroll-target="#definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala">Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala</a></li>
   <li><a href="#asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01" id="toc-asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01" class="nav-link" data-scroll-target="#asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01">Asignar distribuciones previas Half-Cauchy (dnHalfCauchy(0,1))</a></li>
-  <li><a href="#definir-las-tasas-iniciales-de-especiación-y-extinción-en-el-modelo-hsmrf." id="toc-definir-las-tasas-iniciales-de-especiación-y-extinción-en-el-modelo-hsmrf." class="nav-link" data-scroll-target="#definir-las-tasas-iniciales-de-especiación-y-extinción-en-el-modelo-hsmrf.">Definir las tasas iniciales de especiación y extinción en el modelo HSMRF.</a></li>
+  <li><a href="#definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf." id="toc-definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf." class="nav-link" data-scroll-target="#definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf.">Definir las tasas iniciales de diversificación y extinción en el modelo HSMRF.</a></li>
   <li><a href="#movimientos-eficientes-en-mcmc-para-explorar-estas-tasas" id="toc-movimientos-eficientes-en-mcmc-para-explorar-estas-tasas" class="nav-link" data-scroll-target="#movimientos-eficientes-en-mcmc-para-explorar-estas-tasas">Movimientos eficientes en MCMC para explorar estas tasas</a></li>
   <li><a href="#modelar-la-diversificación-episódica" id="toc-modelar-la-diversificación-episódica" class="nav-link" data-scroll-target="#modelar-la-diversificación-episódica">Modelar la diversificación episódica</a></li>
-  <li><a href="#calcular-las-tasas-de-especiación-y-extinción" id="toc-calcular-las-tasas-de-especiación-y-extinción" class="nav-link" data-scroll-target="#calcular-las-tasas-de-especiación-y-extinción">Calcular las tasas de especiación y extinción</a></li>
+  <li><a href="#calcular-las-tasas-de-diversificación-y-extinción" id="toc-calcular-las-tasas-de-diversificación-y-extinción" class="nav-link" data-scroll-target="#calcular-las-tasas-de-diversificación-y-extinción">Calcular las tasas de diversificación y extinción</a></li>
   <li><a href="#movimientos-de-mcmc-para-el-modelo-hsmrf" id="toc-movimientos-de-mcmc-para-el-modelo-hsmrf" class="nav-link" data-scroll-target="#movimientos-de-mcmc-para-el-modelo-hsmrf">Movimientos de MCMC para el Modelo HSMRF</a></li>
   <li><a href="#configuración-de-los-intervalos-de-tiempo" id="toc-configuración-de-los-intervalos-de-tiempo" class="nav-link" data-scroll-target="#configuración-de-los-intervalos-de-tiempo">Configuración de los Intervalos de Tiempo</a></li>
   <li><a href="#corrección-por-muestreo-incompleto" id="toc-corrección-por-muestreo-incompleto" class="nav-link" data-scroll-target="#corrección-por-muestreo-incompleto">Corrección por Muestreo Incompleto</a></li>
@@ -256,7 +256,7 @@ window.Quarto = {
   <li><a href="#asignando-datos-observados-al-árbol" id="toc-asignando-datos-observados-al-árbol" class="nav-link" data-scroll-target="#asignando-datos-observados-al-árbol">Asignando Datos Observados al Árbol</a></li>
   <li><a href="#creando-el-modelo-completo" id="toc-creando-el-modelo-completo" class="nav-link" data-scroll-target="#creando-el-modelo-completo">Creando el Modelo Completo</a></li>
   <li><a href="#configuración-de-los-monitores" id="toc-configuración-de-los-monitores" class="nav-link" data-scroll-target="#configuración-de-los-monitores">Configuración de los Monitores</a></li>
-  <li><a href="#creación-de-monitores-para-las-tasas-de-especiación-y-extinción" id="toc-creación-de-monitores-para-las-tasas-de-especiación-y-extinción" class="nav-link" data-scroll-target="#creación-de-monitores-para-las-tasas-de-especiación-y-extinción">Creación de Monitores para las Tasas de Especiación y Extinción</a></li>
+  <li><a href="#creación-de-monitores-para-las-tasas-de-diversificación-y-extinción" id="toc-creación-de-monitores-para-las-tasas-de-diversificación-y-extinción" class="nav-link" data-scroll-target="#creación-de-monitores-para-las-tasas-de-diversificación-y-extinción">Creación de Monitores para las Tasas de diversificación y Extinción</a></li>
   <li><a href="#creación-de-un-monitor-en-pantalla" id="toc-creación-de-un-monitor-en-pantalla" class="nav-link" data-scroll-target="#creación-de-un-monitor-en-pantalla">Creación de un Monitor en Pantalla</a></li>
   <li><a href="#configuración-del-mcmc" id="toc-configuración-del-mcmc" class="nav-link" data-scroll-target="#configuración-del-mcmc">Configuración del MCMC</a></li>
   <li><a href="#ejecutar-el-mcmc" id="toc-ejecutar-el-mcmc" class="nav-link" data-scroll-target="#ejecutar-el-mcmc">Ejecutar el MCMC</a></li>
@@ -268,9 +268,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/u1_intro_diversification.html">Unidad 1: Patrones de diversificación</a></li><li class="breadcrumb-item"><a href="../chapters/u1_intro_diversification_2.html"><span class="chapter-title">Modelos con cambios en las Tasas de Especiación</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/u1_intro_diversification.html">Unidad 1: Patrones de diversificación</a></li><li class="breadcrumb-item"><a href="../chapters/u1_intro_diversification_2.html"><span class="chapter-title">Modelos con cambios en las tasas de diversificación</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Modelos con cambios en las Tasas de Especiación</span></h1>
+<h1 class="title"><span class="chapter-title">Modelos con cambios en las tasas de diversificación</span></h1>
 </div>
 
 
@@ -287,8 +287,8 @@ window.Quarto = {
 </header>
 
 
-<section id="presentación-modelos-con-cambios-en-las-tasas-de-especiación" class="level1">
-<h1>Presentación: Modelos con cambios en las Tasas de Especiación</h1>
+<section id="presentación-modelos-con-cambios-en-las-tasas-de-diversificación" class="level1">
+<h1>Presentación: Modelos con cambios en las tasas de diversificación</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="../docs/u1_PatDiv/DivRatesTt.pdf"><img src="../images/u1_PatDiv/u1_PatDiv_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></a></p>
@@ -296,12 +296,12 @@ window.Quarto = {
 </div>
 <p>Haz clic en la imagen para ver el PDF de la presentación</p>
 </section>
-<section id="modelos-con-cambios-en-las-tasas-de-especiación-y-extinción-en-r-con-treepar" class="level1">
-<h1>Modelos con cambios en las Tasas de Especiación y Extinción en <strong>R</strong> con <strong>TreePar</strong></h1>
+<section id="modelos-con-cambios-en-las-tasas-de-diversificación-en-r-con-treepar" class="level1">
+<h1>Modelos con cambios en las Tasas de diversificación en <strong>R</strong> con <strong>TreePar</strong></h1>
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
-<p>En estudios filogenéticos, los modelos de <strong>nacimiento-muerte</strong> (<em>birth-death models</em>) permiten inferir cómo han cambiado las tasas de especiación (<span class="math inline">\(\lambda\)</span>) y extinción (<span class="math inline">\(\mu\)</span>) a lo largo del tiempo. Sin embargo, estas tasas no son siempre constantes. Diversos eventos evolutivos, como la aparición de nuevas adaptaciones o cambios ambientales, pueden causar variaciones en la dinámica de diversificación de un linaje.</p>
-<p>El paquete <strong>TreePar</strong> permite ajustar modelos de diversificación con cambios en la tasa mediante la función <code>bd.shifts.optim()</code>. Esta función estima la mejor combinación de tasas de especiación y extinción en diferentes periodos de tiempo, según la estructura de una filogenia dada.</p>
+<p>En estudios filogenéticos, los modelos de <strong>nacimiento-muerte</strong> (<em>birth-death models</em>) permiten inferir cómo han cambiado las tasas de diversificación (<span class="math inline">\(\lambda\)</span>) y extinción (<span class="math inline">\(\mu\)</span>) a lo largo del tiempo. Sin embargo, estas tasas no son siempre constantes. Diversos eventos evolutivos, como la aparición de nuevas adaptaciones o cambios ambientales, pueden causar variaciones en la dinámica de diversificación de un linaje.</p>
+<p>El paquete <strong>TreePar</strong> permite ajustar modelos de diversificación con cambios en la tasa mediante la función <code>bd.shifts.optim()</code>. Esta función estima la mejor combinación de tasas de diversificación y extinción en diferentes periodos de tiempo, según la estructura de una filogenia dada.</p>
 </section>
 <section id="cargar-librerías-y-el-árbol-filogenético" class="level2">
 <h2 class="anchored" data-anchor-id="cargar-librerías-y-el-árbol-filogenético">Cargar librerías y el árbol filogenético</h2>
@@ -328,7 +328,7 @@ window.Quarto = {
 </section>
 <section id="obtención-de-los-tiempos-de-especiación" class="level2">
 <h2 class="anchored" data-anchor-id="obtención-de-los-tiempos-de-especiación">Obtención de los Tiempos de Especiación</h2>
-<p>Extraeremos y ordenaremos los tiempos de especiación (tiempos de ramificación) del árbol:</p>
+<p>Extraeremos y ordenaremos los tiempos de diversificación (tiempos de ramificación) del árbol:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener y ordenar los tiempos de especiación</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La función getx() extrae los tiempos de ramificación del árbol.</span></span>
@@ -426,9 +426,9 @@ window.Quarto = {
 <p><strong>Interpretación</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 49%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 47%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -507,7 +507,7 @@ window.Quarto = {
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
-<col style="width: 50%">
+<col style="width: 49%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -693,7 +693,7 @@ window.Quarto = {
 <ul>
 <li><p><strong>Tasas transformadas logarítmicamente</strong>:</p>
 <ul>
-<li><p>En muchos modelos evolutivos, las tasas de especiación y extinción pueden variar en órdenes de magnitud.</p></li>
+<li><p>En muchos modelos evolutivos, las tasas de diversificación y extinción pueden variar en órdenes de magnitud.</p></li>
 <li><p>Para modelar mejor estos cambios, se toma el logaritmo de las tasas en lugar de usarlas directamente.</p></li>
 <li><p>Esto ayuda a evitar valores negativos y hace que la distribución de las tasas sea más manejable.</p></li>
 </ul></li>
@@ -736,10 +736,10 @@ window.Quarto = {
 </section>
 <section id="definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala" class="level2">
 <h2 class="anchored" data-anchor-id="definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala">Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hiperprior para controlar la variabilidad global de las tasas de especiación y extinción</span></span>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hiperprior para controlar la variabilidad global de las tasas de diversificación y extinción</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>speciation_global_scale_hyperprior <span class="ot">&lt;-</span> <span class="fl">0.044</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>extinction_global_scale_hyperprior <span class="ot">&lt;-</span> <span class="fl">0.044</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Estos hiperpriors controlan la <strong>variabilidad global</strong> de las tasas de especiación y extinción:</p>
+<p>Estos hiperpriors controlan la <strong>variabilidad global</strong> de las tasas de diversificación y extinción:</p>
 <ul>
 <li><p>Un <strong>valor mayor</strong> permite <strong>más cambios abruptos</strong> entre intervalos.</p></li>
 <li><p>Un <strong>valor menor</strong> suaviza las tasas a lo largo del tiempo.</p></li>
@@ -764,16 +764,16 @@ window.Quarto = {
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>speciation_global_scale <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>extinction_global_scale <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="definir-las-tasas-iniciales-de-especiación-y-extinción-en-el-modelo-hsmrf." class="level2">
-<h2 class="anchored" data-anchor-id="definir-las-tasas-iniciales-de-especiación-y-extinción-en-el-modelo-hsmrf.">Definir las tasas iniciales de especiación y extinción en el modelo HSMRF.</h2>
-<p>En este enfoque, comenzamos con la tasa de especiación y extinción en el presente y luego modelamos cómo cambian hacia el pasado.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir tasas iniciales de especiación y extinción en el presente</span></span>
+<section id="definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf." class="level2">
+<h2 class="anchored" data-anchor-id="definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf.">Definir las tasas iniciales de diversificación y extinción en el modelo HSMRF.</h2>
+<p>En este enfoque, comenzamos con la tasa de diversificación y extinción en el presente y luego modelamos cómo cambian hacia el pasado.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir tasas iniciales de diversificación y extinción en el presente</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>log_speciation_at_present <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="fl">10.0</span>,<span class="fl">10.0</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">log_speciation_at_present.setValue</span>(<span class="fl">0.0</span>)</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>log_extinction_at_present <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="fl">10.0</span>,<span class="fl">10.0</span>)</span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">log_extinction_at_present.setValue</span>(<span class="sc">-</span><span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>¿Por qué se usa <code>dnUniform(-10.0,10.0)</code>?</strong></p>
-<p>Se establece una distribución uniforme como prior para las tasas iniciales de especiación y extinción.</p>
+<p>Se establece una distribución uniforme como prior para las tasas iniciales de diversificación y extinción.</p>
 <ul>
 <li>Como estamos modelando las tasas en <strong>escala logarítmica</strong>, esto implica que los valores de especiación/extinción reales estarán entre:
 <ul>
@@ -784,8 +784,8 @@ window.Quarto = {
 </ul>
 <p><strong>¿Por qué los valores iniciales <code>0.0</code> y <code>-1.0</code>?</strong></p>
 <ul>
-<li><code>log_speciation_at_present.setValue(0.0)</code>: Equivale a establecer la tasa inicial de especiación en (<span class="math inline">\(e^0 = 1.0\)</span>), lo cual es un punto razonable para comenzar.</li>
-<li><code>log_extinction_at_present.setValue(-1.0)</code>: Equivale a una tasa inicial de extinción de (<span class="math inline">\(e^{-1} \approx 0.37\)</span>), lo que implica que la extinción es menor que la especiación en el punto de partida.</li>
+<li><code>log_speciation_at_present.setValue(0.0)</code>: Equivale a establecer la tasa inicial de diversificación en (<span class="math inline">\(e^0 = 1.0\)</span>), lo cual es un punto razonable para comenzar.</li>
+<li><code>log_extinction_at_present.setValue(-1.0)</code>: Equivale a una tasa inicial de extinción de (<span class="math inline">\(e^{-1} \approx 0.37\)</span>), lo que implica que la extinción es menor que la diversificación en el punto de partida.</li>
 </ul>
 </section>
 <section id="movimientos-eficientes-en-mcmc-para-explorar-estas-tasas" class="level2">
@@ -795,7 +795,7 @@ window.Quarto = {
 </section>
 <section id="modelar-la-diversificación-episódica" class="level2">
 <h2 class="anchored" data-anchor-id="modelar-la-diversificación-episódica">Modelar la diversificación episódica</h2>
-<p>En el código de RevBayes para modelar la diversificación episódica, se utiliza un bucle <code>for</code> para definir los cambios en las tasas de especiación y extinción en cada intervalo de tiempo.</p>
+<p>En el código de RevBayes para modelar la diversificación episódica, se utiliza un bucle <code>for</code> para definir los cambios en las tasas de diversificación y extinción en cada intervalo de tiempo.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_BREAKS) {</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Variabilidad local en cada intervalo</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  sigma_speciation[i] <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
@@ -805,19 +805,19 @@ window.Quarto = {
 <span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  sigma_speciation[i]<span class="fu">.setValue</span>(<span class="fu">runif</span>(<span class="dv">1</span>,<span class="fl">0.005</span>,<span class="fl">0.1</span>)[<span class="dv">1</span>])</span>
 <span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  sigma_extinction[i]<span class="fu">.setValue</span>(<span class="fu">runif</span>(<span class="dv">1</span>,<span class="fl">0.005</span>,<span class="fl">0.1</span>)[<span class="dv">1</span>])</span>
 <span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Especificar los cambios en log-especiación y log-extinción mediante una distribución normal</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Especificar los cambios en log-diversificación y log-extinción mediante una distribución normal</span></span>
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  delta_log_speciation[i] <span class="sc">~</span> <span class="fu">dnNormal</span>( <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_speciation[i]<span class="sc">*</span>speciation_global_scale<span class="sc">*</span>speciation_global_scale_hyperprior )</span>
 <span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  delta_log_extinction[i] <span class="sc">~</span> <span class="fu">dnNormal</span>( <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_extinction[i]<span class="sc">*</span>extinction_global_scale<span class="sc">*</span>extinction_global_scale_hyperprior )</span>
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="calcular-las-tasas-de-especiación-y-extinción" class="level2">
-<h2 class="anchored" data-anchor-id="calcular-las-tasas-de-especiación-y-extinción">Calcular las tasas de especiación y extinción</h2>
+<section id="calcular-las-tasas-de-diversificación-y-extinción" class="level2">
+<h2 class="anchored" data-anchor-id="calcular-las-tasas-de-diversificación-y-extinción">Calcular las tasas de diversificación y extinción</h2>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>speciation <span class="sc">:</span><span class="er">=</span> <span class="fu">fnassembleContinuousMRF</span>(log_speciation_at_present, delta_log_speciation, <span class="at">initialValueIsLogScale=</span><span class="cn">TRUE</span>, <span class="at">order=</span><span class="dv">1</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>extinction <span class="sc">:</span><span class="er">=</span> <span class="fu">fnassembleContinuousMRF</span>(log_extinction_at_present, delta_log_extinction, <span class="at">initialValueIsLogScale=</span><span class="cn">TRUE</span>, <span class="at">order=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="movimientos-de-mcmc-para-el-modelo-hsmrf" class="level2">
 <h2 class="anchored" data-anchor-id="movimientos-de-mcmc-para-el-modelo-hsmrf">Movimientos de MCMC para el Modelo HSMRF</h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento para los cambios en log-escala de especiación y extinción</span></span>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento para los cambios en log-escala de diversificación y extinción</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvEllipticalSliceSamplingSimple</span>(delta_log_speciation, <span class="at">weight=</span><span class="dv">5</span>, <span class="at">tune=</span><span class="cn">FALSE</span>))</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvEllipticalSliceSamplingSimple</span>(delta_log_extinction, <span class="at">weight=</span><span class="dv">5</span>, <span class="at">tune=</span><span class="cn">FALSE</span>))</span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -832,7 +832,7 @@ window.Quarto = {
 <ol type="1">
 <li><p><strong>Muestreo Elíptico Slice (<code>mvEllipticalSliceSamplingSimple</code>)</strong></p>
 <ul>
-<li><p>Optimiza la exploración de los cambios en log-escala de las tasas de especiación y extinción.</p></li>
+<li><p>Optimiza la exploración de los cambios en log-escala de las tasas de diversificación y extinción.</p></li>
 <li><p>Funciona bien en modelos con alta correlación entre parámetros.</p></li>
 </ul></li>
 <li><p><strong>Muestreo Gibbs (<code>mvHSRFHyperpriorsGibbs</code>)</strong></p>
@@ -883,8 +883,8 @@ window.Quarto = {
 ✔ <strong><code>printgen=10</code></strong> → Especifica que se guardará un estado cada 10 generaciones.<br>
 ✔ <strong><code>separator=TAB</code></strong> → Usa tabulaciones para separar los valores en el archivo de salida.</p>
 </section>
-<section id="creación-de-monitores-para-las-tasas-de-especiación-y-extinción" class="level2">
-<h2 class="anchored" data-anchor-id="creación-de-monitores-para-las-tasas-de-especiación-y-extinción">Creación de Monitores para las Tasas de Especiación y Extinción</h2>
+<section id="creación-de-monitores-para-las-tasas-de-diversificación-y-extinción" class="level2">
+<h2 class="anchored" data-anchor-id="creación-de-monitores-para-las-tasas-de-diversificación-y-extinción">Creación de Monitores para las Tasas de diversificación y Extinción</h2>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasas de especiación</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"../output/Eupomphini_EBD_speciation_rates.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, speciation))</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -919,7 +919,7 @@ window.Quarto = {
 </section>
 <section id="visualización-de-las-tasas-de-diversificación" class="level2">
 <h2 class="anchored" data-anchor-id="visualización-de-las-tasas-de-diversificación">Visualización de las tasas de diversificación</h2>
-<p>Finalmente, generamos un gráfico que muestra cómo las tasas de especiación y extinción han cambiado a lo largo del tiempo.</p>
+<p>Finalmente, generamos un gráfico que muestra cómo las tasas de diversificación y extinción han cambiado a lo largo del tiempo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>

@@ -14,7 +14,7 @@
     "href": "index.html#unidad-1-patrones-de-diversificación",
     "title": "Patrones filogenéticos: macroevolución y adaptación",
     "section": "Unidad 1: Patrones de diversificación",
-    "text": "Unidad 1: Patrones de diversificación\n\nIntroducción al proceso de diversificación\nModelos con cambios en las Tasas de Especiación",
+    "text": "Unidad 1: Patrones de diversificación\n\nIntroducción al proceso de diversificación\nModelos con cambios en las Tasas de diversificación",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Inicio</span>"
     ]
@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139840    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09141341    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -740,342 +740,342 @@
   {
     "objectID": "chapters/u1_intro_diversification_2.html",
     "href": "chapters/u1_intro_diversification_2.html",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "",
-    "text": "Presentación: Modelos con cambios en las Tasas de Especiación\nHaz clic en la imagen para ver el PDF de la presentación",
+    "text": "Presentación: Modelos con cambios en las tasas de diversificación\nHaz clic en la imagen para ver el PDF de la presentación",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#introducción",
     "href": "chapters/u1_intro_diversification_2.html#introducción",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Introducción",
-    "text": "Introducción\nEn estudios filogenéticos, los modelos de nacimiento-muerte (birth-death models) permiten inferir cómo han cambiado las tasas de especiación (\\(\\lambda\\)) y extinción (\\(\\mu\\)) a lo largo del tiempo. Sin embargo, estas tasas no son siempre constantes. Diversos eventos evolutivos, como la aparición de nuevas adaptaciones o cambios ambientales, pueden causar variaciones en la dinámica de diversificación de un linaje.\nEl paquete TreePar permite ajustar modelos de diversificación con cambios en la tasa mediante la función bd.shifts.optim(). Esta función estima la mejor combinación de tasas de especiación y extinción en diferentes periodos de tiempo, según la estructura de una filogenia dada.",
+    "text": "Introducción\nEn estudios filogenéticos, los modelos de nacimiento-muerte (birth-death models) permiten inferir cómo han cambiado las tasas de diversificación (\\(\\lambda\\)) y extinción (\\(\\mu\\)) a lo largo del tiempo. Sin embargo, estas tasas no son siempre constantes. Diversos eventos evolutivos, como la aparición de nuevas adaptaciones o cambios ambientales, pueden causar variaciones en la dinámica de diversificación de un linaje.\nEl paquete TreePar permite ajustar modelos de diversificación con cambios en la tasa mediante la función bd.shifts.optim(). Esta función estima la mejor combinación de tasas de diversificación y extinción en diferentes periodos de tiempo, según la estructura de una filogenia dada.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#cargar-librerías-y-el-árbol-filogenético",
     "href": "chapters/u1_intro_diversification_2.html#cargar-librerías-y-el-árbol-filogenético",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Cargar librerías y el árbol filogenético",
     "text": "Cargar librerías y el árbol filogenético\n\n# Cargar las librerías necesarias\nlibrary(ape)       \nlibrary(TreePar)\nlibrary(tidyverse)\nlibrary(ggtree)\n\n# Cargar el árbol desde un archivo Nexus\ntree &lt;- read.nexus(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")\n\n# Visualizar el árbol\nggtree(tree) + theme_tree()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#obtención-de-los-tiempos-de-especiación",
     "href": "chapters/u1_intro_diversification_2.html#obtención-de-los-tiempos-de-especiación",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Obtención de los Tiempos de Especiación",
-    "text": "Obtención de los Tiempos de Especiación\nExtraeremos y ordenaremos los tiempos de especiación (tiempos de ramificación) del árbol:\n\n# Obtener y ordenar los tiempos de especiación\n# La función getx() extrae los tiempos de ramificación del árbol.\ntimes &lt;- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.\ntimes &lt;- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.\nprint(times)\n\n [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969\n [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686\n[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760\n[19]  6.2512423  1.9309798  0.9252293",
+    "text": "Obtención de los Tiempos de Especiación\nExtraeremos y ordenaremos los tiempos de diversificación (tiempos de ramificación) del árbol:\n\n# Obtener y ordenar los tiempos de especiación\n# La función getx() extrae los tiempos de ramificación del árbol.\ntimes &lt;- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.\ntimes &lt;- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.\nprint(times)\n\n [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969\n [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686\n[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760\n[19]  6.2512423  1.9309798  0.9252293",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#configuración-de-parámetros-para-el-análisis",
     "href": "chapters/u1_intro_diversification_2.html#configuración-de-parámetros-para-el-análisis",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Configuración de Parámetros para el Análisis",
     "text": "Configuración de Parámetros para el Análisis\nDefiniremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:\n\nrho &lt;- 22/26  # Proporción de especies muestreadas (22 de 26 especies)\ngrid &lt;- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)\nstart &lt;- min(times)   # Tiempo inicial para la búsqueda de cambios de tasa\nend &lt;- max(times)     # Tiempo final para la búsqueda de cambios de tasa",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#modelo-de-nacimiento-muerte-sin-cambios",
     "href": "chapters/u1_intro_diversification_2.html#modelo-de-nacimiento-muerte-sin-cambios",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Modelo de nacimiento-muerte sin cambios",
     "text": "Modelo de nacimiento-muerte sin cambios\n\nresbd &lt;- bd.shifts.optim(times, rho, grid, start, end)\n\n[1] \"startest\"\n[1] \"test\"\n\nresbd[[2]]  # Verosimilitud del modelo\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#modelo-con-un-cambio",
     "href": "chapters/u1_intro_diversification_2.html#modelo-con-un-cambio",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Modelo con un cambio",
     "text": "Modelo con un cambio\nAquí probamos un modelo en el que la tasa cambia en un tiempo \\(t_{1}\\)\n\n\n\n\n\n\n\nParámetro\nSignificado\n\n\n\n\ntime\nEdades de los nodos terminales\n\n\nc(0.8, 1)\nProporción de especies muestreadas en cada periodo\n\n\ngrid\nIntervalo de discretización del tiempo\n\n\nstart, end\nRango de tiempo para el análisis\n\n\nME=FALSE\nNo se consideran eventos de extinción masiva\n\n\nsurvival=1\nSe asume que todas las especies sobrevivientes han sido muestreadas\n\n\n\n\nresoneshift &lt;- bd.shifts.optim(times, c(rho, 1), grid, start, end, ME=FALSE, survival=1)\nresoneshift[[2]]  # Verosimilitud del modelo con un cambio en la tasa\n\n\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n[[2]]\n[1] 6.295893e+01 9.952613e-01 8.527988e-02 1.001768e-04 1.594866e-01\n[6] 6.125229e+00\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nParámetro estimado\nDescripción\n\n\n\n\n1\n62.95893\nVerosimilitud (log-likelihood)\n\n\n2\n0.99526\nTurnover antes del cambio (\\(\\epsilon_0\\))\n\n\n3\n0.08528\nTurnover después del cambio (\\(\\epsilon_1\\))\n\n\n4\n0.00010\nDiversificación antes del cambio (\\(r_0\\))\n\n\n5\n0.15949\nDiversificación después del cambio (\\(r_1\\))\n\n\n6\n6.12523\ntiempo del cambio\n\n\n\nGraficar el modelo con un cambio en la tasa\n\nbd.shifts.plot(list(resoneshift[[2]]), shifts = 1, timemax = max(times), ratemin = 0, ratemax = 1.1, plotturnover = TRUE)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#modelo-con-dos-cambios",
     "href": "chapters/u1_intro_diversification_2.html#modelo-con-dos-cambios",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Modelo con dos cambios",
     "text": "Modelo con dos cambios\n\nrestwoshift &lt;- bd.shifts.optim(times, c(0.8,1,1), grid, start, end, ME=FALSE, survival=1)\nrestwoshift[[2]]\n\n\n\n[[1]]\n[1] 6.984598e+01 2.752173e-07 9.230017e-02\n\n[[2]]\n[1] 6.300085e+01 3.082460e-02 9.309168e-08 1.887393e-02 1.612077e-01\n[6] 6.125229e+00\n\n[[3]]\n[1]  6.045200e+01  7.427444e-08  1.840255e-02  1.040200e+00  2.028774e-02\n[6]  1.244237e-01 -2.968324e-02  6.125229e+00  1.472523e+01\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nValor\nDescripción\n\n\n\n\n1\n60.45200\nVerosimilitud (log-likelihood)\n\n\n2\n7.427444e-08\nTurnover antes del primer cambio (\\(\\epsilon_0\\))\n\n\n3\n0.01840\nTurnover antes del segundo cambio (\\(\\epsilon_1\\))\n\n\n4\n1.04020\nTurnover después del segundo cambio (\\(\\epsilon_2\\))\n\n\n5\n0.02028\nDiversificación antes del primer cambio (\\(r_0\\))\n\n\n6\n0.12442\nDiversificación antes del segundo cambio (\\(r_1\\))\n\n\n7\n-0.02968\nDiversificación despues del segundo cambio (\\(r_2\\))\n\n\n8\n6.12523\nTiempo del primer cambio \\(t_1\\)\n\n\n9\n14.72523\nTiempo del segundo cambio \\(t_1\\)\n\n\n\nGraficar el modelo con dos cambio en la tasa\n\nbd.shifts.plot(list(restwoshift[[2]]), shifts = 2, timemax = max(times), ratemin = -0.1, ratemax = 1.1, plotturnover = TRUE)\n\n\n\n\n\n\n\n\nOpcion con ggtree y ggplot\n\nlibrary(ggplot2)\nlibrary(ggtree)\nlibrary(tidyr)\nlibrary(patchwork) \n\n# Extraer resultados de restwoshift[[2]]\nresultados &lt;- restwoshift[[2]][[3]]\n\n# Crear el gráfico del árbol con `ggtree`\np_tree &lt;- ggtree(tree) + \n  theme_tree() +\n  theme(plot.background = element_blank())\n\n# Crear el data frame con los valores obtenidos\ndf_prueba &lt;- data.frame(\n  turnover = c(resultados[2], resultados[2], resultados[3], resultados[4]),  \n  r = c(resultados[5], resultados[5], resultados[6], resultados[7]),  \n  tiempo = c(start, resultados[8], resultados[9], end)  # Tiempo en sentido inverso (del pasado al presente)\n)\n\n# Transformar datos al formato largo para ggplot2\ndf_long &lt;- pivot_longer(df_prueba, cols = c(turnover, r), \n                        names_to = \"Tasa\", values_to = \"Valor\")\n\n# Crear el gráfico de tasas con `geom_step()`\np_tasas &lt;- ggplot(df_long, aes(x = tiempo, y = Valor, color = rev(Tasa))) +\n  geom_step(size = 1, direction = \"hv\") + \n  geom_point(size = 3) +\n  scale_x_reverse() +  # Invertir el eje X para que el tiempo fluya del pasado al presente\n  labs(x = \"Time\",\n       y = \"Rate\") +\n  theme_minimal()\n\n# Superponer el árbol y el gráfico de tasas con ajuste de proporciones\np_tree + p_tasas + plot_layout(ncol = 1, heights = c(1, 1.5))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#comparación-de-modelos-usando-likelihood-ratio-test-lrt",
     "href": "chapters/u1_intro_diversification_2.html#comparación-de-modelos-usando-likelihood-ratio-test-lrt",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Comparación de modelos usando Likelihood Ratio Test (LRT)",
     "text": "Comparación de modelos usando Likelihood Ratio Test (LRT)\n¿Qué es la prueba LRT? Es una prueba estadística para comparar modelos anidados, es decir, modelos donde uno es una versión simplificada del otro (por ejemplo, el modelo de nacimiento-muerte puro vs. un modelo con cambios en la tasa).\nSe calcula con la siguiente fórmula:\n\\(LR = 2 * (\\mathcal{L}_{modelo más simple} - \\mathcal{L}_{modelo más complejo})\\)\nDonde: - Un p-valor menor a 0.05 indica que el modelo más complejo es significativamente mejor que el más simple.\nObtener las Verosimilitudes de cada modelo\n\n## Verosimilitud birth-death\nresbd[[2]][[1]][1]\n\n[1] 70.02138\n\n## Verosimilitud birth-death un cambio\nresoneshift[[2]][[1]][1]\n\n[1] 70.02138\n\n## Verosimilitud birth-death dos cambios\nrestwoshift[[2]][[1]][1]\n\n[1] 69.84598\n\n\nComparación BD vs BD un cambio\n\nChiSq1 = 2 * (resbd[[2]][[1]][1] - resoneshift[[2]][[1]][1])\nChiSq1\n\n[1] 0\n\npchiSq1 &lt;- pchisq(ChiSq1, df=3)\npchiSq1\n\n[1] 0\n\n\nResultados:\n\n\\(LR = 0\\) → No hay diferencia en la verosimilitud entre el modelo BD y BD con un cambio.\n\\(p_{valor} = 0\\) → Indica que no hay mejora significativa en el modelo con un cambio en la tasa.\n\nComparación BD un cambio vs BD dos cambios\n\nChiSq2 = 2 * (resoneshift[[2]][[1]][1] - restwoshift[[2]][[1]][1])\nChiSq2\n\n[1] 0.3508041\n\npchiSq2 &lt;- pchisq(ChiSq2, df=3)\npchiSq2\n\n[1] 0.04979325\n\n\nResultados:\n\n\\(LR = 0.3508\\) → Hay una pequeña diferencia en la verosimilitud entre el modelo BD con un cambio y el modelo BD con dos cambios.\n\\(p_{valor} = 0.0498\\) → Justo en el límite del umbral de significancia \\((0.05)\\), lo que indica que el modelo con dos cambios podría ser significativamente mejor.\n\nGenerar el gráfico con bd.shifts.plot()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#introducción-1",
     "href": "chapters/u1_intro_diversification_2.html#introducción-1",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Introducción",
-    "text": "Introducción\nEl modelo de nacimiento-muerte epísodico es un proceso en el cual las tasas de diversificación varían epísodicamente a lo largo del tiempo y se modelan como tasas constantes por intervalos de tiempo (Stadler 2011; Höhna 2015). Siguiendo el tutorial oficial Episodic Diversification Rate Estimation.\nAsumimos que las tasas transformadas logarítmicamente siguen una distribución previa de campo aleatorio de Markov en forma de herradura (Horseshoe Markov random field, HSMRF) según Magee et al. (2020).\n\nTasas transformadas logarítmicamente:\n\nEn muchos modelos evolutivos, las tasas de especiación y extinción pueden variar en órdenes de magnitud.\nPara modelar mejor estos cambios, se toma el logaritmo de las tasas en lugar de usarlas directamente.\nEsto ayuda a evitar valores negativos y hace que la distribución de las tasas sea más manejable.\n\nDistribución previa (prior) de campo aleatorio de Markov en forma de herradura (HSMRF):\n\nDistribución previa (prior): En un enfoque bayesiano, los parámetros desconocidos (como las tasas de especiación/extinción) tienen distribuciones previas que reflejan nuestras creencias antes de ver los datos.\nCampo aleatorio de Markov (Markov Random Field, MRF): Este término indica que las tasas en un intervalo de tiempo dependen de las tasas en el intervalo anterior. En otras palabras, las tasas están autocorrelacionadas temporalmente.\nForma de herradura (Horseshoe): Es un tipo de distribución previa diseñada para manejar datos donde algunos valores pueden ser cercanos a cero (relativamente constantes), pero también permite valores extremos (cambios bruscos en las tasas).\n¿Por qué se usa? El HSMRF permite capturar patrones donde las tasas cambian lentamente la mayor parte del tiempo, pero ocasionalmente pueden dar saltos grandes, lo cual es biológicamente realista en muchos sistemas evolutivos.",
+    "text": "Introducción\nEl modelo de nacimiento-muerte epísodico es un proceso en el cual las tasas de diversificación varían epísodicamente a lo largo del tiempo y se modelan como tasas constantes por intervalos de tiempo (Stadler 2011; Höhna 2015). Siguiendo el tutorial oficial Episodic Diversification Rate Estimation.\nAsumimos que las tasas transformadas logarítmicamente siguen una distribución previa de campo aleatorio de Markov en forma de herradura (Horseshoe Markov random field, HSMRF) según Magee et al. (2020).\n\nTasas transformadas logarítmicamente:\n\nEn muchos modelos evolutivos, las tasas de diversificación y extinción pueden variar en órdenes de magnitud.\nPara modelar mejor estos cambios, se toma el logaritmo de las tasas en lugar de usarlas directamente.\nEsto ayuda a evitar valores negativos y hace que la distribución de las tasas sea más manejable.\n\nDistribución previa (prior) de campo aleatorio de Markov en forma de herradura (HSMRF):\n\nDistribución previa (prior): En un enfoque bayesiano, los parámetros desconocidos (como las tasas de especiación/extinción) tienen distribuciones previas que reflejan nuestras creencias antes de ver los datos.\nCampo aleatorio de Markov (Markov Random Field, MRF): Este término indica que las tasas en un intervalo de tiempo dependen de las tasas en el intervalo anterior. En otras palabras, las tasas están autocorrelacionadas temporalmente.\nForma de herradura (Horseshoe): Es un tipo de distribución previa diseñada para manejar datos donde algunos valores pueden ser cercanos a cero (relativamente constantes), pero también permite valores extremos (cambios bruscos en las tasas).\n¿Por qué se usa? El HSMRF permite capturar patrones donde las tasas cambian lentamente la mayor parte del tiempo, pero ocasionalmente pueden dar saltos grandes, lo cual es biológicamente realista en muchos sistemas evolutivos.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#lectura-del-árbol",
     "href": "chapters/u1_intro_diversification_2.html#lectura-del-árbol",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Lectura del árbol",
     "text": "Lectura del árbol\nComenzamos cargando el árbol filogenético previamente filtrado.\n# Cargar el árbol filogenético desde un archivo en formato NEXUS\nT &lt;- readTrees(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")[1]\n\n# Extraer la información taxonómica del árbol\n taxa &lt;- T.taxa()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.",
     "href": "chapters/u1_intro_diversification_2.html#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.",
     "text": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.\nmoves    = VectorMoves()\nmonitors = VectorMonitors()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación.",
     "href": "chapters/u1_intro_diversification_2.html#definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación.",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.",
     "text": "Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.\nNUM_INTERVALS = 10  # Número total de intervalos de tiempo\nNUM_BREAKS := NUM_INTERVALS - 1  # Número de puntos de cambio entre intervalos",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala",
     "href": "chapters/u1_intro_diversification_2.html#definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala",
-    "text": "Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala\n# Hiperprior para controlar la variabilidad global de las tasas de especiación y extinción\nspeciation_global_scale_hyperprior &lt;- 0.044\nextinction_global_scale_hyperprior &lt;- 0.044\nEstos hiperpriors controlan la variabilidad global de las tasas de especiación y extinción:\n\nUn valor mayor permite más cambios abruptos entre intervalos.\nUn valor menor suaviza las tasas a lo largo del tiempo.\n\nFunción setMRFGlobalScaleHyperpriorNShifts() del paquete RevGadgets en R para calcular el hiperprior automáticamente.\n\n### Ejecutar en R, no agregar a RevBayes!!!\n### Calcula el hiperprior que utilizaremos en RevBayes\nlibrary(RevGadgets)\n## 10 numero intervalos\n## \"HSMRF\" Horseshoe Markov random field \nsetMRFGlobalScaleHyperpriorNShifts(10, \"HSMRF\")\n\n[1] 0.04446432",
+    "text": "Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala\n# Hiperprior para controlar la variabilidad global de las tasas de diversificación y extinción\nspeciation_global_scale_hyperprior &lt;- 0.044\nextinction_global_scale_hyperprior &lt;- 0.044\nEstos hiperpriors controlan la variabilidad global de las tasas de diversificación y extinción:\n\nUn valor mayor permite más cambios abruptos entre intervalos.\nUn valor menor suaviza las tasas a lo largo del tiempo.\n\nFunción setMRFGlobalScaleHyperpriorNShifts() del paquete RevGadgets en R para calcular el hiperprior automáticamente.\n\n### Ejecutar en R, no agregar a RevBayes!!!\n### Calcula el hiperprior que utilizaremos en RevBayes\nlibrary(RevGadgets)\n## 10 numero intervalos\n## \"HSMRF\" Horseshoe Markov random field \nsetMRFGlobalScaleHyperpriorNShifts(10, \"HSMRF\")\n\n[1] 0.04446432",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01",
     "href": "chapters/u1_intro_diversification_2.html#asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Asignar distribuciones previas Half-Cauchy (dnHalfCauchy(0,1))",
     "text": "Asignar distribuciones previas Half-Cauchy (dnHalfCauchy(0,1))\nSe asignan a los parámetros de escala global, esto permite valores pequeños pero también acepta valores más grandes ocasionalmente.\n# Distribuciones previas de Cauchy truncadas para los parámetros de escala global\nspeciation_global_scale ~ dnHalfCauchy(0,1)\nextinction_global_scale ~ dnHalfCauchy(0,1)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification_2.html#definir-las-tasas-iniciales-de-especiación-y-extinción-en-el-modelo-hsmrf.",
-    "href": "chapters/u1_intro_diversification_2.html#definir-las-tasas-iniciales-de-especiación-y-extinción-en-el-modelo-hsmrf.",
-    "title": "Modelos con cambios en las Tasas de Especiación",
-    "section": "Definir las tasas iniciales de especiación y extinción en el modelo HSMRF.",
-    "text": "Definir las tasas iniciales de especiación y extinción en el modelo HSMRF.\nEn este enfoque, comenzamos con la tasa de especiación y extinción en el presente y luego modelamos cómo cambian hacia el pasado.\n# Definir tasas iniciales de especiación y extinción en el presente\nlog_speciation_at_present ~ dnUniform(-10.0,10.0)\nlog_speciation_at_present.setValue(0.0)\nlog_extinction_at_present ~ dnUniform(-10.0,10.0)\nlog_extinction_at_present.setValue(-1.0)\n¿Por qué se usa dnUniform(-10.0,10.0)?\nSe establece una distribución uniforme como prior para las tasas iniciales de especiación y extinción.\n\nComo estamos modelando las tasas en escala logarítmica, esto implica que los valores de especiación/extinción reales estarán entre:\n\n(e^{-10}) (casi 0, evolución extremadamente lenta)\n(e^{10}) (tasa de diversificación muy rápida)\n\nPermitir este rango amplio cubre la mayoría de los valores posibles sin asumir un conocimiento previo específico sobre la tasa de diversificación en el presente.\n\n¿Por qué los valores iniciales 0.0 y -1.0?\n\nlog_speciation_at_present.setValue(0.0): Equivale a establecer la tasa inicial de especiación en (\\(e^0 = 1.0\\)), lo cual es un punto razonable para comenzar.\nlog_extinction_at_present.setValue(-1.0): Equivale a una tasa inicial de extinción de (\\(e^{-1} \\approx 0.37\\)), lo que implica que la extinción es menor que la especiación en el punto de partida.",
+    "objectID": "chapters/u1_intro_diversification_2.html#definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf.",
+    "href": "chapters/u1_intro_diversification_2.html#definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf.",
+    "title": "Modelos con cambios en las tasas de diversificación",
+    "section": "Definir las tasas iniciales de diversificación y extinción en el modelo HSMRF.",
+    "text": "Definir las tasas iniciales de diversificación y extinción en el modelo HSMRF.\nEn este enfoque, comenzamos con la tasa de diversificación y extinción en el presente y luego modelamos cómo cambian hacia el pasado.\n# Definir tasas iniciales de diversificación y extinción en el presente\nlog_speciation_at_present ~ dnUniform(-10.0,10.0)\nlog_speciation_at_present.setValue(0.0)\nlog_extinction_at_present ~ dnUniform(-10.0,10.0)\nlog_extinction_at_present.setValue(-1.0)\n¿Por qué se usa dnUniform(-10.0,10.0)?\nSe establece una distribución uniforme como prior para las tasas iniciales de diversificación y extinción.\n\nComo estamos modelando las tasas en escala logarítmica, esto implica que los valores de especiación/extinción reales estarán entre:\n\n(e^{-10}) (casi 0, evolución extremadamente lenta)\n(e^{10}) (tasa de diversificación muy rápida)\n\nPermitir este rango amplio cubre la mayoría de los valores posibles sin asumir un conocimiento previo específico sobre la tasa de diversificación en el presente.\n\n¿Por qué los valores iniciales 0.0 y -1.0?\n\nlog_speciation_at_present.setValue(0.0): Equivale a establecer la tasa inicial de diversificación en (\\(e^0 = 1.0\\)), lo cual es un punto razonable para comenzar.\nlog_extinction_at_present.setValue(-1.0): Equivale a una tasa inicial de extinción de (\\(e^{-1} \\approx 0.37\\)), lo que implica que la extinción es menor que la diversificación en el punto de partida.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#movimientos-eficientes-en-mcmc-para-explorar-estas-tasas",
     "href": "chapters/u1_intro_diversification_2.html#movimientos-eficientes-en-mcmc-para-explorar-estas-tasas",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Movimientos eficientes en MCMC para explorar estas tasas",
     "text": "Movimientos eficientes en MCMC para explorar estas tasas\nmoves.append( mvScaleBactrian(log_speciation_at_present,weight=5))\nmoves.append( mvScaleBactrian(log_extinction_at_present,weight=5))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#modelar-la-diversificación-episódica",
     "href": "chapters/u1_intro_diversification_2.html#modelar-la-diversificación-episódica",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Modelar la diversificación episódica",
-    "text": "Modelar la diversificación episódica\nEn el código de RevBayes para modelar la diversificación episódica, se utiliza un bucle for para definir los cambios en las tasas de especiación y extinción en cada intervalo de tiempo.\nfor (i in 1:NUM_BREAKS) {\n  # Variabilidad local en cada intervalo\n  sigma_speciation[i] ~ dnHalfCauchy(0,1)\n  sigma_extinction[i] ~ dnHalfCauchy(0,1)\n\n  # Se inicializan valores aleatorios en un rango de 0.005 a 0.1, para evitar valores extremos en el inicio del MCMC\n  sigma_speciation[i].setValue(runif(1,0.005,0.1)[1])\n  sigma_extinction[i].setValue(runif(1,0.005,0.1)[1])\n\n  # Especificar los cambios en log-especiación y log-extinción mediante una distribución normal\n  delta_log_speciation[i] ~ dnNormal( mean=0, sd=sigma_speciation[i]*speciation_global_scale*speciation_global_scale_hyperprior )\n  delta_log_extinction[i] ~ dnNormal( mean=0, sd=sigma_extinction[i]*extinction_global_scale*extinction_global_scale_hyperprior )\n}",
+    "text": "Modelar la diversificación episódica\nEn el código de RevBayes para modelar la diversificación episódica, se utiliza un bucle for para definir los cambios en las tasas de diversificación y extinción en cada intervalo de tiempo.\nfor (i in 1:NUM_BREAKS) {\n  # Variabilidad local en cada intervalo\n  sigma_speciation[i] ~ dnHalfCauchy(0,1)\n  sigma_extinction[i] ~ dnHalfCauchy(0,1)\n\n  # Se inicializan valores aleatorios en un rango de 0.005 a 0.1, para evitar valores extremos en el inicio del MCMC\n  sigma_speciation[i].setValue(runif(1,0.005,0.1)[1])\n  sigma_extinction[i].setValue(runif(1,0.005,0.1)[1])\n\n  # Especificar los cambios en log-diversificación y log-extinción mediante una distribución normal\n  delta_log_speciation[i] ~ dnNormal( mean=0, sd=sigma_speciation[i]*speciation_global_scale*speciation_global_scale_hyperprior )\n  delta_log_extinction[i] ~ dnNormal( mean=0, sd=sigma_extinction[i]*extinction_global_scale*extinction_global_scale_hyperprior )\n}",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification_2.html#calcular-las-tasas-de-especiación-y-extinción",
-    "href": "chapters/u1_intro_diversification_2.html#calcular-las-tasas-de-especiación-y-extinción",
-    "title": "Modelos con cambios en las Tasas de Especiación",
-    "section": "Calcular las tasas de especiación y extinción",
-    "text": "Calcular las tasas de especiación y extinción\nspeciation := fnassembleContinuousMRF(log_speciation_at_present, delta_log_speciation, initialValueIsLogScale=TRUE, order=1)\nextinction := fnassembleContinuousMRF(log_extinction_at_present, delta_log_extinction, initialValueIsLogScale=TRUE, order=1)",
+    "objectID": "chapters/u1_intro_diversification_2.html#calcular-las-tasas-de-diversificación-y-extinción",
+    "href": "chapters/u1_intro_diversification_2.html#calcular-las-tasas-de-diversificación-y-extinción",
+    "title": "Modelos con cambios en las tasas de diversificación",
+    "section": "Calcular las tasas de diversificación y extinción",
+    "text": "Calcular las tasas de diversificación y extinción\nspeciation := fnassembleContinuousMRF(log_speciation_at_present, delta_log_speciation, initialValueIsLogScale=TRUE, order=1)\nextinction := fnassembleContinuousMRF(log_extinction_at_present, delta_log_extinction, initialValueIsLogScale=TRUE, order=1)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#movimientos-de-mcmc-para-el-modelo-hsmrf",
     "href": "chapters/u1_intro_diversification_2.html#movimientos-de-mcmc-para-el-modelo-hsmrf",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Movimientos de MCMC para el Modelo HSMRF",
-    "text": "Movimientos de MCMC para el Modelo HSMRF\n# Movimiento para los cambios en log-escala de especiación y extinción\nmoves.append(mvEllipticalSliceSamplingSimple(delta_log_speciation, weight=5, tune=FALSE))\nmoves.append(mvEllipticalSliceSamplingSimple(delta_log_extinction, weight=5, tune=FALSE))\n\n# Movimiento Gibbs para los hiperparámetros globales y locales\nmoves.append(mvHSRFHyperpriorsGibbs(speciation_global_scale, sigma_speciation , delta_log_speciation , speciation_global_scale_hyperprior, propGlobalOnly=0.75, weight=10))\nmoves.append(mvHSRFHyperpriorsGibbs(extinction_global_scale, sigma_extinction , delta_log_extinction , extinction_global_scale_hyperprior, propGlobalOnly=0.75, weight=10))\n\n# Movimiento de intercambio entre intervalos adyacentes\nmoves.append(mvHSRFIntervalSwap(delta_log_speciation, sigma_speciation, weight=5))\nmoves.append(mvHSRFIntervalSwap(delta_log_extinction, sigma_extinction, weight=5))\nSe utilizan tres tipos principales de movimientos en este código:\n\nMuestreo Elíptico Slice (mvEllipticalSliceSamplingSimple)\n\nOptimiza la exploración de los cambios en log-escala de las tasas de especiación y extinción.\nFunciona bien en modelos con alta correlación entre parámetros.\n\nMuestreo Gibbs (mvHSRFHyperpriorsGibbs)\n\nSe usa para actualizar los hiperparámetros globales y locales del modelo.\nPermite ajustes eficientes en la escala de variabilidad de las tasas.\n\nIntercambio de intervalos (mvHSRFIntervalSwap)\n\nIntercambia valores entre intervalos de tiempo adyacentes.\nAyuda a evitar que la cadena de MCMC se quede atrapada en un estado subóptimo.",
+    "text": "Movimientos de MCMC para el Modelo HSMRF\n# Movimiento para los cambios en log-escala de diversificación y extinción\nmoves.append(mvEllipticalSliceSamplingSimple(delta_log_speciation, weight=5, tune=FALSE))\nmoves.append(mvEllipticalSliceSamplingSimple(delta_log_extinction, weight=5, tune=FALSE))\n\n# Movimiento Gibbs para los hiperparámetros globales y locales\nmoves.append(mvHSRFHyperpriorsGibbs(speciation_global_scale, sigma_speciation , delta_log_speciation , speciation_global_scale_hyperprior, propGlobalOnly=0.75, weight=10))\nmoves.append(mvHSRFHyperpriorsGibbs(extinction_global_scale, sigma_extinction , delta_log_extinction , extinction_global_scale_hyperprior, propGlobalOnly=0.75, weight=10))\n\n# Movimiento de intercambio entre intervalos adyacentes\nmoves.append(mvHSRFIntervalSwap(delta_log_speciation, sigma_speciation, weight=5))\nmoves.append(mvHSRFIntervalSwap(delta_log_extinction, sigma_extinction, weight=5))\nSe utilizan tres tipos principales de movimientos en este código:\n\nMuestreo Elíptico Slice (mvEllipticalSliceSamplingSimple)\n\nOptimiza la exploración de los cambios en log-escala de las tasas de diversificación y extinción.\nFunciona bien en modelos con alta correlación entre parámetros.\n\nMuestreo Gibbs (mvHSRFHyperpriorsGibbs)\n\nSe usa para actualizar los hiperparámetros globales y locales del modelo.\nPermite ajustes eficientes en la escala de variabilidad de las tasas.\n\nIntercambio de intervalos (mvHSRFIntervalSwap)\n\nIntercambia valores entre intervalos de tiempo adyacentes.\nAyuda a evitar que la cadena de MCMC se quede atrapada en un estado subóptimo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#configuración-de-los-intervalos-de-tiempo",
     "href": "chapters/u1_intro_diversification_2.html#configuración-de-los-intervalos-de-tiempo",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Configuración de los Intervalos de Tiempo",
     "text": "Configuración de los Intervalos de Tiempo\ninterval_times &lt;- abs(T.rootAge() * seq(1, NUM_BREAKS, 1)/NUM_INTERVALS)\n\nT.rootAge() → Obtiene la edad de la raíz del árbol filogenético (es decir, el tiempo en el pasado en que el linaje común más reciente existió).\nseq(1, NUM_BREAKS, 1) → Genera una secuencia de números del 1 al NUM_BREAKS (el número de puntos de cambio entre intervalos).\nMultiplica la raíz del árbol T.rootAge() por esta secuencia para escalar los intervalos al tiempo evolutivo real.\nDivide entre NUM_INTERVALS para normalizar y hacer que los intervalos sean de igual tamaño.\nabs(...) → Convierte los valores a positivos porque las edades van en dirección del presente al pasado.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#corrección-por-muestreo-incompleto",
     "href": "chapters/u1_intro_diversification_2.html#corrección-por-muestreo-incompleto",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Corrección por Muestreo Incompleto",
     "text": "Corrección por Muestreo Incompleto\nrho &lt;- T.ntips()/26",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#inicializando-el-nodo-estocástico-del-árbol-de-tiempos",
     "href": "chapters/u1_intro_diversification_2.html#inicializando-el-nodo-estocástico-del-árbol-de-tiempos",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Inicializando el Nodo Estocástico del Árbol de Tiempos",
     "text": "Inicializando el Nodo Estocástico del Árbol de Tiempos\ntimetree ~ dnEpisodicBirthDeath(rootAge=T.rootAge(), lambdaRates=speciation, lambdaTimes=interval_times, muRates=extinction, muTimes=interval_times, rho=rho, samplingStrategy=\"uniform\", condition=\"survival\", taxa=taxa)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#asignando-datos-observados-al-árbol",
     "href": "chapters/u1_intro_diversification_2.html#asignando-datos-observados-al-árbol",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Asignando Datos Observados al Árbol",
     "text": "Asignando Datos Observados al Árbol\ntimetree.clamp(T)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#creando-el-modelo-completo",
     "href": "chapters/u1_intro_diversification_2.html#creando-el-modelo-completo",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Creando el Modelo Completo",
     "text": "Creando el Modelo Completo\nEncuentra todas las conexiones en la red bayesiana y las agrupa en un solo objeto model()\nmymodel = model(rho)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#configuración-de-los-monitores",
     "href": "chapters/u1_intro_diversification_2.html#configuración-de-los-monitores",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Configuración de los Monitores",
     "text": "Configuración de los Monitores\nmonitors.append(mnModel(filename=\"../output/Eupomphini_EBD.log\", printgen=10, separator = TAB))\nCrea un monitor (mnModel) que guarda los valores de todos los parámetros del modelo.\n✔ Guarda los resultados en el archivo \"output/primates_EBD.log\".\n✔ printgen=10 → Especifica que se guardará un estado cada 10 generaciones.\n✔ separator=TAB → Usa tabulaciones para separar los valores en el archivo de salida.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification_2.html#creación-de-monitores-para-las-tasas-de-especiación-y-extinción",
-    "href": "chapters/u1_intro_diversification_2.html#creación-de-monitores-para-las-tasas-de-especiación-y-extinción",
-    "title": "Modelos con cambios en las Tasas de Especiación",
-    "section": "Creación de Monitores para las Tasas de Especiación y Extinción",
-    "text": "Creación de Monitores para las Tasas de Especiación y Extinción\n# Tasas de especiación\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_speciation_rates.log\", printgen=10, separator = TAB, speciation))\n\n# Intervalos de tiempo de especiación\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_speciation_times.log\", printgen=10, separator = TAB, interval_times))\n\n# Tasas de extinción\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_extinction_rates.log\", printgen=10, separator = TAB, extinction))\n\n#Intervalos de tiempo de extinción\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_extinction_times.log\", printgen=10, separator = TAB, interval_times))",
+    "objectID": "chapters/u1_intro_diversification_2.html#creación-de-monitores-para-las-tasas-de-diversificación-y-extinción",
+    "href": "chapters/u1_intro_diversification_2.html#creación-de-monitores-para-las-tasas-de-diversificación-y-extinción",
+    "title": "Modelos con cambios en las tasas de diversificación",
+    "section": "Creación de Monitores para las Tasas de diversificación y Extinción",
+    "text": "Creación de Monitores para las Tasas de diversificación y Extinción\n# Tasas de especiación\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_speciation_rates.log\", printgen=10, separator = TAB, speciation))\n\n# Intervalos de tiempo de especiación\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_speciation_times.log\", printgen=10, separator = TAB, interval_times))\n\n# Tasas de extinción\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_extinction_rates.log\", printgen=10, separator = TAB, extinction))\n\n#Intervalos de tiempo de extinción\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_extinction_times.log\", printgen=10, separator = TAB, interval_times))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#creación-de-un-monitor-en-pantalla",
     "href": "chapters/u1_intro_diversification_2.html#creación-de-un-monitor-en-pantalla",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Creación de un Monitor en Pantalla",
     "text": "Creación de un Monitor en Pantalla\nmonitors.append(mnScreen(printgen=1000, extinction_global_scale, speciation_global_scale))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#configuración-del-mcmc",
     "href": "chapters/u1_intro_diversification_2.html#configuración-del-mcmc",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Configuración del MCMC",
     "text": "Configuración del MCMC\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")\nCrea el objeto MCMC mymcmc que utilizará:\n\nmymodel → El modelo definido anteriormente.\nmonitors → Los monitores configurados.\nmoves → Los movimientos de MCMC definidos antes.\nnruns=2 → Ejecuta dos cadenas independientes de MCMC.\ncombine=\"mixed\" → Mezcla las cadenas al final del proceso para mejorar la estimación de parámetros.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#ejecutar-el-mcmc",
     "href": "chapters/u1_intro_diversification_2.html#ejecutar-el-mcmc",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Ejecutar el MCMC",
     "text": "Ejecutar el MCMC\nmymcmc.run(generations=50000, tuningInterval=200)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
     "objectID": "chapters/u1_intro_diversification_2.html#visualización-de-las-tasas-de-diversificación",
     "href": "chapters/u1_intro_diversification_2.html#visualización-de-las-tasas-de-diversificación",
-    "title": "Modelos con cambios en las Tasas de Especiación",
+    "title": "Modelos con cambios en las tasas de diversificación",
     "section": "Visualización de las tasas de diversificación",
-    "text": "Visualización de las tasas de diversificación\nFinalmente, generamos un gráfico que muestra cómo las tasas de especiación y extinción han cambiado a lo largo del tiempo.\n\nlibrary(RevGadgets)\n\n# Especificar la ruta de los archivos de salida \nspeciation_time_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_times.log\"\nspeciation_rate_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_rates.log\"\nextinction_time_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_times.log\"\nextinction_rate_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_rates.log\"\n\n# Leer y procesar los datos\nrates &lt;- processDivRates(speciation_time_log = speciation_time_file,\n                         speciation_rate_log = speciation_rate_file,\n                         extinction_time_log = extinction_time_file,\n                         extinction_rate_log = extinction_rate_file,\n                         burnin = 0.25, # Se descarta el 25% inicial de las iteraciones como burn-in\n                         summary = \"median\")  # Se toman las tasas medianas como resumen\n\n# Graficar las tasas atravez del tiempo\np &lt;- plotDivRates(rates = rates) +\n  xlab(\"Millions of years ago\") +\n  ylab(\"Rate per million years\")\n\np",
+    "text": "Visualización de las tasas de diversificación\nFinalmente, generamos un gráfico que muestra cómo las tasas de diversificación y extinción han cambiado a lo largo del tiempo.\n\nlibrary(RevGadgets)\n\n# Especificar la ruta de los archivos de salida \nspeciation_time_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_times.log\"\nspeciation_rate_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_rates.log\"\nextinction_time_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_times.log\"\nextinction_rate_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_rates.log\"\n\n# Leer y procesar los datos\nrates &lt;- processDivRates(speciation_time_log = speciation_time_file,\n                         speciation_rate_log = speciation_rate_file,\n                         extinction_time_log = extinction_time_file,\n                         extinction_rate_log = extinction_rate_file,\n                         burnin = 0.25, # Se descarta el 25% inicial de las iteraciones como burn-in\n                         summary = \"median\")  # Se toman las tasas medianas como resumen\n\n# Graficar las tasas atravez del tiempo\np &lt;- plotDivRates(rates = rates) +\n  xlab(\"Millions of years ago\") +\n  ylab(\"Rate per million years\")\n\np",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las Tasas de Especiación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   }
 ]
