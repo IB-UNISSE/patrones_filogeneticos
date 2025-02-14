@@ -232,10 +232,9 @@ window.Quarto = {
   <li><a href="#cargar-librerías-y-el-árbol-filogenético" id="toc-cargar-librerías-y-el-árbol-filogenético" class="nav-link" data-scroll-target="#cargar-librerías-y-el-árbol-filogenético">Cargar librerías y el árbol filogenético</a></li>
   <li><a href="#obtención-de-los-tiempos-de-especiación" id="toc-obtención-de-los-tiempos-de-especiación" class="nav-link" data-scroll-target="#obtención-de-los-tiempos-de-especiación">Obtención de los Tiempos de Especiación</a></li>
   <li><a href="#configuración-de-parámetros-para-el-análisis" id="toc-configuración-de-parámetros-para-el-análisis" class="nav-link" data-scroll-target="#configuración-de-parámetros-para-el-análisis">Configuración de Parámetros para el Análisis</a></li>
-  <li><a href="#modelo-de-nacimiento-muerte-sin-cambios-en-la-tasa" id="toc-modelo-de-nacimiento-muerte-sin-cambios-en-la-tasa" class="nav-link" data-scroll-target="#modelo-de-nacimiento-muerte-sin-cambios-en-la-tasa">Modelo de nacimiento-muerte sin cambios en la tasa</a></li>
-  <li><a href="#modelo-con-un-cambio-en-la-tasa" id="toc-modelo-con-un-cambio-en-la-tasa" class="nav-link" data-scroll-target="#modelo-con-un-cambio-en-la-tasa">Modelo con un cambio en la tasa</a></li>
-  <li><a href="#modelo-con-dos-cambios-en-la-tasa" id="toc-modelo-con-dos-cambios-en-la-tasa" class="nav-link" data-scroll-target="#modelo-con-dos-cambios-en-la-tasa">Modelo con dos cambios en la tasa</a></li>
-  <li><a href="#resultados-del-segundo-cambio-en-la-tasa-restwoshift3" id="toc-resultados-del-segundo-cambio-en-la-tasa-restwoshift3" class="nav-link" data-scroll-target="#resultados-del-segundo-cambio-en-la-tasa-restwoshift3">Resultados del segundo cambio en la tasa (<code>restwoshift[[3]]</code>)</a></li>
+  <li><a href="#modelo-de-nacimiento-muerte-sin-cambios" id="toc-modelo-de-nacimiento-muerte-sin-cambios" class="nav-link" data-scroll-target="#modelo-de-nacimiento-muerte-sin-cambios">Modelo de nacimiento-muerte sin cambios</a></li>
+  <li><a href="#modelo-con-un-cambio" id="toc-modelo-con-un-cambio" class="nav-link" data-scroll-target="#modelo-con-un-cambio">Modelo con un cambio</a></li>
+  <li><a href="#modelo-con-dos-cambios" id="toc-modelo-con-dos-cambios" class="nav-link" data-scroll-target="#modelo-con-dos-cambios">Modelo con dos cambios</a></li>
   <li><a href="#comparación-de-modelos-usando-likelihood-ratio-test-lrt" id="toc-comparación-de-modelos-usando-likelihood-ratio-test-lrt" class="nav-link" data-scroll-target="#comparación-de-modelos-usando-likelihood-ratio-test-lrt">Comparación de modelos usando Likelihood Ratio Test (LRT)</a></li>
   </ul></li>
   <li><a href="#estimación-episódica-de-la-tasa-de-diversificación-con-revbayes" id="toc-estimación-episódica-de-la-tasa-de-diversificación-con-revbayes" class="nav-link" data-scroll-target="#estimación-episódica-de-la-tasa-de-diversificación-con-revbayes">Estimación Episódica de la Tasa de Diversificación con <strong>RevBayes</strong></a>
@@ -354,8 +353,8 @@ window.Quarto = {
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">max</span>(times)     <span class="co"># Tiempo final para la búsqueda de cambios de tasa</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="modelo-de-nacimiento-muerte-sin-cambios-en-la-tasa" class="level2">
-<h2 class="anchored" data-anchor-id="modelo-de-nacimiento-muerte-sin-cambios-en-la-tasa">Modelo de nacimiento-muerte sin cambios en la tasa</h2>
+<section id="modelo-de-nacimiento-muerte-sin-cambios" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-de-nacimiento-muerte-sin-cambios">Modelo de nacimiento-muerte sin cambios</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>resbd <span class="ot">&lt;-</span> <span class="fu">bd.shifts.optim</span>(times, rho, grid, start, end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -369,13 +368,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="modelo-con-un-cambio-en-la-tasa" class="level2">
-<h2 class="anchored" data-anchor-id="modelo-con-un-cambio-en-la-tasa">Modelo con un cambio en la tasa</h2>
+<section id="modelo-con-un-cambio" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-con-un-cambio">Modelo con un cambio</h2>
 <p>Aquí probamos un modelo en el que la tasa cambia en un tiempo <span class="math inline">\(t_{1}\)</span></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 75%">
+<col style="width: 26%">
+<col style="width: 73%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -425,14 +424,11 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>Interpretación</strong></p>
-<ol type="1">
-<li>Verosimilitud:</li>
-</ol>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 58%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 53%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -450,22 +446,22 @@ window.Quarto = {
 <tr class="even">
 <td><strong>2</strong></td>
 <td>0.99526</td>
-<td>Turnover antes del cambio <strong>(<span class="math inline">\(\epsilon_0\)</span>)</strong></td>
+<td>Turnover antes del cambio <strong>(</strong><span class="math inline">\(\epsilon_0\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
 <td>0.08528</td>
-<td>Turnover después del cambio <strong>(<span class="math inline">\(\epsilon_1\)</span>)</strong></td>
+<td>Turnover después del cambio <strong>(</strong><span class="math inline">\(\epsilon_1\)</span>)</td>
 </tr>
 <tr class="even">
 <td><strong>4</strong></td>
 <td>0.00010</td>
-<td>Diversificación antes del cambio <strong>(<span class="math inline">\(r_0\)</span>)</strong></td>
+<td>Diversificación antes del cambio <strong>(</strong><span class="math inline">\(r_0\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>5</strong></td>
 <td>0.15949</td>
-<td>Diversificación después del cambio <strong>(<span class="math inline">\(r_1\)</span>)</strong></td>
+<td>Diversificación después del cambio <strong>(</strong><span class="math inline">\(r_1\)</span>)</td>
 </tr>
 <tr class="even">
 <td><strong>6</strong></td>
@@ -486,8 +482,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="modelo-con-dos-cambios-en-la-tasa" class="level2">
-<h2 class="anchored" data-anchor-id="modelo-con-dos-cambios-en-la-tasa">Modelo con dos cambios en la tasa</h2>
+<section id="modelo-con-dos-cambios" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-con-dos-cambios">Modelo con dos cambios</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>restwoshift <span class="ot">&lt;-</span> <span class="fu">bd.shifts.optim</span>(times, <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="dv">1</span>,<span class="dv">1</span>), grid, start, end, <span class="at">ME=</span><span class="cn">FALSE</span>, <span class="at">survival=</span><span class="dv">1</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>restwoshift[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -506,14 +502,12 @@ window.Quarto = {
 [6]  1.244237e-01 -2.968324e-02  6.125229e+00  1.472523e+01</code></pre>
 </div>
 </div>
-</section>
-<section id="resultados-del-segundo-cambio-en-la-tasa-restwoshift3" class="level2">
-<h2 class="anchored" data-anchor-id="resultados-del-segundo-cambio-en-la-tasa-restwoshift3">Resultados del segundo cambio en la tasa (<code>restwoshift[[3]]</code>)</h2>
+<p><strong>Interpretación</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 58%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 55%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -531,32 +525,32 @@ window.Quarto = {
 <tr class="even">
 <td><strong>2</strong></td>
 <td>7.427444e-08</td>
-<td>Turnover antes del primer cambio <strong>(<span class="math inline">\(\epsilon_0\)</span>)</strong></td>
+<td>Turnover antes del primer cambio <strong>(</strong><span class="math inline">\(\epsilon_0\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
 <td>0.01840</td>
-<td>Turnover antes del segundo cambio <strong>(<span class="math inline">\(\epsilon_1\)</span>)</strong></td>
+<td>Turnover antes del segundo cambio <strong>(</strong><span class="math inline">\(\epsilon_1\)</span>)</td>
 </tr>
 <tr class="even">
 <td><strong>4</strong></td>
 <td>1.04020</td>
-<td>Turnover después del segundo cambio <strong>(<span class="math inline">\(\epsilon_2\)</span>)</strong></td>
+<td>Turnover después del segundo cambio <strong>(</strong><span class="math inline">\(\epsilon_2\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>5</strong></td>
 <td>0.02028</td>
-<td>Diversificación antes del primer cambio <strong>(<span class="math inline">\(r_0\)</span>)</strong></td>
+<td>Diversificación antes del primer cambio <strong>(</strong><span class="math inline">\(r_0\)</span>)</td>
 </tr>
 <tr class="even">
 <td><strong>6</strong></td>
 <td>0.12442</td>
-<td>Diversificación antes del segundo cambio <strong>(<span class="math inline">\(r_1\)</span>)</strong></td>
+<td>Diversificación antes del segundo cambio <strong>(</strong><span class="math inline">\(r_1\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>7</strong></td>
 <td>-0.02968</td>
-<td>Diversificación despues del segundo cambio <strong>(<span class="math inline">\(r_2\)</span>)</strong></td>
+<td>Diversificación despues del segundo cambio <strong>(</strong><span class="math inline">\(r_2\)</span>)</td>
 </tr>
 <tr class="even">
 <td><strong>8</strong></td>

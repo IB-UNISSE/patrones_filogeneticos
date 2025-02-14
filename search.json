@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación parte 1",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09143131    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139740    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 1</span>"
@@ -793,44 +793,33 @@
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification_2.html#modelo-de-nacimiento-muerte-sin-cambios-en-la-tasa",
-    "href": "chapters/u1_intro_diversification_2.html#modelo-de-nacimiento-muerte-sin-cambios-en-la-tasa",
+    "objectID": "chapters/u1_intro_diversification_2.html#modelo-de-nacimiento-muerte-sin-cambios",
+    "href": "chapters/u1_intro_diversification_2.html#modelo-de-nacimiento-muerte-sin-cambios",
     "title": "Introducción al proceso de diversificación parte 2",
-    "section": "Modelo de nacimiento-muerte sin cambios en la tasa",
-    "text": "Modelo de nacimiento-muerte sin cambios en la tasa\n\nresbd &lt;- bd.shifts.optim(times, rho, grid, start, end)\n\n[1] \"startest\"\n[1] \"test\"\n\nresbd[[2]]  # Verosimilitud del modelo\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02",
+    "section": "Modelo de nacimiento-muerte sin cambios",
+    "text": "Modelo de nacimiento-muerte sin cambios\n\nresbd &lt;- bd.shifts.optim(times, rho, grid, start, end)\n\n[1] \"startest\"\n[1] \"test\"\n\nresbd[[2]]  # Verosimilitud del modelo\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 2</span>"
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification_2.html#modelo-con-un-cambio-en-la-tasa",
-    "href": "chapters/u1_intro_diversification_2.html#modelo-con-un-cambio-en-la-tasa",
+    "objectID": "chapters/u1_intro_diversification_2.html#modelo-con-un-cambio",
+    "href": "chapters/u1_intro_diversification_2.html#modelo-con-un-cambio",
     "title": "Introducción al proceso de diversificación parte 2",
-    "section": "Modelo con un cambio en la tasa",
-    "text": "Modelo con un cambio en la tasa\nAquí probamos un modelo en el que la tasa cambia en un tiempo \\(t_{1}\\)\n\n\n\n\n\n\n\nParámetro\nSignificado\n\n\n\n\ntime\nEdades de los nodos terminales\n\n\nc(0.8, 1)\nProporción de especies muestreadas en cada periodo\n\n\ngrid\nIntervalo de discretización del tiempo\n\n\nstart, end\nRango de tiempo para el análisis\n\n\nME=FALSE\nNo se consideran eventos de extinción masiva\n\n\nsurvival=1\nSe asume que todas las especies sobrevivientes han sido muestreadas\n\n\n\n\nresoneshift &lt;- bd.shifts.optim(times, c(rho, 1), grid, start, end, ME=FALSE, survival=1)\nresoneshift[[2]]  # Verosimilitud del modelo con un cambio en la tasa\n\n\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n[[2]]\n[1] 6.295893e+01 9.952613e-01 8.527988e-02 1.001768e-04 1.594866e-01\n[6] 6.125229e+00\n\n\nInterpretación\n\nVerosimilitud:\n\n\n\n\n\n\n\n\n\nÍndice\nParámetro estimado\nDescripción\n\n\n\n\n1\n62.95893\nVerosimilitud (log-likelihood)\n\n\n2\n0.99526\nTurnover antes del cambio (\\(\\epsilon_0\\))\n\n\n3\n0.08528\nTurnover después del cambio (\\(\\epsilon_1\\))\n\n\n4\n0.00010\nDiversificación antes del cambio (\\(r_0\\))\n\n\n5\n0.15949\nDiversificación después del cambio (\\(r_1\\))\n\n\n6\n6.12523\ntiempo del cambio\n\n\n\nGraficar el modelo con un cambio en la tasa\n\nbd.shifts.plot(list(resoneshift[[2]]), shifts = 1, timemax = max(times), ratemin = 0, ratemax = 1.1, plotturnover = TRUE)",
+    "section": "Modelo con un cambio",
+    "text": "Modelo con un cambio\nAquí probamos un modelo en el que la tasa cambia en un tiempo \\(t_{1}\\)\n\n\n\n\n\n\n\nParámetro\nSignificado\n\n\n\n\ntime\nEdades de los nodos terminales\n\n\nc(0.8, 1)\nProporción de especies muestreadas en cada periodo\n\n\ngrid\nIntervalo de discretización del tiempo\n\n\nstart, end\nRango de tiempo para el análisis\n\n\nME=FALSE\nNo se consideran eventos de extinción masiva\n\n\nsurvival=1\nSe asume que todas las especies sobrevivientes han sido muestreadas\n\n\n\n\nresoneshift &lt;- bd.shifts.optim(times, c(rho, 1), grid, start, end, ME=FALSE, survival=1)\nresoneshift[[2]]  # Verosimilitud del modelo con un cambio en la tasa\n\n\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n[[2]]\n[1] 6.295893e+01 9.952613e-01 8.527988e-02 1.001768e-04 1.594866e-01\n[6] 6.125229e+00\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nParámetro estimado\nDescripción\n\n\n\n\n1\n62.95893\nVerosimilitud (log-likelihood)\n\n\n2\n0.99526\nTurnover antes del cambio (\\(\\epsilon_0\\))\n\n\n3\n0.08528\nTurnover después del cambio (\\(\\epsilon_1\\))\n\n\n4\n0.00010\nDiversificación antes del cambio (\\(r_0\\))\n\n\n5\n0.15949\nDiversificación después del cambio (\\(r_1\\))\n\n\n6\n6.12523\ntiempo del cambio\n\n\n\nGraficar el modelo con un cambio en la tasa\n\nbd.shifts.plot(list(resoneshift[[2]]), shifts = 1, timemax = max(times), ratemin = 0, ratemax = 1.1, plotturnover = TRUE)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 2</span>"
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification_2.html#modelo-con-dos-cambios-en-la-tasa",
-    "href": "chapters/u1_intro_diversification_2.html#modelo-con-dos-cambios-en-la-tasa",
+    "objectID": "chapters/u1_intro_diversification_2.html#modelo-con-dos-cambios",
+    "href": "chapters/u1_intro_diversification_2.html#modelo-con-dos-cambios",
     "title": "Introducción al proceso de diversificación parte 2",
-    "section": "Modelo con dos cambios en la tasa",
-    "text": "Modelo con dos cambios en la tasa\n\nrestwoshift &lt;- bd.shifts.optim(times, c(0.8,1,1), grid, start, end, ME=FALSE, survival=1)\nrestwoshift[[2]]\n\n\n\n[[1]]\n[1] 6.984598e+01 2.752173e-07 9.230017e-02\n\n[[2]]\n[1] 6.300085e+01 3.082460e-02 9.309168e-08 1.887393e-02 1.612077e-01\n[6] 6.125229e+00\n\n[[3]]\n[1]  6.045200e+01  7.427444e-08  1.840255e-02  1.040200e+00  2.028774e-02\n[6]  1.244237e-01 -2.968324e-02  6.125229e+00  1.472523e+01",
-    "crumbs": [
-      "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 2</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/u1_intro_diversification_2.html#resultados-del-segundo-cambio-en-la-tasa-restwoshift3",
-    "href": "chapters/u1_intro_diversification_2.html#resultados-del-segundo-cambio-en-la-tasa-restwoshift3",
-    "title": "Introducción al proceso de diversificación parte 2",
-    "section": "Resultados del segundo cambio en la tasa (restwoshift[[3]])",
-    "text": "Resultados del segundo cambio en la tasa (restwoshift[[3]])\n\n\n\n\n\n\n\n\nÍndice\nValor\nDescripción\n\n\n\n\n1\n60.45200\nVerosimilitud (log-likelihood)\n\n\n2\n7.427444e-08\nTurnover antes del primer cambio (\\(\\epsilon_0\\))\n\n\n3\n0.01840\nTurnover antes del segundo cambio (\\(\\epsilon_1\\))\n\n\n4\n1.04020\nTurnover después del segundo cambio (\\(\\epsilon_2\\))\n\n\n5\n0.02028\nDiversificación antes del primer cambio (\\(r_0\\))\n\n\n6\n0.12442\nDiversificación antes del segundo cambio (\\(r_1\\))\n\n\n7\n-0.02968\nDiversificación despues del segundo cambio (\\(r_2\\))\n\n\n8\n6.12523\nTiempo del primer cambio \\(t_1\\)\n\n\n9\n14.72523\nTiempo del segundo cambio \\(t_1\\)\n\n\n\nGraficar el modelo con dos cambio en la tasa\n\nbd.shifts.plot(list(restwoshift[[2]]), shifts = 2, timemax = max(times), ratemin = -0.1, ratemax = 1.1, plotturnover = TRUE)",
+    "section": "Modelo con dos cambios",
+    "text": "Modelo con dos cambios\n\nrestwoshift &lt;- bd.shifts.optim(times, c(0.8,1,1), grid, start, end, ME=FALSE, survival=1)\nrestwoshift[[2]]\n\n\n\n[[1]]\n[1] 6.984598e+01 2.752173e-07 9.230017e-02\n\n[[2]]\n[1] 6.300085e+01 3.082460e-02 9.309168e-08 1.887393e-02 1.612077e-01\n[6] 6.125229e+00\n\n[[3]]\n[1]  6.045200e+01  7.427444e-08  1.840255e-02  1.040200e+00  2.028774e-02\n[6]  1.244237e-01 -2.968324e-02  6.125229e+00  1.472523e+01\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nValor\nDescripción\n\n\n\n\n1\n60.45200\nVerosimilitud (log-likelihood)\n\n\n2\n7.427444e-08\nTurnover antes del primer cambio (\\(\\epsilon_0\\))\n\n\n3\n0.01840\nTurnover antes del segundo cambio (\\(\\epsilon_1\\))\n\n\n4\n1.04020\nTurnover después del segundo cambio (\\(\\epsilon_2\\))\n\n\n5\n0.02028\nDiversificación antes del primer cambio (\\(r_0\\))\n\n\n6\n0.12442\nDiversificación antes del segundo cambio (\\(r_1\\))\n\n\n7\n-0.02968\nDiversificación despues del segundo cambio (\\(r_2\\))\n\n\n8\n6.12523\nTiempo del primer cambio \\(t_1\\)\n\n\n9\n14.72523\nTiempo del segundo cambio \\(t_1\\)\n\n\n\nGraficar el modelo con dos cambio en la tasa\n\nbd.shifts.plot(list(restwoshift[[2]]), shifts = 2, timemax = max(times), ratemin = -0.1, ratemax = 1.1, plotturnover = TRUE)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación parte 2</span>"
