@@ -230,7 +230,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a></li>
   <li><a href="#cargar-librerías-y-el-árbol-filogenético" id="toc-cargar-librerías-y-el-árbol-filogenético" class="nav-link" data-scroll-target="#cargar-librerías-y-el-árbol-filogenético">Cargar librerías y el árbol filogenético</a></li>
-  <li><a href="#obtención-de-los-tiempos-de-especiación" id="toc-obtención-de-los-tiempos-de-especiación" class="nav-link" data-scroll-target="#obtención-de-los-tiempos-de-especiación">Obtención de los Tiempos de Especiación</a></li>
+  <li><a href="#obtención-de-los-tiempos-de-diversificación" id="toc-obtención-de-los-tiempos-de-diversificación" class="nav-link" data-scroll-target="#obtención-de-los-tiempos-de-diversificación">Obtención de los tiempos de diversificación</a></li>
   <li><a href="#configuración-de-parámetros-para-el-análisis" id="toc-configuración-de-parámetros-para-el-análisis" class="nav-link" data-scroll-target="#configuración-de-parámetros-para-el-análisis">Configuración de Parámetros para el Análisis</a></li>
   <li><a href="#modelo-de-nacimiento-muerte-sin-cambios" id="toc-modelo-de-nacimiento-muerte-sin-cambios" class="nav-link" data-scroll-target="#modelo-de-nacimiento-muerte-sin-cambios">Modelo de nacimiento-muerte sin cambios</a></li>
   <li><a href="#modelo-con-un-cambio" id="toc-modelo-con-un-cambio" class="nav-link" data-scroll-target="#modelo-con-un-cambio">Modelo con un cambio</a></li>
@@ -326,8 +326,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="obtención-de-los-tiempos-de-especiación" class="level2">
-<h2 class="anchored" data-anchor-id="obtención-de-los-tiempos-de-especiación">Obtención de los Tiempos de Especiación</h2>
+<section id="obtención-de-los-tiempos-de-diversificación" class="level2">
+<h2 class="anchored" data-anchor-id="obtención-de-los-tiempos-de-diversificación">Obtención de los tiempos de diversificación</h2>
 <p>Extraeremos y ordenaremos los tiempos de diversificación (tiempos de ramificación) del árbol:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener y ordenar los tiempos de especiación</span></span>
@@ -373,8 +373,8 @@ window.Quarto = {
 <p>Aquí probamos un modelo en el que la tasa cambia en un tiempo <span class="math inline">\(t_{1}\)</span></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
+<col style="width: 16%">
+<col style="width: 83%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -389,7 +389,7 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td><code>c(0.8, 1)</code></td>
-<td>Proporción de especies muestreadas en cada periodo</td>
+<td><span class="math inline">\(\rho\)</span> y Intervalo de discretización del tiempo</td>
 </tr>
 <tr class="odd">
 <td><code>grid</code></td>
@@ -426,9 +426,9 @@ window.Quarto = {
 <p><strong>Interpretación</strong></p>
 <table class="caption-top table">
 <colgroup>
+<col style="width: 10%">
 <col style="width: 26%">
-<col style="width: 26%">
-<col style="width: 47%">
+<col style="width: 63%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -505,9 +505,9 @@ window.Quarto = {
 <p><strong>Interpretación</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 49%">
+<col style="width: 10%">
+<col style="width: 17%">
+<col style="width: 71%">
 </colgroup>
 <thead>
 <tr class="header">
