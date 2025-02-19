@@ -14,7 +14,7 @@
     "href": "index.html#unidad-1-patrones-de-diversificación",
     "title": "Patrones filogenéticos: macroevolución y adaptación",
     "section": "Unidad 1: Patrones de diversificación",
-    "text": "Unidad 1: Patrones de diversificación\n\nIntroducción al proceso de diversificación\nModelos con cambios en las Tasas de diversificación",
+    "text": "Unidad 1: Patrones de diversificación\n\nIntroducción al proceso de diversificación\nModelos con cambios en las Tasas de diversificación\nEstimación de Eventos de Extinción Masiva",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Inicio</span>"
     ]
@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09140624    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139866    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -1076,6 +1076,28 @@
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html",
+    "href": "chapters/u1_intro_diversification_3.html",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "",
+    "text": "Presentación: Estimación de Eventos de Extinción Masiva\nHaz clic en la imagen para ver el PDF de la presentación",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#estimación-de-eventos-de-extinción-masiva-con-treepar-en-r",
+    "href": "chapters/u1_intro_diversification_3.html#estimación-de-eventos-de-extinción-masiva-con-treepar-en-r",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Estimación de Eventos de Extinción Masiva con treepar en R",
+    "text": "Estimación de Eventos de Extinción Masiva con treepar en R\nLa extinción masiva es un proceso clave en la evolución de la biodiversidad, marcando periodos en los que un gran número de especies desaparece en un corto intervalo de tiempo. La detección de estos eventos en filogenias permite inferir patrones históricos de diversificación y evaluar cómo la biodiversidad ha respondido a cambios ambientales y evolutivos a lo largo del tiempo.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   }
 ]
