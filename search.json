@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139866    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139243    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -1090,11 +1090,297 @@
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification_3.html#estimación-de-eventos-de-extinción-masiva-con-treepar-en-r",
-    "href": "chapters/u1_intro_diversification_3.html#estimación-de-eventos-de-extinción-masiva-con-treepar-en-r",
+    "objectID": "chapters/u1_intro_diversification_3.html#cargar-librerías-y-el-árbol-filogenético",
+    "href": "chapters/u1_intro_diversification_3.html#cargar-librerías-y-el-árbol-filogenético",
     "title": "Estimación de Eventos de Extinción Masiva",
-    "section": "Estimación de Eventos de Extinción Masiva con treepar en R",
-    "text": "Estimación de Eventos de Extinción Masiva con treepar en R\nLa extinción masiva es un proceso clave en la evolución de la biodiversidad, marcando periodos en los que un gran número de especies desaparece en un corto intervalo de tiempo. La detección de estos eventos en filogenias permite inferir patrones históricos de diversificación y evaluar cómo la biodiversidad ha respondido a cambios ambientales y evolutivos a lo largo del tiempo.",
+    "section": "Cargar librerías y el árbol filogenético",
+    "text": "Cargar librerías y el árbol filogenético\n\n# Cargar las librerías necesarias\nlibrary(ape)       \nlibrary(TreePar)\nlibrary(tidyverse)\nlibrary(ggtree)\n\n# Cargar el árbol desde un archivo Nexus\ntree &lt;- read.nexus(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")\n\n# Visualizar el árbol\nggtree(tree) + theme_tree()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#obtención-de-los-tiempos-de-diversificación",
+    "href": "chapters/u1_intro_diversification_3.html#obtención-de-los-tiempos-de-diversificación",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Obtención de los tiempos de diversificación",
+    "text": "Obtención de los tiempos de diversificación\nExtraeremos y ordenaremos los tiempos de diversificación (tiempos de ramificación) del árbol:\n\n# Obtener y ordenar los tiempos de especiación\n# La función getx() extrae los tiempos de ramificación del árbol.\ntimes &lt;- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.\ntimes &lt;- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.\nprint(times)\n\n [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969\n [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686\n[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760\n[19]  6.2512423  1.9309798  0.9252293",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#configuración-de-parámetros-para-el-análisis",
+    "href": "chapters/u1_intro_diversification_3.html#configuración-de-parámetros-para-el-análisis",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Configuración de Parámetros para el Análisis",
+    "text": "Configuración de Parámetros para el Análisis\nDefiniremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:\n\nrho &lt;- 22/26  # Proporción de especies muestreadas (22 de 26 especies)\ngrid &lt;- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)\nstart &lt;- min(times)   # Tiempo inicial para la búsqueda de cambios de tasa\nend &lt;- max(times)     # Tiempo final para la búsqueda de cambios de tasa",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#modelo-con-un-evento-de-extinción-masiva",
+    "href": "chapters/u1_intro_diversification_3.html#modelo-con-un-evento-de-extinción-masiva",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Modelo con un Evento de Extinción Masiva",
+    "text": "Modelo con un Evento de Extinción Masiva\n\n# Ejecutar la optimización con detección de extinción masiva\nres_MEE &lt;- bd.shifts.optim(times, c(rho, 1), grid, start, end, ME = TRUE, survival = 1) # Activar detección de extinciones masivas\n\n\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n[[2]]\n[1] 6.817460e+01 1.195857e-07 1.246163e-01 3.649862e-01 9.252293e-01\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nParámetro estimado\nDescripción\n\n\n\n\n1\n68.1746\nVerosimilitud (log-likelihood)\n\n\n2\n1.195857e-07\nTurnover (\\(\\epsilon\\))\n\n\n3\n0.1246163\nDiversificación (\\(r\\))\n\n\n4\n0.3649862\nEspecies muestreadas antes del evento (\\(\\rho_0\\))\n\n\n5\n0.925229\nTiempo antes del evento (\\(t_0\\))",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#modelo-con-dos-eventos-de-extinción-masiva",
+    "href": "chapters/u1_intro_diversification_3.html#modelo-con-dos-eventos-de-extinción-masiva",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Modelo con dos Eventos de Extinción Masiva",
+    "text": "Modelo con dos Eventos de Extinción Masiva\n\n# Ejecutar la optimización con detección de extinción masiva\nres_MEE2 &lt;- bd.shifts.optim(times, c(rho, 1, 1), grid, start, end, ME = TRUE, survival = 1) # Activar detección de extinciones masivas\n\n\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n[[2]]\n[1] 6.817460e+01 1.195857e-07 1.246163e-01 3.649862e-01 9.252293e-01\n\n[[3]]\n[1] 6.603778e+01 6.878473e-08 2.676687e-01 7.137593e-02 7.086373e-01\n[6] 9.252293e-01 9.525229e+00\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nParámetro estimado\nDescripción\n\n\n\n\n1\n66.03778\nVerosimilitud (log-likelihood)\n\n\n2\n6.878473e-08\nTurnover (\\(\\epsilon\\))\n\n\n3\n0.2676687\nDiversificación (\\(r\\))\n\n\n4\n0.07137593\nEspecies muestreadas antes del evento (\\(\\rho_0\\))\n\n\n5\n0.7086373\nEspecies muestreadas después del evento (\\(\\rho_1\\))\n\n\n6\n0.9252293\nTiempo antes del evento (\\(t_0\\))\n\n\n7\n9.525229\nTiempo después del evento (\\(t_1\\))\n\n\n\nComparación MEE un evento vs MEE dos cambio\n\n## Verosimilitud MEE un evento\nres_MEE[[2]][[2]][1]\n\n[1] 68.1746\n\n## Verosimilitud MEE dos eventos\nres_MEE2[[2]][[3]][1]\n\n[1] 66.03778\n\n\n\nChiSq1 = 2 * (res_MEE[[2]][[2]][1] - res_MEE2[[2]][[3]][1])\nChiSq1\n\n[1] 4.273639\n\ndgf &lt;- 6 - 4\npchiSq1 &lt;- pchisq(ChiSq1, df=dgf)\npchiSq1\n\n[1] 0.8819704\n\n\nInterpretación de los resultados\n\nChi-cuadrado (ChiSq1) = 4.273639\n\nEsto representa cuánto mejor se ajusta el modelo con 2 eventos en comparación con el modelo con 1 evento.\n\nGrados de libertad = 2\n\nSe obtiene de la diferencia en el número de parámetros entre ambos modelos (6 - 4 = 2).\n\np-value = 0.8819704\n\nEl p-valor es alto (\\(&gt;0.05\\)), lo que indica que NO hay evidencia suficiente para preferir el modelo con 2 eventos de extinción sobre el modelo con 1 evento.\nEsto sugiere que el modelo con 1 evento de extinción es suficiente para explicar los datos, y agregar un segundo evento no mejora significativamente el ajuste del modelo.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#introducción",
+    "href": "chapters/u1_intro_diversification_3.html#introducción",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Introducción",
+    "text": "Introducción\nEn este tutorial, aprenderemos a inferir eventos de extinción masiva utilizando un modelo Episodic Fossilized Birth-Death (EFBD) en RevBayes. Siguiendo el tutorial oficial Mass Extinction Estimation.\n\n¿Qué es el modelo de diversificación episódico?\nEl modelo episodic birth-death es un proceso en el que las tasas de especiación, extinción y fosilización son constantes dentro de intervalos de tiempo, pero pueden cambiar entre ellos. En ciertos momentos, este modelo incorpora la posibilidad de que ocurra una extinción masiva, en la que un gran porcentaje de linajes desaparece de manera instantánea con una probabilidad \\(M_i\\).\n\n\nRelación con otros modelos de diversificación\nEste modelo es una extensión del modelo de diversificación con tasas variables en el tiempo, tratado en el tutorial Episodic Diversification Rate Estimation. Además, dado que permite la incorporación de fósiles en la filogenia, es útil revisar los tutoriales de Combined-Evidence Analysis y Fossilized Birth-Death Process for Analysis of Extant Taxa and Fossil Specimens.\n\n\nConsideraciones clave\nPara evitar confundir cambios en las tasas de diversificación con eventos de extinción masiva, este modelo incorpora un Horseshoe Markov Random Field (MRF), el cual permite detectar correctamente los cambios en especiación, extinción y fosilización sin interpretaciones erróneas.\nEste enfoque está basado en la implementación presentada en Magee y Höhna (2021) y nos permitirá explorar cómo la diversidad ha cambiado a lo largo del tiempo y si existen eventos de extinción masiva en nuestra filogenia.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#cálculo-de-valores-necesarios-para-el-análisis",
+    "href": "chapters/u1_intro_diversification_3.html#cálculo-de-valores-necesarios-para-el-análisis",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Cálculo de Valores Necesarios para el Análisis",
+    "text": "Cálculo de Valores Necesarios para el Análisis\nAntes de definir los priors en nuestro modelo de estimación de extinciones masivas, es importante calcular valores iniciales para las tasas de especiación, extinción y fosilización. Para ello, ejecutaremos un modelo de tasa constante usando el enfoque Fossilized Birth-Death Process (FBDP) en RevBayes.\nEste script permite estimar los valores base para los priors en las tasas de diversificación.\n\nPasos clave del script\n\nLeer los datos filogenéticos desde el archivo subarbol_ingroup.nex.\nDefinir priors iniciales para las tasas de especiación, extinción y fosilización usando una distribución Half-Cauchy(0,0.1).\nConfigurar movimientos del MCMC para optimizar la exploración del espacio de parámetros.\nDefinir el modelo FBDP, donde:\n\nlambda = tasa de especiación\nmu = tasa de extinción\nphi = tasa de fosilización\nPhi = probabilidad de muestreo de especies extantes\n\nEjecutar la inferencia bayesiana (MCMC) para estimar los parámetros.\n\n**Guarda este script como mcmc_CRFBD.Rev y ejecútalo en RevBayes:**\n#######################\n# Lectura de los Datos #\n#######################\n\n# Leer el árbol filogenético \"observado\"\nT &lt;- readTrees(\"../data/subarbol_ingroup.nex\")[1]\n\n# Extraer taxones del árbol\ntaxa &lt;- T.taxa()\n\n# Inicializar vectores de movimientos y monitores\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\n\n##########\n# Priors #\n##########\n\n# Definir priors iniciales con distribución Half-Cauchy(0,0.1)\nspeciation_rate ~ dnHalfCauchy(0.0,0.1)\nmoves.append( mvScaleBactrian(speciation_rate, weight=7.5) )\nmoves.append( mvRandomDive(speciation_rate, weight=2.5) )\n\nextinction_rate ~ dnHalfCauchy(0.0,0.1)\nmoves.append( mvScaleBactrian(extinction_rate, weight=7.5) )\nmoves.append( mvRandomDive(extinction_rate, weight=2.5) )\n\nfossilization_rate ~ dnHalfCauchy(0.0,0.1)\nmoves.append( mvScaleBactrian(fossilization_rate, weight=7.5) )\nmoves.append( mvRandomDive(fossilization_rate, weight=2.5) )\n\n# Agregar un movimiento conjunto para explorar múltiples parámetros simultáneamente\njoint_move = mvAVMVN(weight=10.0)\njoint_move.addVariable(speciation_rate)\njoint_move.addVariable(extinction_rate)\njoint_move.addVariable(fossilization_rate)\nmoves.append( joint_move )\n\n### Probabilidad de muestreo de especies extantes\n# Se fija en 22/26, ya que hay ~26 especies descritas de Eupomphini y se han muestreado 22.\nsampling_at_present &lt;- 22/26\n\n##############\n# Definir el Modelo #\n##############\n\ntimetree ~ dnFBDP(rootAge = T.rootAge(),\n                  lambda = speciation_rate,\n                  mu = extinction_rate,\n                  phi = fossilization_rate,\n                  Phi = sampling_at_present,\n                  condition = \"time\",\n                  taxa = taxa,\n                  initialTre = T)\n\n# Restringir el modelo con el árbol observado\ntimetree.clamp(T)\n\n# Envolver el modelo en un workspace\nmymodel = model(sampling_at_present)\n\n#############\n# Monitores #\n#############\n\n# Guardar los valores de los parámetros en un archivo de salida\nmonitors.append( mnModel(filename=\"../out/eupomphini_CRFBD.log\", printgen=10, separator = TAB) )\nmonitors.append( mnScreen(printgen=1000) )\n\n################\n# Ejecutar el MCMC #\n################\n\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")\n\n# Ejecutar la cadena MCMC con 50,000 generaciones\nmymcmc.run(generations=50000, tuningInterval=200)\n\n# Salir de RevBayes\nq()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#ejecutar-en-r-cálculo-de-priors-y-hiperprior-para-revbayes-con-revgadgets",
+    "href": "chapters/u1_intro_diversification_3.html#ejecutar-en-r-cálculo-de-priors-y-hiperprior-para-revbayes-con-revgadgets",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Ejecutar en R: Cálculo de Priors y Hiperprior para RevBayes con RevGadgets",
+    "text": "Ejecutar en R: Cálculo de Priors y Hiperprior para RevBayes con RevGadgets\n\n# Cargar la librería RevGadgets\nlibrary(RevGadgets)\n\n# Leer las tasas de diversificación desde el archivo de salida de RevBayes\ndiversification_rates &lt;- readTrace(\"../docs/u1_PatDiv/output/CRFBD/eupomphini_CRFBD.log\", burnin = 0.25)[[1]]\n\n# Ajustar una distribución Gamma a las tasas inferidas\nspeciation_prior &lt;- posteriorSamplesToParametricPrior(diversification_rates$speciation_rate, \"gamma\")\nextinction_prior &lt;- posteriorSamplesToParametricPrior(diversification_rates$extinction_rate, \"gamma\")\nfossilization_prior &lt;- posteriorSamplesToParametricPrior(diversification_rates$fossilization_rate, \"gamma\")\n\n# Imprimir los valores de los parámetros de la distribución Gamma\nprint(speciation_prior)  # [1] -&gt; alpha, [2] -&gt; beta\n\ngamma.shape  gamma.rate \n   10.31672   104.25685 \n\nprint(extinction_prior)  # [1] -&gt; alpha, [2] -&gt; beta\n\ngamma.shape  gamma.rate \n  0.5185615  32.6386155 \n\nprint(fossilization_prior)  # [1] -&gt; alpha, [2] -&gt; beta\n\ngamma.shape  gamma.rate \n  0.5099949 146.6218854 \n\n# Calcular el hiperprior para RevBayes usando HSMRF con 10 intervalos\nhyperprior_value &lt;- setMRFGlobalScaleHyperpriorNShifts(10, \"HSMRF\")\n\n# Imprimir el valor del hiperprior\nprint(hyperprior_value)\n\n[1] 0.04446432",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#código-en-revbayes-para-estimación-de-extinciones-masivas",
+    "href": "chapters/u1_intro_diversification_3.html#código-en-revbayes-para-estimación-de-extinciones-masivas",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Código en RevBayes para Estimación de Extinciones Masivas",
+    "text": "Código en RevBayes para Estimación de Extinciones Masivas\nGuarda este script como mcmc_EFBD_ME.Rev y ejecútalo en RevBayes:",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#lectura-del-árbol",
+    "href": "chapters/u1_intro_diversification_3.html#lectura-del-árbol",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Lectura del árbol",
+    "text": "Lectura del árbol\nComenzamos cargando el árbol filogenético previamente filtrado.\n# Cargar el árbol filogenético desde un archivo en formato NEXUS\nT &lt;- readTrees(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")[1]\n\n# Extraer la información taxonómica del árbol\n taxa &lt;- T.taxa()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.",
+    "href": "chapters/u1_intro_diversification_3.html#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.",
+    "text": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.\nmoves    = VectorMoves()\nmonitors = VectorMonitors()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación.",
+    "href": "chapters/u1_intro_diversification_3.html#definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación.",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.",
+    "text": "Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.\nNUM_INTERVALS = 10  # Número total de intervalos de tiempo\nNUM_BREAKS := NUM_INTERVALS - 1  # Número de puntos de cambio entre intervalos",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#configuración-de-los-intervalos-de-tiempo",
+    "href": "chapters/u1_intro_diversification_3.html#configuración-de-los-intervalos-de-tiempo",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Configuración de los Intervalos de Tiempo",
+    "text": "Configuración de los Intervalos de Tiempo\nEl modelo Episodic Fossilized Birth-Death asume que los puntos en el tiempo están distribuidos equidistantemente. Para ello, creamos un vector de tiempos que servirá para definir las tasas de especiación, extinción y fosilización, así como para modelar las extinciones masivas.\ninterval_times &lt;- abs(T.rootAge() * seq(1, NUM_BREAKS, 1) / NUM_INTERVALS)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#priors-en-las-extinciones-masivas",
+    "href": "chapters/u1_intro_diversification_3.html#priors-en-las-extinciones-masivas",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Priors en las Extinciones Masivas",
+    "text": "Priors en las Extinciones Masivas\nEl modelo utiliza una mezcla de saltos reversibles (reversible jump mixture model), lo que significa que la inferencia de extinciones masivas se realiza en dos partes:\n\nProbabilidad de que ocurra una extinción masiva en un intervalo de tiempo determinado.\nProbabilidad de que un linaje se extinga en caso de que haya una extinción masiva.\n\nPara establecer un número esperado de extinciones masivas, podemos definir un valor conservador como 1.0:\nexpected_number_of_mass_extinctions &lt;- 1.0\nComo hay NUM_BREAKS posibles puntos de extinción, calculamos la probabilidad de que no ocurra una extinción masiva en un intervalo dado:\n mix_p &lt;- Probability(1.0 - expected_number_of_mass_extinctions / NUM_BREAKS)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#definir-un-prior-para-la-mortalidad-en-extinciones-masivas",
+    "href": "chapters/u1_intro_diversification_3.html#definir-un-prior-para-la-mortalidad-en-extinciones-masivas",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Definir un Prior para la Mortalidad en Extinciones Masivas",
+    "text": "Definir un Prior para la Mortalidad en Extinciones Masivas\nDado que las extinciones masivas suelen eliminar la mayoría de los linajes, utilizamos una distribución Beta(18,2) como prior. Esta distribución tiene:\n\nMedia de 0.9, lo que implica que, en promedio, el 90% de los linajes mueren en una extinción masiva.\nIntervalo de confianza del 95% entre [0.74, 0.987], asegurando que la mayoría de los linajes se extinguen cuando ocurre una extinción masiva.\n\nAhora configuramos el prior para todas las NUM_BREAKS posibles extinciones masivas:\nfor (i in 1:NUM_BREAKS) {\n    mass_extinction_probabilities[i] ~ dnReversibleJumpMixture(0.0, dnBeta(18.0, 2.0), mix_p)\n    moves.append(mvRJSwitch(mass_extinction_probabilities[i]))\n    moves.append(mvSlideBactrian(mass_extinction_probabilities[i]))\n}\n\n¿Qué hace este código?\n✅ dnReversibleJumpMixture(0.0, dnBeta(18.0, 2.0), mix_p)\n\nDefine un modelo en el que cada intervalo de tiempo tiene una probabilidad de albergar una extinción masiva.\nSi hay una extinción masiva, se modela con dnBeta(18.0, 2.0).\nSi no hay extinción, se asigna un valor de 0.0.\n\n✅ Movimientos del MCMC\nPara explorar correctamente los parámetros de extinciones masivas en el análisis MCMC, agregamos:\n\nmvRJSwitch → Determina si hay o no una extinción masiva en un intervalo.\nmvSlideBactrian → Ajusta la probabilidad de muerte en caso de extinción.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#priors-sobre-la-variabilidad-de-las-tasas",
+    "href": "chapters/u1_intro_diversification_3.html#priors-sobre-la-variabilidad-de-las-tasas",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Priors sobre la Variabilidad de las Tasas",
+    "text": "Priors sobre la Variabilidad de las Tasas\n\nVariabilidad en las Tasas de Especiación, Extinción y Fosilización\nPara modelar la variación en las tasas de diversificación a lo largo del tiempo, utilizamos el Horseshoe Markov Random Field (HSMRF) Birth-Death Model (Magee et al. 2020).\nEste modelo:\n\nPermite que las tasas de diversificación cambien a lo largo del tiempo.\nUsa una distribución Horseshoe (Carvalho et al. 2010) para modelar los cambios en la escala logarítmica.\nAsume que la mayoría de los cambios son pequeños, pero permite saltos grandes en las tasas.\n\n\n\nEscala Global de Variabilidad\nPara controlar la variabilidad general de las tasas de especiación, extinción y fosilización desde el presente hasta el pasado, usamos un parámetro de escala global.\nTambién debemos definir un hiperprior para la escala global, que ayuda a determinar la variabilidad esperada en las tasas. En este caso, usamos el valor 0.044 cuando trabajamos con 10 intervalos de tasa.\nspeciation_rate_global_scale_hyperprior &lt;- 0.044\nextinction_rate_global_scale_hyperprior &lt;- 0.044\nfossilization_rate_global_scale_hyperprior &lt;- 0.044\nNota: Si se usa un número diferente de intervalos, se puede calcular el hiperprior con la función de RevGadgets: setMRFGlobalScaleHyperpriorNShifts(NUM_INTERVALS).\n\n\nDefinir los Priors para las Tasas de Especiación, Extinción y Fosilización\nCada parámetro de escala global se modela con una distribución Half-Cauchy centrada en 0 con parámetro de dispersión 1.\nspeciation_rate_global_scale ~ dnHalfCauchy(0,1)\nextinction_rate_global_scale ~ dnHalfCauchy(0,1)\nfossilization_rate_global_scale ~ dnHalfCauchy(0,1)\n¿Por qué usamos una distribución Half-Cauchy?\n\nFlexible: Permite modelar valores grandes sin restringir excesivamente la variabilidad.\nEvita sesgos: No impone límites arbitrarios a los cambios de tasa.\nAsegura que las tasas sean positivas, ya que la distribución Half-Cauchy solo tiene valores positivos.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#especificación-de-las-tasas-episódicas",
+    "href": "chapters/u1_intro_diversification_3.html#especificación-de-las-tasas-episódicas",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Especificación de las Tasas Episódicas",
+    "text": "Especificación de las Tasas Episódicas\n\nModelado de las Tasas en el Tiempo\nPara modelar las tasas de especiación, extinción y fosilización a lo largo del tiempo, utilizamos distribuciones Horseshoe Markov Random Field (HSMRF) en su escala logarítmica.\nSin embargo, la tasa en el presente debe modelarse de manera distinta porque:\n\nNo está correlacionada con ninguna tasa anterior.\nSe modela hacia atrás en el tiempo en lugar de hacia adelante.\nEsto permite que, si conocemos algún evento que afectó la diversificación en un momento específico (ej. hace 25 millones de años), podamos incorporarlo en el análisis.\n\n\n\nPriorización de la Primera Tasa (Tasa en el Presente)\nDado que el modelo contiene muchos parámetros, utilizamos un enfoque empírico bayesiano (Empirical Bayes Strategy).\n\nPrimero, se ajusta un modelo FBD de tasa constante (Constant-Rate Fossilized Birth-Death).\nLuego, se extrae la distribución posterior de esas tasas y se ajusta un prior Gamma para la tasa en el presente.\nEsto nos permite definir priors más realistas y adaptados a los datos.\n\nEl archivo mcmc_CRFBD.Rev puede ejecutarse para estimar estas distribuciones, y la función de RevGadgets posteriorSamplesToParametricPrior() permite ajustar una distribución a las muestras posteriores.\nspeciation_rate_hyperprior_alpha &lt;- 10.31672 \nspeciation_rate_hyperprior_beta &lt;- 104.25685\nextinction_rate_hyperprior_alpha &lt;- 0.5185615\nextinction_rate_hyperprior_beta &lt;- 32.6386155\nfossilization_rate_hyperprior_alpha &lt;- 0.5099949\nfossilization_rate_hyperprior_beta &lt;- 146.6218854\n\nspeciation_rate_at_present ~ dnGamma(speciation_rate_hyperprior_alpha,speciation_rate_hyperprior_beta)\nextinction_rate_at_present ~ dnGamma(extinction_rate_hyperprior_alpha,extinction_rate_hyperprior_beta)\nfossilization_rate_at_present ~ dnGamma(fossilization_rate_hyperprior_alpha,fossilization_rate_hyperprior_beta)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#definir-movimientos-para-las-tasas-en-el-presente",
+    "href": "chapters/u1_intro_diversification_3.html#definir-movimientos-para-las-tasas-en-el-presente",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Definir Movimientos para las Tasas en el Presente",
+    "text": "Definir Movimientos para las Tasas en el Presente\nEn este paso, aplicamos una variedad de movimientos para explorar eficientemente los valores para cada tasa en el presente (speciation_rate_at_present, extinction_rate_at_present, fossilization_rate_at_present), aplicamos diferentes tipos de movimientos:\nmoves.append( mvScaleBactrian(speciation_rate_at_present, weight=5) )\nmoves.append( mvScaleBactrian(extinction_rate_at_present, weight=5) )\nmoves.append( mvScaleBactrian(fossilization_rate_at_present, weight=5) )\n\nmoves.append( mvMirrorMultiplier(speciation_rate_at_present, weight=5) )\nmoves.append( mvMirrorMultiplier(extinction_rate_at_present, weight=5) )\nmoves.append( mvMirrorMultiplier(fossilization_rate_at_present, weight=5) )\n\nmoves.append( mvRandomDive(speciation_rate_at_present, weight=5) )\nmoves.append( mvRandomDive(extinction_rate_at_present, weight=5) )\nmoves.append( mvRandomDive(fossilization_rate_at_present, weight=5) )\n\nAplicar Movimientos Conjuntos\nLos parámetros de especiación, extinción y fosilización están correlacionados, por lo que debemos aplicar movimientos conjuntos para evitar sesgos en la inferencia.\navmvn_rates_at_present = mvAVMVN(weight=50)\navmvn_rates_at_present.addVariable(speciation_rate_at_present)\navmvn_rates_at_present.addVariable(extinction_rate_at_present)\navmvn_rates_at_present.addVariable(fossilization_rate_at_present)\nmoves.append( avmvn_rates_at_present )\n\n\nAplicar un Movimiento de Escalado Dependiente (Up-Down Scale)\nPara mantener una relación coherente entre las tasas de especiación y extinción, aplicamos el movimiento de escalado Up-Down:\nup_down_move = mvUpDownScale(weight=5.0)\nup_down_move.addVariable(speciation_rate_at_present, TRUE)\nup_down_move.addVariable(extinction_rate_at_present, TRUE)\nmoves.append( up_down_move )\nResumen\n✅ Se aplican movimientos individuales para explorar cada parámetro por separado.\n✅ Se usan movimientos conjuntos (mvAVMVN) para capturar correlaciones entre tasas.\n✅ Se aplica mvUpDownScale para mantener relaciones biológicamente realistas entre las tasas.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#parametrización-no-centralizada-para-hsmrf",
+    "href": "chapters/u1_intro_diversification_3.html#parametrización-no-centralizada-para-hsmrf",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Parametrización No Centralizada para HSMRF",
+    "text": "Parametrización No Centralizada para HSMRF\nPara hacer posible el MCMC en el modelo HSMRF, utilizamos una parametrización no centralizada. Esto significa que:\n\nPrimero definimos los cambios en la escala logarítmica de las tasas entre intervalos.\nLuego ensamblamos el vector de tasas, utilizando una combinación de parámetros globales y locales.\nImplementamos adaptabilidad local, permitiendo que algunas tasas varíen rápidamente y otras sean más estables.\n\n\nAsignación de Parámetros de Escala Local\nCada intervalo de tiempo necesita una varianza específica para la distribución Horseshoe, lo que nos permite modelar la adaptabilidad local.\nfor (i in 1:NUM_BREAKS) {\n   # Escala variable para cada intervalo de tiempo\n  sigma_speciation_rate[i] ~ dnHalfCauchy(0,1)\n  sigma_extinction_rate[i] ~ dnHalfCauchy(0,1)\n  sigma_fossilization_rate[i] ~ dnHalfCauchy(0,1)\n\n  # Escala variable para cada intervalo de tiempo\n  sigma_speciation_rate[i].setValue(runif(1,0.005,0.1)[1])\n  sigma_extinction_rate[i].setValue(runif(1,0.005,0.1)[1])\n  sigma_fossilization_rate[i].setValue(runif(1,0.005,0.1)[1])\n\n   # Movimientos para los valores individuales de sigma\n  moves.append( mvScaleBactrian(sigma_speciation_rate[i], weight=5) )\n  moves.append( mvScaleBactrian(sigma_extinction_rate[i], weight=5) )\n  moves.append( mvScaleBactrian(sigma_fossilization_rate[i], weight=5) )\n\n  # Parametrización no centralizada del modelo HSMRF\n  delta_log_speciation_rate[i] ~ dnNormal( mean=0, sd=sigma_speciation_rate[i]*speciation_rate_global_scale*speciation_rate_global_scale_hyperprior )\n  delta_log_extinction_rate[i] ~ dnNormal( mean=0, sd=sigma_extinction_rate[i]*extinction_rate_global_scale*extinction_rate_global_scale_hyperprior )\n  delta_log_fossilization_rate[i] ~ dnNormal( mean=0, sd=sigma_fossilization_rate[i]*fossilization_rate_global_scale*fossilization_rate_global_scale_hyperprior )\n\n  # Inicialización con valores aleatorios entre -0.1 y 0.1\n  delta_log_speciation_rate[i].setValue(runif(1,-0.1,0.1)[1])\n  delta_log_extinction_rate[i].setValue(runif(1,-0.1,0.1)[1])\n  delta_log_fossilization_rate[i].setValue(runif(1,-0.1,0.1)[1])\n \n  # Movimientos para Mejorar la Mezcla en MCMC\n  moves.append( mvSlideBactrian(delta_log_speciation_rate[i], weight=5) )\n  moves.append( mvSlideBactrian(delta_log_extinction_rate[i], weight=5) )\n  moves.append( mvSlideBactrian(delta_log_fossilization_rate[i], weight=5) )\n\n  # aplicamos movimientos de tipo Up-Down para mantener la correlación entre los cambios de tasas\n  delta_up_down_move[i] = mvUpDownSlide(weight=5.0)\n  delta_up_down_move[i].addVariable(delta_log_speciation_rate[i],TRUE)\n  delta_up_down_move[i].addVariable(delta_log_extinction_rate[i],TRUE)\n  moves.append( delta_up_down_move[i] )\n}\nResumen\n✅ Se modelan los cambios en las tasas en la escala logarítmica usando una parametrización no centralizada.\n✅ Se definen parámetros de escala local (sigma), permitiendo que algunas tasas cambien más rápido que otras.\n✅ Se agregan movimientos (moves) para mejorar la mezcla de MCMC y evitar estancamientos en valores subóptimos.\n✅ Se aplican movimientos Up-Down para correlacionar los cambios en especiación y extinción.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#ensamblar-las-tasas-en-el-tiempo",
+    "href": "chapters/u1_intro_diversification_3.html#ensamblar-las-tasas-en-el-tiempo",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Ensamblar las Tasas en el Tiempo",
+    "text": "Ensamblar las Tasas en el Tiempo\nHasta ahora, hemos definido:\n✅ Tasa en el presente (speciation_rate_at_present, etc.).\n✅ Cambios en la escala logarítmica (delta_log_speciation_rate, etc.).\n✅ Parámetros de escala local y global (sigma_speciation_rate, etc.).\nAhora, ensamblamos estos elementos en vectores de tasas continuas con la función fnassembleContinuousMRF.\nspeciation_rate := fnassembleContinuousMRF(speciation_rate_at_present, delta_log_speciation_rate, initialValueIsLogScale=FALSE, order=1)\nextinction_rate := fnassembleContinuousMRF(extinction_rate_at_present, delta_log_extinction_rate, initialValueIsLogScale=FALSE, order=1)\nfossilization_rate := fnassembleContinuousMRF(fossilization_rate_at_present, delta_log_fossilization_rate, initialValueIsLogScale=FALSE, order=1)\n¿Qué hace fnassembleContinuousMRF?\n\nConvierte la serie de cambios logarítmicos en una tasa continua a lo largo del tiempo.\nUsa la tasa en el presente como punto de partida.\ninitialValueIsLogScale=FALSE → Significa que el primer valor NO está en escala logarítmica.\norder=1 → Indica que las tasas cambian en función de una serie de incrementos.\n\n\nAplicar el Elliptical Slice Sampler\nEl Elliptical Slice Sampling (ESS) es un método eficiente para actualizar parámetros en distribuciones Gaussianas sin rechazos.\n# Aplicar Elliptical Slice Sampling a los cambios logarítmicos\nmoves.append( mvEllipticalSliceSamplingSimple(delta_log_speciation_rate, weight=5, tune=FALSE) )\nmoves.append( mvEllipticalSliceSamplingSimple(delta_log_extinction_rate, weight=5, tune=FALSE) )\nmoves.append( mvEllipticalSliceSamplingSimple(delta_log_fossilization_rate, weight=5, tune=FALSE) )\n\n\nAplicar Gibbs Sampling para Hiperparámetros\nLos hiperparámetros de escala global y local requieren un método de muestreo Gibbs, que permite actualizar grupos de parámetros en función de distribuciones condicionales.\n# Gibbs sampler para las escalas globales y locales\nmoves.append( mvHSRFHyperpriorsGibbs(speciation_rate_global_scale, sigma_speciation_rate, delta_log_speciation_rate, speciation_rate_global_scale_hyperprior, propGlobalOnly=0.75, weight=10) )\nmoves.append( mvHSRFHyperpriorsGibbs(extinction_rate_global_scale, sigma_extinction_rate, delta_log_extinction_rate, extinction_rate_global_scale_hyperprior, propGlobalOnly=0.75, weight=10) )\nmoves.append( mvHSRFHyperpriorsGibbs(fossilization_rate_global_scale, sigma_fossilization_rate, delta_log_fossilization_rate, fossilization_rate_global_scale_hyperprior, propGlobalOnly=0.75, weight=10) )",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#aplicar-movimientos-de-intercambio-swap-moves",
+    "href": "chapters/u1_intro_diversification_3.html#aplicar-movimientos-de-intercambio-swap-moves",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Aplicar Movimientos de Intercambio (Swap Moves)",
+    "text": "Aplicar Movimientos de Intercambio (Swap Moves)\nPara mejorar la mezcla del MCMC, permitimos intercambiar valores de delta_log y sigma entre intervalos de tiempo adyacentes.\n# Intercambio de intervalos adyacentes en los cambios logarítmicos y escalas locales\nmoves.append( mvHSRFIntervalSwap(delta_log_speciation_rate, sigma_speciation_rate, weight=5) )\nmoves.append( mvHSRFIntervalSwap(delta_log_extinction_rate, sigma_extinction_rate, weight=5) )\nmoves.append( mvHSRFIntervalSwap(delta_log_fossilization_rate, sigma_fossilization_rate, weight=5) )\nResumen\n✅ Se ensamblan las tasas de diversificación utilizando fnassembleContinuousMRF.\n✅ Se aplica Elliptical Slice Sampling para actualizar los cambios en la escala logarítmica.\n✅ Se usa muestreo Gibbs para mejorar la estimación de los hiperparámetros.\n✅ Se aplican movimientos de intercambio (swap moves) para mejorar la mezcla en MCMC.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#muestreo-incompleto-de-taxones",
+    "href": "chapters/u1_intro_diversification_3.html#muestreo-incompleto-de-taxones",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Muestreo Incompleto de Taxones",
+    "text": "Muestreo Incompleto de Taxones\nEn estudios de diversificación, es importante considerar el sesgo de muestreo, ya que en muchos casos solo se ha muestreado una parte de las especies vivientes.\nPara este análisis, sabemos que hemos muestreado 22 de 26 especies de Eupomphini vivientes. Por lo tanto, definimos un nodo constante que representa esta proporción:\nsampling_at_present &lt;- 22/26",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#definir-la-edad-de-la-raíz",
+    "href": "chapters/u1_intro_diversification_3.html#definir-la-edad-de-la-raíz",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Definir la Edad de la Raíz",
+    "text": "Definir la Edad de la Raíz\nEl modelo Fossilized Birth-Death Process (FBDP) necesita un parámetro de edad de la raíz (rootAge).\nDado que usamos un árbol fijo, podemos extraer directamente la edad de la raíz desde el árbol cargado:\nroot_time &lt;- T.rootAge()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#especificar-el-árbol-temporal",
+    "href": "chapters/u1_intro_diversification_3.html#especificar-el-árbol-temporal",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Especificar el Árbol Temporal",
+    "text": "Especificar el Árbol Temporal\nCon todos los parámetros listos, podemos definir el nodo estocástico que representa el árbol temporal usando el modelo Episodic Fossilized Birth-Death (dnFBDP):\ntimetree ~ dnFBDP(rootAge = T.rootAge(), timeline = interval_times, lambda = speciation_rate, mu = extinction_rate, phi = fossilization_rate, Mu = mass_extinction_probabilities, Phi = sampling_at_present, condition = \"time\", taxa = taxa, initialTree = T)\n🔹 ¿Qué representa cada parámetro?\n\n\n\n\n\n\n\nParámetro\nDescripción\n\n\n\n\nrootAge\nEdad de la raíz del árbol.\n\n\ntimeline\nDivisión del tiempo en intervalos.\n\n\nlambda\nTasa de especiación (cambiante en el tiempo).\n\n\nmu\nTasa de extinción (cambiante en el tiempo).\n\n\nphi\nTasa de fosilización.\n\n\nMu\nProbabilidad de que ocurra una extinción masiva en cada intervalo.\n\n\nPhi\nProporción de especies muestreadas.\n\n\ncondition=\"time\"\nSe asume que el proceso ocurre en el tiempo (puede cambiarse si queremos condicionar en el muestreo de la raíz).\n\n\ntaxa\nLista de taxones en el análisis.\n\n\ninitialTree\nÁrbol inicial para comenzar la inferencia.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#fijarlo-a-los-datos-observados",
+    "href": "chapters/u1_intro_diversification_3.html#fijarlo-a-los-datos-observados",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Fijarlo a los datos observados",
+    "text": "Fijarlo a los datos observados\nUna vez que hemos definido el árbol temporal (timetree), debemos fijarlo a los datos observados. Esto significa que no estamos infiriendo la filogenia, sino que usamos un árbol previamente estimado.\ntimetree.clamp(T)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#definir-el-modelo-completo",
+    "href": "chapters/u1_intro_diversification_3.html#definir-el-modelo-completo",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Definir el Modelo Completo",
+    "text": "Definir el Modelo Completo\nAhora encapsulamos todo el modelo dentro de un objeto de workspace, lo que permite a RevBayes reconocer todas las variables y relaciones definidas.\nmymodel = model(speciation_rate)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#configurar-los-monitores",
+    "href": "chapters/u1_intro_diversification_3.html#configurar-los-monitores",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Configurar los Monitores",
+    "text": "Configurar los Monitores\nLos monitores en RevBayes permiten registrar el estado de los parámetros durante la ejecución del MCMC.\nDefinimos varios tipos de monitores:\n1️⃣ Monitor principal (mnModel): Guarda el estado de todos los parámetros del modelo.\n2️⃣ Monitores de archivo (mnFile): Almacenan parámetros específicos en archivos separados para facilitar el análisis posterior.\n3️⃣ Monitor de pantalla (mnScreen): Muestra valores clave en la consola durante la ejecución.\n\nMonitor Principal\nEste monitor guarda todas las variables del modelo en un solo archivo. Se ejecutará cada 10 generaciones.\nmonitors.append( mnModel(filename=\"output/crocs_EFBDME.log\", printgen=10, separator=TAB) )\n\n\nMonitores de Archivo para Parámetros Específicos\nPara visualizar mejor los resultados, registramos las tasas de especiación, extinción, fosilización y extinción masiva en archivos separados.\nmonitors.append( mnFile(filename=\"output/crocs_EFBDME_speciation_rates.log\", printgen=10, separator=TAB, speciation_rate) )\nmonitors.append( mnFile(filename=\"output/crocs_EFBDME_speciation_rate_times.log\", printgen=10, separator=TAB, interval_times) )\n\nmonitors.append( mnFile(filename=\"output/crocs_EFBDME_extinction_rates.log\", printgen=10, separator=TAB, extinction_rate) )\nmonitors.append( mnFile(filename=\"output/crocs_EFBDME_extinction_rate_times.log\", printgen=10, separator=TAB, interval_times) )\n\nmonitors.append( mnFile(filename=\"output/crocs_EFBDME_fossilization_rates.log\", printgen=10, separator=TAB, fossilization_rate) )\nmonitors.append( mnFile(filename=\"output/crocs_EFBDME_fossilization_rate_times.log\", printgen=10, separator=TAB, interval_times) )\n\nmonitors.append( mnFile(filename=\"output/crocs_EFBDME_mass_extinction_probabilities.log\", printgen=10, separator=TAB, mass_extinction_probabilities) )\nmonitors.append( mnFile(filename=\"output/crocs_EFBDME_mass_extinction_times.log\", printgen=10, separator=TAB, interval_times) )\n\n\nMonitor de Consola\nEste monitor muestra valores clave en pantalla cada 1000 generaciones, permitiendo hacer un seguimiento del MCMC en tiempo real.\nmymcmc.run(generations=30000, tuningInterval=200)\n¿Qué significa esto?\n\nCorre 30,000 generaciones, lo que puede tomar varias horas dependiendo del hardware.\ntuningInterval=200 ajusta los movimientos cada 200 iteraciones para mejorar la eficiencia.\nSi el MCMC tarda demasiado, puedes probar con menos generaciones (100,000 o 50,000) y revisar si los parámetros convergen antes de ejecutar una corrida más larga.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
