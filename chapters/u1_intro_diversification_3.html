@@ -1099,7 +1099,7 @@ Para explorar correctamente los parámetros de extinciones masivas en el anális
 <div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">30000</span>, <span class="at">tuningInterval=</span><span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>¿Qué significa esto?</strong></p>
 <ul>
-<li><p>Corre <strong>30,000 generaciones</strong>, lo que puede tomar varias horas dependiendo del hardware.</p></li>
+<li><p>Corre <strong>30,000 generaciones</strong>, con más generaciones puede tomar varias horas dependiendo del hardware.</p></li>
 <li><p><code>tuningInterval=200</code> ajusta los movimientos cada 200 iteraciones para mejorar la eficiencia.</p></li>
 <li><p>Si el MCMC tarda demasiado, puedes probar con menos generaciones (<code>100,000</code> o <code>50,000</code>) y revisar si los parámetros convergen antes de ejecutar una corrida más larga.</p></li>
 </ul>
