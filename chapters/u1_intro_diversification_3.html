@@ -263,6 +263,8 @@ window.Quarto = {
   <li><a href="#fijarlo-a-los-datos-observados" id="toc-fijarlo-a-los-datos-observados" class="nav-link" data-scroll-target="#fijarlo-a-los-datos-observados"><strong>Fijarlo a los datos observados</strong></a></li>
   <li><a href="#definir-el-modelo-completo" id="toc-definir-el-modelo-completo" class="nav-link" data-scroll-target="#definir-el-modelo-completo"><strong>Definir el Modelo Completo</strong></a></li>
   <li><a href="#configurar-los-monitores" id="toc-configurar-los-monitores" class="nav-link" data-scroll-target="#configurar-los-monitores"><strong>Configurar los Monitores</strong></a></li>
+  <li><a href="#inicializar-y-ejecutar-el-mcmc" id="toc-inicializar-y-ejecutar-el-mcmc" class="nav-link" data-scroll-target="#inicializar-y-ejecutar-el-mcmc"><strong>Inicializar y Ejecutar el MCMC</strong></a></li>
+  <li><a href="#ejecutar-el-mcmc" id="toc-ejecutar-el-mcmc" class="nav-link" data-scroll-target="#ejecutar-el-mcmc">Ejecutar el MCMC</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1082,7 +1084,17 @@ Para explorar correctamente los parámetros de extinciones masivas en el anális
 <section id="monitor-de-consola" class="level3">
 <h3 class="anchored" data-anchor-id="monitor-de-consola"><strong>Monitor de Consola</strong></h3>
 <p>Este monitor muestra valores clave en pantalla <strong>cada 1000 generaciones</strong>, permitiendo hacer un seguimiento del MCMC en tiempo real.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">30000</span>, <span class="at">tuningInterval=</span><span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">1000</span>, speciation_rate_global_scale, extinction_rate_global_scale, fossilization_rate_global_scale) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="inicializar-y-ejecutar-el-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="inicializar-y-ejecutar-el-mcmc"><strong>Inicializar y Ejecutar el MCMC</strong></h2>
+<p>Con el modelo y los monitores listos, creamos el <strong>objeto MCMC</strong> e iniciamos la simulación.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">2</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejecutar-el-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="ejecutar-el-mcmc">Ejecutar el MCMC</h2>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">30000</span>, <span class="at">tuningInterval=</span><span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>¿Qué significa esto?</strong></p>
 <ul>
 <li><p>Corre <strong>30,000 generaciones</strong>, lo que puede tomar varias horas dependiendo del hardware.</p></li>
@@ -1091,7 +1103,6 @@ Para explorar correctamente los parámetros de extinciones masivas en el anális
 </ul>
 
 
-</section>
 </section>
 </section>
 
