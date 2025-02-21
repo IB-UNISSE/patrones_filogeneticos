@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09143049    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139907    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -1403,6 +1403,28 @@
     "title": "Estimación de Eventos de Extinción Masiva",
     "section": "Ejecutar el MCMC",
     "text": "Ejecutar el MCMC\nmymcmc.run(generations=30000, tuningInterval=200)\n¿Qué significa esto?\n\nCorre 30,000 generaciones, lo que puede tomar varias horas dependiendo del hardware.\ntuningInterval=200 ajusta los movimientos cada 200 iteraciones para mejorar la eficiencia.\nSi el MCMC tarda demasiado, puedes probar con menos generaciones (100,000 o 50,000) y revisar si los parámetros convergen antes de ejecutar una corrida más larga.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#evaluar-el-soporte-para-extinciones-masivas",
+    "href": "chapters/u1_intro_diversification_3.html#evaluar-el-soporte-para-extinciones-masivas",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "Evaluar el Soporte para Extinciones Masivas",
+    "text": "Evaluar el Soporte para Extinciones Masivas\nUna vez finalizada la ejecución del MCMC, los archivos de salida contienen las muestras de la distribución posterior.\n📌 Objetivo: Evaluar qué tan fuertemente respaldada está la hipótesis de que ocurrieron eventos de extinción masivaen ciertos intervalos de tiempo.\n🔹 ¿Cómo lo hacemos?\n\nExaminamos la probabilidad posterior de cada evento de extinción masiva.\nCalculamos factores de Bayes para determinar si hay soporte significativo.\nVisualizamos los resultados con RevGadgets en R.\n\nAnálisis en R con RevGadgets\nEjecuta este código en R:\n\n# Cargar la librería\nlibrary(RevGadgets)\n\n# Leer las probabilidades de extinción masiva desde el archivo de salida\nmass_extinction_probabilities &lt;- readTrace(\"../docs/u1_PatDiv/output/CRFBD/eupomphini_EFBDME_mass_extinction_probabilities.log\", burnin = 0.25)\n\n# Establecer la probabilidad a priori de una extinción masiva en cualquier tiempo\nprior_n_expected &lt;- 0.1  # Número esperado de eventos de extinción masiva\nn_intervals &lt;- 10       # Número de intervalos de tiempo en el modelo\nprior_prob &lt;- prior_n_expected / (n_intervals - 1)\n\n# Definir los tiempos en los que se permitieron eventos de extinción masiva\ntree_age &lt;- 19.5829128  # Edad del árbol en millones de años\ninterval_times &lt;- tree_age * seq(1/n_intervals, (n_intervals-1)/n_intervals, 1/n_intervals)\n\n# Graficar los resultados\np &lt;- plotMassExtinctions(\n  mass_extinction_trace = mass_extinction_probabilities,\n  mass_extinction_times = interval_times,\n  mass_extinction_name = \"mass_extinction_probabilities\",\n  prior_prob = prior_prob\n)\n\np",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_3.html#qué-significa-el-factor-de-bayes",
+    "href": "chapters/u1_intro_diversification_3.html#qué-significa-el-factor-de-bayes",
+    "title": "Estimación de Eventos de Extinción Masiva",
+    "section": "¿Qué significa el Factor de Bayes?",
+    "text": "¿Qué significa el Factor de Bayes?\nEl Factor de Bayes (BF) compara dos modelos:\n\nHipótesis Nula (H₀): No hubo un evento de extinción masiva en un intervalo de tiempo.\nHipótesis Alternativa (H₁): Sí hubo un evento de extinción masiva en ese intervalo.\n\nEl log(Bayes Factor) se calcula como:\n\\(2log(BF)\\) = \\(2(logP(D|H_1)- logP(D|H_0))\\)\nDonde:\n\n\\(P(D|H_1)\\) es la probabilidad de los datos asumiendo que hubo una extinción masiva.\n\\(P(D|H_0)\\) es la probabilidad de los datos asumiendo que no hubo una extinción masiva.\n\nUn 2 log BF ≥ 10 indica fuerte evidencia a favor de una extinción masiva en ese tiempo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"

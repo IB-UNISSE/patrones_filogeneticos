@@ -265,6 +265,8 @@ window.Quarto = {
   <li><a href="#configurar-los-monitores" id="toc-configurar-los-monitores" class="nav-link" data-scroll-target="#configurar-los-monitores"><strong>Configurar los Monitores</strong></a></li>
   <li><a href="#inicializar-y-ejecutar-el-mcmc" id="toc-inicializar-y-ejecutar-el-mcmc" class="nav-link" data-scroll-target="#inicializar-y-ejecutar-el-mcmc"><strong>Inicializar y Ejecutar el MCMC</strong></a></li>
   <li><a href="#ejecutar-el-mcmc" id="toc-ejecutar-el-mcmc" class="nav-link" data-scroll-target="#ejecutar-el-mcmc">Ejecutar el MCMC</a></li>
+  <li><a href="#evaluar-el-soporte-para-extinciones-masivas" id="toc-evaluar-el-soporte-para-extinciones-masivas" class="nav-link" data-scroll-target="#evaluar-el-soporte-para-extinciones-masivas"><strong>Evaluar el Soporte para Extinciones Masivas</strong></a></li>
+  <li><a href="#qué-significa-el-factor-de-bayes" id="toc-qué-significa-el-factor-de-bayes" class="nav-link" data-scroll-target="#qué-significa-el-factor-de-bayes"><strong>¿Qué significa el Factor de Bayes?</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -991,8 +993,8 @@ Para explorar correctamente los parámetros de extinciones masivas en el anális
 <p>🔹 <strong>¿Qué representa cada parámetro?</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 85%">
+<col style="width: 20%">
+<col style="width: 79%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1101,6 +1103,68 @@ Para explorar correctamente los parámetros de extinciones masivas en el anális
 <li><p><code>tuningInterval=200</code> ajusta los movimientos cada 200 iteraciones para mejorar la eficiencia.</p></li>
 <li><p>Si el MCMC tarda demasiado, puedes probar con menos generaciones (<code>100,000</code> o <code>50,000</code>) y revisar si los parámetros convergen antes de ejecutar una corrida más larga.</p></li>
 </ul>
+</section>
+<section id="evaluar-el-soporte-para-extinciones-masivas" class="level2">
+<h2 class="anchored" data-anchor-id="evaluar-el-soporte-para-extinciones-masivas"><strong>Evaluar el Soporte para Extinciones Masivas</strong></h2>
+<p>Una vez finalizada la ejecución del <strong>MCMC</strong>, los archivos de salida contienen las muestras de la distribución posterior.</p>
+<p>📌 <strong>Objetivo:</strong> Evaluar qué tan <strong>fuertemente respaldada</strong> está la hipótesis de que ocurrieron eventos de <strong>extinción masiva</strong>en ciertos intervalos de tiempo.</p>
+<p>🔹 <strong>¿Cómo lo hacemos?</strong></p>
+<ul>
+<li><p>Examinamos la <strong>probabilidad posterior</strong> de cada evento de extinción masiva.</p></li>
+<li><p>Calculamos <strong>factores de Bayes</strong> para determinar si hay <strong>soporte significativo</strong>.</p></li>
+<li><p>Visualizamos los resultados con <strong>RevGadgets</strong> en R.</p></li>
+</ul>
+<p><strong>Análisis en R con RevGadgets</strong></p>
+<p>Ejecuta este código en <strong>R</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar la librería</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer las probabilidades de extinción masiva desde el archivo de salida</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>mass_extinction_probabilities <span class="ot">&lt;-</span> <span class="fu">readTrace</span>(<span class="st">"../docs/u1_PatDiv/output/CRFBD/eupomphini_EFBDME_mass_extinction_probabilities.log"</span>, <span class="at">burnin =</span> <span class="fl">0.25</span>)</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Establecer la probabilidad a priori de una extinción masiva en cualquier tiempo</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>prior_n_expected <span class="ot">&lt;-</span> <span class="fl">0.1</span>  <span class="co"># Número esperado de eventos de extinción masiva</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>n_intervals <span class="ot">&lt;-</span> <span class="dv">10</span>       <span class="co"># Número de intervalos de tiempo en el modelo</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>prior_prob <span class="ot">&lt;-</span> prior_n_expected <span class="sc">/</span> (n_intervals <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir los tiempos en los que se permitieron eventos de extinción masiva</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>tree_age <span class="ot">&lt;-</span> <span class="fl">19.5829128</span>  <span class="co"># Edad del árbol en millones de años</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>interval_times <span class="ot">&lt;-</span> tree_age <span class="sc">*</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">/</span>n_intervals, (n_intervals<span class="dv">-1</span>)<span class="sc">/</span>n_intervals, <span class="dv">1</span><span class="sc">/</span>n_intervals)</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los resultados</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plotMassExtinctions</span>(</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">mass_extinction_trace =</span> mass_extinction_probabilities,</span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">mass_extinction_times =</span> interval_times,</span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">mass_extinction_name =</span> <span class="st">"mass_extinction_probabilities"</span>,</span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior_prob =</span> prior_prob</span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u1_intro_diversification_3_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-significa-el-factor-de-bayes" class="level2">
+<h2 class="anchored" data-anchor-id="qué-significa-el-factor-de-bayes"><strong>¿Qué significa el Factor de Bayes?</strong></h2>
+<p>El <strong>Factor de Bayes (BF)</strong> compara dos modelos:</p>
+<ul>
+<li><p><strong>Hipótesis Nula (H₀)</strong>: No hubo un evento de extinción masiva en un intervalo de tiempo.</p></li>
+<li><p><strong>Hipótesis Alternativa (H₁)</strong>: Sí hubo un evento de extinción masiva en ese intervalo.</p></li>
+</ul>
+<p>El <strong>log(Bayes Factor)</strong> se calcula como:</p>
+<p><span class="math inline">\(2log(BF)\)</span> = <span class="math inline">\(2(logP(D|H_1)- logP(D|H_0))\)</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(P(D|H_1)\)</span> es la probabilidad de los datos asumiendo que hubo una extinción masiva.</p></li>
+<li><p><span class="math inline">\(P(D|H_0)\)</span> es la probabilidad de los datos asumiendo que no hubo una extinción masiva.</p></li>
+</ul>
+<p>Un <strong>2 log BF ≥ 10</strong> indica <strong>fuerte evidencia</strong> a favor de una extinción masiva en ese tiempo.</p>
 
 
 </section>
