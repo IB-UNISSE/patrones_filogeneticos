@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09141419    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09145484    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -1435,7 +1435,7 @@
     "href": "chapters/u1_intro_diversification_4.html",
     "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
     "section": "",
-    "text": "Presentación: Introducción a modelos State Speciaction-Extinción (SSE)\nHaz clic en la imagen para ver el PDF de la presentación",
+    "text": "Presentación: Introducción a modelos State Speciaction-Extinción (SSE)\nHaz clic en la imagen para ver el PDF de la presentación\nAnalizaremos las consecuencias del cambio de hospedero en los escarabajos meloidos (Meloidae). Las subfamilias Nemognathinae y Meloinae presentan un ciclo de vida complejo, caracterizado por múltiples metamorfosis y estrategias de parasitoidismo. La mayoría de los géneros y tribus dentro de estas subfamilias son parasitoides de abejas, incluyendo especies tanto foréticas como no foréticas. Sin embargo, dos tribus han adoptado una estrategia diferente, alimentándose de huevos de saltamontes. Estas variaciones en las estrategias de vida se asocian con notables diferencias en la riqueza de especies entre clados. (López-Estrada et al., 2019).",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"

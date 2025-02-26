@@ -286,10 +286,43 @@ window.Quarto = {
 </figure>
 </div>
 <p>Haz clic en la imagen para ver el PDF de la presentación</p>
+<p>Analizaremos las consecuencias del cambio de hospedero en los escarabajos meloidos (Meloidae). Las subfamilias Nemognathinae y Meloinae presentan un ciclo de vida complejo, caracterizado por múltiples metamorfosis y estrategias de parasitoidismo. La mayoría de los géneros y tribus dentro de estas subfamilias son parasitoides de abejas, incluyendo especies tanto foréticas como no foréticas. Sin embargo, dos tribus han adoptado una estrategia diferente, alimentándose de huevos de saltamontes. Estas variaciones en las estrategias de vida se asocian con notables diferencias en la riqueza de especies entre clados. (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/mec.16390">López-Estrada et al., 2019</a>).</p>
 </section>
 <section id="modelo-bisse-binary-state-speciation-and-extinction-madisson-et-al.-2007" class="level1">
 <h1>Modelo BiSSE (Binary state speciation and extinction, <a href="https://academic.oup.com/sysbio/article/56/5/701/1694265">Madisson et al.&nbsp;2007</a>)</h1>
-<p>BiSSE el modelo de especiación y extinción dependendiente de un caracter binario es un proceso estocástico que se forma de la composición de dos procesos de nacimiento y muerte. Los dos procesos se conectan a través de dos tasas de cambio conocidas como las tasas de transición. El supuesto más importante del modelo BiSSE es que cada estado tiene su propia tasa de especiación λλ y su propia tasa de extinción μμ que representan el momento en el cuál un linaje se divide en dos o se extingue. Este es un supuesto muy importante porque la implicación es que la acumulación (o la falta de acumulación) de linajes es el resultado del valor del estado.</p>
+<p>BiSSE el modelo de especiación y extinción dependendiente de un caracter binario es un proceso estocástico que se forma de la composición de dos procesos de nacimiento y muerte. Los dos procesos se conectan a través de dos tasas de cambio conocidas como las tasas de transición. El supuesto más importante del modelo BiSSE es que cada estado tiene su propia tasa de especiación <span class="math inline">\(\lambda\)</span> y su propia tasa de extinción <span class="math inline">\(\mu\)</span> que representan el momento en el cuál un linaje se divide en dos o se extingue. Este es un supuesto muy importante porque la implicación es que la acumulación (o la falta de acumulación) de linajes es el resultado del valor del estado. Pueden encontrar mas información en el material del taller <a href="https://ixchelgzlzr.github.io/filo_bayes_UNAM/">Filo-Bayes</a> - <a href="https://ixchelgzlzr.github.io/filo_bayes_UNAM/docs/discrete/SSEmodels.html">BISSE</a>.</p>
+<p><strong>Escarabajos meloidos</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/u1_PatDiv/u1_PatDiv_6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="550"></p>
+</figure>
+</div>
+<p>Las transiciones entre estados ocurren a tasas <span class="math inline">\(q_{01}\)</span> (de abeja a saltamontes) y <span class="math inline">\(q_{10}\)</span> (de saltamontes a abeja). Cada estado tiene su propia tasa de especiación (<span class="math inline">\(\lambda_0, \lambda_1\)</span>) y extinción (<span class="math inline">\(\mu_0, \mu_1\)</span>).</p>
+<p><strong>Matriz de tasas de transición (</strong><span class="math inline">\(Q\)</span>)</p>
+<p>La matriz de transición <span class="math inline">\(Q\)</span> define la probabilidad de cambio entre estados en un tiempo infinitesimal:</p>
+<p><span class="math display">\[
+Q =
+\begin{bmatrix}
+  -q_{01} &amp; q_{01} \\
+  q_{10} &amp; -q_{10}
+\end{bmatrix}
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(q_{01}\)</span>: es la tasa de transición de hospedero abeja a hospedero saltamontes.</p></li>
+<li><p><span class="math inline">\(q_{10}\)</span>: es la tasa de transición de hospedero saltamontes a hospedero abeja.</p></li>
+<li><p>La diagonal contiene los valores negativos de las tasas de salida de cada estado (<span class="math inline">\(-q_{01}\)</span> y <span class="math inline">\(-q_{10}\)</span>), de modo que cada fila suma cero.</p></li>
+</ul>
+<p><strong>Parámetros en el modelo BiSSE</strong></p>
+<p>El modelo incluye seis parámetros fundamentales:</p>
+<ul>
+<li><p><span class="math inline">\(\lambda_0\)</span>: tasa de especiación en el estado 0 (hospedero abeja)</p></li>
+<li><p><span class="math inline">\(\lambda_1\)</span>: tasa de especiación en el estado 1 (hospedero saltamontes)</p></li>
+<li><p><span class="math inline">\(\mu_0\)</span>: tasa de extinción en el estado 0</p></li>
+<li><p><span class="math inline">\(\mu_1\)</span>: tasa de extinción en el estado 1</p></li>
+<li><p><span class="math inline">\(q_{01}\)</span>: tasa de cambio de hospedero abeja a hospedero saltamontes</p></li>
+<li><p><span class="math inline">\(q_{10}\)</span>: tasa de cambio de hospedero saltamontes a hospedero abeja</p></li>
+</ul>
 <section id="carga-de-la-filogenia-y-los-datos" class="level2">
 <h2 class="anchored" data-anchor-id="carga-de-la-filogenia-y-los-datos">Carga de la filogenia y los datos</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el arbol</span></span>
