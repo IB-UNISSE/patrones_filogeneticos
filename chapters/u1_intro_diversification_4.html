@@ -238,6 +238,7 @@ window.Quarto = {
   <li><a href="#presentación-introducción-a-modelos-state-speciaction-extinción-sse" id="toc-presentación-introducción-a-modelos-state-speciaction-extinción-sse" class="nav-link active" data-scroll-target="#presentación-introducción-a-modelos-state-speciaction-extinción-sse">Presentación: Introducción a modelos State Speciaction-Extinción (SSE)</a></li>
   <li><a href="#modelo-bisse-binary-state-speciation-and-extinction-madisson-et-al.-2007" id="toc-modelo-bisse-binary-state-speciation-and-extinction-madisson-et-al.-2007" class="nav-link" data-scroll-target="#modelo-bisse-binary-state-speciation-and-extinction-madisson-et-al.-2007">Modelo BiSSE (Binary state speciation and extinction, Madisson et al.&nbsp;2007)</a>
   <ul class="collapse">
+  <li><a href="#descarga-del-árbol-filogenético-y-la-matriz-codificada" id="toc-descarga-del-árbol-filogenético-y-la-matriz-codificada" class="nav-link" data-scroll-target="#descarga-del-árbol-filogenético-y-la-matriz-codificada">Descarga del Árbol Filogenético y la matriz codificada</a></li>
   <li><a href="#carga-de-la-filogenia-y-los-datos" id="toc-carga-de-la-filogenia-y-los-datos" class="nav-link" data-scroll-target="#carga-de-la-filogenia-y-los-datos">Carga de la filogenia y los datos</a></li>
   <li><a href="#define-el-número-de-estados-en-los-modelos-biss" id="toc-define-el-número-de-estados-en-los-modelos-biss" class="nav-link" data-scroll-target="#define-el-número-de-estados-en-los-modelos-biss">Define el número de estados en los modelos BiSS</a></li>
   <li><a href="#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados." id="toc-definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados." class="nav-link" data-scroll-target="#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.">Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.</a></li>
@@ -286,11 +287,11 @@ window.Quarto = {
 </figure>
 </div>
 <p>Haz clic en la imagen para ver el PDF de la presentación</p>
-<p>Analizaremos las consecuencias del cambio de hospedero en los escarabajos meloidos (Meloidae). Las subfamilias Nemognathinae y Meloinae presentan un ciclo de vida complejo, caracterizado por múltiples metamorfosis y estrategias de parasitoidismo. La mayoría de los géneros y tribus dentro de estas subfamilias son parasitoides de abejas, incluyendo especies tanto foréticas como no foréticas. Sin embargo, dos tribus han adoptado una estrategia diferente, alimentándose de huevos de saltamontes. Estas variaciones en las estrategias de vida se asocian con notables diferencias en la riqueza de especies entre clados. (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/mec.16390">López-Estrada et al., 2019</a>).</p>
+<p>Analizaremos si las tasas de diversificación están asociadas al tipo de hospedero en los escarabajos meloidos (Meloidae). Las subfamilias Nemognathinae y Meloinae presentan un ciclo de vida complejo, caracterizado por múltiples metamorfosis y estrategias de parasitoidismo. La mayoría de los géneros y tribus dentro de estas subfamilias son parasitoides de abejas, incluyendo especies foréticas y no foréticas. Sin embargo, dos tribus han adoptado una estrategia distinta, alimentándose de huevos de saltamontes. Estas diferencias en las estrategias de vida están asociadas con marcadas variaciones en la riqueza de especies entre clados (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/mec.16390">López-Estrada et al., 2019</a>).</p>
 </section>
 <section id="modelo-bisse-binary-state-speciation-and-extinction-madisson-et-al.-2007" class="level1">
 <h1>Modelo BiSSE (Binary state speciation and extinction, <a href="https://academic.oup.com/sysbio/article/56/5/701/1694265">Madisson et al.&nbsp;2007</a>)</h1>
-<p>BiSSE el modelo de especiación y extinción dependendiente de un caracter binario es un proceso estocástico que se forma de la composición de dos procesos de nacimiento y muerte. Los dos procesos se conectan a través de dos tasas de cambio conocidas como las tasas de transición. El supuesto más importante del modelo BiSSE es que cada estado tiene su propia tasa de especiación <span class="math inline">\(\lambda\)</span> y su propia tasa de extinción <span class="math inline">\(\mu\)</span> que representan el momento en el cuál un linaje se divide en dos o se extingue. Este es un supuesto muy importante porque la implicación es que la acumulación (o la falta de acumulación) de linajes es el resultado del valor del estado. Pueden encontrar mas información en el material del taller <a href="https://ixchelgzlzr.github.io/filo_bayes_UNAM/">Filo-Bayes</a> - <a href="https://ixchelgzlzr.github.io/filo_bayes_UNAM/docs/discrete/SSEmodels.html">BISSE</a>.</p>
+<p>BiSSE el modelo de especiación y extinción dependendiente de un caracter binario y es un proceso estocástico que se forma de la composición de dos procesos de nacimiento y muerte. Los dos procesos se conectan a través de dos tasas de cambio conocidas como las tasas de transición. El supuesto más importante del modelo BiSSE es que cada estado tiene su propia tasa de especiación <span class="math inline">\(\lambda\)</span> y su propia tasa de extinción <span class="math inline">\(\mu\)</span> que representan el momento en el cuál un linaje se divide en dos o se extingue. Este es un supuesto muy importante porque la implicación es que la acumulación (o la falta de acumulación) de linajes es el resultado del valor del estado. Pueden encontrar mas información en el material del taller <a href="https://ixchelgzlzr.github.io/filo_bayes_UNAM/">Filo-Bayes</a> - <a href="https://ixchelgzlzr.github.io/filo_bayes_UNAM/docs/discrete/SSEmodels.html">BISSE</a>.</p>
 <p><strong>Escarabajos meloidos</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -323,6 +324,14 @@ Q =
 <li><p><span class="math inline">\(q_{01}\)</span>: tasa de cambio de hospedero abeja a hospedero saltamontes</p></li>
 <li><p><span class="math inline">\(q_{10}\)</span>: tasa de cambio de hospedero saltamontes a hospedero abeja</p></li>
 </ul>
+<section id="descarga-del-árbol-filogenético-y-la-matriz-codificada" class="level2">
+<h2 class="anchored" data-anchor-id="descarga-del-árbol-filogenético-y-la-matriz-codificada">Descarga del Árbol Filogenético y la matriz codificada</h2>
+<p>📥 Puedes descargar el archivo <strong>.tre</strong> con el árbol en el siguiente enlace:</p>
+<p><a href="../docs/u1_PatDiv/ConLyttini.tre" download="">📥 Descargar Árbol Filogenético</a></p>
+<p>📥 Puedes descargar el archivo <strong>.nex</strong> con la matriz codificada en el siguiente enlace:</p>
+<p><a href="../docs/u1_PatDiv/Traits_conLyttini_01.nex" download="">📥 Descargar Matriz Codificada</a></p>
+<p>Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.</p>
+</section>
 <section id="carga-de-la-filogenia-y-los-datos" class="level2">
 <h2 class="anchored" data-anchor-id="carga-de-la-filogenia-y-los-datos">Carga de la filogenia y los datos</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el arbol</span></span>

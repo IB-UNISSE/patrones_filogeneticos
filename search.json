@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09145484    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09140104    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -1435,7 +1435,18 @@
     "href": "chapters/u1_intro_diversification_4.html",
     "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
     "section": "",
-    "text": "Presentación: Introducción a modelos State Speciaction-Extinción (SSE)\nHaz clic en la imagen para ver el PDF de la presentación\nAnalizaremos las consecuencias del cambio de hospedero en los escarabajos meloidos (Meloidae). Las subfamilias Nemognathinae y Meloinae presentan un ciclo de vida complejo, caracterizado por múltiples metamorfosis y estrategias de parasitoidismo. La mayoría de los géneros y tribus dentro de estas subfamilias son parasitoides de abejas, incluyendo especies tanto foréticas como no foréticas. Sin embargo, dos tribus han adoptado una estrategia diferente, alimentándose de huevos de saltamontes. Estas variaciones en las estrategias de vida se asocian con notables diferencias en la riqueza de especies entre clados. (López-Estrada et al., 2019).",
+    "text": "Presentación: Introducción a modelos State Speciaction-Extinción (SSE)\nHaz clic en la imagen para ver el PDF de la presentación\nAnalizaremos si las tasas de diversificación están asociadas al tipo de hospedero en los escarabajos meloidos (Meloidae). Las subfamilias Nemognathinae y Meloinae presentan un ciclo de vida complejo, caracterizado por múltiples metamorfosis y estrategias de parasitoidismo. La mayoría de los géneros y tribus dentro de estas subfamilias son parasitoides de abejas, incluyendo especies foréticas y no foréticas. Sin embargo, dos tribus han adoptado una estrategia distinta, alimentándose de huevos de saltamontes. Estas diferencias en las estrategias de vida están asociadas con marcadas variaciones en la riqueza de especies entre clados (López-Estrada et al., 2019).",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#descarga-del-árbol-filogenético-y-la-matriz-codificada",
+    "href": "chapters/u1_intro_diversification_4.html#descarga-del-árbol-filogenético-y-la-matriz-codificada",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Descarga del Árbol Filogenético y la matriz codificada",
+    "text": "Descarga del Árbol Filogenético y la matriz codificada\n📥 Puedes descargar el archivo .tre con el árbol en el siguiente enlace:\n📥 Descargar Árbol Filogenético\n📥 Puedes descargar el archivo .nex con la matriz codificada en el siguiente enlace:\n📥 Descargar Matriz Codificada\nGuarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
