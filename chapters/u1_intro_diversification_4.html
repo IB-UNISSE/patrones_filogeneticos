@@ -294,8 +294,8 @@ window.Quarto = {
   <li><a href="#cargar-la-trazabilidad-de-los-estados-ancestrales" id="toc-cargar-la-trazabilidad-de-los-estados-ancestrales" class="nav-link" data-scroll-target="#cargar-la-trazabilidad-de-los-estados-ancestrales">Cargar la Trazabilidad de los Estados Ancestrales</a></li>
   <li><a href="#construcción-del-árbol-con-estados-ancestrales" id="toc-construcción-del-árbol-con-estados-ancestrales" class="nav-link" data-scroll-target="#construcción-del-árbol-con-estados-ancestrales">Construcción del Árbol con Estados Ancestrales</a></li>
   <li><a href="#definir-parámetros-para-la-resumir-estados-ancestrales" id="toc-definir-parámetros-para-la-resumir-estados-ancestrales" class="nav-link" data-scroll-target="#definir-parámetros-para-la-resumir-estados-ancestrales">Definir Parámetros para la Resumir Estados Ancestrales</a></li>
-  <li><a href="#leer-la-historia-del-carácter-inferida-por-mapeo-estocástico" id="toc-leer-la-historia-del-carácter-inferida-por-mapeo-estocástico" class="nav-link" data-scroll-target="#leer-la-historia-del-carácter-inferida-por-mapeo-estocástico"><strong>Leer la Historia del Carácter Inferida por Mapeo Estocástico</strong></a></li>
-  <li><a href="#crear-el-árbol-de-mapeo-estocástico-de-caracteres" id="toc-crear-el-árbol-de-mapeo-estocástico-de-caracteres" class="nav-link" data-scroll-target="#crear-el-árbol-de-mapeo-estocástico-de-caracteres"><strong>Crear el Árbol de Mapeo Estocástico de Caracteres</strong></a></li>
+  <li><a href="#leer-la-historia-del-carácter-inferida-por-mapeo-estocástico" id="toc-leer-la-historia-del-carácter-inferida-por-mapeo-estocástico" class="nav-link" data-scroll-target="#leer-la-historia-del-carácter-inferida-por-mapeo-estocástico">Leer la Historia del Carácter Inferida por Mapeo Estocástico</a></li>
+  <li><a href="#crear-el-árbol-de-mapeo-estocástico-de-caracteres" id="toc-crear-el-árbol-de-mapeo-estocástico-de-caracteres" class="nav-link" data-scroll-target="#crear-el-árbol-de-mapeo-estocástico-de-caracteres">Crear el Árbol de Mapeo Estocástico de Caracteres</a></li>
   <li><a href="#visualización-en-r-con-revgadgets-1" id="toc-visualización-en-r-con-revgadgets-1" class="nav-link" data-scroll-target="#visualización-en-r-con-revgadgets-1">Visualización en R con RevGadgets</a></li>
   <li><a href="#graficar-las-tasas-de-diversificación-neta-1" id="toc-graficar-las-tasas-de-diversificación-neta-1" class="nav-link" data-scroll-target="#graficar-las-tasas-de-diversificación-neta-1">Graficar las tasas de diversificación neta</a></li>
   <li><a href="#graficar-tasas-de-especiación-1" id="toc-graficar-tasas-de-especiación-1" class="nav-link" data-scroll-target="#graficar-tasas-de-especiación-1">Graficar tasas de especiación</a></li>
@@ -911,11 +911,11 @@ Q =
 ✅ <strong><code>n_time_slices = 500</code></strong> → Divide el árbol en <strong>500 segmentos de tiempo</strong> para interpolar los cambios de estado.</p>
 </section>
 <section id="leer-la-historia-del-carácter-inferida-por-mapeo-estocástico" class="level2">
-<h2 class="anchored" data-anchor-id="leer-la-historia-del-carácter-inferida-por-mapeo-estocástico"><strong>Leer la Historia del Carácter Inferida por Mapeo Estocástico</strong></h2>
+<h2 class="anchored" data-anchor-id="leer-la-historia-del-carácter-inferida-por-mapeo-estocástico">Leer la Historia del Carácter Inferida por Mapeo Estocástico</h2>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>anc_states_SCHM <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="st">"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="crear-el-árbol-de-mapeo-estocástico-de-caracteres" class="level2">
-<h2 class="anchored" data-anchor-id="crear-el-árbol-de-mapeo-estocástico-de-caracteres"><strong>Crear el Árbol de Mapeo Estocástico de Caracteres</strong></h2>
+<h2 class="anchored" data-anchor-id="crear-el-árbol-de-mapeo-estocástico-de-caracteres">Crear el Árbol de Mapeo Estocástico de Caracteres</h2>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>char_map_tree <span class="ot">=</span> <span class="fu">characterMapTree</span>(<span class="at">tree=</span>T, </span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ancestral_state_trace_vector=</span>anc_states_SCHM, </span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">character_file=</span><span class="st">"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_char.tree"</span>, </span>
