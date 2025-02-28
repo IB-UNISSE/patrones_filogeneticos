@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09143498    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09143424    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -1600,7 +1600,7 @@
     "href": "chapters/u1_intro_diversification_4.html#configuración-de-los-monitores",
     "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
     "section": "Configuración de los monitores",
-    "text": "Configuración de los monitores\nLos monitores guardan los resultados en archivos o los imprimen en pantalla.\nmonitors.append(mnModel(filename=\"../out/Bisse/mitos_BiSSE_clyttini.log\", printgen=1))\nmonitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type=\"Standard\", printgen=1, withTips=true, withStartStates=false, filename=\"../out/Bisse/anc_states_MITOS_BiSSE_clyttini.log\"))\nmonitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename=\".../out/Bisse/SCHM_BiSSE_clyttini.log\"))\nmonitors.append(mnScreen(printgen=10, rate_12, rate_21, speciation, extinction))",
+    "text": "Configuración de los monitores\nLos monitores guardan los resultados en archivos o los imprimen en pantalla.\nmonitors.append(mnModel(filename=\"../out/Bisse/mitos_BiSSE_clyttini.log\", printgen=1))\nmonitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type=\"Standard\", printgen=1, withTips=true, withStartStates=false, filename=\"../out/Bisse/anc_states_MITOS_BiSSE_clyttini.log\"))\nmonitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename=\"../out/Bisse/SCHM_BiSSE_clyttini.log\"))\nmonitors.append(mnScreen(printgen=10, rate_12, rate_21, speciation, extinction))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
