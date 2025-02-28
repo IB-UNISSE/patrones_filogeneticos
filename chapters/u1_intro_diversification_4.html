@@ -525,39 +525,53 @@ Q =
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el archivo de estados ancestrales</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>bisse_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"../docs/u1_PatDiv/output/bisse/mitos_bisse_anc_states_results.tree"</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>p_anc <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(bisse_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  |                                              
-  |                                        |   0%
-  |                                              
-  |========================================| 100%</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir paleta de colores personalizada</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar el gráfico con estados ancestrales</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">plotAncStatesMAP</span>(p_anc,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Aplicar la paleta de colores</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Modificar leyenda y otros elementos de ggplot2</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.85</span>),</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">'cm'</span>), <span class="co"># Tamaño de la clave de la leyenda</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>), <span class="co"># Tamaño del título de la leyenda</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">4</span>))  <span class="co"># Tamaño del texto de la leyenda</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el gráfico</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el archivo de estados ancestrales</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>bisse_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"../docs/u1_PatDiv/output/bisse/mitos_bisse_anc_states_results.tree"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>p_anc <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(bisse_file)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir paleta de colores personalizada</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>)  </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar el gráfico con estados </span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">plotAncStatesMAP</span>(p_anc,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Aplicar la paleta de colores</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Modificar leyenda y otros elementos de ggplot2</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.85</span>),</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">'cm'</span>), <span class="co"># Tamaño de la clave de la leyenda</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>), <span class="co"># Tamaño del título de la leyenda</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">4</span>))  <span class="co"># Tamaño del texto de la leyenda</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el gráfico</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="u1_intro_diversification_4_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar el gráfico con ramas coloreadas por estado ancestral</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plot_2 <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(p_anc, <span class="at">layout =</span> <span class="st">"rectangular"</span>, <span class="fu">aes</span>(<span class="at">color =</span> anc_state_1)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span>  </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"BISSE"</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.85</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">'cm'</span>), <span class="co"># Tamaño de la clave de la leyenda</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>), <span class="co"># Tamaño del título de la leyenda</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">4</span>))  <span class="co"># Tamaño del texto de la leyenda</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el gráfico</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u1_intro_diversification_4_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -566,29 +580,29 @@ Q =
 <section id="graficar-las-tasas-de-transición" class="level2">
 <h2 class="anchored" data-anchor-id="graficar-las-tasas-de-transición">Graficar las tasas de transición</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo de salida de RevBayes</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>bisse <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../docs/u1_PatDiv/output/bisse/mitos_BiSSE_clyttini.log"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir colores para los estados 0 y 1</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>)  </span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con solo las tasas de transición</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>transition_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(bisse<span class="sc">$</span>rate_12, bisse<span class="sc">$</span>rate_21), </span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>), <span class="at">each =</span> <span class="fu">length</span>(bisse<span class="sc">$</span>rate_12))</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un gráfico de violín para las tasas de transición</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>violin_transitions <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(transition_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Transición"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa"</span>) <span class="sc">+</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>violin_transitions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo de salida de RevBayes</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>bisse <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../docs/u1_PatDiv/output/bisse/mitos_BiSSE_clyttini.log"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir colores para los estados 0 y 1</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>)  </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con solo las tasas de transición</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>transition_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(bisse<span class="sc">$</span>rate_12, bisse<span class="sc">$</span>rate_21), </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>), <span class="at">each =</span> <span class="fu">length</span>(bisse<span class="sc">$</span>rate_12))</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un gráfico de violín para las tasas de transición</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>violin_transitions <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(transition_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Transición"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa"</span>) <span class="sc">+</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>violin_transitions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -601,25 +615,25 @@ Q =
 <section id="graficar-las-tasas-de-diversificación-neta" class="level2">
 <h2 class="anchored" data-anchor-id="graficar-las-tasas-de-diversificación-neta">Graficar las tasas de diversificación neta</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tasa de diversificación neta: especiación - extinción</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>netdiversification_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(bisse<span class="sc">$</span>speciation.<span class="fl">1.</span> <span class="sc">-</span> bisse<span class="sc">$</span>extinction.<span class="fl">1.</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>           bisse<span class="sc">$</span>speciation.<span class="fl">2.</span> <span class="sc">-</span> bisse<span class="sc">$</span>extinction.<span class="fl">2.</span>),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>), <span class="at">each =</span> <span class="fu">length</span>(bisse<span class="sc">$</span>speciation.<span class="fl">1.</span>))</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir la variable de estado en factor</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>netdiversification_rates<span class="sc">$</span>rate <span class="ot">&lt;-</span> <span class="fu">factor</span>(netdiversification_rates<span class="sc">$</span>rate, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>))</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el gráfico de violín para tasas de diversificación neta</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>violin_diversification <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(netdiversification_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Diversificación Neta"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa"</span>) <span class="sc">+</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>violin_diversification</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tasa de diversificación neta: especiación - extinción</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>netdiversification_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(bisse<span class="sc">$</span>speciation.<span class="fl">1.</span> <span class="sc">-</span> bisse<span class="sc">$</span>extinction.<span class="fl">1.</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>           bisse<span class="sc">$</span>speciation.<span class="fl">2.</span> <span class="sc">-</span> bisse<span class="sc">$</span>extinction.<span class="fl">2.</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>), <span class="at">each =</span> <span class="fu">length</span>(bisse<span class="sc">$</span>speciation.<span class="fl">1.</span>))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir la variable de estado en factor</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>netdiversification_rates<span class="sc">$</span>rate <span class="ot">&lt;-</span> <span class="fu">factor</span>(netdiversification_rates<span class="sc">$</span>rate, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>))</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el gráfico de violín para tasas de diversificación neta</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>violin_diversification <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(netdiversification_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Diversificación Neta"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa"</span>) <span class="sc">+</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>violin_diversification</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -632,21 +646,21 @@ Q =
 <section id="graficar-tasas-de-especiación" class="level2">
 <h2 class="anchored" data-anchor-id="graficar-tasas-de-especiación">Graficar tasas de especiación</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con tasas de especiación para cada estado</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>speciation_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(bisse<span class="sc">$</span>speciation.<span class="fl">1.</span>,  bisse<span class="sc">$</span>speciation.<span class="fl">2.</span>), </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>), <span class="at">each =</span> <span class="fu">length</span>(bisse<span class="sc">$</span>speciation.<span class="fl">1.</span>))</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico de violín para las tasas de especiación</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>violin_speciation <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(speciation_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Especiación"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa de Especiación"</span>) <span class="sc">+</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>violin_speciation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con tasas de especiación para cada estado</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>speciation_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(bisse<span class="sc">$</span>speciation.<span class="fl">1.</span>,  bisse<span class="sc">$</span>speciation.<span class="fl">2.</span>), </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>), <span class="at">each =</span> <span class="fu">length</span>(bisse<span class="sc">$</span>speciation.<span class="fl">1.</span>))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico de violín para las tasas de especiación</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>violin_speciation <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(speciation_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Especiación"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa de Especiación"</span>) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>violin_speciation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -659,21 +673,21 @@ Q =
 <section id="graficar-tasas-de-extinción" class="level2">
 <h2 class="anchored" data-anchor-id="graficar-tasas-de-extinción">Graficar tasas de extinción</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con tasas de extinción para cada estado</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>extinction_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(bisse<span class="sc">$</span>extinction.<span class="fl">1.</span>, bisse<span class="sc">$</span>extinction.<span class="fl">2.</span>), </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>), <span class="at">each =</span> <span class="fu">length</span>(bisse<span class="sc">$</span>extinction.<span class="fl">1.</span>))</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico de violín para tasas de extinción</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>violin_extinction <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(extinction_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Extinción"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa de Extinción"</span>) <span class="sc">+</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>violin_extinction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con tasas de extinción para cada estado</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>extinction_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(bisse<span class="sc">$</span>extinction.<span class="fl">1.</span>, bisse<span class="sc">$</span>extinction.<span class="fl">2.</span>), </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>), <span class="at">each =</span> <span class="fu">length</span>(bisse<span class="sc">$</span>extinction.<span class="fl">1.</span>))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico de violín para tasas de extinción</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>violin_extinction <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(extinction_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Extinción"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa de Extinción"</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>violin_extinction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -712,127 +726,127 @@ Q =
 <section id="carga-de-la-filogenia-y-los-datos-1" class="level2">
 <h2 class="anchored" data-anchor-id="carga-de-la-filogenia-y-los-datos-1">Carga de la filogenia y los datos</h2>
 <p>Crea un script <code>.Rev</code> y copia el codigo de la siguiente sección:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el arbol</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="st">"../data/ConLyttini.tre"</span>)[<span class="dv">1</span>]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer la matriz de caracteres</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">readCharacterData</span>(<span class="st">"../data/Traits_conLyttini_01.nex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el arbol</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="st">"../data/ConLyttini.tre"</span>)[<span class="dv">1</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer la matriz de caracteres</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">readCharacterData</span>(<span class="st">"../data/Traits_conLyttini_01.nex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-el-número-de-estados-en-los-modelos-hisse-y-paremetros-globales" class="level2">
 <h2 class="anchored" data-anchor-id="definir-el-número-de-estados-en-los-modelos-hisse-y-paremetros-globales">Definir el número de estados en los modelos HISSE y paremetros globales</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>NUM_TOTAL_SPECIES     <span class="ot">=</span> <span class="fl">3000.0</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>NUM_STATES            <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>NUM_HIDDEN            <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>NUM_RATES             <span class="ot">=</span> NUM_STATES <span class="sc">*</span> NUM_HIDDEN</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>H                     <span class="ot">=</span> <span class="fl">0.587405</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Expansión de los Datos para Incluir Estados Ocultos </span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>data_exp <span class="ot">&lt;-</span> <span class="fu">datos.expandCharacters</span>(NUM_HIDDEN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>NUM_TOTAL_SPECIES     <span class="ot">=</span> <span class="fl">3000.0</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>NUM_STATES            <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>NUM_HIDDEN            <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>NUM_RATES             <span class="ot">=</span> NUM_STATES <span class="sc">*</span> NUM_HIDDEN</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>H                     <span class="ot">=</span> <span class="fl">0.587405</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Expansión de los Datos para Incluir Estados Ocultos </span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>data_exp <span class="ot">&lt;-</span> <span class="fu">datos.expandCharacters</span>(NUM_HIDDEN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.-1" class="level2">
 <h2 class="anchored" data-anchor-id="definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.-1">Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>moves    <span class="ot">=</span> <span class="fu">VectorMoves</span>()</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>moves    <span class="ot">=</span> <span class="fu">VectorMoves</span>()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="extraer-información-del-árbol-filogenético" class="level2">
 <h2 class="anchored" data-anchor-id="extraer-información-del-árbol-filogenético">Extraer información del árbol filogenético</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>taxa <span class="ot">&lt;-</span> <span class="fu">T.taxa</span>()</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tree_length <span class="ot">&lt;-</span> <span class="fu">T.treeLength</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>taxa <span class="ot">&lt;-</span> <span class="fu">T.taxa</span>()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>tree_length <span class="ot">&lt;-</span> <span class="fu">T.treeLength</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-la-media-de-las-tasas-de-especiación-y-extinción" class="level2">
 <h2 class="anchored" data-anchor-id="definir-la-media-de-las-tasas-de-especiación-y-extinción">Definir la Media de las Tasas de Especiación y Extinción</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>rate_mean <span class="ot">&lt;-</span> (NUM_TOTAL_SPECIES <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">/</span> tree_length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>rate_mean <span class="ot">&lt;-</span> (NUM_TOTAL_SPECIES <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">/</span> tree_length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✅ Calcula la <strong>media esperada de las tasas de especiación y extinción</strong> basada en el número total de especies y la longitud del árbol.</p>
 </section>
 <section id="especiación-y-extinción-oculta-hidden-speciation-rates" class="level2">
 <h2 class="anchored" data-anchor-id="especiación-y-extinción-oculta-hidden-speciation-rates">Especiación y Extinción Oculta (Hidden Speciation Rates)</h2>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ln_speciation_hidden_mean <span class="ot">&lt;-</span> <span class="fu">ln</span>(<span class="fl">1.0</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ln_extinction_hidden_mean <span class="ot">&lt;-</span> <span class="fu">ln</span>(<span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ln_speciation_hidden_mean <span class="ot">&lt;-</span> <span class="fu">ln</span>(<span class="fl">1.0</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ln_extinction_hidden_mean <span class="ot">&lt;-</span> <span class="fu">ln</span>(<span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✅ Define la media logarítmica de las tasas ocultas de especiación como 1.0 en una escala relativa. ✔️ Esto significa que los valores generados serán proporcionales, y no absolutos.</p>
 </section>
 <section id="variación-en-las-tasas-ocultas-de-especiación-y-extinción" class="level2">
 <h2 class="anchored" data-anchor-id="variación-en-las-tasas-ocultas-de-especiación-y-extinción">Variación en las Tasas Ocultas de Especiación y Extinción</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>speciation_hidden_sd <span class="sc">~</span> <span class="fu">dnExponential</span>(<span class="fl">1.0</span> <span class="sc">/</span> H)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>extinction_hidden_sd <span class="sc">~</span> <span class="fu">dnExponential</span>(<span class="fl">1.0</span> <span class="sc">/</span> H)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>speciation_hidden_sd <span class="sc">~</span> <span class="fu">dnExponential</span>(<span class="fl">1.0</span> <span class="sc">/</span> H)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>extinction_hidden_sd <span class="sc">~</span> <span class="fu">dnExponential</span>(<span class="fl">1.0</span> <span class="sc">/</span> H)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="movimiento-mcmc-para-optimizar-la-desviación-estándar" class="level2">
 <h2 class="anchored" data-anchor-id="movimiento-mcmc-para-optimizar-la-desviación-estándar">Movimiento MCMC para Optimizar la Desviación Estándar</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvScale</span>(speciation_hidden_sd, <span class="at">lambda=</span><span class="dv">1</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">2.0</span>))</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvScale</span>(extinction_hidden_sd, <span class="at">lambda=</span><span class="dv">1</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">2.0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvScale</span>(speciation_hidden_sd, <span class="at">lambda=</span><span class="dv">1</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">2.0</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvScale</span>(extinction_hidden_sd, <span class="at">lambda=</span><span class="dv">1</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">2.0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-la-distribución-de-las-tasas-ocultas" class="level2">
 <h2 class="anchored" data-anchor-id="definir-la-distribución-de-las-tasas-ocultas">Definir la Distribución de las Tasas Ocultas</h2>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>speciation_hidden_unormalized <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDiscretizeDistribution</span>(<span class="fu">dnLognormal</span>(ln_speciation_hidden_mean, speciation_hidden_sd), NUM_HIDDEN)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>extinction_hidden_unormalized <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDiscretizeDistribution</span>(<span class="fu">dnLognormal</span>(ln_extinction_hidden_mean, extinction_hidden_sd), NUM_HIDDEN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>speciation_hidden_unormalized <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDiscretizeDistribution</span>(<span class="fu">dnLognormal</span>(ln_speciation_hidden_mean, speciation_hidden_sd), NUM_HIDDEN)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>extinction_hidden_unormalized <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDiscretizeDistribution</span>(<span class="fu">dnLognormal</span>(ln_extinction_hidden_mean, extinction_hidden_sd), NUM_HIDDEN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✅ Se genera un conjunto de tasas ocultas de especiación a partir de una distribución lognormal.</p>
 </section>
 <section id="normalización-de-las-tasas-ocultas" class="level2">
 <h2 class="anchored" data-anchor-id="normalización-de-las-tasas-ocultas">Normalización de las Tasas Ocultas</h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>speciation_hidden <span class="sc">:</span><span class="er">=</span> speciation_hidden_unormalized <span class="sc">/</span> <span class="fu">mean</span>(speciation_hidden_unormalized)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>extinction_hidden <span class="sc">:</span><span class="er">=</span> extinction_hidden_unormalized <span class="sc">/</span> <span class="fu">mean</span>(extinction_hidden_unormalized)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>speciation_hidden <span class="sc">:</span><span class="er">=</span> speciation_hidden_unormalized <span class="sc">/</span> <span class="fu">mean</span>(speciation_hidden_unormalized)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>extinction_hidden <span class="sc">:</span><span class="er">=</span> extinction_hidden_unormalized <span class="sc">/</span> <span class="fu">mean</span>(extinction_hidden_unormalized)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✅ Se normalizan las tasas ocultas dividiéndolas por su media, para que el promedio sea 1.0. ✔️ Esto garantiza que los valores sean relativos y comparables entre estados.</p>
 </section>
 <section id="definir-tasas-de-especiación-para-estados-observables" class="level2">
 <h2 class="anchored" data-anchor-id="definir-tasas-de-especiación-para-estados-observables">Definir Tasas de Especiación para Estados Observables</h2>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_STATES) {</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    speciation_observed[i] <span class="sc">~</span> <span class="fu">dnLoguniform</span>( <span class="fl">1E-6</span>, <span class="fl">1E2</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    speciation_observed[i]<span class="fu">.setValue</span>( (NUM_TOTAL_SPECIES<span class="dv">-2</span>) <span class="sc">/</span> tree_length )</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(speciation_observed[i], <span class="at">lambda=</span><span class="fl">1.0</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">3.0</span>) )</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="do">### Create a loguniform distributed variable for the extinction rate</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    extinction_observed[i] <span class="sc">~</span> <span class="fu">dnLoguniform</span>( <span class="fl">1E-6</span>, <span class="fl">1E2</span>)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    extinction_observed[i]<span class="fu">.setValue</span>( speciation_observed[i] <span class="sc">/</span> <span class="fl">10.0</span> )</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(extinction_observed[i], <span class="at">lambda=</span><span class="fl">1.0</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">3.0</span>) )</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_STATES) {</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    speciation_observed[i] <span class="sc">~</span> <span class="fu">dnLoguniform</span>( <span class="fl">1E-6</span>, <span class="fl">1E2</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    speciation_observed[i]<span class="fu">.setValue</span>( (NUM_TOTAL_SPECIES<span class="dv">-2</span>) <span class="sc">/</span> tree_length )</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(speciation_observed[i], <span class="at">lambda=</span><span class="fl">1.0</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">3.0</span>) )</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="do">### Create a loguniform distributed variable for the extinction rate</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    extinction_observed[i] <span class="sc">~</span> <span class="fu">dnLoguniform</span>( <span class="fl">1E-6</span>, <span class="fl">1E2</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    extinction_observed[i]<span class="fu">.setValue</span>( speciation_observed[i] <span class="sc">/</span> <span class="fl">10.0</span> )</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(extinction_observed[i], <span class="at">lambda=</span><span class="fl">1.0</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">3.0</span>) )</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="cálculo-de-las-tasas-combinadas" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-de-las-tasas-combinadas">Cálculo de las Tasas Combinadas</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_HIDDEN) {</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_STATES) {</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>        index <span class="ot">=</span> i<span class="sc">+</span>(j<span class="sc">*</span>NUM_STATES)<span class="sc">-</span>NUM_STATES</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>        speciation[index] <span class="sc">:</span><span class="er">=</span> speciation_observed[i] <span class="sc">*</span> speciation_hidden[j]</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>        extinction[index] <span class="sc">:</span><span class="er">=</span> extinction_observed[i] <span class="sc">*</span> extinction_hidden[j]</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_HIDDEN) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_STATES) {</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        index <span class="ot">=</span> i<span class="sc">+</span>(j<span class="sc">*</span>NUM_STATES)<span class="sc">-</span>NUM_STATES</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        speciation[index] <span class="sc">:</span><span class="er">=</span> speciation_observed[i] <span class="sc">*</span> speciation_hidden[j]</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        extinction[index] <span class="sc">:</span><span class="er">=</span> extinction_observed[i] <span class="sc">*</span> extinction_hidden[j]</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-la-matriz-de-transición-entre-estados-observables" class="level2">
 <h2 class="anchored" data-anchor-id="definir-la-matriz-de-transición-entre-estados-observables">Definir la Matriz de Transición entre Estados Observables</h2>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>rate_pr <span class="sc">:</span><span class="er">=</span> <span class="fu">T.treeLength</span>() <span class="sc">/</span> <span class="dv">10</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(NUM_STATES<span class="sc">*</span>(NUM_STATES<span class="dv">-1</span>)) ) {</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    transition_rates[i] <span class="sc">~</span> <span class="fu">dnExp</span>(rate_pr)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(transition_rates[i], <span class="at">lambda=</span><span class="fl">0.50</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">3.0</span>) )</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>rate_pr <span class="sc">:</span><span class="er">=</span> <span class="fu">T.treeLength</span>() <span class="sc">/</span> <span class="dv">10</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(NUM_STATES<span class="sc">*</span>(NUM_STATES<span class="dv">-1</span>)) ) {</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    transition_rates[i] <span class="sc">~</span> <span class="fu">dnExp</span>(rate_pr)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(transition_rates[i], <span class="at">lambda=</span><span class="fl">0.50</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="fl">3.0</span>) )</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-la-matriz-de-transición-entre-estados-ocultos" class="level2">
 <h2 class="anchored" data-anchor-id="definir-la-matriz-de-transición-entre-estados-ocultos">Definir la Matriz de Transición entre Estados Ocultos</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>hidden_rate <span class="sc">~</span> <span class="fu">dnExponential</span>(rate_pr)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(hidden_rate, <span class="at">lambda=</span><span class="fl">0.5</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="dv">5</span>) )</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(NUM_HIDDEN <span class="sc">*</span> (NUM_HIDDEN <span class="sc">-</span> <span class="dv">1</span>))) {</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    R[i] <span class="sc">:</span><span class="er">=</span> hidden_rate</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>hidden_rate <span class="sc">~</span> <span class="fu">dnExponential</span>(rate_pr)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(hidden_rate, <span class="at">lambda=</span><span class="fl">0.5</span>, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="dv">5</span>) )</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(NUM_HIDDEN <span class="sc">*</span> (NUM_HIDDEN <span class="sc">-</span> <span class="dv">1</span>))) {</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    R[i] <span class="sc">:</span><span class="er">=</span> hidden_rate</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="crear-la-matriz-de-transición-q-combinada" class="level2">
 <h2 class="anchored" data-anchor-id="crear-la-matriz-de-transición-q-combinada">Crear la Matriz de Transición <code>Q</code> Combinada</h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>rate_matrix <span class="sc">:</span><span class="er">=</span> <span class="fu">fnHiddenStateRateMatrix</span>(transition_rates, R, <span class="at">rescaled=</span>false)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>rate_matrix <span class="sc">:</span><span class="er">=</span> <span class="fu">fnHiddenStateRateMatrix</span>(transition_rates, R, <span class="at">rescaled=</span>false)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-la-distribución-de-los-estados-en-la-raíz" class="level2">
 <h2 class="anchored" data-anchor-id="definir-la-distribución-de-los-estados-en-la-raíz">Definir la Distribución de los Estados en la Raíz</h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>rate_category_prior <span class="sc">~</span> <span class="fu">dnDirichlet</span>( <span class="fu">rep</span>(<span class="dv">1</span>,NUM_RATES) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>rate_category_prior <span class="sc">~</span> <span class="fu">dnDirichlet</span>( <span class="fu">rep</span>(<span class="dv">1</span>,NUM_RATES) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="optimización-con-movimientos-mcmc" class="level2">
 <h2 class="anchored" data-anchor-id="optimización-con-movimientos-mcmc">Optimización con Movimientos MCMC</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvBetaSimplex</span>(rate_category_prior, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="dv">2</span>) )</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvDirichletSimplex</span>(rate_category_prior, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="dv">2</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvBetaSimplex</span>(rate_category_prior, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="dv">2</span>) )</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvDirichletSimplex</span>(rate_category_prior, <span class="at">tune=</span>true, <span class="at">weight=</span><span class="dv">2</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-la-edad-de-la-raíz-del-árbol" class="level2">
 <h2 class="anchored" data-anchor-id="definir-la-edad-de-la-raíz-del-árbol">Definir la Edad de la Raíz del Árbol</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>root <span class="ot">&lt;-</span> <span class="fu">T.rootAge</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>root <span class="ot">&lt;-</span> <span class="fu">T.rootAge</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-la-probabilidad-de-muestreo-de-especies-rho" class="level2">
 <h2 class="anchored" data-anchor-id="definir-la-probabilidad-de-muestreo-de-especies-rho">Definir la Probabilidad de Muestreo de Especies (<span class="math inline">\(\rho\)</span>)</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fu">T.ntips</span>()<span class="sc">/</span><span class="fl">3000.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fu">T.ntips</span>()<span class="sc">/</span><span class="fl">3000.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-el-árbol-bajo-un-proceso-de-diversificación-dependiente-del-estado" class="level2">
 <h2 class="anchored" data-anchor-id="definir-el-árbol-bajo-un-proceso-de-diversificación-dependiente-del-estado">Definir el Árbol Bajo un Proceso de Diversificación Dependiente del Estado</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>timetree <span class="sc">~</span> <span class="fu">dnCDBDP</span>( <span class="at">rootAge =</span> root, <span class="at">speciationRates =</span> speciation, <span class="at">extinctionRates =</span> extinction, <span class="at">Q =</span> rate_matrix, <span class="at">delta =</span> <span class="fl">1.0</span>, <span class="at">pi =</span> rate_category_prior, <span class="at">rho =</span> rho, <span class="at">condition =</span> <span class="st">"survival"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>timetree <span class="sc">~</span> <span class="fu">dnCDBDP</span>( <span class="at">rootAge =</span> root, <span class="at">speciationRates =</span> speciation, <span class="at">extinctionRates =</span> extinction, <span class="at">Q =</span> rate_matrix, <span class="at">delta =</span> <span class="fl">1.0</span>, <span class="at">pi =</span> rate_category_prior, <span class="at">rho =</span> rho, <span class="at">condition =</span> <span class="st">"survival"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✔️ <strong>Parámetros clave:</strong></p>
 <ul>
 <li><p><strong><code>rootAge = root</code></strong> → La edad de la raíz se fija a la edad del árbol observado.</p></li>
@@ -847,100 +861,113 @@ Q =
 </section>
 <section id="ajustar-el-modelo-a-la-filogenia-observada" class="level2">
 <h2 class="anchored" data-anchor-id="ajustar-el-modelo-a-la-filogenia-observada">Ajustar el Modelo a la Filogenia Observada</h2>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clamp</span>(T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clamp</span>(T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ajustar-el-modelo-a-los-datos-de-caracteres" class="level2">
 <h2 class="anchored" data-anchor-id="ajustar-el-modelo-a-los-datos-de-caracteres">Ajustar el Modelo a los Datos de Caracteres</h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clampCharData</span>(data_exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clampCharData</span>(data_exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-el-modelo-en-revbayes" class="level2">
 <h2 class="anchored" data-anchor-id="definir-el-modelo-en-revbayes">Definir el Modelo en RevBayes</h2>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(rate_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(rate_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="configurar-monitores-para-guardar-resultados" class="level2">
 <h2 class="anchored" data-anchor-id="configurar-monitores-para-guardar-resultados"><strong>Configurar Monitores para Guardar Resultados</strong></h2>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor Principal del Modelo</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"../out/Hisse/mitos_HiSSE_clyttini_TUTscript.log"</span>, <span class="at">printgen=</span><span class="dv">1</span>) )</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor de Estados Ancestrales</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnJointConditionalAncestralState</span>(<span class="at">tree=</span>timetree, <span class="at">cdbdp=</span>timetree, <span class="at">type=</span><span class="st">"NaturalNumbers"</span>, <span class="at">printgen=</span><span class="dv">1</span>, <span class="at">withTips=</span>true, <span class="at">withStartStates=</span>false, <span class="at">filename=</span><span class="st">"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log"</span>))</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor de Mapeo Estocástico de Caracteres</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnStochasticCharacterMap</span>(<span class="at">cdbdp=</span>timetree, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">filename=</span><span class="st">"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log"</span>, <span class="at">include_simmap=</span>true))</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor en Pantalla</span></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">10</span>, speciation_observed, extinction_observed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor Principal del Modelo</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"../out/Hisse/mitos_HiSSE_clyttini_TUTscript.log"</span>, <span class="at">printgen=</span><span class="dv">1</span>) )</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor de Estados Ancestrales</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnJointConditionalAncestralState</span>(<span class="at">tree=</span>timetree, <span class="at">cdbdp=</span>timetree, <span class="at">type=</span><span class="st">"NaturalNumbers"</span>, <span class="at">printgen=</span><span class="dv">1</span>, <span class="at">withTips=</span>true, <span class="at">withStartStates=</span>false, <span class="at">filename=</span><span class="st">"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log"</span>))</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor de Mapeo Estocástico de Caracteres</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnStochasticCharacterMap</span>(<span class="at">cdbdp=</span>timetree, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">filename=</span><span class="st">"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log"</span>, <span class="at">include_simmap=</span>true))</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor en Pantalla</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">10</span>, speciation_observed, extinction_observed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="configurar-el-algoritmo-mcmc" class="level2">
 <h2 class="anchored" data-anchor-id="configurar-el-algoritmo-mcmc">Configurar el Algoritmo MCMC</h2>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="do">### workspace mcmc</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">1</span>, <span class="at">moveschedule=</span><span class="st">"random"</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="do">### workspace mcmc</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">1</span>, <span class="at">moveschedule=</span><span class="st">"random"</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ejecutar-el-mcmc-1" class="level2">
 <h2 class="anchored" data-anchor-id="ejecutar-el-mcmc-1">Ejecutar el MCMC</h2>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">400</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">400</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="cargar-la-trazabilidad-de-los-estados-ancestrales" class="level2">
 <h2 class="anchored" data-anchor-id="cargar-la-trazabilidad-de-los-estados-ancestrales">Cargar la Trazabilidad de los Estados Ancestrales</h2>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>anc_states2 <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="st">"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>anc_states2 <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="st">"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="construcción-del-árbol-con-estados-ancestrales" class="level2">
 <h2 class="anchored" data-anchor-id="construcción-del-árbol-con-estados-ancestrales">Construcción del Árbol con Estados Ancestrales</h2>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>anc_tree <span class="ot">=</span> <span class="fu">ancestralStateTree</span>(<span class="at">tree=</span>T, <span class="at">ancestral_state_trace_vector =</span> anc_states2, <span class="at">include_start_states=</span>false, <span class="at">file =</span> <span class="st">"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree"</span>, <span class="at">burnin =</span> <span class="dv">2</span>, <span class="at">summary_statistic =</span> <span class="st">"MAP"</span>, <span class="at">site=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>anc_tree <span class="ot">=</span> <span class="fu">ancestralStateTree</span>(<span class="at">tree=</span>T, <span class="at">ancestral_state_trace_vector =</span> anc_states2, <span class="at">include_start_states=</span>false, <span class="at">file =</span> <span class="st">"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree"</span>, <span class="at">burnin =</span> <span class="dv">2</span>, <span class="at">summary_statistic =</span> <span class="st">"MAP"</span>, <span class="at">site=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="definir-parámetros-para-la-resumir-estados-ancestrales" class="level2">
 <h2 class="anchored" data-anchor-id="definir-parámetros-para-la-resumir-estados-ancestrales">Definir Parámetros para la Resumir Estados Ancestrales</h2>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>burnin<span class="ot">=</span><span class="dv">10</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>n_time_slices <span class="ot">=</span> <span class="dv">500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>burnin<span class="ot">=</span><span class="dv">10</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>n_time_slices <span class="ot">=</span> <span class="dv">500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✅ <strong><code>burnin = 25</code></strong> → Descarta las <strong>primeras 25 iteraciones</strong> del MCMC antes de hacer el resumen.<br>
 ✅ <strong><code>n_time_slices = 500</code></strong> → Divide el árbol en <strong>500 segmentos de tiempo</strong> para interpolar los cambios de estado.</p>
 </section>
 <section id="leer-la-historia-del-carácter-inferida-por-mapeo-estocástico" class="level2">
 <h2 class="anchored" data-anchor-id="leer-la-historia-del-carácter-inferida-por-mapeo-estocástico"><strong>Leer la Historia del Carácter Inferida por Mapeo Estocástico</strong></h2>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>anc_states_SCHM <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="st">"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>anc_states_SCHM <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="st">"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="crear-el-árbol-de-mapeo-estocástico-de-caracteres" class="level2">
 <h2 class="anchored" data-anchor-id="crear-el-árbol-de-mapeo-estocástico-de-caracteres"><strong>Crear el Árbol de Mapeo Estocástico de Caracteres</strong></h2>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>char_map_tree <span class="ot">=</span> <span class="fu">characterMapTree</span>(<span class="at">tree=</span>T, </span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ancestral_state_trace_vector=</span>anc_states_SCHM, </span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">character_file=</span><span class="st">"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_char.tree"</span>, </span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">posterior_file=</span><span class="st">"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_post.tree"</span>, </span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">burnin=</span>burnin, </span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">num_time_slices=</span>n_time_slices)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>char_map_tree <span class="ot">=</span> <span class="fu">characterMapTree</span>(<span class="at">tree=</span>T, </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ancestral_state_trace_vector=</span>anc_states_SCHM, </span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">character_file=</span><span class="st">"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_char.tree"</span>, </span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">posterior_file=</span><span class="st">"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_post.tree"</span>, </span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">burnin=</span>burnin, </span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">num_time_slices=</span>n_time_slices)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el archivo de estados ancestrales</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>hisse_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"../docs/u1_PatDiv/output/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree"</span>)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>p_anc_hisse <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(hisse_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  |                                              
-  |                                        |   0%
-  |                                              
-  |========================================| 100%</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir paleta de colores personalizada</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>, <span class="st">"#9DD962"</span>, <span class="st">"#D48DF2"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar el gráfico con estados ancestrales</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>plot_hisse <span class="ot">&lt;-</span> <span class="fu">plotAncStatesMAP</span>(p_anc_hisse,</span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Aplicar la paleta de colores</span></span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Modificar leyenda y otros elementos de ggplot2</span></span>
-<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.85</span>),</span>
-<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">'cm'</span>), <span class="co"># Tamaño de la clave de la leyenda</span></span>
-<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>), <span class="co"># Tamaño del título de la leyenda</span></span>
-<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">4</span>))  <span class="co"># Tamaño del texto de la leyenda</span></span>
-<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el gráfico</span></span>
-<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>plot_hisse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el archivo de estados ancestrales</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>hisse_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"../docs/u1_PatDiv/output/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree"</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>p_anc_hisse <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(hisse_file)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir paleta de colores personalizada</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>, <span class="st">"#9DD962"</span>, <span class="st">"#D48DF2"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar el gráfico con estados ancestrales</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>plot_hisse <span class="ot">&lt;-</span> <span class="fu">plotAncStatesMAP</span>(p_anc_hisse,</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Aplicar la paleta de colores</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Modificar leyenda y otros elementos de ggplot2</span></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.85</span>),</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">'cm'</span>), <span class="co"># Tamaño de la clave de la leyenda</span></span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>), <span class="co"># Tamaño del título de la leyenda</span></span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">4</span>))  <span class="co"># Tamaño del texto de la leyenda</span></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el gráfico</span></span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>plot_hisse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="u1_intro_diversification_4_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar el gráfico con ramas coloreadas por estado ancestral</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>plot_hisse_2 <span class="ot">&lt;-</span> <span class="fu">ggtree</span>(p_anc_hisse, <span class="at">layout =</span> <span class="st">"rectangular"</span>, <span class="fu">aes</span>(<span class="at">color =</span> anc_state_1)) <span class="sc">+</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span>  </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"HISSE"</span>) <span class="sc">+</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.85</span>),</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">'cm'</span>), <span class="co"># Tamaño de la clave de la leyenda</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>), <span class="co"># Tamaño del título de la leyenda</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">4</span>))  <span class="co"># Tamaño del texto de la leyenda</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el gráfico</span></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>plot_hisse_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u1_intro_diversification_4_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -949,33 +976,33 @@ Q =
 <section id="graficar-las-tasas-de-diversificación-neta-1" class="level2">
 <h2 class="anchored" data-anchor-id="graficar-las-tasas-de-diversificación-neta-1">Graficar las tasas de diversificación neta</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo de salida de RevBayes</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>hisse <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../docs/u1_PatDiv/output/hisse/mitos_HiSSE_clyttini_TUTscript.log"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir paleta de colores personalizada</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>, <span class="st">"#9DD962"</span>, <span class="st">"#D48DF2"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tasa de diversificación neta: especiación - extinción</span></span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>netdiversification_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(hisse<span class="sc">$</span>speciation_observed.<span class="fl">1.</span> <span class="sc">-</span> hisse<span class="sc">$</span>extinction_observed.<span class="fl">1.</span>,</span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>speciation_observed.<span class="fl">2.</span> <span class="sc">-</span> hisse<span class="sc">$</span>extinction_observed.<span class="fl">2.</span>,</span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>speciation_hidden.<span class="fl">1.</span> <span class="sc">-</span> hisse<span class="sc">$</span>extinction_hidden.<span class="fl">1.</span>,</span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>speciation_hidden.<span class="fl">2.</span> <span class="sc">-</span> hisse<span class="sc">$</span>extinction_hidden.<span class="fl">2.</span>),</span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0A"</span>, <span class="st">"1A"</span>, <span class="st">"0B"</span>, <span class="st">"1B"</span>), <span class="at">each =</span> <span class="fu">length</span>(hisse<span class="sc">$</span>speciation_observed.<span class="fl">1.</span>))</span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir la variable de estado en factor</span></span>
-<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>netdiversification_rates<span class="sc">$</span>rate <span class="ot">&lt;-</span> <span class="fu">factor</span>(netdiversification_rates<span class="sc">$</span>rate, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"0A"</span>, <span class="st">"1A"</span>, <span class="st">"0B"</span>, <span class="st">"1B"</span>))</span>
-<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el gráfico de violín para tasas de diversificación neta</span></span>
-<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>violin_diversification <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(netdiversification_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
-<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Diversificación Neta"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa"</span>) <span class="sc">+</span></span>
-<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
-<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a>violin_diversification</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo de salida de RevBayes</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>hisse <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../docs/u1_PatDiv/output/hisse/mitos_HiSSE_clyttini_TUTscript.log"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir paleta de colores personalizada</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>, <span class="st">"#9DD962"</span>, <span class="st">"#D48DF2"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tasa de diversificación neta: especiación - extinción</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>netdiversification_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(hisse<span class="sc">$</span>speciation_observed.<span class="fl">1.</span> <span class="sc">-</span> hisse<span class="sc">$</span>extinction_observed.<span class="fl">1.</span>,</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>speciation_observed.<span class="fl">2.</span> <span class="sc">-</span> hisse<span class="sc">$</span>extinction_observed.<span class="fl">2.</span>,</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>speciation_hidden.<span class="fl">1.</span> <span class="sc">-</span> hisse<span class="sc">$</span>extinction_hidden.<span class="fl">1.</span>,</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>speciation_hidden.<span class="fl">2.</span> <span class="sc">-</span> hisse<span class="sc">$</span>extinction_hidden.<span class="fl">2.</span>),</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0A"</span>, <span class="st">"1A"</span>, <span class="st">"0B"</span>, <span class="st">"1B"</span>), <span class="at">each =</span> <span class="fu">length</span>(hisse<span class="sc">$</span>speciation_observed.<span class="fl">1.</span>))</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir la variable de estado en factor</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>netdiversification_rates<span class="sc">$</span>rate <span class="ot">&lt;-</span> <span class="fu">factor</span>(netdiversification_rates<span class="sc">$</span>rate, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"0A"</span>, <span class="st">"1A"</span>, <span class="st">"0B"</span>, <span class="st">"1B"</span>))</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el gráfico de violín para tasas de diversificación neta</span></span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>violin_diversification <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(netdiversification_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Diversificación Neta"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa"</span>) <span class="sc">+</span></span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>violin_diversification</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -988,22 +1015,22 @@ Q =
 <section id="graficar-tasas-de-especiación-1" class="level2">
 <h2 class="anchored" data-anchor-id="graficar-tasas-de-especiación-1">Graficar tasas de especiación</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con tasas de especiación para cada estado</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>speciation_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(hisse<span class="sc">$</span>speciation_observed.<span class="fl">1.</span>,  hisse<span class="sc">$</span>speciation_observed.<span class="fl">2.</span>,</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>speciation_hidden.<span class="fl">1.</span>, hisse<span class="sc">$</span>speciation_hidden.<span class="fl">2.</span>), </span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0A"</span>, <span class="st">"1A"</span>, <span class="st">"0B"</span>, <span class="st">"1B"</span>), <span class="at">each =</span> <span class="fu">length</span>(hisse<span class="sc">$</span>speciation_observed.<span class="fl">1.</span>))</span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico de violín para las tasas de especiación</span></span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>violin_speciation <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(speciation_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
-<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Especiación"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa de Especiación"</span>) <span class="sc">+</span></span>
-<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
-<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>violin_speciation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con tasas de especiación para cada estado</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>speciation_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(hisse<span class="sc">$</span>speciation_observed.<span class="fl">1.</span>,  hisse<span class="sc">$</span>speciation_observed.<span class="fl">2.</span>,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>speciation_hidden.<span class="fl">1.</span>, hisse<span class="sc">$</span>speciation_hidden.<span class="fl">2.</span>), </span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0A"</span>, <span class="st">"1A"</span>, <span class="st">"0B"</span>, <span class="st">"1B"</span>), <span class="at">each =</span> <span class="fu">length</span>(hisse<span class="sc">$</span>speciation_observed.<span class="fl">1.</span>))</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico de violín para las tasas de especiación</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>violin_speciation <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(speciation_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Especiación"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa de Especiación"</span>) <span class="sc">+</span></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>violin_speciation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1016,22 +1043,22 @@ Q =
 <section id="graficar-tasas-de-extinción-1" class="level2">
 <h2 class="anchored" data-anchor-id="graficar-tasas-de-extinción-1">Graficar tasas de extinción</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con tasas de extinción para cada estado</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>extinction_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(hisse<span class="sc">$</span>extinction_observed.<span class="fl">1.</span>, hisse<span class="sc">$</span>extinction_observed.<span class="fl">2.</span>,</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>extinction_hidden.<span class="fl">1.</span>, hisse<span class="sc">$</span>extinction_hidden.<span class="fl">2.</span>), </span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0A"</span>, <span class="st">"1A"</span>, <span class="st">"0B"</span>, <span class="st">"1B"</span>), <span class="at">each =</span> <span class="fu">length</span>(hisse<span class="sc">$</span>extinction_observed.<span class="fl">1.</span>))</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico de violín para tasas de extinción</span></span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>violin_extinction <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(extinction_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Extinción"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa de Extinción"</span>) <span class="sc">+</span></span>
-<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
-<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
-<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>violin_extinction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe con tasas de extinción para cada estado</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>extinction_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dens =</span> <span class="fu">c</span>(hisse<span class="sc">$</span>extinction_observed.<span class="fl">1.</span>, hisse<span class="sc">$</span>extinction_observed.<span class="fl">2.</span>,</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>           hisse<span class="sc">$</span>extinction_hidden.<span class="fl">1.</span>, hisse<span class="sc">$</span>extinction_hidden.<span class="fl">2.</span>), </span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rate =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"0A"</span>, <span class="st">"1A"</span>, <span class="st">"0B"</span>, <span class="st">"1B"</span>), <span class="at">each =</span> <span class="fu">length</span>(hisse<span class="sc">$</span>extinction_observed.<span class="fl">1.</span>))</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico de violín para tasas de extinción</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>violin_extinction <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(extinction_rates, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> dens, <span class="at">fill =</span> rate)) <span class="sc">+</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tasas de Extinción"</span>, <span class="at">x =</span> <span class="st">"Estado"</span>, <span class="at">y =</span> <span class="st">"Tasa de Extinción"</span>) <span class="sc">+</span></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Estado"</span>, <span class="at">values =</span> traitcols) <span class="sc">+</span></span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la gráfica</span></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>violin_extinction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
