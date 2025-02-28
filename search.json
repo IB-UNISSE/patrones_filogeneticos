@@ -720,7 +720,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09140104    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139628    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -1457,18 +1457,18 @@
     "href": "chapters/u1_intro_diversification_4.html#carga-de-la-filogenia-y-los-datos",
     "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
     "section": "Carga de la filogenia y los datos",
-    "text": "Carga de la filogenia y los datos\n# Leer el arbol\nT &lt;- readTrees(\"../data/bisse_hisse/ConLyttini.tre\")[1]\n\n# Leer la matriz de caracteres\ndatos &lt;- readCharacterData(\"../data/bisse_hisse/Traits_conLyttini_01.nex\")",
+    "text": "Carga de la filogenia y los datos\nCrea un script .Rev y copia el codigo de la siguiente sección:\n# Leer el arbol\nT &lt;- readTrees(\"../data/ConLyttini.tre\")[1]\n\n# Leer la matriz de caracteres\ndatos &lt;- readCharacterData(\"../data/Traits_conLyttini_01.nex\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
-    "objectID": "chapters/u1_intro_diversification_4.html#define-el-número-de-estados-en-los-modelos-biss",
-    "href": "chapters/u1_intro_diversification_4.html#define-el-número-de-estados-en-los-modelos-biss",
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-el-número-de-estados-en-los-modelos-bisse",
+    "href": "chapters/u1_intro_diversification_4.html#definir-el-número-de-estados-en-los-modelos-bisse",
     "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
-    "section": "Define el número de estados en los modelos BiSS",
-    "text": "Define el número de estados en los modelos BiSS\nNUM_STATES = 2",
+    "section": "Definir el número de estados en los modelos BISSE",
+    "text": "Definir el número de estados en los modelos BISSE\nNUM_STATES = 2",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
@@ -1567,7 +1567,7 @@
     "href": "chapters/u1_intro_diversification_4.html#construcción-del-árbol-evolutivo-generado-a-partir-de-un-proceso-de-nacimiento-y-muerte-dependiente-del-carácter",
     "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
     "section": "Construcción del árbol evolutivo generado a partir de un proceso de nacimiento y muerte dependiente del carácter",
-    "text": "Construcción del árbol evolutivo generado a partir de un proceso de nacimiento y muerte dependiente del carácter\ntimetree ~ dnCDBDP( rootAge           = root,\n                    speciationRates   = speciation,\n                    extinctionRates   = extinction, \n                    Q                 = rate_matrix,\n                    pi                = rate_category_prior,\n                    delta             = 1.0,\n                    rho               = rho,\n                    condition         = \"time\")\n🔹 Parámetros del proceso de nacimiento y muerte (dnCDBDP):\n\nrootAge = root → Se fija la edad de la raíz usando root = T.rootAge().\nspeciationRates = speciation → Se usa la tasa de especiación (λ).\nextinctionRates = extinction → Se usa la tasa de extinción (μ).\nQ = rate_matrix → Usa la matriz de tasas de transición de caracteres (rate_12, rate_21).\npi = rate_category_prior → Usa la distribución a priori de los estados en la raíz.\ndelta = 1.0 → Parámetro de ajuste para la distribución de tiempos de especiación/extinción.\nrho = rho → Probabilidad de muestreo de especies (rho = T.ntips()/3000).\ncondition = \"time\" → Condiciona el proceso a un tiempo de raíz fijo.",
+    "text": "Construcción del árbol evolutivo generado a partir de un proceso de nacimiento y muerte dependiente del carácter\ntimetree ~ dnCDBDP(rootAge = root, speciationRates = speciation, extinctionRates = extinction, Q = rate_matrix, pi = rate_category_prior, delta = 1.0, rho = rho, condition = \"time\")\n🔹 Parámetros del proceso de nacimiento y muerte (dnCDBDP):\n\nrootAge = root → Se fija la edad de la raíz usando root = T.rootAge().\nspeciationRates = speciation → Se usa la tasa de especiación (λ).\nextinctionRates = extinction → Se usa la tasa de extinción (μ).\nQ = rate_matrix → Usa la matriz de tasas de transición de caracteres (rate_12, rate_21).\npi = rate_category_prior → Usa la distribución a priori de los estados en la raíz.\ndelta = 1.0 → Parámetro de ajuste para la distribución de tiempos de especiación/extinción.\nrho = rho → Probabilidad de muestreo de especies (rho = T.ntips()/3000).\ncondition = \"time\" → Condiciona el proceso a un tiempo de raíz fijo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
@@ -1600,7 +1600,480 @@
     "href": "chapters/u1_intro_diversification_4.html#configuración-de-los-monitores",
     "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
     "section": "Configuración de los monitores",
-    "text": "Configuración de los monitores\nLos monitores guardan los resultados en archivos o los imprimen en pantalla.\nmonitors.append(mnModel(filename=\"../output/mitos_BiSSE_clyttini.log\", printgen=1))\nmonitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type=\"Standard\", printgen=1, withTips=true, withStartStates=false, filename=\"../output/anc_states_MITOS_BiSSE_clyttini.log\"))\nmonitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename=\"../output/SCHM_BiSSE_clyttini.log\"))\nmonitors.append(mnScreen(printgen=10, rate_12, rate_21, speciation, extinction))",
+    "text": "Configuración de los monitores\nLos monitores guardan los resultados en archivos o los imprimen en pantalla.\nmonitors.append(mnModel(filename=\"../out/Bisse/mitos_BiSSE_clyttini.log\", printgen=1))\nmonitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type=\"Standard\", printgen=1, withTips=true, withStartStates=false, filename=\"../out/Bisse/anc_states_MITOS_BiSSE_clyttini.log\"))\nmonitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename=\".../out/Bisse/SCHM_BiSSE_clyttini.log\"))\nmonitors.append(mnScreen(printgen=10, rate_12, rate_21, speciation, extinction))",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#inicializar-y-ejecutar-el-mcmc",
+    "href": "chapters/u1_intro_diversification_4.html#inicializar-y-ejecutar-el-mcmc",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Inicializar y Ejecutar el MCMC",
+    "text": "Inicializar y Ejecutar el MCMC\nCon el modelo y los monitores listos, creamos el objeto MCMC e iniciamos la simulación.\nmymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule=\"random\")\n\nmymodel: hace referencia al modelo que estás analizando.\nmonitors: son las variables que se registrarán en el archivo de salida.\nmoves: operadores MCMC que proponen cambios en los parámetros del modelo.\nnruns=1: solo una cadena MCMC (puedes usar más si deseas una inferencia más robusta).\nmoveschedule=\"random\": ejecuta los operadores en orden aleatorio para evitar sesgos en la exploración del espacio de parámetros.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#ejecutar-el-mcmc",
+    "href": "chapters/u1_intro_diversification_4.html#ejecutar-el-mcmc",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Ejecutar el MCMC",
+    "text": "Ejecutar el MCMC\nmymcmc.run(generations=40000)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#generar-un-árbol-anotado-con-los-estados-ancestrales-map",
+    "href": "chapters/u1_intro_diversification_4.html#generar-un-árbol-anotado-con-los-estados-ancestrales-map",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Generar un árbol anotado con los estados ancestrales (MAP)",
+    "text": "Generar un árbol anotado con los estados ancestrales (MAP)\nanc_states = readAncestralStateTrace(\"../out/Bisse/anc_states_MITOS_BiSSE_clyttini.log\")\n\nanc_tree = ancestralStateTree(tree=T, ancestral_state_trace_vector=anc_states, include_start_states=false, file=\"../out/Bisse/mitos_bisse_anc_states_results.tree\", burnin=0.2, summary_statistic=\"MAP\", site=1)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#generar-un-mapeo-estocástico-de-caracteres-stochastic-character-mapping",
+    "href": "chapters/u1_intro_diversification_4.html#generar-un-mapeo-estocástico-de-caracteres-stochastic-character-mapping",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Generar un mapeo estocástico de caracteres (Stochastic Character Mapping)",
+    "text": "Generar un mapeo estocástico de caracteres (Stochastic Character Mapping)\nanc_state_trace = readAncestralStateTrace(\"../out/Bisse/SCHM_BiSSE_clyttini.log\")\n\ncharacterMapTree(tree=T, ancestral_state_trace_vector=anc_state_trace, character_file=\"../out/Bisse/mitos_bisse_stoch_map_character.tree\", posterior_file=\"../out/Bisse/mitos_bisse_stoch_map_posterior.tree\", burnin=0.2, reconstruction=\"marginal\")",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#visualización-en-r-con-revgadgets",
+    "href": "chapters/u1_intro_diversification_4.html#visualización-en-r-con-revgadgets",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Visualización en R con RevGadgets",
+    "text": "Visualización en R con RevGadgets\n\nlibrary(tidyverse)\nlibrary(RevGadgets)\n\n# Cargar el archivo de estados ancestrales\nbisse_file &lt;- paste0(\"../docs/u1_PatDiv/output/bisse/mitos_bisse_anc_states_results.tree\")\np_anc &lt;- processAncStates(bisse_file)\n\n\n  |                                              \n  |                                        |   0%\n  |                                              \n  |========================================| 100%\n\n# Definir paleta de colores personalizada\ntraitcols &lt;- c(\"#F29494\", \"#5FD9D9\")  # Rojo para estado 0, azul para estado 1\n\n# Generar el gráfico con estados ancestrales\nplot &lt;- plotAncStatesMAP(p_anc,\n        tree_layout = \"rect\",\n        tip_labels_size = 1) +\n        # Aplicar la paleta de colores\n        scale_color_manual(values = traitcols) +\n        scale_fill_manual(values = traitcols) +\n        # Modificar leyenda y otros elementos de ggplot2\n        theme(legend.position = c(0.1, 0.85),\n              legend.key.size = unit(0.3, 'cm'), # Tamaño de la clave de la leyenda\n              legend.title = element_text(size = 6), # Tamaño del título de la leyenda\n              legend.text = element_text(size = 4))  # Tamaño del texto de la leyenda\n\n# Mostrar el gráfico\nplot",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#graficar-las-tasas-de-transición",
+    "href": "chapters/u1_intro_diversification_4.html#graficar-las-tasas-de-transición",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Graficar las tasas de transición",
+    "text": "Graficar las tasas de transición\n\nlibrary(tidyverse)\n\n# Leer el archivo de salida de RevBayes\nbisse &lt;- read.table(\"../docs/u1_PatDiv/output/bisse/mitos_BiSSE_clyttini.log\", header = TRUE)\n\n# Definir colores para los estados 0 y 1\ntraitcols &lt;- c(\"#F29494\", \"#5FD9D9\")  \n\n# Crear un dataframe con solo las tasas de transición\ntransition_rates &lt;- data.frame(\n  dens = c(bisse$rate_12, bisse$rate_21), \n  rate = rep(c(\"0\", \"1\"), each = length(bisse$rate_12))\n)\n\n# Crear un gráfico de violín para las tasas de transición\nviolin_transitions &lt;- ggplot(transition_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Transición\", x = \"Estado\", y = \"Tasa\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_transitions",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#graficar-las-tasas-de-diversificación-neta",
+    "href": "chapters/u1_intro_diversification_4.html#graficar-las-tasas-de-diversificación-neta",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Graficar las tasas de diversificación neta",
+    "text": "Graficar las tasas de diversificación neta\n\n# Calcular la tasa de diversificación neta: especiación - extinción\nnetdiversification_rates &lt;- data.frame(\n  dens = c(bisse$speciation.1. - bisse$extinction.1.,\n           bisse$speciation.2. - bisse$extinction.2.),\n  rate = rep(c(\"0\", \"1\"), each = length(bisse$speciation.1.))\n)\n\n# Convertir la variable de estado en factor\nnetdiversification_rates$rate &lt;- factor(netdiversification_rates$rate, levels = c(\"0\", \"1\"))\n\n# Crear el gráfico de violín para tasas de diversificación neta\nviolin_diversification &lt;- ggplot(netdiversification_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Diversificación Neta\", x = \"Estado\", y = \"Tasa\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_diversification",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#graficar-tasas-de-especiación",
+    "href": "chapters/u1_intro_diversification_4.html#graficar-tasas-de-especiación",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Graficar tasas de especiación",
+    "text": "Graficar tasas de especiación\n\n# Crear un dataframe con tasas de especiación para cada estado\nspeciation_rates &lt;- data.frame(\n  dens = c(bisse$speciation.1.,  bisse$speciation.2.), \n  rate = rep(c(\"0\", \"1\"), each = length(bisse$speciation.1.))\n)\n\n# Crear gráfico de violín para las tasas de especiación\nviolin_speciation &lt;- ggplot(speciation_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Especiación\", x = \"Estado\", y = \"Tasa de Especiación\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_speciation",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#graficar-tasas-de-extinción",
+    "href": "chapters/u1_intro_diversification_4.html#graficar-tasas-de-extinción",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Graficar tasas de extinción",
+    "text": "Graficar tasas de extinción\n\n# Crear un dataframe con tasas de extinción para cada estado\nextinction_rates &lt;- data.frame(\n  dens = c(bisse$extinction.1., bisse$extinction.2.), \n  rate = rep(c(\"0\", \"1\"), each = length(bisse$extinction.1.))\n)\n\n# Crear gráfico de violín para tasas de extinción\nviolin_extinction &lt;- ggplot(extinction_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Extinción\", x = \"Estado\", y = \"Tasa de Extinción\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_extinction",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#carga-de-la-filogenia-y-los-datos-1",
+    "href": "chapters/u1_intro_diversification_4.html#carga-de-la-filogenia-y-los-datos-1",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Carga de la filogenia y los datos",
+    "text": "Carga de la filogenia y los datos\nCrea un script .Rev y copia el codigo de la siguiente sección:\n# Leer el arbol\nT &lt;- readTrees(\"../data/ConLyttini.tre\")[1]\n\n# Leer la matriz de caracteres\ndatos &lt;- readCharacterData(\"../data/Traits_conLyttini_01.nex\")",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-el-número-de-estados-en-los-modelos-hisse-y-paremetros-globales",
+    "href": "chapters/u1_intro_diversification_4.html#definir-el-número-de-estados-en-los-modelos-hisse-y-paremetros-globales",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir el número de estados en los modelos HISSE y paremetros globales",
+    "text": "Definir el número de estados en los modelos HISSE y paremetros globales\nNUM_TOTAL_SPECIES     = 3000.0\nNUM_STATES            = 2\nNUM_HIDDEN            = 2\nNUM_RATES             = NUM_STATES * NUM_HIDDEN\nH                     = 0.587405\n# Expansión de los Datos para Incluir Estados Ocultos \ndata_exp &lt;- datos.expandCharacters(NUM_HIDDEN)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.-1",
+    "href": "chapters/u1_intro_diversification_4.html#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.-1",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.",
+    "text": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.\nmoves    = VectorMoves()\nmonitors = VectorMonitors()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#extraer-información-del-árbol-filogenético",
+    "href": "chapters/u1_intro_diversification_4.html#extraer-información-del-árbol-filogenético",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Extraer información del árbol filogenético",
+    "text": "Extraer información del árbol filogenético\ntaxa &lt;- T.taxa()\ntree_length &lt;- T.treeLength()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-la-media-de-las-tasas-de-especiación-y-extinción",
+    "href": "chapters/u1_intro_diversification_4.html#definir-la-media-de-las-tasas-de-especiación-y-extinción",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir la Media de las Tasas de Especiación y Extinción",
+    "text": "Definir la Media de las Tasas de Especiación y Extinción\nrate_mean &lt;- (NUM_TOTAL_SPECIES - 2) / tree_length\n✅ Calcula la media esperada de las tasas de especiación y extinción basada en el número total de especies y la longitud del árbol.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#especiación-y-extinción-oculta-hidden-speciation-rates",
+    "href": "chapters/u1_intro_diversification_4.html#especiación-y-extinción-oculta-hidden-speciation-rates",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Especiación y Extinción Oculta (Hidden Speciation Rates)",
+    "text": "Especiación y Extinción Oculta (Hidden Speciation Rates)\nln_speciation_hidden_mean &lt;- ln(1.0)\nln_extinction_hidden_mean &lt;- ln(1.0)\n✅ Define la media logarítmica de las tasas ocultas de especiación como 1.0 en una escala relativa. ✔️ Esto significa que los valores generados serán proporcionales, y no absolutos.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#variación-en-las-tasas-ocultas-de-especiación-y-extinción",
+    "href": "chapters/u1_intro_diversification_4.html#variación-en-las-tasas-ocultas-de-especiación-y-extinción",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Variación en las Tasas Ocultas de Especiación y Extinción",
+    "text": "Variación en las Tasas Ocultas de Especiación y Extinción\nspeciation_hidden_sd ~ dnExponential(1.0 / H)\nextinction_hidden_sd ~ dnExponential(1.0 / H)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#movimiento-mcmc-para-optimizar-la-desviación-estándar",
+    "href": "chapters/u1_intro_diversification_4.html#movimiento-mcmc-para-optimizar-la-desviación-estándar",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Movimiento MCMC para Optimizar la Desviación Estándar",
+    "text": "Movimiento MCMC para Optimizar la Desviación Estándar\nmoves.append(mvScale(speciation_hidden_sd, lambda=1, tune=true, weight=2.0))\nmoves.append(mvScale(extinction_hidden_sd, lambda=1, tune=true, weight=2.0))",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-la-distribución-de-las-tasas-ocultas",
+    "href": "chapters/u1_intro_diversification_4.html#definir-la-distribución-de-las-tasas-ocultas",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir la Distribución de las Tasas Ocultas",
+    "text": "Definir la Distribución de las Tasas Ocultas\nspeciation_hidden_unormalized := fnDiscretizeDistribution(dnLognormal(ln_speciation_hidden_mean, speciation_hidden_sd), NUM_HIDDEN)\nextinction_hidden_unormalized := fnDiscretizeDistribution(dnLognormal(ln_extinction_hidden_mean, extinction_hidden_sd), NUM_HIDDEN)\n✅ Se genera un conjunto de tasas ocultas de especiación a partir de una distribución lognormal.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#normalización-de-las-tasas-ocultas",
+    "href": "chapters/u1_intro_diversification_4.html#normalización-de-las-tasas-ocultas",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Normalización de las Tasas Ocultas",
+    "text": "Normalización de las Tasas Ocultas\nspeciation_hidden := speciation_hidden_unormalized / mean(speciation_hidden_unormalized)\nextinction_hidden := extinction_hidden_unormalized / mean(extinction_hidden_unormalized)\n✅ Se normalizan las tasas ocultas dividiéndolas por su media, para que el promedio sea 1.0. ✔️ Esto garantiza que los valores sean relativos y comparables entre estados.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-tasas-de-especiación-para-estados-observables",
+    "href": "chapters/u1_intro_diversification_4.html#definir-tasas-de-especiación-para-estados-observables",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir Tasas de Especiación para Estados Observables",
+    "text": "Definir Tasas de Especiación para Estados Observables\nfor (i in 1:NUM_STATES) {\n    speciation_observed[i] ~ dnLoguniform( 1E-6, 1E2)\n    speciation_observed[i].setValue( (NUM_TOTAL_SPECIES-2) / tree_length )\n    moves.append( mvScale(speciation_observed[i], lambda=1.0, tune=true, weight=3.0) )\n        ### Create a loguniform distributed variable for the extinction rate\n    extinction_observed[i] ~ dnLoguniform( 1E-6, 1E2)\n    extinction_observed[i].setValue( speciation_observed[i] / 10.0 )\n    moves.append( mvScale(extinction_observed[i], lambda=1.0, tune=true, weight=3.0) )\n}",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#cálculo-de-las-tasas-combinadas",
+    "href": "chapters/u1_intro_diversification_4.html#cálculo-de-las-tasas-combinadas",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Cálculo de las Tasas Combinadas",
+    "text": "Cálculo de las Tasas Combinadas\nfor (j in 1:NUM_HIDDEN) {\n    for (i in 1:NUM_STATES) {\n        index = i+(j*NUM_STATES)-NUM_STATES\n        speciation[index] := speciation_observed[i] * speciation_hidden[j]\n        extinction[index] := extinction_observed[i] * extinction_hidden[j]\n    }\n}",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-la-matriz-de-transición-entre-estados-observables",
+    "href": "chapters/u1_intro_diversification_4.html#definir-la-matriz-de-transición-entre-estados-observables",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir la Matriz de Transición entre Estados Observables",
+    "text": "Definir la Matriz de Transición entre Estados Observables\nrate_pr := T.treeLength() / 10\nfor ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {\n    transition_rates[i] ~ dnExp(rate_pr)\n    moves.append( mvScale(transition_rates[i], lambda=0.50, tune=true, weight=3.0) )\n}",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-la-matriz-de-transición-entre-estados-ocultos",
+    "href": "chapters/u1_intro_diversification_4.html#definir-la-matriz-de-transición-entre-estados-ocultos",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir la Matriz de Transición entre Estados Ocultos",
+    "text": "Definir la Matriz de Transición entre Estados Ocultos\nhidden_rate ~ dnExponential(rate_pr)\nmoves.append( mvScale(hidden_rate, lambda=0.5, tune=true, weight=5) )\nfor (i in 1:(NUM_HIDDEN * (NUM_HIDDEN - 1))) {\n    R[i] := hidden_rate\n}",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#crear-la-matriz-de-transición-q-combinada",
+    "href": "chapters/u1_intro_diversification_4.html#crear-la-matriz-de-transición-q-combinada",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Crear la Matriz de Transición Q Combinada",
+    "text": "Crear la Matriz de Transición Q Combinada\nrate_matrix := fnHiddenStateRateMatrix(transition_rates, R, rescaled=false)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-la-distribución-de-los-estados-en-la-raíz",
+    "href": "chapters/u1_intro_diversification_4.html#definir-la-distribución-de-los-estados-en-la-raíz",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir la Distribución de los Estados en la Raíz",
+    "text": "Definir la Distribución de los Estados en la Raíz\nrate_category_prior ~ dnDirichlet( rep(1,NUM_RATES) )",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#optimización-con-movimientos-mcmc",
+    "href": "chapters/u1_intro_diversification_4.html#optimización-con-movimientos-mcmc",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Optimización con Movimientos MCMC",
+    "text": "Optimización con Movimientos MCMC\nmoves.append( mvBetaSimplex(rate_category_prior, tune=true, weight=2) )\nmoves.append( mvDirichletSimplex(rate_category_prior, tune=true, weight=2) )",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-la-edad-de-la-raíz-del-árbol",
+    "href": "chapters/u1_intro_diversification_4.html#definir-la-edad-de-la-raíz-del-árbol",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir la Edad de la Raíz del Árbol",
+    "text": "Definir la Edad de la Raíz del Árbol\nroot &lt;- T.rootAge()",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-la-probabilidad-de-muestreo-de-especies-rho",
+    "href": "chapters/u1_intro_diversification_4.html#definir-la-probabilidad-de-muestreo-de-especies-rho",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir la Probabilidad de Muestreo de Especies (\\(\\rho\\))",
+    "text": "Definir la Probabilidad de Muestreo de Especies (\\(\\rho\\))\nrho &lt;- T.ntips()/3000.0",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-el-árbol-bajo-un-proceso-de-diversificación-dependiente-del-estado",
+    "href": "chapters/u1_intro_diversification_4.html#definir-el-árbol-bajo-un-proceso-de-diversificación-dependiente-del-estado",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir el Árbol Bajo un Proceso de Diversificación Dependiente del Estado",
+    "text": "Definir el Árbol Bajo un Proceso de Diversificación Dependiente del Estado\ntimetree ~ dnCDBDP( rootAge = root, speciationRates = speciation, extinctionRates = extinction, Q = rate_matrix, delta = 1.0, pi = rate_category_prior, rho = rho, condition = \"survival\")\n✔️ Parámetros clave:\n\nrootAge = root → La edad de la raíz se fija a la edad del árbol observado.\nspeciationRates = speciation → Tasas de especiación combinadas (λ), que incluyen efectos de los estados ocultos.\nextinctionRates = extinction → Tasas de extinción combinadas (μ), modeladas de la misma manera.\nQ = rate_matrix → Matriz de tasas de transición entre estados (0A ↔︎ 1A, 0B ↔︎ 1B, etc.).\ndelta = 1.0 → Modelo estándar en el que las tasas de diversificación dependen completamente del estado.\npi = rate_category_prior → Prior de las probabilidades de estado en la raíz.\nrho = rho → Ajuste por sesgo de muestreo de especies.\ncondition = \"survival\" → Se modela solo en árboles que han sobrevivido hasta el presente.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#ajustar-el-modelo-a-la-filogenia-observada",
+    "href": "chapters/u1_intro_diversification_4.html#ajustar-el-modelo-a-la-filogenia-observada",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Ajustar el Modelo a la Filogenia Observada",
+    "text": "Ajustar el Modelo a la Filogenia Observada\ntimetree.clamp(T)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#ajustar-el-modelo-a-los-datos-de-caracteres",
+    "href": "chapters/u1_intro_diversification_4.html#ajustar-el-modelo-a-los-datos-de-caracteres",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Ajustar el Modelo a los Datos de Caracteres",
+    "text": "Ajustar el Modelo a los Datos de Caracteres\ntimetree.clampCharData(data_exp)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-el-modelo-en-revbayes",
+    "href": "chapters/u1_intro_diversification_4.html#definir-el-modelo-en-revbayes",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir el Modelo en RevBayes",
+    "text": "Definir el Modelo en RevBayes\nmymodel = model(rate_matrix)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#configurar-monitores-para-guardar-resultados",
+    "href": "chapters/u1_intro_diversification_4.html#configurar-monitores-para-guardar-resultados",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Configurar Monitores para Guardar Resultados",
+    "text": "Configurar Monitores para Guardar Resultados\n# Monitor Principal del Modelo\nmonitors.append( mnModel(filename=\"../out/Hisse/mitos_HiSSE_clyttini_TUTscript.log\", printgen=1) )\n\n# Monitor de Estados Ancestrales\nmonitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type=\"NaturalNumbers\", printgen=1, withTips=true, withStartStates=false, filename=\"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log\"))\n\n# Monitor de Mapeo Estocástico de Caracteres\nmonitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename=\"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log\", include_simmap=true))\n\n# Monitor en Pantalla\nmonitors.append(mnScreen(printgen=10, speciation_observed, extinction_observed))",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#configurar-el-algoritmo-mcmc",
+    "href": "chapters/u1_intro_diversification_4.html#configurar-el-algoritmo-mcmc",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Configurar el Algoritmo MCMC",
+    "text": "Configurar el Algoritmo MCMC\n### workspace mcmc\nmymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule=\"random\", combine=\"mixed\")",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#ejecutar-el-mcmc-1",
+    "href": "chapters/u1_intro_diversification_4.html#ejecutar-el-mcmc-1",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Ejecutar el MCMC",
+    "text": "Ejecutar el MCMC\nmymcmc.run(generations=400)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#cargar-la-trazabilidad-de-los-estados-ancestrales",
+    "href": "chapters/u1_intro_diversification_4.html#cargar-la-trazabilidad-de-los-estados-ancestrales",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Cargar la Trazabilidad de los Estados Ancestrales",
+    "text": "Cargar la Trazabilidad de los Estados Ancestrales\nanc_states2 = readAncestralStateTrace(\"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log\")",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#construcción-del-árbol-con-estados-ancestrales",
+    "href": "chapters/u1_intro_diversification_4.html#construcción-del-árbol-con-estados-ancestrales",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Construcción del Árbol con Estados Ancestrales",
+    "text": "Construcción del Árbol con Estados Ancestrales\nanc_tree = ancestralStateTree(tree=T, ancestral_state_trace_vector = anc_states2, include_start_states=false, file = \"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree\", burnin = 2, summary_statistic = \"MAP\", site=1)",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#definir-parámetros-para-la-resumir-estados-ancestrales",
+    "href": "chapters/u1_intro_diversification_4.html#definir-parámetros-para-la-resumir-estados-ancestrales",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Definir Parámetros para la Resumir Estados Ancestrales",
+    "text": "Definir Parámetros para la Resumir Estados Ancestrales\nburnin=10\nn_time_slices = 500\n✅ burnin = 25 → Descarta las primeras 25 iteraciones del MCMC antes de hacer el resumen.\n✅ n_time_slices = 500 → Divide el árbol en 500 segmentos de tiempo para interpolar los cambios de estado.",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#leer-la-historia-del-carácter-inferida-por-mapeo-estocástico",
+    "href": "chapters/u1_intro_diversification_4.html#leer-la-historia-del-carácter-inferida-por-mapeo-estocástico",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Leer la Historia del Carácter Inferida por Mapeo Estocástico",
+    "text": "Leer la Historia del Carácter Inferida por Mapeo Estocástico\nanc_states_SCHM = readAncestralStateTrace(\"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log\")",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#crear-el-árbol-de-mapeo-estocástico-de-caracteres",
+    "href": "chapters/u1_intro_diversification_4.html#crear-el-árbol-de-mapeo-estocástico-de-caracteres",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Crear el Árbol de Mapeo Estocástico de Caracteres",
+    "text": "Crear el Árbol de Mapeo Estocástico de Caracteres\nchar_map_tree = characterMapTree(tree=T, \n                 ancestral_state_trace_vector=anc_states_SCHM, \n                 character_file=\"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_char.tree\", \n                 posterior_file=\"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_post.tree\", \n                 burnin=burnin, \n                 num_time_slices=n_time_slices)\n\n# Cargar el archivo de estados ancestrales\nhisse_file &lt;- paste0(\"../docs/u1_PatDiv/output/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree\")\n\np_anc_hisse &lt;- processAncStates(hisse_file)\n\n\n  |                                              \n  |                                        |   0%\n  |                                              \n  |========================================| 100%\n\n# Definir paleta de colores personalizada\ntraitcols &lt;- c(\"#F29494\", \"#5FD9D9\", \"red\", \"blue\")  # Rojo para estado 0, azul para estado 1\n\n# Generar el gráfico con estados ancestrales\nplot_hisse &lt;- plotAncStatesMAP(p_anc_hisse,\n        tree_layout = \"rect\",\n        tip_labels_size = 1) +\n        # Aplicar la paleta de colores\n        scale_color_manual(values = traitcols) +\n        scale_fill_manual(values = traitcols) +\n        # Modificar leyenda y otros elementos de ggplot2\n        theme(legend.position = c(0.1, 0.85),\n              legend.key.size = unit(0.3, 'cm'), # Tamaño de la clave de la leyenda\n              legend.title = element_text(size = 6), # Tamaño del título de la leyenda\n              legend.text = element_text(size = 4))  # Tamaño del texto de la leyenda\n\n# Mostrar el gráfico\nplot_hisse",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#graficar-las-tasas-de-diversificación-neta-1",
+    "href": "chapters/u1_intro_diversification_4.html#graficar-las-tasas-de-diversificación-neta-1",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Graficar las tasas de diversificación neta",
+    "text": "Graficar las tasas de diversificación neta\n\n# Leer el archivo de salida de RevBayes\nhisse &lt;- read.table(\"../docs/u1_PatDiv/output/hisse/mitos_HiSSE_clyttini_TUTscript.log\", header = TRUE)\n\n# Definir paleta de colores personalizada\ntraitcols &lt;- c(\"#F29494\", \"#5FD9D9\", \"red\", \"blue\")  # Rojo para estado 0, azul para estado 1\n\n# Calcular la tasa de diversificación neta: especiación - extinción\nnetdiversification_rates &lt;- data.frame(\n  dens = c(hisse$speciation_observed.1. - hisse$extinction_observed.1.,\n           hisse$speciation_observed.2. - hisse$extinction_observed.2.,\n           hisse$speciation_hidden.1. - hisse$extinction_hidden.1.,\n           hisse$speciation_hidden.2. - hisse$extinction_hidden.2.),\n  rate = rep(c(\"0A\", \"1A\", \"0B\", \"1B\"), each = length(hisse$speciation_observed.1.))\n  )\n\n# Convertir la variable de estado en factor\nnetdiversification_rates$rate &lt;- factor(netdiversification_rates$rate, levels = c(\"0A\", \"1A\", \"0B\", \"1B\"))\n\n# Crear el gráfico de violín para tasas de diversificación neta\nviolin_diversification &lt;- ggplot(netdiversification_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Diversificación Neta\", x = \"Estado\", y = \"Tasa\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_diversification",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#graficar-tasas-de-especiación-1",
+    "href": "chapters/u1_intro_diversification_4.html#graficar-tasas-de-especiación-1",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Graficar tasas de especiación",
+    "text": "Graficar tasas de especiación\n\n# Crear un dataframe con tasas de especiación para cada estado\nspeciation_rates &lt;- data.frame(\n  dens = c(hisse$speciation_observed.1.,  hisse$speciation_observed.2.,\n           hisse$speciation_hidden.1., hisse$speciation_hidden.2.), \n  rate = rep(c(\"0A\", \"1A\", \"0B\", \"1B\"), each = length(hisse$speciation_observed.1.))\n)\n\n# Crear gráfico de violín para las tasas de especiación\nviolin_speciation &lt;- ggplot(speciation_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Especiación\", x = \"Estado\", y = \"Tasa de Especiación\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_speciation",
+    "crumbs": [
+      "Unidad 1: Patrones de diversificación",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u1_intro_diversification_4.html#graficar-tasas-de-extinción-1",
+    "href": "chapters/u1_intro_diversification_4.html#graficar-tasas-de-extinción-1",
+    "title": "Introducción a modelos State Speciaction-Extinción (SSE)",
+    "section": "Graficar tasas de extinción",
+    "text": "Graficar tasas de extinción\n\n# Crear un dataframe con tasas de extinción para cada estado\nextinction_rates &lt;- data.frame(\n  dens = c(hisse$extinction_observed.1., hisse$extinction_observed.2.,\n           hisse$extinction_hidden.1., hisse$extinction_hidden.2.), \n  rate = rep(c(\"0A\", \"1A\", \"0B\", \"1B\"), each = length(hisse$extinction_observed.1.))\n)\n\n# Crear gráfico de violín para tasas de extinción\nviolin_extinction &lt;- ggplot(extinction_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Extinción\", x = \"Estado\", y = \"Tasa de Extinción\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_extinction",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
