@@ -296,6 +296,7 @@ window.Quarto = {
   <li><a href="#definir-parámetros-para-la-resumir-estados-ancestrales" id="toc-definir-parámetros-para-la-resumir-estados-ancestrales" class="nav-link" data-scroll-target="#definir-parámetros-para-la-resumir-estados-ancestrales">Definir Parámetros para la Resumir Estados Ancestrales</a></li>
   <li><a href="#leer-la-historia-del-carácter-inferida-por-mapeo-estocástico" id="toc-leer-la-historia-del-carácter-inferida-por-mapeo-estocástico" class="nav-link" data-scroll-target="#leer-la-historia-del-carácter-inferida-por-mapeo-estocástico"><strong>Leer la Historia del Carácter Inferida por Mapeo Estocástico</strong></a></li>
   <li><a href="#crear-el-árbol-de-mapeo-estocástico-de-caracteres" id="toc-crear-el-árbol-de-mapeo-estocástico-de-caracteres" class="nav-link" data-scroll-target="#crear-el-árbol-de-mapeo-estocástico-de-caracteres"><strong>Crear el Árbol de Mapeo Estocástico de Caracteres</strong></a></li>
+  <li><a href="#visualización-en-r-con-revgadgets-1" id="toc-visualización-en-r-con-revgadgets-1" class="nav-link" data-scroll-target="#visualización-en-r-con-revgadgets-1">Visualización en R con RevGadgets</a></li>
   <li><a href="#graficar-las-tasas-de-diversificación-neta-1" id="toc-graficar-las-tasas-de-diversificación-neta-1" class="nav-link" data-scroll-target="#graficar-las-tasas-de-diversificación-neta-1">Graficar las tasas de diversificación neta</a></li>
   <li><a href="#graficar-tasas-de-especiación-1" id="toc-graficar-tasas-de-especiación-1" class="nav-link" data-scroll-target="#graficar-tasas-de-especiación-1">Graficar tasas de especiación</a></li>
   <li><a href="#graficar-tasas-de-extinción-1" id="toc-graficar-tasas-de-extinción-1" class="nav-link" data-scroll-target="#graficar-tasas-de-extinción-1">Graficar tasas de extinción</a></li>
@@ -921,6 +922,9 @@ Q =
 <span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">posterior_file=</span><span class="st">"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_post.tree"</span>, </span>
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">burnin=</span>burnin, </span>
 <span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">num_time_slices=</span>n_time_slices)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="visualización-en-r-con-revgadgets-1" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-en-r-con-revgadgets-1">Visualización en R con RevGadgets</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el archivo de estados ancestrales</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>hisse_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"../docs/u1_PatDiv/output/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree"</span>)</span>
