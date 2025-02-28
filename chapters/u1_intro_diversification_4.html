@@ -920,7 +920,7 @@ Q =
   |========================================| 100%</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir paleta de colores personalizada</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>, <span class="st">"#9DD962"</span>, <span class="st">"#D48DF2"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar el gráfico con estados ancestrales</span></span>
 <span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>plot_hisse <span class="ot">&lt;-</span> <span class="fu">plotAncStatesMAP</span>(p_anc_hisse,</span>
@@ -953,7 +953,7 @@ Q =
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>hisse <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"../docs/u1_PatDiv/output/hisse/mitos_HiSSE_clyttini_TUTscript.log"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir paleta de colores personalizada</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>traitcols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F29494"</span>, <span class="st">"#5FD9D9"</span>, <span class="st">"#9DD962"</span>, <span class="st">"#D48DF2"</span>)  <span class="co"># Rojo para estado 0, azul para estado 1</span></span>
 <span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tasa de diversificación neta: especiación - extinción</span></span>
 <span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>netdiversification_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
