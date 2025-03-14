@@ -430,6 +430,106 @@
     ]
   },
   {
+    "objectID": "chapters/factor_bayes.html",
+    "href": "chapters/factor_bayes.html",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "",
+    "text": "¿Qué son los Factores de Bayes (Bayes Factors)?\nCuando trabajamos con datos es común tener varios modelos posibles que podrían explicar esos datos. Algunos modelos son simples (con pocos parámetros) y otros complejos (con más parámetros).\nProblema al elegir modelos:\nPor eso, necesitamos una manera objetiva de decidir qué modelo es mejor.\nLos Factores de Bayes (BF) son una herramienta para comparar dos modelos (\\(M_0\\) y \\(M_1\\)) según qué tan bien explican los datos.\n👉 Se basan en la razón (cociente) entre las verosimilitudes marginales de cada modelo:\n\\[\nBF(M_0, M_1) = \\frac{P(X | M_0)}{P(X | M_1)}\n\\]\nDonde:\nInterpretación intuitiva:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#qué-son-los-factores-de-bayes-bayes-factors",
+    "href": "chapters/factor_bayes.html#qué-son-los-factores-de-bayes-bayes-factors",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "",
+    "text": "\\(P(X | M_0)\\) = Verosimilitud marginal del modelo \\(M_0\\) dado los datos X\n\\(P(X | M_1)\\) = Verosimilitud marginal del modelo \\(M_1\\)\n\n\n\n\n\n\n\n\n\nValor del BF\nInterpretación\n\n\n\n\n\\(BF &gt; 1\\)\nLos datos favorecen el modelo M0M_0M0​ sobre M1M_1M1​.\n\n\n\\(BF &lt; 1\\)\nLos datos favorecen el modelo M1M_1M1​ sobre M0M_0M0​.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#qué-es-la-verosimilitud-marginal",
+    "href": "chapters/factor_bayes.html#qué-es-la-verosimilitud-marginal",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "¿Qué es la verosimilitud marginal?",
+    "text": "¿Qué es la verosimilitud marginal?\nLa verosimilitud marginal de un modelo \\(M_i\\) es:\n\\[P(X∣M_i)=∫P(X∣θi​)P(θi​)dθi​\\]\n🔑 Es decir:\n\nLa probabilidad de los datos bajo el modelo \\(M_i\\), promediando sobre todos los posibles valores de los parámetros \\(\\theta_i\\), según las distribuciones a priori.\n\n💡 Interpretación: Nos dice qué tan bien explica el modelo los datos, considerando todas las incertidumbres en los parámetros.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#por-qué-es-difícil-calcular-la-verosimilitud-marginal",
+    "href": "chapters/factor_bayes.html#por-qué-es-difícil-calcular-la-verosimilitud-marginal",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "¿Por qué es difícil calcular la verosimilitud marginal?",
+    "text": "¿Por qué es difícil calcular la verosimilitud marginal?\n\nEn modelos complejos (como los filogenéticos o de sustitución de secuencias), esa integral es imposible de resolver de forma exacta.\nTiene muchos parámetros y espacios de probabilidad muy grandes.\nPor eso, necesitamos métodos numéricos que nos ayuden a estimarla.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#solución-métodos-basados-en-mcmc",
+    "href": "chapters/factor_bayes.html#solución-métodos-basados-en-mcmc",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "Solución: Métodos basados en MCMC",
+    "text": "Solución: Métodos basados en MCMC\n➡️ Aquí es donde entran Stepping-Stone Sampling y Path Sampling, que son métodos basados en MCMC (Markov Chain Monte Carlo).\nAmbos métodos:\n\nNos permiten estimar la verosimilitud marginal de manera aproximada pero con gran precisión.\nSon más robustos y confiables que intentar calcular la integral directamente.\n\n\n\n\n\n\nEn la figura 6 piedras:\n\n6 stones (piedras) significan 6 powers (β):\n\nβ = 0/6, 1/6, 2/6, 3/6, 4/6, 5/6, 6/6\nO sea: 0, 0.166, 0.333, 0.5, 0.666, 0.833, 1.\nCada una te da una mezcla distinta de prior y posterior, y en cada una corres un MCMC.\n\nβ = 0/6 = 0 → solo prior.\nβ = 6/6 = 1 → solo posterior.\nIntermedios (0 &lt; β &lt; 1) → mezcla de prior y posterior.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#stepping-stone-sampling",
+    "href": "chapters/factor_bayes.html#stepping-stone-sampling",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "🌉 Stepping-Stone Sampling",
+    "text": "🌉 Stepping-Stone Sampling\n🔹 ¿Qué hace?\n\nDivide el camino entre la prior y la posterior en pequeños pasos (piedras).\nEn cada piedra, se hace una simulación MCMC para obtener información de ese punto.\nAl final, suma toda la información para calcular la verosimilitud marginal.\n\n🔹 Analogía:\n\nEs como cruzar un río saltando por piedras, donde cada piedra es una mezcla distinta de prior y posterior.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#path-sampling",
+    "href": "chapters/factor_bayes.html#path-sampling",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "🛤 Path Sampling",
+    "text": "🛤 Path Sampling\n🔹 ¿Qué hace?\n\nEn vez de ir por piedras, hace un camino continuo desde la prior hasta la posterior.\nVa midiendo la log-verosimilitud a cada paso.\nAl final, suma (integra) toda esa información.\n\n🔹 ¿Cómo se hace?\n\nCalcula el área bajo la curva de log-verosimilitud vs β.\n\n🔹 Analogía:\n\nEs como caminar por todo el río, sin saltos, y anotar cómo cambia la corriente a cada paso.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#stepping-stone-sampling-y-path-sampling-en-revbayes",
+    "href": "chapters/factor_bayes.html#stepping-stone-sampling-y-path-sampling-en-revbayes",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "Stepping-Stone Sampling y Path Sampling en Revbayes",
+    "text": "Stepping-Stone Sampling y Path Sampling en Revbayes\nEste método calcula un vector de potencias (powers) a partir de una distribución beta, y luego realiza una simulación MCMC para cada valor de esa potencia, elevando la verosimilitud a esa potencia.\nEn esta implementación, el vector de potencias comienza en 1 (donde la verosimilitud se parece a la posterior), y va disminuyendo gradualmente hacia 0, acercándose a la prior.\nEste procedimiento para estimar la verosimilitud marginal es válido para cualquier modelo en RevBayes. Primero, creamos una variable que contiene el análisis de power-posterior. Para eso, debemos indicar el modelo, los movimientos (moves), los monitores, y el nombre del archivo de salida. El argumento cats define el número de piedras (stepping stones).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#descarga-el-script-para-este-ejercicio",
+    "href": "chapters/factor_bayes.html#descarga-el-script-para-este-ejercicio",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "Descarga el script para este ejercicio:",
+    "text": "Descarga el script para este ejercicio:\n📥 Diversificacion de Eupomphini con tres intervalos\nComando para definir el análisis de power-posterior:\npow_p = powerPosterior(mymodel, moves, monitors, \"output/model1.out\", cats=50)\n\ncats=50: número de piedras (50 pasos entre prior y posterior).\n\nImportante: hacer “burn-in” antes de empezar:\nAntes de empezar el análisis real, hacemos un burn-in para que la simulación no empiece desde un valor raro, sino desde un lugar donde ya la MCMC está estable.\npow_p.burnin(generations=10000, tuningInterval=1000)\n\nCorre 10,000 generaciones antes de empezar a recolectar datos.\nAjusta los movimientos cada 1000 generaciones.\n\nAhora, correr el análisis de power-posterior:\npow_p.run(generations=1000)\n\nCorre 1,000 generaciones por cada piedra (por cada valor de β).\nCon 50 piedras (cats), harás 50 simulaciones MCMC distintas (una por cada β).\n\nCuando termina, hacer el cálculo de Stepping-Stone Sampling: Ya que se guardaron los resultados de cada piedra en el archivo, podemos crear un objeto para calcular la verosimilitud marginal por Stepping-Stone:\nss = steppingStoneSampler(file=\"output/model1.out\", powerColumnName=\"power\", likelihoodColumnName=\"likelihood\")\n\npowerColumnName: nombre de la columna con los β (normalmente “power”).\nlikelihoodColumnName: nombre de la columna con las verosimilitudes (normalmente “likelihood”).\n\nPara obtener la verosimilitud marginal por Stepping-Stone Sampling:\nwrite(\"Stepping stone marginal likelihood:\\t\", ss.marginal() )\nSi quieres también Path Sampling (opcional y recomendable para comparar): Usa el mismo archivo para crear un estimador con path sampling:\nps = pathSampler(file=\"output/model1.out\", powerColumnName=\"power\", likelihoodColumnName=\"likelihood\")\nPara calcular la verosimilitud marginal por Path Sampling:\nwrite(\"Path-sampling marginal likelihood:\\t\", ps.marginal() )",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/factor_bayes.html#cómo-comparamos-los-modelos-con-factores-de-bayes",
+    "href": "chapters/factor_bayes.html#cómo-comparamos-los-modelos-con-factores-de-bayes",
+    "title": "Comparación de modelos mediante Factores de Bayes",
+    "section": "¿Cómo comparamos los modelos con Factores de Bayes?",
+    "text": "¿Cómo comparamos los modelos con Factores de Bayes?\n🔑 Paso 1. Recordemos qué es el Factor de Bayes (BF):\nEl Factor de Bayes compara dos modelos, por ejemplo:\n\n\\(M_0\\): Modelo simple (ej. Diversificación con 3 intervalos).\n\\(M_1\\): Modelo complejo (ej. Diversificación con 5 intervalos).\n\n🔑 Paso 2. ¿Cómo lo calculamos?\n⚠️ Importante: Las verosimilitudes marginales se guardan como log-verosimilitudes (log-marginal likelihoods), porque son números muy pequeños problema de desbordamiento numérico.\nPor eso, usamos la forma logarítmica del Factor de Bayes, que llamamos K:\n\\[\nK = ln[BF(M_0, M_1)] = ln[P(X | M_0)] - ln[P(X | M_1)]\n\\]\n⚙️ Donde:\n\n\\(ln[P(X | M_0)]\\): log-verosimilitud marginal del modelo simple (\\(M_0\\)).\n\\(ln[P(X | M_1)]\\): log-verosimilitud marginal del modelo complejo (\\(M_1\\)).\n\nPaso 3. Interpretar K:\n\n\n\n\n\n\n\n\nValor de \\(K\\)\nInterpretación\nModelo preferido\n\n\n\n\n\\(K &gt; 1\\)\nSoporte a favor de M0\nM0 (modelo simple)\n\n\n\\(K &lt; -1\\)\nSoporte a favor de M1\nM1 (modelo complejo)\n\n\n\\(-1 &lt; K &lt; 1\\)\nSin preferencia clara entre los modelos\nNinguno claramente mejor\n\n\n\n\nNota: Para convertirlo a Factor de Bayes “real”, solo elevas \\(e^k\\), pero normalmente usamos \\(K\\) directamente para comparar.\n\nEjemplo (con números inventados para ilustrar):\nTabla 1. Probabilidades marginales:\n\n\n\n\n\n\n\n\nModelo\nPath Sampling (lnL)\nStepping-Stone (lnL)\n\n\n\n\n\\(M_0\\) - Diversificación con 3 intervalos\n-120.5\n-119.8\n\n\n\\(M_1\\) - Diversificación con 5 intervalos\n-122.1\n-122.0\n\n\n\\(K\\)\n\\((-120.5) - (-122.1) = 1.6\\)\n\\((-119.8) - (-122.0) = 2.2\\)\n\n\n\nInterpretación según la escala de Jeffreys:\n\n\n\nValor de \\(K\\)\nInterpretación\n\n\n\n\n0 a 1.16\nMención mínima (débil).\n\n\n1.16 a 2.3\nEvidencia sustancial.\n\n\n2.3 a 4.6\nEvidencia fuerte.\n\n\n&gt; 4.6\nEvidencia decisiva.\n\n\n\n💡 En el ejemplo:\n\nCon \\(K\\) = 2.2 (SS) → Evidencia sustancial a favor de \\(M_0\\).\nCon \\(K\\) = 1.6 (PS) → También evidencia sustancial a favor de \\(M_0\\).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
+    ]
+  },
+  {
     "objectID": "chapters/u1_intro_diversification.html",
     "href": "chapters/u1_intro_diversification.html",
     "title": "Introducción al proceso de diversificación",
@@ -437,7 +537,7 @@
     "text": "Presentación: Introducción al proceso de diversificación\nHaz clic en la imagen para ver el PDF de la presentación",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -448,7 +548,7 @@
     "text": "1.- Mediante la liberia remotes\n\n# Instalar remotes si no está instalado\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n  install.packages(\"remotes\")\n}\n\n# Instalar TreePar\nremotes::install_github(\"tanja819/TreePar\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -459,7 +559,7 @@
     "text": "2.- Descargar el paquete TreePar\n\nPuedes descargar el paquete desde el siguiente enlace:\n📥 Descargar TreePar 3.3\nGuarda el archivo en una carpeta de tu elección (por ejemplo, en ~/Descargas/ o C:/Users/TuUsuario/Downloads/).\n\n\n\nInstalar TreePar desde el archivo descargado\nUna vez que hayas descargado el archivo TreePar_3.3.tar.gz, abre R y ejecuta el siguiente código para instalarlo:\n# Definir la ruta donde se descargó el archivo\nruta_archivo &lt;- \"~/Descargas/TreePar_3.3.tar.gz\"  # Cambia esta ruta según tu sistema operativo\n\n# Instalar el paquete desde el archivo .tar.gz\ninstall.packages(ruta_archivo, repos = NULL, type = \"source\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -470,7 +570,7 @@
     "text": "Descarga del Árbol Filogenético\n📥 Puedes descargar el archivo NEXUS con el árbol de estudio en el siguiente enlace:\n📥 Descargar Árbol Filogenético\nGuarda el archivo en la carpeta correspondiente y verifica su ubicación antes de continuar.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -481,7 +581,7 @@
     "text": "Cargar y Visualizar el Árbol en R\nEjecuta el siguiente código en R para cargar el archivo y visualizar el árbol completo:\n\n# Cargar los paquetes necesarios\nlibrary(ape)\nlibrary(ggtree)\nlibrary(treeio)\nlibrary(tidyverse)\n\n# Definir la ruta del archivo NEXUS\narchivo_nexus &lt;- \"../docs/u1_PatDiv/allSamples.tre\"  # Asegúrate de cambiar esta ruta si es necesario\n\n# Cargar el árbol\narbol &lt;- read.nexus(archivo_nexus)\n\n# Calcular el Límite Máximo del Eje X\nmax_edge_length &lt;- max(arbol$edge.length, na.rm = TRUE)\n\n# Graficar el árbol\nggtree(arbol) +\n  geom_tiplab(size = 3) +\n  geom_text2(aes(subset = !isTip, label = node), hjust = -0.3) +  # Etiquetar nodos internos\n  xlim(-0.5, max_edge_length * 1.4) +\n  theme_tree2()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -492,7 +592,7 @@
     "text": "Extraer los nombres de las terminales de un nodo específico:\nUtilizar la función getDescendants para obtener los nombres de todas la terminales del nodo interno 61:\n\nlibrary(phytools)\n\nnodo_interes &lt;- 61  # Reemplaza este valor por el nodo de tu interés\n\n# Obtener los índices de los nodos descendientes\nnodos_internos &lt;- getDescendants(arbol, nodo_interes)\n\n# Filtrar solo los índices que corresponden a las terminales (tips)\nindices_tips &lt;- nodos_internos[nodos_internos &lt;= length(arbol$tip.label)]\n\n# Obtener los nombres de las terminales\nnombres_tips &lt;- arbol$tip.label[indices_tips]\n\n# Mostrar los nombres de las terminales\nprint(nombres_tips)\n\n [1] \"06166_50_120_Phod_marmorata\" \"KRN15_107_Phod_marmorata\"   \n [3] \"KRN52_Phod_alticeps\"         \"KRN10_118_Phod_alticeps\"    \n [5] \"KRN14_Phod_alticeps\"         \"KRN24_Cyste_armatus\"        \n [7] \"KRN02_Cyste_armatus\"         \"KRN25_Cyste_armatus\"        \n [9] \"KRN28_Cyste_wislizeni\"       \"KRN03_Cyste_wislizeni\"      \n[11] \"KRN26_Cyste_wislizeni\"       \"KRN100_101_Tegro_aloga\"     \n[13] \"KRN96_97_98_Tegro_aloga\"     \"KRN11_Tegro_erosa\"          \n[15] \"KRN12_Tegro_erosa\"           \"KRN13_Tegro_latecincta\"     \n[17] \"KRN53_Tegro_latecincta\"      \"KRN01_Cordy_opaca\"          \n[19] \"KRN112_Cordy_opaca\"          \"KRN111_Cordy_fulleri\"       \n[21] \"KRN23_Cordy_fulleri\"         \"KRN09_Mege_vittata\"         \n[23] \"KRN08_Mege_puncta\"           \"KRN07_133_Mege_cancell\"     \n[25] \"KRN129_Mege_cancell_h\"       \"KRN51_Pleu_reticulata\"      \n[27] \"KRN48_Pleu_mirabilis\"        \"KRN47_119_Pleu_mirabilis\"   \n[29] \"KRN49_Pleu_mirabilis\"        \"KRN19_Eup_sulciphrons\"      \n[31] \"KRN131_Eup_schwarzi\"         \"KRN88_89_Eup_histrionica\"   \n[33] \"KRN90_Eup_histrionica\"       \"KRN43_108_Eup_fissiceps\"    \n[35] \"KRN45_Eup_fissiceps\"         \"KRN44_Eup_fissiceps\"        \n[37] \"KRN54_121_Eup_fissiceps\"     \"KRN20_Eup_imperialis\"       \n[39] \"KRN06_Eup_imperialis\"        \"KRN42_Eup_imperialis\"       \n[41] \"KRN30_113_Eup_elegans\"       \"KRN38_115_Eup_elegans_p\"    \n[43] \"KRN29_Eup_elegans_p\"         \"KRN21_114_Eup_elegans_p\"    \n[45] \"KRN40_Eup_elegans_p\"         \"KRN92_93_Eup_edmundsi\"      \n[47] \"KRN18_135_Eup_viridis\"       \"KRN59_Eup_viridis\"",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -503,7 +603,7 @@
     "text": "Uso de getMRCA y extract.clade para extraer Subárboles Filogenéticos\n\n# Obtener el nodo más reciente en común del ingroup\nmrca_ingroup &lt;- getMRCA(arbol, nombres_tips)\n\n# Extraer el subárbol del ingroup\nsubarbol &lt;- extract.clade(arbol, mrca_ingroup)\n\n# Calcular la longitud máxima de las ramas del subárbol\nmax_edge_length &lt;- max(subarbol$edge.length, na.rm = TRUE)\n\n# Graficar el subárbol\nggtree(subarbol) +\n  geom_tiplab(size = 3) +\n  xlim(-0.5, max_edge_length * 2) +\n  theme_tree2()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -514,7 +614,7 @@
     "text": "Remover especies duplicadas\n\n# Separar los nombres de las especies (asumiendo el formato \"ID_Especie\")\nspecies_info &lt;- data.frame(\n  tip_label = nombres_tips,\n  species = str_extract(nombres_tips, \"[A-Za-z]+_[A-Za-z]+(?:_[A-Za-z]+)?$\")\n)\n\n# Eliminar las ssp _h y _p\n# Seleccionar solo una muestra por especie\nunique_species &lt;- species_info %&gt;%\n  filter(!str_detect(species, \"_[hp]$\")) %&gt;%\n  group_by(species) %&gt;% \n  slice(1) %&gt;%  # Selecciona solo la primera aparición de cada especie\n  ungroup()\n\n# Extraer los nombres de los tips que queremos conservar\nselected_tips &lt;- unique_species$tip_label\n\n# Remover duplicados\nsubarbol_final &lt;- drop.tip(subarbol, setdiff(subarbol$tip.label, selected_tips))\n\nggtree(subarbol_final) + \n  geom_tiplab(size = 3) + \n  xlim(-0.5, max(subarbol_final$edge.length) * 2)  # Expande el espacio a la izquierda",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -525,7 +625,7 @@
     "text": "Guardar el árbol resultante en formato NEXUS\n\nwrite.nexus(subarbol_final, file=\"../docs/u1_PatDiv/subarbol_ingroup.nex\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -536,7 +636,7 @@
     "text": "Carga del Árbol Filogenético\n\n# Carga de paquetes\nlibrary(subplex)\nlibrary(TreeSim)\nlibrary(deSolve)\nlibrary(ape)       \nlibrary(TreePar)\n\n# Cargar el árbol desde un archivo Nexus\ntree &lt;- read.nexus(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")\n\n# Visualizar el árbol\nggtree(tree) + theme_tree()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -547,7 +647,7 @@
     "text": "Obtención de los Tiempos de Especiación\nExtraeremos y ordenaremos los tiempos de especiación (tiempos de ramificación) del árbol:\n\n# Obtener y ordenar los tiempos de especiación\n# La función getx() extrae los tiempos de ramificación del árbol.\ntimes &lt;- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.\ntimes &lt;- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.\nprint(times)\n\n [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969\n [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686\n[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760\n[19]  6.2512423  1.9309798  0.9252293",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -558,7 +658,7 @@
     "text": "Configuración de Parámetros para el Análisis\nDefiniremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:\n\nrho &lt;- 22/26  # Proporción de especies muestreadas (22 de 26 especies)\ngrid &lt;- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)\nstart &lt;- min(times)   # Tiempo inicial para la búsqueda de cambios de tasa\nend &lt;- max(times)     # Tiempo final para la búsqueda de cambios de tasa",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -569,7 +669,7 @@
     "text": "Ejecución del Análisis con bd.shifts.optim\nUtilizaremos la función bd.shifts.optim para estimar las tasas de especiación y extinción, así como los puntos en el tiempo donde ocurren cambios significativos en estas tasas:\n\n# Ejecutar el análisis de cambios en las tasas de diversificación\nresult_shifts &lt;- bd.shifts.optim(times, rho, grid, start, end, yule=TRUE)\n\n[1] \"startest\"\n[1] \"test\"\n\n# Mostrar los resultados\nresult_shifts[[2]][[1]]\n\n[1] 70.02138042  0.08912957\n\n\nA continuación se presentan los valores obtenidos en la estimación de la tasa de diversificación. Dado que el modelo Yule asume que no hay extinción, la tasa de extinción no está definida en este análisis.\n\nValor de la función de verosimilitud negativa: 70.02138\nTasa de especiación \\(\\lambda\\): 0.08913\n\nEn este contexto:\nEstos valores indican que la tasa de especiación estimada (\\(\\lambda\\)) es aproximadamente 0.08913.\nEl valor de la función de verosimilitud negativa (70.02138) proporciona una medida del ajuste del modelo a los datos, donde valores más bajos generalmente indican un mejor ajuste.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -580,7 +680,7 @@
     "text": "Crear un script de RevBayes en Visual Studio Code: divrate.Rev",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -591,7 +691,7 @@
     "text": "Cargar el archivo NEXUS\n# Cargar la filogenia desde el archivo NEXUS\nT &lt;- readTrees(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")[1]\n\n# Obtener la lista de taxones en la filogenia\ntaxa &lt;- T.taxa()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -602,7 +702,7 @@
     "text": "Inicializar los vectores de moves y monitors\n# Inicializar un vector vacío para los movimientos (moves)\nmoves = VectorMoves()\n\n# Inicializar un vector vacío para los monitores (monitors)\nmonitors = VectorMonitors()\n\n\n\n\n\nRepresentación del modelo gráfico para el proceso Yule (Pure-Birth) en RevBayes, donde la tasa de especiación (\\(\\lambda\\)) es tratada como una variable aleatoria extraída de una distribución uniforme.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -613,7 +713,7 @@
     "text": "Especificar la tasa de especiación (\\(\\lambda\\))\n# Especificar la tasa de especiación λ con una distribución uniforme\nbirth_rate ~ dnUniform(0, 100.0)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -624,7 +724,7 @@
     "text": "Asignar un movimiento MCMC a la tasa de especiación\n# Agregar un movimiento MCMC para la tasa de especiación\nmoves.append( mvScale(birth_rate, lambda=1.0, tune=true, weight=3.0) )",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -635,7 +735,7 @@
     "text": "Especificar la proporción de especies muestreadas (\\(\\rho\\))\n# Obtener el número de taxones en la filogenia\nnum_taxa &lt;- T.ntips()\n\n# Estimar la proporción de especies muestreadas\nrho &lt;- num_taxa / 26",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -646,7 +746,7 @@
     "text": "Obtener la edad de la raíz\n# Obtener la edad de la raíz del árbol\nroot_time &lt;- T.rootAge()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -657,7 +757,7 @@
     "text": "Definir el modelo de tiempo de especiación\nEl modelo Yule (pure-birth) en RevBayes se define con el proceso de nacimiento y muerte (dnBDP), pero con la tasa de extinción (mu) fijada en 0.\n# Definir el modelo de diversificación usando un proceso de nacimiento-muerte (BDP)\ntimetree ~ dnBDP(lambda=birth_rate, mu=0.0, rho=rho, rootAge=root_time, samplingStrategy=\"uniform\", condition=\"survival\", taxa=taxa)\nExplicación\n\nlambda = birth_rate → Tasa de especiación es una variable aleatoria con dnUniform(0, 100.0).\nmu = 0.0 → Asumimos que no hay extinción (modelo Yule).\nrho = rho → Se ajusta según el número de especies muestreadas.\nrootAge = root_time → Condicionamos el modelo en la edad de la raíz.\nsamplingStrategy = \"uniform\" → Asumimos muestreo uniforme.\ncondition = \"survival\" → Solo analizamos árboles que sobrevivieron hasta el presente.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -668,7 +768,7 @@
     "text": "Fijar la filogenia observada\n# Fijar la filogenia observada\ntimetree.clamp(T)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -679,7 +779,7 @@
     "text": "Definir el modelo gráfico\n# Crear el objeto de modelo\nmymodel = model(birth_rate)\nEsto crea un modelo gráfico dirigido acíclico (DAG) donde birth_rate es el nodo principal, y RevBayes automáticamente encuentra todos los otros nodos conectados.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -690,7 +790,7 @@
     "text": "Especificar los Monitores\n# Monitor para registrar los estados del modelo en un archivo de salida\nmonitors.append( mnModel(filename=\"output/diversification_Yule.log\", printgen=10, separator=TAB) )\n\n# Monitor para imprimir la tasa de especiación en la pantalla cada 1000 generaciones\nmonitors.append( mnScreen(printgen=1000, birth_rate) )\nExplicación\n\nmnModel guarda el registro de la ejecución en \"output/diversification_Yule.log\", escribiendo cada 10 generaciones.\nmnScreen imprime la tasa de especiación (birth_rate) en la consola cada 1000 generaciones.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -701,7 +801,7 @@
     "text": "Configurar y ejecutar el MCMC\n# Inicializar el MCMC con dos cadenas combinadas en un solo análisis\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")\n\n# Ejecutar el MCMC por 50,000 generaciones, ajustando los movimientos cada 200 generaciones\nmymcmc.run(generations=50000, tuningInterval=200)\nExplicación\n\nnruns=2 → Corre dos cadenas independientes.\ncombine=\"mixed\" → Combina las cadenas en un solo conjunto de muestras.\ngenerations=50000 → Ejecuta la simulación por 50,000 generaciones.\ntuningInterval=200 → Ajusta los movimientos cada 200 generaciones para mejorar la eficiencia del muestreo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -712,7 +812,7 @@
     "text": "Cargar los resultados en RevGadgets\nDespués de correr el MCMC en RevBayes, usar RevGadgets en R para analizar la distribución posterior:\n\n# Cargar librerías necesarias\nlibrary(RevGadgets)\nlibrary(ggplot2)\n\n# Leer los datos del MCMC\nmcmc_trace &lt;- readTrace(\"../docs/u1_PatDiv/output/diversification_Yule.log\")\n\n# Visualizar la distribución posterior de birth_rate\nplotTrace(mcmc_trace, vars=\"birth_rate\")\n\n[[1]]",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -720,10 +820,10 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09143424    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09138449    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -734,7 +834,7 @@
     "text": "Comparar la distribución previa y posterior\n\nlibrary(RevGadgets)\nlibrary(ggplot2)\n\n# Leer los datos del MCMC combinando las dos cadenas\nposterior_trace &lt;- readTrace(c(\"../docs/u1_PatDiv/output/diversification_Yule_run_1.log\", \"../docs/u1_PatDiv/output/diversification_Yule_run_2.log\"))\n\n# Extraer el primer conjunto de muestras (lista de data frames)\nyule_posterior &lt;- posterior_trace[[1]]\n\n# Simular 10,000 valores de la distribución previa\nyule_prior &lt;- data.frame(birth_rate = runif(10000, min=0, max=100))\n\n# Agregar la columna de la distribución previa en el posterior\nyule_posterior$birth_rate_prior &lt;- sample(yule_prior$birth_rate, size = nrow(yule_posterior), replace = TRUE)\n\n# Graficar la comparación\nplotTrace(list(yule_posterior), vars = c(\"birth_rate\", \"birth_rate_prior\"))[[1]] +\n  theme(legend.position = c(0.80, 0.80),  # Ubicación de la leyenda\n        legend.text = element_text(size =20),  # Tamaño del texto de la leyenda\n        legend.title = element_text(size = 22)) +  # Tamaño del título de la leyenda\n  xlim(0, 1)  # Ajusta el límite según los valores observados",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
     ]
   },
   {
@@ -745,7 +845,7 @@
     "text": "Presentación: Modelos con cambios en las tasas de diversificación\nHaz clic en la imagen para ver el PDF de la presentación",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -756,7 +856,7 @@
     "text": "Introducción\nEn estudios filogenéticos, los modelos de nacimiento-muerte (birth-death models) permiten inferir cómo han cambiado las tasas de diversificación (\\(\\lambda\\)) y extinción (\\(\\mu\\)) a lo largo del tiempo. Sin embargo, estas tasas no son siempre constantes. Diversos eventos evolutivos, como la aparición de nuevas adaptaciones o cambios ambientales, pueden causar variaciones en la dinámica de diversificación de un linaje.\nEl paquete TreePar permite ajustar modelos de diversificación con cambios en la tasa mediante la función bd.shifts.optim(). Esta función estima la mejor combinación de tasas de diversificación y extinción en diferentes periodos de tiempo, según la estructura de una filogenia dada.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -767,7 +867,7 @@
     "text": "Cargar librerías y el árbol filogenético\n\n# Cargar las librerías necesarias\nlibrary(ape)       \nlibrary(TreePar)\nlibrary(tidyverse)\nlibrary(ggtree)\n\n# Cargar el árbol desde un archivo Nexus\ntree &lt;- read.nexus(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")\n\n# Visualizar el árbol\nggtree(tree) + theme_tree()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -778,7 +878,7 @@
     "text": "Obtención de los tiempos de diversificación\nExtraeremos y ordenaremos los tiempos de diversificación (tiempos de ramificación) del árbol:\n\n# Obtener y ordenar los tiempos de especiación\n# La función getx() extrae los tiempos de ramificación del árbol.\ntimes &lt;- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.\ntimes &lt;- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.\nprint(times)\n\n [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969\n [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686\n[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760\n[19]  6.2512423  1.9309798  0.9252293",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -789,7 +889,7 @@
     "text": "Configuración de Parámetros para el Análisis\nDefiniremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:\n\nrho &lt;- 22/26  # Proporción de especies muestreadas (22 de 26 especies)\ngrid &lt;- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)\nstart &lt;- min(times)   # Tiempo inicial para la búsqueda de cambios de tasa\nend &lt;- max(times)     # Tiempo final para la búsqueda de cambios de tasa",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -800,7 +900,7 @@
     "text": "Modelo de nacimiento-muerte sin cambios\n\nresbd &lt;- bd.shifts.optim(times, rho, grid, start, end)\n\n[1] \"startest\"\n[1] \"test\"\n\nresbd[[2]]  # Verosimilitud del modelo\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -811,7 +911,7 @@
     "text": "Modelo con un cambio\nAquí probamos un modelo en el que la tasa cambia en un tiempo \\(t_{1}\\)\n\n\n\n\n\n\n\nParámetro\nSignificado\n\n\n\n\ntime\nEdades de los nodos terminales\n\n\nc(0.8, 1)\nc(\\(\\rho\\), Intervalo de discretización del tiempo)\n\n\ngrid\nIntervalo de discretización del tiempo\n\n\nstart, end\nRango de tiempo para el análisis\n\n\nME=FALSE\nNo se consideran eventos de extinción masiva\n\n\nsurvival=1\nSe asume que todas las especies sobrevivientes han sido muestreadas\n\n\n\n\nresoneshift &lt;- bd.shifts.optim(times, c(rho, 1), grid, start, end, ME=FALSE, survival=1)\nresoneshift[[2]]  # Verosimilitud del modelo con un cambio en la tasa\n\n\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n[[2]]\n[1] 6.295893e+01 9.952613e-01 8.527988e-02 1.001768e-04 1.594866e-01\n[6] 6.125229e+00\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nParámetro estimado\nDescripción\n\n\n\n\n1\n62.95893\nVerosimilitud (log-likelihood)\n\n\n2\n0.99526\nTurnover antes del cambio (\\(\\epsilon_0\\))\n\n\n3\n0.08528\nTurnover después del cambio (\\(\\epsilon_1\\))\n\n\n4\n0.00010\nDiversificación antes del cambio (\\(r_0\\))\n\n\n5\n0.15949\nDiversificación después del cambio (\\(r_1\\))\n\n\n6\n6.12523\ntiempo del cambio\n\n\n\nGraficar el modelo con un cambio en la tasa\n\nbd.shifts.plot(list(resoneshift[[2]]), shifts = 1, timemax = max(times), ratemin = 0, ratemax = 1.1, plotturnover = TRUE)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -822,7 +922,7 @@
     "text": "Modelo con dos cambios\n\nrestwoshift &lt;- bd.shifts.optim(times, c(0.8,1,1), grid, start, end, ME=FALSE, survival=1)\nrestwoshift[[2]]\n\n\n\n[[1]]\n[1] 6.984598e+01 2.752173e-07 9.230017e-02\n\n[[2]]\n[1] 6.300085e+01 3.082460e-02 9.309168e-08 1.887393e-02 1.612077e-01\n[6] 6.125229e+00\n\n[[3]]\n[1]  6.045200e+01  7.427444e-08  1.840255e-02  1.040200e+00  2.028774e-02\n[6]  1.244237e-01 -2.968324e-02  6.125229e+00  1.472523e+01\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nValor\nDescripción\n\n\n\n\n1\n60.45200\nVerosimilitud (log-likelihood)\n\n\n2\n7.427444e-08\nTurnover antes del primer cambio (\\(\\epsilon_0\\))\n\n\n3\n0.01840\nTurnover antes del segundo cambio (\\(\\epsilon_1\\))\n\n\n4\n1.04020\nTurnover después del segundo cambio (\\(\\epsilon_2\\))\n\n\n5\n0.02028\nDiversificación antes del primer cambio (\\(r_0\\))\n\n\n6\n0.12442\nDiversificación antes del segundo cambio (\\(r_1\\))\n\n\n7\n-0.02968\nDiversificación despues del segundo cambio (\\(r_2\\))\n\n\n8\n6.12523\nTiempo del primer cambio \\(t_1\\)\n\n\n9\n14.72523\nTiempo del segundo cambio \\(t_1\\)\n\n\n\nGraficar el modelo con dos cambio en la tasa\n\nbd.shifts.plot(list(restwoshift[[2]]), shifts = 2, timemax = max(times), ratemin = -0.1, ratemax = 1.1, plotturnover = TRUE)\n\n\n\n\n\n\n\n\nOpcion con ggtree y ggplot\n\nlibrary(ggplot2)\nlibrary(ggtree)\nlibrary(tidyr)\nlibrary(patchwork) \n\n# Extraer resultados de restwoshift[[2]]\nresultados &lt;- restwoshift[[2]][[3]]\n\n# Crear el gráfico del árbol con `ggtree`\np_tree &lt;- ggtree(tree) + \n  theme_tree() +\n  theme(plot.background = element_blank())\n\n# Crear el data frame con los valores obtenidos\ndf_prueba &lt;- data.frame(\n  turnover = c(resultados[2], resultados[2], resultados[3], resultados[4]),  \n  r = c(resultados[5], resultados[5], resultados[6], resultados[7]),  \n  tiempo = c(start, resultados[8], resultados[9], end)  # Tiempo en sentido inverso (del pasado al presente)\n)\n\n# Transformar datos al formato largo para ggplot2\ndf_long &lt;- pivot_longer(df_prueba, cols = c(turnover, r), \n                        names_to = \"Tasa\", values_to = \"Valor\")\n\n# Crear el gráfico de tasas con `geom_step()`\np_tasas &lt;- ggplot(df_long, aes(x = tiempo, y = Valor, color = rev(Tasa))) +\n  geom_step(size = 1, direction = \"hv\") + \n  geom_point(size = 3) +\n  scale_x_reverse() +  # Invertir el eje X para que el tiempo fluya del pasado al presente\n  labs(x = \"Time\",\n       y = \"Rate\") +\n  theme_minimal()\n\n# Superponer el árbol y el gráfico de tasas con ajuste de proporciones\np_tree + p_tasas + plot_layout(ncol = 1, heights = c(1, 1.5))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -833,7 +933,7 @@
     "text": "Comparación de modelos usando Likelihood Ratio Test (LRT)\n¿Qué es la prueba LRT? Es una prueba estadística para comparar modelos anidados, es decir, modelos donde uno es una versión simplificada del otro (por ejemplo, el modelo de nacimiento-muerte puro vs. un modelo con cambios en la tasa).\nSe calcula con la siguiente fórmula:\n\\(LR = 2 * (\\mathcal{L}_{modelo más simple} - \\mathcal{L}_{modelo más complejo})\\)\nDonde: - Un p-valor menor a 0.05 indica que el modelo más complejo es significativamente mejor que el más simple.\nObtener las Verosimilitudes de cada modelo\n\n## Verosimilitud birth-death\nresbd[[2]][[1]][1]\n\n[1] 70.02138\n\n## Verosimilitud birth-death un cambio\nresoneshift[[2]][[1]][1]\n\n[1] 70.02138\n\n## Verosimilitud birth-death dos cambios\nrestwoshift[[2]][[1]][1]\n\n[1] 69.84598\n\n\nComparación BD vs BD un cambio\n\nChiSq1 = 2 * (resbd[[2]][[1]][1] - resoneshift[[2]][[1]][1])\nChiSq1\n\n[1] 0\n\npchiSq1 &lt;- pchisq(ChiSq1, df=3)\npchiSq1\n\n[1] 0\n\n\nResultados:\n\n\\(LR = 0\\) → No hay diferencia en la verosimilitud entre el modelo BD y BD con un cambio.\n\\(p_{valor} = 0\\) → Indica que no hay mejora significativa en el modelo con un cambio en la tasa.\n\nComparación BD un cambio vs BD dos cambios\n\nChiSq2 = 2 * (resoneshift[[2]][[1]][1] - restwoshift[[2]][[1]][1])\nChiSq2\n\n[1] 0.3508041\n\npchiSq2 &lt;- pchisq(ChiSq2, df=3)\npchiSq2\n\n[1] 0.04979325\n\n\nResultados:\n\n\\(LR = 0.3508\\) → Hay una pequeña diferencia en la verosimilitud entre el modelo BD con un cambio y el modelo BD con dos cambios.\n\\(p_{valor} = 0.0498\\) → Justo en el límite del umbral de significancia \\((0.05)\\), lo que indica que el modelo con dos cambios podría ser significativamente mejor.\n\nGenerar el gráfico con bd.shifts.plot()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -844,7 +944,7 @@
     "text": "Introducción\nEl modelo de nacimiento-muerte epísodico es un proceso en el cual las tasas de diversificación varían epísodicamente a lo largo del tiempo y se modelan como tasas constantes por intervalos de tiempo (Stadler 2011; Höhna 2015). Siguiendo el tutorial oficial Episodic Diversification Rate Estimation.\nAsumimos que las tasas transformadas logarítmicamente siguen una distribución previa de campo aleatorio de Markov en forma de herradura (Horseshoe Markov random field, HSMRF) según Magee et al. (2020).\n\nTasas transformadas logarítmicamente:\n\nEn muchos modelos evolutivos, las tasas de diversificación y extinción pueden variar en órdenes de magnitud.\nPara modelar mejor estos cambios, se toma el logaritmo de las tasas en lugar de usarlas directamente.\nEsto ayuda a evitar valores negativos y hace que la distribución de las tasas sea más manejable.\n\nDistribución previa (prior) de campo aleatorio de Markov en forma de herradura (HSMRF):\n\nDistribución previa (prior): En un enfoque bayesiano, los parámetros desconocidos (como las tasas de especiación/extinción) tienen distribuciones previas que reflejan nuestras creencias antes de ver los datos.\nCampo aleatorio de Markov (Markov Random Field, MRF): Este término indica que las tasas en un intervalo de tiempo dependen de las tasas en el intervalo anterior. En otras palabras, las tasas están autocorrelacionadas temporalmente.\nForma de herradura (Horseshoe): Es un tipo de distribución previa diseñada para manejar datos donde algunos valores pueden ser cercanos a cero (relativamente constantes), pero también permite valores extremos (cambios bruscos en las tasas).\n¿Por qué se usa? El HSMRF permite capturar patrones donde las tasas cambian lentamente la mayor parte del tiempo, pero ocasionalmente pueden dar saltos grandes, lo cual es biológicamente realista en muchos sistemas evolutivos.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -855,7 +955,7 @@
     "text": "Lectura del árbol\nComenzamos cargando el árbol filogenético previamente filtrado.\n# Cargar el árbol filogenético desde un archivo en formato NEXUS\nT &lt;- readTrees(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")[1]\n\n# Extraer la información taxonómica del árbol\n taxa &lt;- T.taxa()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -866,7 +966,7 @@
     "text": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.\nmoves    = VectorMoves()\nmonitors = VectorMonitors()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -877,7 +977,7 @@
     "text": "Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.\nNUM_INTERVALS = 10  # Número total de intervalos de tiempo\nNUM_BREAKS := NUM_INTERVALS - 1  # Número de puntos de cambio entre intervalos",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -888,7 +988,7 @@
     "text": "Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala\n# Hiperprior para controlar la variabilidad global de las tasas de diversificación y extinción\nspeciation_global_scale_hyperprior &lt;- 0.044\nextinction_global_scale_hyperprior &lt;- 0.044\nEstos hiperpriors controlan la variabilidad global de las tasas de diversificación y extinción:\n\nUn valor mayor permite más cambios abruptos entre intervalos.\nUn valor menor suaviza las tasas a lo largo del tiempo.\n\nFunción setMRFGlobalScaleHyperpriorNShifts() del paquete RevGadgets en R para calcular el hiperprior automáticamente.\n\n### Ejecutar en R, no agregar a RevBayes!!!\n### Calcula el hiperprior que utilizaremos en RevBayes\nlibrary(RevGadgets)\n## 10 numero intervalos\n## \"HSMRF\" Horseshoe Markov random field \nsetMRFGlobalScaleHyperpriorNShifts(10, \"HSMRF\")\n\n[1] 0.04446432",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -899,7 +999,7 @@
     "text": "Asignar distribuciones previas Half-Cauchy (dnHalfCauchy(0,1))\nSe asignan a los parámetros de escala global, esto permite valores pequeños pero también acepta valores más grandes ocasionalmente.\n# Distribuciones previas de Cauchy truncadas para los parámetros de escala global\nspeciation_global_scale ~ dnHalfCauchy(0,1)\nextinction_global_scale ~ dnHalfCauchy(0,1)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -910,7 +1010,7 @@
     "text": "Definir las tasas iniciales de diversificación y extinción en el modelo HSMRF.\nEn este enfoque, comenzamos con la tasa de diversificación y extinción en el presente y luego modelamos cómo cambian hacia el pasado.\n# Definir tasas iniciales de diversificación y extinción en el presente\nlog_speciation_at_present ~ dnUniform(-10.0,10.0)\nlog_speciation_at_present.setValue(0.0)\nlog_extinction_at_present ~ dnUniform(-10.0,10.0)\nlog_extinction_at_present.setValue(-1.0)\n¿Por qué se usa dnUniform(-10.0,10.0)?\nSe establece una distribución uniforme como prior para las tasas iniciales de diversificación y extinción.\n\nComo estamos modelando las tasas en escala logarítmica, esto implica que los valores de especiación/extinción reales estarán entre:\n\n(e^{-10}) (casi 0, evolución extremadamente lenta)\n(e^{10}) (tasa de diversificación muy rápida)\n\nPermitir este rango amplio cubre la mayoría de los valores posibles sin asumir un conocimiento previo específico sobre la tasa de diversificación en el presente.\n\n¿Por qué los valores iniciales 0.0 y -1.0?\n\nlog_speciation_at_present.setValue(0.0): Equivale a establecer la tasa inicial de diversificación en (\\(e^0 = 1.0\\)), lo cual es un punto razonable para comenzar.\nlog_extinction_at_present.setValue(-1.0): Equivale a una tasa inicial de extinción de (\\(e^{-1} \\approx 0.37\\)), lo que implica que la extinción es menor que la diversificación en el punto de partida.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -921,7 +1021,7 @@
     "text": "Movimientos eficientes en MCMC para explorar estas tasas\nmoves.append( mvScaleBactrian(log_speciation_at_present,weight=5))\nmoves.append( mvScaleBactrian(log_extinction_at_present,weight=5))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -932,7 +1032,7 @@
     "text": "Modelar la diversificación episódica\nEn el código de RevBayes para modelar la diversificación episódica, se utiliza un bucle for para definir los cambios en las tasas de diversificación y extinción en cada intervalo de tiempo.\nfor (i in 1:NUM_BREAKS) {\n  # Variabilidad local en cada intervalo\n  sigma_speciation[i] ~ dnHalfCauchy(0,1)\n  sigma_extinction[i] ~ dnHalfCauchy(0,1)\n\n  # Se inicializan valores aleatorios en un rango de 0.005 a 0.1, para evitar valores extremos en el inicio del MCMC\n  sigma_speciation[i].setValue(runif(1,0.005,0.1)[1])\n  sigma_extinction[i].setValue(runif(1,0.005,0.1)[1])\n\n  # Especificar los cambios en log-diversificación y log-extinción mediante una distribución normal\n  delta_log_speciation[i] ~ dnNormal( mean=0, sd=sigma_speciation[i]*speciation_global_scale*speciation_global_scale_hyperprior )\n  delta_log_extinction[i] ~ dnNormal( mean=0, sd=sigma_extinction[i]*extinction_global_scale*extinction_global_scale_hyperprior )\n}",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -943,7 +1043,7 @@
     "text": "Calcular las tasas de diversificación y extinción\nspeciation := fnassembleContinuousMRF(log_speciation_at_present, delta_log_speciation, initialValueIsLogScale=TRUE, order=1)\nextinction := fnassembleContinuousMRF(log_extinction_at_present, delta_log_extinction, initialValueIsLogScale=TRUE, order=1)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -954,7 +1054,7 @@
     "text": "Movimientos de MCMC para el Modelo HSMRF\n# Movimiento para los cambios en log-escala de diversificación y extinción\nmoves.append(mvEllipticalSliceSamplingSimple(delta_log_speciation, weight=5, tune=FALSE))\nmoves.append(mvEllipticalSliceSamplingSimple(delta_log_extinction, weight=5, tune=FALSE))\n\n# Movimiento Gibbs para los hiperparámetros globales y locales\nmoves.append(mvHSRFHyperpriorsGibbs(speciation_global_scale, sigma_speciation , delta_log_speciation , speciation_global_scale_hyperprior, propGlobalOnly=0.75, weight=10))\nmoves.append(mvHSRFHyperpriorsGibbs(extinction_global_scale, sigma_extinction , delta_log_extinction , extinction_global_scale_hyperprior, propGlobalOnly=0.75, weight=10))\n\n# Movimiento de intercambio entre intervalos adyacentes\nmoves.append(mvHSRFIntervalSwap(delta_log_speciation, sigma_speciation, weight=5))\nmoves.append(mvHSRFIntervalSwap(delta_log_extinction, sigma_extinction, weight=5))\nSe utilizan tres tipos principales de movimientos en este código:\n\nMuestreo Elíptico Slice (mvEllipticalSliceSamplingSimple)\n\nOptimiza la exploración de los cambios en log-escala de las tasas de diversificación y extinción.\nFunciona bien en modelos con alta correlación entre parámetros.\n\nMuestreo Gibbs (mvHSRFHyperpriorsGibbs)\n\nSe usa para actualizar los hiperparámetros globales y locales del modelo.\nPermite ajustes eficientes en la escala de variabilidad de las tasas.\n\nIntercambio de intervalos (mvHSRFIntervalSwap)\n\nIntercambia valores entre intervalos de tiempo adyacentes.\nAyuda a evitar que la cadena de MCMC se quede atrapada en un estado subóptimo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -965,7 +1065,7 @@
     "text": "Configuración de los Intervalos de Tiempo\ninterval_times &lt;- abs(T.rootAge() * seq(1, NUM_BREAKS, 1)/NUM_INTERVALS)\n\nT.rootAge() → Obtiene la edad de la raíz del árbol filogenético (es decir, el tiempo en el pasado en que el linaje común más reciente existió).\nseq(1, NUM_BREAKS, 1) → Genera una secuencia de números del 1 al NUM_BREAKS (el número de puntos de cambio entre intervalos).\nMultiplica la raíz del árbol T.rootAge() por esta secuencia para escalar los intervalos al tiempo evolutivo real.\nDivide entre NUM_INTERVALS para normalizar y hacer que los intervalos sean de igual tamaño.\nabs(...) → Convierte los valores a positivos porque las edades van en dirección del presente al pasado.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -976,7 +1076,7 @@
     "text": "Corrección por Muestreo Incompleto\nrho &lt;- T.ntips()/26",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -987,7 +1087,7 @@
     "text": "Inicializando el Nodo Estocástico del Árbol de Tiempos\ntimetree ~ dnEpisodicBirthDeath(rootAge=T.rootAge(), lambdaRates=speciation, lambdaTimes=interval_times, muRates=extinction, muTimes=interval_times, rho=rho, samplingStrategy=\"uniform\", condition=\"survival\", taxa=taxa)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -998,7 +1098,7 @@
     "text": "Asignando Datos Observados al Árbol\ntimetree.clamp(T)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -1009,7 +1109,7 @@
     "text": "Creando el Modelo Completo\nEncuentra todas las conexiones en la red bayesiana y las agrupa en un solo objeto model()\nmymodel = model(rho)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -1020,7 +1120,7 @@
     "text": "Configuración de los Monitores\nmonitors.append(mnModel(filename=\"../output/Eupomphini_EBD.log\", printgen=10, separator = TAB))\nCrea un monitor (mnModel) que guarda los valores de todos los parámetros del modelo.\n✔ Guarda los resultados en el archivo \"output/primates_EBD.log\".\n✔ printgen=10 → Especifica que se guardará un estado cada 10 generaciones.\n✔ separator=TAB → Usa tabulaciones para separar los valores en el archivo de salida.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -1031,7 +1131,7 @@
     "text": "Creación de Monitores para las Tasas de diversificación y Extinción\n# Tasas de especiación\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_speciation_rates.log\", printgen=10, separator = TAB, speciation))\n\n# Intervalos de tiempo de especiación\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_speciation_times.log\", printgen=10, separator = TAB, interval_times))\n\n# Tasas de extinción\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_extinction_rates.log\", printgen=10, separator = TAB, extinction))\n\n#Intervalos de tiempo de extinción\nmonitors.append(mnFile(filename=\"../output/Eupomphini_EBD_extinction_times.log\", printgen=10, separator = TAB, interval_times))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -1042,7 +1142,7 @@
     "text": "Creación de un Monitor en Pantalla\nmonitors.append(mnScreen(printgen=1000, extinction_global_scale, speciation_global_scale))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -1053,7 +1153,7 @@
     "text": "Configuración del MCMC\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")\nCrea el objeto MCMC mymcmc que utilizará:\n\nmymodel → El modelo definido anteriormente.\nmonitors → Los monitores configurados.\nmoves → Los movimientos de MCMC definidos antes.\nnruns=2 → Ejecuta dos cadenas independientes de MCMC.\ncombine=\"mixed\" → Mezcla las cadenas al final del proceso para mejorar la estimación de parámetros.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -1064,7 +1164,7 @@
     "text": "Ejecutar el MCMC\nmymcmc.run(generations=50000, tuningInterval=200)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -1075,7 +1175,7 @@
     "text": "Visualización de las tasas de diversificación\nFinalmente, generamos un gráfico que muestra cómo las tasas de diversificación y extinción han cambiado a lo largo del tiempo.\n\nlibrary(RevGadgets)\n\n# Especificar la ruta de los archivos de salida \nspeciation_time_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_times.log\"\nspeciation_rate_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_rates.log\"\nextinction_time_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_times.log\"\nextinction_rate_file &lt;- \"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_rates.log\"\n\n# Leer y procesar los datos\nrates &lt;- processDivRates(speciation_time_log = speciation_time_file,\n                         speciation_rate_log = speciation_rate_file,\n                         extinction_time_log = extinction_time_file,\n                         extinction_rate_log = extinction_rate_file,\n                         burnin = 0.25, # Se descarta el 25% inicial de las iteraciones como burn-in\n                         summary = \"median\")  # Se toman las tasas medianas como resumen\n\n# Graficar las tasas atravez del tiempo\np &lt;- plotDivRates(rates = rates) +\n  xlab(\"Millions of years ago\") +\n  ylab(\"Rate per million years\")\n\np",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modelos con cambios en las tasas de diversificación</span>"
     ]
   },
   {
@@ -1086,7 +1186,7 @@
     "text": "Presentación: Estimación de Eventos de Extinción Masiva\nHaz clic en la imagen para ver el PDF de la presentación",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1097,7 +1197,7 @@
     "text": "Cargar librerías y el árbol filogenético\n\n# Cargar las librerías necesarias\nlibrary(ape)       \nlibrary(TreePar)\nlibrary(tidyverse)\nlibrary(ggtree)\n\n# Cargar el árbol desde un archivo Nexus\ntree &lt;- read.nexus(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")\n\n# Visualizar el árbol\nggtree(tree) + theme_tree()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1108,7 +1208,7 @@
     "text": "Obtención de los tiempos de diversificación\nExtraeremos y ordenaremos los tiempos de diversificación (tiempos de ramificación) del árbol:\n\n# Obtener y ordenar los tiempos de especiación\n# La función getx() extrae los tiempos de ramificación del árbol.\ntimes &lt;- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.\ntimes &lt;- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.\nprint(times)\n\n [1] 19.5829128 18.1869690 16.7465168 15.4799329 15.4702670 15.2568969\n [7] 14.8167040 13.6855239 12.2625233 11.9306405 11.3703192  9.3733686\n[13]  9.0410043  8.7813081  8.2912126  7.7803338  7.2101697  6.3883760\n[19]  6.2512423  1.9309798  0.9252293",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1119,7 +1219,7 @@
     "text": "Configuración de Parámetros para el Análisis\nDefiniremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:\n\nrho &lt;- 22/26  # Proporción de especies muestreadas (22 de 26 especies)\ngrid &lt;- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)\nstart &lt;- min(times)   # Tiempo inicial para la búsqueda de cambios de tasa\nend &lt;- max(times)     # Tiempo final para la búsqueda de cambios de tasa",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1130,7 +1230,7 @@
     "text": "Modelo con un Evento de Extinción Masiva\n\n# Ejecutar la optimización con detección de extinción masiva\nres_MEE &lt;- bd.shifts.optim(times, c(rho, 1), grid, start, end, ME = TRUE, survival = 1) # Activar detección de extinciones masivas\n\n\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n[[2]]\n[1] 6.817460e+01 1.195857e-07 1.246163e-01 3.649862e-01 9.252293e-01\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nParámetro estimado\nDescripción\n\n\n\n\n1\n68.1746\nVerosimilitud (log-likelihood)\n\n\n2\n1.195857e-07\nTurnover (\\(\\epsilon\\))\n\n\n3\n0.1246163\nDiversificación (\\(r\\))\n\n\n4\n0.3649862\nEspecies muestreadas antes del evento (\\(\\rho_0\\))\n\n\n5\n0.925229\nTiempo antes del evento (\\(t_0\\))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1141,7 +1241,7 @@
     "text": "Modelo con dos Eventos de Extinción Masiva\n\n# Ejecutar la optimización con detección de extinción masiva\nres_MEE2 &lt;- bd.shifts.optim(times, c(rho, 1, 1), grid, start, end, ME = TRUE, survival = 1) # Activar detección de extinciones masivas\n\n\n\n[[1]]\n[1] 7.002138e+01 3.102841e-07 8.909817e-02\n\n[[2]]\n[1] 6.817460e+01 1.195857e-07 1.246163e-01 3.649862e-01 9.252293e-01\n\n[[3]]\n[1] 6.603778e+01 6.878473e-08 2.676687e-01 7.137593e-02 7.086373e-01\n[6] 9.252293e-01 9.525229e+00\n\n\nInterpretación\n\n\n\n\n\n\n\n\nÍndice\nParámetro estimado\nDescripción\n\n\n\n\n1\n66.03778\nVerosimilitud (log-likelihood)\n\n\n2\n6.878473e-08\nTurnover (\\(\\epsilon\\))\n\n\n3\n0.2676687\nDiversificación (\\(r\\))\n\n\n4\n0.07137593\nEspecies muestreadas antes del evento (\\(\\rho_0\\))\n\n\n5\n0.7086373\nEspecies muestreadas después del evento (\\(\\rho_1\\))\n\n\n6\n0.9252293\nTiempo antes del evento (\\(t_0\\))\n\n\n7\n9.525229\nTiempo después del evento (\\(t_1\\))\n\n\n\nComparación MEE un evento vs MEE dos cambio\n\n## Verosimilitud MEE un evento\nres_MEE[[2]][[2]][1]\n\n[1] 68.1746\n\n## Verosimilitud MEE dos eventos\nres_MEE2[[2]][[3]][1]\n\n[1] 66.03778\n\n\n\nChiSq1 = 2 * (res_MEE[[2]][[2]][1] - res_MEE2[[2]][[3]][1])\nChiSq1\n\n[1] 4.273639\n\ndgf &lt;- 6 - 4\npchiSq1 &lt;- pchisq(ChiSq1, df=dgf)\npchiSq1\n\n[1] 0.8819704\n\n\nInterpretación de los resultados\n\nChi-cuadrado (ChiSq1) = 4.273639\n\nEsto representa cuánto mejor se ajusta el modelo con 2 eventos en comparación con el modelo con 1 evento.\n\nGrados de libertad = 2\n\nSe obtiene de la diferencia en el número de parámetros entre ambos modelos (6 - 4 = 2).\n\np-value = 0.8819704\n\nEl p-valor es alto (\\(&gt;0.05\\)), lo que indica que NO hay evidencia suficiente para preferir el modelo con 2 eventos de extinción sobre el modelo con 1 evento.\nEsto sugiere que el modelo con 1 evento de extinción es suficiente para explicar los datos, y agregar un segundo evento no mejora significativamente el ajuste del modelo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1152,7 +1252,7 @@
     "text": "Introducción\nEn este tutorial, aprenderemos a inferir eventos de extinción masiva utilizando un modelo Episodic Fossilized Birth-Death (EFBD) en RevBayes. Siguiendo el tutorial oficial Mass Extinction Estimation.\n\n¿Qué es el modelo de diversificación episódico?\nEl modelo episodic birth-death es un proceso en el que las tasas de especiación, extinción y fosilización son constantes dentro de intervalos de tiempo, pero pueden cambiar entre ellos. En ciertos momentos, este modelo incorpora la posibilidad de que ocurra una extinción masiva, en la que un gran porcentaje de linajes desaparece de manera instantánea con una probabilidad \\(M_i\\).\n\n\nRelación con otros modelos de diversificación\nEste modelo es una extensión del modelo de diversificación con tasas variables en el tiempo, tratado en el tutorial Episodic Diversification Rate Estimation. Además, dado que permite la incorporación de fósiles en la filogenia, es útil revisar los tutoriales de Combined-Evidence Analysis y Fossilized Birth-Death Process for Analysis of Extant Taxa and Fossil Specimens.\n\n\nConsideraciones clave\nPara evitar confundir cambios en las tasas de diversificación con eventos de extinción masiva, este modelo incorpora un Horseshoe Markov Random Field (MRF), el cual permite detectar correctamente los cambios en especiación, extinción y fosilización sin interpretaciones erróneas.\nEste enfoque está basado en la implementación presentada en Magee y Höhna (2021) y nos permitirá explorar cómo la diversidad ha cambiado a lo largo del tiempo y si existen eventos de extinción masiva en nuestra filogenia.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1163,7 +1263,7 @@
     "text": "Cálculo de Valores Necesarios para el Análisis\nAntes de definir los priors en nuestro modelo de estimación de extinciones masivas, es importante calcular valores iniciales para las tasas de especiación, extinción y fosilización. Para ello, ejecutaremos un modelo de tasa constante usando el enfoque Fossilized Birth-Death Process (FBDP) en RevBayes.\nEste script permite estimar los valores base para los priors en las tasas de diversificación.\n\nPasos clave del script\n\nLeer los datos filogenéticos desde el archivo subarbol_ingroup.nex.\nDefinir priors iniciales para las tasas de especiación, extinción y fosilización usando una distribución Half-Cauchy(0,0.1).\nConfigurar movimientos del MCMC para optimizar la exploración del espacio de parámetros.\nDefinir el modelo FBDP, donde:\n\nlambda = tasa de especiación\nmu = tasa de extinción\nphi = tasa de fosilización\nPhi = probabilidad de muestreo de especies extantes\n\nEjecutar la inferencia bayesiana (MCMC) para estimar los parámetros.\n\n**Guarda este script como mcmc_CRFBD.Rev y ejecútalo en RevBayes:**\n#######################\n# Lectura de los Datos #\n#######################\n\n# Leer el árbol filogenético \"observado\"\nT &lt;- readTrees(\"../data/subarbol_ingroup.nex\")[1]\n\n# Extraer taxones del árbol\ntaxa &lt;- T.taxa()\n\n# Inicializar vectores de movimientos y monitores\nmoves    = VectorMoves()\nmonitors = VectorMonitors()\n\n##########\n# Priors #\n##########\n\n# Definir priors iniciales con distribución Half-Cauchy(0,0.1)\nspeciation_rate ~ dnHalfCauchy(0.0,0.1)\nmoves.append( mvScaleBactrian(speciation_rate, weight=7.5) )\nmoves.append( mvRandomDive(speciation_rate, weight=2.5) )\n\nextinction_rate ~ dnHalfCauchy(0.0,0.1)\nmoves.append( mvScaleBactrian(extinction_rate, weight=7.5) )\nmoves.append( mvRandomDive(extinction_rate, weight=2.5) )\n\nfossilization_rate ~ dnHalfCauchy(0.0,0.1)\nmoves.append( mvScaleBactrian(fossilization_rate, weight=7.5) )\nmoves.append( mvRandomDive(fossilization_rate, weight=2.5) )\n\n# Agregar un movimiento conjunto para explorar múltiples parámetros simultáneamente\njoint_move = mvAVMVN(weight=10.0)\njoint_move.addVariable(speciation_rate)\njoint_move.addVariable(extinction_rate)\njoint_move.addVariable(fossilization_rate)\nmoves.append( joint_move )\n\n### Probabilidad de muestreo de especies extantes\n# Se fija en 22/26, ya que hay ~26 especies descritas de Eupomphini y se han muestreado 22.\nsampling_at_present &lt;- 22/26\n\n##############\n# Definir el Modelo #\n##############\n\ntimetree ~ dnFBDP(rootAge = T.rootAge(),\n                  lambda = speciation_rate,\n                  mu = extinction_rate,\n                  phi = fossilization_rate,\n                  Phi = sampling_at_present,\n                  condition = \"time\",\n                  taxa = taxa,\n                  initialTre = T)\n\n# Restringir el modelo con el árbol observado\ntimetree.clamp(T)\n\n# Envolver el modelo en un workspace\nmymodel = model(sampling_at_present)\n\n#############\n# Monitores #\n#############\n\n# Guardar los valores de los parámetros en un archivo de salida\nmonitors.append( mnModel(filename=\"../out/eupomphini_CRFBD.log\", printgen=10, separator = TAB) )\nmonitors.append( mnScreen(printgen=1000) )\n\n################\n# Ejecutar el MCMC #\n################\n\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")\n\n# Ejecutar la cadena MCMC con 50,000 generaciones\nmymcmc.run(generations=50000, tuningInterval=200)\n\n# Salir de RevBayes\nq()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1174,7 +1274,7 @@
     "text": "Ejecutar en R: Cálculo de Priors y Hiperprior para RevBayes con RevGadgets\n\n# Cargar la librería RevGadgets\nlibrary(RevGadgets)\n\n# Leer las tasas de diversificación desde el archivo de salida de RevBayes\ndiversification_rates &lt;- readTrace(\"../docs/u1_PatDiv/output/CRFBD/eupomphini_CRFBD.log\", burnin = 0.25)[[1]]\n\n# Ajustar una distribución Gamma a las tasas inferidas\nspeciation_prior &lt;- posteriorSamplesToParametricPrior(diversification_rates$speciation_rate, \"gamma\")\nextinction_prior &lt;- posteriorSamplesToParametricPrior(diversification_rates$extinction_rate, \"gamma\")\nfossilization_prior &lt;- posteriorSamplesToParametricPrior(diversification_rates$fossilization_rate, \"gamma\")\n\n# Imprimir los valores de los parámetros de la distribución Gamma\nprint(speciation_prior)  # [1] -&gt; alpha, [2] -&gt; beta\n\ngamma.shape  gamma.rate \n   10.31672   104.25685 \n\nprint(extinction_prior)  # [1] -&gt; alpha, [2] -&gt; beta\n\ngamma.shape  gamma.rate \n  0.5185615  32.6386155 \n\nprint(fossilization_prior)  # [1] -&gt; alpha, [2] -&gt; beta\n\ngamma.shape  gamma.rate \n  0.5099949 146.6218854 \n\n# Calcular el hiperprior para RevBayes usando HSMRF con 10 intervalos\nhyperprior_value &lt;- setMRFGlobalScaleHyperpriorNShifts(10, \"HSMRF\")\n\n# Imprimir el valor del hiperprior\nprint(hyperprior_value)\n\n[1] 0.04446432",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1185,7 +1285,7 @@
     "text": "Código en RevBayes para Estimación de Extinciones Masivas\nGuarda este script como mcmc_EFBD_ME.Rev y ejecútalo en RevBayes:",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1196,7 +1296,7 @@
     "text": "Lectura del árbol\nComenzamos cargando el árbol filogenético previamente filtrado.\n# Cargar el árbol filogenético desde un archivo en formato NEXUS\nT &lt;- readTrees(\"../docs/u1_PatDiv/subarbol_ingroup.nex\")[1]\n\n# Extraer la información taxonómica del árbol\n taxa &lt;- T.taxa()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1207,7 +1307,7 @@
     "text": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.\nmoves    = VectorMoves()\nmonitors = VectorMonitors()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1218,7 +1318,7 @@
     "text": "Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.\nNUM_INTERVALS = 10  # Número total de intervalos de tiempo\nNUM_BREAKS := NUM_INTERVALS - 1  # Número de puntos de cambio entre intervalos",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1229,7 +1329,7 @@
     "text": "Configuración de los Intervalos de Tiempo\nEl modelo Episodic Fossilized Birth-Death asume que los puntos en el tiempo están distribuidos equidistantemente. Para ello, creamos un vector de tiempos que servirá para definir las tasas de especiación, extinción y fosilización, así como para modelar las extinciones masivas.\ninterval_times &lt;- abs(T.rootAge() * seq(1, NUM_BREAKS, 1) / NUM_INTERVALS)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1240,7 +1340,7 @@
     "text": "Priors en las Extinciones Masivas\nEl modelo utiliza una mezcla de saltos reversibles (reversible jump mixture model), lo que significa que la inferencia de extinciones masivas se realiza en dos partes:\n\nProbabilidad de que ocurra una extinción masiva en un intervalo de tiempo determinado.\nProbabilidad de que un linaje se extinga en caso de que haya una extinción masiva.\n\nPara establecer un número esperado de extinciones masivas, podemos definir un valor conservador como 1.0:\nexpected_number_of_mass_extinctions &lt;- 1.0\nComo hay NUM_BREAKS posibles puntos de extinción, calculamos la probabilidad de que no ocurra una extinción masiva en un intervalo dado:\n mix_p &lt;- Probability(1.0 - expected_number_of_mass_extinctions / NUM_BREAKS)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1251,7 +1351,7 @@
     "text": "Definir un Prior para la Mortalidad en Extinciones Masivas\nDado que las extinciones masivas suelen eliminar la mayoría de los linajes, utilizamos una distribución Beta(18,2) como prior. Esta distribución tiene:\n\nMedia de 0.9, lo que implica que, en promedio, el 90% de los linajes mueren en una extinción masiva.\nIntervalo de confianza del 95% entre [0.74, 0.987], asegurando que la mayoría de los linajes se extinguen cuando ocurre una extinción masiva.\n\nAhora configuramos el prior para todas las NUM_BREAKS posibles extinciones masivas:\nfor (i in 1:NUM_BREAKS) {\n    mass_extinction_probabilities[i] ~ dnReversibleJumpMixture(0.0, dnBeta(18.0, 2.0), mix_p)\n    moves.append(mvRJSwitch(mass_extinction_probabilities[i]))\n    moves.append(mvSlideBactrian(mass_extinction_probabilities[i]))\n}\n\n¿Qué hace este código?\n✅ dnReversibleJumpMixture(0.0, dnBeta(18.0, 2.0), mix_p)\n\nDefine un modelo en el que cada intervalo de tiempo tiene una probabilidad de albergar una extinción masiva.\nSi hay una extinción masiva, se modela con dnBeta(18.0, 2.0).\nSi no hay extinción, se asigna un valor de 0.0.\n\n✅ Movimientos del MCMC\nPara explorar correctamente los parámetros de extinciones masivas en el análisis MCMC, agregamos:\n\nmvRJSwitch → Determina si hay o no una extinción masiva en un intervalo.\nmvSlideBactrian → Ajusta la probabilidad de muerte en caso de extinción.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1262,7 +1362,7 @@
     "text": "Priors sobre la Variabilidad de las Tasas\n\nVariabilidad en las Tasas de Especiación, Extinción y Fosilización\nPara modelar la variación en las tasas de diversificación a lo largo del tiempo, utilizamos el Horseshoe Markov Random Field (HSMRF) Birth-Death Model (Magee et al. 2020).\nEste modelo:\n\nPermite que las tasas de diversificación cambien a lo largo del tiempo.\nUsa una distribución Horseshoe (Carvalho et al. 2010) para modelar los cambios en la escala logarítmica.\nAsume que la mayoría de los cambios son pequeños, pero permite saltos grandes en las tasas.\n\n\n\nEscala Global de Variabilidad\nPara controlar la variabilidad general de las tasas de especiación, extinción y fosilización desde el presente hasta el pasado, usamos un parámetro de escala global.\nTambién debemos definir un hiperprior para la escala global, que ayuda a determinar la variabilidad esperada en las tasas. En este caso, usamos el valor 0.044 cuando trabajamos con 10 intervalos de tasa.\nspeciation_rate_global_scale_hyperprior &lt;- 0.044\nextinction_rate_global_scale_hyperprior &lt;- 0.044\nfossilization_rate_global_scale_hyperprior &lt;- 0.044\nNota: Si se usa un número diferente de intervalos, se puede calcular el hiperprior con la función de RevGadgets: setMRFGlobalScaleHyperpriorNShifts(NUM_INTERVALS).\n\n\nDefinir los Priors para las Tasas de Especiación, Extinción y Fosilización\nCada parámetro de escala global se modela con una distribución Half-Cauchy centrada en 0 con parámetro de dispersión 1.\nspeciation_rate_global_scale ~ dnHalfCauchy(0,1)\nextinction_rate_global_scale ~ dnHalfCauchy(0,1)\nfossilization_rate_global_scale ~ dnHalfCauchy(0,1)\n¿Por qué usamos una distribución Half-Cauchy?\n\nFlexible: Permite modelar valores grandes sin restringir excesivamente la variabilidad.\nEvita sesgos: No impone límites arbitrarios a los cambios de tasa.\nAsegura que las tasas sean positivas, ya que la distribución Half-Cauchy solo tiene valores positivos.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1273,7 +1373,7 @@
     "text": "Especificación de las Tasas Episódicas\n\nModelado de las Tasas en el Tiempo\nPara modelar las tasas de especiación, extinción y fosilización a lo largo del tiempo, utilizamos distribuciones Horseshoe Markov Random Field (HSMRF) en su escala logarítmica.\nSin embargo, la tasa en el presente debe modelarse de manera distinta porque:\n\nNo está correlacionada con ninguna tasa anterior.\nSe modela hacia atrás en el tiempo en lugar de hacia adelante.\nEsto permite que, si conocemos algún evento que afectó la diversificación en un momento específico (ej. hace 25 millones de años), podamos incorporarlo en el análisis.\n\n\n\nPriorización de la Primera Tasa (Tasa en el Presente)\nDado que el modelo contiene muchos parámetros, utilizamos un enfoque empírico bayesiano (Empirical Bayes Strategy).\n\nPrimero, se ajusta un modelo FBD de tasa constante (Constant-Rate Fossilized Birth-Death).\nLuego, se extrae la distribución posterior de esas tasas y se ajusta un prior Gamma para la tasa en el presente.\nEsto nos permite definir priors más realistas y adaptados a los datos.\n\nEl archivo mcmc_CRFBD.Rev puede ejecutarse para estimar estas distribuciones, y la función de RevGadgets posteriorSamplesToParametricPrior() permite ajustar una distribución a las muestras posteriores.\nspeciation_rate_hyperprior_alpha &lt;- 10.31672 \nspeciation_rate_hyperprior_beta &lt;- 104.25685\nextinction_rate_hyperprior_alpha &lt;- 0.5185615\nextinction_rate_hyperprior_beta &lt;- 32.6386155\nfossilization_rate_hyperprior_alpha &lt;- 0.5099949\nfossilization_rate_hyperprior_beta &lt;- 146.6218854\n\nspeciation_rate_at_present ~ dnGamma(speciation_rate_hyperprior_alpha,speciation_rate_hyperprior_beta)\nextinction_rate_at_present ~ dnGamma(extinction_rate_hyperprior_alpha,extinction_rate_hyperprior_beta)\nfossilization_rate_at_present ~ dnGamma(fossilization_rate_hyperprior_alpha,fossilization_rate_hyperprior_beta)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1284,7 +1384,7 @@
     "text": "Definir Movimientos para las Tasas en el Presente\nEn este paso, aplicamos una variedad de movimientos para explorar eficientemente los valores para cada tasa en el presente (speciation_rate_at_present, extinction_rate_at_present, fossilization_rate_at_present), aplicamos diferentes tipos de movimientos:\nmoves.append( mvScaleBactrian(speciation_rate_at_present, weight=5) )\nmoves.append( mvScaleBactrian(extinction_rate_at_present, weight=5) )\nmoves.append( mvScaleBactrian(fossilization_rate_at_present, weight=5) )\n\nmoves.append( mvMirrorMultiplier(speciation_rate_at_present, weight=5) )\nmoves.append( mvMirrorMultiplier(extinction_rate_at_present, weight=5) )\nmoves.append( mvMirrorMultiplier(fossilization_rate_at_present, weight=5) )\n\nmoves.append( mvRandomDive(speciation_rate_at_present, weight=5) )\nmoves.append( mvRandomDive(extinction_rate_at_present, weight=5) )\nmoves.append( mvRandomDive(fossilization_rate_at_present, weight=5) )\n\nAplicar Movimientos Conjuntos\nLos parámetros de especiación, extinción y fosilización están correlacionados, por lo que debemos aplicar movimientos conjuntos para evitar sesgos en la inferencia.\navmvn_rates_at_present = mvAVMVN(weight=50)\navmvn_rates_at_present.addVariable(speciation_rate_at_present)\navmvn_rates_at_present.addVariable(extinction_rate_at_present)\navmvn_rates_at_present.addVariable(fossilization_rate_at_present)\nmoves.append( avmvn_rates_at_present )\n\n\nAplicar un Movimiento de Escalado Dependiente (Up-Down Scale)\nPara mantener una relación coherente entre las tasas de especiación y extinción, aplicamos el movimiento de escalado Up-Down:\nup_down_move = mvUpDownScale(weight=5.0)\nup_down_move.addVariable(speciation_rate_at_present, TRUE)\nup_down_move.addVariable(extinction_rate_at_present, TRUE)\nmoves.append( up_down_move )\nResumen\n✅ Se aplican movimientos individuales para explorar cada parámetro por separado.\n✅ Se usan movimientos conjuntos (mvAVMVN) para capturar correlaciones entre tasas.\n✅ Se aplica mvUpDownScale para mantener relaciones biológicamente realistas entre las tasas.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1295,7 +1395,7 @@
     "text": "Parametrización No Centralizada para HSMRF\nPara hacer posible el MCMC en el modelo HSMRF, utilizamos una parametrización no centralizada. Esto significa que:\n\nPrimero definimos los cambios en la escala logarítmica de las tasas entre intervalos.\nLuego ensamblamos el vector de tasas, utilizando una combinación de parámetros globales y locales.\nImplementamos adaptabilidad local, permitiendo que algunas tasas varíen rápidamente y otras sean más estables.\n\n\nAsignación de Parámetros de Escala Local\nCada intervalo de tiempo necesita una varianza específica para la distribución Horseshoe, lo que nos permite modelar la adaptabilidad local.\nfor (i in 1:NUM_BREAKS) {\n   # Escala variable para cada intervalo de tiempo\n  sigma_speciation_rate[i] ~ dnHalfCauchy(0,1)\n  sigma_extinction_rate[i] ~ dnHalfCauchy(0,1)\n  sigma_fossilization_rate[i] ~ dnHalfCauchy(0,1)\n\n  # Escala variable para cada intervalo de tiempo\n  sigma_speciation_rate[i].setValue(runif(1,0.005,0.1)[1])\n  sigma_extinction_rate[i].setValue(runif(1,0.005,0.1)[1])\n  sigma_fossilization_rate[i].setValue(runif(1,0.005,0.1)[1])\n\n   # Movimientos para los valores individuales de sigma\n  moves.append( mvScaleBactrian(sigma_speciation_rate[i], weight=5) )\n  moves.append( mvScaleBactrian(sigma_extinction_rate[i], weight=5) )\n  moves.append( mvScaleBactrian(sigma_fossilization_rate[i], weight=5) )\n\n  # Parametrización no centralizada del modelo HSMRF\n  delta_log_speciation_rate[i] ~ dnNormal( mean=0, sd=sigma_speciation_rate[i]*speciation_rate_global_scale*speciation_rate_global_scale_hyperprior )\n  delta_log_extinction_rate[i] ~ dnNormal( mean=0, sd=sigma_extinction_rate[i]*extinction_rate_global_scale*extinction_rate_global_scale_hyperprior )\n  delta_log_fossilization_rate[i] ~ dnNormal( mean=0, sd=sigma_fossilization_rate[i]*fossilization_rate_global_scale*fossilization_rate_global_scale_hyperprior )\n\n  # Inicialización con valores aleatorios entre -0.1 y 0.1\n  delta_log_speciation_rate[i].setValue(runif(1,-0.1,0.1)[1])\n  delta_log_extinction_rate[i].setValue(runif(1,-0.1,0.1)[1])\n  delta_log_fossilization_rate[i].setValue(runif(1,-0.1,0.1)[1])\n \n  # Movimientos para Mejorar la Mezcla en MCMC\n  moves.append( mvSlideBactrian(delta_log_speciation_rate[i], weight=5) )\n  moves.append( mvSlideBactrian(delta_log_extinction_rate[i], weight=5) )\n  moves.append( mvSlideBactrian(delta_log_fossilization_rate[i], weight=5) )\n\n  # aplicamos movimientos de tipo Up-Down para mantener la correlación entre los cambios de tasas\n  delta_up_down_move[i] = mvUpDownSlide(weight=5.0)\n  delta_up_down_move[i].addVariable(delta_log_speciation_rate[i],TRUE)\n  delta_up_down_move[i].addVariable(delta_log_extinction_rate[i],TRUE)\n  moves.append( delta_up_down_move[i] )\n}\nResumen\n✅ Se modelan los cambios en las tasas en la escala logarítmica usando una parametrización no centralizada.\n✅ Se definen parámetros de escala local (sigma), permitiendo que algunas tasas cambien más rápido que otras.\n✅ Se agregan movimientos (moves) para mejorar la mezcla de MCMC y evitar estancamientos en valores subóptimos.\n✅ Se aplican movimientos Up-Down para correlacionar los cambios en especiación y extinción.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1306,7 +1406,7 @@
     "text": "Ensamblar las Tasas en el Tiempo\nHasta ahora, hemos definido:\n✅ Tasa en el presente (speciation_rate_at_present, etc.).\n✅ Cambios en la escala logarítmica (delta_log_speciation_rate, etc.).\n✅ Parámetros de escala local y global (sigma_speciation_rate, etc.).\nAhora, ensamblamos estos elementos en vectores de tasas continuas con la función fnassembleContinuousMRF.\nspeciation_rate := fnassembleContinuousMRF(speciation_rate_at_present, delta_log_speciation_rate, initialValueIsLogScale=FALSE, order=1)\nextinction_rate := fnassembleContinuousMRF(extinction_rate_at_present, delta_log_extinction_rate, initialValueIsLogScale=FALSE, order=1)\nfossilization_rate := fnassembleContinuousMRF(fossilization_rate_at_present, delta_log_fossilization_rate, initialValueIsLogScale=FALSE, order=1)\n¿Qué hace fnassembleContinuousMRF?\n\nConvierte la serie de cambios logarítmicos en una tasa continua a lo largo del tiempo.\nUsa la tasa en el presente como punto de partida.\ninitialValueIsLogScale=FALSE → Significa que el primer valor NO está en escala logarítmica.\norder=1 → Indica que las tasas cambian en función de una serie de incrementos.\n\n\nAplicar el Elliptical Slice Sampler\nEl Elliptical Slice Sampling (ESS) es un método eficiente para actualizar parámetros en distribuciones Gaussianas sin rechazos.\n# Aplicar Elliptical Slice Sampling a los cambios logarítmicos\nmoves.append( mvEllipticalSliceSamplingSimple(delta_log_speciation_rate, weight=5, tune=FALSE) )\nmoves.append( mvEllipticalSliceSamplingSimple(delta_log_extinction_rate, weight=5, tune=FALSE) )\nmoves.append( mvEllipticalSliceSamplingSimple(delta_log_fossilization_rate, weight=5, tune=FALSE) )\n\n\nAplicar Gibbs Sampling para Hiperparámetros\nLos hiperparámetros de escala global y local requieren un método de muestreo Gibbs, que permite actualizar grupos de parámetros en función de distribuciones condicionales.\n# Gibbs sampler para las escalas globales y locales\nmoves.append( mvHSRFHyperpriorsGibbs(speciation_rate_global_scale, sigma_speciation_rate, delta_log_speciation_rate, speciation_rate_global_scale_hyperprior, propGlobalOnly=0.75, weight=10) )\nmoves.append( mvHSRFHyperpriorsGibbs(extinction_rate_global_scale, sigma_extinction_rate, delta_log_extinction_rate, extinction_rate_global_scale_hyperprior, propGlobalOnly=0.75, weight=10) )\nmoves.append( mvHSRFHyperpriorsGibbs(fossilization_rate_global_scale, sigma_fossilization_rate, delta_log_fossilization_rate, fossilization_rate_global_scale_hyperprior, propGlobalOnly=0.75, weight=10) )",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1317,7 +1417,7 @@
     "text": "Aplicar Movimientos de Intercambio (Swap Moves)\nPara mejorar la mezcla del MCMC, permitimos intercambiar valores de delta_log y sigma entre intervalos de tiempo adyacentes.\n# Intercambio de intervalos adyacentes en los cambios logarítmicos y escalas locales\nmoves.append( mvHSRFIntervalSwap(delta_log_speciation_rate, sigma_speciation_rate, weight=5) )\nmoves.append( mvHSRFIntervalSwap(delta_log_extinction_rate, sigma_extinction_rate, weight=5) )\nmoves.append( mvHSRFIntervalSwap(delta_log_fossilization_rate, sigma_fossilization_rate, weight=5) )\nResumen\n✅ Se ensamblan las tasas de diversificación utilizando fnassembleContinuousMRF.\n✅ Se aplica Elliptical Slice Sampling para actualizar los cambios en la escala logarítmica.\n✅ Se usa muestreo Gibbs para mejorar la estimación de los hiperparámetros.\n✅ Se aplican movimientos de intercambio (swap moves) para mejorar la mezcla en MCMC.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1328,7 +1428,7 @@
     "text": "Muestreo Incompleto de Taxones\nEn estudios de diversificación, es importante considerar el sesgo de muestreo, ya que en muchos casos solo se ha muestreado una parte de las especies vivientes.\nPara este análisis, sabemos que hemos muestreado 22 de 26 especies de Eupomphini vivientes. Por lo tanto, definimos un nodo constante que representa esta proporción:\nsampling_at_present &lt;- 22/26",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1339,7 +1439,7 @@
     "text": "Definir la Edad de la Raíz\nEl modelo Fossilized Birth-Death Process (FBDP) necesita un parámetro de edad de la raíz (rootAge).\nDado que usamos un árbol fijo, podemos extraer directamente la edad de la raíz desde el árbol cargado:\nroot_time &lt;- T.rootAge()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1350,7 +1450,7 @@
     "text": "Especificar el Árbol Temporal\nCon todos los parámetros listos, podemos definir el nodo estocástico que representa el árbol temporal usando el modelo Episodic Fossilized Birth-Death (dnFBDP):\ntimetree ~ dnFBDP(rootAge = T.rootAge(), timeline = interval_times, lambda = speciation_rate, mu = extinction_rate, phi = fossilization_rate, Mu = mass_extinction_probabilities, Phi = sampling_at_present, condition = \"time\", taxa = taxa, initialTree = T)\n🔹 ¿Qué representa cada parámetro?\n\n\n\n\n\n\n\nParámetro\nDescripción\n\n\n\n\nrootAge\nEdad de la raíz del árbol.\n\n\ntimeline\nDivisión del tiempo en intervalos.\n\n\nlambda\nTasa de especiación (cambiante en el tiempo).\n\n\nmu\nTasa de extinción (cambiante en el tiempo).\n\n\nphi\nTasa de fosilización.\n\n\nMu\nProbabilidad de que ocurra una extinción masiva en cada intervalo.\n\n\nPhi\nProporción de especies muestreadas.\n\n\ncondition=\"time\"\nSe asume que el proceso ocurre en el tiempo (puede cambiarse si queremos condicionar en el muestreo de la raíz).\n\n\ntaxa\nLista de taxones en el análisis.\n\n\ninitialTree\nÁrbol inicial para comenzar la inferencia.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1361,7 +1461,7 @@
     "text": "Fijarlo a los datos observados\nUna vez que hemos definido el árbol temporal (timetree), debemos fijarlo a los datos observados. Esto significa que no estamos infiriendo la filogenia, sino que usamos un árbol previamente estimado.\ntimetree.clamp(T)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1372,7 +1472,7 @@
     "text": "Definir el Modelo Completo\nAhora encapsulamos todo el modelo dentro de un objeto de workspace, lo que permite a RevBayes reconocer todas las variables y relaciones definidas.\nmymodel = model(speciation_rate)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1383,7 +1483,7 @@
     "text": "Configurar los Monitores\nLos monitores en RevBayes permiten registrar el estado de los parámetros durante la ejecución del MCMC.\nDefinimos varios tipos de monitores:\n1️⃣ Monitor principal (mnModel): Guarda el estado de todos los parámetros del modelo.\n2️⃣ Monitores de archivo (mnFile): Almacenan parámetros específicos en archivos separados para facilitar el análisis posterior.\n3️⃣ Monitor de pantalla (mnScreen): Muestra valores clave en la consola durante la ejecución.\n\nMonitor Principal\nEste monitor guarda todas las variables del modelo en un solo archivo. Se ejecutará cada 10 generaciones.\nmonitors.append( mnModel(filename=\"output/eupomphini_EFBDME.log\", printgen=10, separator=TAB) )\n\n\nMonitores de Archivo para Parámetros Específicos\nPara visualizar mejor los resultados, registramos las tasas de especiación, extinción, fosilización y extinción masiva en archivos separados.\nmonitors.append( mnFile(filename=\"output/eupomphini_EFBDME_speciation_rates.log\", printgen=10, separator=TAB, speciation_rate) )\nmonitors.append( mnFile(filename=\"output/eupomphini_EFBDME_speciation_rate_times.log\", printgen=10, separator=TAB, interval_times) )\n\nmonitors.append( mnFile(filename=\"output/eupomphini_EFBDME_extinction_rates.log\", printgen=10, separator=TAB, extinction_rate) )\nmonitors.append( mnFile(filename=\"output/eupomphini_EFBDME_extinction_rate_times.log\", printgen=10, separator=TAB, interval_times) )\n\nmonitors.append( mnFile(filename=\"output/eupomphini_EFBDME_fossilization_rates.log\", printgen=10, separator=TAB, fossilization_rate) )\nmonitors.append( mnFile(filename=\"output/eupomphini_EFBDME_fossilization_rate_times.log\", printgen=10, separator=TAB, interval_times) )\n\nmonitors.append( mnFile(filename=\"output/eupomphini_EFBDME_mass_extinction_probabilities.log\", printgen=10, separator=TAB, mass_extinction_probabilities) )\nmonitors.append( mnFile(filename=\"output/eupomphini_EFBDME_mass_extinction_times.log\", printgen=10, separator=TAB, interval_times) )\n\n\nMonitor de Consola\nEste monitor muestra valores clave en pantalla cada 1000 generaciones, permitiendo hacer un seguimiento del MCMC en tiempo real.\nmonitors.append( mnScreen(printgen=1000, speciation_rate_global_scale, extinction_rate_global_scale, fossilization_rate_global_scale) )",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1394,7 +1494,7 @@
     "text": "Inicializar y Ejecutar el MCMC\nCon el modelo y los monitores listos, creamos el objeto MCMC e iniciamos la simulación.\nmymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine=\"mixed\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1405,7 +1505,7 @@
     "text": "Ejecutar el MCMC\nmymcmc.run(generations=30000, tuningInterval=200)\n¿Qué significa esto?\n\nCorre 30,000 generaciones, con más generaciones puede tomar varias horas dependiendo del hardware.\ntuningInterval=200 ajusta los movimientos cada 200 iteraciones para mejorar la eficiencia.\nSi el MCMC tarda demasiado, puedes probar con menos generaciones (100,000 o 50,000) y revisar si los parámetros convergen antes de ejecutar una corrida más larga.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1416,7 +1516,7 @@
     "text": "Evaluar el Soporte para Extinciones Masivas\nUna vez finalizada la ejecución del MCMC, los archivos de salida contienen las muestras de la distribución posterior.\n📌 Objetivo: Evaluar qué tan fuertemente respaldada está la hipótesis de que ocurrieron eventos de extinción masivaen ciertos intervalos de tiempo.\n🔹 ¿Cómo lo hacemos?\n\nExaminamos la probabilidad posterior de cada evento de extinción masiva.\nCalculamos factores de Bayes para determinar si hay soporte significativo.\nVisualizamos los resultados con RevGadgets en R.\n\nAnálisis en R con RevGadgets\nEjecuta este código en R:\n\n# Cargar la librería\nlibrary(RevGadgets)\n\n# Leer las probabilidades de extinción masiva desde el archivo de salida\nmass_extinction_probabilities &lt;- readTrace(\"../docs/u1_PatDiv/output/CRFBD/eupomphini_EFBDME_mass_extinction_probabilities.log\", burnin = 0.25)\n\n# Establecer la probabilidad a priori de una extinción masiva en cualquier tiempo\nprior_n_expected &lt;- 0.1  # Número esperado de eventos de extinción masiva\nn_intervals &lt;- 10       # Número de intervalos de tiempo en el modelo\nprior_prob &lt;- prior_n_expected / (n_intervals - 1)\n\n# Definir los tiempos en los que se permitieron eventos de extinción masiva\ntree_age &lt;- 19.5829128  # Edad del árbol en millones de años\ninterval_times &lt;- tree_age * seq(1/n_intervals, (n_intervals-1)/n_intervals, 1/n_intervals)\n\n# Graficar los resultados\np &lt;- plotMassExtinctions(\n  mass_extinction_trace = mass_extinction_probabilities,\n  mass_extinction_times = interval_times,\n  mass_extinction_name = \"mass_extinction_probabilities\",\n  prior_prob = prior_prob\n)\n\np",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1427,7 +1527,7 @@
     "text": "¿Qué significa el Factor de Bayes?\nEl Factor de Bayes (BF) compara dos modelos:\n\nHipótesis Nula (H₀): No hubo un evento de extinción masiva en un intervalo de tiempo.\nHipótesis Alternativa (H₁): Sí hubo un evento de extinción masiva en ese intervalo.\n\nEl log(Bayes Factor) se calcula como:\n\\(2log(BF)\\) = \\(2(logP(D|H_1)- logP(D|H_0))\\)\nDonde:\n\n\\(P(D|H_1)\\) es la probabilidad de los datos asumiendo que hubo una extinción masiva.\n\\(P(D|H_0)\\) es la probabilidad de los datos asumiendo que no hubo una extinción masiva.\n\nUn 2 log BF ≥ 10 indica fuerte evidencia a favor de una extinción masiva en ese tiempo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Estimación de Eventos de Extinción Masiva</span>"
     ]
   },
   {
@@ -1438,7 +1538,7 @@
     "text": "Presentación: Introducción a modelos State Speciaction-Extinción (SSE)\nHaz clic en la imagen para ver el PDF de la presentación\nAnalizaremos si las tasas de diversificación están asociadas al tipo de hospedero en los escarabajos meloidos (Meloidae). Las subfamilias Nemognathinae y Meloinae presentan un ciclo de vida complejo, caracterizado por múltiples metamorfosis y estrategias de parasitoidismo. La mayoría de los géneros y tribus dentro de estas subfamilias son parasitoides de abejas, incluyendo especies foréticas y no foréticas. Sin embargo, dos tribus han adoptado una estrategia distinta, alimentándose de huevos de saltamontes. Estas diferencias en las estrategias de vida están asociadas con marcadas variaciones en la riqueza de especies entre clados (López-Estrada et al., 2019).",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1449,7 +1549,7 @@
     "text": "Descarga del Árbol Filogenético y la matriz codificada\n📥 Puedes descargar el archivo .tre con el árbol en el siguiente enlace:\n📥 Descargar Árbol Filogenético\n📥 Puedes descargar el archivo .nex con la matriz codificada en el siguiente enlace:\n📥 Descargar Matriz Codificada\nGuarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1460,7 +1560,7 @@
     "text": "Carga de la filogenia y los datos\nCrea un script .Rev y copia el codigo de la siguiente sección:\n# Leer el arbol\nT &lt;- readTrees(\"../data/ConLyttini.tre\")[1]\n\n# Leer la matriz de caracteres\ndatos &lt;- readCharacterData(\"../data/Traits_conLyttini_01.nex\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1471,7 +1571,7 @@
     "text": "Definir el número de estados en los modelos BISSE\nNUM_STATES = 2",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1482,7 +1582,7 @@
     "text": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.\nmoves    = VectorMoves()\nmonitors = VectorMonitors()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1493,7 +1593,7 @@
     "text": "Valores de la log-normal\nDe acuerdo con Nee et al. (1994) el número esperado de linajes en la corona de un clado con n taxones bajo un proceso de nacimiento y muerte en el tiempo t es:\n\\((\\lambda - \\mu) = \\frac{In(n)/2}{t}\\)\nEn donde: n = es el número de especies y t = es la edad de la filogenia\n# Definimos una a priori log normal\nrate_mean &lt;- ln(ln(3000.0/2.0) / T.rootAge())\n\n# Con una varianza que es amplia\nrate_sd &lt;- 0.587405\n\nfor (i in 1:NUM_STATES) {\n# lognormales de las especiaciones\n  log_speciation[i] ~ dnNormal(mean=rate_mean, sd=rate_sd) \n  speciation[i] := exp(log_speciation[i])\n  moves.append(mvSlide(log_speciation[i], delta=0.20, tune=true, weight=3.0))\n\n# lognormales de las extinciones\n  log_extinction[i] ~ dnNormal(mean=rate_mean, sd=rate_sd)  \n  extinction[i] := exp(log_extinction[i])\n  moves.append(mvSlide(log_extinction[i], delta=0.20, tune=true, weight=3.0))\n}",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1504,7 +1604,7 @@
     "text": "Definir la matriz de tasas de transición entre los estados del carácter\n# Calcula la suma de todas las longitudes de las ramas del árbol filogenético\n# Dividido por 10: Esto asume que en promedio ocurren 10 cambios de estado a lo largo del árbol\nrate_pr := T.treeLength() / 10",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1515,7 +1615,7 @@
     "text": "Definición de las tasas de transición\n# Tasa de transición de estado 1 → estado 2 \nrate_12 ~ dnExp(rate_pr)\n\n# Tasa de transición de estado 2 → estado 1 \nrate_21 ~ dnExp(rate_pr)\n\n# Definición de movimientos \nmoves.append(mvScale(rate_12, weight=2))\nmoves.append(mvScale(rate_21, weight=2))\n¿Por qué usar una exponencial?\n\nLa distribución exponencial es adecuada para modelar tasas de transición porque impone la condición de que siempre sean positivas.\nTambién asigna mayor probabilidad a valores pequeños, lo que significa que los cambios de estado no ocurren demasiado rápido.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1526,7 +1626,7 @@
     "text": "Creación de la matriz de tasas de transición\nrate_matrix := fnFreeBinary([rate_12, rate_21 ], rescaled=false)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1537,7 +1637,7 @@
     "text": "Frecuencias del estado en la raíz\nrate_category_prior ~ dnDirichlet(rep(1,NUM_STATES))\nmoves.append(mvDirichletSimplex(rate_category_prior, tune=true, weight=2))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1548,7 +1648,7 @@
     "text": "Fijar la edad de la raíz\nroot &lt;- T.rootAge()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1559,7 +1659,7 @@
     "text": "Definir \\(\\rho\\) : Proporción de especies muestreadas\nrho &lt;- T.ntips()/3000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1570,7 +1670,7 @@
     "text": "Construcción del árbol evolutivo generado a partir de un proceso de nacimiento y muerte dependiente del carácter\ntimetree ~ dnCDBDP(rootAge = root, speciationRates = speciation, extinctionRates = extinction, Q = rate_matrix, pi = rate_category_prior, delta = 1.0, rho = rho, condition = \"time\")\n🔹 Parámetros del proceso de nacimiento y muerte (dnCDBDP):\n\nrootAge = root → Se fija la edad de la raíz usando root = T.rootAge().\nspeciationRates = speciation → Se usa la tasa de especiación (λ).\nextinctionRates = extinction → Se usa la tasa de extinción (μ).\nQ = rate_matrix → Usa la matriz de tasas de transición de caracteres (rate_12, rate_21).\npi = rate_category_prior → Usa la distribución a priori de los estados en la raíz.\ndelta = 1.0 → Parámetro de ajuste para la distribución de tiempos de especiación/extinción.\nrho = rho → Probabilidad de muestreo de especies (rho = T.ntips()/3000).\ncondition = \"time\" → Condiciona el proceso a un tiempo de raíz fijo.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1581,7 +1681,7 @@
     "text": "Fijar (clamp) los datos observados\ntimetree.clamp(T)\ntimetree.clampCharData(datos)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1592,7 +1692,7 @@
     "text": "Creación del modelo\n### workspace model wrapper ###\nmymodel = model(rate_matrix)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1603,7 +1703,7 @@
     "text": "Configuración de los monitores\nLos monitores guardan los resultados en archivos o los imprimen en pantalla.\nmonitors.append(mnModel(filename=\"../out/Bisse/mitos_BiSSE_clyttini.log\", printgen=1))\nmonitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type=\"Standard\", printgen=1, withTips=true, withStartStates=false, filename=\"../out/Bisse/anc_states_MITOS_BiSSE_clyttini.log\"))\nmonitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename=\"../out/Bisse/SCHM_BiSSE_clyttini.log\"))\nmonitors.append(mnScreen(printgen=10, rate_12, rate_21, speciation, extinction))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1614,7 +1714,7 @@
     "text": "Inicializar y Ejecutar el MCMC\nCon el modelo y los monitores listos, creamos el objeto MCMC e iniciamos la simulación.\nmymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule=\"random\")\n\nmymodel: hace referencia al modelo que estás analizando.\nmonitors: son las variables que se registrarán en el archivo de salida.\nmoves: operadores MCMC que proponen cambios en los parámetros del modelo.\nnruns=1: solo una cadena MCMC (puedes usar más si deseas una inferencia más robusta).\nmoveschedule=\"random\": ejecuta los operadores en orden aleatorio para evitar sesgos en la exploración del espacio de parámetros.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1625,7 +1725,7 @@
     "text": "Ejecutar el MCMC\nmymcmc.run(generations=400)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1636,7 +1736,7 @@
     "text": "Generar un árbol anotado con los estados ancestrales (MAP)\nanc_states = readAncestralStateTrace(\"../out/Bisse/anc_states_MITOS_BiSSE_clyttini.log\")\n\nanc_tree = ancestralStateTree(tree=T, ancestral_state_trace_vector=anc_states, include_start_states=false, file=\"../out/Bisse/mitos_bisse_anc_states_results.tree\", burnin=0.2, summary_statistic=\"MAP\", site=1)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1647,7 +1747,7 @@
     "text": "Generar un mapeo estocástico de caracteres (Stochastic Character Mapping)\nanc_state_trace = readAncestralStateTrace(\"../out/Bisse/SCHM_BiSSE_clyttini.log\")\n\ncharacterMapTree(tree=T, ancestral_state_trace_vector=anc_state_trace, character_file=\"../out/Bisse/mitos_bisse_stoch_map_character.tree\", posterior_file=\"../out/Bisse/mitos_bisse_stoch_map_posterior.tree\", burnin=0.2, reconstruction=\"marginal\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1658,7 +1758,7 @@
     "text": "Visualización en R con RevGadgets\n\nlibrary(tidyverse)\nlibrary(RevGadgets)\nlibrary(ggtree)\n\n# Cargar el archivo de estados ancestrales\nbisse_file &lt;- paste0(\"../docs/u1_PatDiv/output/bisse/mitos_bisse_anc_states_results.tree\")\np_anc &lt;- processAncStates(bisse_file)\n\n# Definir paleta de colores personalizada\ntraitcols &lt;- c(\"#F29494\", \"#5FD9D9\")  \n\n# Generar el gráfico con estados \nplot &lt;- plotAncStatesMAP(p_anc,\n        tree_layout = \"rect\",\n        tip_labels_size = 1) +\n        # Aplicar la paleta de colores\n        scale_color_manual(values = traitcols) +\n        scale_fill_manual(values = traitcols) +\n        # Modificar leyenda y otros elementos de ggplot2\n        theme(legend.position = c(0.1, 0.85),\n              legend.key.size = unit(0.3, 'cm'), # Tamaño de la clave de la leyenda\n              legend.title = element_text(size = 6), # Tamaño del título de la leyenda\n              legend.text = element_text(size = 4))  # Tamaño del texto de la leyenda\n\n# Mostrar el gráfico\nplot\n\n\n\n\n\n\n\n# Generar el gráfico con ramas coloreadas por estado ancestral\nplot_2 &lt;- ggtree(p_anc, layout = \"rectangular\", aes(color = anc_state_1)) +\n  scale_color_manual(name = \"Estado\", values = traitcols) +  \n  theme_minimal() +\n  ggtitle(\"BISSE\") +\n  theme(legend.position = c(0.1, 0.85),\n        legend.key.size = unit(0.3, 'cm'), # Tamaño de la clave de la leyenda\n        legend.title = element_text(size = 6), # Tamaño del título de la leyenda\n        legend.text = element_text(size = 4))  # Tamaño del texto de la leyenda\n\n# Mostrar el gráfico\nplot_2",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1669,7 +1769,7 @@
     "text": "Graficar las tasas de transición\n\nlibrary(tidyverse)\n\n# Leer el archivo de salida de RevBayes\nbisse &lt;- read.table(\"../docs/u1_PatDiv/output/bisse/mitos_BiSSE_clyttini.log\", header = TRUE)\n\n# Definir colores para los estados 0 y 1\ntraitcols &lt;- c(\"#F29494\", \"#5FD9D9\")  \n\n# Crear un dataframe con solo las tasas de transición\ntransition_rates &lt;- data.frame(\n  dens = c(bisse$rate_12, bisse$rate_21), \n  rate = rep(c(\"0\", \"1\"), each = length(bisse$rate_12))\n)\n\n# Crear un gráfico de violín para las tasas de transición\nviolin_transitions &lt;- ggplot(transition_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Transición\", x = \"Estado\", y = \"Tasa\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_transitions",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1680,7 +1780,7 @@
     "text": "Graficar las tasas de diversificación neta\n\n# Calcular la tasa de diversificación neta: especiación - extinción\nnetdiversification_rates &lt;- data.frame(\n  dens = c(bisse$speciation.1. - bisse$extinction.1.,\n           bisse$speciation.2. - bisse$extinction.2.),\n  rate = rep(c(\"0\", \"1\"), each = length(bisse$speciation.1.))\n)\n\n# Convertir la variable de estado en factor\nnetdiversification_rates$rate &lt;- factor(netdiversification_rates$rate, levels = c(\"0\", \"1\"))\n\n# Crear el gráfico de violín para tasas de diversificación neta\nviolin_diversification &lt;- ggplot(netdiversification_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Diversificación Neta\", x = \"Estado\", y = \"Tasa\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_diversification",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1691,7 +1791,7 @@
     "text": "Graficar tasas de especiación\n\n# Crear un dataframe con tasas de especiación para cada estado\nspeciation_rates &lt;- data.frame(\n  dens = c(bisse$speciation.1.,  bisse$speciation.2.), \n  rate = rep(c(\"0\", \"1\"), each = length(bisse$speciation.1.))\n)\n\n# Crear gráfico de violín para las tasas de especiación\nviolin_speciation &lt;- ggplot(speciation_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Especiación\", x = \"Estado\", y = \"Tasa de Especiación\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_speciation",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1702,7 +1802,7 @@
     "text": "Graficar tasas de extinción\n\n# Crear un dataframe con tasas de extinción para cada estado\nextinction_rates &lt;- data.frame(\n  dens = c(bisse$extinction.1., bisse$extinction.2.), \n  rate = rep(c(\"0\", \"1\"), each = length(bisse$extinction.1.))\n)\n\n# Crear gráfico de violín para tasas de extinción\nviolin_extinction &lt;- ggplot(extinction_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Extinción\", x = \"Estado\", y = \"Tasa de Extinción\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_extinction",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1713,7 +1813,7 @@
     "text": "Carga de la filogenia y los datos\nCrea un script .Rev y copia el codigo de la siguiente sección:\n# Leer el arbol\nT &lt;- readTrees(\"../data/ConLyttini.tre\")[1]\n\n# Leer la matriz de caracteres\ndatos &lt;- readCharacterData(\"../data/Traits_conLyttini_01.nex\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1724,7 +1824,7 @@
     "text": "Definir el número de estados en los modelos HISSE y paremetros globales\nNUM_TOTAL_SPECIES     = 3000.0\nNUM_STATES            = 2\nNUM_HIDDEN            = 2\nNUM_RATES             = NUM_STATES * NUM_HIDDEN\nH                     = 0.587405\n# Expansión de los Datos para Incluir Estados Ocultos \ndata_exp &lt;- datos.expandCharacters(NUM_HIDDEN)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1735,7 +1835,7 @@
     "text": "Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.\nmoves    = VectorMoves()\nmonitors = VectorMonitors()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1746,7 +1846,7 @@
     "text": "Extraer información del árbol filogenético\ntaxa &lt;- T.taxa()\ntree_length &lt;- T.treeLength()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1757,7 +1857,7 @@
     "text": "Definir la Media de las Tasas de Especiación y Extinción\nrate_mean &lt;- (NUM_TOTAL_SPECIES - 2) / tree_length\n✅ Calcula la media esperada de las tasas de especiación y extinción basada en el número total de especies y la longitud del árbol.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1768,7 +1868,7 @@
     "text": "Especiación y Extinción Oculta (Hidden Speciation Rates)\nln_speciation_hidden_mean &lt;- ln(1.0)\nln_extinction_hidden_mean &lt;- ln(1.0)\n✅ Define la media logarítmica de las tasas ocultas de especiación como 1.0 en una escala relativa. ✔️ Esto significa que los valores generados serán proporcionales, y no absolutos.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1779,7 +1879,7 @@
     "text": "Variación en las Tasas Ocultas de Especiación y Extinción\nspeciation_hidden_sd ~ dnExponential(1.0 / H)\nextinction_hidden_sd ~ dnExponential(1.0 / H)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1790,7 +1890,7 @@
     "text": "Movimiento MCMC para Optimizar la Desviación Estándar\nmoves.append(mvScale(speciation_hidden_sd, lambda=1, tune=true, weight=2.0))\nmoves.append(mvScale(extinction_hidden_sd, lambda=1, tune=true, weight=2.0))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1801,7 +1901,7 @@
     "text": "Definir la Distribución de las Tasas Ocultas\nspeciation_hidden_unormalized := fnDiscretizeDistribution(dnLognormal(ln_speciation_hidden_mean, speciation_hidden_sd), NUM_HIDDEN)\nextinction_hidden_unormalized := fnDiscretizeDistribution(dnLognormal(ln_extinction_hidden_mean, extinction_hidden_sd), NUM_HIDDEN)\n✅ Se genera un conjunto de tasas ocultas de especiación a partir de una distribución lognormal.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1812,7 +1912,7 @@
     "text": "Normalización de las Tasas Ocultas\nspeciation_hidden := speciation_hidden_unormalized / mean(speciation_hidden_unormalized)\nextinction_hidden := extinction_hidden_unormalized / mean(extinction_hidden_unormalized)\n✅ Se normalizan las tasas ocultas dividiéndolas por su media, para que el promedio sea 1.0. ✔️ Esto garantiza que los valores sean relativos y comparables entre estados.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1823,7 +1923,7 @@
     "text": "Definir Tasas de Especiación para Estados Observables\nfor (i in 1:NUM_STATES) {\n    speciation_observed[i] ~ dnLoguniform( 1E-6, 1E2)\n    speciation_observed[i].setValue( (NUM_TOTAL_SPECIES-2) / tree_length )\n    moves.append( mvScale(speciation_observed[i], lambda=1.0, tune=true, weight=3.0) )\n        ### Create a loguniform distributed variable for the extinction rate\n    extinction_observed[i] ~ dnLoguniform( 1E-6, 1E2)\n    extinction_observed[i].setValue( speciation_observed[i] / 10.0 )\n    moves.append( mvScale(extinction_observed[i], lambda=1.0, tune=true, weight=3.0) )\n}",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1834,7 +1934,7 @@
     "text": "Cálculo de las Tasas Combinadas\nfor (j in 1:NUM_HIDDEN) {\n    for (i in 1:NUM_STATES) {\n        index = i+(j*NUM_STATES)-NUM_STATES\n        speciation[index] := speciation_observed[i] * speciation_hidden[j]\n        extinction[index] := extinction_observed[i] * extinction_hidden[j]\n    }\n}",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1845,7 +1945,7 @@
     "text": "Definir la Matriz de Transición entre Estados Observables\nrate_pr := T.treeLength() / 10\nfor ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {\n    transition_rates[i] ~ dnExp(rate_pr)\n    moves.append( mvScale(transition_rates[i], lambda=0.50, tune=true, weight=3.0) )\n}",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1856,7 +1956,7 @@
     "text": "Definir la Matriz de Transición entre Estados Ocultos\nhidden_rate ~ dnExponential(rate_pr)\nmoves.append( mvScale(hidden_rate, lambda=0.5, tune=true, weight=5) )\nfor (i in 1:(NUM_HIDDEN * (NUM_HIDDEN - 1))) {\n    R[i] := hidden_rate\n}",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1867,7 +1967,7 @@
     "text": "Crear la Matriz de Transición Q Combinada\nrate_matrix := fnHiddenStateRateMatrix(transition_rates, R, rescaled=false)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1878,7 +1978,7 @@
     "text": "Definir la Distribución de los Estados en la Raíz\nrate_category_prior ~ dnDirichlet( rep(1,NUM_RATES) )",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1889,7 +1989,7 @@
     "text": "Optimización con Movimientos MCMC\nmoves.append( mvBetaSimplex(rate_category_prior, tune=true, weight=2) )\nmoves.append( mvDirichletSimplex(rate_category_prior, tune=true, weight=2) )",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1900,7 +2000,7 @@
     "text": "Definir la Edad de la Raíz del Árbol\nroot &lt;- T.rootAge()",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1911,7 +2011,7 @@
     "text": "Definir la Probabilidad de Muestreo de Especies (\\(\\rho\\))\nrho &lt;- T.ntips()/3000.0",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1922,7 +2022,7 @@
     "text": "Definir el Árbol Bajo un Proceso de Diversificación Dependiente del Estado\ntimetree ~ dnCDBDP( rootAge = root, speciationRates = speciation, extinctionRates = extinction, Q = rate_matrix, delta = 1.0, pi = rate_category_prior, rho = rho, condition = \"survival\")\n✔️ Parámetros clave:\n\nrootAge = root → La edad de la raíz se fija a la edad del árbol observado.\nspeciationRates = speciation → Tasas de especiación combinadas (λ), que incluyen efectos de los estados ocultos.\nextinctionRates = extinction → Tasas de extinción combinadas (μ), modeladas de la misma manera.\nQ = rate_matrix → Matriz de tasas de transición entre estados (0A ↔︎ 1A, 0B ↔︎ 1B, etc.).\ndelta = 1.0 → Modelo estándar en el que las tasas de diversificación dependen completamente del estado.\npi = rate_category_prior → Prior de las probabilidades de estado en la raíz.\nrho = rho → Ajuste por sesgo de muestreo de especies.\ncondition = \"survival\" → Se modela solo en árboles que han sobrevivido hasta el presente.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1933,7 +2033,7 @@
     "text": "Ajustar el Modelo a la Filogenia Observada\ntimetree.clamp(T)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1944,7 +2044,7 @@
     "text": "Ajustar el Modelo a los Datos de Caracteres\ntimetree.clampCharData(data_exp)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1955,7 +2055,7 @@
     "text": "Definir el Modelo en RevBayes\nmymodel = model(rate_matrix)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1966,7 +2066,7 @@
     "text": "Configurar Monitores para Guardar Resultados\n# Monitor Principal del Modelo\nmonitors.append( mnModel(filename=\"../out/Hisse/mitos_HiSSE_clyttini_TUTscript.log\", printgen=1) )\n\n# Monitor de Estados Ancestrales\nmonitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type=\"NaturalNumbers\", printgen=1, withTips=true, withStartStates=false, filename=\"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log\"))\n\n# Monitor de Mapeo Estocástico de Caracteres\nmonitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename=\"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log\", include_simmap=true))\n\n# Monitor en Pantalla\nmonitors.append(mnScreen(printgen=10, speciation_observed, extinction_observed))",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1977,7 +2077,7 @@
     "text": "Configurar el Algoritmo MCMC\n### workspace mcmc\nmymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule=\"random\", combine=\"mixed\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1988,7 +2088,7 @@
     "text": "Ejecutar el MCMC\nmymcmc.run(generations=400)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -1999,7 +2099,7 @@
     "text": "Cargar la Trazabilidad de los Estados Ancestrales\nanc_states2 = readAncestralStateTrace(\"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -2010,7 +2110,7 @@
     "text": "Construcción del Árbol con Estados Ancestrales\nanc_tree = ancestralStateTree(tree=T, ancestral_state_trace_vector = anc_states2, include_start_states=false, file = \"../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree\", burnin = 2, summary_statistic = \"MAP\", site=1)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -2021,7 +2121,7 @@
     "text": "Definir Parámetros para la Resumir Estados Ancestrales\nburnin=10\nn_time_slices = 500\n✅ burnin = 25 → Descarta las primeras 25 iteraciones del MCMC antes de hacer el resumen.\n✅ n_time_slices = 500 → Divide el árbol en 500 segmentos de tiempo para interpolar los cambios de estado.",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -2032,7 +2132,7 @@
     "text": "Leer la Historia del Carácter Inferida por Mapeo Estocástico\nanc_states_SCHM = readAncestralStateTrace(\"../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log\")",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -2043,7 +2143,7 @@
     "text": "Crear el Árbol de Mapeo Estocástico de Caracteres\nchar_map_tree = characterMapTree(tree=T, \n                 ancestral_state_trace_vector=anc_states_SCHM, \n                 character_file=\"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_char.tree\", \n                 posterior_file=\"../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_post.tree\", \n                 burnin=burnin, \n                 num_time_slices=n_time_slices)",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -2054,7 +2154,7 @@
     "text": "Visualización en R con RevGadgets\n\n# Cargar el archivo de estados ancestrales\nhisse_file &lt;- paste0(\"../docs/u1_PatDiv/output/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree\")\n\np_anc_hisse &lt;- processAncStates(hisse_file)\n\n# Definir paleta de colores personalizada\ntraitcols &lt;- c(\"#F29494\", \"#5FD9D9\", \"#9DD962\", \"#D48DF2\")  # Rojo para estado 0, azul para estado 1\n\n# Generar el gráfico con estados ancestrales\nplot_hisse &lt;- plotAncStatesMAP(p_anc_hisse,\n        tree_layout = \"rect\",\n        tip_labels_size = 1) +\n        # Aplicar la paleta de colores\n        scale_color_manual(values = traitcols) +\n        scale_fill_manual(values = traitcols) +\n        # Modificar leyenda y otros elementos de ggplot2\n        theme(legend.position = c(0.1, 0.85),\n              legend.key.size = unit(0.3, 'cm'), # Tamaño de la clave de la leyenda\n              legend.title = element_text(size = 6), # Tamaño del título de la leyenda\n              legend.text = element_text(size = 4))  # Tamaño del texto de la leyenda\n\n# Mostrar el gráfico\nplot_hisse\n\n\n\n\n\n\n\n# Generar el gráfico con ramas coloreadas por estado ancestral\nplot_hisse_2 &lt;- ggtree(p_anc_hisse, layout = \"rectangular\", aes(color = anc_state_1)) +\n  scale_color_manual(name = \"Estado\", values = traitcols) +  \n  theme_minimal() +\n  ggtitle(\"HISSE\") +\n  theme(legend.position = c(0.1, 0.85),\n        legend.key.size = unit(0.3, 'cm'), # Tamaño de la clave de la leyenda\n        legend.title = element_text(size = 6), # Tamaño del título de la leyenda\n        legend.text = element_text(size = 4))  # Tamaño del texto de la leyenda\n\n# Mostrar el gráfico\nplot_hisse_2",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -2065,7 +2165,7 @@
     "text": "Graficar las tasas de diversificación neta\n\n# Leer el archivo de salida de RevBayes\nhisse &lt;- read.table(\"../docs/u1_PatDiv/output/hisse/mitos_HiSSE_clyttini_TUTscript.log\", header = TRUE)\n\n# Definir paleta de colores personalizada\ntraitcols &lt;- c(\"#F29494\", \"#5FD9D9\", \"#9DD962\", \"#D48DF2\")  # Rojo para estado 0, azul para estado 1\n\n# Calcular la tasa de diversificación neta: especiación - extinción\nnetdiversification_rates &lt;- data.frame(\n  dens = c(hisse$speciation_observed.1. - hisse$extinction_observed.1.,\n           hisse$speciation_observed.2. - hisse$extinction_observed.2.,\n           hisse$speciation_hidden.1. - hisse$extinction_hidden.1.,\n           hisse$speciation_hidden.2. - hisse$extinction_hidden.2.),\n  rate = rep(c(\"0A\", \"1A\", \"0B\", \"1B\"), each = length(hisse$speciation_observed.1.))\n  )\n\n# Convertir la variable de estado en factor\nnetdiversification_rates$rate &lt;- factor(netdiversification_rates$rate, levels = c(\"0A\", \"1A\", \"0B\", \"1B\"))\n\n# Crear el gráfico de violín para tasas de diversificación neta\nviolin_diversification &lt;- ggplot(netdiversification_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Diversificación Neta\", x = \"Estado\", y = \"Tasa\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_diversification",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -2076,7 +2176,7 @@
     "text": "Graficar tasas de especiación\n\n# Crear un dataframe con tasas de especiación para cada estado\nspeciation_rates &lt;- data.frame(\n  dens = c(hisse$speciation_observed.1.,  hisse$speciation_observed.2.,\n           hisse$speciation_hidden.1., hisse$speciation_hidden.2.), \n  rate = rep(c(\"0A\", \"1A\", \"0B\", \"1B\"), each = length(hisse$speciation_observed.1.))\n)\n\n# Crear gráfico de violín para las tasas de especiación\nviolin_speciation &lt;- ggplot(speciation_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Especiación\", x = \"Estado\", y = \"Tasa de Especiación\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_speciation",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   },
   {
@@ -2087,7 +2187,7 @@
     "text": "Graficar tasas de extinción\n\n# Crear un dataframe con tasas de extinción para cada estado\nextinction_rates &lt;- data.frame(\n  dens = c(hisse$extinction_observed.1., hisse$extinction_observed.2.,\n           hisse$extinction_hidden.1., hisse$extinction_hidden.2.), \n  rate = rep(c(\"0A\", \"1A\", \"0B\", \"1B\"), each = length(hisse$extinction_observed.1.))\n)\n\n# Crear gráfico de violín para tasas de extinción\nviolin_extinction &lt;- ggplot(extinction_rates, aes(x = rate, y = dens, fill = rate)) +\n  geom_violin(trim = FALSE) +\n  labs(title = \"Tasas de Extinción\", x = \"Estado\", y = \"Tasa de Extinción\") +\n  scale_fill_manual(name = \"Estado\", values = traitcols) +\n  theme_classic()\n\n# Mostrar la gráfica\nviolin_extinction",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introducción a modelos State Speciaction-Extinción (SSE)</span>"
     ]
   }
 ]

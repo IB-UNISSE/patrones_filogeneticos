@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Apuntes sobre comandos básicos en Bash – Patrones filogenéticos: macroevolución y adaptación</title>
+<title>Comparación de modelos mediante Factores de Bayes – Patrones filogenéticos: macroevolución y adaptación</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/Rstudio.html" rel="next">
-<link href="../chapters/install.html" rel="prev">
+<link href="../chapters/u1_intro_diversification.html" rel="next">
+<link href="../chapters/revbayes.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles/custom.css">
 </head>
@@ -116,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/commandline.html"><span class="chapter-title">Apuntes sobre comandos básicos en Bash</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/factor_bayes.html"><span class="chapter-title">Comparación de modelos mediante Factores de Bayes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/commandline.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Apuntes sobre comandos básicos en Bash</span></a>
+  <a href="../chapters/commandline.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Apuntes sobre comandos básicos en Bash</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -168,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/factor_bayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Comparación de modelos mediante Factores de Bayes</span></a>
+  <a href="../chapters/factor_bayes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Comparación de modelos mediante Factores de Bayes</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -212,19 +241,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#comandos-básicos-en-bash" id="toc-comandos-básicos-en-bash" class="nav-link active" data-scroll-target="#comandos-básicos-en-bash">Comandos básicos en Bash</a>
-  <ul class="collapse">
-  <li><a href="#navegación-en-el-sistema-de-archivos" id="toc-navegación-en-el-sistema-de-archivos" class="nav-link" data-scroll-target="#navegación-en-el-sistema-de-archivos">1. Navegación en el sistema de archivos</a></li>
-  <li><a href="#manipulación-de-archivos-y-directorios" id="toc-manipulación-de-archivos-y-directorios" class="nav-link" data-scroll-target="#manipulación-de-archivos-y-directorios">2. Manipulación de archivos y directorios</a></li>
-  <li><a href="#visualización-y-edición-de-archivos" id="toc-visualización-y-edición-de-archivos" class="nav-link" data-scroll-target="#visualización-y-edición-de-archivos">3. Visualización y edición de archivos</a></li>
-  <li><a href="#limpiar-la-terminal" id="toc-limpiar-la-terminal" class="nav-link" data-scroll-target="#limpiar-la-terminal">4. Limpiar la terminal</a></li>
-  <li><a href="#historial-de-comandos" id="toc-historial-de-comandos" class="nav-link" data-scroll-target="#historial-de-comandos">5. Historial de comandos</a></li>
-  <li><a href="#permisos-y-propiedades-de-archivos" id="toc-permisos-y-propiedades-de-archivos" class="nav-link" data-scroll-target="#permisos-y-propiedades-de-archivos">6. Permisos y propiedades de archivos</a></li>
-  </ul></li>
-  <li><a href="#uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio" id="toc-uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio" class="nav-link" data-scroll-target="#uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio">Uso de Ubuntu en Windows con Visual Studio Code y RStudio</a>
-  <ul class="collapse">
-  <li><a href="#iniciar-ubuntu-en-la-terminal-de-vs-code." id="toc-iniciar-ubuntu-en-la-terminal-de-vs-code." class="nav-link" data-scroll-target="#iniciar-ubuntu-en-la-terminal-de-vs-code.">Iniciar <strong>Ubuntu</strong> en la terminal de VS Code.</a></li>
-  </ul></li>
+  <li><a href="#qué-son-los-factores-de-bayes-bayes-factors" id="toc-qué-son-los-factores-de-bayes-bayes-factors" class="nav-link active" data-scroll-target="#qué-son-los-factores-de-bayes-bayes-factors">¿Qué son los Factores de Bayes (Bayes Factors)?</a></li>
+  <li><a href="#qué-es-la-verosimilitud-marginal" id="toc-qué-es-la-verosimilitud-marginal" class="nav-link" data-scroll-target="#qué-es-la-verosimilitud-marginal">¿Qué es la verosimilitud marginal?</a></li>
+  <li><a href="#por-qué-es-difícil-calcular-la-verosimilitud-marginal" id="toc-por-qué-es-difícil-calcular-la-verosimilitud-marginal" class="nav-link" data-scroll-target="#por-qué-es-difícil-calcular-la-verosimilitud-marginal">¿Por qué es difícil calcular la verosimilitud marginal?</a></li>
+  <li><a href="#solución-métodos-basados-en-mcmc" id="toc-solución-métodos-basados-en-mcmc" class="nav-link" data-scroll-target="#solución-métodos-basados-en-mcmc">Solución: Métodos basados en MCMC</a></li>
+  <li><a href="#stepping-stone-sampling" id="toc-stepping-stone-sampling" class="nav-link" data-scroll-target="#stepping-stone-sampling">🌉 Stepping-Stone Sampling</a></li>
+  <li><a href="#path-sampling" id="toc-path-sampling" class="nav-link" data-scroll-target="#path-sampling">🛤 Path Sampling</a></li>
+  <li><a href="#stepping-stone-sampling-y-path-sampling-en-revbayes" id="toc-stepping-stone-sampling-y-path-sampling-en-revbayes" class="nav-link" data-scroll-target="#stepping-stone-sampling-y-path-sampling-en-revbayes"><strong>Stepping-Stone Sampling</strong> y <strong>Path Sampling en Revbayes</strong></a></li>
+  <li><a href="#descarga-el-script-para-este-ejercicio" id="toc-descarga-el-script-para-este-ejercicio" class="nav-link" data-scroll-target="#descarga-el-script-para-este-ejercicio">Descarga el script para este ejercicio:</a></li>
+  <li><a href="#cómo-comparamos-los-modelos-con-factores-de-bayes" id="toc-cómo-comparamos-los-modelos-con-factores-de-bayes" class="nav-link" data-scroll-target="#cómo-comparamos-los-modelos-con-factores-de-bayes">¿Cómo comparamos los modelos con Factores de Bayes?</a></li>
   </ul>
 </nav>
     </div>
@@ -233,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Apuntes sobre comandos básicos en Bash</span></h1>
+<h1 class="title"><span class="chapter-title">Comparación de modelos mediante Factores de Bayes</span></h1>
 </div>
 
 
@@ -250,137 +275,299 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="comandos-básicos-en-bash" class="level1">
-<h1>Comandos básicos en Bash</h1>
-<section id="navegación-en-el-sistema-de-archivos" class="level2">
-<h2 class="anchored" data-anchor-id="navegación-en-el-sistema-de-archivos">1. Navegación en el sistema de archivos</h2>
+<p>Cuando trabajamos con datos es común tener <strong>varios modelos posibles</strong> que podrían explicar esos datos. Algunos modelos son <strong>simples</strong> (con pocos parámetros) y otros <strong>complejos</strong> (con más parámetros).</p>
+<p><strong>Problema al elegir modelos:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Si usamos un modelo muy simple</th>
+<th>Si usamos un modelo muy complejo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>❌ No captura toda la información (sesgo)</td>
+<td>❌ Se ajusta demasiado a los datos (sobreajuste, alta varianza)</td>
+</tr>
+</tbody>
+</table>
+<p>Por eso, necesitamos una manera objetiva de decidir qué modelo es mejor.</p>
+<section id="qué-son-los-factores-de-bayes-bayes-factors" class="level2">
+<h2 class="anchored" data-anchor-id="qué-son-los-factores-de-bayes-bayes-factors">¿Qué son los Factores de Bayes (Bayes Factors)?</h2>
+<p>Los <strong>Factores de Bayes (BF)</strong> son una herramienta para <strong>comparar dos modelos</strong> (<span class="math inline">\(M_0\)</span> y <span class="math inline">\(M_1\)</span>) según <strong>qué tan bien explican los datos</strong>.</p>
+<p>👉 Se basan en la <strong>razón (cociente)</strong> entre las <strong>verosimilitudes marginales</strong> de cada modelo:</p>
+<p><span class="math display">\[
+BF(M_0, M_1) = \frac{P(X | M_0)}{P(X | M_1)}
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">\(P(X | M_0)\)</span> = Verosimilitud marginal del modelo <span class="math inline">\(M_0\)</span> dado los datos X</li>
+<li><span class="math inline">\(P(X | M_1)\)</span> = Verosimilitud marginal del modelo <span class="math inline">\(M_1\)</span></li>
+</ul>
+<p><strong>Interpretación intuitiva:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Valor del BF</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(BF &gt; 1\)</span></td>
+<td>Los datos favorecen el <strong>modelo</strong> M0M_0M0​ sobre M1M_1M1​.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(BF &lt; 1\)</span></td>
+<td>Los datos favorecen el <strong>modelo</strong> M1M_1M1​ sobre M0M_0M0​.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="qué-es-la-verosimilitud-marginal" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-la-verosimilitud-marginal">¿Qué es la verosimilitud marginal?</h2>
+<p>La <strong>verosimilitud marginal</strong> de un modelo <span class="math inline">\(M_i\)</span> es:</p>
+<p><span class="math display">\[P(X∣M_i)=∫P(X∣θi​)P(θi​)dθi​\]</span></p>
+<p>🔑 Es decir:</p>
+<ul>
+<li><strong>La probabilidad de los datos</strong> bajo el modelo <span class="math inline">\(M_i\)</span>, <strong>promediando</strong> sobre <strong>todos los posibles valores</strong> de los parámetros <span class="math inline">\(\theta_i\)</span>, según las distribuciones a priori.</li>
+</ul>
+<p>💡 <strong>Interpretación</strong>: Nos dice <strong>qué tan bien explica el modelo los datos</strong>, considerando <strong>todas las incertidumbres en los parámetros</strong>.</p>
+</section>
+<section id="por-qué-es-difícil-calcular-la-verosimilitud-marginal" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-es-difícil-calcular-la-verosimilitud-marginal">¿Por qué es difícil calcular la verosimilitud marginal?</h2>
+<ul>
+<li><p>En modelos complejos (como los filogenéticos o de sustitución de secuencias), <strong>esa integral es imposible de resolver de forma exacta</strong>.</p></li>
+<li><p>Tiene <strong>muchos parámetros</strong> y <strong>espacios de probabilidad muy grandes</strong>.</p></li>
+<li><p>Por eso, <strong>necesitamos métodos numéricos que nos ayuden a estimarla</strong>.</p></li>
+</ul>
+</section>
+<section id="solución-métodos-basados-en-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="solución-métodos-basados-en-mcmc">Solución: Métodos basados en MCMC</h2>
+<p>➡️ Aquí es donde entran <strong>Stepping-Stone Sampling</strong> y <strong>Path Sampling</strong>, que son <strong>métodos basados en MCMC</strong> (Markov Chain Monte Carlo).</p>
+<p>Ambos métodos:</p>
+<ul>
+<li><p>Nos permiten <strong>estimar la verosimilitud marginal</strong> de manera aproximada pero <strong>con gran precisión</strong>.</p></li>
+<li><p>Son <strong>más robustos y confiables</strong> que intentar calcular la integral directamente.</p></li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/bash/folders.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="550"></p>
+<p><img src="../images/u1_PatDiv/ss.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="850"></p>
 </figure>
 </div>
+<p><strong>En la figura 6 piedras:</strong></p>
 <ul>
-<li><p><strong><code>pwd</code></strong> → Muestra el directorio actual.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>ls</code></strong> → Lista los archivos y carpetas en el directorio actual.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span>     <span class="co"># Muestra detalles (permisos, dueño, tamaño, fecha)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span>     <span class="co"># Muestra archivos ocultos</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-h</span>     <span class="co"># Muestra tamaños en formato legible </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>cd</code></strong> → Cambia de directorio.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /   <span class="co"># Ir a la raiz</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/usuario/proyecto/data <span class="co"># ir a la carpeta data ruta absoluta</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> data/ <span class="co"># ir a la carpeta data ruta relativa</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..      <span class="co"># Subir un nivel</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li>6 stones (piedras) significan 6 powers (β):</li>
+</ul>
+<p>β = 0/6, 1/6, 2/6, 3/6, 4/6, 5/6, 6/6</p>
+<p>O sea: 0, 0.166, 0.333, 0.5, 0.666, 0.833, 1.</p>
+<p>Cada una te da una mezcla distinta de prior y posterior, y en cada una corres un MCMC.</p>
+<ul>
+<li><p><strong>β = 0/6 = 0</strong> → solo prior.</p></li>
+<li><p><strong>β = 6/6 = 1</strong> → solo posterior.</p></li>
+<li><p><strong>Intermedios (0 &lt; β &lt; 1)</strong> → mezcla de prior y posterior.</p></li>
 </ul>
 </section>
-<section id="manipulación-de-archivos-y-directorios" class="level2">
-<h2 class="anchored" data-anchor-id="manipulación-de-archivos-y-directorios">2. Manipulación de archivos y directorios</h2>
+<section id="stepping-stone-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="stepping-stone-sampling">🌉 Stepping-Stone Sampling</h2>
+<p>🔹 ¿Qué hace?</p>
 <ul>
-<li><p><strong><code>mkdir</code></strong> → Crea un directorio.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nueva_carpeta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>rm</code></strong> → Borra archivos y carpetas.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> archivo.txt        <span class="co"># Borra un archivo</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> carpeta         <span class="co"># Borra una carpeta y su contenido</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-i</span> archivo.txt     <span class="co"># Pregunta antes de borrar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>cp</code></strong> → Copia archivos o carpetas.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> archivo.txt copia.txt   <span class="co"># Copia un archivo</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> carpeta destino/     <span class="co"># Copia una carpeta</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>mv</code></strong> → Mueve o renombra archivos y carpetas.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> archivo.txt nueva_ubicacion/</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> archivo.txt nuevo_nombre.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Divide el camino</strong> entre la prior y la posterior en <strong>pequeños pasos (piedras)</strong>.</p></li>
+<li><p>En cada piedra, se hace una <strong>simulación MCMC</strong> para obtener información de ese punto.</p></li>
+<li><p>Al final, <strong>suma toda la información</strong> para calcular la verosimilitud marginal.</p></li>
 </ul>
+<p>🔹 <strong>Analogía</strong>:</p>
+<blockquote class="blockquote">
+<p>Es como <strong>cruzar un río saltando por piedras</strong>, donde cada piedra es una mezcla distinta de prior y posterior.</p>
+</blockquote>
+<hr>
 </section>
-<section id="visualización-y-edición-de-archivos" class="level2">
-<h2 class="anchored" data-anchor-id="visualización-y-edición-de-archivos">3. Visualización y edición de archivos</h2>
+<section id="path-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="path-sampling">🛤 Path Sampling</h2>
+<p>🔹 ¿Qué hace?</p>
 <ul>
-<li><p><strong><code>cat</code></strong> → Muestra el contenido de un archivo.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> archivo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>less</code></strong> → Permite visualizar archivos grandes de manera interactiva.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> archivo.txt   <span class="co"># Usa las teclas ↑ ↓ para moverte, "q" para salir</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>nano</code></strong> → Editor de texto en terminal.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> archivo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>En vez de ir por piedras, hace un <strong>camino continuo</strong> desde la prior hasta la posterior.</p></li>
+<li><p>Va <strong>midiendo la log-verosimilitud</strong> a cada paso.</p></li>
+<li><p>Al final, <strong>suma (integra)</strong> toda esa información.</p></li>
 </ul>
-</section>
-<section id="limpiar-la-terminal" class="level2">
-<h2 class="anchored" data-anchor-id="limpiar-la-terminal">4. Limpiar la terminal</h2>
+<p>🔹 ¿Cómo se hace?</p>
 <ul>
-<li><p><strong><code>clear</code></strong> → Borra la pantalla de la terminal, pero no elimina procesos ni historial.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>Ctrl + L</code></strong> → Hace lo mismo que <code>clear</code>, pero sin ejecutar un comando explícito.</p>
-<ul>
-<li><strong>En macOS:</strong> <code>Cmd + K</code> también limpia la terminal.</li>
-</ul></li>
+<li>Calcula <strong>el área bajo la curva</strong> de log-verosimilitud vs β.</li>
 </ul>
+<p>🔹 <strong>Analogía</strong>:</p>
+<blockquote class="blockquote">
+<p>Es como <strong>caminar por todo el río, sin saltos</strong>, y anotar cómo cambia la corriente a cada paso.</p>
+</blockquote>
 </section>
-<section id="historial-de-comandos" class="level2">
-<h2 class="anchored" data-anchor-id="historial-de-comandos">5. Historial de comandos</h2>
+<section id="stepping-stone-sampling-y-path-sampling-en-revbayes" class="level2">
+<h2 class="anchored" data-anchor-id="stepping-stone-sampling-y-path-sampling-en-revbayes"><strong>Stepping-Stone Sampling</strong> y <strong>Path Sampling en Revbayes</strong></h2>
+<p>Este método calcula un <strong>vector de potencias (powers)</strong> a partir de una <strong>distribución beta</strong>, y luego realiza una <strong>simulación MCMC</strong> para cada valor de esa potencia, <strong>elevando la verosimilitud a esa potencia</strong>.</p>
+<p>En esta implementación, el <strong>vector de potencias comienza en 1</strong> (donde la verosimilitud se parece a la posterior), y <strong>va disminuyendo gradualmente hacia 0</strong>, acercándose a la prior.</p>
+<p>Este procedimiento para estimar la <strong>verosimilitud marginal</strong> es válido para <strong>cualquier modelo en RevBayes</strong>. Primero, creamos una <strong>variable que contiene el análisis de power-posterior</strong>. Para eso, debemos indicar el modelo, los movimientos (moves), los monitores, y el nombre del archivo de salida. El argumento <code>cats</code> define <strong>el número de piedras (stepping stones)</strong>.</p>
+</section>
+<section id="descarga-el-script-para-este-ejercicio" class="level2">
+<h2 class="anchored" data-anchor-id="descarga-el-script-para-este-ejercicio">Descarga el script para este ejercicio:</h2>
+<p>📥 <a href="../docs/u1_PatDiv/Eupomphini_EBD_3.Rev">Diversificacion de Eupomphini con tres intervalos</a></p>
+<p><strong>Comando para definir el análisis de power-posterior:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pow_p <span class="ot">=</span> <span class="fu">powerPosterior</span>(mymodel, moves, monitors, <span class="st">"output/model1.out"</span>, <span class="at">cats=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p><strong>Cómo moverse en el historial</strong></p>
-<ul>
-<li><strong><code>↑ (Flecha arriba)</code></strong> → Muestra el último comando ejecutado.</li>
-<li><strong><code>↓ (Flecha abajo)</code></strong> → Avanza en la lista de comandos previos.</li>
-<li><strong><code>Ctrl + R</code></strong> → Búsqueda rápida en el historial. Escribe parte del comando y pulsa <code>Enter</code> cuando encuentres el que necesitas.
-<ul>
-<li><strong>Ejemplo:</strong> Presiona <code>Ctrl + R</code> y escribe <code>nano</code>, mostrará el último comando que usaste con <code>nano</code>.</li>
-</ul></li>
-</ul></li>
-<li><p><strong><code>history</code></strong> → Muestra los últimos comandos ejecutados.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">history</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Buscar en el historial rápidamente con <code>grep</code></strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">history</span> <span class="kw">|</span> <span class="fu">grep</span> ls   <span class="co"># Filtra los comandos que contienen "ls"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">history</span> <span class="kw">|</span> <span class="fu">grep</span> nano <span class="co"># Filtra los comandos con "nano"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li>cats=50: número de piedras (50 pasos entre prior y posterior).</li>
 </ul>
-</section>
-<section id="permisos-y-propiedades-de-archivos" class="level2">
-<h2 class="anchored" data-anchor-id="permisos-y-propiedades-de-archivos">6. Permisos y propiedades de archivos</h2>
+<p><strong>Importante: hacer “burn-in” antes de empezar:</strong></p>
+<p>Antes de empezar el análisis real, hacemos un burn-in para que la simulación no empiece desde un valor raro, sino desde un lugar donde ya la MCMC está estable.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pow_p.burnin</span>(<span class="at">generations=</span><span class="dv">10000</span>, <span class="at">tuningInterval=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p><strong><code>chmod</code></strong> → Cambia permisos de ejecucion.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x script.Rev  <span class="co"># Permisos de ejecución</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong><code>chown</code></strong> → Cambia el dueño de un archivo.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown usuario archivo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li>Corre 10,000 generaciones antes de empezar a recolectar datos.</li>
+<li>Ajusta los movimientos cada 1000 generaciones.</li>
 </ul>
+<p><strong>Ahora, correr el análisis de power-posterior:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pow_p.run</span>(<span class="at">generations=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Corre 1,000 generaciones por cada piedra (por cada valor de β).</li>
+<li>Con 50 piedras (cats), harás 50 simulaciones MCMC distintas (una por cada β).</li>
+</ul>
+<p><strong>Cuando termina, hacer el cálculo de Stepping-Stone Sampling:</strong> Ya que se guardaron los resultados de cada piedra en el archivo, podemos crear un objeto para calcular la verosimilitud marginal por Stepping-Stone:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ss <span class="ot">=</span> <span class="fu">steppingStoneSampler</span>(<span class="at">file=</span><span class="st">"output/model1.out"</span>, <span class="at">powerColumnName=</span><span class="st">"power"</span>, <span class="at">likelihoodColumnName=</span><span class="st">"likelihood"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>powerColumnName: nombre de la columna con los β (normalmente “power”).</li>
+<li>likelihoodColumnName: nombre de la columna con las verosimilitudes (normalmente “likelihood”).</li>
+</ul>
+<p><strong>Para obtener la verosimilitud marginal por Stepping-Stone Sampling:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="st">"Stepping stone marginal likelihood:</span><span class="sc">\t</span><span class="st">"</span>, <span class="fu">ss.marginal</span>() )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Si quieres también Path Sampling (opcional y recomendable para comparar):</strong> Usa el mismo archivo para crear un estimador con path sampling:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ps <span class="ot">=</span> <span class="fu">pathSampler</span>(<span class="at">file=</span><span class="st">"output/model1.out"</span>, <span class="at">powerColumnName=</span><span class="st">"power"</span>, <span class="at">likelihoodColumnName=</span><span class="st">"likelihood"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Para calcular la verosimilitud marginal por Path Sampling:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="st">"Path-sampling marginal likelihood:</span><span class="sc">\t</span><span class="st">"</span>, <span class="fu">ps.marginal</span>() )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
-<section id="uso-de-ubuntu-en-windows-con-visual-studio-code-y-rstudio" class="level1">
-<h1>Uso de Ubuntu en Windows con Visual Studio Code y RStudio</h1>
-<p>Si tienes <strong>Ubuntu instalado en Windows</strong> a través de <strong>WSL (Windows Subsystem for Linux)</strong>, sigue estas instrucciones para trabajar con tu entorno de desarrollo en <strong>Visual Studio Code</strong>.</p>
-<section id="iniciar-ubuntu-en-la-terminal-de-vs-code." class="level2">
-<h2 class="anchored" data-anchor-id="iniciar-ubuntu-en-la-terminal-de-vs-code.">Iniciar <strong>Ubuntu</strong> en la terminal de VS Code.</h2>
-<ol type="1">
-<li><p>Abre <strong>VS Code</strong> y ve a <strong>Extensions</strong> (Ctrl + Shift + X)</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/bash/vsc_ext1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
-</figure>
-</div></li>
-<li><p>Busca <strong>WSL</strong> e instala la extensión oficial de Microsoft.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/bash/vsc_ext2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div></li>
-<li><p>Teclea el comando <strong>Ctrl + Shift + P</strong> y selecciona <strong>WSL: Connect to WSL</strong></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/bash/vsc_ext3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
-</div></li>
-<li><p>Se abrirá una nueva ventana, ve a **Terminal** y selecciona una nueva **Terminal**</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/bash/vsc_ext4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
-</figure>
-</div></li>
-<li><p>En la parte inferior se abrirá la terminal de <strong>Ubuntu</strong></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/bash/vsc_ext5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
-</figure>
-</div></li>
-</ol>
+<section id="cómo-comparamos-los-modelos-con-factores-de-bayes" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-comparamos-los-modelos-con-factores-de-bayes">¿Cómo comparamos los modelos con Factores de Bayes?</h2>
+<p>🔑 <strong>Paso 1. Recordemos qué es el Factor de Bayes (BF):</strong></p>
+<p>El <strong>Factor de Bayes</strong> compara dos modelos, por ejemplo:</p>
+<ul>
+<li><p><span class="math inline">\(M_0\)</span>: Modelo simple (ej. Diversificación con 3 intervalos).</p></li>
+<li><p><span class="math inline">\(M_1\)</span>: Modelo complejo (ej. Diversificación con 5 intervalos).</p></li>
+</ul>
+<p>🔑 <strong>Paso 2. ¿Cómo lo calculamos?</strong></p>
+<p>⚠️ Importante: Las verosimilitudes marginales se guardan como <strong>log-verosimilitudes</strong> (log-marginal likelihoods), porque son números muy pequeños <a href="https://es.wikipedia.org/wiki/Desbordamiento_aritm%C3%A9tico">problema de desbordamiento numérico</a>.</p>
+<p>Por eso, usamos la <strong>forma logarítmica del Factor de Bayes</strong>, que llamamos <strong>K</strong>:</p>
+<p><span class="math display">\[
+K = ln[BF(M_0, M_1)] = ln[P(X | M_0)] - ln[P(X | M_1)]
+\]</span></p>
+<p>⚙️ Donde:</p>
+<ul>
+<li><p><span class="math inline">\(ln[P(X | M_0)]\)</span>: log-verosimilitud marginal del modelo simple (<span class="math inline">\(M_0\)</span>).</p></li>
+<li><p><span class="math inline">\(ln[P(X | M_1)]\)</span>: log-verosimilitud marginal del modelo complejo (<span class="math inline">\(M_1\)</span>).</p></li>
+</ul>
+<p><strong>Paso 3. Interpretar K:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 45%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Valor de <span class="math inline">\(K\)</span></th>
+<th>Interpretación</th>
+<th>Modelo preferido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(K &gt; 1\)</span></td>
+<td>Soporte a favor de M0</td>
+<td>M0 (modelo simple)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(K &lt; -1\)</span></td>
+<td>Soporte a favor de M1</td>
+<td>M1 (modelo complejo)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(-1 &lt; K &lt; 1\)</span></td>
+<td>Sin preferencia clara entre los modelos</td>
+<td>Ninguno claramente mejor</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Nota:</strong> Para convertirlo a Factor de Bayes “real”, solo elevas <span class="math inline">\(e^k\)</span>, pero normalmente usamos <span class="math inline">\(K\)</span> directamente para comparar.</p>
+</blockquote>
+<p><strong>Ejemplo (con números inventados para ilustrar):</strong></p>
+<p><strong>Tabla 1. Probabilidades marginales:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 30%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modelo</th>
+<th>Path Sampling (lnL)</th>
+<th>Stepping-Stone (lnL)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(M_0\)</span> - Diversificación con 3 intervalos</td>
+<td>-120.5</td>
+<td>-119.8</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(M_1\)</span> - Diversificación con 5 intervalos</td>
+<td>-122.1</td>
+<td>-122.0</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(K\)</span></td>
+<td><span class="math inline">\((-120.5) - (-122.1) = 1.6\)</span></td>
+<td><span class="math inline">\((-119.8) - (-122.0) = 2.2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretación según la escala de Jeffreys:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Valor de <span class="math inline">\(K\)</span></th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0 a 1.16</td>
+<td>Mención mínima (débil).</td>
+</tr>
+<tr class="even">
+<td>1.16 a 2.3</td>
+<td>Evidencia sustancial.</td>
+</tr>
+<tr class="odd">
+<td>2.3 a 4.6</td>
+<td>Evidencia fuerte.</td>
+</tr>
+<tr class="even">
+<td>&gt; 4.6</td>
+<td>Evidencia decisiva.</td>
+</tr>
+</tbody>
+</table>
+<p>💡 En el ejemplo:</p>
+<ul>
+<li><p>Con <strong><span class="math inline">\(K\)</span> = 2.2 (SS)</strong> → Evidencia <strong>sustancial a favor de <span class="math inline">\(M_0\)</span></strong>.</p></li>
+<li><p>Con <strong><span class="math inline">\(K\)</span> = 1.6 (PS)</strong> → También evidencia <strong>sustancial a favor de <span class="math inline">\(M_0\)</span></strong>.</p></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -803,13 +990,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/install.html" class="pagination-link" aria-label="Instalación de Software">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Instalación de Software</span></span>
+      <a href="../chapters/revbayes.html" class="pagination-link" aria-label="Apuntes sobre RevBayes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Apuntes sobre RevBayes</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/Rstudio.html" class="pagination-link" aria-label="Apuntes sobre R y Rstudio">
-        <span class="nav-page-text"><span class="chapter-title">Apuntes sobre R y Rstudio</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/u1_intro_diversification.html" class="pagination-link" aria-label="Introducción al proceso de diversificación">
+        <span class="nav-page-text"><span class="chapter-title">Introducción al proceso de diversificación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

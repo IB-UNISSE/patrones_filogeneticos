@@ -1,0 +1,91 @@
+# Cargar el árbol filogenético desde un archivo en formato NEXUS
+T <- readTrees("../data/subarbol_ingroup.nex")[1]
+
+# Extraer la información taxonómica del árbol
+taxa <- T.taxa()
+
+moves    = VectorMoves()
+monitors = VectorMonitors()
+
+NUM_INTERVALS = 3  # Número total de intervalos de tiempo
+NUM_BREAKS := NUM_INTERVALS - 1  # Número de puntos de cambio entre intervalos
+
+# Hiperprior para controlar la variabilidad global de las tasas de diversificación y extinción
+speciation_global_scale_hyperprior <- 0.5073315
+extinction_global_scale_hyperprior <- 0.5073315
+
+# Distribuciones previas de Cauchy truncadas para los parámetros de escala global
+speciation_global_scale ~ dnHalfCauchy(0,1)
+extinction_global_scale ~ dnHalfCauchy(0,1)
+
+# Definir tasas iniciales de diversificación y extinción en el presente
+log_speciation_at_present ~ dnUniform(-10.0,10.0)
+log_speciation_at_present.setValue(0.0)
+log_extinction_at_present ~ dnUniform(-10.0,10.0)
+log_extinction_at_present.setValue(-1.0)
+
+moves.append( mvScaleBactrian(log_speciation_at_present,weight=5))
+moves.append( mvScaleBactrian(log_extinction_at_present,weight=5))
+
+for (i in 1:NUM_BREAKS) {
+  # Variabilidad local en cada intervalo
+  sigma_speciation[i] ~ dnHalfCauchy(0,1)
+  sigma_extinction[i] ~ dnHalfCauchy(0,1)
+
+  # Se inicializan valores aleatorios en un rango de 0.005 a 0.1, para evitar valores extremos en el inicio del MCMC
+  sigma_speciation[i].setValue(runif(1,0.005,0.1)[1])
+  sigma_extinction[i].setValue(runif(1,0.005,0.1)[1])
+
+  # Especificar los cambios en log-diversificación y log-extinción mediante una distribución normal
+  delta_log_speciation[i] ~ dnNormal( mean=0, sd=sigma_speciation[i]*speciation_global_scale*speciation_global_scale_hyperprior )
+  delta_log_extinction[i] ~ dnNormal( mean=0, sd=sigma_extinction[i]*extinction_global_scale*extinction_global_scale_hyperprior )
+}
+
+speciation := fnassembleContinuousMRF(log_speciation_at_present, delta_log_speciation, initialValueIsLogScale=TRUE, order=1)
+extinction := fnassembleContinuousMRF(log_extinction_at_present, delta_log_extinction, initialValueIsLogScale=TRUE, order=1)
+
+# Movimiento para los cambios en log-escala de diversificación y extinción
+moves.append(mvEllipticalSliceSamplingSimple(delta_log_speciation, weight=5, tune=FALSE))
+moves.append(mvEllipticalSliceSamplingSimple(delta_log_extinction, weight=5, tune=FALSE))
+
+# Movimiento Gibbs para los hiperparámetros globales y locales
+moves.append(mvHSRFHyperpriorsGibbs(speciation_global_scale, sigma_speciation , delta_log_speciation , speciation_global_scale_hyperprior, propGlobalOnly=0.75, weight=10))
+moves.append(mvHSRFHyperpriorsGibbs(extinction_global_scale, sigma_extinction , delta_log_extinction , extinction_global_scale_hyperprior, propGlobalOnly=0.75, weight=10))
+
+# Movimiento de intercambio entre intervalos adyacentes
+moves.append(mvHSRFIntervalSwap(delta_log_speciation, sigma_speciation, weight=5))
+moves.append(mvHSRFIntervalSwap(delta_log_extinction, sigma_extinction, weight=5))
+
+interval_times <- abs(T.rootAge() * seq(1, NUM_BREAKS, 1)/NUM_INTERVALS)
+
+rho <- T.ntips()/26
+
+timetree ~ dnEpisodicBirthDeath(rootAge=T.rootAge(), lambdaRates=speciation, lambdaTimes=interval_times, muRates=extinction, muTimes=interval_times, rho=rho, samplingStrategy="uniform", condition="survival", taxa=taxa)
+
+timetree.clamp(T)
+
+mymodel = model(rho)
+
+monitors.append(mnModel(filename="../output/Eupomphini_EBD/Eupomphini_EBD_3.log", printgen=10, separator = TAB))
+
+monitors.append(mnScreen(printgen=1000, extinction_global_scale, speciation_global_scale))
+
+################
+# analisis por stepping-stone and path-sampling 
+################
+
+### ejecutar power posterior distributions
+pow_p = powerPosterior(mymodel, moves, monitors, "../output/Eupomphini_EBD/Eupomphini_EBD_3_powp.out", cats=50, sampleFreq=10)
+pow_p.burnin(generations=50000,tuningInterval=200)
+pow_p.run(generations=5000)
+
+### usar stepping-stone sampling para calcular marginal likelihoods
+ss = steppingStoneSampler(file="../output/Eupomphini_EBD/Eupomphini_EBD_3_powp.out", powerColumnName="power", likelihoodColumnName="likelihood")
+write("Stepping stone marginal likelihood:\t", ss.marginal() )
+
+### usar path-sampling para calcular marginal likelihoods
+ps = pathSampler(file="../output/Eupomphini_EBD/Eupomphini_EBD_3_powp.out", powerColumnName="power", likelihoodColumnName="likelihood")
+write("Path-sampling marginal likelihood:\t", ps.marginal() )
+
+## quit revbayes##
+q()
