@@ -444,7 +444,7 @@
     "href": "chapters/factor_bayes.html#qué-son-los-factores-de-bayes-bayes-factors",
     "title": "Comparación de modelos mediante Factores de Bayes",
     "section": "",
-    "text": "\\(P(X | M_0)\\) = Verosimilitud marginal del modelo \\(M_0\\) dado los datos X\n\\(P(X | M_1)\\) = Verosimilitud marginal del modelo \\(M_1\\)\n\n\n\n\n\n\n\n\n\nValor del BF\nInterpretación\n\n\n\n\n\\(BF &gt; 1\\)\nLos datos favorecen el modelo M0M_0M0​ sobre M1M_1M1​.\n\n\n\\(BF &lt; 1\\)\nLos datos favorecen el modelo M1M_1M1​ sobre M0M_0M0​.",
+    "text": "\\(P(X | M_0)\\) = Verosimilitud marginal del modelo \\(M_0\\) dado los datos X\n\\(P(X | M_1)\\) = Verosimilitud marginal del modelo \\(M_1\\)\n\n\n\n\n\n\n\n\n\nValor del BF\nInterpretación\n\n\n\n\n\\(BF &gt; 1\\)\nLos datos favorecen el modelo \\(M_0\\) sobre \\(M_1\\)\n\n\n\\(BF &lt; 1\\)\nLos datos favorecen el modelo \\(M_1\\) sobre \\(M_0\\)",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Comparación de modelos mediante Factores de Bayes</span>"
     ]
@@ -820,7 +820,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09138449    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139925    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
