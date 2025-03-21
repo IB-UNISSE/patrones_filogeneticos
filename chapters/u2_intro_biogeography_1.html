@@ -563,9 +563,9 @@ ABC &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; e_C &amp; e_B &amp; e_A &amp; - \\
 <p><strong>En resumen</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 33%">
-<col style="width: 41%">
+<col style="width: 24%">
+<col style="width: 32%">
+<col style="width: 42%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1043,21 +1043,25 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <p>Este script en R <strong>genera una figura</strong> que muestra un árbol filogenético anotado con los <strong>estados ancestrales geográficos</strong>(rango de distribución de cada nodo) inferidos con el modelo DEC en RevBayes. Utiliza gráficos de pastel (pie charts) para representar <strong>la incertidumbre en la reconstrucción</strong> de rangos geográficos a lo largo del árbol evolutivo, y añade <strong>información temporal sobre la formación de las islas hawaianas</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nombres de archivo</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plot_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/simple.range.pdf"</span> <span class="co"># archivo de salida para la figura final en PDF</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>tree_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/simple.ase.tre"</span> <span class="co"># árbol con estados ancestrales (generado en RevBayes)</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>label_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/simple.state_labels.txt"</span> <span class="co"># archivo con las etiquetas de los estados (rango binario → etiquetas)</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>color_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/range_colors.txt"</span> <span class="co"># archivo con los colores para cada rango</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># obtener etiquetas de estado y colores de estado</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>states <span class="ot">=</span> <span class="fu">make_states</span>(label_fn, color_fn)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>state_labels <span class="ot">=</span> states<span class="sc">$</span>state_labels</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>state_colors <span class="ot">=</span> states<span class="sc">$</span>state_colors</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># procesar los estados ancestrales</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>ase <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(tree_fn,</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># Estas etiquetas numéricas deben coincidir con</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># las del archivo original de datos de entrada.</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">state_labels =</span> state_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># archivo de salida para la figura final en PDF</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plot_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/simple.range.pdf"</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># árbol con estados ancestrales (generado en RevBayes)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>tree_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/simple.ase.tre"</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># archivo con las etiquetas de los estados (rango binario → etiquetas)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>label_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/simple.state_labels.txt"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># archivo con los colores para cada rango</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>color_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/range_colors.txt"</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># obtener etiquetas de estado y colores de estado</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>states <span class="ot">=</span> <span class="fu">make_states</span>(label_fn, color_fn)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>state_labels <span class="ot">=</span> states<span class="sc">$</span>state_labels</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>state_colors <span class="ot">=</span> states<span class="sc">$</span>state_colors</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># procesar los estados ancestrales</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ase <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(tree_fn,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># Estas etiquetas numéricas deben coincidir con</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># las del archivo original de datos de entrada.</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">state_labels =</span> state_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   |                                              
@@ -1067,52 +1071,69 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graficar los estados ancestrales como gráficos de pastel (pie charts)</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pp  <span class="ot">&lt;-</span> <span class="fu">plotAncStatesPie</span>(<span class="at">t =</span> ase,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">include_start_states=</span>T, <span class="co"># incluir los estados del nodo raíz</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">state_labels=</span>state_labels,<span class="co"># mostrar etiquetas de los estados</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">state_colors=</span>state_colors, <span class="co"># asignar los colores definidos</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tip_label_size=</span><span class="fl">2.5</span>,<span class="co"># tamaño de las etiquetas en los extremos (tips)</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tip_label_offset=</span><span class="fl">0.1</span>,<span class="co"># distancia de desplazamiento de las etiquetas</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">node_label_size=</span><span class="dv">0</span>, <span class="co"># sin etiquetas numéricas en los nodos</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">shoulder_label_size=</span><span class="dv">0</span>, <span class="co"># sin etiquetas en los hombros</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">show_posterior_legend=</span>T, <span class="co"># mostrar leyenda de probabilidades posteriores</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tip_pie_diameter=</span><span class="fl">0.5</span>, <span class="co"># tamaño de los círculos en los extremos (tips)</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">node_pie_diameter=</span><span class="fl">2.0</span>, <span class="co"># tamaño de los círculos en los nodos</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                         <span class="at">pie_nudge_x=</span><span class="fl">0.03</span>, <span class="co"># ajuste horizontal de los gráficos de pastel</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">pie_nudge_y=</span><span class="fl">0.16</span>, <span class="co"># ajuste vertical de los gráficos de pastel</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span> <span class="co"># opacidad</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mover la leyenda de estados</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.75</span>))</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co"># obtener las dimensiones del gráfico</span></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>x_phy <span class="ot">=</span> <span class="fu">max</span>(pp<span class="sc">$</span>data<span class="sc">$</span>x) <span class="co"># obtener el valor máximo del eje x (altura del árbol)</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>x_label <span class="ot">=</span> <span class="fl">3.5</span>  <span class="co"># espacio extra para las etiquetas de las hojas</span></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>x_start <span class="ot">=</span> <span class="dv">7</span>   <span class="co"># edad inicial del eje (debe ser mayor a la raíz del árbol)</span></span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">=</span> <span class="sc">-</span>(x_start <span class="sc">-</span> x_phy) <span class="co"># inicio del eje x</span></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">=</span> x_phy <span class="sc">+</span> x_label <span class="co"># fin del eje x</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co"># añadir eje cronológico</span></span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">theme_tree2</span>()</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Edad (Ma)"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># incluir los estados del nodo raíz</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">include_start_states=</span>T, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># mostrar etiquetas de los estados</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">state_labels=</span>state_labels,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># asignar los colores definidos</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">state_colors=</span>state_colors, </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># tamaño de las etiquetas en los extremos (tips)</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tip_label_size=</span><span class="fl">2.5</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># distancia de desplazamiento de las etiquetas</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tip_label_offset=</span><span class="fl">0.1</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># sin etiquetas numéricas en los nodos</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">node_label_size=</span><span class="dv">0</span>, </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># sin etiquetas en los hombros</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>                         <span class="at">shoulder_label_size=</span><span class="dv">0</span>, </span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># mostrar leyenda de probabilidades posteriores</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>                         <span class="at">show_posterior_legend=</span>T, </span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># tamaño de los círculos en los extremos (tips)</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tip_pie_diameter=</span><span class="fl">0.5</span>, </span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>                         <span class="co"># tamaño de los círculos en los nodos</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>                         <span class="at">node_pie_diameter=</span><span class="fl">2.0</span>,</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># ajuste horizontal de los gráficos de pastel</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">pie_nudge_x=</span><span class="fl">0.03</span>, </span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># ajuste vertical de los gráficos de pastel</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>                         <span class="at">pie_nudge_y=</span><span class="fl">0.16</span>, </span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>                         <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span> <span class="co"># opacidad</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mover la leyenda de estados</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.75</span>))</span>
 <span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="co"># modificar límites del eje x</span></span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(x0,x1), <span class="at">expand=</span><span class="cn">TRUE</span>)</span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="co"># agregar marcas al eje y etiquetas de islas como eje secundario</span></span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>island_axis <span class="ot">=</span> <span class="fu">sec_axis</span>(<span class="sc">~</span> ., <span class="at">breaks=</span>x_phy<span class="sc">-</span><span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">2.95</span>, <span class="fl">1.55</span>, <span class="fl">0.5</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"+K"</span>,<span class="st">"+O"</span>,<span class="st">"+M"</span>,<span class="st">"+H"</span>) )</span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>x_breaks <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,x_start,<span class="dv">1</span>) <span class="sc">+</span> x0</span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>x_labels <span class="ot">=</span> <span class="fu">rev</span>(<span class="fu">seq</span>(<span class="dv">0</span>,x_start,<span class="dv">1</span>))</span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span>x_breaks, <span class="at">labels=</span>x_labels, <span class="at">sec.axis=</span>island_axis)</span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="co"># dibujar líneas verticales que marcan los tiempos de formación de islas</span></span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> <span class="fu">add_island_times</span>(pp, x_phy)</span>
-<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="co"># configurar la posición de la leyenda</span></span>
-<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"left"</span>)</span>
-<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="co"># mostrar gráfico final</span></span>
-<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="co"># obtener las dimensiones del gráfico</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a> <span class="co"># obtener el valor máximo del eje x (altura del árbol)</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>x_phy <span class="ot">=</span> <span class="fu">max</span>(pp<span class="sc">$</span>data<span class="sc">$</span>x)</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a> <span class="co"># espacio extra para las etiquetas de las hojas</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>x_label <span class="ot">=</span> <span class="fl">3.5</span> </span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a> <span class="co"># edad inicial del eje (debe ser mayor a la raíz del árbol)</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>x_start <span class="ot">=</span> <span class="dv">7</span>  </span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="co"># inicio del eje x</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">=</span> <span class="sc">-</span>(x_start <span class="sc">-</span> x_phy) </span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fin del eje x</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">=</span> x_phy <span class="sc">+</span> x_label </span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="co"># añadir eje cronológico</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">theme_tree2</span>()</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Edad (Ma)"</span>)</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a><span class="co"># modificar límites del eje x</span></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(x0,x1), <span class="at">expand=</span><span class="cn">TRUE</span>)</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="co"># agregar marcas al eje y etiquetas de islas como eje secundario</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>island_axis <span class="ot">=</span> <span class="fu">sec_axis</span>(<span class="sc">~</span> ., <span class="at">breaks=</span>x_phy<span class="sc">-</span><span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">2.95</span>, <span class="fl">1.55</span>, <span class="fl">0.5</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"+K"</span>,<span class="st">"+O"</span>,<span class="st">"+M"</span>,<span class="st">"+H"</span>) )</span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>x_breaks <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,x_start,<span class="dv">1</span>) <span class="sc">+</span> x0</span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>x_labels <span class="ot">=</span> <span class="fu">rev</span>(<span class="fu">seq</span>(<span class="dv">0</span>,x_start,<span class="dv">1</span>))</span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span>x_breaks, <span class="at">labels=</span>x_labels, <span class="at">sec.axis=</span>island_axis)</span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a><span class="co"># dibujar líneas verticales que marcan los tiempos de formación de islas</span></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> <span class="fu">add_island_times</span>(pp, x_phy)</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a><span class="co"># configurar la posición de la leyenda</span></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"left"</span>)</span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a><span class="co"># mostrar gráfico final</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
