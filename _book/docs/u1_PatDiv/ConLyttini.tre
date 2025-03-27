@@ -1,0 +1,4313 @@
+#NEXUS
+[R-package APE, Mon May 11 14:20:47 2020]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 2150;
+	TAXLABELS
+		Berberomeloe_majalis
+		Cissites
+		Lagorina_sericea
+		Pyrota
+		Spastonyx_nemognathoides
+		nemognathinae337
+		nemognathinae136
+		nemognathinae155
+		nemognathinae151
+		nemognathinae225
+		nemognathinae205
+		nemognathinae83
+		nemognathinae211
+		nemognathinae253
+		nemognathinae420
+		nemognathinae72
+		nemognathinae167
+		nemognathinae214
+		nemognathinae120
+		nemognathinae246
+		nemognathinae118
+		nemognathinae172
+		nemognathinae399
+		nemognathinae486
+		nemognathinae231
+		nemognathinae455
+		nemognathinae267
+		nemognathinae123
+		nemognathinae1
+		nemognathinae186
+		nemognathinae281
+		nemognathinae348
+		nemognathinae199
+		nemognathinae165
+		nemognathinae286
+		nemognathinae407
+		nemognathinae428
+		nemognathinae159
+		nemognathinae317
+		nemognathinae183
+		nemognathinae90
+		nemognathinae475
+		nemognathinae389
+		nemognathinae292
+		nemognathinae331
+		nemognathinae242
+		nemognathinae369
+		nemognathinae451
+		nemognathinae403
+		nemognathinae18
+		nemognathinae232
+		nemognathinae320
+		nemognathinae456
+		nemognathinae477
+		nemognathinae457
+		nemognathinae34
+		nemognathinae316
+		nemognathinae264
+		nemognathinae75
+		nemognathinae236
+		nemognathinae409
+		nemognathinae438
+		nemognathinae147
+		nemognathinae469
+		nemognathinae452
+		nemognathinae191
+		nemognathinae364
+		nemognathinae195
+		nemognathinae401
+		nemognathinae28
+		nemognathinae500
+		nemognathinae51
+		nemognathinae23
+		nemognathinae296
+		nemognathinae140
+		nemognathinae311
+		nemognathinae439
+		nemognathinae510
+		nemognathinae210
+		nemognathinae16
+		nemognathinae427
+		nemognathinae302
+		nemognathinae520
+		nemognathinae276
+		nemognathinae139
+		nemognathinae313
+		nemognathinae265
+		nemognathinae12
+		nemognathinae41
+		nemognathinae437
+		nemognathinae372
+		nemognathinae436
+		nemognathinae138
+		nemognathinae24
+		nemognathinae516
+		nemognathinae207
+		nemognathinae260
+		nemognathinae226
+		nemognathinae289
+		nemognathinae435
+		nemognathinae127
+		nemognathinae279
+		nemognathinae485
+		nemognathinae95
+		nemognathinae114
+		nemognathinae142
+		nemognathinae483
+		nemognathinae453
+		nemognathinae45
+		nemognathinae237
+		nemognathinae325
+		nemognathinae73
+		nemognathinae99
+		nemognathinae479
+		nemognathinae306
+		nemognathinae227
+		nemognathinae137
+		nemognathinae426
+		nemognathinae404
+		nemognathinae346
+		nemognathinae321
+		nemognathinae119
+		nemognathinae509
+		nemognathinae310
+		nemognathinae355
+		nemognathinae418
+		nemognathinae109
+		nemognathinae145
+		nemognathinae249
+		nemognathinae251
+		nemognathinae62
+		nemognathinae178
+		nemognathinae201
+		nemognathinae391
+		nemognathinae37
+		nemognathinae117
+		nemognathinae378
+		nemognathinae375
+		nemognathinae55
+		nemognathinae274
+		nemognathinae411
+		nemognathinae287
+		nemognathinae57
+		nemognathinae26
+		nemognathinae247
+		nemognathinae126
+		nemognathinae318
+		nemognathinae497
+		nemognathinae257
+		nemognathinae476
+		nemognathinae494
+		nemognathinae74
+		nemognathinae219
+		nemognathinae298
+		nemognathinae150
+		nemognathinae182
+		nemognathinae85
+		nemognathinae429
+		nemognathinae490
+		nemognathinae218
+		nemognathinae181
+		nemognathinae507
+		nemognathinae36
+		nemognathinae300
+		nemognathinae342
+		nemognathinae396
+		nemognathinae20
+		nemognathinae153
+		nemognathinae193
+		nemognathinae29
+		nemognathinae125
+		nemognathinae488
+		nemognathinae101
+		nemognathinae504
+		nemognathinae315
+		nemognathinae89
+		nemognathinae285
+		nemognathinae425
+		nemognathinae52
+		nemognathinae130
+		nemognathinae478
+		nemognathinae124
+		nemognathinae400
+		nemognathinae334
+		nemognathinae203
+		nemognathinae149
+		nemognathinae189
+		nemognathinae381
+		nemognathinae128
+		nemognathinae387
+		nemognathinae143
+		nemognathinae338
+		nemognathinae501
+		nemognathinae275
+		nemognathinae368
+		nemognathinae168
+		nemognathinae217
+		nemognathinae240
+		nemognathinae96
+		nemognathinae174
+		nemognathinae198
+		nemognathinae350
+		nemognathinae68
+		nemognathinae326
+		nemognathinae98
+		nemognathinae50
+		nemognathinae212
+		nemognathinae303
+		nemognathinae103
+		nemognathinae441
+		nemognathinae508
+		nemognathinae434
+		nemognathinae365
+		nemognathinae447
+		nemognathinae148
+		nemognathinae390
+		nemognathinae305
+		nemognathinae361
+		nemognathinae84
+		nemognathinae273
+		nemognathinae466
+		nemognathinae503
+		nemognathinae221
+		nemognathinae511
+		nemognathinae91
+		nemognathinae223
+		nemognathinae385
+		nemognathinae156
+		nemognathinae134
+		nemognathinae164
+		nemognathinae353
+		nemognathinae499
+		nemognathinae63
+		nemognathinae102
+		nemognathinae200
+		nemognathinae416
+		nemognathinae472
+		nemognathinae415
+		nemognathinae394
+		nemognathinae443
+		nemognathinae402
+		nemognathinae228
+		nemognathinae13
+		nemognathinae374
+		nemognathinae376
+		nemognathinae366
+		nemognathinae471
+		nemognathinae208
+		nemognathinae330
+		nemognathinae48
+		nemognathinae248
+		nemognathinae213
+		nemognathinae77
+		nemognathinae2
+		nemognathinae9
+		nemognathinae505
+		nemognathinae196
+		nemognathinae42
+		nemognathinae336
+		nemognathinae356
+		nemognathinae297
+		nemognathinae444
+		nemognathinae244
+		nemognathinae442
+		nemognathinae78
+		nemognathinae332
+		nemognathinae370
+		nemognathinae4
+		nemognathinae269
+		nemognathinae489
+		nemognathinae107
+		nemognathinae518
+		nemognathinae229
+		nemognathinae522
+		nemognathinae166
+		nemognathinae388
+		nemognathinae64
+		nemognathinae215
+		nemognathinae47
+		nemognathinae255
+		nemognathinae495
+		nemognathinae112
+		nemognathinae397
+		nemognathinae454
+		nemognathinae432
+		nemognathinae308
+		nemognathinae359
+		nemognathinae187
+		nemognathinae58
+		nemognathinae517
+		nemognathinae358
+		nemognathinae110
+		nemognathinae14
+		nemognathinae80
+		nemognathinae46
+		nemognathinae161
+		nemognathinae141
+		nemognathinae116
+		nemognathinae354
+		nemognathinae266
+		nemognathinae421
+		nemognathinae413
+		nemognathinae344
+		nemognathinae487
+		nemognathinae243
+		nemognathinae341
+		nemognathinae423
+		nemognathinae86
+		nemognathinae10
+		nemognathinae458
+		nemognathinae163
+		nemognathinae67
+		nemognathinae135
+		nemognathinae465
+		nemognathinae319
+		nemognathinae106
+		nemognathinae282
+		nemognathinae53
+		nemognathinae335
+		nemognathinae414
+		nemognathinae473
+		nemognathinae482
+		nemognathinae384
+		nemognathinae492
+		nemognathinae184
+		nemognathinae304
+		nemognathinae171
+		nemognathinae493
+		nemognathinae481
+		nemognathinae15
+		nemognathinae3
+		nemognathinae152
+		nemognathinae461
+		nemognathinae179
+		nemognathinae40
+		nemognathinae377
+		nemognathinae190
+		nemognathinae460
+		nemognathinae262
+		nemognathinae25
+		nemognathinae464
+		nemognathinae81
+		nemognathinae514
+		nemognathinae299
+		nemognathinae38
+		nemognathinae329
+		nemognathinae339
+		nemognathinae43
+		nemognathinae324
+		nemognathinae449
+		nemognathinae17
+		nemognathinae146
+		nemognathinae393
+		nemognathinae220
+		nemognathinae92
+		nemognathinae424
+		nemognathinae33
+		nemognathinae352
+		nemognathinae104
+		nemognathinae283
+		nemognathinae322
+		nemognathinae157
+		nemognathinae32
+		nemognathinae216
+		nemognathinae60
+		nemognathinae76
+		nemognathinae22
+		nemognathinae408
+		nemognathinae56
+		nemognathinae79
+		nemognathinae357
+		nemognathinae448
+		nemognathinae180
+		nemognathinae6
+		nemognathinae412
+		nemognathinae206
+		nemognathinae11
+		nemognathinae158
+		nemognathinae307
+		nemognathinae239
+		nemognathinae94
+		nemognathinae121
+		nemognathinae71
+		nemognathinae129
+		nemognathinae431
+		nemognathinae383
+		nemognathinae69
+		nemognathinae430
+		nemognathinae66
+		nemognathinae343
+		nemognathinae271
+		nemognathinae422
+		nemognathinae484
+		nemognathinae122
+		nemognathinae371
+		nemognathinae261
+		nemognathinae35
+		nemognathinae224
+		nemognathinae459
+		nemognathinae197
+		nemognathinae312
+		nemognathinae340
+		nemognathinae250
+		nemognathinae234
+		nemognathinae259
+		nemognathinae162
+		nemognathinae144
+		nemognathinae290
+		nemognathinae21
+		nemognathinae54
+		nemognathinae263
+		nemognathinae440
+		nemognathinae133
+		nemognathinae105
+		nemognathinae417
+		nemognathinae474
+		nemognathinae284
+		nemognathinae515
+		nemognathinae115
+		nemognathinae498
+		nemognathinae470
+		nemognathinae363
+		nemognathinae491
+		nemognathinae82
+		nemognathinae386
+		nemognathinae382
+		nemognathinae59
+		nemognathinae405
+		nemognathinae70
+		nemognathinae463
+		nemognathinae111
+		nemognathinae209
+		nemognathinae8
+		nemognathinae194
+		nemognathinae468
+		nemognathinae202
+		nemognathinae131
+		nemognathinae235
+		nemognathinae65
+		nemognathinae347
+		nemognathinae367
+		nemognathinae410
+		nemognathinae113
+		nemognathinae233
+		nemognathinae446
+		nemognathinae288
+		nemognathinae238
+		nemognathinae176
+		nemognathinae177
+		nemognathinae132
+		nemognathinae480
+		nemognathinae277
+		nemognathinae108
+		nemognathinae333
+		nemognathinae100
+		nemognathinae170
+		nemognathinae294
+		nemognathinae7
+		nemognathinae254
+		nemognathinae204
+		nemognathinae295
+		nemognathinae252
+		nemognathinae351
+		nemognathinae462
+		nemognathinae270
+		nemognathinae49
+		nemognathinae27
+		nemognathinae345
+		nemognathinae44
+		nemognathinae293
+		nemognathinae173
+		nemognathinae328
+		nemognathinae169
+		nemognathinae230
+		nemognathinae314
+		nemognathinae512
+		nemognathinae373
+		nemognathinae188
+		nemognathinae513
+		nemognathinae241
+		nemognathinae278
+		nemognathinae222
+		nemognathinae406
+		nemognathinae450
+		nemognathinae380
+		nemognathinae323
+		nemognathinae268
+		nemognathinae301
+		nemognathinae19
+		nemognathinae467
+		nemognathinae379
+		nemognathinae506
+		nemognathinae256
+		nemognathinae5
+		nemognathinae398
+		nemognathinae175
+		nemognathinae160
+		nemognathinae61
+		nemognathinae523
+		nemognathinae327
+		nemognathinae433
+		nemognathinae445
+		nemognathinae88
+		nemognathinae519
+		nemognathinae258
+		nemognathinae360
+		nemognathinae349
+		nemognathinae521
+		nemognathinae291
+		nemognathinae502
+		nemognathinae31
+		nemognathinae280
+		nemognathinae30
+		nemognathinae419
+		nemognathinae154
+		nemognathinae185
+		nemognathinae496
+		nemognathinae392
+		nemognathinae395
+		nemognathinae309
+		nemognathinae362
+		nemognathinae39
+		nemognathinae97
+		nemognathinae93
+		nemognathinae87
+		nemognathinae192
+		nemognathinae272
+		nemognathinae245
+		epicautini311
+		epicautini134
+		epicautini150
+		epicautini15
+		epicautini218
+		epicautini162
+		epicautini300
+		epicautini44
+		epicautini282
+		epicautini259
+		epicautini158
+		epicautini329
+		epicautini106
+		epicautini392
+		epicautini7
+		epicautini488
+		epicautini229
+		epicautini527
+		epicautini367
+		epicautini301
+		epicautini142
+		epicautini370
+		epicautini71
+		epicautini412
+		epicautini564
+		epicautini107
+		epicautini499
+		epicautini327
+		epicautini117
+		epicautini76
+		epicautini304
+		epicautini13
+		epicautini34
+		epicautini491
+		epicautini416
+		epicautini388
+		epicautini335
+		epicautini208
+		epicautini422
+		epicautini268
+		epicautini224
+		epicautini23
+		epicautini372
+		epicautini534
+		epicautini317
+		epicautini230
+		epicautini524
+		epicautini492
+		epicautini183
+		epicautini180
+		epicautini310
+		epicautini500
+		epicautini196
+		epicautini37
+		epicautini118
+		epicautini385
+		epicautini52
+		epicautini332
+		epicautini519
+		epicautini296
+		epicautini452
+		epicautini126
+		epicautini12
+		epicautini464
+		epicautini398
+		epicautini14
+		epicautini352
+		epicautini455
+		epicautini518
+		epicautini141
+		epicautini277
+		epicautini155
+		epicautini59
+		epicautini337
+		epicautini302
+		epicautini217
+		epicautini517
+		epicautini35
+		epicautini169
+		epicautini68
+		epicautini470
+		epicautini69
+		epicautini222
+		epicautini174
+		epicautini299
+		epicautini418
+		epicautini478
+		epicautini185
+		epicautini270
+		epicautini351
+		epicautini474
+		epicautini394
+		epicautini557
+		epicautini239
+		epicautini290
+		epicautini16
+		epicautini507
+		epicautini425
+		epicautini323
+		epicautini504
+		epicautini274
+		epicautini160
+		epicautini227
+		epicautini284
+		epicautini314
+		epicautini131
+		epicautini163
+		epicautini450
+		epicautini434
+		epicautini129
+		epicautini411
+		epicautini164
+		epicautini123
+		epicautini108
+		epicautini404
+		epicautini469
+		epicautini447
+		epicautini240
+		epicautini393
+		epicautini501
+		epicautini345
+		epicautini47
+		epicautini138
+		epicautini318
+		epicautini536
+		epicautini343
+		epicautini490
+		epicautini312
+		epicautini419
+		epicautini133
+		epicautini374
+		epicautini128
+		epicautini515
+		epicautini486
+		epicautini252
+		epicautini6
+		epicautini415
+		epicautini548
+		epicautini342
+		epicautini140
+		epicautini95
+		epicautini485
+		epicautini187
+		epicautini303
+		epicautini407
+		epicautini147
+		epicautini365
+		epicautini441
+		epicautini330
+		epicautini551
+		epicautini426
+		epicautini336
+		epicautini244
+		epicautini502
+		epicautini278
+		epicautini456
+		epicautini219
+		epicautini489
+		epicautini250
+		epicautini90
+		epicautini283
+		epicautini410
+		epicautini445
+		epicautini479
+		epicautini65
+		epicautini459
+		epicautini514
+		epicautini184
+		epicautini371
+		epicautini113
+		epicautini5
+		epicautini538
+		epicautini80
+		epicautini3
+		epicautini210
+		epicautini358
+		epicautini439
+		epicautini103
+		epicautini306
+		epicautini1
+		epicautini2
+		epicautini275
+		epicautini468
+		epicautini305
+		epicautini525
+		epicautini136
+		epicautini475
+		epicautini49
+		epicautini266
+		epicautini369
+		epicautini390
+		epicautini39
+		epicautini437
+		epicautini461
+		epicautini356
+		epicautini295
+		epicautini115
+		epicautini413
+		epicautini267
+		epicautini207
+		epicautini167
+		epicautini322
+		epicautini309
+		epicautini62
+		epicautini286
+		epicautini99
+		epicautini4
+		epicautini247
+		epicautini520
+		epicautini60
+		epicautini503
+		epicautini201
+		epicautini228
+		epicautini542
+		epicautini453
+		epicautini466
+		epicautini559
+		epicautini285
+		epicautini78
+		epicautini42
+		epicautini255
+		epicautini463
+		epicautini119
+		epicautini291
+		epicautini428
+		epicautini33
+		epicautini186
+		epicautini552
+		epicautini144
+		epicautini451
+		epicautini440
+		epicautini396
+		epicautini373
+		epicautini540
+		epicautini467
+		epicautini157
+		epicautini386
+		epicautini84
+		epicautini505
+		epicautini556
+		epicautini353
+		epicautini516
+		epicautini61
+		epicautini77
+		epicautini111
+		epicautini420
+		epicautini45
+		epicautini444
+		epicautini339
+		epicautini269
+		epicautini430
+		epicautini206
+		epicautini241
+		epicautini100
+		epicautini20
+		epicautini153
+		epicautini161
+		epicautini204
+		epicautini429
+		epicautini258
+		epicautini541
+		epicautini473
+		epicautini96
+		epicautini193
+		epicautini279
+		epicautini17
+		epicautini376
+		epicautini86
+		epicautini417
+		epicautini29
+		epicautini532
+		epicautini379
+		epicautini325
+		epicautini512
+		epicautini338
+		epicautini143
+		epicautini152
+		epicautini137
+		epicautini53
+		epicautini41
+		epicautini560
+		epicautini166
+		epicautini462
+		epicautini189
+		epicautini460
+		epicautini402
+		epicautini511
+		epicautini389
+		epicautini408
+		epicautini562
+		epicautini289
+		epicautini125
+		epicautini487
+		epicautini104
+		epicautini156
+		epicautini18
+		epicautini179
+		epicautini395
+		epicautini436
+		epicautini472
+		epicautini75
+		epicautini211
+		epicautini547
+		epicautini231
+		epicautini432
+		epicautini8
+		epicautini173
+		epicautini495
+		epicautini159
+		epicautini509
+		epicautini378
+		epicautini494
+		epicautini344
+		epicautini535
+		epicautini220
+		epicautini313
+		epicautini191
+		epicautini188
+		epicautini563
+		epicautini443
+		epicautini510
+		epicautini340
+		epicautini215
+		epicautini523
+		epicautini165
+		epicautini246
+		epicautini554
+		epicautini334
+		epicautini176
+		epicautini87
+		epicautini233
+		epicautini544
+		epicautini175
+		epicautini553
+		epicautini549
+		epicautini55
+		epicautini508
+		epicautini298
+		epicautini333
+		epicautini561
+		epicautini9
+		epicautini32
+		epicautini36
+		epicautini190
+		epicautini225
+		epicautini74
+		epicautini181
+		epicautini531
+		epicautini170
+		epicautini276
+		epicautini200
+		epicautini349
+		epicautini261
+		epicautini238
+		epicautini30
+		epicautini427
+		epicautini22
+		epicautini11
+		epicautini359
+		epicautini328
+		epicautini237
+		epicautini249
+		epicautini272
+		epicautini146
+		epicautini110
+		epicautini288
+		epicautini433
+		epicautini260
+		epicautini454
+		epicautini127
+		epicautini205
+		epicautini202
+		epicautini476
+		epicautini89
+		epicautini545
+		epicautini287
+		epicautini483
+		epicautini149
+		epicautini530
+		epicautini72
+		epicautini243
+		epicautini397
+		epicautini315
+		epicautini346
+		epicautini320
+		epicautini58
+		epicautini148
+		epicautini421
+		epicautini236
+		epicautini341
+		epicautini431
+		epicautini63
+		epicautini97
+		epicautini405
+		epicautini192
+		epicautini513
+		epicautini151
+		epicautini124
+		epicautini214
+		epicautini316
+		epicautini46
+		epicautini308
+		epicautini493
+		epicautini28
+		epicautini423
+		epicautini38
+		epicautini130
+		epicautini197
+		epicautini262
+		epicautini94
+		epicautini145
+		epicautini522
+		epicautini251
+		epicautini57
+		epicautini221
+		epicautini254
+		epicautini154
+		epicautini348
+		epicautini265
+		epicautini73
+		epicautini409
+		epicautini132
+		epicautini442
+		epicautini448
+		epicautini528
+		epicautini253
+		epicautini368
+		epicautini383
+		epicautini449
+		epicautini178
+		epicautini539
+		epicautini101
+		epicautini54
+		epicautini256
+		epicautini550
+		epicautini85
+		epicautini484
+		epicautini271
+		epicautini56
+		epicautini257
+		epicautini465
+		epicautini384
+		epicautini226
+		epicautini414
+		epicautini382
+		epicautini350
+		epicautini307
+		epicautini399
+		epicautini79
+		epicautini360
+		epicautini121
+		epicautini326
+		epicautini281
+		epicautini66
+		epicautini263
+		epicautini363
+		epicautini391
+		epicautini242
+		epicautini496
+		epicautini280
+		epicautini458
+		epicautini533
+		epicautini93
+		epicautini195
+		epicautini482
+		epicautini293
+		epicautini248
+		epicautini168
+		epicautini26
+		epicautini546
+		epicautini324
+		epicautini109
+		epicautini331
+		epicautini198
+		epicautini70
+		epicautini387
+		epicautini83
+		epicautini25
+		epicautini120
+		epicautini380
+		epicautini31
+		epicautini135
+		epicautini40
+		epicautini102
+		epicautini27
+		epicautini24
+		epicautini50
+		epicautini357
+		epicautini177
+		epicautini48
+		epicautini139
+		epicautini319
+		epicautini400
+		epicautini558
+		epicautini98
+		epicautini264
+		epicautini438
+		epicautini116
+		epicautini537
+		epicautini354
+		epicautini245
+		epicautini403
+		epicautini381
+		epicautini216
+		epicautini526
+		epicautini375
+		epicautini122
+		epicautini401
+		epicautini424
+		epicautini82
+		epicautini406
+		epicautini435
+		epicautini481
+		epicautini212
+		epicautini182
+		epicautini64
+		epicautini81
+		epicautini477
+		epicautini457
+		epicautini234
+		epicautini105
+		epicautini203
+		epicautini213
+		epicautini67
+		epicautini92
+		epicautini232
+		epicautini347
+		epicautini446
+		epicautini480
+		epicautini294
+		epicautini235
+		epicautini112
+		epicautini543
+		epicautini471
+		epicautini43
+		epicautini497
+		epicautini297
+		epicautini321
+		epicautini292
+		epicautini529
+		epicautini19
+		epicautini364
+		epicautini223
+		epicautini51
+		epicautini10
+		epicautini114
+		epicautini555
+		epicautini172
+		epicautini21
+		epicautini171
+		epicautini366
+		epicautini361
+		epicautini91
+		epicautini377
+		epicautini194
+		epicautini88
+		epicautini498
+		epicautini506
+		epicautini273
+		epicautini355
+		epicautini209
+		epicautini362
+		epicautini521
+		epicautini199
+		meloini116
+		meloini115
+		meloini50
+		meloini159
+		meloini7
+		meloini152
+		meloini129
+		meloini153
+		meloini88
+		meloini45
+		meloini18
+		meloini85
+		meloini1
+		meloini63
+		meloini60
+		meloini104
+		meloini42
+		meloini106
+		meloini89
+		meloini149
+		meloini140
+		meloini64
+		meloini3
+		meloini49
+		meloini96
+		meloini98
+		meloini35
+		meloini160
+		meloini28
+		meloini145
+		meloini65
+		meloini125
+		meloini76
+		meloini122
+		meloini37
+		meloini14
+		meloini17
+		meloini82
+		meloini86
+		meloini53
+		meloini131
+		meloini120
+		meloini112
+		meloini38
+		meloini97
+		meloini148
+		meloini147
+		meloini73
+		meloini39
+		meloini23
+		meloini118
+		meloini32
+		meloini155
+		meloini59
+		meloini154
+		meloini30
+		meloini124
+		meloini44
+		meloini136
+		meloini108
+		meloini47
+		meloini94
+		meloini36
+		meloini156
+		meloini90
+		meloini87
+		meloini8
+		meloini2
+		meloini6
+		meloini4
+		meloini66
+		meloini139
+		meloini21
+		meloini113
+		meloini72
+		meloini84
+		meloini142
+		meloini5
+		meloini128
+		meloini61
+		meloini52
+		meloini102
+		meloini75
+		meloini100
+		meloini92
+		meloini77
+		meloini109
+		meloini157
+		meloini144
+		meloini48
+		meloini43
+		meloini141
+		meloini10
+		meloini56
+		meloini54
+		meloini110
+		meloini80
+		meloini11
+		meloini19
+		meloini46
+		meloini83
+		meloini132
+		meloini25
+		meloini78
+		meloini33
+		meloini138
+		meloini103
+		meloini71
+		meloini70
+		meloini20
+		meloini119
+		meloini135
+		meloini93
+		meloini68
+		meloini79
+		meloini29
+		meloini24
+		meloini107
+		meloini111
+		meloini62
+		meloini121
+		meloini158
+		meloini99
+		meloini95
+		meloini26
+		meloini58
+		meloini114
+		meloini22
+		meloini51
+		meloini133
+		meloini127
+		meloini27
+		meloini31
+		meloini134
+		meloini41
+		meloini101
+		meloini146
+		meloini9
+		meloini69
+		meloini81
+		meloini34
+		meloini117
+		meloini130
+		meloini74
+		meloini40
+		meloini16
+		meloini13
+		meloini57
+		meloini137
+		meloini91
+		meloini15
+		meloini67
+		meloini12
+		meloini150
+		meloini105
+		meloini151
+		meloini143
+		meloini55
+		meloini126
+		meloini123
+		eupomphini5
+		eupomphini4
+		eupomphini10
+		eupomphini20
+		eupomphini6
+		eupomphini1
+		eupomphini16
+		eupomphini21
+		eupomphini9
+		eupomphini15
+		eupomphini2
+		eupomphini11
+		eupomphini23
+		eupomphini12
+		eupomphini14
+		eupomphini19
+		eupomphini3
+		eupomphini18
+		eupomphini26
+		eupomphini25
+		eupomphini24
+		eupomphini7
+		eupomphini13
+		eupomphini8
+		eupomphini17
+		eupomphini22
+		hycleus350
+		hycleus5
+		hycleus229
+		hycleus375
+		hycleus287
+		hycleus340
+		hycleus354
+		hycleus147
+		hycleus55
+		hycleus65
+		hycleus20
+		hycleus400
+		hycleus92
+		hycleus129
+		hycleus248
+		hycleus237
+		hycleus114
+		hycleus273
+		hycleus8
+		hycleus44
+		hycleus392
+		hycleus225
+		hycleus346
+		hycleus25
+		hycleus162
+		hycleus69
+		hycleus197
+		hycleus33
+		hycleus378
+		hycleus341
+		hycleus266
+		hycleus166
+		hycleus181
+		hycleus382
+		hycleus235
+		hycleus293
+		hycleus325
+		hycleus321
+		hycleus179
+		hycleus234
+		hycleus95
+		hycleus280
+		hycleus203
+		hycleus329
+		hycleus218
+		hycleus265
+		hycleus385
+		hycleus253
+		hycleus213
+		hycleus243
+		hycleus221
+		hycleus337
+		hycleus443
+		hycleus389
+		hycleus259
+		hycleus279
+		hycleus217
+		hycleus244
+		hycleus174
+		hycleus245
+		hycleus51
+		hycleus94
+		hycleus132
+		hycleus148
+		hycleus102
+		hycleus66
+		hycleus150
+		hycleus448
+		hycleus313
+		hycleus241
+		hycleus391
+		hycleus100
+		hycleus105
+		hycleus171
+		hycleus254
+		hycleus206
+		hycleus107
+		hycleus186
+		hycleus146
+		hycleus207
+		hycleus104
+		hycleus216
+		hycleus208
+		hycleus139
+		hycleus61
+		hycleus422
+		hycleus79
+		hycleus41
+		hycleus134
+		hycleus336
+		hycleus424
+		hycleus397
+		hycleus224
+		hycleus198
+		hycleus324
+		hycleus423
+		hycleus130
+		hycleus320
+		hycleus435
+		hycleus365
+		hycleus209
+		hycleus31
+		hycleus97
+		hycleus118
+		hycleus29
+		hycleus381
+		hycleus330
+		hycleus115
+		hycleus363
+		hycleus264
+		hycleus37
+		hycleus87
+		hycleus48
+		hycleus271
+		hycleus368
+		hycleus176
+		hycleus231
+		hycleus14
+		hycleus123
+		hycleus158
+		hycleus165
+		hycleus268
+		hycleus302
+		hycleus53
+		hycleus70
+		hycleus407
+		hycleus205
+		hycleus344
+		hycleus444
+		hycleus275
+		hycleus439
+		hycleus419
+		hycleus308
+		hycleus410
+		hycleus334
+		hycleus322
+		hycleus426
+		hycleus239
+		hycleus151
+		hycleus119
+		hycleus323
+		hycleus30
+		hycleus170
+		hycleus351
+		hycleus383
+		hycleus427
+		hycleus215
+		hycleus343
+		hycleus110
+		hycleus262
+		hycleus194
+		hycleus99
+		hycleus17
+		hycleus86
+		hycleus364
+		hycleus12
+		hycleus214
+		hycleus54
+		hycleus246
+		hycleus342
+		hycleus10
+		hycleus112
+		hycleus204
+		hycleus376
+		hycleus425
+		hycleus52
+		hycleus360
+		hycleus133
+		hycleus412
+		hycleus121
+		hycleus200
+		hycleus74
+		hycleus356
+		hycleus304
+		hycleus357
+		hycleus347
+		hycleus269
+		hycleus415
+		hycleus272
+		hycleus145
+		hycleus386
+		hycleus319
+		hycleus50
+		hycleus436
+		hycleus305
+		hycleus164
+		hycleus328
+		hycleus180
+		hycleus1
+		hycleus46
+		hycleus398
+		hycleus144
+		hycleus32
+		hycleus238
+		hycleus24
+		hycleus103
+		hycleus429
+		hycleus63
+		hycleus432
+		hycleus160
+		hycleus168
+		hycleus101
+		hycleus212
+		hycleus420
+		hycleus387
+		hycleus49
+		hycleus369
+		hycleus434
+		hycleus405
+		hycleus36
+		hycleus73
+		hycleus428
+		hycleus18
+		hycleus127
+		hycleus71
+		hycleus256
+		hycleus16
+		hycleus106
+		hycleus301
+		hycleus401
+		hycleus141
+		hycleus297
+		hycleus6
+		hycleus413
+		hycleus402
+		hycleus284
+		hycleus43
+		hycleus45
+		hycleus7
+		hycleus255
+		hycleus291
+		hycleus408
+		hycleus338
+		hycleus219
+		hycleus175
+		hycleus177
+		hycleus58
+		hycleus228
+		hycleus270
+		hycleus285
+		hycleus395
+		hycleus211
+		hycleus23
+		hycleus384
+		hycleus57
+		hycleus188
+		hycleus318
+		hycleus446
+		hycleus195
+		hycleus85
+		hycleus312
+		hycleus82
+		hycleus242
+		hycleus93
+		hycleus450
+		hycleus22
+		hycleus249
+		hycleus27
+		hycleus396
+		hycleus62
+		hycleus372
+		hycleus292
+		hycleus233
+		hycleus60
+		hycleus416
+		hycleus40
+		hycleus72
+		hycleus332
+		hycleus42
+		hycleus137
+		hycleus109
+		hycleus441
+		hycleus172
+		hycleus281
+		hycleus353
+		hycleus440
+		hycleus178
+		hycleus247
+		hycleus155
+		hycleus366
+		hycleus4
+		hycleus108
+		hycleus303
+		hycleus131
+		hycleus159
+		hycleus111
+		hycleus153
+		hycleus90
+		hycleus352
+		hycleus191
+		hycleus252
+		hycleus222
+		hycleus411
+		hycleus418
+		hycleus295
+		hycleus68
+		hycleus326
+		hycleus362
+		hycleus185
+		hycleus13
+		hycleus278
+		hycleus300
+		hycleus183
+		hycleus113
+		hycleus122
+		hycleus276
+		hycleus67
+		hycleus437
+		hycleus142
+		hycleus232
+		hycleus307
+		hycleus230
+		hycleus390
+		hycleus154
+		hycleus81
+		hycleus333
+		hycleus370
+		hycleus417
+		hycleus201
+		hycleus78
+		hycleus263
+		hycleus138
+		hycleus199
+		hycleus257
+		hycleus430
+		hycleus76
+		hycleus449
+		hycleus286
+		hycleus335
+		hycleus135
+		hycleus298
+		hycleus39
+		hycleus404
+		hycleus184
+		hycleus393
+		hycleus182
+		hycleus15
+		hycleus355
+		hycleus167
+		hycleus294
+		hycleus189
+		hycleus310
+		hycleus442
+		hycleus373
+		hycleus120
+		hycleus399
+		hycleus283
+		hycleus288
+		hycleus394
+		hycleus379
+		hycleus116
+		hycleus21
+		hycleus140
+		hycleus296
+		hycleus210
+		hycleus98
+		hycleus445
+		hycleus349
+		hycleus226
+		hycleus309
+		hycleus163
+		hycleus2
+		hycleus317
+		hycleus126
+		hycleus56
+		hycleus374
+		hycleus277
+		hycleus431
+		hycleus315
+		hycleus91
+		hycleus169
+		hycleus406
+		hycleus156
+		hycleus327
+		hycleus371
+		hycleus125
+		hycleus306
+		hycleus80
+		hycleus282
+		hycleus258
+		hycleus152
+		hycleus202
+		hycleus19
+		hycleus331
+		hycleus403
+		hycleus261
+		hycleus9
+		hycleus433
+		hycleus447
+		hycleus35
+		hycleus377
+		hycleus89
+		hycleus173
+		hycleus289
+		hycleus236
+		hycleus348
+		hycleus161
+		hycleus367
+		hycleus361
+		hycleus359
+		hycleus299
+		hycleus314
+		hycleus193
+		hycleus251
+		hycleus339
+		hycleus96
+		hycleus250
+		hycleus38
+		hycleus77
+		hycleus345
+		hycleus227
+		hycleus414
+		hycleus260
+		hycleus124
+		hycleus143
+		hycleus47
+		hycleus157
+		hycleus196
+		hycleus438
+		hycleus240
+		hycleus84
+		hycleus26
+		hycleus34
+		hycleus220
+		hycleus192
+		hycleus64
+		hycleus149
+		hycleus83
+		hycleus316
+		hycleus75
+		hycleus190
+		hycleus358
+		hycleus88
+		hycleus28
+		hycleus11
+		hycleus128
+		hycleus290
+		hycleus380
+		hycleus136
+		hycleus59
+		hycleus117
+		hycleus223
+		hycleus388
+		hycleus409
+		hycleus274
+		hycleus187
+		hycleus311
+		hycleus267
+		hycleus3
+		hycleus421
+		mylabrini182
+		mylabrini265
+		mylabrini87
+		mylabrini268
+		mylabrini18
+		mylabrini148
+		mylabrini35
+		mylabrini99
+		mylabrini100
+		mylabrini112
+		mylabrini239
+		mylabrini81
+		mylabrini56
+		mylabrini132
+		mylabrini256
+		mylabrini39
+		mylabrini58
+		mylabrini187
+		mylabrini202
+		mylabrini26
+		mylabrini88
+		mylabrini198
+		mylabrini245
+		mylabrini91
+		mylabrini195
+		mylabrini211
+		mylabrini170
+		mylabrini276
+		mylabrini210
+		mylabrini135
+		mylabrini259
+		mylabrini126
+		mylabrini199
+		mylabrini277
+		mylabrini175
+		mylabrini179
+		mylabrini142
+		mylabrini12
+		mylabrini155
+		mylabrini139
+		mylabrini127
+		mylabrini207
+		mylabrini200
+		mylabrini2
+		mylabrini188
+		mylabrini263
+		mylabrini37
+		mylabrini282
+		mylabrini243
+		mylabrini203
+		mylabrini102
+		mylabrini1
+		mylabrini193
+		mylabrini146
+		mylabrini10
+		mylabrini164
+		mylabrini258
+		mylabrini162
+		mylabrini236
+		mylabrini158
+		mylabrini80
+		mylabrini174
+		mylabrini156
+		mylabrini114
+		mylabrini163
+		mylabrini171
+		mylabrini3
+		mylabrini93
+		mylabrini257
+		mylabrini121
+		mylabrini33
+		mylabrini280
+		mylabrini172
+		mylabrini45
+		mylabrini169
+		mylabrini215
+		mylabrini285
+		mylabrini76
+		mylabrini176
+		mylabrini94
+		mylabrini51
+		mylabrini104
+		mylabrini47
+		mylabrini19
+		mylabrini235
+		mylabrini66
+		mylabrini262
+		mylabrini85
+		mylabrini269
+		mylabrini159
+		mylabrini38
+		mylabrini30
+		mylabrini205
+		mylabrini134
+		mylabrini103
+		mylabrini75
+		mylabrini152
+		mylabrini226
+		mylabrini124
+		mylabrini151
+		mylabrini214
+		mylabrini238
+		mylabrini209
+		mylabrini255
+		mylabrini220
+		mylabrini173
+		mylabrini266
+		mylabrini55
+		mylabrini15
+		mylabrini197
+		mylabrini204
+		mylabrini107
+		mylabrini136
+		mylabrini83
+		mylabrini24
+		mylabrini250
+		mylabrini251
+		mylabrini128
+		mylabrini96
+		mylabrini60
+		mylabrini53
+		mylabrini17
+		mylabrini9
+		mylabrini57
+		mylabrini6
+		mylabrini248
+		mylabrini105
+		mylabrini244
+		mylabrini117
+		mylabrini5
+		mylabrini189
+		mylabrini231
+		mylabrini166
+		mylabrini78
+		mylabrini7
+		mylabrini49
+		mylabrini116
+		mylabrini28
+		mylabrini98
+		mylabrini50
+		mylabrini219
+		mylabrini225
+		mylabrini217
+		mylabrini261
+		mylabrini84
+		mylabrini230
+		mylabrini68
+		mylabrini241
+		mylabrini29
+		mylabrini59
+		mylabrini254
+		mylabrini20
+		mylabrini70
+		mylabrini48
+		mylabrini129
+		mylabrini283
+		mylabrini71
+		mylabrini138
+		mylabrini62
+		mylabrini167
+		mylabrini145
+		mylabrini229
+		mylabrini73
+		mylabrini69
+		mylabrini137
+		mylabrini190
+		mylabrini44
+		mylabrini67
+		mylabrini41
+		mylabrini192
+		mylabrini123
+		mylabrini206
+		mylabrini153
+		mylabrini54
+		mylabrini52
+		mylabrini247
+		mylabrini86
+		mylabrini23
+		mylabrini272
+		mylabrini232
+		mylabrini279
+		mylabrini110
+		mylabrini101
+		mylabrini270
+		mylabrini227
+		mylabrini43
+		mylabrini191
+		mylabrini223
+		mylabrini140
+		mylabrini184
+		mylabrini150
+		mylabrini147
+		mylabrini168
+		mylabrini216
+		mylabrini118
+		mylabrini122
+		mylabrini271
+		mylabrini108
+		mylabrini40
+		mylabrini264
+		mylabrini27
+		mylabrini218
+		mylabrini273
+		mylabrini183
+		mylabrini72
+		mylabrini284
+		mylabrini4
+		mylabrini240
+		mylabrini34
+		mylabrini77
+		mylabrini161
+		mylabrini14
+		mylabrini131
+		mylabrini46
+		mylabrini111
+		mylabrini95
+		mylabrini141
+		mylabrini246
+		mylabrini278
+		mylabrini281
+		mylabrini154
+		mylabrini89
+		mylabrini249
+		mylabrini109
+		mylabrini212
+		mylabrini213
+		mylabrini157
+		mylabrini275
+		mylabrini90
+		mylabrini253
+		mylabrini63
+		mylabrini160
+		mylabrini178
+		mylabrini42
+		mylabrini177
+		mylabrini228
+		mylabrini31
+		mylabrini119
+		mylabrini32
+		mylabrini82
+		mylabrini92
+		mylabrini125
+		mylabrini260
+		mylabrini194
+		mylabrini13
+		mylabrini208
+		mylabrini74
+		mylabrini106
+		mylabrini113
+		mylabrini22
+		mylabrini224
+		mylabrini180
+		mylabrini143
+		mylabrini25
+		mylabrini133
+		mylabrini252
+		mylabrini144
+		mylabrini181
+		mylabrini267
+		mylabrini64
+		mylabrini233
+		mylabrini221
+		mylabrini8
+		mylabrini21
+		mylabrini165
+		mylabrini130
+		mylabrini242
+		mylabrini65
+		mylabrini79
+		mylabrini186
+		mylabrini115
+		mylabrini234
+		mylabrini61
+		mylabrini11
+		mylabrini196
+		mylabrini222
+		mylabrini201
+		mylabrini97
+		mylabrini36
+		mylabrini185
+		mylabrini237
+		mylabrini274
+		mylabrini16
+		mylabrini149
+		mylabrini120
+		lyttini44
+		lyttini92
+		lyttini55
+		lyttini49
+		lyttini132
+		lyttini64
+		lyttini53
+		lyttini111
+		lyttini25
+		lyttini32
+		lyttini128
+		lyttini19
+		lyttini115
+		lyttini124
+		lyttini34
+		lyttini126
+		lyttini71
+		lyttini38
+		lyttini40
+		lyttini17
+		lyttini137
+		lyttini73
+		lyttini12
+		lyttini78
+		lyttini4
+		lyttini5
+		lyttini125
+		lyttini91
+		lyttini79
+		lyttini118
+		lyttini127
+		lyttini75
+		lyttini58
+		lyttini122
+		lyttini66
+		lyttini84
+		lyttini16
+		lyttini129
+		lyttini62
+		lyttini83
+		lyttini29
+		lyttini87
+		lyttini36
+		lyttini54
+		lyttini95
+		lyttini81
+		lyttini113
+		lyttini110
+		lyttini116
+		lyttini51
+		lyttini11
+		lyttini100
+		lyttini7
+		lyttini63
+		lyttini23
+		lyttini13
+		lyttini69
+		lyttini68
+		lyttini108
+		lyttini103
+		lyttini65
+		lyttini123
+		lyttini114
+		lyttini93
+		lyttini89
+		lyttini18
+		lyttini121
+		lyttini98
+		lyttini99
+		lyttini117
+		lyttini61
+		lyttini119
+		lyttini88
+		lyttini10
+		lyttini70
+		lyttini134
+		lyttini1
+		lyttini33
+		lyttini22
+		lyttini102
+		lyttini59
+		lyttini133
+		lyttini30
+		lyttini26
+		lyttini136
+		lyttini27
+		lyttini131
+		lyttini67
+		lyttini74
+		lyttini101
+		lyttini52
+		lyttini24
+		lyttini8
+		lyttini112
+		lyttini135
+		lyttini39
+		lyttini37
+		lyttini94
+		lyttini20
+		lyttini2
+		lyttini31
+		lyttini28
+		lyttini90
+		lyttini77
+		lyttini130
+		lyttini56
+		lyttini43
+		lyttini107
+		lyttini46
+		lyttini85
+		lyttini105
+		lyttini35
+		lyttini45
+		lyttini97
+		lyttini48
+		lyttini50
+		lyttini6
+		lyttini57
+		lyttini104
+		lyttini72
+		lyttini14
+		lyttini21
+		lyttini96
+		lyttini42
+		lyttini80
+		lyttini82
+		lyttini86
+		lyttini9
+		lyttini15
+		lyttini109
+		lyttini47
+		lyttini120
+		lyttini76
+		lyttini41
+		lyttini60
+		lyttini3
+		lyttini106
+	;
+END;
+BEGIN TREES;
+	TRANSLATE
+		1	Berberomeloe_majalis,
+		2	Cissites,
+		3	Lagorina_sericea,
+		4	Pyrota,
+		5	Spastonyx_nemognathoides,
+		6	nemognathinae337,
+		7	nemognathinae136,
+		8	nemognathinae155,
+		9	nemognathinae151,
+		10	nemognathinae225,
+		11	nemognathinae205,
+		12	nemognathinae83,
+		13	nemognathinae211,
+		14	nemognathinae253,
+		15	nemognathinae420,
+		16	nemognathinae72,
+		17	nemognathinae167,
+		18	nemognathinae214,
+		19	nemognathinae120,
+		20	nemognathinae246,
+		21	nemognathinae118,
+		22	nemognathinae172,
+		23	nemognathinae399,
+		24	nemognathinae486,
+		25	nemognathinae231,
+		26	nemognathinae455,
+		27	nemognathinae267,
+		28	nemognathinae123,
+		29	nemognathinae1,
+		30	nemognathinae186,
+		31	nemognathinae281,
+		32	nemognathinae348,
+		33	nemognathinae199,
+		34	nemognathinae165,
+		35	nemognathinae286,
+		36	nemognathinae407,
+		37	nemognathinae428,
+		38	nemognathinae159,
+		39	nemognathinae317,
+		40	nemognathinae183,
+		41	nemognathinae90,
+		42	nemognathinae475,
+		43	nemognathinae389,
+		44	nemognathinae292,
+		45	nemognathinae331,
+		46	nemognathinae242,
+		47	nemognathinae369,
+		48	nemognathinae451,
+		49	nemognathinae403,
+		50	nemognathinae18,
+		51	nemognathinae232,
+		52	nemognathinae320,
+		53	nemognathinae456,
+		54	nemognathinae477,
+		55	nemognathinae457,
+		56	nemognathinae34,
+		57	nemognathinae316,
+		58	nemognathinae264,
+		59	nemognathinae75,
+		60	nemognathinae236,
+		61	nemognathinae409,
+		62	nemognathinae438,
+		63	nemognathinae147,
+		64	nemognathinae469,
+		65	nemognathinae452,
+		66	nemognathinae191,
+		67	nemognathinae364,
+		68	nemognathinae195,
+		69	nemognathinae401,
+		70	nemognathinae28,
+		71	nemognathinae500,
+		72	nemognathinae51,
+		73	nemognathinae23,
+		74	nemognathinae296,
+		75	nemognathinae140,
+		76	nemognathinae311,
+		77	nemognathinae439,
+		78	nemognathinae510,
+		79	nemognathinae210,
+		80	nemognathinae16,
+		81	nemognathinae427,
+		82	nemognathinae302,
+		83	nemognathinae520,
+		84	nemognathinae276,
+		85	nemognathinae139,
+		86	nemognathinae313,
+		87	nemognathinae265,
+		88	nemognathinae12,
+		89	nemognathinae41,
+		90	nemognathinae437,
+		91	nemognathinae372,
+		92	nemognathinae436,
+		93	nemognathinae138,
+		94	nemognathinae24,
+		95	nemognathinae516,
+		96	nemognathinae207,
+		97	nemognathinae260,
+		98	nemognathinae226,
+		99	nemognathinae289,
+		100	nemognathinae435,
+		101	nemognathinae127,
+		102	nemognathinae279,
+		103	nemognathinae485,
+		104	nemognathinae95,
+		105	nemognathinae114,
+		106	nemognathinae142,
+		107	nemognathinae483,
+		108	nemognathinae453,
+		109	nemognathinae45,
+		110	nemognathinae237,
+		111	nemognathinae325,
+		112	nemognathinae73,
+		113	nemognathinae99,
+		114	nemognathinae479,
+		115	nemognathinae306,
+		116	nemognathinae227,
+		117	nemognathinae137,
+		118	nemognathinae426,
+		119	nemognathinae404,
+		120	nemognathinae346,
+		121	nemognathinae321,
+		122	nemognathinae119,
+		123	nemognathinae509,
+		124	nemognathinae310,
+		125	nemognathinae355,
+		126	nemognathinae418,
+		127	nemognathinae109,
+		128	nemognathinae145,
+		129	nemognathinae249,
+		130	nemognathinae251,
+		131	nemognathinae62,
+		132	nemognathinae178,
+		133	nemognathinae201,
+		134	nemognathinae391,
+		135	nemognathinae37,
+		136	nemognathinae117,
+		137	nemognathinae378,
+		138	nemognathinae375,
+		139	nemognathinae55,
+		140	nemognathinae274,
+		141	nemognathinae411,
+		142	nemognathinae287,
+		143	nemognathinae57,
+		144	nemognathinae26,
+		145	nemognathinae247,
+		146	nemognathinae126,
+		147	nemognathinae318,
+		148	nemognathinae497,
+		149	nemognathinae257,
+		150	nemognathinae476,
+		151	nemognathinae494,
+		152	nemognathinae74,
+		153	nemognathinae219,
+		154	nemognathinae298,
+		155	nemognathinae150,
+		156	nemognathinae182,
+		157	nemognathinae85,
+		158	nemognathinae429,
+		159	nemognathinae490,
+		160	nemognathinae218,
+		161	nemognathinae181,
+		162	nemognathinae507,
+		163	nemognathinae36,
+		164	nemognathinae300,
+		165	nemognathinae342,
+		166	nemognathinae396,
+		167	nemognathinae20,
+		168	nemognathinae153,
+		169	nemognathinae193,
+		170	nemognathinae29,
+		171	nemognathinae125,
+		172	nemognathinae488,
+		173	nemognathinae101,
+		174	nemognathinae504,
+		175	nemognathinae315,
+		176	nemognathinae89,
+		177	nemognathinae285,
+		178	nemognathinae425,
+		179	nemognathinae52,
+		180	nemognathinae130,
+		181	nemognathinae478,
+		182	nemognathinae124,
+		183	nemognathinae400,
+		184	nemognathinae334,
+		185	nemognathinae203,
+		186	nemognathinae149,
+		187	nemognathinae189,
+		188	nemognathinae381,
+		189	nemognathinae128,
+		190	nemognathinae387,
+		191	nemognathinae143,
+		192	nemognathinae338,
+		193	nemognathinae501,
+		194	nemognathinae275,
+		195	nemognathinae368,
+		196	nemognathinae168,
+		197	nemognathinae217,
+		198	nemognathinae240,
+		199	nemognathinae96,
+		200	nemognathinae174,
+		201	nemognathinae198,
+		202	nemognathinae350,
+		203	nemognathinae68,
+		204	nemognathinae326,
+		205	nemognathinae98,
+		206	nemognathinae50,
+		207	nemognathinae212,
+		208	nemognathinae303,
+		209	nemognathinae103,
+		210	nemognathinae441,
+		211	nemognathinae508,
+		212	nemognathinae434,
+		213	nemognathinae365,
+		214	nemognathinae447,
+		215	nemognathinae148,
+		216	nemognathinae390,
+		217	nemognathinae305,
+		218	nemognathinae361,
+		219	nemognathinae84,
+		220	nemognathinae273,
+		221	nemognathinae466,
+		222	nemognathinae503,
+		223	nemognathinae221,
+		224	nemognathinae511,
+		225	nemognathinae91,
+		226	nemognathinae223,
+		227	nemognathinae385,
+		228	nemognathinae156,
+		229	nemognathinae134,
+		230	nemognathinae164,
+		231	nemognathinae353,
+		232	nemognathinae499,
+		233	nemognathinae63,
+		234	nemognathinae102,
+		235	nemognathinae200,
+		236	nemognathinae416,
+		237	nemognathinae472,
+		238	nemognathinae415,
+		239	nemognathinae394,
+		240	nemognathinae443,
+		241	nemognathinae402,
+		242	nemognathinae228,
+		243	nemognathinae13,
+		244	nemognathinae374,
+		245	nemognathinae376,
+		246	nemognathinae366,
+		247	nemognathinae471,
+		248	nemognathinae208,
+		249	nemognathinae330,
+		250	nemognathinae48,
+		251	nemognathinae248,
+		252	nemognathinae213,
+		253	nemognathinae77,
+		254	nemognathinae2,
+		255	nemognathinae9,
+		256	nemognathinae505,
+		257	nemognathinae196,
+		258	nemognathinae42,
+		259	nemognathinae336,
+		260	nemognathinae356,
+		261	nemognathinae297,
+		262	nemognathinae444,
+		263	nemognathinae244,
+		264	nemognathinae442,
+		265	nemognathinae78,
+		266	nemognathinae332,
+		267	nemognathinae370,
+		268	nemognathinae4,
+		269	nemognathinae269,
+		270	nemognathinae489,
+		271	nemognathinae107,
+		272	nemognathinae518,
+		273	nemognathinae229,
+		274	nemognathinae522,
+		275	nemognathinae166,
+		276	nemognathinae388,
+		277	nemognathinae64,
+		278	nemognathinae215,
+		279	nemognathinae47,
+		280	nemognathinae255,
+		281	nemognathinae495,
+		282	nemognathinae112,
+		283	nemognathinae397,
+		284	nemognathinae454,
+		285	nemognathinae432,
+		286	nemognathinae308,
+		287	nemognathinae359,
+		288	nemognathinae187,
+		289	nemognathinae58,
+		290	nemognathinae517,
+		291	nemognathinae358,
+		292	nemognathinae110,
+		293	nemognathinae14,
+		294	nemognathinae80,
+		295	nemognathinae46,
+		296	nemognathinae161,
+		297	nemognathinae141,
+		298	nemognathinae116,
+		299	nemognathinae354,
+		300	nemognathinae266,
+		301	nemognathinae421,
+		302	nemognathinae413,
+		303	nemognathinae344,
+		304	nemognathinae487,
+		305	nemognathinae243,
+		306	nemognathinae341,
+		307	nemognathinae423,
+		308	nemognathinae86,
+		309	nemognathinae10,
+		310	nemognathinae458,
+		311	nemognathinae163,
+		312	nemognathinae67,
+		313	nemognathinae135,
+		314	nemognathinae465,
+		315	nemognathinae319,
+		316	nemognathinae106,
+		317	nemognathinae282,
+		318	nemognathinae53,
+		319	nemognathinae335,
+		320	nemognathinae414,
+		321	nemognathinae473,
+		322	nemognathinae482,
+		323	nemognathinae384,
+		324	nemognathinae492,
+		325	nemognathinae184,
+		326	nemognathinae304,
+		327	nemognathinae171,
+		328	nemognathinae493,
+		329	nemognathinae481,
+		330	nemognathinae15,
+		331	nemognathinae3,
+		332	nemognathinae152,
+		333	nemognathinae461,
+		334	nemognathinae179,
+		335	nemognathinae40,
+		336	nemognathinae377,
+		337	nemognathinae190,
+		338	nemognathinae460,
+		339	nemognathinae262,
+		340	nemognathinae25,
+		341	nemognathinae464,
+		342	nemognathinae81,
+		343	nemognathinae514,
+		344	nemognathinae299,
+		345	nemognathinae38,
+		346	nemognathinae329,
+		347	nemognathinae339,
+		348	nemognathinae43,
+		349	nemognathinae324,
+		350	nemognathinae449,
+		351	nemognathinae17,
+		352	nemognathinae146,
+		353	nemognathinae393,
+		354	nemognathinae220,
+		355	nemognathinae92,
+		356	nemognathinae424,
+		357	nemognathinae33,
+		358	nemognathinae352,
+		359	nemognathinae104,
+		360	nemognathinae283,
+		361	nemognathinae322,
+		362	nemognathinae157,
+		363	nemognathinae32,
+		364	nemognathinae216,
+		365	nemognathinae60,
+		366	nemognathinae76,
+		367	nemognathinae22,
+		368	nemognathinae408,
+		369	nemognathinae56,
+		370	nemognathinae79,
+		371	nemognathinae357,
+		372	nemognathinae448,
+		373	nemognathinae180,
+		374	nemognathinae6,
+		375	nemognathinae412,
+		376	nemognathinae206,
+		377	nemognathinae11,
+		378	nemognathinae158,
+		379	nemognathinae307,
+		380	nemognathinae239,
+		381	nemognathinae94,
+		382	nemognathinae121,
+		383	nemognathinae71,
+		384	nemognathinae129,
+		385	nemognathinae431,
+		386	nemognathinae383,
+		387	nemognathinae69,
+		388	nemognathinae430,
+		389	nemognathinae66,
+		390	nemognathinae343,
+		391	nemognathinae271,
+		392	nemognathinae422,
+		393	nemognathinae484,
+		394	nemognathinae122,
+		395	nemognathinae371,
+		396	nemognathinae261,
+		397	nemognathinae35,
+		398	nemognathinae224,
+		399	nemognathinae459,
+		400	nemognathinae197,
+		401	nemognathinae312,
+		402	nemognathinae340,
+		403	nemognathinae250,
+		404	nemognathinae234,
+		405	nemognathinae259,
+		406	nemognathinae162,
+		407	nemognathinae144,
+		408	nemognathinae290,
+		409	nemognathinae21,
+		410	nemognathinae54,
+		411	nemognathinae263,
+		412	nemognathinae440,
+		413	nemognathinae133,
+		414	nemognathinae105,
+		415	nemognathinae417,
+		416	nemognathinae474,
+		417	nemognathinae284,
+		418	nemognathinae515,
+		419	nemognathinae115,
+		420	nemognathinae498,
+		421	nemognathinae470,
+		422	nemognathinae363,
+		423	nemognathinae491,
+		424	nemognathinae82,
+		425	nemognathinae386,
+		426	nemognathinae382,
+		427	nemognathinae59,
+		428	nemognathinae405,
+		429	nemognathinae70,
+		430	nemognathinae463,
+		431	nemognathinae111,
+		432	nemognathinae209,
+		433	nemognathinae8,
+		434	nemognathinae194,
+		435	nemognathinae468,
+		436	nemognathinae202,
+		437	nemognathinae131,
+		438	nemognathinae235,
+		439	nemognathinae65,
+		440	nemognathinae347,
+		441	nemognathinae367,
+		442	nemognathinae410,
+		443	nemognathinae113,
+		444	nemognathinae233,
+		445	nemognathinae446,
+		446	nemognathinae288,
+		447	nemognathinae238,
+		448	nemognathinae176,
+		449	nemognathinae177,
+		450	nemognathinae132,
+		451	nemognathinae480,
+		452	nemognathinae277,
+		453	nemognathinae108,
+		454	nemognathinae333,
+		455	nemognathinae100,
+		456	nemognathinae170,
+		457	nemognathinae294,
+		458	nemognathinae7,
+		459	nemognathinae254,
+		460	nemognathinae204,
+		461	nemognathinae295,
+		462	nemognathinae252,
+		463	nemognathinae351,
+		464	nemognathinae462,
+		465	nemognathinae270,
+		466	nemognathinae49,
+		467	nemognathinae27,
+		468	nemognathinae345,
+		469	nemognathinae44,
+		470	nemognathinae293,
+		471	nemognathinae173,
+		472	nemognathinae328,
+		473	nemognathinae169,
+		474	nemognathinae230,
+		475	nemognathinae314,
+		476	nemognathinae512,
+		477	nemognathinae373,
+		478	nemognathinae188,
+		479	nemognathinae513,
+		480	nemognathinae241,
+		481	nemognathinae278,
+		482	nemognathinae222,
+		483	nemognathinae406,
+		484	nemognathinae450,
+		485	nemognathinae380,
+		486	nemognathinae323,
+		487	nemognathinae268,
+		488	nemognathinae301,
+		489	nemognathinae19,
+		490	nemognathinae467,
+		491	nemognathinae379,
+		492	nemognathinae506,
+		493	nemognathinae256,
+		494	nemognathinae5,
+		495	nemognathinae398,
+		496	nemognathinae175,
+		497	nemognathinae160,
+		498	nemognathinae61,
+		499	nemognathinae523,
+		500	nemognathinae327,
+		501	nemognathinae433,
+		502	nemognathinae445,
+		503	nemognathinae88,
+		504	nemognathinae519,
+		505	nemognathinae258,
+		506	nemognathinae360,
+		507	nemognathinae349,
+		508	nemognathinae521,
+		509	nemognathinae291,
+		510	nemognathinae502,
+		511	nemognathinae31,
+		512	nemognathinae280,
+		513	nemognathinae30,
+		514	nemognathinae419,
+		515	nemognathinae154,
+		516	nemognathinae185,
+		517	nemognathinae496,
+		518	nemognathinae392,
+		519	nemognathinae395,
+		520	nemognathinae309,
+		521	nemognathinae362,
+		522	nemognathinae39,
+		523	nemognathinae97,
+		524	nemognathinae93,
+		525	nemognathinae87,
+		526	nemognathinae192,
+		527	nemognathinae272,
+		528	nemognathinae245,
+		529	epicautini311,
+		530	epicautini134,
+		531	epicautini150,
+		532	epicautini15,
+		533	epicautini218,
+		534	epicautini162,
+		535	epicautini300,
+		536	epicautini44,
+		537	epicautini282,
+		538	epicautini259,
+		539	epicautini158,
+		540	epicautini329,
+		541	epicautini106,
+		542	epicautini392,
+		543	epicautini7,
+		544	epicautini488,
+		545	epicautini229,
+		546	epicautini527,
+		547	epicautini367,
+		548	epicautini301,
+		549	epicautini142,
+		550	epicautini370,
+		551	epicautini71,
+		552	epicautini412,
+		553	epicautini564,
+		554	epicautini107,
+		555	epicautini499,
+		556	epicautini327,
+		557	epicautini117,
+		558	epicautini76,
+		559	epicautini304,
+		560	epicautini13,
+		561	epicautini34,
+		562	epicautini491,
+		563	epicautini416,
+		564	epicautini388,
+		565	epicautini335,
+		566	epicautini208,
+		567	epicautini422,
+		568	epicautini268,
+		569	epicautini224,
+		570	epicautini23,
+		571	epicautini372,
+		572	epicautini534,
+		573	epicautini317,
+		574	epicautini230,
+		575	epicautini524,
+		576	epicautini492,
+		577	epicautini183,
+		578	epicautini180,
+		579	epicautini310,
+		580	epicautini500,
+		581	epicautini196,
+		582	epicautini37,
+		583	epicautini118,
+		584	epicautini385,
+		585	epicautini52,
+		586	epicautini332,
+		587	epicautini519,
+		588	epicautini296,
+		589	epicautini452,
+		590	epicautini126,
+		591	epicautini12,
+		592	epicautini464,
+		593	epicautini398,
+		594	epicautini14,
+		595	epicautini352,
+		596	epicautini455,
+		597	epicautini518,
+		598	epicautini141,
+		599	epicautini277,
+		600	epicautini155,
+		601	epicautini59,
+		602	epicautini337,
+		603	epicautini302,
+		604	epicautini217,
+		605	epicautini517,
+		606	epicautini35,
+		607	epicautini169,
+		608	epicautini68,
+		609	epicautini470,
+		610	epicautini69,
+		611	epicautini222,
+		612	epicautini174,
+		613	epicautini299,
+		614	epicautini418,
+		615	epicautini478,
+		616	epicautini185,
+		617	epicautini270,
+		618	epicautini351,
+		619	epicautini474,
+		620	epicautini394,
+		621	epicautini557,
+		622	epicautini239,
+		623	epicautini290,
+		624	epicautini16,
+		625	epicautini507,
+		626	epicautini425,
+		627	epicautini323,
+		628	epicautini504,
+		629	epicautini274,
+		630	epicautini160,
+		631	epicautini227,
+		632	epicautini284,
+		633	epicautini314,
+		634	epicautini131,
+		635	epicautini163,
+		636	epicautini450,
+		637	epicautini434,
+		638	epicautini129,
+		639	epicautini411,
+		640	epicautini164,
+		641	epicautini123,
+		642	epicautini108,
+		643	epicautini404,
+		644	epicautini469,
+		645	epicautini447,
+		646	epicautini240,
+		647	epicautini393,
+		648	epicautini501,
+		649	epicautini345,
+		650	epicautini47,
+		651	epicautini138,
+		652	epicautini318,
+		653	epicautini536,
+		654	epicautini343,
+		655	epicautini490,
+		656	epicautini312,
+		657	epicautini419,
+		658	epicautini133,
+		659	epicautini374,
+		660	epicautini128,
+		661	epicautini515,
+		662	epicautini486,
+		663	epicautini252,
+		664	epicautini6,
+		665	epicautini415,
+		666	epicautini548,
+		667	epicautini342,
+		668	epicautini140,
+		669	epicautini95,
+		670	epicautini485,
+		671	epicautini187,
+		672	epicautini303,
+		673	epicautini407,
+		674	epicautini147,
+		675	epicautini365,
+		676	epicautini441,
+		677	epicautini330,
+		678	epicautini551,
+		679	epicautini426,
+		680	epicautini336,
+		681	epicautini244,
+		682	epicautini502,
+		683	epicautini278,
+		684	epicautini456,
+		685	epicautini219,
+		686	epicautini489,
+		687	epicautini250,
+		688	epicautini90,
+		689	epicautini283,
+		690	epicautini410,
+		691	epicautini445,
+		692	epicautini479,
+		693	epicautini65,
+		694	epicautini459,
+		695	epicautini514,
+		696	epicautini184,
+		697	epicautini371,
+		698	epicautini113,
+		699	epicautini5,
+		700	epicautini538,
+		701	epicautini80,
+		702	epicautini3,
+		703	epicautini210,
+		704	epicautini358,
+		705	epicautini439,
+		706	epicautini103,
+		707	epicautini306,
+		708	epicautini1,
+		709	epicautini2,
+		710	epicautini275,
+		711	epicautini468,
+		712	epicautini305,
+		713	epicautini525,
+		714	epicautini136,
+		715	epicautini475,
+		716	epicautini49,
+		717	epicautini266,
+		718	epicautini369,
+		719	epicautini390,
+		720	epicautini39,
+		721	epicautini437,
+		722	epicautini461,
+		723	epicautini356,
+		724	epicautini295,
+		725	epicautini115,
+		726	epicautini413,
+		727	epicautini267,
+		728	epicautini207,
+		729	epicautini167,
+		730	epicautini322,
+		731	epicautini309,
+		732	epicautini62,
+		733	epicautini286,
+		734	epicautini99,
+		735	epicautini4,
+		736	epicautini247,
+		737	epicautini520,
+		738	epicautini60,
+		739	epicautini503,
+		740	epicautini201,
+		741	epicautini228,
+		742	epicautini542,
+		743	epicautini453,
+		744	epicautini466,
+		745	epicautini559,
+		746	epicautini285,
+		747	epicautini78,
+		748	epicautini42,
+		749	epicautini255,
+		750	epicautini463,
+		751	epicautini119,
+		752	epicautini291,
+		753	epicautini428,
+		754	epicautini33,
+		755	epicautini186,
+		756	epicautini552,
+		757	epicautini144,
+		758	epicautini451,
+		759	epicautini440,
+		760	epicautini396,
+		761	epicautini373,
+		762	epicautini540,
+		763	epicautini467,
+		764	epicautini157,
+		765	epicautini386,
+		766	epicautini84,
+		767	epicautini505,
+		768	epicautini556,
+		769	epicautini353,
+		770	epicautini516,
+		771	epicautini61,
+		772	epicautini77,
+		773	epicautini111,
+		774	epicautini420,
+		775	epicautini45,
+		776	epicautini444,
+		777	epicautini339,
+		778	epicautini269,
+		779	epicautini430,
+		780	epicautini206,
+		781	epicautini241,
+		782	epicautini100,
+		783	epicautini20,
+		784	epicautini153,
+		785	epicautini161,
+		786	epicautini204,
+		787	epicautini429,
+		788	epicautini258,
+		789	epicautini541,
+		790	epicautini473,
+		791	epicautini96,
+		792	epicautini193,
+		793	epicautini279,
+		794	epicautini17,
+		795	epicautini376,
+		796	epicautini86,
+		797	epicautini417,
+		798	epicautini29,
+		799	epicautini532,
+		800	epicautini379,
+		801	epicautini325,
+		802	epicautini512,
+		803	epicautini338,
+		804	epicautini143,
+		805	epicautini152,
+		806	epicautini137,
+		807	epicautini53,
+		808	epicautini41,
+		809	epicautini560,
+		810	epicautini166,
+		811	epicautini462,
+		812	epicautini189,
+		813	epicautini460,
+		814	epicautini402,
+		815	epicautini511,
+		816	epicautini389,
+		817	epicautini408,
+		818	epicautini562,
+		819	epicautini289,
+		820	epicautini125,
+		821	epicautini487,
+		822	epicautini104,
+		823	epicautini156,
+		824	epicautini18,
+		825	epicautini179,
+		826	epicautini395,
+		827	epicautini436,
+		828	epicautini472,
+		829	epicautini75,
+		830	epicautini211,
+		831	epicautini547,
+		832	epicautini231,
+		833	epicautini432,
+		834	epicautini8,
+		835	epicautini173,
+		836	epicautini495,
+		837	epicautini159,
+		838	epicautini509,
+		839	epicautini378,
+		840	epicautini494,
+		841	epicautini344,
+		842	epicautini535,
+		843	epicautini220,
+		844	epicautini313,
+		845	epicautini191,
+		846	epicautini188,
+		847	epicautini563,
+		848	epicautini443,
+		849	epicautini510,
+		850	epicautini340,
+		851	epicautini215,
+		852	epicautini523,
+		853	epicautini165,
+		854	epicautini246,
+		855	epicautini554,
+		856	epicautini334,
+		857	epicautini176,
+		858	epicautini87,
+		859	epicautini233,
+		860	epicautini544,
+		861	epicautini175,
+		862	epicautini553,
+		863	epicautini549,
+		864	epicautini55,
+		865	epicautini508,
+		866	epicautini298,
+		867	epicautini333,
+		868	epicautini561,
+		869	epicautini9,
+		870	epicautini32,
+		871	epicautini36,
+		872	epicautini190,
+		873	epicautini225,
+		874	epicautini74,
+		875	epicautini181,
+		876	epicautini531,
+		877	epicautini170,
+		878	epicautini276,
+		879	epicautini200,
+		880	epicautini349,
+		881	epicautini261,
+		882	epicautini238,
+		883	epicautini30,
+		884	epicautini427,
+		885	epicautini22,
+		886	epicautini11,
+		887	epicautini359,
+		888	epicautini328,
+		889	epicautini237,
+		890	epicautini249,
+		891	epicautini272,
+		892	epicautini146,
+		893	epicautini110,
+		894	epicautini288,
+		895	epicautini433,
+		896	epicautini260,
+		897	epicautini454,
+		898	epicautini127,
+		899	epicautini205,
+		900	epicautini202,
+		901	epicautini476,
+		902	epicautini89,
+		903	epicautini545,
+		904	epicautini287,
+		905	epicautini483,
+		906	epicautini149,
+		907	epicautini530,
+		908	epicautini72,
+		909	epicautini243,
+		910	epicautini397,
+		911	epicautini315,
+		912	epicautini346,
+		913	epicautini320,
+		914	epicautini58,
+		915	epicautini148,
+		916	epicautini421,
+		917	epicautini236,
+		918	epicautini341,
+		919	epicautini431,
+		920	epicautini63,
+		921	epicautini97,
+		922	epicautini405,
+		923	epicautini192,
+		924	epicautini513,
+		925	epicautini151,
+		926	epicautini124,
+		927	epicautini214,
+		928	epicautini316,
+		929	epicautini46,
+		930	epicautini308,
+		931	epicautini493,
+		932	epicautini28,
+		933	epicautini423,
+		934	epicautini38,
+		935	epicautini130,
+		936	epicautini197,
+		937	epicautini262,
+		938	epicautini94,
+		939	epicautini145,
+		940	epicautini522,
+		941	epicautini251,
+		942	epicautini57,
+		943	epicautini221,
+		944	epicautini254,
+		945	epicautini154,
+		946	epicautini348,
+		947	epicautini265,
+		948	epicautini73,
+		949	epicautini409,
+		950	epicautini132,
+		951	epicautini442,
+		952	epicautini448,
+		953	epicautini528,
+		954	epicautini253,
+		955	epicautini368,
+		956	epicautini383,
+		957	epicautini449,
+		958	epicautini178,
+		959	epicautini539,
+		960	epicautini101,
+		961	epicautini54,
+		962	epicautini256,
+		963	epicautini550,
+		964	epicautini85,
+		965	epicautini484,
+		966	epicautini271,
+		967	epicautini56,
+		968	epicautini257,
+		969	epicautini465,
+		970	epicautini384,
+		971	epicautini226,
+		972	epicautini414,
+		973	epicautini382,
+		974	epicautini350,
+		975	epicautini307,
+		976	epicautini399,
+		977	epicautini79,
+		978	epicautini360,
+		979	epicautini121,
+		980	epicautini326,
+		981	epicautini281,
+		982	epicautini66,
+		983	epicautini263,
+		984	epicautini363,
+		985	epicautini391,
+		986	epicautini242,
+		987	epicautini496,
+		988	epicautini280,
+		989	epicautini458,
+		990	epicautini533,
+		991	epicautini93,
+		992	epicautini195,
+		993	epicautini482,
+		994	epicautini293,
+		995	epicautini248,
+		996	epicautini168,
+		997	epicautini26,
+		998	epicautini546,
+		999	epicautini324,
+		1000	epicautini109,
+		1001	epicautini331,
+		1002	epicautini198,
+		1003	epicautini70,
+		1004	epicautini387,
+		1005	epicautini83,
+		1006	epicautini25,
+		1007	epicautini120,
+		1008	epicautini380,
+		1009	epicautini31,
+		1010	epicautini135,
+		1011	epicautini40,
+		1012	epicautini102,
+		1013	epicautini27,
+		1014	epicautini24,
+		1015	epicautini50,
+		1016	epicautini357,
+		1017	epicautini177,
+		1018	epicautini48,
+		1019	epicautini139,
+		1020	epicautini319,
+		1021	epicautini400,
+		1022	epicautini558,
+		1023	epicautini98,
+		1024	epicautini264,
+		1025	epicautini438,
+		1026	epicautini116,
+		1027	epicautini537,
+		1028	epicautini354,
+		1029	epicautini245,
+		1030	epicautini403,
+		1031	epicautini381,
+		1032	epicautini216,
+		1033	epicautini526,
+		1034	epicautini375,
+		1035	epicautini122,
+		1036	epicautini401,
+		1037	epicautini424,
+		1038	epicautini82,
+		1039	epicautini406,
+		1040	epicautini435,
+		1041	epicautini481,
+		1042	epicautini212,
+		1043	epicautini182,
+		1044	epicautini64,
+		1045	epicautini81,
+		1046	epicautini477,
+		1047	epicautini457,
+		1048	epicautini234,
+		1049	epicautini105,
+		1050	epicautini203,
+		1051	epicautini213,
+		1052	epicautini67,
+		1053	epicautini92,
+		1054	epicautini232,
+		1055	epicautini347,
+		1056	epicautini446,
+		1057	epicautini480,
+		1058	epicautini294,
+		1059	epicautini235,
+		1060	epicautini112,
+		1061	epicautini543,
+		1062	epicautini471,
+		1063	epicautini43,
+		1064	epicautini497,
+		1065	epicautini297,
+		1066	epicautini321,
+		1067	epicautini292,
+		1068	epicautini529,
+		1069	epicautini19,
+		1070	epicautini364,
+		1071	epicautini223,
+		1072	epicautini51,
+		1073	epicautini10,
+		1074	epicautini114,
+		1075	epicautini555,
+		1076	epicautini172,
+		1077	epicautini21,
+		1078	epicautini171,
+		1079	epicautini366,
+		1080	epicautini361,
+		1081	epicautini91,
+		1082	epicautini377,
+		1083	epicautini194,
+		1084	epicautini88,
+		1085	epicautini498,
+		1086	epicautini506,
+		1087	epicautini273,
+		1088	epicautini355,
+		1089	epicautini209,
+		1090	epicautini362,
+		1091	epicautini521,
+		1092	epicautini199,
+		1093	meloini116,
+		1094	meloini115,
+		1095	meloini50,
+		1096	meloini159,
+		1097	meloini7,
+		1098	meloini152,
+		1099	meloini129,
+		1100	meloini153,
+		1101	meloini88,
+		1102	meloini45,
+		1103	meloini18,
+		1104	meloini85,
+		1105	meloini1,
+		1106	meloini63,
+		1107	meloini60,
+		1108	meloini104,
+		1109	meloini42,
+		1110	meloini106,
+		1111	meloini89,
+		1112	meloini149,
+		1113	meloini140,
+		1114	meloini64,
+		1115	meloini3,
+		1116	meloini49,
+		1117	meloini96,
+		1118	meloini98,
+		1119	meloini35,
+		1120	meloini160,
+		1121	meloini28,
+		1122	meloini145,
+		1123	meloini65,
+		1124	meloini125,
+		1125	meloini76,
+		1126	meloini122,
+		1127	meloini37,
+		1128	meloini14,
+		1129	meloini17,
+		1130	meloini82,
+		1131	meloini86,
+		1132	meloini53,
+		1133	meloini131,
+		1134	meloini120,
+		1135	meloini112,
+		1136	meloini38,
+		1137	meloini97,
+		1138	meloini148,
+		1139	meloini147,
+		1140	meloini73,
+		1141	meloini39,
+		1142	meloini23,
+		1143	meloini118,
+		1144	meloini32,
+		1145	meloini155,
+		1146	meloini59,
+		1147	meloini154,
+		1148	meloini30,
+		1149	meloini124,
+		1150	meloini44,
+		1151	meloini136,
+		1152	meloini108,
+		1153	meloini47,
+		1154	meloini94,
+		1155	meloini36,
+		1156	meloini156,
+		1157	meloini90,
+		1158	meloini87,
+		1159	meloini8,
+		1160	meloini2,
+		1161	meloini6,
+		1162	meloini4,
+		1163	meloini66,
+		1164	meloini139,
+		1165	meloini21,
+		1166	meloini113,
+		1167	meloini72,
+		1168	meloini84,
+		1169	meloini142,
+		1170	meloini5,
+		1171	meloini128,
+		1172	meloini61,
+		1173	meloini52,
+		1174	meloini102,
+		1175	meloini75,
+		1176	meloini100,
+		1177	meloini92,
+		1178	meloini77,
+		1179	meloini109,
+		1180	meloini157,
+		1181	meloini144,
+		1182	meloini48,
+		1183	meloini43,
+		1184	meloini141,
+		1185	meloini10,
+		1186	meloini56,
+		1187	meloini54,
+		1188	meloini110,
+		1189	meloini80,
+		1190	meloini11,
+		1191	meloini19,
+		1192	meloini46,
+		1193	meloini83,
+		1194	meloini132,
+		1195	meloini25,
+		1196	meloini78,
+		1197	meloini33,
+		1198	meloini138,
+		1199	meloini103,
+		1200	meloini71,
+		1201	meloini70,
+		1202	meloini20,
+		1203	meloini119,
+		1204	meloini135,
+		1205	meloini93,
+		1206	meloini68,
+		1207	meloini79,
+		1208	meloini29,
+		1209	meloini24,
+		1210	meloini107,
+		1211	meloini111,
+		1212	meloini62,
+		1213	meloini121,
+		1214	meloini158,
+		1215	meloini99,
+		1216	meloini95,
+		1217	meloini26,
+		1218	meloini58,
+		1219	meloini114,
+		1220	meloini22,
+		1221	meloini51,
+		1222	meloini133,
+		1223	meloini127,
+		1224	meloini27,
+		1225	meloini31,
+		1226	meloini134,
+		1227	meloini41,
+		1228	meloini101,
+		1229	meloini146,
+		1230	meloini9,
+		1231	meloini69,
+		1232	meloini81,
+		1233	meloini34,
+		1234	meloini117,
+		1235	meloini130,
+		1236	meloini74,
+		1237	meloini40,
+		1238	meloini16,
+		1239	meloini13,
+		1240	meloini57,
+		1241	meloini137,
+		1242	meloini91,
+		1243	meloini15,
+		1244	meloini67,
+		1245	meloini12,
+		1246	meloini150,
+		1247	meloini105,
+		1248	meloini151,
+		1249	meloini143,
+		1250	meloini55,
+		1251	meloini126,
+		1252	meloini123,
+		1253	eupomphini5,
+		1254	eupomphini4,
+		1255	eupomphini10,
+		1256	eupomphini20,
+		1257	eupomphini6,
+		1258	eupomphini1,
+		1259	eupomphini16,
+		1260	eupomphini21,
+		1261	eupomphini9,
+		1262	eupomphini15,
+		1263	eupomphini2,
+		1264	eupomphini11,
+		1265	eupomphini23,
+		1266	eupomphini12,
+		1267	eupomphini14,
+		1268	eupomphini19,
+		1269	eupomphini3,
+		1270	eupomphini18,
+		1271	eupomphini26,
+		1272	eupomphini25,
+		1273	eupomphini24,
+		1274	eupomphini7,
+		1275	eupomphini13,
+		1276	eupomphini8,
+		1277	eupomphini17,
+		1278	eupomphini22,
+		1279	hycleus350,
+		1280	hycleus5,
+		1281	hycleus229,
+		1282	hycleus375,
+		1283	hycleus287,
+		1284	hycleus340,
+		1285	hycleus354,
+		1286	hycleus147,
+		1287	hycleus55,
+		1288	hycleus65,
+		1289	hycleus20,
+		1290	hycleus400,
+		1291	hycleus92,
+		1292	hycleus129,
+		1293	hycleus248,
+		1294	hycleus237,
+		1295	hycleus114,
+		1296	hycleus273,
+		1297	hycleus8,
+		1298	hycleus44,
+		1299	hycleus392,
+		1300	hycleus225,
+		1301	hycleus346,
+		1302	hycleus25,
+		1303	hycleus162,
+		1304	hycleus69,
+		1305	hycleus197,
+		1306	hycleus33,
+		1307	hycleus378,
+		1308	hycleus341,
+		1309	hycleus266,
+		1310	hycleus166,
+		1311	hycleus181,
+		1312	hycleus382,
+		1313	hycleus235,
+		1314	hycleus293,
+		1315	hycleus325,
+		1316	hycleus321,
+		1317	hycleus179,
+		1318	hycleus234,
+		1319	hycleus95,
+		1320	hycleus280,
+		1321	hycleus203,
+		1322	hycleus329,
+		1323	hycleus218,
+		1324	hycleus265,
+		1325	hycleus385,
+		1326	hycleus253,
+		1327	hycleus213,
+		1328	hycleus243,
+		1329	hycleus221,
+		1330	hycleus337,
+		1331	hycleus443,
+		1332	hycleus389,
+		1333	hycleus259,
+		1334	hycleus279,
+		1335	hycleus217,
+		1336	hycleus244,
+		1337	hycleus174,
+		1338	hycleus245,
+		1339	hycleus51,
+		1340	hycleus94,
+		1341	hycleus132,
+		1342	hycleus148,
+		1343	hycleus102,
+		1344	hycleus66,
+		1345	hycleus150,
+		1346	hycleus448,
+		1347	hycleus313,
+		1348	hycleus241,
+		1349	hycleus391,
+		1350	hycleus100,
+		1351	hycleus105,
+		1352	hycleus171,
+		1353	hycleus254,
+		1354	hycleus206,
+		1355	hycleus107,
+		1356	hycleus186,
+		1357	hycleus146,
+		1358	hycleus207,
+		1359	hycleus104,
+		1360	hycleus216,
+		1361	hycleus208,
+		1362	hycleus139,
+		1363	hycleus61,
+		1364	hycleus422,
+		1365	hycleus79,
+		1366	hycleus41,
+		1367	hycleus134,
+		1368	hycleus336,
+		1369	hycleus424,
+		1370	hycleus397,
+		1371	hycleus224,
+		1372	hycleus198,
+		1373	hycleus324,
+		1374	hycleus423,
+		1375	hycleus130,
+		1376	hycleus320,
+		1377	hycleus435,
+		1378	hycleus365,
+		1379	hycleus209,
+		1380	hycleus31,
+		1381	hycleus97,
+		1382	hycleus118,
+		1383	hycleus29,
+		1384	hycleus381,
+		1385	hycleus330,
+		1386	hycleus115,
+		1387	hycleus363,
+		1388	hycleus264,
+		1389	hycleus37,
+		1390	hycleus87,
+		1391	hycleus48,
+		1392	hycleus271,
+		1393	hycleus368,
+		1394	hycleus176,
+		1395	hycleus231,
+		1396	hycleus14,
+		1397	hycleus123,
+		1398	hycleus158,
+		1399	hycleus165,
+		1400	hycleus268,
+		1401	hycleus302,
+		1402	hycleus53,
+		1403	hycleus70,
+		1404	hycleus407,
+		1405	hycleus205,
+		1406	hycleus344,
+		1407	hycleus444,
+		1408	hycleus275,
+		1409	hycleus439,
+		1410	hycleus419,
+		1411	hycleus308,
+		1412	hycleus410,
+		1413	hycleus334,
+		1414	hycleus322,
+		1415	hycleus426,
+		1416	hycleus239,
+		1417	hycleus151,
+		1418	hycleus119,
+		1419	hycleus323,
+		1420	hycleus30,
+		1421	hycleus170,
+		1422	hycleus351,
+		1423	hycleus383,
+		1424	hycleus427,
+		1425	hycleus215,
+		1426	hycleus343,
+		1427	hycleus110,
+		1428	hycleus262,
+		1429	hycleus194,
+		1430	hycleus99,
+		1431	hycleus17,
+		1432	hycleus86,
+		1433	hycleus364,
+		1434	hycleus12,
+		1435	hycleus214,
+		1436	hycleus54,
+		1437	hycleus246,
+		1438	hycleus342,
+		1439	hycleus10,
+		1440	hycleus112,
+		1441	hycleus204,
+		1442	hycleus376,
+		1443	hycleus425,
+		1444	hycleus52,
+		1445	hycleus360,
+		1446	hycleus133,
+		1447	hycleus412,
+		1448	hycleus121,
+		1449	hycleus200,
+		1450	hycleus74,
+		1451	hycleus356,
+		1452	hycleus304,
+		1453	hycleus357,
+		1454	hycleus347,
+		1455	hycleus269,
+		1456	hycleus415,
+		1457	hycleus272,
+		1458	hycleus145,
+		1459	hycleus386,
+		1460	hycleus319,
+		1461	hycleus50,
+		1462	hycleus436,
+		1463	hycleus305,
+		1464	hycleus164,
+		1465	hycleus328,
+		1466	hycleus180,
+		1467	hycleus1,
+		1468	hycleus46,
+		1469	hycleus398,
+		1470	hycleus144,
+		1471	hycleus32,
+		1472	hycleus238,
+		1473	hycleus24,
+		1474	hycleus103,
+		1475	hycleus429,
+		1476	hycleus63,
+		1477	hycleus432,
+		1478	hycleus160,
+		1479	hycleus168,
+		1480	hycleus101,
+		1481	hycleus212,
+		1482	hycleus420,
+		1483	hycleus387,
+		1484	hycleus49,
+		1485	hycleus369,
+		1486	hycleus434,
+		1487	hycleus405,
+		1488	hycleus36,
+		1489	hycleus73,
+		1490	hycleus428,
+		1491	hycleus18,
+		1492	hycleus127,
+		1493	hycleus71,
+		1494	hycleus256,
+		1495	hycleus16,
+		1496	hycleus106,
+		1497	hycleus301,
+		1498	hycleus401,
+		1499	hycleus141,
+		1500	hycleus297,
+		1501	hycleus6,
+		1502	hycleus413,
+		1503	hycleus402,
+		1504	hycleus284,
+		1505	hycleus43,
+		1506	hycleus45,
+		1507	hycleus7,
+		1508	hycleus255,
+		1509	hycleus291,
+		1510	hycleus408,
+		1511	hycleus338,
+		1512	hycleus219,
+		1513	hycleus175,
+		1514	hycleus177,
+		1515	hycleus58,
+		1516	hycleus228,
+		1517	hycleus270,
+		1518	hycleus285,
+		1519	hycleus395,
+		1520	hycleus211,
+		1521	hycleus23,
+		1522	hycleus384,
+		1523	hycleus57,
+		1524	hycleus188,
+		1525	hycleus318,
+		1526	hycleus446,
+		1527	hycleus195,
+		1528	hycleus85,
+		1529	hycleus312,
+		1530	hycleus82,
+		1531	hycleus242,
+		1532	hycleus93,
+		1533	hycleus450,
+		1534	hycleus22,
+		1535	hycleus249,
+		1536	hycleus27,
+		1537	hycleus396,
+		1538	hycleus62,
+		1539	hycleus372,
+		1540	hycleus292,
+		1541	hycleus233,
+		1542	hycleus60,
+		1543	hycleus416,
+		1544	hycleus40,
+		1545	hycleus72,
+		1546	hycleus332,
+		1547	hycleus42,
+		1548	hycleus137,
+		1549	hycleus109,
+		1550	hycleus441,
+		1551	hycleus172,
+		1552	hycleus281,
+		1553	hycleus353,
+		1554	hycleus440,
+		1555	hycleus178,
+		1556	hycleus247,
+		1557	hycleus155,
+		1558	hycleus366,
+		1559	hycleus4,
+		1560	hycleus108,
+		1561	hycleus303,
+		1562	hycleus131,
+		1563	hycleus159,
+		1564	hycleus111,
+		1565	hycleus153,
+		1566	hycleus90,
+		1567	hycleus352,
+		1568	hycleus191,
+		1569	hycleus252,
+		1570	hycleus222,
+		1571	hycleus411,
+		1572	hycleus418,
+		1573	hycleus295,
+		1574	hycleus68,
+		1575	hycleus326,
+		1576	hycleus362,
+		1577	hycleus185,
+		1578	hycleus13,
+		1579	hycleus278,
+		1580	hycleus300,
+		1581	hycleus183,
+		1582	hycleus113,
+		1583	hycleus122,
+		1584	hycleus276,
+		1585	hycleus67,
+		1586	hycleus437,
+		1587	hycleus142,
+		1588	hycleus232,
+		1589	hycleus307,
+		1590	hycleus230,
+		1591	hycleus390,
+		1592	hycleus154,
+		1593	hycleus81,
+		1594	hycleus333,
+		1595	hycleus370,
+		1596	hycleus417,
+		1597	hycleus201,
+		1598	hycleus78,
+		1599	hycleus263,
+		1600	hycleus138,
+		1601	hycleus199,
+		1602	hycleus257,
+		1603	hycleus430,
+		1604	hycleus76,
+		1605	hycleus449,
+		1606	hycleus286,
+		1607	hycleus335,
+		1608	hycleus135,
+		1609	hycleus298,
+		1610	hycleus39,
+		1611	hycleus404,
+		1612	hycleus184,
+		1613	hycleus393,
+		1614	hycleus182,
+		1615	hycleus15,
+		1616	hycleus355,
+		1617	hycleus167,
+		1618	hycleus294,
+		1619	hycleus189,
+		1620	hycleus310,
+		1621	hycleus442,
+		1622	hycleus373,
+		1623	hycleus120,
+		1624	hycleus399,
+		1625	hycleus283,
+		1626	hycleus288,
+		1627	hycleus394,
+		1628	hycleus379,
+		1629	hycleus116,
+		1630	hycleus21,
+		1631	hycleus140,
+		1632	hycleus296,
+		1633	hycleus210,
+		1634	hycleus98,
+		1635	hycleus445,
+		1636	hycleus349,
+		1637	hycleus226,
+		1638	hycleus309,
+		1639	hycleus163,
+		1640	hycleus2,
+		1641	hycleus317,
+		1642	hycleus126,
+		1643	hycleus56,
+		1644	hycleus374,
+		1645	hycleus277,
+		1646	hycleus431,
+		1647	hycleus315,
+		1648	hycleus91,
+		1649	hycleus169,
+		1650	hycleus406,
+		1651	hycleus156,
+		1652	hycleus327,
+		1653	hycleus371,
+		1654	hycleus125,
+		1655	hycleus306,
+		1656	hycleus80,
+		1657	hycleus282,
+		1658	hycleus258,
+		1659	hycleus152,
+		1660	hycleus202,
+		1661	hycleus19,
+		1662	hycleus331,
+		1663	hycleus403,
+		1664	hycleus261,
+		1665	hycleus9,
+		1666	hycleus433,
+		1667	hycleus447,
+		1668	hycleus35,
+		1669	hycleus377,
+		1670	hycleus89,
+		1671	hycleus173,
+		1672	hycleus289,
+		1673	hycleus236,
+		1674	hycleus348,
+		1675	hycleus161,
+		1676	hycleus367,
+		1677	hycleus361,
+		1678	hycleus359,
+		1679	hycleus299,
+		1680	hycleus314,
+		1681	hycleus193,
+		1682	hycleus251,
+		1683	hycleus339,
+		1684	hycleus96,
+		1685	hycleus250,
+		1686	hycleus38,
+		1687	hycleus77,
+		1688	hycleus345,
+		1689	hycleus227,
+		1690	hycleus414,
+		1691	hycleus260,
+		1692	hycleus124,
+		1693	hycleus143,
+		1694	hycleus47,
+		1695	hycleus157,
+		1696	hycleus196,
+		1697	hycleus438,
+		1698	hycleus240,
+		1699	hycleus84,
+		1700	hycleus26,
+		1701	hycleus34,
+		1702	hycleus220,
+		1703	hycleus192,
+		1704	hycleus64,
+		1705	hycleus149,
+		1706	hycleus83,
+		1707	hycleus316,
+		1708	hycleus75,
+		1709	hycleus190,
+		1710	hycleus358,
+		1711	hycleus88,
+		1712	hycleus28,
+		1713	hycleus11,
+		1714	hycleus128,
+		1715	hycleus290,
+		1716	hycleus380,
+		1717	hycleus136,
+		1718	hycleus59,
+		1719	hycleus117,
+		1720	hycleus223,
+		1721	hycleus388,
+		1722	hycleus409,
+		1723	hycleus274,
+		1724	hycleus187,
+		1725	hycleus311,
+		1726	hycleus267,
+		1727	hycleus3,
+		1728	hycleus421,
+		1729	mylabrini182,
+		1730	mylabrini265,
+		1731	mylabrini87,
+		1732	mylabrini268,
+		1733	mylabrini18,
+		1734	mylabrini148,
+		1735	mylabrini35,
+		1736	mylabrini99,
+		1737	mylabrini100,
+		1738	mylabrini112,
+		1739	mylabrini239,
+		1740	mylabrini81,
+		1741	mylabrini56,
+		1742	mylabrini132,
+		1743	mylabrini256,
+		1744	mylabrini39,
+		1745	mylabrini58,
+		1746	mylabrini187,
+		1747	mylabrini202,
+		1748	mylabrini26,
+		1749	mylabrini88,
+		1750	mylabrini198,
+		1751	mylabrini245,
+		1752	mylabrini91,
+		1753	mylabrini195,
+		1754	mylabrini211,
+		1755	mylabrini170,
+		1756	mylabrini276,
+		1757	mylabrini210,
+		1758	mylabrini135,
+		1759	mylabrini259,
+		1760	mylabrini126,
+		1761	mylabrini199,
+		1762	mylabrini277,
+		1763	mylabrini175,
+		1764	mylabrini179,
+		1765	mylabrini142,
+		1766	mylabrini12,
+		1767	mylabrini155,
+		1768	mylabrini139,
+		1769	mylabrini127,
+		1770	mylabrini207,
+		1771	mylabrini200,
+		1772	mylabrini2,
+		1773	mylabrini188,
+		1774	mylabrini263,
+		1775	mylabrini37,
+		1776	mylabrini282,
+		1777	mylabrini243,
+		1778	mylabrini203,
+		1779	mylabrini102,
+		1780	mylabrini1,
+		1781	mylabrini193,
+		1782	mylabrini146,
+		1783	mylabrini10,
+		1784	mylabrini164,
+		1785	mylabrini258,
+		1786	mylabrini162,
+		1787	mylabrini236,
+		1788	mylabrini158,
+		1789	mylabrini80,
+		1790	mylabrini174,
+		1791	mylabrini156,
+		1792	mylabrini114,
+		1793	mylabrini163,
+		1794	mylabrini171,
+		1795	mylabrini3,
+		1796	mylabrini93,
+		1797	mylabrini257,
+		1798	mylabrini121,
+		1799	mylabrini33,
+		1800	mylabrini280,
+		1801	mylabrini172,
+		1802	mylabrini45,
+		1803	mylabrini169,
+		1804	mylabrini215,
+		1805	mylabrini285,
+		1806	mylabrini76,
+		1807	mylabrini176,
+		1808	mylabrini94,
+		1809	mylabrini51,
+		1810	mylabrini104,
+		1811	mylabrini47,
+		1812	mylabrini19,
+		1813	mylabrini235,
+		1814	mylabrini66,
+		1815	mylabrini262,
+		1816	mylabrini85,
+		1817	mylabrini269,
+		1818	mylabrini159,
+		1819	mylabrini38,
+		1820	mylabrini30,
+		1821	mylabrini205,
+		1822	mylabrini134,
+		1823	mylabrini103,
+		1824	mylabrini75,
+		1825	mylabrini152,
+		1826	mylabrini226,
+		1827	mylabrini124,
+		1828	mylabrini151,
+		1829	mylabrini214,
+		1830	mylabrini238,
+		1831	mylabrini209,
+		1832	mylabrini255,
+		1833	mylabrini220,
+		1834	mylabrini173,
+		1835	mylabrini266,
+		1836	mylabrini55,
+		1837	mylabrini15,
+		1838	mylabrini197,
+		1839	mylabrini204,
+		1840	mylabrini107,
+		1841	mylabrini136,
+		1842	mylabrini83,
+		1843	mylabrini24,
+		1844	mylabrini250,
+		1845	mylabrini251,
+		1846	mylabrini128,
+		1847	mylabrini96,
+		1848	mylabrini60,
+		1849	mylabrini53,
+		1850	mylabrini17,
+		1851	mylabrini9,
+		1852	mylabrini57,
+		1853	mylabrini6,
+		1854	mylabrini248,
+		1855	mylabrini105,
+		1856	mylabrini244,
+		1857	mylabrini117,
+		1858	mylabrini5,
+		1859	mylabrini189,
+		1860	mylabrini231,
+		1861	mylabrini166,
+		1862	mylabrini78,
+		1863	mylabrini7,
+		1864	mylabrini49,
+		1865	mylabrini116,
+		1866	mylabrini28,
+		1867	mylabrini98,
+		1868	mylabrini50,
+		1869	mylabrini219,
+		1870	mylabrini225,
+		1871	mylabrini217,
+		1872	mylabrini261,
+		1873	mylabrini84,
+		1874	mylabrini230,
+		1875	mylabrini68,
+		1876	mylabrini241,
+		1877	mylabrini29,
+		1878	mylabrini59,
+		1879	mylabrini254,
+		1880	mylabrini20,
+		1881	mylabrini70,
+		1882	mylabrini48,
+		1883	mylabrini129,
+		1884	mylabrini283,
+		1885	mylabrini71,
+		1886	mylabrini138,
+		1887	mylabrini62,
+		1888	mylabrini167,
+		1889	mylabrini145,
+		1890	mylabrini229,
+		1891	mylabrini73,
+		1892	mylabrini69,
+		1893	mylabrini137,
+		1894	mylabrini190,
+		1895	mylabrini44,
+		1896	mylabrini67,
+		1897	mylabrini41,
+		1898	mylabrini192,
+		1899	mylabrini123,
+		1900	mylabrini206,
+		1901	mylabrini153,
+		1902	mylabrini54,
+		1903	mylabrini52,
+		1904	mylabrini247,
+		1905	mylabrini86,
+		1906	mylabrini23,
+		1907	mylabrini272,
+		1908	mylabrini232,
+		1909	mylabrini279,
+		1910	mylabrini110,
+		1911	mylabrini101,
+		1912	mylabrini270,
+		1913	mylabrini227,
+		1914	mylabrini43,
+		1915	mylabrini191,
+		1916	mylabrini223,
+		1917	mylabrini140,
+		1918	mylabrini184,
+		1919	mylabrini150,
+		1920	mylabrini147,
+		1921	mylabrini168,
+		1922	mylabrini216,
+		1923	mylabrini118,
+		1924	mylabrini122,
+		1925	mylabrini271,
+		1926	mylabrini108,
+		1927	mylabrini40,
+		1928	mylabrini264,
+		1929	mylabrini27,
+		1930	mylabrini218,
+		1931	mylabrini273,
+		1932	mylabrini183,
+		1933	mylabrini72,
+		1934	mylabrini284,
+		1935	mylabrini4,
+		1936	mylabrini240,
+		1937	mylabrini34,
+		1938	mylabrini77,
+		1939	mylabrini161,
+		1940	mylabrini14,
+		1941	mylabrini131,
+		1942	mylabrini46,
+		1943	mylabrini111,
+		1944	mylabrini95,
+		1945	mylabrini141,
+		1946	mylabrini246,
+		1947	mylabrini278,
+		1948	mylabrini281,
+		1949	mylabrini154,
+		1950	mylabrini89,
+		1951	mylabrini249,
+		1952	mylabrini109,
+		1953	mylabrini212,
+		1954	mylabrini213,
+		1955	mylabrini157,
+		1956	mylabrini275,
+		1957	mylabrini90,
+		1958	mylabrini253,
+		1959	mylabrini63,
+		1960	mylabrini160,
+		1961	mylabrini178,
+		1962	mylabrini42,
+		1963	mylabrini177,
+		1964	mylabrini228,
+		1965	mylabrini31,
+		1966	mylabrini119,
+		1967	mylabrini32,
+		1968	mylabrini82,
+		1969	mylabrini92,
+		1970	mylabrini125,
+		1971	mylabrini260,
+		1972	mylabrini194,
+		1973	mylabrini13,
+		1974	mylabrini208,
+		1975	mylabrini74,
+		1976	mylabrini106,
+		1977	mylabrini113,
+		1978	mylabrini22,
+		1979	mylabrini224,
+		1980	mylabrini180,
+		1981	mylabrini143,
+		1982	mylabrini25,
+		1983	mylabrini133,
+		1984	mylabrini252,
+		1985	mylabrini144,
+		1986	mylabrini181,
+		1987	mylabrini267,
+		1988	mylabrini64,
+		1989	mylabrini233,
+		1990	mylabrini221,
+		1991	mylabrini8,
+		1992	mylabrini21,
+		1993	mylabrini165,
+		1994	mylabrini130,
+		1995	mylabrini242,
+		1996	mylabrini65,
+		1997	mylabrini79,
+		1998	mylabrini186,
+		1999	mylabrini115,
+		2000	mylabrini234,
+		2001	mylabrini61,
+		2002	mylabrini11,
+		2003	mylabrini196,
+		2004	mylabrini222,
+		2005	mylabrini201,
+		2006	mylabrini97,
+		2007	mylabrini36,
+		2008	mylabrini185,
+		2009	mylabrini237,
+		2010	mylabrini274,
+		2011	mylabrini16,
+		2012	mylabrini149,
+		2013	mylabrini120,
+		2014	lyttini44,
+		2015	lyttini92,
+		2016	lyttini55,
+		2017	lyttini49,
+		2018	lyttini132,
+		2019	lyttini64,
+		2020	lyttini53,
+		2021	lyttini111,
+		2022	lyttini25,
+		2023	lyttini32,
+		2024	lyttini128,
+		2025	lyttini19,
+		2026	lyttini115,
+		2027	lyttini124,
+		2028	lyttini34,
+		2029	lyttini126,
+		2030	lyttini71,
+		2031	lyttini38,
+		2032	lyttini40,
+		2033	lyttini17,
+		2034	lyttini137,
+		2035	lyttini73,
+		2036	lyttini12,
+		2037	lyttini78,
+		2038	lyttini4,
+		2039	lyttini5,
+		2040	lyttini125,
+		2041	lyttini91,
+		2042	lyttini79,
+		2043	lyttini118,
+		2044	lyttini127,
+		2045	lyttini75,
+		2046	lyttini58,
+		2047	lyttini122,
+		2048	lyttini66,
+		2049	lyttini84,
+		2050	lyttini16,
+		2051	lyttini129,
+		2052	lyttini62,
+		2053	lyttini83,
+		2054	lyttini29,
+		2055	lyttini87,
+		2056	lyttini36,
+		2057	lyttini54,
+		2058	lyttini95,
+		2059	lyttini81,
+		2060	lyttini113,
+		2061	lyttini110,
+		2062	lyttini116,
+		2063	lyttini51,
+		2064	lyttini11,
+		2065	lyttini100,
+		2066	lyttini7,
+		2067	lyttini63,
+		2068	lyttini23,
+		2069	lyttini13,
+		2070	lyttini69,
+		2071	lyttini68,
+		2072	lyttini108,
+		2073	lyttini103,
+		2074	lyttini65,
+		2075	lyttini123,
+		2076	lyttini114,
+		2077	lyttini93,
+		2078	lyttini89,
+		2079	lyttini18,
+		2080	lyttini121,
+		2081	lyttini98,
+		2082	lyttini99,
+		2083	lyttini117,
+		2084	lyttini61,
+		2085	lyttini119,
+		2086	lyttini88,
+		2087	lyttini10,
+		2088	lyttini70,
+		2089	lyttini134,
+		2090	lyttini1,
+		2091	lyttini33,
+		2092	lyttini22,
+		2093	lyttini102,
+		2094	lyttini59,
+		2095	lyttini133,
+		2096	lyttini30,
+		2097	lyttini26,
+		2098	lyttini136,
+		2099	lyttini27,
+		2100	lyttini131,
+		2101	lyttini67,
+		2102	lyttini74,
+		2103	lyttini101,
+		2104	lyttini52,
+		2105	lyttini24,
+		2106	lyttini8,
+		2107	lyttini112,
+		2108	lyttini135,
+		2109	lyttini39,
+		2110	lyttini37,
+		2111	lyttini94,
+		2112	lyttini20,
+		2113	lyttini2,
+		2114	lyttini31,
+		2115	lyttini28,
+		2116	lyttini90,
+		2117	lyttini77,
+		2118	lyttini130,
+		2119	lyttini56,
+		2120	lyttini43,
+		2121	lyttini107,
+		2122	lyttini46,
+		2123	lyttini85,
+		2124	lyttini105,
+		2125	lyttini35,
+		2126	lyttini45,
+		2127	lyttini97,
+		2128	lyttini48,
+		2129	lyttini50,
+		2130	lyttini6,
+		2131	lyttini57,
+		2132	lyttini104,
+		2133	lyttini72,
+		2134	lyttini14,
+		2135	lyttini21,
+		2136	lyttini96,
+		2137	lyttini42,
+		2138	lyttini80,
+		2139	lyttini82,
+		2140	lyttini86,
+		2141	lyttini9,
+		2142	lyttini15,
+		2143	lyttini109,
+		2144	lyttini47,
+		2145	lyttini120,
+		2146	lyttini76,
+		2147	lyttini41,
+		2148	lyttini60,
+		2149	lyttini3,
+		2150	lyttini106
+	;
+	TREE * UNTITLED = [&R] ((((((((((((6:4.291506387,((7:1.250688125,(8:0.6541628374,9:0.6541628374):0.5965252876):1.329522743,(10:1.33070968,11:1.33070968):1.249501188):1.71129552):0.2207913031,((12:1.644239192,(13:0.8749933681,(14:0.2347363742,15:0.2347363742):0.640256994):0.7692458241):2.037935457,((((16:0.8242699827,(17:0.7567802043,18:0.7567802043):0.06748977832):0.1880848292,19:1.012354812):1.413157521,20:2.425512333):0.8500068361,((21:0.0988261492,22:0.0988261492):2.074290342,(23:0.009066421321,24:0.009066421321):2.16405007):1.102402678):0.40665548):0.830123041):1.27035112,(25:4.447204046,(26:4.423374503,((27:0.8986713124,((28:0.2248025256,29:0.2248025256):0.3915447722,30:0.6163472979):0.2823240145):0.6251604287,((31:0.8016559103,32:0.8016559103):0.02173632238,33:0.8233922327):0.7004395083):2.899542762):0.02382954292):1.335444764):1.706155714,((34:1.421281696,(35:0.5129058936,36:0.5129058936):0.9083758028):4.919830346,(((((37:0.9654965121,38:0.9654965121):1.182958294,(39:1.578377983,(40:0.4827627593,41:0.4827627593):1.095615223):0.5700768231):0.0393461499,(42:1.166677145,43:1.166677145):1.02112381):0.9885573607,(((44:1.393261529,45:1.393261529):0.02067168515,46:1.413933214):0.1644077484,47:1.578340963):1.598017354):0.1024381133,(48:0.2009043499,(49:0.178495125,50:0.178495125):0.0224092249):3.07789208):3.062315613):1.147692481):2.903574714,(((((((51:0.4804382202,(52:0.4117677641,53:0.4117677641):0.06867045611):0.1762239714,((54:0.03720725083,55:0.03720725083):0.5536929773,56:0.5909002281):0.06576196343):0.4237575117,(57:0.4429059383,58:0.4429059383):0.637513765):1.640583701,(59:0.189216391,60:0.189216391):2.531787014):2.175736608,((((61:0.348176735,62:0.348176735):1.390657304,63:1.738834039):0.4668282639,64:2.205662303):1.459666111,(((65:0.1259181173,66:0.1259181173):0.09510136868,67:0.2210194859):0.4404030133,68:0.6614224993):3.003905915):1.231411598):2.606297619,((69:2.651732491,70:2.651732491):2.890439187,((((71:0.004991820428,72:0.004991820428):1.372412999,((73:0.1225732722,74:0.1225732722):0.5036469635,75:0.6262202357):0.7511845834):0.2555038804,(((76:0.4120700896,77:0.4120700896):0.2139201042,(78:0.2367656667,79:0.2367656667):0.3892245271):0.9027658172,(80:0.2443120396,81:0.2443120396):1.284443971):0.1041526885):2.652932934,(((82:0.02601051536,83:0.02601051536):2.340468527,84:2.366479042):1.780662223,(((85:0.9809458765,86:0.9809458765):1.154782569,87:2.135728446):0.8567563624,(88:0.07866678834,89:0.07866678834):2.91381802):1.154656457):0.1387003682):1.256330044):1.960865955):1.25274835,((((((90:0.2140728679,91:0.2140728679):6.220340798,((92:4.106626858,(93:3.250820968,((94:1.210204725,(95:0.5525666986,96:0.5525666986):0.657638026):0.735482928,(97:0.1033453839,98:0.1033453839):1.842342269):1.305133315):0.8558058902):0.7303839833,(((99:0.04373472218,100:0.04373472218):0.08715933495,101:0.1308940571):1.109531563,102:1.24042562):3.596585222):1.597402824):0.8705373439,(103:1.874986686,104:1.874986686):5.429964324):0.2836656523,(((((((105:0.7088312485,106:0.7088312485):0.6643034356,107:1.373134684):1.01544615,(((108:0.9654991233,(109:0.1575742819,110:0.1575742819):0.8079248414):0.5892425844,111:1.554741708):0.08512516258,112:1.63986687):0.7487139634):0.1704553864,113:2.55903622):0.2991339876,((114:0.6502913648,(115:0.1533218619,116:0.1533218619):0.4969695029):0.06913088633,(117:0.7046192018,118:0.7046192018):0.01480304935):2.138747957):1.69530681,(((119:1.337470729,120:1.337470729):1.445378488,(121:2.402818593,((122:0.3009080978,123:0.3009080978):0.2523433226,124:0.5532514204):1.849567172):0.3800306246):0.1161339327,((125:0.3022376087,126:0.3022376087):1.171799465,(127:0.5342854606,128:0.5342854606):0.9397516136):1.424946076):1.654493868):0.8455362702,129:5.399013288):2.189603373):0.9174361517,(((((130:0.213693402,131:0.213693402):0.9584036875,132:1.17209709):3.127171799,(((((133:0.7213351115,(134:0.1531618402,135:0.1531618402):0.5681732713):0.8142528254,(136:1.303654619,(137:0.3550824202,(138:0.06474823565,139:0.06474823565):0.2903341846):0.9485721992):0.2319333174):1.449883404,((140:0.659472686,141:0.659472686):0.4631349048,142:1.122607591):1.86286375):0.3408670288,((143:0.03020237925,144:0.03020237925):2.262148599,((145:0.7405488796,146:0.7405488796):0.09848935511,(147:0.4268590739,148:0.4268590739):0.4121791608):1.453312743):1.033987391):0.1016265435,(((149:1.684521577,150:1.684521577):0.09386247357,151:1.77838405):0.8474248913,(152:0.7489441016,153:0.7489441016):1.87686484):0.8021559711):0.871303976):4.074842414,(((154:2.274512337,155:2.274512337):0.09925799806,((156:0.1156527511,157:0.1156527511):1.514576109,158:1.63022886):0.7435414744):2.296357813,(((159:0.2204283328,160:0.2204283328):3.154221858,((161:0.138205355,162:0.138205355):0.2481882439,163:0.3863935989):2.988256592):0.1045616044,(((164:0.8962362292,(165:0.7072649086,166:0.7072649086):0.1889713206):0.4306274633,(167:0.7396893369,168:0.7396893369):0.5871743557):0.3535870256,((169:0.4831477372,(170:0.2302594497,171:0.2302594497):0.2528882874):0.1059145984,172:0.5890623356):1.091388383):1.798761077):1.190916353):3.703983155):0.04377687421,(((173:3.040244929,(174:1.228922186,175:1.228922186):1.811322744):0.5520634337,((((176:1.891155256,177:1.891155256):1.278597258,((((178:1.314057061,179:1.314057061):0.4185474321,180:1.732604493):0.7082782725,181:2.440882765):0.2008310505,182:2.641713816):0.5280386976):0.06003685759,(183:2.893823689,(184:1.665368093,185:1.665368093):1.228455596):0.3359656821):0.147005722,(186:0.3399235103,187:0.3399235103):3.036871583):0.2155132701):0.05554950723,188:3.64785787):4.770030307):0.08816463618):0.04089970548,((189:1.417731448,(190:1.05833071,((191:0.5212697133,192:0.5212697133):0.1327596361,193:0.6540293494):0.4043013608):0.3594007383):5.215620621,((194:1.362966389,195:1.362966389):4.214003586,((((196:0.7801140734,(197:0.761198099,198:0.761198099):0.01891597443):2.318909919,199:3.099023993):1.262076116,((200:2.355686657,(201:1.083076645,202:1.083076645):1.272610012):0.7285533356,((203:0.2103401945,204:0.2103401945):0.4333593735,205:0.643699568):2.440540424):1.276860117):0.4717248508,(((((((206:0.2910034981,207:0.2910034981):0.631629421,(208:0.8698314882,209:0.8698314882):0.0528014309):0.2674409572,(210:0.4731004206,211:0.4731004206):0.7169734557):0.05856751197,(212:0.5479574813,(213:0.1650956394,(214:0.1176989379,215:0.1176989379):0.04739670156):0.3828618419):0.7006839069):2.509790122,((216:0.1545539213,217:0.1545539213):3.235530786,(218:2.140119431,219:2.140119431):1.249965276):0.3683468032):0.08214417912,(((220:1.294056754,(221:0.04016463613,222:0.04016463613):1.253892118):0.1240094273,223:1.418066182):1.531777176,((224:0.3487901777,225:0.3487901777):0.7030101136,((226:0.237271915,227:0.237271915):0.4028923205,228:0.6401642355):0.4116360559):1.898043066):0.8907323315):0.9466513641,(229:1.591621332,230:1.591621332):3.195605721):0.04559790659):0.7441450156):1.056382094):1.913600449):0.2088334631):1.636593256):0.1206142094,(((231:1.479299761,(232:0.2126026519,233:0.2126026519):1.266697109):0.06354993811,234:1.542849699):2.201356379,(((((235:0.7244034852,236:0.7244034852):0.1545260771,(237:0.1466180304,238:0.1466180304):0.7323115318):0.7582501169,(239:0.01329102217,240:0.01329102217):1.623888657):0.4042029708,241:2.04138265):1.647862526,(242:2.422935441,((243:0.2181448556,244:0.2181448556):1.499993642,245:1.718138498):0.7047969431):1.266309735):0.05496090304):6.768787369):1.960116314,((((246:1.788498125,247:1.788498125):3.665298219,(((248:0.2183640691,249:0.2183640691):2.17011589,(250:0.6427141166,(251:0.3651656427,252:0.3651656427):0.2775484739):1.745765842):2.922838045,(253:2.096602427,254:2.096602427):3.214715578):0.1424783393):4.49252935,((255:0.7425240862,256:0.7425240862):3.137531103,((257:0.9181728545,258:0.9181728545):1.544927018,(259:0.5420676782,(260:0.2202237534,261:0.2202237534):0.3218439249):1.921032194):1.416955316):6.066270505):1.815110909,((((262:3.211033285,((263:0.1043159315,264:0.1043159315):1.234889554,((265:0.3341094682,266:0.3341094682):0.5523098868,267:0.886419355):0.452786131):1.871827799):0.7896209653,268:4.00065425):0.859079808,((269:1.996315331,270:1.996315331):2.664972394,(((((271:0.4236077381,272:0.4236077381):0.3494265356,273:0.7730342737):0.1035457028,(274:0.2973571476,275:0.2973571476):0.579222829):0.09818439627,276:0.9747643728):2.546549786,(277:0.5160779433,(278:0.1779148731,279:0.1779148731):0.3381630702):3.005236216):1.139973566):0.1984463332):5.739797967,((280:1.353973674,281:1.353973674):5.224997735,((282:6.143792788,(283:1.301730527,284:1.301730527):4.842062261):0.3241751421,285:6.467967931):0.1110034787):4.020560616):1.161904579):0.7116731578):0.1456348571,((((286:4.221415529,(((287:1.069541363,288:1.069541363):0.9450892716,(289:1.511433297,(((290:0.008598865274,291:0.008598865274):1.124345664,(292:0.1379952598,293:0.1379952598):0.9949492691):0.1104574048,294:1.243401934):0.2680313631):0.5031973382):1.120107327,((((295:1.502480031,(296:0.3555760106,297:0.3555760106):1.14690402):0.1637843204,((298:1.083512401,299:1.083512401):0.00625304272,(300:0.8975272691,(301:0.1070314648,302:0.1070314648):0.7904958043):0.1922381747):0.5764989075):0.1050110594,(303:0.4796668959,304:0.4796668959):1.291608515):0.570271474,305:2.341546885):0.793191077):1.086677567):3.824626832,((((((((306:0.2598847218,307:0.2598847218):0.1430099724,(308:0.2978900549,(309:0.2086911778,(310:0.1228399424,311:0.1228399424):0.08585123545):0.08919887703):0.1050046393):0.8713489109,(312:0.2949475444,313:0.2949475444):0.9792960607):1.035253199,(314:0.7642799778,(315:0.02823160584,316:0.02823160584):0.736048372):1.545216826):0.6256862141,(317:1.608749687,(318:1.022309375,319:1.022309375):0.5864403118):1.326433331):2.009548549,(((320:2.29054597,(321:0.6393827971,322:0.6393827971):1.651163173):2.071088554,((323:0.0427150791,324:0.0427150791):1.470627351,(325:0.08580393613,326:0.08580393613):1.427538494):2.848292094):0.4540281784,(((327:0.1537824757,328:0.1537824757):2.820064878,((329:2.413111216,330:2.413111216):0.08639698568,(331:1.727306409,((332:0.006806103302,333:0.006806103302):0.6703415192,334:0.6771476225):1.050158786):0.7722017925):0.4743391525):1.747304053,(((335:0.07313722427,336:0.07313722427):0.8579476754,337:0.9310848997):2.390992132,((338:0.4685584681,339:0.4685584681):2.067920434,(340:2.427339691,341:2.427339691):0.1091392118):0.785598129):1.399074376):0.09451129576):0.1290688642):1.099006654,(((342:1.052709201,((343:0.03245591581,344:0.03245591581):0.9434325405,345:0.9758884563):0.07682074502):1.280797177,(346:0.5856125903,347:0.5856125903):1.747893788):1.271484825,(((348:0.4458856729,349:0.4458856729):1.279529395,350:1.725415068):0.3030080644,(351:1.961754621,352:1.961754621):0.06666851126):1.576568071):2.438747018):1.807090902,((353:4.576757864,(354:1.508879517,355:1.508879517):3.067878347):2.817395834,(((((356:1.290189751,357:1.290189751):1.067415823,358:2.357605574):0.03666898343,(((359:0.6843789737,360:0.6843789737):1.105327378,(361:0.5041344229,362:0.5041344229):1.285571928):0.351322269,((363:0.07886089359,364:0.07886089359):1.818010914,365:1.896871807):0.2441568131):0.2532459375):0.04036804924,(366:1.924259058,367:1.924259058):0.5103835486):1.183934956,(368:1.072858921,369:1.072858921):2.545718642):3.775576136):0.4566754244):0.1952132379):2.810691469,370:10.85673383):0.777613109,((((371:1.841313288,(372:1.217250326,373:1.217250326):0.6240629618):1.360348791,(374:1.692867055,(375:0.01567751876,376:0.01567751876):1.677189537):1.508795023):0.8636474363,(377:3.630238987,((378:1.599047615,(379:0.1648111239,380:0.1648111239):1.434236491):0.00441850628,381:1.603466122):2.026772866):0.4350705279):1.285580037,((382:1.01464655,(383:0.222412092,384:0.222412092):0.7922344581):3.377251248,(385:2.895344854,((((386:0.1882928845,(387:0.1788061997,388:0.1788061997):0.009486684801):0.6390939867,389:0.8273868712):0.3470270275,(390:0.02682557207,391:0.02682557207):1.147588327):0.06647065685,(392:0.1510744288,393:0.1510744288):1.089810127):1.654460298):1.496552944):0.958991754):6.283457387):0.9843976795):0.2669119563,((((394:0.1663838618,395:0.1663838618):0.5159524818,396:0.6823363436):1.903286866,(397:0.8479044926,398:0.8479044926):1.737718717):0.3217841014,((399:1.788566026,400:1.788566026):0.2436011464,((401:0.1523342652,402:0.1523342652):0.8008512333,(403:0.7568339942,404:0.7568339942):0.1963515043):1.078981673):0.875240139):9.978249264):4.133867425,((((((((((405:1.07061631,((406:0.419374686,407:0.419374686):0.2138983083,408:0.6332729943):0.4373433159):4.925371527,(((409:0.4755943963,410:0.4755943963):0.3105108425,411:0.7861052388):2.635140392,412:3.421245631):2.574742206):0.2031690543,(413:5.155510831,414:5.155510831):1.04364606):0.376965329,((((((415:1.909755705,(416:1.513323326,(417:0.4613045003,418:0.4613045003):1.052018826):0.3964323792):0.6296011881,((419:0.2755854523,420:0.2755854523):2.039856882,(((421:0.5145499784,422:0.5145499784):0.1147475034,(423:0.4108092015,424:0.4108092015):0.2184882804):0.2541498057,(425:0.04090458052,426:0.04090458052):0.8425427071):1.431995047):0.2239145589):0.3308908002,(427:1.559749542,((428:0.5215878052,429:0.5215878052):0.994630326,430:1.516218131):0.04353141066):1.310498152):1.72032994,(((431:0.5237164032,(432:0.003081255787,433:0.003081255787):0.5206351474):1.409385084,(434:0.3381713201,435:0.3381713201):1.594930167):1.396490944,(436:2.227456212,437:2.227456212):1.102136219):1.260985202):0.1229251915,(((438:2.405896984,(439:1.876835484,440:1.876835484):0.5290615006):0.3312303797,441:2.737127364):0.572252418,442:3.309379782):1.404123043):1.496849407,(((443:0.129414352,444:0.129414352):0.737470874,(445:0.6483687507,446:0.6483687507):0.2185164753):0.1654315272,447:1.032316753):5.178035478):0.3657699889):0.06480030762,((448:0.164382547,449:0.164382547):0.7215067329,450:0.88588928):5.755033248):0.4434006878,(((451:0.2970755753,(452:0.06963407792,453:0.06963407792):0.2274414974):3.366171733,((454:0.06569213829,455:0.06569213829):2.033853942,(456:0.216574791,457:0.216574791):1.882971289):1.563701228):3.196481456,(((458:0.4525463374,459:0.4525463374):0.4276680637,460:0.880214401):4.948390882,461:5.828605283):1.031123481):0.2245944517):0.03413323783,(((462:0.08839233767,463:0.08839233767):3.374983336,(464:1.1034376,465:1.1034376):2.359938074):0.322121845,(466:2.054500202,467:2.054500202):1.730997317):3.332958934):3.028499136,(((((468:0.4266299567,469:0.4266299567):1.735513255,(470:1.988650831,(471:0.3287553312,(472:0.2877438503,473:0.2877438503):0.04101148088):1.6598955):0.1734923811):0.5124906648,474:2.674633877):0.23086523,((475:1.075730737,(476:0.9763435602,((477:0.5061425642,478:0.5061425642):0.3196940711,((479:0.3898888701,480:0.3898888701):0.1560114386,((481:0.1528456031,482:0.1528456031):0.01551652371,483:0.1683621268):0.3775381818):0.2799363266):0.150506925):0.09938717723):1.704534095,((((484:1.840356897,((485:0.654676019,486:0.654676019):0.8127134346,((487:0.1365970983,488:0.1365970983):0.7241848382,489:0.8607819365):0.6066075171):0.3729674439):0.009946068356,(490:1.790898659,(491:1.671955738,(492:1.352123935,493:1.352123935):0.319831803):0.1189429209):0.05940430727):0.1810359886,494:2.031338954):0.6610447888,(495:2.687485015,(496:0.3602153892,497:0.3602153892):2.327269626):0.004898728142):0.08788108917):0.1252342746):3.037949933,((498:0.2555331927,499:0.2555331927):3.037292165,500:3.292825358):2.650623683):4.203506549):3.024101726,((501:7.496043782,((((502:1.006437129,(503:0.4358705136,504:0.4358705136):0.5705666155):1.551645057,((505:0.2012918941,506:0.2012918941):1.52321275,507:1.724504644):0.8335775423):2.244500981,508:4.802583167):2.113892708,((509:0.4206232894,((510:0.07204637273,511:0.07204637273):0.2627668974,512:0.3348132701):0.08581001923):1.554686681,((513:0.7610907908,514:0.7610907908):0.8967614326,(515:0.935846023,516:0.935846023):0.7220062004):0.3174577473):4.941165904):0.5795679071):3.376799006,(((517:1.902477846,((518:0.3776141795,519:0.3776141795):0.4648129132,520:0.8424270927):1.060050753):0.2234667287,521:2.125944575):1.032405964,((((522:0.1697140906,523:0.1697140906):0.02004301245,524:0.189757103):0.5409779375,525:0.7307350405):1.2490032,526:1.97973824):1.178612299):7.71449225):2.298214527):3.265938655,(527:3.044002817,528:3.044002817):13.39299315):0.5825280301):7.138848591,2:24.15837221):13.81316434,((((((((((((529:0.1646782121,(530:0.06014579961,531:0.06014579961):0.1045324125):0.4549564886,(532:0.5427953649,533:0.5427953649):0.0768393358):0.8628903107,((534:0.1848454574,535:0.1848454574):0.467000913,536:0.6518463704):0.830678641):8.931491239,((((537:3.59041946,((538:1.916824125,(539:1.37917385,540:1.37917385):0.537650275):0.1032437962,(541:0.9996643775,542:0.9996643775):1.020403544):1.570351539):1.511621775,((543:0.8304556112,(544:0.3110551769,545:0.3110551769):0.5194004343):3.341265469,((546:2.389174893,(547:1.275082471,548:1.275082471):1.114092421):1.405829813,(((549:1.735644686,550:1.735644686):0.05835207847,(551:1.788802569,552:1.788802569):0.005194195629):1.123236157,((553:1.37989553,(554:0.9060372693,555:0.9060372693):0.4738582604):0.3367647469,556:1.716660277):1.200572645):0.8777717835):0.3767163752):0.9303201548):1.331573139,(((((557:0.1115728179,558:0.1115728179):0.9154905065,(559:0.9899317236,560:0.9899317236):0.03713160076):0.8176259649,(((561:0.8111637576,562:0.8111637576):0.4913918289,563:1.302555586):0.2228865722,((564:0.1430485053,565:0.1430485053):0.4751998178,(566:0.4980866848,567:0.4980866848):0.1201616383):0.9071938356):0.3192471306):0.758397755,568:2.603087044):2.368730846,(((569:1.236982539,570:1.236982539):1.534137538,(571:2.307312878,(((572:0.2198253305,(573:0.2112592317,574:0.2112592317):0.008566098768):0.8405348163,575:1.060360147):0.3307468425,(576:0.3471125078,577:0.3471125078):1.043994482):0.9162058882):0.4638071995):0.0913664594,578:2.862486536):2.109331354):1.461796483):1.12605175,(579:1.529830571,(580:0.7648989603,581:0.7648989603):0.764931611):6.029835553):2.854350127):0.5117279615,((582:1.412955734,(583:0.5412011167,(584:0.447823506,(585:0.1826639358,586:0.1826639358):0.2651595702):0.09337761073):0.8717546176):4.471344578,((587:1.611253616,(588:0.4716897173,589:0.4716897173):1.139563899):0.06758874963,590:1.678842366):4.205457946):5.0414439):3.747116964,(((591:3.480482698,((592:0.2528364225,593:0.2528364225):0.9190068791,594:1.171843302):2.308639397):8.271245568,(595:10.24551512,(((596:4.017658966,(597:1.16637559,598:1.16637559):2.851283376):1.376755449,(599:0.8960605251,600:0.8960605251):4.49835389):2.047931787,((601:1.22152022,602:1.22152022):0.6142087296,(603:0.4813069164,604:0.4813069164):1.354422033):5.606617252):2.80316892):1.506213145):0.2624043121,(((((605:1.835150819,((606:0.02986031045,607:0.02986031045):0.1963474368,608:0.2262077473):1.608943072):0.2297538258,609:2.064904645):0.507706213,((610:0.2067329897,611:0.2067329897):2.039681123,612:2.246414112):0.3261967452):6.583422484,((613:0.08672086219,614:0.08672086219):6.230872111,(((615:0.9056894093,616:0.9056894093):0.6990475819,(617:0.1390589548,(618:0.01986624629,619:0.01986624629):0.1191927085):1.465678036):0.009974397545,(620:1.571498478,(621:0.2434467442,622:0.2434467442):1.328051734):0.04321291058):4.702881585):2.838440368):1.369568847,((((((623:1.803506506,624:1.803506506):4.156070317,(((625:0.3334031573,626:0.3334031573):0.1528389942,(627:0.28789522,628:0.28789522):0.1983469315):0.750907335,629:1.237149486):4.722427337):2.239794263,(((((630:0.6134829596,631:0.6134829596):0.1700287679,632:0.7835117275):1.352631438,633:2.136143165):1.968261173,634:4.104404338):1.635614243,((635:2.257745075,((636:0.915299983,637:0.915299983):0.5164000584,(638:0.05132964477,639:0.05132964477):1.380370397):0.8260450337):0.4613574635,((640:2.411130858,((641:0.03717857822,642:0.03717857822):2.028222778,(643:0.4526374504,(644:0.05577005131,645:0.05577005131):0.3968673991):1.612763906):0.3457295015):0.2843551019,((646:0.6330687763,647:0.6330687763):0.142835032,648:0.7759038083):1.919582151):0.02361657882):3.020916043):2.459352505):0.8013484748,(((649:0.2262070692,650:0.2262070692):1.933158318,(651:0.21496817,652:0.21496817):1.944397217):0.5251437533,653:2.684509141):6.31621042):0.3359728178,((((654:0.9550431547,(655:0.6256311813,(656:0.08153639985,657:0.08153639985):0.5440947814):0.3294119735):0.3252422509,658:1.280285406):1.943197804,659:3.22348321):3.149342696,(((660:1.009992129,661:1.009992129):0.4328312093,662:1.442823339):3.984818808,((663:1.259196469,664:1.259196469):3.071809759,(665:3.408587607,((666:0.06883486825,667:0.06883486825):3.119833935,((668:1.383595211,((669:0.03144630854,670:0.03144630854):1.315687859,(671:0.2370211503,672:0.2370211503):1.110113018):0.03646104332):0.8845148361,673:2.268110047):0.920558756):0.2199188033):0.9224186212):1.096635918):0.9451837596):2.963866473):0.8462607878,((((((((674:0.8108695029,675:0.8108695029):0.1115167586,676:0.9223862615):0.04583823748,677:0.9682244989):2.538020046,((((678:0.4931819813,679:0.4931819813):0.6908299157,680:1.184011897):1.570901737,(((681:0.6240930024,682:0.6240930024):0.1756583221,683:0.7997513245):0.01306521817,684:0.8128165427):1.942097092):0.2456764377,685:3.000590072):0.5056544734):0.09492519925,686:3.601169745):0.002225562022,687:3.603395307):2.137913728,((688:1.773422692,689:1.773422692):1.655357254,((690:2.548534784,(691:0.8009765006,(692:0.3675689635,693:0.3675689635):0.4334075371):1.747558284):0.0002486481282,(694:1.880675158,695:1.880675158):0.6681082741):0.8799965136):2.312529088):0.5626109637,(((696:1.170985494,(697:0.146519345,698:0.146519345):1.024466149):3.502726337,((699:0.2592061193,700:0.2592061193):3.074575151,(((701:0.4338328052,(702:0.1315444752,703:0.1315444752):0.3022883301):0.5039472166,704:0.9377800218):1.611053065,((705:0.1849943459,706:0.1849943459):0.4894044389,707:0.6743987848):1.874434303):0.7849481831):1.33993056):0.9347714254,((708:0.96139373,709:0.96139373):3.068378015,((710:2.437889653,(711:0.5900510791,(712:0.3254652379,(713:0.2179324737,714:0.2179324737):0.1075327642):0.2645858412):1.847838574):1.00907481,((715:0.5790652882,(716:0.06356599563,717:0.06356599563):0.5154992925):2.179123401,(718:0.1487123011,719:0.1487123011):2.609476388):0.6887757744):0.5828072815):1.578711511):0.6954367425):3.879033168):0.3426490227):1.488530389):2.658728598):1.663255824,(((((((720:0.305448997,721:0.305448997):2.442283797,722:2.747732794):4.96497022,((((((((723:0.04278451923,724:0.04278451923):1.962935625,725:2.005720144):1.787105395,((726:1.806960191,(727:1.441452758,728:1.441452758):0.3655074336):0.6691747954,(729:1.933602029,(730:1.13290275,731:1.13290275):0.8006992798):0.5425329574):1.316690553):0.4424178258,((732:2.684552289,(733:0.3746540856,734:0.3746540856):2.309898203):0.3842376264,735:3.068789915):1.166453451):2.250426985,(736:1.33721935,(737:0.5544077433,738:0.5544077433):0.782811607):5.148451):0.4310350425,739:6.916705393):0.3758967686,((740:3.729563774,((741:1.002068117,742:1.002068117):1.82737263,743:2.829440747):0.9001230273):2.600040376,744:6.32960415):0.9629980111):0.04712832779,(745:4.295782323,((746:0.689275082,(747:0.4344511673,748:0.4344511673):0.2548239147):0.2558948946,749:0.9451699766):3.350612347):3.043948166):0.3729725242):2.260860485,(((750:1.163237173,((751:0.388068277,752:0.388068277):0.3713936584,753:0.7594619354):0.4037752379):2.992176553,((((754:1.312905666,755:1.312905666):0.5228531594,(756:1.7616033,757:1.7616033):0.07415552521):0.0122182433,(758:0.8272093025,(759:0.5984352869,(760:0.543788094,761:0.543788094):0.05464719285):0.2287740157):1.020767766):1.192121492,(762:1.080042576,(763:0.2030369838,764:0.2030369838):0.8770055919):1.960055985):1.115315166):1.383824581,(((765:0.8050514544,766:0.8050514544):1.610308822,(((767:0.6424818559,768:0.6424818559):0.05795343549,769:0.7004352914):1.348882423,770:2.049317715):0.3660425612):2.686458859,(771:0.2321067456,772:0.2321067456):4.869712389):0.437419172):4.434325192):5.179290249,773:15.15285375):0.406502649,(((((((774:0.645249141,775:0.645249141):2.51044356,((776:1.169243548,(((777:0.5130822721,778:0.5130822721):0.01589864487,779:0.528980917):0.4442839755,(780:0.288427151,(781:0.269042581,782:0.269042581):0.01938457001):0.6848377414):0.1959786553):1.937851675,(783:0.9504864216,784:0.9504864216):2.156608801):0.04859747886):0.07903491603,785:3.234727617):4.175369914,(786:4.057571739,787:4.057571739):3.352525792):1.524192421,((788:4.916733977,(((789:0.3398882735,(790:0.1457033929,791:0.1457033929):0.1941848806):0.6421135069,792:0.9820017804):0.2618754448,793:1.243877225):3.672856752):3.833464809,((((((794:0.0605109149,795:0.0605109149):1.516046161,(796:1.066166788,797:1.066166788):0.5103902876):0.9737295737,(798:1.93325809,799:1.93325809):0.6170285595):0.3420029162,800:2.892289566):4.945383324,(((((801:0.2076504221,802:0.2076504221):1.416087554,(803:0.1112871903,804:0.1112871903):1.512450786):3.069465554,(((805:0.5990264021,806:0.5990264021):2.172463849,(807:0.3215484935,808:0.3215484935):2.449941758):1.40670782,(809:2.521311145,810:2.521311145):1.656886926):0.5150054582):0.3561750857,((811:0.5126597324,812:0.5126597324):2.538303556,813:3.050963289):1.998415327):2.229353662,(((814:0.07293320043,815:0.07293320043):0.258397104,(816:0.2350243468,817:0.2350243468):0.09630595766):1.010170412,(818:0.6567451134,819:0.6567451134):0.6847556032):5.937231561):0.558940612):0.7496399983,((820:6.906476331,((((821:0.418813353,822:0.418813353):0.7497080191,823:1.168521372):1.150929357,(824:1.338984367,825:1.338984367):0.9804663625):3.913111562,(((826:1.037963305,827:1.037963305):0.5306644598,(828:1.410571177,829:1.410571177):0.1580565886):1.798935677,830:3.367563443):2.864998849):0.6739140388):0.01129934684,(831:4.32110374,((832:0.6261997726,(833:0.4012966474,834:0.4012966474):0.2249031252):0.9570646292,835:1.583264402):2.737839338):2.596671937):1.66953721):0.1628858978):0.1840911662):2.878489439,((((836:0.1301179485,837:0.1301179485):3.794831064,((838:0.3001507619,(839:0.2462407573,840:0.2462407573):0.05391000452):2.15686783,841:2.457018592):1.467930421):0.08314872889,((842:1.076809143,843:1.076809143):2.565919837,((844:0.9985465913,(845:0.1652853396,(846:0.03479121785,847:0.03479121785):0.1304941217):0.8332612517):2.526186761,((848:0.3068364405,849:0.3068364405):1.054689446,850:1.361525886):2.163207466):0.1179956275):0.365368761):1.745799986,(851:1.681559066,(852:0.5675383839,853:0.5675383839):1.114020682):4.072338662):6.058881663):3.173048755,(((((((854:0.6756414632,(855:0.04984836374,856:0.04984836374):0.6257930994):2.033336899,857:2.708978363):0.2626404572,858:2.97161882):0.2785228508,(((859:0.3433603487,860:0.3433603487):0.7572036512,((861:0.1712456609,862:0.1712456609):0.2646163748,(863:0.1691247778,864:0.1691247778):0.2667372579):0.6647019641):1.588871082,865:2.689435082):0.5607065891):4.627269627,(866:0.02395104351,867:0.02395104351):7.853460254):1.301402476,((((868:2.287312966,869:2.287312966):1.771334117,(870:1.644130716,871:1.644130716):2.414516368):0.5182884546,872:4.576935538):1.169679551,(873:2.94954033,874:2.94954033):2.797074759):3.432198684):0.07616615527,(((((875:0.2903726858,876:0.2903726858):0.9058726014,((877:0.5184797018,878:0.5184797018):0.03300546504,(879:0.01319035196,880:0.01319035196):0.5382948149):0.6447601203):3.649890829,((881:1.224186954,(882:1.053826127,883:1.053826127):0.170360827):0.1791115631,884:1.403298517):3.442837599):3.003724051,(885:2.438462268,886:2.438462268):5.411397899):0.06541541589,((((887:1.537021475,(888:0.9811197775,889:0.9811197775):0.5559016977):3.312350455,((890:0.1639039238,891:0.1639039238):3.822863378,892:3.986767302):0.8626046282):1.245038336,((893:0.1724336848,(894:0.07958670346,895:0.07958670346):0.09284698135):1.299940615,896:1.4723743):4.622035966):1.604912779,(((897:1.568268753,898:1.568268753):3.783995292,((899:4.256608509,900:4.256608509):0.8571077024,((901:1.164264301,902:1.164264301):3.93286585,((903:0.9294400471,904:0.9294400471):2.086163401,(((905:1.35122212,906:1.35122212):0.5548743321,907:1.906096452):0.01118087142,((908:0.04769725144,909:0.04769725144):1.492094555,(910:1.361617252,(((911:0.4342836065,912:0.4342836065):0.1795092535,(913:0.3517130745,914:0.3517130745):0.2620797855):0.38567816,(915:0.4114811988,916:0.4114811988):0.5879898211):0.362146232):0.1781745544):0.3774855175):1.098326124):2.081526704):0.0165860605):0.2385478335):0.343229973,(917:4.817597336,(918:1.040076243,919:1.040076243):3.777521093):0.877896682):2.003829027):0.2159525372):1.339704347):5.730848217):0.5735282505):0.1979293061,(((((920:2.01156109,921:2.01156109):0.6938323605,((922:0.7261403433,923:0.7261403433):0.1793858516,(924:0.6341830793,925:0.6341830793):0.2713431156):1.799867256):7.582527077,(((926:0.1354253442,927:0.1354253442):0.1829178588,928:0.318343203):2.200053293,929:2.518396495):7.769524032):1.279160056,(((((((930:0.3666688712,931:0.3666688712):1.512505422,932:1.879174293):1.226470034,(933:0.2163898431,934:0.2163898431):2.889254484):0.02148386183,(((935:0.4979829542,(936:0.1218478256,937:0.1218478256):0.3761351286):0.3563245203,938:0.8543074745):2.259749383,939:3.114056858):0.01307133169):1.897830106,940:5.024958295):2.922493128,(((941:2.081799121,(942:0.3328557336,943:0.3328557336):1.748943387):2.349269681,944:4.431068802):1.666755386,(945:3.041192374,946:3.041192374):3.056631813):1.849627236):2.047375397,(947:4.771863196,((948:0.176789291,949:0.176789291):3.978175152,((((950:0.2116213362,951:0.2116213362):0.4944297216,952:0.7060510578):0.1478514788,953:0.8539025366):0.7565233849,(((954:0.03499814316,955:0.03499814316):0.2720974986,956:0.3070956417):0.4723426148,957:0.7794382566):0.8309876649):2.544538521):0.6168987533):5.222963624):1.572253763):2.551000453,(((958:2.549284574,959:2.549284574):2.066887931,((((((960:0.8671997165,961:0.8671997165):1.775235343,((962:1.727651592,(963:0.9341509262,964:0.9341509262):0.7935006656):0.1080276793,(965:1.558634283,(966:1.28207525,967:1.28207525):0.2765590331):0.2770449881):0.8067557885):0.2805701178,968:2.923005177):0.4198133813,((((969:0.2212980863,970:0.2212980863):0.06712557641,(971:0.04550203978,972:0.04550203978):0.2429216229):1.999470163,973:2.287893825):0.8668167144,(974:0.03197840691,975:0.03197840691):3.122732133):0.188108019):0.1473495998,(976:1.671413602,977:1.671413602):1.818754557):0.5285830188,((978:0.3660883275,979:0.3660883275):1.469212053,980:1.835300381):2.183450796):0.5974213282):7.694740446,(((((981:6.172674418,(((982:1.445328616,(983:0.239988782,984:0.239988782):1.205339834):0.1597143534,(985:0.02727257369,986:0.02727257369):1.577770396):3.33391422,(987:4.009042688,(((988:0.1819071588,989:0.1819071588):2.741668137,((990:0.0007624000658,991:0.0007624000658):0.04253702133,992:0.0432994214):2.880275874):0.03369107045,(993:2.604451335,(994:2.318318318,(995:0.5832680883,996:0.5832680883):1.73505023):0.2861330165):0.3528150311):1.051776323):0.9299145014):1.233717229):1.369196869,((997:4.65851491,((998:1.236915584,999:1.236915584):1.242112924,((1000:0.4105255888,1001:0.4105255888):1.940954166,(((1002:0.4117517885,(1003:0.2275980374,(1004:0.1615460981,1005:0.1615460981):0.06605193931):0.1841537511):0.9783798053,1006:1.390131594):0.9297306223,(1007:0.9001523076,(1008:0.1676591145,1009:0.1676591145):0.7324931931):1.419709909):0.03161753865):0.1275487534):2.179486402):2.863121175,(1010:5.123514273,(((1011:3.305630931,1012:3.305630931):0.4419124028,((((1013:0.07274837513,1014:0.07274837513):1.282882259,1015:1.355630634):0.1113815969,(1016:0.296374,1017:0.296374):1.170638231):1.988134251,(((1018:1.437782819,1019:1.437782819):0.8430566012,((1020:0.005094437367,1021:0.005094437367):0.6996169823,(1022:0.3518888267,1023:0.3518888267):0.352822593):1.576128):0.9109413979,((1024:0.02832191951,1025:0.02832191951):1.128127468,(1026:1.097106847,1027:1.097106847):0.0593425404):2.035331431):0.2633656636):0.2923968525):0.823545945,(1028:0.7997169143,(1029:0.1155554163,1030:0.1155554163):0.684161498):3.771372365):0.5524249943):2.398121811):0.02023520305):0.7621010174,(((1031:4.99750774,((1032:4.244099934,(((1033:0.8854677256,1034:0.8854677256):0.9243025378,1035:1.809770263):0.9900895057,1036:2.799859769):1.444240165):0.7413499607,1037:4.985449895):0.01205784545):0.1779884898,((1038:1.5096462,1039:1.5096462):1.344935081,(1040:2.800323976,((1041:0.3895967483,1042:0.3895967483):0.3495303276,1043:0.7391270758):2.0611969):0.05425730496):2.320914949):1.737981984,(1044:2.729625173,1045:2.729625173):4.183853041):1.390494091):0.5464432054,((((1046:0.04256388099,1047:0.04256388099):2.12436307,(((1048:0.3319608655,1049:0.3319608655):0.1816160352,(1050:0.09611125633,1051:0.09611125633):0.4174656444):0.03814558431,1052:0.551722485):1.615204466):0.3880415212,1053:2.554968473):2.444135789,(((1054:0.1013900769,1055:0.1013900769):1.779836404,(1056:0.5439112345,1057:0.5439112345):1.337315246):0.4331751105,((1058:0.09334181913,1059:0.09334181913):0.01018755675,1060:0.1035293759):2.210872216):2.68470267):3.851311249):0.6577529567,(((1061:3.1429136,((((1062:0.6782886173,1063:0.6782886173):0.41032259,1064:1.088611207):0.05805784153,(1065:0.2656085959,1066:0.2656085959):0.8810604529):1.574461982,((((1067:0.09569965277,1068:0.09569965277):0.6612988476,1069:0.7569985004):1.234194613,(1070:1.928267591,((1071:0.2125665684,1072:0.2125665684):1.481950013,((1073:0.9291141214,(1074:0.4667826261,1075:0.4667826261):0.4623314953):0.3454283251,1076:1.274542447):0.4199741346):0.2337510101):0.06292552192):0.2392934648,1077:2.230486578):0.4906444532):0.421782569):3.248802353,((1078:1.076340452,(1079:0.8130322682,(1080:0.297973496,1081:0.297973496):0.5150587722):0.2633081835):0.9285305979,1082:2.00487105):4.386844903):0.6556173717,(((((1083:0.2276394723,1084:0.2276394723):0.2097858622,1085:0.4374253345):1.689295343,(1086:1.143092438,(1087:0.4961815038,1088:0.4961815038):0.646910934):0.9836282399):1.190896305,1089:3.317616983):0.05566047076,((1090:0.2073413922,1091:0.2073413922):0.6104226767,1092:0.8177640688):2.555513385):3.674055871):2.460835143):2.802744484):1.807168085):1.639204667):0.5788312973):7.807598874,(5:20.67717877,4:20.67717877):3.466537175):2.125817388,1:26.26953333):1.538115723,(((((((2014:0.8144649611,2015:0.8144649611):4.59167166,(2016:1.980306068,(2017:1.515946051,((2018:0.1537474896,2019:0.1537474896):1.311322991,((2020:0.2555136663,2021:0.2555136663):0.06296401844,2022:0.3184776848):1.146592796):0.05087557064):0.464360017):3.425830553):3.173819515,(((2023:0.8940979372,(2024:0.8264855912,2025:0.8264855912):0.067612346):3.41164824,((((2026:0.3679532957,2027:0.3679532957):0.8241530058,2028:1.192106301):1.708564623,(((2029:0.4861050105,2030:0.4861050105):0.6208730422,(2031:0.9897879874,2032:0.9897879874):0.1171900653):1.58882148,(((2033:0.2445893976,2034:0.2445893976):1.561968829,(2035:0.6451611764,2036:0.6451611764):1.16139705):0.4534435938,((2037:1.913784576,2038:1.913784576):0.2190465059,2039:2.132831082):0.1271707383):0.4357977122):0.2048713918):0.734520319,(2040:0.1067449502,2041:0.1067449502):3.528446293):0.6705549336):2.777551969,((2042:3.518258578,((((2043:1.170336144,(2044:0.01935905432,2045:0.01935905432):1.15097709):0.02444648882,2046:1.194782633):0.7108996639,(2047:0.8867156956,(2048:0.0198377883,2049:0.0198377883):0.8668779073):1.018966601):0.5484902199,(2050:2.000330736,(2051:0.4134763337,(2052:0.1927000106,2053:0.1927000106):0.2207763231):1.586854402):0.4538417807):1.064086062):1.909669223,2054:5.427927801):1.655370344):1.49665799):0.7216481823,((((2055:4.212958641,2056:4.212958641):0.3980903409,(((2057:0.1507532545,2058:0.1507532545):2.204274586,2059:2.35502784):0.4492802799,((((((2060:0.6020277972,2061:0.6020277972):0.3303852985,2062:0.9324130957):0.3051719268,2063:1.237585022):0.9988912995,2064:2.236476322):0.1415166751,((2065:0.9249485626,(2066:0.4727731034,2067:0.4727731034):0.4521754592):1.101049454,2068:2.025998017):0.3519949803):0.3845019331,((2069:0.1091404222,2070:0.1091404222):0.6459432475,2071:0.7550836697):2.007411261):0.04181318974):1.806740862):0.377481165,(((2072:0.4214337494,2073:0.4214337494):0.04918066225,2074:0.4706144117):3.569927813,(((2075:0.665297088,(2076:0.3284251602,2077:0.3284251602):0.3368719277):0.0540322978,2078:0.7193293858):1.913952107,(2079:1.4843609,2080:1.4843609):1.148920592):1.407260733):0.9479879217):2.457875698,(2081:5.11743363,((2082:1.338769557,(2083:0.4125240844,2084:0.4125240844):0.9262454727):1.966878426,((2085:1.12287453,((2086:0.2774645548,2087:0.2774645548):0.6218603071,2088:0.8993248619):0.2235496683):1.832101418,(2089:2.449533185,(2090:1.4980038,((2091:0.548863555,2092:0.548863555):0.4469537456,(2093:0.9730311667,2094:0.9730311667):0.02278613387):0.5021864991):0.9515293849):0.5054427634):0.3506720346):1.811785648):2.328972214):1.855198474):0.6599971653,((((2095:0.09220804753,2096:0.09220804753):1.344100169,(2097:1.011426243,2098:1.011426243):0.4248819743):8.072971818,((2099:3.609917316,((2100:0.1870749395,2101:0.1870749395):0.2063489515,2102:0.393423891):3.216493425):3.936453842,(((((2103:1.077687215,2104:1.077687215):1.346719273,(2105:2.155353856,(2106:0.4577162534,(2107:0.02698296765,2108:0.02698296765):0.4307332857):1.697637603):0.2690526309):0.664713712,(2109:0.08869037405,2110:0.08869037405):3.000429825):1.155839974,(2111:0.3855233395,2112:0.3855233395):3.859436834):2.677330337,((2113:3.00496632,2114:3.00496632):0.6895440393,(((2115:0.634966384,2116:0.634966384):0.03605183667,(2117:0.1273257664,2118:0.1273257664):0.5436924542):0.4456296028,2119:1.116647823):2.577862536):3.227780152):0.6240806479):1.962908877):0.3957103425,((2120:1.819312286,((2121:1.217764314,2122:1.217764314):0.04191264345,((2123:0.2339549706,2124:0.2339549706):0.5147042944,(2125:0.4876299159,(2126:0.3590955546,(2127:0.01175447867,2128:0.01175447867):0.3473410759):0.1285343612):0.2610293492):0.5110176928):0.5596353285):2.75485379,((2129:3.87626521,((2130:3.003601171,2131:3.003601171):0.4914433836,2132:3.495044555):0.3812206555):0.4524688369,(((2133:0.05440902502,2134:0.05440902502):1.012596625,(2135:0.9501113173,(2136:0.4866432048,2137:0.4866432048):0.4634681124):0.1168943323):2.410737367,(2138:2.873582692,2139:2.873582692):0.6041603241):0.8509910309):0.2454320286):5.330824302):0.05661110574):8.952668516,(((2140:0.9038747534,(2141:0.1461176439,2142:0.1461176439):0.7577571095):3.146309083,((2143:1.251282301,(2144:0.2066979636,(2145:0.07722609767,2146:0.07722609767):0.1294718659):1.044584338):0.06743870711,2147:1.318721008):2.731462828):3.797863976,((2148:0.4940500224,2149:0.4940500224):1.6503802,2150:2.144430222):5.70361759):11.06622219):5.438383567,(3:22.39577228,((((1093:1.113141243,(1094:0.7030724441,1095:0.7030724441):0.4100687992):6.264189016,((((((1096:0.5360856963,1097:0.5360856963):0.03993065723,1098:0.5760163535):0.3913015905,(1099:0.3205580685,1100:0.3205580685):0.6467598754):1.419036377,1101:2.386354321):0.9183670667,1102:3.304721387):3.174696334,(1103:1.868810448,(1104:0.2570520866,1105:0.2570520866):1.611758361):4.610607273):0.8979125387):7.100198489,(((((1106:0.9500328378,1107:0.9500328378):3.321425367,(1108:0.311020463,1109:0.311020463):3.960437742):0.9284471221,((((1110:0.09011191816,1111:0.09011191816):1.816937191,1112:1.907049109):0.1404485479,1113:2.047497657):0.9050236033,((1114:0.2729780409,1115:0.2729780409):0.6868293411,(1116:0.4028037748,1117:0.4028037748):0.5570036073):1.992713879):2.247384066):0.5451022242,(((((((1118:1.304937081,1119:1.304937081):0.06576834543,(1120:0.1247789453,1121:0.1247789453):1.245926481):0.9688814267,((1122:0.08400102716,1123:0.08400102716):0.3328525166,1124:0.4168535437):1.92273331):0.2300679953,1125:2.569654849):1.812906386,1126:4.382561235):0.2913519923,(1127:1.802571133,((1128:0.6921321076,(1129:0.2549729233,1130:0.2549729233):0.4371591843):0.8557586576,(1131:0.462272712,1132:0.462272712):1.085618053):0.2546803681):2.871342094):1.040643378,(1133:2.354742437,((1134:1.242941965,1135:1.242941965):0.4697791296,((1136:0.7306537824,1137:0.7306537824):0.6228221005,((1138:0.4662460322,1139:0.4662460322):0.4605891205,(1140:0.2703999663,1141:0.2703999663):0.6564351864):0.4266407301):0.3592452117):0.6420213423):3.359814168):0.03045094642):3.066603443,((((1142:1.263451242,1143:1.263451242):0.8165154086,(1144:1.224282627,1145:1.224282627):0.855684023):0.2583038308,(((1146:0.4662072942,1147:0.4662072942):0.9147899155,(1148:0.8221890346,1149:0.8221890346):0.5588081751):0.6289408982,1150:2.009938108):0.3283323732):6.143317621,(((1151:0.4984997295,1152:0.4984997295):1.980432429,((1153:0.4372129553,1154:0.4372129553):0.229696214,1155:0.6669091693):1.812022989):2.364612459,(((1156:1.600696422,1157:1.600696422):1.411344744,1158:3.012041165):1.701723076,1159:4.713764241):0.1297803762):3.638043486):0.330022892):5.665917754):3.783604251,(((((((1160:0.7471236646,1161:0.7471236646):0.3078391332,(1162:1.036588635,((1163:0.008336118137,1164:0.008336118137):0.9628784275,1165:0.9712145456):0.06537408947):0.01837416275):0.6637343965,(1166:1.273037298,((((1167:0.1113904968,1168:0.1113904968):0.1559723672,1169:0.267362864):0.273359408,(1170:0.2736055578,1171:0.2736055578):0.2671167142):0.3490639035,(1172:0.820375117,1173:0.820375117):0.06941105855):0.3832511222):0.4456598966):2.979035801,((1174:3.30942157,(((((1175:0.04517534611,1176:0.04517534611):1.77838469,1177:1.823560036):0.2366806581,1178:2.060240694):0.2795037483,(1179:0.9189916052,((1180:0.2023414343,1181:0.2023414343):0.570709414,(1182:0.03639150716,1183:0.03639150716):0.7366593411):0.1459407569):1.420752837):0.6963736564,(1184:0.03463886683,1185:0.03463886683):3.001479232):0.2733034719):0.4930876273,1186:3.802509198):0.8952237977):2.796145083,(((1187:0.03401470157,1188:0.03401470157):3.326120434,(1189:2.835231073,1190:2.835231073):0.5249040625):3.40183158,(((1191:3.959717568,((1192:2.747949416,1193:2.747949416):0.5519498174,(1194:1.617076363,1195:1.617076363):1.68282287):0.6598183352):0.9492416351,(1196:4.36274959,(1197:3.525196452,(((1198:0.2655954403,1199:0.2655954403):0.5837185081,1200:0.8493139484):0.2079636276,1201:1.057277576):2.467918876):0.8375531381):0.5462096129):0.4000975579,(((((1202:0.1043863681,1203:0.1043863681):1.751593024,1204:1.855979392):0.4256917372,((((1205:0.4739372493,1206:0.4739372493):0.07752929462,(1207:0.4049387146,1208:0.4049387146):0.1465278293):0.03929303126,(1209:0.1724897884,1210:0.1724897884):0.4182697867):0.5411631663,1211:1.131922741):1.149748387):0.6796583898,(1212:0.578622674,1213:0.578622674):2.382706845):0.6438371154,((((1214:0.2748138827,1215:0.2748138827):1.075511246,1216:1.350325128):0.9201159684,1217:2.270441097):0.7730666738,1218:3.043507771):0.5616588636):1.703890127):1.452909954):0.7319113633):0.01434839487,((1219:1.802872991,(1220:0.8070775228,(1221:0.6544480833,1222:0.6544480833):0.1526294396):0.9957954679):0.9489119571,(1223:1.356274443,((1224:0.07896251849,1225:0.07896251849):1.144203889,1226:1.223166408):0.1331080355):1.395510505):4.756441526):0.0964574475,((1227:0.3451807337,1228:0.3451807337):6.349733186,((((1229:0.254025855,1230:0.254025855):1.127992974,1231:1.382018829):0.66660611,((1232:0.02385133232,1233:0.02385133232):1.555165939,((1234:0.3223551404,1235:0.3223551404):0.6563549172,(1236:0.9632178069,1237:0.9632178069):0.01549225061):0.6003072141):0.4696076677):2.95641416,(((1238:0.3854004489,(1239:0.2107506848,1240:0.2107506848):0.1746497641):2.227177353,1241:2.612577802):0.5158908379,((1242:2.640252016,(((1243:0.4767008072,1244:0.4767008072):0.3402396474,1245:0.8169404545):0.9491275604,1246:1.766068015):0.8741840008):0.05786440962,(1247:2.333292109,((1248:1.242483724,((1249:0.8947437125,1250:0.8947437125):0.0003039267762,1251:0.8950476393):0.3474360842):0.4810228159,1252:1.723506539):0.6097855697):0.3648243162):0.4303522143):1.87657046):1.68987482):0.9097700017):10.65644908):4.134639739):1.956882905):3.454993865):1.946899352,((1253:1.114917581,(1254:0.5091235469,1255:0.5091235469):0.6057940341):19.52927842,((((1256:0.02068577433,1257:0.02068577433):0.4798204303,1258:0.5005062046):1.607789537,1259:2.108295742):4.078768539,((1260:4.228239038,((1261:0.838750523,1262:0.838750523):0.8378172583,1263:1.676567781):2.551671256):0.8423369444,((((1264:1.019850752,1265:1.019850752):1.35462524,((((1266:0.04409288021,1267:0.04409288021):0.205591919,1268:0.2496847992):0.3624615393,(1269:0.06280433388,1270:0.06280433388):0.5493420046):0.9868214251,(1271:0.1197137166,1272:0.1197137166):1.479254047):0.7755082281):0.02080061616,(((1273:0.004164376306,1274:0.004164376306):0.1428061341,1275:0.1469705104):0.8824944987,(1276:0.2888263636,1277:0.2888263636):0.7406386455):1.365811599):1.27050533,1278:3.665781938):1.404794044):1.116488299):14.45713172):9.110352346):3.435163863,(((((((1279:0.2061850985,1280:0.2061850985):1.576146137,((1281:0.1967424212,1282:0.1967424212):1.363333466,(1283:0.5399148305,1284:0.5399148305):1.020161057):0.2222553482):0.3687645254,((1285:1.202104964,1286:1.202104964):0.4251897536,1287:1.627294717):0.5238010436):4.494827907,((((1288:2.037631226,(1289:0.5061089103,1290:0.5061089103):1.531522316):0.5405063711,(1291:0.009324635634,1292:0.009324635634):2.568812962):1.464320992,1293:4.042458589):0.3762365231,((((1294:0.7687616843,1295:0.7687616843):1.664987061,(1296:1.30519402,(1297:0.07165951725,1298:0.07165951725):1.233534503):1.128554725):0.5473367732,((1299:0.0786644815,1300:0.0786644815):0.2272171394,1301:0.3058816209):2.675203897):0.4784443565,(1302:0.1170773455,1303:0.1170773455):3.342452529):0.9591652376):2.227228556):5.1092139,((((1304:0.2080253085,1305:0.2080253085):3.133557259,((1306:1.777342622,1307:1.777342622):1.131056745,(1308:1.106907409,1309:1.106907409):1.801491958):0.4331832009):0.9110657603,(1310:0.3309532497,1311:0.3309532497):3.921695078):5.291002235,((1312:0.0981365169,1313:0.0981365169):1.830108131,((((1314:0.05392415896,1315:0.05392415896):1.339756199,1316:1.393680358):0.09513566587,1317:1.488816024):0.3644362669,((1318:0.6926295184,(1319:0.4727275336,1320:0.4727275336):0.2199019847):0.695998893,1321:1.388628411):0.4646238796):0.07499235653):7.615405915):2.211487005):3.360328432,((((((((1322:2.239383152,1323:2.239383152):1.304672228,(((1324:0.4160706218,1325:0.4160706218):0.04531490946,1326:0.4613855312):0.2072877014,(1327:0.3682190363,1328:0.3682190363):0.3004541963):2.875382148):3.246596235,((1329:4.324898499,(((1330:0.665200089,(1331:0.5439000759,1332:0.5439000759):0.1213000131):1.292222844,1333:1.957422933):1.649619705,(((((1334:0.4985019854,(1335:0.225291695,1336:0.225291695):0.2732102904):0.02301128797,(1337:0.2811100433,1338:0.2811100433):0.24040323):0.2132776306,1339:0.734790904):0.6478244121,(((1340:0.2495445113,1341:0.2495445113):0.4107857813,(1342:0.08444047188,1343:0.08444047188):0.5758898207):0.5599098877,(1344:1.044679289,1345:1.044679289):0.1755608908):0.1623751358):0.1382229862,((1346:0.5535434541,1347:0.5535434541):0.7553028658,((1348:0.3423037318,1349:0.3423037318):0.3777701192,(1350:0.6960951145,((1351:0.234094581,1352:0.234094581):0.4475818967,1353:0.6816764777):0.01441863682):0.02397873654):0.5887724689):0.2119919823):2.086204336):0.7178558608):0.6951248752,((1354:2.190938239,1355:2.190938239):1.261013181,((1356:0.4277203346,1357:0.4277203346):0.5309316257,(1358:0.4405238583,1359:0.4405238583):0.518128102):2.49329946):1.568071953):1.770628241):1.839339667,(((1360:0.04805586291,1361:0.04805586291):6.04153046,(1362:2.862727397,(1363:1.511266253,(1364:0.431156737,1365:0.431156737):1.080109516):1.351461143):3.226858926):1.16850004,((1366:0.06807619128,1367:0.06807619128):5.007142905,((1368:1.269576697,1369:1.269576697):1.164126792,((1370:1.032453395,1371:1.032453395):0.3958246422,(1372:0.9908884952,1373:0.9908884952):0.4373895424):1.005425451):2.641515607):2.182867267):1.371904919):1.448796037,((((1374:1.791161945,1375:1.791161945):0.3530355611,(1376:0.4488377303,1377:0.4488377303):1.695359776):1.027132987,(1378:1.352683908,((1379:0.4951805459,1380:0.4951805459):0.8422472272,1381:1.337427773):0.01525613446):1.818646586):4.699108983,1382:7.870439476):2.208347843):0.7279437907,((1383:2.694801567,1384:2.694801567):5.669468976,1385:8.364270543):2.442460567):1.235722016,((((1386:0.04619340524,1387:0.04619340524):1.122368152,1388:1.168561557):1.622610082,((1389:1.570879016,1390:1.570879016):0.6840913544,((1391:0.1228743173,1392:0.1228743173):0.417847037,1393:0.5407213542):1.714249016):0.5362012685):5.768296031,(((1394:1.168798629,(1395:0.7687704976,1396:0.7687704976):0.4000281311):1.107307749,(1397:1.270761511,(1398:0.2005531015,1399:0.2005531015):1.07020841):1.005344867):3.188389685,(1400:0.8265750013,(1401:0.6386855802,1402:0.6386855802):0.1878894211):4.637921061):3.094971608):3.482985455):2.703851248,(((1403:3.174192596,((1404:0.7895828586,(1405:0.0571023074,1406:0.0571023074):0.7324805512):0.7121808567,(1407:0.2847433537,1408:0.2847433537):1.217020362):1.672428881):1.350826266,1409:4.525018862):9.456556811,(((((((((1410:0.2813249097,1411:0.2813249097):1.610445754,(1412:1.448785696,1413:1.448785696):0.4429849674):1.36670411,1414:3.258474774):1.965694281,(1415:0.3774604593,((1416:0.04764186823,1417:0.04764186823):0.1999079272,(1418:0.1271491883,1419:0.1271491883):0.1204006072):0.1299106638):4.846708596):1.473583156,(((1420:1.200240023,1421:1.200240023):1.219574404,(1422:0.3748941789,1423:0.3748941789):2.044920247):3.399493228,(1424:5.273582788,(((1425:0.01935226895,1426:0.01935226895):1.602905578,1427:1.622257846):2.924090909,((1428:0.3609711231,1429:0.3609711231):3.017181368,(((1430:0.03958718042,1431:0.03958718042):1.718601371,(1432:1.461855616,(1433:0.6165549866,(1434:0.1849806002,1435:0.1849806002):0.4315743864):0.845300629):0.2963329356):1.578189761,((1436:2.98493742,(1437:2.035779564,1438:2.035779564):0.9491578561):0.184020506,(1439:2.604852936,1440:2.604852936):0.5641049903):0.167420386):0.04177417871):1.168196264):0.7272340323):0.5457248673):0.8784445563):0.2767764129,((1441:0.7548926385,1442:0.7548926385):5.175162084,(((1443:0.2336093324,1444:0.2336093324):0.3733955996,1445:0.607004932):5.065293929,(((1446:1.166981572,(1447:0.2033924423,1448:0.2033924423):0.96358913):0.1596154439,1449:1.326597016):1.143193922,(1450:0.9161994232,((1451:0.5511065565,(1452:0.09329631654,1453:0.09329631654):0.45781024):0.1970662297,1454:0.7481727862):0.168026637):1.553591515):3.202507923):0.2577558616):1.044473901):2.245011696,(((((1455:0.5661464756,1456:0.5661464756):1.157458749,(1457:1.511426173,(1458:0.4519051819,1459:0.4519051819):1.059520992):0.2121790513):1.655887114,(1460:2.725585704,(1461:0.6987583644,(1462:0.541235599,1463:0.541235599):0.1575227654):2.02682734):0.6539066347):2.345062951,((1464:1.499394924,(1465:0.931984706,1466:0.931984706):0.5674102178):3.077909292,(((1467:0.1219231405,1468:0.1219231405):1.438492183,((1469:0.6816652493,1470:0.6816652493):0.7434236743,1471:1.425088924):0.1353264001):2.069158781,1472:3.629574105):0.9477301113):1.147251074):0.3652812715,(1473:2.672682762,(1474:2.332086863,(1475:0.524354503,1476:0.524354503):1.80773236):0.3405958999):3.417153799):3.129703759):2.554802234,((((((((1477:0.04789065572,1478:0.04789065572):0.03554702652,1479:0.08343768224):0.760843211,1480:0.8442808933):0.1949189755,1481:1.039199869):0.03929521976,(1482:0.4004246732,1483:0.4004246732):0.6780704154):5.9844677,((1484:0.611925601,1485:0.611925601):0.05793758945,(1486:0.4945315752,1487:0.4945315752):0.1753316152):6.393099598):2.215865753,(((1488:0.08697396447,1489:0.08697396447):0.3608696193,1490:0.4478435837):3.01379889,(((1491:0.3344796621,1492:0.3344796621):0.1186485982,(1493:0.217077047,1494:0.217077047):0.2360512134):0.1991828049,(1495:0.5978731129,((1496:0.2410695329,1497:0.2410695329):0.007199239572,1498:0.2482687725):0.3496043404):0.05443795237):2.809331408):5.817186068):2.08997862,((1499:10.6944379,(((1500:2.02896476,(1501:1.619010705,(1502:0.8552676129,(1503:0.7327015718,1504:0.7327015718):0.1225660412):0.7637430921):0.4099540547):0.1842458369,((1505:0.2605407941,1506:0.2605407941):1.126134871,(1507:0.6152998853,1508:0.6152998853):0.77137578):0.8265349312):8.015729726,((1509:1.069400058,1510:1.069400058):3.715638346,((1511:2.870224681,1512:2.870224681):0.08056142887,(1513:0.4487082221,(1514:0.1489932694,1515:0.1489932694):0.2997149527):2.502077888):1.834252293):5.443901919):0.4654975782):0.5802258005,(((((1516:0.2122747248,1517:0.2122747248):2.738955766,(1518:0.01035006516,1519:0.01035006516):2.940880426):0.04909013094,(1520:0.4602438462,1521:0.4602438462):2.540076776):1.766224615,(((1522:0.4944338677,(1523:0.1076424607,1524:0.1076424607):0.386791407):0.2401205245,1525:0.7345543922):3.043367018,(1526:0.2965629972,1527:0.2965629972):3.481358413):0.9886238274):4.972754666,((((1528:7.1546958,(((((1529:1.675814918,1530:1.675814918):0.6384511717,1531:2.31426609):0.4582137112,(1532:2.193854587,(1533:2.05680398,(1534:0.8633717521,1535:0.8633717521):1.193432228):0.1370506073):0.5786252141):3.064765227,(((1536:2.149116948,((1537:0.8588467761,1538:0.8588467761):0.2715763146,1539:1.130423091):1.018693857):0.6974772485,(((1540:1.173233761,1541:1.173233761):0.5552767159,1542:1.728510477):0.6168488197,((1543:0.01457165021,1544:0.01457165021):1.910265342,1545:1.924836993):0.4205223038):0.5012349):1.792776989,((1546:3.209879415,(1547:0.8508269658,1548:0.8508269658):2.359052449):0.06211116429,((1549:1.154971075,1550:1.154971075):1.331314636,1551:2.486285711):0.7857048679):1.367380607):1.197873842):0.4329072554,(((1552:0.7037644279,1553:0.7037644279):0.8429659412,((1554:0.6928603495,1555:0.6928603495):0.5421518578,1556:1.235012207):0.3117181618):2.970541257,((((1557:0.1516280743,1558:0.1516280743):0.3423258668,1559:0.4939539411):0.1729157729,1560:0.6668697139):0.5288076738,1561:1.195677388):3.321594238):1.752880658):0.8845435163):1.442304045,(((((((1562:1.75400556,1563:1.75400556):0.5398937053,1564:2.293899265):2.243202584,(((1565:0.9304406039,1566:0.9304406039):0.4244122238,((1567:0.009547373529,1568:0.009547373529):1.187824623,1569:1.197371997):0.157480831):1.639894536,(1570:0.8340861229,1571:0.8340861229):2.16066124):1.542354486):1.05780152,1572:5.594903369):0.3657299718,((((1573:1.582400153,(1574:1.320331406,1575:1.320331406):0.2620687468):0.6729423967,1576:2.25534255):0.2152882042,((1577:0.2229575899,1578:0.2229575899):0.1582092229,(1579:0.1764825048,1580:0.1764825048):0.204684308):2.089463941):1.132589043,(((1581:1.019246031,((1582:0.4783925533,1583:0.4783925533):0.0371052977,(1584:0.17891489,1585:0.17891489):0.336582961):0.5037481802):0.7423973688,1586:1.7616434):0.3500883489,1587:2.111731749):1.491488049):2.357413543):0.5707143108,((1588:0.243795208,1589:0.243795208):5.632818147,((1590:1.640929803,(1591:1.027962859,1592:1.027962859):0.6129669444):2.883924239,(((((1593:0.4963688504,1594:0.4963688504):0.9530370239,1595:1.449405874):0.09339272861,(1596:0.503829346,1597:0.503829346):1.038969257):0.03619665705,1598:1.57899526):1.007972205,((1599:1.980448447,((1600:0.01777519753,1601:0.01777519753):0.7681243916,1602:0.7858995892):1.194548858):0.3723017805,((1603:0.8856879477,(1604:0.7203555959,1605:0.7203555959):0.1653323518):0.2243505684,(1606:0.9387144827,1607:0.9387144827):0.1713240334):1.242711712):0.2342172372):1.937886577):1.351759313):0.6547342968):1.765466211,((1608:1.632796389,1609:1.632796389):2.666494084,(1610:3.075321312,(1611:0.9494821521,(1612:0.442375307,1613:0.442375307):0.5071068451):2.12583916):1.223969161):3.99752339):0.3001859821):0.177785439,((1614:0.4944490104,1615:0.4944490104):4.683450417,(1616:0.4016637774,(1617:0.150656655,1618:0.150656655):0.2510071224):4.77623565):3.596885856):0.6541574608,((1619:4.281012703,((((1620:1.21098862,1621:1.21098862):0.8145811486,((1622:0.2599907847,1623:0.2599907847):0.4902263619,1624:0.7502171465):1.275352622):0.5425253631,1625:2.568095131):0.5746727828,1626:3.142767914):1.138244789):4.152968767,((((1627:0.5127004801,1628:0.5127004801):3.295213184,((((1629:0.7224462662,1630:0.7224462662):0.474459213,1631:1.196905479):0.1308598458,(1632:1.133693601,(1633:0.4422660897,1634:0.4422660897):0.6914275111):0.1940717242):1.123319567,(1635:0.3404494258,1636:0.3404494258):2.110635467):1.356828772):3.996079911,(((1637:0.4710060231,1638:0.4710060231):2.333295489,((1639:0.2669849601,1640:0.2669849601):1.637948426,(1641:0.2182823812,1642:0.2182823812):1.686651005):0.8993681266):3.87260393,((((((1643:0.07972102933,1644:0.07972102933):0.3799976313,(1645:0.1993220356,1646:0.1993220356):0.260396625):2.207992636,1647:2.667711297):2.179597892,(((1648:0.4585411955,1649:0.4585411955):1.901774609,(1650:0.02610590704,1651:0.02610590704):2.334209898):0.488400928,1652:2.848716733):1.998592456):0.02917361013,((1653:1.364426486,1654:1.364426486):0.340047071,(1655:0.283505601,1656:0.283505601):1.420967956):3.172009242):0.9269547882,(1657:1.357917505,1658:1.357917505):4.445520082):0.8734678554):1.127088133):0.5893214956,((((1659:2.425988805,1660:2.425988805):1.520475992,((1661:0.704670887,1662:0.704670887):0.9321482408,1663:1.636819128):2.309645669):0.03987751822,(1664:2.365358219,(1665:0.446221556,1666:0.446221556):1.919136663):1.620984095):0.003375981685,(1667:3.580602667,(1668:1.969905325,((1669:0.2729571177,1670:0.2729571177):1.533991833,1671:1.80694895):0.1629563745):1.610697343):0.409115629):4.403596774):0.04066639935):0.9949612748):0.3103571583):1.535363798):0.09414346048):0.4055353923):1.634808056,(((((1672:0.08318525867,1673:0.08318525867):2.825492266,1674:2.908677525):0.1737688477,1675:3.082446372):1.738930395,1676:4.821376768):4.452006229,(((1677:0.2825498821,1678:0.2825498821):1.875556195,1679:2.158106078):6.464555486,(((1680:4.810930062,((((1681:0.1088876966,1682:0.1088876966):0.4881536648,1683:0.5970413614):1.579250176,((1684:0.5389928262,(1685:0.3403322847,1686:0.3403322847):0.1986605415):0.5758361073,(1687:0.3819118924,1688:0.3819118924):0.7329170412):1.061462604):0.6747143222,((1689:0.2024257441,1690:0.2024257441):2.06356648,1691:2.265992224):0.585013635):1.959924202):1.350376133,(((1692:0.3314150321,1693:0.3314150321):1.558667023,1694:1.890082055):0.9248245714,(1695:0.8864321233,((1696:0.5755076845,(1697:0.02913680408,1698:0.02913680408):0.5463708804):0.1242450843,1699:0.6997527687):0.1866793545):1.928474503):3.346399568):1.470807958,((((1700:2.725196971,(((((1701:1.022570805,1702:1.022570805):0.1356358117,1703:1.158206617):0.1679407539,1704:1.32614737):0.6298048401,1705:1.95595221):0.2425662932,(1706:1.306521013,(1707:0.2440980004,1708:0.2440980004):1.062423012):0.891997491):0.5266784676):0.3173290383,(((1709:1.896696585,1710:1.896696585):0.8287083548,(1711:1.079251452,((1712:0.3505232322,(1713:0.3112866082,1714:0.3112866082):0.03923662399):0.3463675741,(1715:0.5988809937,1716:0.5988809937):0.09800981262):0.382360646):1.646153487):0.2519068383,((1717:0.3848340577,1718:0.3848340577):0.8375998209,1719:1.222433879):1.754877899):0.06521423179):0.5856334761,(1720:2.050184342,1721:2.050184342):1.577975143):1.505035486,((1722:3.113654947,1723:3.113654947):0.7471340061,(1724:3.433693348,((1725:0.1969974856,1726:0.1969974856):2.687930602,(1727:0.2087283912,1728:0.2087283912):2.676199696):0.5487652612):0.4270956049):1.272406018):2.498919182):0.9905474099):0.650721433):4.135767614):0.5724250631):0.7647287009):0.3691616262):10.11252035,(((((((1729:0.6876889119,1730:0.6876889119):0.6224873638,1731:1.310176276):0.3782548844,(((1732:0.4867034697,1733:0.4867034697):0.0116399263,1734:0.498343396):1.176628237,1735:1.674971633):0.01345952701):1.294760921,(1736:1.726353881,(1737:0.1049580455,1738:0.1049580455):1.621395835):1.2568382):4.337203865,(((1739:2.511597414,(1740:0.7921040605,1741:0.7921040605):1.719493353):1.399365886,((1742:0.3028765208,1743:0.3028765208):2.238486053,((1744:0.3724238924,(1745:0.05983780804,1746:0.05983780804):0.3125860843):2.134347418,(1747:0.09875144873,1748:0.09875144873):2.408019861):0.03459126364):1.369600726):0.1011969312,(1749:3.103015755,1750:3.103015755):0.9091444761):3.308235715):3.879622019,((((((1751:0.8670448394,1752:0.8670448394):0.5238485125,1753:1.390893352):0.05278515453,1754:1.443678506):2.617201137,((1755:1.363735791,(1756:0.1504385384,1757:0.1504385384):1.213297253):1.822476677,(1758:2.628483191,((1759:1.049507689,(1760:0.3302849162,1761:0.3302849162):0.7192227729):0.5896522578,1762:1.639159947):0.9893232445):0.5577292766):0.8746671759):5.066803861,(((1763:0.5486578892,(1764:0.4491776625,1765:0.4491776625):0.09948022675):1.876847686,1766:2.425505575):4.161038717,((((1767:1.458230503,1768:1.458230503):1.00590832,((1769:1.899228853,((1770:0.118337295,1771:0.118337295):1.320762907,(1772:1.297691828,(1773:0.5297215694,1774:0.5297215694):0.7679702582):0.1414083741):0.4601286512):0.07426956979,(1775:0.7726818566,(1776:0.5561253235,1777:0.5561253235):0.2165565331):1.200816566):0.4906404005):0.5582603374,1778:3.022399161):0.6068026101,(1779:1.885210675,1780:1.885210675):1.743991095):2.957342521):2.541139213):1.438538317,((1781:8.100711058,((((1782:1.375826757,1783:1.375826757):0.3331171464,1784:1.708943903):4.491107925,(((1785:0.2371163089,1786:0.2371163089):3.688570379,(((1787:0.9271143294,1788:0.9271143294):1.159877689,1789:2.086992018):1.830834395,((1790:1.718417819,(1791:0.8378854389,1792:0.8378854389):0.8805323797):1.714019567,((1793:0.3304406452,1794:0.3304406452):2.268552635,(((1795:1.568885532,(1796:1.243201432,1797:1.243201432):0.3256841):0.2345890448,((1798:0.5581941831,1799:0.5581941831):0.5219985503,(1800:0.4817176557,1801:0.4817176557):0.5984750777):0.7232818439):0.4097428803,(((1802:0.1135612161,1803:0.1135612161):0.3829474864,1804:0.4965087025):0.1094433446,1805:0.6059520471):1.60726541):0.3857758222):0.8334441063):0.4853890269):0.007860275163):2.041723027,((1806:3.112883294,(1807:1.066652431,1808:1.066652431):2.046230863):0.9381179202,(1809:3.5139712,1810:3.5139712):0.5370300145):1.916408501):0.232642113):0.732158089,1811:6.932209917):1.168501141):1.941706301,(((1812:0.8960428358,(1813:0.4004011702,1814:0.4004011702):0.4956416655):2.535790468,((((1815:1.023295899,1816:1.023295899):0.397028814,(1817:0.4325160627,(1818:0.2214639796,1819:0.2214639796):0.211052083):0.9878086507):0.3939133922,1820:1.814238106):0.9448517774,((1821:0.5364754834,1822:0.5364754834):1.657419002,(((1823:0.3040764088,1824:0.3040764088):0.5493830412,1825:0.8534594501):1.163666002,(1826:0.02305905277,1827:0.02305905277):1.994066399):0.1767690334):0.5651953976):0.6727434211):0.07009205022,1828:3.501925354):6.540492004):0.5238044638):0.6337961425):10.87712004,(((1829:0.5326443978,1830:0.5326443978):1.793142355,((1831:0.249400324,1832:0.249400324):1.947782771,(((1833:0.4731007973,1834:0.4731007973):0.2264035472,1835:0.6995043445):0.8111932102,1836:1.510697555):0.6864855403):0.1286036579):11.1122814,((((((((((1837:0.0804042456,1838:0.0804042456):0.3021374509,1839:0.3825416966):0.1024371675,1840:0.484978864):4.095094994,((1841:1.456667762,((1842:0.5003376519,(1843:0.3521436315,1844:0.3521436315):0.1481940204):0.8143204524,(1845:0.5576883918,(1846:0.2808641228,(1847:0.08176150063,1848:0.08176150063):0.1991026221):0.276824269):0.7569697124):0.1420096578):1.840228267,((((1849:0.0174439816,1850:0.0174439816):0.4230114547,1851:0.4404554363):2.309401295,(1852:0.03457716123,1853:0.03457716123):2.71527957):0.5101939727,(((1854:0.7082690882,(1855:0.584753119,1856:0.584753119):0.1235159692):1.423724775,(1857:0.5282330461,(1858:0.3586380693,1859:0.3586380693):0.1695949768):1.603760817):0.5514389023,1860:2.683432765):0.5766179382):0.03684532564):1.283177828):0.3393445806,((1861:3.818186417,((((1862:0.2714698485,1863:0.2714698485):1.504985932,((1864:0.551771881,(1865:0.5264538086,(1866:0.1144913799,1867:0.1144913799):0.4119624287):0.0253180724):0.6119938412,(1868:0.2237982027,1869:0.2237982027):0.9399675195):0.6126900587):0.7726948902,((1870:0.7793725184,1871:0.7793725184):1.099763388,1872:1.879135906):0.6700147651):0.04723585407,(1873:0.79107545,1874:0.79107545):1.805311075):1.221799892):0.6703893823,((1875:1.596446375,(1876:0.1222903955,1877:0.1222903955):1.47415598):0.9092077411,1878:2.505654116):1.982921683):0.4308426386):2.776766979,(1879:4.069249317,((1880:0.7393724302,(1881:0.2280881658,1882:0.2280881658):0.5112842644):0.3273760125,1883:1.066748443):3.002500874):3.626936101):0.0402955514,(((1884:1.249225896,1885:1.249225896):2.247707588,((1886:0.7806816063,1887:0.7806816063):2.469151695,1888:3.249833301):0.2471001828):3.788019412,(1889:0.4300714018,1890:0.4300714018):6.854881494):0.451528073):1.338319133,((1891:1.69422482,((1892:1.339807854,1893:1.339807854):0.2298170096,((1894:0.5413076053,1895:0.5413076053):0.4373134514,1896:0.9786210566):0.5910038074):0.1245999562):4.038015895,((1897:1.369952084,1898:1.369952084):2.296903181,((1899:1.202264638,(1900:0.6461846014,1901:0.6461846014):0.5560800363):1.030015641,((1902:1.454365232,1903:1.454365232):0.208267098,1904:1.66263233):0.569647949):1.434574986):2.06538545):3.342559386):0.01784410071,((((1905:2.244528005,((1906:0.3846692866,1907:0.3846692866):0.3918368922,1908:0.7765061788):1.468021826):0.8568571754,(1909:2.430998536,1910:2.430998536):0.6703866444):0.4202317849,(((1911:1.564415098,(1912:0.01877670666,1913:0.01877670666):1.545638392):0.1005931686,1914:1.665008267):0.8270627596,1915:2.492071027):1.029545939):3.182460251,((1916:0.2013313364,1917:0.2013313364):4.398016507,(((1918:2.777979461,(1919:0.8660989791,1920:0.8660989791):1.911880482):0.6243735349,1921:3.402352996):0.1071382274,(1922:1.338584407,(1923:0.8020781056,(1924:0.2018014299,1925:0.2018014299):0.6002766757):0.5365063012):2.170906817):1.08985662):2.104729373):2.388566986):0.9161061628,(((((((1926:1.168241656,1927:1.168241656):0.08855224204,1928:1.256793898):0.1713252716,(1929:0.940912488,(1930:0.6139832172,1931:0.6139832172):0.3269292709):0.4872066816):0.6991226241,((1932:0.2110477606,1933:0.2110477606):1.909030457,(1934:0.6015546057,1935:0.6015546057):1.518523612):0.00716357615):4.317656419,((((((((1936:1.219901542,1937:1.219901542):1.640985819,(1938:2.296127419,1939:2.296127419):0.5647599424):0.07194261973,(1940:1.365476094,1941:1.365476094):1.567353887):0.4620754107,1942:3.394905391):0.3639255767,(((1943:0.3679241233,1944:0.3679241233):0.3006870078,(1945:0.6631182164,(1946:0.1862120208,1947:0.1862120208):0.4769061956):0.005492914735):2.797094085,(((1948:1.322595448,(1949:1.16745774,1950:1.16745774):0.1551377085):0.4269477625,1951:1.749543211):0.8884420561,1952:2.637985267):0.8277199498):0.2931257516):1.501545624,(1953:3.110418224,(1954:0.9082019484,1955:0.9082019484):2.202216276):2.149958368):0.1735848505,(1956:4.450131191,((1957:0.1869436539,1958:0.1869436539):0.006864309025,1959:0.1938079629):4.256323228):0.9838302525):0.636274148,((1960:0.6546358367,1961:0.6546358367):3.954789635,1962:4.609425471):1.46081012):0.3746626212):0.09810333598,((((1963:1.668615994,1964:1.668615994):0.2908095876,(1965:1.540748493,1966:1.540748493):0.4186770882):0.0411547769,1967:2.000580358):3.749987255,(((((1968:0.2102851383,1969:0.2102851383):0.2766769031,1970:0.4869620415):0.9382984998,1971:1.425260541):0.3400073446,((1972:0.3969218153,1973:0.3969218153):0.1494085159,1974:0.5463303311):1.218937555):2.131746013,(1975:3.380227887,1976:3.380227887):0.5167860118):1.853553714):0.7924339353):3.223778392,((((1977:2.579220281,((1978:0.594365887,1979:0.594365887):0.1387958327,1980:0.7331617197):1.846058561):1.712646997,((1981:0.3653638266,1982:0.3653638266):2.166030037,((1983:1.063517737,1984:1.063517737):0.1942971936,1985:1.25781493):1.273578934):1.760473414):1.97316045,((((((1986:0.5690233227,1987:0.5690233227):0.5004604414,(((1988:0.2877797622,1989:0.2877797622):0.05204573214,1990:0.3398254944):0.4411425911,(1991:0.5921755278,(1992:0.5016668245,1993:0.5016668245):0.09050870328):0.1887925577):0.2885156786):0.2813756346,1994:1.350859399):0.2698541846,1995:1.620713583):0.2872971834,1996:1.908010767):2.930102664,(1997:4.44496288,1998:4.44496288):0.393150551):1.426914297):0.6152763702,(((1999:0.9456901047,2000:0.9456901047):1.353083393,(((2001:1.2144412,((2002:0.08925103198,2003:0.08925103198):0.4091970701,2004:0.4984481021):0.7159930984):0.5463232041,(((2005:0.1567943653,2006:0.1567943653):0.1766286584,2007:0.3334230237):1.348602314,(2008:0.6140688715,2009:0.6140688715):1.067956466):0.07873906731):0.4716838428,2010:2.232448247):0.06632525029):0.1929318227,(2011:1.503185789,(2012:0.7069169462,2013:0.7069169462):0.7962688427):0.9885195314):4.388598778):2.886475842):0.2419704251):3.429317791):8.639069843):3.150847739):7.961726124):4.781824284);
+END;

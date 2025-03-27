@@ -1,0 +1,24 @@
+/* css styles */
+/* Personalización del contenido */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+/* Encabezados */
+h1, h2, h3 {
+  color: #2c3e50;
+}
+
+/* Tabla de contenido */
+.toc {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Barra lateral */
+.sidebar {
+  background-color: #f8f9fa;
+  border-right: 1px solid #ddd;
+}

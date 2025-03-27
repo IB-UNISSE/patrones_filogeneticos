@@ -1,11 +1,34 @@
 ---
-title: "patrones_filogeneticos"
+title: "Inicio"
 ---
 
-This is a Quarto website.
+# Presentación del Curso: Patrones Filogenéticos, Macroevolución y Adaptación
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+[![](images/inicio/presentacion.png){fig-align="center" width="500"}](docs/inicio/tempoModeEvolPCB.pdf)
 
-```{r}
-1 + 1
-```
+Haz clic en la imagen para ver el PDF de la presentación del curso
+
+# Índice del Curso
+
+Aquí puedes encontrar los temas del curso y sus respectivos enlaces:
+
+-   [Instalación de Software](https://ib-unisse.github.io/patrones_filogeneticos/chapters/install.html)
+
+-   [Apuntes sobre comandos básicos en Bash](https://ib-unisse.github.io/patrones_filogeneticos/chapters/commandline.html)
+
+-   [Apuntes sobre R y Rstudio](https://ib-unisse.github.io/patrones_filogeneticos/chapters/Rstudio.html)
+
+-   [Apuntes sobre RevBayes](https://ib-unisse.github.io/patrones_filogeneticos/chapters/revbayes.html)
+
+-   [Comparación de modelos mediante Factores de Bayes](https://ib-unisse.github.io/patrones_filogeneticos/chapters/factor_bayes.html)
+
+## Unidad 1: Patrones de diversificación
+
+-   [Introducción al proceso de diversificación](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification.html)
+-   [Modelos con cambios en las Tasas de diversificación](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_2.html)
+-   [Estimación de Eventos de Extinción Masiva](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_3.html)
+-   [Introducción a modelos State Speciaction-Extinción (SSE)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_4.html)
+
+## Unidad 1: Patrones biogeográficos
+-   [Introducción a la biogeografía filogenética con el modelo DEC](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_1.html)
+-   [Biogeografía Bayesiana de Islas (BIB)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_2.html)

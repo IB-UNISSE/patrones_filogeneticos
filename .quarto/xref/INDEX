@@ -4,5 +4,47 @@
   },
   "about.qmd": {
     "about.html": "9fcd0d42"
+  },
+  "chapters/chapter1.qmd": {
+    "chapter1.html": "f53730f6"
+  },
+  "chapters/chapter2.qmd": {
+    "chapter2.html": "62ed1c42"
+  },
+  "chapters/chapter3.qmd": {
+    "chapter3.html": "6d592c19"
+  },
+  "chapters/install.qmd": {
+    "install.html": "31a6e1bc"
+  },
+  "chapters/Rstudio.qmd": {
+    "Rstudio.html": "d52d7022"
+  },
+  "chapters/revbayes.qmd": {
+    "revbayes.html": "30561a0c"
+  },
+  "chapters/commandline.qmd": {
+    "commandline.html": "00f8514d"
+  },
+  "chapters/u1_intro_diversification.qmd": {
+    "u1_intro_diversification.html": "49103f0a"
+  },
+  "chapters/u1_intro_diversification_2.qmd": {
+    "u1_intro_diversification_2.html": "792a36cb"
+  },
+  "chapters/u1_intro_diversification_3.qmd": {
+    "u1_intro_diversification_3.html": "c307c33c"
+  },
+  "chapters/u1_intro_diversification_4.qmd": {
+    "u1_intro_diversification_4.html": "fe718157"
+  },
+  "chapters/factor_bayes.qmd": {
+    "factor_bayes.html": "575ceb40"
+  },
+  "chapters/u2_intro_biogeography_1.qmd": {
+    "u2_intro_biogeography_1.html": "11dbe66c"
+  },
+  "chapters/u2_intro_biogeography_2.qmd": {
+    "u2_intro_biogeography_2.html": "68b14fe9"
   }
 }

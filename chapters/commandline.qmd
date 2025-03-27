@@ -1,0 +1,158 @@
+---
+title: "Apuntes sobre comandos básicos en Bash"
+format: html
+---
+
+# Comandos básicos en Bash
+
+## 1. Navegación en el sistema de archivos
+
+![](/images/bash/folders.png){fig-align="center" width="550"}
+
+-   **`pwd`** → Muestra el directorio actual.
+
+    ``` bash
+    pwd
+    ```
+
+-   **`ls`** → Lista los archivos y carpetas en el directorio actual.
+
+    ``` bash
+    ls -l     # Muestra detalles (permisos, dueño, tamaño, fecha)
+    ls -a     # Muestra archivos ocultos
+    ls -h     # Muestra tamaños en formato legible 
+    ```
+
+-   **`cd`** → Cambia de directorio.
+
+    ``` bash
+    cd /   # Ir a la raiz
+    cd /home/usuario/proyecto/data # ir a la carpeta data ruta absoluta
+    cd data/ # ir a la carpeta data ruta relativa
+    cd ..      # Subir un nivel
+    ```
+
+## 2. Manipulación de archivos y directorios
+
+-   **`mkdir`** → Crea un directorio.
+
+    ``` bash
+    mkdir nueva_carpeta
+    ```
+
+-   **`rm`** → Borra archivos y carpetas.
+
+    ``` bash
+    rm archivo.txt        # Borra un archivo
+    rm -r carpeta         # Borra una carpeta y su contenido
+    rm -i archivo.txt     # Pregunta antes de borrar
+    ```
+
+-   **`cp`** → Copia archivos o carpetas.
+
+    ``` bash
+    cp archivo.txt copia.txt   # Copia un archivo
+    cp -r carpeta destino/     # Copia una carpeta
+    ```
+
+-   **`mv`** → Mueve o renombra archivos y carpetas.
+
+    ``` bash
+    mv archivo.txt nueva_ubicacion/
+    mv archivo.txt nuevo_nombre.txt
+    ```
+
+## 3. Visualización y edición de archivos
+
+-   **`cat`** → Muestra el contenido de un archivo.
+
+    ``` bash
+    cat archivo.txt
+    ```
+
+-   **`less`** → Permite visualizar archivos grandes de manera interactiva.
+
+    ``` bash
+    less archivo.txt   # Usa las teclas ↑ ↓ para moverte, "q" para salir
+    ```
+
+-   **`nano`** → Editor de texto en terminal.
+
+    ``` bash
+    nano archivo.txt
+    ```
+
+## 4. Limpiar la terminal
+
+-   **`clear`** → Borra la pantalla de la terminal, pero no elimina procesos ni historial.
+
+    ``` bash
+    clear
+    ```
+
+-   **`Ctrl + L`** → Hace lo mismo que `clear`, pero sin ejecutar un comando explícito.
+
+    -   **En macOS:** `Cmd + K` también limpia la terminal.
+
+## 5. Historial de comandos
+
+-   **Cómo moverse en el historial**
+
+    -   **`↑ (Flecha arriba)`** → Muestra el último comando ejecutado.
+    -   **`↓ (Flecha abajo)`** → Avanza en la lista de comandos previos.
+    -   **`Ctrl + R`** → Búsqueda rápida en el historial. Escribe parte del comando y pulsa `Enter` cuando encuentres el que necesitas.
+        -   **Ejemplo:** Presiona `Ctrl + R` y escribe `nano`, mostrará el último comando que usaste con `nano`.
+
+-   **`history`** → Muestra los últimos comandos ejecutados.
+
+    ``` bash
+    history
+    ```
+
+-   **Buscar en el historial rápidamente con `grep`**
+
+    ``` bash
+    history | grep ls   # Filtra los comandos que contienen "ls"
+    history | grep nano # Filtra los comandos con "nano"
+    ```
+
+## 6. Permisos y propiedades de archivos
+
+-   **`chmod`** → Cambia permisos de ejecucion.
+
+    ``` bash
+    chmod +x script.Rev  # Permisos de ejecución
+    ```
+
+-   **`chown`** → Cambia el dueño de un archivo.
+
+    ``` bash
+    sudo chown usuario archivo.txt
+    ```
+
+# Uso de Ubuntu en Windows con Visual Studio Code y RStudio
+
+Si tienes **Ubuntu instalado en Windows** a través de **WSL (Windows Subsystem for Linux)**, sigue estas instrucciones para trabajar con tu entorno de desarrollo en **Visual Studio Code**.
+
+## Iniciar **Ubuntu** en la terminal de VS Code.
+
+1.  Abre **VS Code** y ve a **Extensions** (Ctrl + Shift + X)
+
+    ![](/images/bash/vsc_ext1.png){fig-align="center" width="300"}
+
+2.  Busca **WSL** e instala la extensión oficial de Microsoft.
+
+    ![](/images/bash/vsc_ext2.png){fig-align="center"}
+
+3.  Teclea el comando **Ctrl + Shift + P** y selecciona **WSL: Connect to WSL**
+
+    ![](/images/bash/vsc_ext3.png){fig-align="center" width="350"}
+
+4.  Se abrirá una nueva ventana, ve a \*\*Terminal\*\* y selecciona una nueva \*\*Terminal\*\*
+
+    ![](/images/bash/vsc_ext4.png){fig-align="center" width="400"}
+
+5.  En la parte inferior se abrirá la terminal de **Ubuntu**
+
+    ![](/images/bash/vsc_ext5.png){fig-align="center" width="300"}
+

@@ -1,19 +1,42 @@
 project:
-  type: website
+  type: book
 
-website:
-  title: "patrones_filogeneticos"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+book:
+  title: "Patrones filogenéticos: macroevolución y adaptación"
+  author: "Karen Lopez y Cristian Cervantes"
+  chapters:
+    - index.qmd
+    - chapters/install.qmd
+    - chapters/commandline.qmd
+    - chapters/Rstudio.qmd
+    - chapters/revbayes.qmd
+    - chapters/factor_bayes.qmd
+    - part: "Unidad 1: Patrones de diversificación"
+      chapters:
+        - chapters/u1_intro_diversification.qmd
+        - chapters/u1_intro_diversification_2.qmd
+        - chapters/u1_intro_diversification_3.qmd
+        - chapters/u1_intro_diversification_4.qmd
+    - part: "Unidad 2: Patrones biogeográficos"
+      chapters:
+        - chapters/u2_intro_biogeography_1.qmd
+        - chapters/u2_intro_biogeography_2.qmd
+
+    
+    
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: litera
+    css: styles/custom.css
     toc: true
+    toc-depth: 2
+    number-sections: false  # Desactiva la numeración de capítulos y secciones
 
 editor: visual
+
+publish:
+  gh-pages:
+    branch: gh-pages
+    dir: _site
 

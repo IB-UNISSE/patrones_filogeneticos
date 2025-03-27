@@ -1,0 +1,57 @@
+#NEXUS
+[R-package APE, Thu Mar 27 21:35:52 2025]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 22;
+	TAXLABELS
+		06166_50_120_Phod_marmorata
+		KRN01_Cordy_opaca
+		KRN07_133_Mege_cancell
+		KRN08_Mege_puncta
+		KRN09_Mege_vittata
+		KRN100_101_Tegro_aloga
+		KRN111_Cordy_fulleri
+		KRN11_Tegro_erosa
+		KRN131_Eup_schwarzi
+		KRN13_Tegro_latecincta
+		KRN18_135_Eup_viridis
+		KRN19_Eup_sulciphrons
+		KRN20_Eup_imperialis
+		KRN24_Cyste_armatus
+		KRN28_Cyste_wislizeni
+		KRN30_113_Eup_elegans
+		KRN43_108_Eup_fissiceps
+		KRN48_Pleu_mirabilis
+		KRN51_Pleu_reticulata
+		KRN52_Phod_alticeps
+		KRN88_89_Eup_histrionica
+		KRN92_93_Eup_edmundsi
+	;
+END;
+BEGIN TREES;
+	TRANSLATE
+		1	06166_50_120_Phod_marmorata,
+		2	KRN01_Cordy_opaca,
+		3	KRN07_133_Mege_cancell,
+		4	KRN08_Mege_puncta,
+		5	KRN09_Mege_vittata,
+		6	KRN100_101_Tegro_aloga,
+		7	KRN111_Cordy_fulleri,
+		8	KRN11_Tegro_erosa,
+		9	KRN131_Eup_schwarzi,
+		10	KRN13_Tegro_latecincta,
+		11	KRN18_135_Eup_viridis,
+		12	KRN19_Eup_sulciphrons,
+		13	KRN20_Eup_imperialis,
+		14	KRN24_Cyste_armatus,
+		15	KRN28_Cyste_wislizeni,
+		16	KRN30_113_Eup_elegans,
+		17	KRN43_108_Eup_fissiceps,
+		18	KRN48_Pleu_mirabilis,
+		19	KRN51_Pleu_reticulata,
+		20	KRN52_Phod_alticeps,
+		21	KRN88_89_Eup_histrionica,
+		22	KRN92_93_Eup_edmundsi
+	;
+	TREE * UNTITLED = [&R] (((((1:9.041004345,20:9.041004345):6.215892593,((14:7.210169659,15:7.210169659):5.052353615,(6:1.930979841,(8:0.9252293425,10:0.9252293425):1.005750498):10.33154343):2.994373664):1.489619908,((2:9.373368595,7:9.373368595):6.106564316,(((3:6.388376027,4:6.388376027):2.392932034,5:8.781308061):4.904215858,(18:7.780333813,19:7.780333813):5.905190106):1.794408992):1.266583934):1.440452201,(((9:8.291212589,21:8.291212589):3.639427895,12:11.93064048):2.886063525,17:14.81670401):3.370265037):1.39594372,((13:11.37031917,16:11.37031917):4.099947864,(11:6.251242284,22:6.251242284):9.21902475):4.112645732):0;
+END;
