@@ -20,11 +20,11 @@
     ]
   },
   {
-    "objectID": "index.html#unidad-1-patrones-de-diversificación-1",
-    "href": "index.html#unidad-1-patrones-de-diversificación-1",
+    "objectID": "index.html#unidad-1-patrones-biogeográficos",
+    "href": "index.html#unidad-1-patrones-biogeográficos",
     "title": "Patrones filogenéticos: macroevolución y adaptación",
-    "section": "Unidad 1: Patrones de diversificación",
-    "text": "Unidad 1: Patrones de diversificación\n\nIntroducción a la biogeografía filogenética con el modelo DEC\nBiogeografía Bayesiana de Islas (BIB)",
+    "section": "Unidad 1: Patrones biogeográficos",
+    "text": "Unidad 1: Patrones biogeográficos\n\nIntroducción a la biogeografía filogenética con el modelo DEC\nBiogeografía Bayesiana de Islas (BIB)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Inicio</span>"
     ]
@@ -830,7 +830,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139720    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09141746    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -2205,7 +2205,7 @@
     "href": "chapters/u2_intro_biogeography_1.html",
     "title": "Introducción a la biogeografía filogenética con el modelo DEC",
     "section": "",
-    "text": "Introducción\nMuchos procesos evolutivos fundamentales, como la adaptación, la especiación y la extinción, ocurren en un contexto espacial. Cuando no es posible observar directamente los aspectos históricos de este contexto espacial, como sucede en la mayoría de los casos, se pueden aplicar métodos de inferencia biogeográfica para estimar los rangos ancestrales de las especies.\nEstos métodos combinan información filogenética, molecular y geográfica para modelar la distribución de especies como el resultado de procesos biogeográficos. Sin embargo, modelar estos procesos requiere de un análisis detallado, considerando aspectos como:\nUno de los principales desafíos técnicos en la modelización de la evolución de rangos geográficos es traducir estos procesos naturales en procesos estocásticos que sean manejables en un contexto de inferencia. Este tutorial proporciona una introducción a algunos de estos modelos y describe cómo realizar una inferencia bayesiana de la biogeografía histórica utilizando el modelo de Dispersión-Extinción-Cladogénesis (DEC) en RevBayes.",
+    "text": "Introducción\nHaz clic en la imagen para ver el PDF de la presentación\n🔗 Ver video en YouTube\nMuchos procesos evolutivos fundamentales, como la adaptación, la especiación y la extinción, ocurren en un contexto espacial. Cuando no es posible observar directamente los aspectos históricos de este contexto espacial, como sucede en la mayoría de los casos, se pueden aplicar métodos de inferencia biogeográfica para estimar los rangos ancestrales de las especies.\nEstos métodos combinan información filogenética, molecular y geográfica para modelar la distribución de especies como el resultado de procesos biogeográficos. Sin embargo, modelar estos procesos requiere de un análisis detallado, considerando aspectos como:\nUno de los principales desafíos técnicos en la modelización de la evolución de rangos geográficos es traducir estos procesos naturales en procesos estocásticos que sean manejables en un contexto de inferencia. Este tutorial proporciona una introducción a algunos de estos modelos y describe cómo realizar una inferencia bayesiana de la biogeografía histórica utilizando el modelo de Dispersión-Extinción-Cladogénesis (DEC) en RevBayes.",
     "crumbs": [
       "Unidad 2: Patrones biogeográficos",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Introducción a la biogeografía filogenética con el modelo DEC</span>"
@@ -2315,7 +2315,7 @@
     "href": "chapters/u2_intro_biogeography_2.html",
     "title": "Biogeografía Bayesiana de Islas (BIB)",
     "section": "",
-    "text": "Introducción\nEn esta práctica, realizaremos un análisis biogeográfico bayesiano en RevBayes utilizando el modelo BIB, aplicado a un conjunto de datos empíricos compuesto por varios clados distribuidos en un mismo conjunto de áreas geográficas.\nComo hemos aprendido en las clases, el modelo BIB incluye solo dos componentes principales:\nEs importante destacar que el modelo BIB no incluye un componente cladogenético, es decir, no modela explícitamente escenarios de herencia de rangos durante los eventos de especiación.\nEl objetivo principal de este análisis es estimar patrones comunes en la evolución de los rangos geográficos. En particular, buscamos responder la siguiente pregunta:\n¿Podemos inferir reglas generales sobre las tasas de dispersión entre áreas estimando dichas tasas en múltiples clados que comparten un mismo contexto biogeográfico?",
+    "text": "Introducción\nHaz clic en la imagen para ver el PDF de la presentación\n🔗 Ver video en YouTube\nEn esta práctica, realizaremos un análisis biogeográfico bayesiano en RevBayes utilizando el modelo BIB, aplicado a un conjunto de datos empíricos compuesto por varios clados distribuidos en un mismo conjunto de áreas geográficas.\nComo hemos aprendido en las clases, el modelo BIB incluye solo dos componentes principales:\nEs importante destacar que el modelo BIB no incluye un componente cladogenético, es decir, no modela explícitamente escenarios de herencia de rangos durante los eventos de especiación.\nEl objetivo principal de este análisis es estimar patrones comunes en la evolución de los rangos geográficos. En particular, buscamos responder la siguiente pregunta:\n¿Podemos inferir reglas generales sobre las tasas de dispersión entre áreas estimando dichas tasas en múltiples clados que comparten un mismo contexto biogeográfico?",
     "crumbs": [
       "Unidad 2: Patrones biogeográficos",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Biogeografía Bayesiana de Islas (BIB)</span>"
