@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../chapters/u2_intro_biogeography_3.html" rel="next">
 <link href="../chapters/u2_intro_biogeography_1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -167,6 +168,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Instalación de Docker</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/factor_bayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Comparación de modelos mediante Factores de Bayes</span></a>
   </div>
 </li>
@@ -218,6 +224,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/u2_intro_biogeography_2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Biogeografía Bayesiana de Islas (BIB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/u2_intro_biogeography_3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Diversificación dependiente del rango geográfico</span></a>
   </div>
 </li>
       </ul>
@@ -300,13 +311,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="descarga-los-conjuntos-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="descarga-los-conjuntos-de-datos">Descarga los conjuntos de datos</h2>
 <p>Revisa el contenido de cada uno de estos archivos. Notarás que, a diferencia del modelo <strong>DEC</strong>, el modelo <strong>BIB trabaja directamente con alineamientos de secuencias de ADN</strong>. Esto significa que en este análisis vamos a <strong>inferir simultáneamente</strong> la <strong>filogenia</strong> (las relaciones evolutivas entre especies) y los <strong>patrones y tasas de evolución de los rangos geográficos</strong>.</p>
-<p><a href="../docs/u2_PatBio/BIB/Bystropogon.nex" download="">🌿 Bystropogon</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Calathus.nex" download="">🪲 Calathus</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Dolichoiulus.nex" download="">🐛 Dolichoiulus</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Lotus.nex" download="">🌸 Lotus</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Micromeria.nex" download="">🌺 Micromeria</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Pimelia.nex" download="">🐞 Pimelia</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Psyllids.nex" download="">🪰 Psyllids</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Bystropogon.nex1" download="">🌿 Bystropogon</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Calathus.nex1" download="">🪲 Calathus</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Dolichoiulus.nex1" download="">🐛 Dolichoiulus</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Lotus.nex1" download="">🌸 Lotus</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Micromeria.nex1" download="">🌺 Micromeria</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Pimelia.nex1" download="">🐞 Pimelia</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Psyllids.nex1" download="">🪰 Psyllids</a></p>
 <p>Cada archivo <code>.nex</code> contiene <strong>dos matrices</strong>:</p>
 <ol type="1">
 <li><p>La <strong>primera matriz</strong> incluye el <strong>alineamiento de secuencias de ADN</strong>, donde los estados de carácter son los nucleótidos (por ejemplo: A, C, T, G).</p></li>
@@ -1010,6 +1021,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../chapters/u2_intro_biogeography_3.html" class="pagination-link" aria-label="Diversificación dependiente del rango geográfico">
+        <span class="nav-page-text"><span class="chapter-title">Diversificación dependiente del rango geográfico</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
