@@ -870,7 +870,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09140348    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09139853    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
@@ -2477,6 +2477,39 @@
     "title": "Diversificación dependiente del rango geográfico",
     "section": "Aplicación del modelo GeoSSE en RevBayes",
     "text": "Aplicación del modelo GeoSSE en RevBayes\nEste tutorial explica paso a paso cómo realizar un análisis GeoSSE en RevBayes. Utilizaremos como ejemplo el caso del género Kadua, distribuido en las islas de Hawái.\nEn particular, se considerarán dos regiones:\n\nIslas antiguas\nIslas jóvenes\n\n\n📝 Nota: Aunque este tutorial se basa en un análisis biogeográfico con dos regiones, el modelo está diseñado para ser escalable a más regiones. En general, GeoSSE puede aplicarse hasta a 8 regiones (lo que implica 255 combinaciones posibles de rangos), aunque pueden requerirse optimizaciones adicionales.\n\nEn este caso, agrupar las islas hawaianas en solo dos categorías nos permite enumerar fácilmente todas las tasas del modelo y facilitar la implementación.",
+    "crumbs": [
+      "Unidad 2: Patrones biogeográficos",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Diversificación dependiente del rango geográfico</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u2_intro_biogeography_3.html#usar-phylo_docker",
+    "href": "chapters/u2_intro_biogeography_3.html#usar-phylo_docker",
+    "title": "Diversificación dependiente del rango geográfico",
+    "section": "🐳 Usar Phylo_Docker",
+    "text": "🐳 Usar Phylo_Docker\n\n📥 Paso 1: Descargar la imagen según tu procesador\n💻 Si estás en una Mac con chip Apple (M1, M2, M3)\nTu arquitectura es arm64. Ejecuta en la terminal:\ndocker pull sswiston/phylo_docker:slim_arm64\n🖥️ Si estás en una PC con procesador Intel o AMD\nTu arquitectura es amd64 (también llamada x86_64). Ejecuta:\ndocker pull sswiston/phylo_docker:slim_amd64\n\n\n📥 Paso 2: Obtener los datos de la imagen Phylo_Docker\nConocer los datos de la imagen con el siguiente comando:\ndocker images\n\nImagen Docker: sswiston/phylo_docker\nTAG: basic_arm64\nID de imagen: e7447322ee8d\n\n\n\n🚀 Paso 3: Ejecutar el contenedor con un volumen\nUn volumen permite compartir archivos entre tu sistema operativo y el contenedor de Docker. En este caso, vas a montar la carpeta del proyecto en el contenedor para que puedas editar y guardar tus archivos desde afuera y usarlos dentro del contenedor.\nAbre la Terminal y ejecuta:\ndocker run -it --name phylodocker -v /Users/cristoichkov/Documents/patrones_filogeneticos:/home/patrones_filogeneticos sswiston/phylo_docker:slim_arm64 /bin/sh\nEsto te abrirá una terminal dentro del contenedor.\n🔍 Explicación parte por parte:\n\n\n\n\n\n\n\nParte\nSignificado\n\n\n\n\ndocker run\nEjecuta un nuevo contenedor\n\n\n-it\nModo interactivo + terminal (equivale a --interactive --tty)\n\n\n--name\nAsignar un nombre al contenedor\n\n\n-v /Users/pc:/home/contenedor\n[ruta_local]:[ruta_en_el_contenedor]\n\n\nsswiston/phylo_docker:slim_arm64\nImagen que vas a ejecutar arm64 o amd64\n\n\n/bin/sh\nRuta al programa shell estándar\n\n\n\n🔸 Para salir del contenedor:\nexit\n▶️ Volver a entrar a un contenedor ya creado\n1.- Verifica que el contenedor existe:\ndocker ps -a\n2.- Inicia el contenedor de nuevo:\ndocker start -ai phylodocker\n\n-a lo adjunta a la terminal\n-i lo pone en modo interactivo\n\n⏹️ Para detener un contenedor:\ndocker stop phylodocker\n🧽 Para eliminar un contenedor:\nAntes de poder borrar una imagen, debes eliminar todos los contenedores que la usen. Eliminar el contenedor:\ndocker rm phylodocker\n🗑️ Para eliminar una imagen Docker:\n\nVerifica imágenes disponibles:\n\ndocker images\n\nElimina la imagen:\n\ndocker rmi sswiston/phylo_docker:basic_arm64",
+    "crumbs": [
+      "Unidad 2: Patrones biogeográficos",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Diversificación dependiente del rango geográfico</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u2_intro_biogeography_3.html#geosse-en-revbayes",
+    "href": "chapters/u2_intro_biogeography_3.html#geosse-en-revbayes",
+    "title": "Diversificación dependiente del rango geográfico",
+    "section": "🚀 GeoSSE en RevBayes",
+    "text": "🚀 GeoSSE en RevBayes\n\n📂 1. Archivos necesarios\nDescarga y guarda los archvios en tu carpeta de proyecto\n\nÁrbol filogenético calibrado\nMatriz de presencia/ausencia por región\nScript GeoSSE\n\n\n\n🚪 2. Iniciar (o reingresar) al contenedor\nSi el contenedor ya existe pero está detenido, puedes volver a entrar con:\ndocker start -ai phylodocker\n\n\n🏠 3. Navega a la carpeta donde está tu script\nYa dentro del contenedor, ve a la carpeta donde guardaste el script .Rev. Por ejemplo:\ncd /home/patrones_filogeneticos/scripts\n\n\n📜 4. Correr el script .Rev desde RevBayes\nUna vez dentro de la carpeta de scripts, ejecuta:\nrb geosse.Rev",
+    "crumbs": [
+      "Unidad 2: Patrones biogeográficos",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Diversificación dependiente del rango geográfico</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/u2_intro_biogeography_3.html#código-en-r-para-graficar",
+    "href": "chapters/u2_intro_biogeography_3.html#código-en-r-para-graficar",
+    "title": "Diversificación dependiente del rango geográfico",
+    "section": "🧬 Código en R para graficar",
+    "text": "🧬 Código en R para graficar\n\n# Cargar las librerías necesarias\nlibrary(RevGadgets)\nlibrary(ggplot2)\n\n# Ruta al árbol con estados ancestrales\ntree_file &lt;- \"../docs/u2_PatBio/geosse/out/ase.tre\"\n\n# Leer los estados ancestrales e interpretar los valores\nstates &lt;- processAncStates(tree_file, \n                           state_labels = c(\"0\" = \"Islas antiguas\", \n                                            \"1\" = \"Islas jóvenes\", \n                                            \"2\" = \"Ambas regiones\"))\n\n# Graficar los estados ancestrales más probables (MAP)\nplotAncStatesMAP(t = states,\n                 node_size = 2,\n                 node_size_as = NULL) +\n  ggplot2::theme(legend.position = \"bottom\",\n                 legend.title = element_blank())",
     "crumbs": [
       "Unidad 2: Patrones biogeográficos",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Diversificación dependiente del rango geográfico</span>"

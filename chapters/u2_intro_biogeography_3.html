@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -212,6 +246,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#parámetros-del-modelo-geosse" id="toc-parámetros-del-modelo-geosse" class="nav-link" data-scroll-target="#parámetros-del-modelo-geosse">Parámetros del modelo GeoSSE</a></li>
   <li><a href="#geosse-como-modelo-sse" id="toc-geosse-como-modelo-sse" class="nav-link" data-scroll-target="#geosse-como-modelo-sse">GeoSSE como modelo SSE</a></li>
   <li><a href="#aplicación-del-modelo-geosse-en-revbayes" id="toc-aplicación-del-modelo-geosse-en-revbayes" class="nav-link" data-scroll-target="#aplicación-del-modelo-geosse-en-revbayes">Aplicación del modelo GeoSSE en RevBayes</a></li>
+  <li><a href="#usar-phylo_docker" id="toc-usar-phylo_docker" class="nav-link" data-scroll-target="#usar-phylo_docker">🐳 Usar Phylo_Docker</a></li>
+  <li><a href="#geosse-en-revbayes" id="toc-geosse-en-revbayes" class="nav-link" data-scroll-target="#geosse-en-revbayes">🚀 GeoSSE en RevBayes</a></li>
+  <li><a href="#código-en-r-para-graficar" id="toc-código-en-r-para-graficar" class="nav-link" data-scroll-target="#código-en-r-para-graficar">🧬 Código en R para graficar</a></li>
   </ul>
 </nav>
     </div>
@@ -321,6 +358,157 @@ En particular, se considerarán dos regiones:</p>
 <p>📝 <strong>Nota</strong>: Aunque este tutorial se basa en un análisis biogeográfico con dos regiones, el modelo está diseñado para ser <strong>escalable a más regiones</strong>. En general, <a href="https://revbayes.github.io/tutorials/geosse/">GeoSSE</a> puede aplicarse hasta a 8 regiones (lo que implica 255 combinaciones posibles de rangos), aunque pueden requerirse <strong>optimizaciones adicionales</strong>.</p>
 </blockquote>
 <p>En este caso, agrupar las islas hawaianas en solo dos categorías nos permite <strong>enumerar fácilmente todas las tasas del modelo</strong> y facilitar la implementación.</p>
+</section>
+<section id="usar-phylo_docker" class="level2">
+<h2 class="anchored" data-anchor-id="usar-phylo_docker">🐳 Usar Phylo_Docker</h2>
+<section id="paso-1-descargar-la-imagen-según-tu-procesador" class="level3">
+<h3 class="anchored" data-anchor-id="paso-1-descargar-la-imagen-según-tu-procesador">📥 Paso 1: Descargar la imagen según tu procesador</h3>
+<p>💻 Si estás en una <strong>Mac con chip Apple (M1, M2, M3)</strong></p>
+<p>Tu arquitectura es <code>arm64</code>. Ejecuta en la terminal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull sswiston/phylo_docker:slim_arm64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>🖥️ Si estás en una <strong>PC con procesador Intel o AMD</strong></p>
+<p>Tu arquitectura es <code>amd64</code> (también llamada <code>x86_64</code>). Ejecuta:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull sswiston/phylo_docker:slim_amd64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="paso-2-obtener-los-datos-de-la-imagen-phylo_docker" class="level3">
+<h3 class="anchored" data-anchor-id="paso-2-obtener-los-datos-de-la-imagen-phylo_docker">📥 Paso 2: Obtener los datos de la imagen Phylo_Docker</h3>
+<p>Conocer los datos de la imagen con el siguiente comando:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><strong>Imagen Docker</strong>: <code>sswiston/phylo_docker</code></p></li>
+<li><p><strong>TAG</strong>: <code>basic_arm64</code></p></li>
+<li><p><strong>ID de imagen</strong>: <code>e7447322ee8d</code></p></li>
+</ul>
+</section>
+<section id="paso-3-ejecutar-el-contenedor-con-un-volumen" class="level3">
+<h3 class="anchored" data-anchor-id="paso-3-ejecutar-el-contenedor-con-un-volumen">🚀 Paso 3: Ejecutar el contenedor con un volumen</h3>
+<p>Un <strong>volumen</strong> permite compartir archivos entre tu sistema operativo y el contenedor de Docker. En este caso, vas a montar la carpeta del proyecto en el contenedor para que puedas editar y guardar tus archivos desde afuera y usarlos dentro del contenedor.</p>
+<p>Abre la Terminal y ejecuta:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> phylodocker <span class="at">-v</span> /Users/cristoichkov/Documents/patrones_filogeneticos:/home/patrones_filogeneticos sswiston/phylo_docker:slim_arm64 /bin/sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Esto te abrirá una terminal dentro del contenedor.</strong></p>
+<p>🔍 Explicación parte por parte:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parte</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>docker run</code></td>
+<td>Ejecuta un nuevo contenedor</td>
+</tr>
+<tr class="even">
+<td><code>-it</code></td>
+<td>Modo interactivo + terminal (equivale a <code>--interactive --tty</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>--name</code></td>
+<td>Asignar un nombre al contenedor</td>
+</tr>
+<tr class="even">
+<td><code>-v /Users/pc:/home/contenedor</code></td>
+<td>[ruta_local]:[ruta_en_el_contenedor]</td>
+</tr>
+<tr class="odd">
+<td><code>sswiston/phylo_docker:slim_arm64</code></td>
+<td>Imagen que vas a ejecutar <code>arm64</code> o <code>amd64</code></td>
+</tr>
+<tr class="even">
+<td><code>/bin/sh</code></td>
+<td>Ruta al programa shell estándar</td>
+</tr>
+</tbody>
+</table>
+<p>🔸 Para salir del contenedor:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>▶️ Volver a entrar a un contenedor ya creado</p>
+<p>1.- Verifica que el contenedor existe:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>2.- Inicia el contenedor de nuevo:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> start <span class="at">-ai</span> phylodocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><code>-a</code> lo adjunta a la terminal</p></li>
+<li><p><code>-i</code> lo pone en modo interactivo</p></li>
+</ul>
+<p>⏹️ Para detener un contenedor:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop phylodocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>🧽 Para <strong>eliminar</strong> un contenedor:</p>
+<p>Antes de poder borrar una imagen, debes eliminar <strong>todos los contenedores</strong> que la usen. Eliminar el contenedor:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm phylodocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>🗑️ Para eliminar una <strong>imagen Docker</strong>:</p>
+<ol type="1">
+<li>Verifica imágenes disponibles:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Elimina la imagen:</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rmi sswiston/phylo_docker:basic_arm64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="geosse-en-revbayes" class="level2">
+<h2 class="anchored" data-anchor-id="geosse-en-revbayes">🚀 GeoSSE en RevBayes</h2>
+<section id="archivos-necesarios" class="level3">
+<h3 class="anchored" data-anchor-id="archivos-necesarios">📂 1. Archivos necesarios</h3>
+<p>Descarga y guarda los archvios en tu carpeta de proyecto</p>
+<ul>
+<li><p><a href="../docs/u2_PatBio/geosse/kadua.tre" download="">Árbol filogenético calibrado</a></p></li>
+<li><p><a href="../docs/u2_PatBio/geosse/kadua_range_n2.nex" download="">Matriz de presencia/ausencia por región</a></p></li>
+<li><p><a href="../docs/u2_PatBio/geosse/geosse.Rev" download="">Script GeoSSE</a></p></li>
+</ul>
+</section>
+<section id="iniciar-o-reingresar-al-contenedor" class="level3">
+<h3 class="anchored" data-anchor-id="iniciar-o-reingresar-al-contenedor">🚪 2. Iniciar (o reingresar) al contenedor</h3>
+<p>Si el contenedor ya existe pero está detenido, puedes <strong>volver a entrar</strong> con:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> start <span class="at">-ai</span> phylodocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="navega-a-la-carpeta-donde-está-tu-script" class="level3">
+<h3 class="anchored" data-anchor-id="navega-a-la-carpeta-donde-está-tu-script">🏠 3. Navega a la carpeta donde está tu script</h3>
+<p>Ya dentro del contenedor, ve a la carpeta donde guardaste el script <code>.Rev</code>. Por ejemplo:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/patrones_filogeneticos/scripts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="correr-el-script-.rev-desde-revbayes" class="level3">
+<h3 class="anchored" data-anchor-id="correr-el-script-.rev-desde-revbayes">📜 4. Correr el script <code>.Rev</code> desde RevBayes</h3>
+<p>Una vez dentro de la carpeta de scripts, ejecuta:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rb</span> geosse.Rev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="código-en-r-para-graficar" class="level2">
+<h2 class="anchored" data-anchor-id="código-en-r-para-graficar">🧬 Código en R para graficar</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías necesarias</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ruta al árbol con estados ancestrales</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>tree_file <span class="ot">&lt;-</span> <span class="st">"../docs/u2_PatBio/geosse/out/ase.tre"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer los estados ancestrales e interpretar los valores</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(tree_file, </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">state_labels =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"Islas antiguas"</span>, </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"Islas jóvenes"</span>, </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"Ambas regiones"</span>))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los estados ancestrales más probables (MAP)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plotAncStatesMAP</span>(<span class="at">t =</span> states,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">node_size =</span> <span class="dv">2</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">node_size_as =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u2_intro_biogeography_3_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
