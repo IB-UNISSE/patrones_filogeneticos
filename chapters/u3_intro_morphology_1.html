@@ -658,12 +658,6 @@ window.Quarto = {
 </ul>
 <p>Nuestro objetivo principal es <strong>inferir el estado ancestral</strong> de este carácter en el ancestro común de todos los primates. Además, queremos evaluar si la evolución de este rasgo sigue un modelo con <strong>tasas de transición iguales (ERM)</strong>, tasas desiguales, o incluso un modelo <strong>irreversible</strong> (por ejemplo, si una vez que se adopta la vida solitaria, no se vuelve a la vida grupal).</p>
 <p>Para comenzar, especificaremos un modelo <strong>ERM de dos estados (k = 2)</strong>, también conocido como modelo de tasas iguales de Markov (Pagel 1994; Lewis 2001). En este modelo, la tasa de cambio entre cualquier par de estados es la misma. La matriz de tasas <span class="math inline">\(Q\)</span> se simplifica a:</p>
-<p>Descarga del Árbol Filogenético y la matriz de caracteres discretos</p>
-<p>📥 Puedes descargar el archivo .tre con el árbol en el siguiente enlace:</p>
-<p><a href="../docs/u1_PatDiv/output/morpho/primates_tree.nex" download="">📥 Descargar árbol filogenético</a></p>
-<p>📥 Puedes descargar el archivo .nex con la matriz de caracteres discretos en el siguiente enlace:</p>
-<p><a href="../docs/u1_PatDiv/output/morpho/primates_solitariness.nex" download="">📥 Descargar matriz de caracteres discretos</a></p>
-<p>Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.</p>
 <p><span class="math display">\[
 Q = \begin{pmatrix}
 -(k - 1)\mu &amp; \mu \\
@@ -672,6 +666,12 @@ Q = \begin{pmatrix}
 \]</span></p>
 <p>Este modelo es análogo al modelo de Jukes-Cantor para datos moleculares, donde no se estima la frecuencia de cada estado, sino que se asume que todos los estados tienen la misma probabilidad a priori.</p>
 <p>Este enfoque nos permite explorar, de manera bayesiana, cómo han evolucionado los caracteres discretos y cuáles fueron los estados más probables en los ancestros, dado un modelo evolutivo simple y los datos observados en las especies actuales.</p>
+<p>Descarga del Árbol Filogenético y la matriz de caracteres discretos</p>
+<p>📥 Puedes descargar el archivo .tre con el árbol en el siguiente enlace:</p>
+<p><a href="../docs/u1_PatDiv/output/morpho/primates_tree.nex" download="">📥 Descargar árbol filogenético</a></p>
+<p>📥 Puedes descargar el archivo .nex con la matriz de caracteres discretos en el siguiente enlace:</p>
+<p><a href="../docs/u1_PatDiv/output/morpho/primates_solitariness.nex" download="">📥 Descargar matriz de caracteres discretos</a></p>
+<p>Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo en RevBayes: Inferencia de estados ancestrales y tasas de evolución </span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># morfológica bajo un modelo de tasas iguales de Markov (ERM)</span></span>
