@@ -464,6 +464,16 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>🔎 dtt_res$MDI: Morphological Disparity Index ¿Qué es? Es un índice resumen que mide cuán diferente es la trayectoria de disparidad observada a lo largo del tiempo en comparación con lo que esperaríamos bajo un modelo nulo de evolución (típicamente, modelo Browniano).</p>
+<p>¿Cómo se interpreta? Esencialmente, mide el área entre la curva empírica de disparidad y la mediana de las curvas simuladas.</p>
+<p>Valor positivo: la disparidad se acumuló más tempranamente que lo esperado.</p>
+<p>Puede sugerir una radiación adaptativa temprana.</p>
+<p>Valor negativo: la disparidad se acumuló más tardíamente de lo esperado.</p>
+<p>Puede indicar conservadurismo morfológico temprano, o una diversificación más reciente de formas.</p>
+<p>📊 dtt_res$MDIp: p-valor empírico del MDI ¿Qué es? Es la proporción de simulaciones en las que el valor de MDI fue igual o más extremo (en valor absoluto) que el MDI observado.</p>
+<p>¿Cómo se interpreta? Este valor te dice si el patrón de disparidad observado se desvía significativamente de lo que esperaríamos por azar bajo evolución neutral.</p>
+<p>p &lt; 0.05: resultado significativo → la trayectoria observada no es compatible con el modelo Browniano (hay señal de evolución no neutral).</p>
+<p>p ≥ 0.05: no hay suficiente evidencia para rechazar el modelo nulo.</p>
 </section>
 </section>
 <section id="correlación-entre-caracteres-morfológicos-discretos" class="level2">
