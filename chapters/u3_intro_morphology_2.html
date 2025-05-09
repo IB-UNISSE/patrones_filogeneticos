@@ -350,6 +350,12 @@ window.Quarto = {
 <li><p><code>sim</code>: Valores de disparidad a lo largo del tiempo para cada uno de los datasets simulados bajo el modelo nulo.</p></li>
 <li><p><code>MDI</code>: Valor del <strong>Morphological Disparity Index</strong>, que corresponde al área entre la curva DTT empírica y la mediana de las curvas simuladas.</p></li>
 </ul>
+<p>Descarga del Árbol Filogenético y la matriz de caracteres continuos</p>
+<p>📥 Puedes descargar el archivo .tre con el árbol en el siguiente enlace:</p>
+<p><a href="../docs/u1_PatDiv/output/morpho/subarbol_ingroup_morph.nex" download="">📥 Descargar árbol filogenético</a></p>
+<p>📥 Puedes descargar el archivo .nex con la matriz de caracteres continuos en el siguiente enlace:</p>
+<p><a href="../docs/u1_PatDiv/output/morpho/med_geiger.nex" download="">📥 Descargar matriz de caracteres continuos</a></p>
+<p>Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Análisis Disparity-Through-Time (DTT)</span></span>
@@ -543,6 +549,13 @@ Q =
 </tbody>
 </table>
 <p>Realizaremos estas pruebas utilizando un enfoque bayesiano basado en <strong>cadenas de Markov con salto reversible</strong> (<em>Reversible Jump Markov Chain Monte Carlo</em>, RJ-MCMC). Este método permite explorar modelos con diferente número de parámetros y estimar directamente si ciertas tasas de transición entre caracteres son estadísticamente distinguibles —es decir, si hay <strong>correlación evolutiva</strong> entre caracteres.</p>
+<p>Descarga del Árbol Filogenético y la matriz de caracteres discretos</p>
+<p>📥 Puedes descargar el archivo .tre con el árbol en el siguiente enlace:</p>
+<p><a href="../docs/u3_PatMorph/primates_tree.nex" download="">📥 Descargar árbol filogenético</a></p>
+<p>📥 Puedes descargar los archivos .nex con las matrices de caracteres discretos en el siguiente enlace:</p>
+<p><a href="../docs/u3_PatMorph/primates_solitariness.nex" download="">📥 Descargar matriz de caracteres discretos “solitariness”</a></p>
+<p><a href="../docs/u3_PatMorph/primates_terrestrially.nex" download="">📥 Descargar matriz de caracteres discretos “terrestrially”</a></p>
+<p>Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo en RevBayes: Prueba de correlación entre caracteres discretos</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Autor: Sebastian Höhna </span></span>
