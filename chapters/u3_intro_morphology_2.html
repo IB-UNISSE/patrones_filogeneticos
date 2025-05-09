@@ -295,6 +295,7 @@ window.Quarto = {
   <li><a href="#análisis-de-disparity-through-time-dtt-con-geiger-en-r" id="toc-análisis-de-disparity-through-time-dtt-con-geiger-en-r" class="nav-link active" data-scroll-target="#análisis-de-disparity-through-time-dtt-con-geiger-en-r">Análisis de Disparity-Through-Time (DTT) con geiger en R</a></li>
   <li><a href="#correlación-entre-caracteres-morfológicos-discretos" id="toc-correlación-entre-caracteres-morfológicos-discretos" class="nav-link" data-scroll-target="#correlación-entre-caracteres-morfológicos-discretos">Correlación entre caracteres morfológicos discretos</a></li>
   <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación">Interpretación</a></li>
+  <li><a href="#comparación-entre-los-tres-gráficos" id="toc-comparación-entre-los-tres-gráficos" class="nav-link" data-scroll-target="#comparación-entre-los-tres-gráficos">🔍 Comparación entre los tres gráficos</a></li>
   </ul>
 </nav>
     </div>
@@ -873,8 +874,134 @@ y numeric,200 numeric,200 numeric,200</code></pre>
 [3] "y numeric,200 numeric,200 numeric,200"</code></pre>
 </div>
 </div>
+</section>
+<section id="comparación-entre-los-tres-gráficos" class="level2">
+<h2 class="anchored" data-anchor-id="comparación-entre-los-tres-gráficos">🔍 Comparación entre los tres gráficos</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 37%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo de gráfico</th>
+<th>Qué muestra</th>
+<th>Cómo lo calcula RevBayes</th>
+<th>Cómo interpretarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. MAP (Maximum a posteriori)</strong></td>
+<td>El <strong>estado más probable</strong> en cada nodo</td>
+<td>Toma el estado con mayor probabilidad posterior en cada nodo (modo de la distribución)</td>
+<td>Muestra una sola hipótesis del estado ancestral más probable</td>
+</tr>
+<tr class="even">
+<td><strong>2. Pie charts (probabilidades marginales)</strong></td>
+<td>Un <strong>resumen de incertidumbre</strong> por nodo</td>
+<td>Calcula la probabilidad marginal para cada estado posible en cada nodo</td>
+<td>Cada pastel refleja cuán confiable es la inferencia (incertidumbre explícita)</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Simmap (mapeo estocástico)</strong></td>
+<td><strong>Historias evolutivas completas</strong> en ramas</td>
+<td>Simula trayectorias de cambio a lo largo del árbol, incluyendo <strong>el cuándo</strong> y <strong>dónde</strong> ocurrieron</td>
+<td>Muestra posibles escenarios evolutivos, no solo los nodos</td>
+</tr>
+</tbody>
+</table>
+<p>El siguiente gráfico representa la <strong>distribución posterior</strong> de la probabilidad de que <strong>dos tasas de transición</strong> sean <strong>iguales</strong>.<br>
+</p>
+<p>Estas tasas corresponden a:</p>
+<ul>
+<li><p>Ganancia de A dependiendo de B</p></li>
+<li><p>Pérdida de A dependiendo de B</p></li>
+<li><p>Ganancia de B dependiendo de A</p></li>
+<li><p>Pérdida de B dependiendo de A</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar librerías necesarias</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombres de los caracteres analizados</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>CHARACTER_A <span class="ot">&lt;-</span> <span class="st">"solitariness"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>CHARACTER_B <span class="ot">&lt;-</span> <span class="st">"terrestrially"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ruta del archivo de salida del MCMC (log)</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"../docs/u3_PatMorph/out/"</span>, CHARACTER_A, <span class="st">"_"</span>, CHARACTER_B, <span class="st">"_corr_RJ.log"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo de trazas y descartar el 25% inicial como burnin</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>trace_qual <span class="ot">&lt;-</span> <span class="fu">readTrace</span>(<span class="at">path =</span> file, <span class="at">burnin =</span> <span class="fl">0.25</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Umbrales de Bayes Factor (Kass y Raftery 1995):</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># BF = 3.2 (moderado), 10 (fuerte), 100 (muy fuerte)</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>BF <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir Bayes Factors a probabilidades posteriores</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Fórmula: p = BF / (1 + BF)</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> BF <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> BF)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el gráfico con las distribuciones posteriores de probabilidad de independencia</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plotTrace</span>(</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">trace =</span> trace_qual,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">"prob_gain_A_indep"</span>, <span class="st">"prob_gain_B_indep"</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"prob_loss_A_indep"</span>, <span class="st">"prob_loss_B_indep"</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>     )[[<span class="dv">1</span>]] <span class="sc">+</span>  <span class="co"># obtener el primer gráfico (si se genera como lista)</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>     <span class="co"># Limitar eje Y entre 0 y 1</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>     <span class="co"># Línea negra: punto de corte en 0.5</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>     <span class="co"># Líneas rojas para valores de p y 1-p derivados de Bayes Factor</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> p, <span class="at">linetype =</span> <span class="fu">c</span>(<span class="st">"longdash"</span>, <span class="st">"dashed"</span>, <span class="st">"dotted"</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span> <span class="sc">-</span> p, <span class="at">linetype =</span> <span class="fu">c</span>(<span class="st">"longdash"</span>, <span class="st">"dashed"</span>, <span class="st">"dotted"</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>     <span class="co"># Ajustar posición de la leyenda</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.40</span>, <span class="fl">0.825</span>))</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar el gráfico como PDF</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"Primates_"</span>, CHARACTER_A, <span class="st">"_"</span>, CHARACTER_B, <span class="st">"_corr_RJ.pdf"</span>),</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>  p,</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">5</span>,</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">5</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u3_intro_morphology_2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="interpretación-de-la-figura-probabilidad-de-independencia-de-tasas-de-ganancia-o-pérdida" class="level3">
+<h3 class="anchored" data-anchor-id="interpretación-de-la-figura-probabilidad-de-independencia-de-tasas-de-ganancia-o-pérdida">🧩 Interpretación de la figura: Probabilidad de independencia de tasas de ganancia o pérdida</h3>
+<p>Esta figura muestra la probabilidad posterior de que las tasas de ganancia o pérdida de un carácter sean independientes del estado del otro carácter. Es decir, si el valor es cercano a:</p>
+<ul>
+<li><p>1 → el modelo favorece que las tasas sean iguales en ambos contextos ⇒ no hay correlación evolutiva</p></li>
+<li><p>0 → el modelo favorece que las tasas sean distintas ⇒ sí hay correlación evolutiva</p></li>
+</ul>
+<p>Líneas horizontales en el gráfico:</p>
+<ul>
+<li><p>Línea negra sólida (0.5): representa la distribución a priori del modelo (sin información de los datos).</p></li>
+<li><p>Líneas rojas (según BF):</p>
+<ul>
+<li><p>Línea discontinua larga: evidencia débil (BF &lt; 3.2)</p></li>
+<li><p>Línea discontinua media: evidencia moderada (3.2 &lt; BF &lt; 10)</p></li>
+<li><p>Línea punteada fina: evidencia fuerte (10 &lt; BF &lt; 100)</p></li>
+</ul></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
