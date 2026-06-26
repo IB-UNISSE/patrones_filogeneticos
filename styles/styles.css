@@ -82,16 +82,6 @@ a:hover {
 }
 
 /* Centrar y controlar tamaño del logo del sidebar */
-#quarto-sidebar .sidebar-header,
-#quarto-sidebar .sidebar-logo-container {
-  width: 100% !important;
-  text-align: center !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
 
 #quarto-sidebar img.sidebar-logo,
 #quarto-sidebar .sidebar-logo img {
