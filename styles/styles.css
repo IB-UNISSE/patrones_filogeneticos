@@ -60,7 +60,14 @@ a:hover {
   border-right: none !important;
 }
 
-/* Logo nativo de Quarto en sidebar */
+/* ==========================================================
+   Logo nativo de Quarto en sidebar
+   IMPORTANTE:
+   No usar display: block !important aquí, porque Quarto genera
+   una versión desktop y otra móvil del logo. Forzar display hace
+   que aparezcan dos logos.
+   ========================================================== */
+
 #quarto-sidebar .sidebar-header {
   width: 100% !important;
   text-align: center !important;
@@ -70,19 +77,17 @@ a:hover {
 
 #quarto-sidebar .sidebar-logo-container {
   width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
+  text-align: center !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
+/* Control de tamaño del logo */
 #quarto-sidebar img.sidebar-logo,
 #quarto-sidebar .sidebar-logo img {
   width: 140px !important;
   max-width: 140px !important;
   height: auto !important;
-  display: block !important;
   margin: 18px auto 14px auto !important;
   filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
 }
