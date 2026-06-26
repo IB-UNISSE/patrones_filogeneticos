@@ -211,41 +211,40 @@ Si WSL ya estaba habilitado, sigue estos pasos para actualizarlo y asegurarte de
 6.  **Acceder a la carpeta de usuario de Windows**:
 
     -   Verifica si la ruta existe:
-    
-    ```bash
+
+    ``` bash
     ls "/mnt/c/Users/"
     ```
-    
+
     -   Verifica tu nombre de usuario:
-    
-    ```bash
+
+    ``` bash
     ls "/mnt/c/Users/mi_usuario"
     ```
-    
+
     -   Crear un alias en `~/.bashrc`:
-    
-     ```bash
+
+    ``` bash
     nano ~/.bashrc
     ```
-    
+
     -   Agrega esta línea al final del archivo:
-    
-     ```bash
+
+    ``` bash
     alias homepatron='cd "/mnt/c/Users/mi_usuario"'
     ```
-    
+
     -   Guarda `(CTRL + X, luego Y y Enter)` y actualiza:
-    
-     ```bash
+
+    ``` bash
     source ~/.bashrc
     ```
-    
+
     -   Ahora podrás ejecutar:
-    
-     ```bash
+
+    ``` bash
     homepatron
     ```
-    
 
 ## Instalar RevBayes en Ubuntu
 

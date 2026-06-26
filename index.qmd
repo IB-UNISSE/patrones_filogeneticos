@@ -30,5 +30,6 @@ Aquí puedes encontrar los temas del curso y sus respectivos enlaces:
 -   [Introducción a modelos State Speciaction-Extinción (SSE)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_4.html)
 
 ## Unidad 1: Patrones biogeográficos
+
 -   [Introducción a la biogeografía filogenética con el modelo DEC](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_1.html)
 -   [Biogeografía Bayesiana de Islas (BIB)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_2.html)

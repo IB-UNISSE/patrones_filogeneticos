@@ -1,9 +1,23 @@
 project:
   type: book
+  output-dir: _book
+  resources:
+    - docs/**
+    - images/**
 
 book:
   title: "Patrones filogenéticos: macroevolución y adaptación"
-  author: "Karen Lopez y Cristian Cervantes"
+  author: "Karen López, Ixchel González y Cristian Cervantes"
+  date: today
+  page-navigation: true
+  search: true
+  sidebar:
+    logo: images/Logo_UNISSE_blanco.png
+    title: "Patrones filogenéticos"
+    collapse-level: 1
+    pinned: true
+  repo-url: https://github.com/IB-UNISSE/patrones_filogeneticos
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
     - chapters/install.qmd
@@ -22,21 +36,26 @@ book:
         - chapters/u2_intro_biogeography_1.qmd
         - chapters/u2_intro_biogeography_2.qmd
 
-    
-    
-
 format:
   html:
-    theme: litera
-    css: styles/custom.css
+    theme:
+      light: litera
+    css: styles/styles.css
     toc: true
-    toc-depth: 2
-    number-sections: false  # Desactiva la numeración de capítulos y secciones
+    toc-depth: 3
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+    smooth-scroll: true
+    link-external-newwindow: true
+
+website:
+  site-url: https://ib-unisse.github.io/patrones_filogeneticos/
 
 editor: visual
 
 publish:
   gh-pages:
     branch: gh-pages
-    dir: _site
+    dir: _book
 
