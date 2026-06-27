@@ -1,26 +1,22 @@
 /* ==========================================================
-   Estilo visual para el manual BEAGLE en Quarto
-   Paleta tomada del logo:
-   Verde principal: #99AD2E
-   Café texto/logo: #5F3C2B
-   Fondo crema: #FEFAED
-   Verde oscuro auxiliar: #41605D
+   Estilo visual para Patrones filogenéticos en Quarto
+   Basado en la apariencia del manual BEAGLE
    ========================================================== */
 
 :root {
-  --beagle-green: #99AD2E;
-  --beagle-green-dark: #758A18;
-  --beagle-brown: #5F3C2B;
-  --beagle-cream: #FEFAED;
-  --beagle-soft-green: #EEF3D4;
-  --beagle-dark-teal: #41605D;
-  --beagle-text: #2F2B25;
+  --unisse-green: #99AD2E;
+  --unisse-green-dark: #758A18;
+  --unisse-brown: #5F3C2B;
+  --unisse-cream: #FEFAED;
+  --unisse-soft-green: #EEF3D4;
+  --unisse-dark-teal: #41605D;
+  --unisse-text: #2F2B25;
 }
 
 /* Fondo general */
 body {
-  background-color: var(--beagle-cream) !important;
-  color: var(--beagle-text);
+  background-color: var(--unisse-cream) !important;
+  color: var(--unisse-text);
 }
 
 /* Contenido sin cajas blancas duras */
@@ -32,35 +28,76 @@ main.content,
 
 /* Encabezados */
 h1, h2, h3, h4 {
-  color: var(--beagle-brown);
+  color: var(--unisse-brown);
   font-weight: 700;
 }
 
 h1.title {
-  color: var(--beagle-brown);
+  color: var(--unisse-brown);
 }
 
 h2 {
-  border-bottom: 3px solid var(--beagle-green);
+  border-bottom: 3px solid var(--unisse-green);
   padding-bottom: 0.25rem;
 }
 
 /* Enlaces */
 a {
-  color: var(--beagle-green-dark);
+  color: var(--unisse-green-dark);
 }
 
 a:hover {
-  color: var(--beagle-brown);
+  color: var(--unisse-brown);
 }
 
 /* Barra lateral izquierda */
 #quarto-sidebar.sidebar {
-  background: linear-gradient(180deg, var(--beagle-green) 0%, var(--beagle-green-dark) 100%) !important;
+  background: linear-gradient(
+    180deg,
+    var(--unisse-green) 0%,
+    var(--unisse-green-dark) 100%
+  ) !important;
   border-right: none !important;
 }
 
-#quarto-sidebar .sidebar-title,
+/* ==========================================================
+   Logo nativo de Quarto en sidebar
+   IMPORTANTE:
+   No usar display: block !important aquí, porque Quarto genera
+   una versión desktop y otra móvil del logo. Forzar display hace
+   que aparezcan dos logos.
+   ========================================================== */
+
+#quarto-sidebar .sidebar-header {
+  width: 100% !important;
+  text-align: center !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#quarto-sidebar .sidebar-logo-container {
+  width: 100% !important;
+  text-align: center !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Control de tamaño del logo */
+#quarto-sidebar img.sidebar-logo,
+#quarto-sidebar .sidebar-logo img {
+  width: 140px !important;
+  max-width: 140px !important;
+  height: auto !important;
+  margin: 18px auto 14px auto !important;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
+}
+
+/* Oculta el título del sidebar para que domine el logo */
+#quarto-sidebar .sidebar-title {
+  display: none !important;
+}
+
+/* Texto del sidebar */
 #quarto-sidebar .sidebar-item a,
 #quarto-sidebar .sidebar-item .sidebar-link,
 #quarto-sidebar .sidebar-section h2,
@@ -68,6 +105,7 @@ a:hover {
   color: #ffffff !important;
 }
 
+/* Elemento activo del sidebar */
 #quarto-sidebar .sidebar-item .active > .sidebar-link,
 #quarto-sidebar .sidebar-item .sidebar-link.active {
   background: rgba(95, 60, 43, 0.30) !important;
@@ -75,42 +113,16 @@ a:hover {
   border-left: 5px solid #ffffff;
 }
 
+/* Hover del sidebar */
 #quarto-sidebar .sidebar-item .sidebar-link:hover {
   background: rgba(255, 255, 255, 0.22) !important;
   color: #ffffff !important;
   text-decoration: none;
 }
 
-/* Centrar y controlar tamaño del logo del sidebar */
-#quarto-sidebar .sidebar-header,
-#quarto-sidebar .sidebar-logo-container {
-  width: 100% !important;
-  text-align: center !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-#quarto-sidebar img.sidebar-logo,
-#quarto-sidebar .sidebar-logo img {
-  width: 140px !important;
-  max-width: 140px !important;
-  height: auto !important;
-  display: block !important;
-  margin: 16px auto 12px auto !important;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
-}
-
-/* Oculta el título del sidebar si prefieres que domine el logo */
-#quarto-sidebar .sidebar-title {
-  display: none;
-}
-
 /* Barra superior en pantallas pequeñas */
 .navbar {
-  background-color: var(--beagle-green) !important;
+  background-color: var(--unisse-green) !important;
 }
 
 .navbar-title,
@@ -125,28 +137,28 @@ a:hover {
 }
 
 #quarto-sidebar-secondary .sidebar-item .sidebar-link.active {
-  color: var(--beagle-brown) !important;
-  border-left: 3px solid var(--beagle-green);
+  color: var(--unisse-brown) !important;
+  border-left: 3px solid var(--unisse-green);
 }
 
 /* Bloques de código */
 pre.sourceCode,
 div.sourceCode {
-  border-left: 5px solid var(--beagle-green);
+  border-left: 5px solid var(--unisse-green);
   border-radius: 8px;
 }
 
 code {
-  color: var(--beagle-brown);
+  color: var(--unisse-brown);
 }
 
 /* Cajas tipo nota */
 .callout.callout-style-default {
-  border-left-color: var(--beagle-green) !important;
+  border-left-color: var(--unisse-green) !important;
 }
 
 .callout-note {
-  background-color: var(--beagle-soft-green) !important;
+  background-color: var(--unisse-soft-green) !important;
 }
 
 /* Tablas */
@@ -155,18 +167,18 @@ table {
 }
 
 thead {
-  border-bottom: 3px solid var(--beagle-green);
+  border-bottom: 3px solid var(--unisse-green);
 }
 
 /* Botones y navegación */
 .btn,
 .page-link {
-  border-color: var(--beagle-green) !important;
+  border-color: var(--unisse-green) !important;
 }
 
 .btn-primary {
-  background-color: var(--beagle-green) !important;
-  border-color: var(--beagle-green-dark) !important;
+  background-color: var(--unisse-green) !important;
+  border-color: var(--unisse-green-dark) !important;
 }
 
 /* Portada del index */
@@ -187,5 +199,5 @@ thead {
 
 .beagle-hero p {
   font-size: 1.15rem;
-  color: var(--beagle-brown);
+  color: var(--unisse-brown);
 }
