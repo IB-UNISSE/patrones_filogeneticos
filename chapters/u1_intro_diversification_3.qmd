@@ -710,7 +710,7 @@ timetree ~ dnFBDP(rootAge = T.rootAge(), timeline = interval_times, lambda = spe
 🔹 **¿Qué representa cada parámetro?**
 
 | Parámetro          | Descripción                                                                                                      |
-|---------------|---------------------------------------------------------|
+|-----------------|-------------------------------------------------------|
 | `rootAge`          | Edad de la raíz del árbol.                                                                                       |
 | `timeline`         | División del tiempo en intervalos.                                                                               |
 | `lambda`           | Tasa de especiación (cambiante en el tiempo).                                                                    |

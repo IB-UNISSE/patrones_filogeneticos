@@ -8,6 +8,12 @@ execute:
   fig-height: 8   # Altura del gráfico
 ---
 
+[![](../images/u2_PatBio/BIB.png){fig-align="center" width="500"}](../docs/u2_PatBio/BIB_Aplicaciones.pdf)
+
+Haz clic en la imagen para ver el PDF de la presentación
+
+[🔗 Ver video en YouTube](https://www.youtube.com/embed/dsZ2owt0iCE?si=sjS-YbDEXdrfrVhr)
+
 ## **Introducción**
 
 En esta práctica, realizaremos un **análisis biogeográfico bayesiano** en **RevBayes** utilizando el **modelo BIB**, aplicado a un **conjunto de datos empíricos** compuesto por varios clados distribuidos en un **mismo conjunto de áreas geográficas**.
@@ -42,19 +48,19 @@ Todas las islas emergieron durante los **últimos 20 millones de años**. Las is
 
 Revisa el contenido de cada uno de estos archivos. Notarás que, a diferencia del modelo **DEC**, el modelo **BIB trabaja directamente con alineamientos de secuencias de ADN**. Esto significa que en este análisis vamos a **inferir simultáneamente** la **filogenia** (las relaciones evolutivas entre especies) y los **patrones y tasas de evolución de los rangos geográficos**.
 
-<a href="../docs/u2_PatBio/BIB/Bystropogon.nex" download>🌿 Bystropogon</a>
+<a href="../docs/u2_PatBio/BIB/Bystropogon.nex1" download>🌿 Bystropogon</a>
 
-<a href="../docs/u2_PatBio/BIB/Calathus.nex" download>🪲 Calathus</a>
+<a href="../docs/u2_PatBio/BIB/Calathus.nex1" download>🪲 Calathus</a>
 
-<a href="../docs/u2_PatBio/BIB/Dolichoiulus.nex" download>🐛 Dolichoiulus</a>
+<a href="../docs/u2_PatBio/BIB/Dolichoiulus.nex1" download>🐛 Dolichoiulus</a>
 
-<a href="../docs/u2_PatBio/BIB/Lotus.nex" download>🌸 Lotus</a>
+<a href="../docs/u2_PatBio/BIB/Lotus.nex1" download>🌸 Lotus</a>
 
-<a href="../docs/u2_PatBio/BIB/Micromeria.nex" download>🌺 Micromeria</a>
+<a href="../docs/u2_PatBio/BIB/Micromeria.nex1" download>🌺 Micromeria</a>
 
-<a href="../docs/u2_PatBio/BIB/Pimelia.nex" download>🐞 Pimelia</a>
+<a href="../docs/u2_PatBio/BIB/Pimelia.nex1" download>🐞 Pimelia</a>
 
-<a href="../docs/u2_PatBio/BIB/Psyllids.nex" download>🪰 Psyllids</a>
+<a href="../docs/u2_PatBio/BIB/Psyllids.nex1" download>🪰 Psyllids</a>
 
 Cada archivo `.nex` contiene **dos matrices**:
 

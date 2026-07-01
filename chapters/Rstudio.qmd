@@ -151,6 +151,7 @@ install.packages("ggplot2")
 library(ggplot2)
 help(ggplot2)  # Consultar documentación
 ```
+
 ## Acceder a los archivos de Ubuntu en RStudio
 
 1.  Ejecuta el siguiente comando en PowerShell:

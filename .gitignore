@@ -1,2 +1,19 @@
 /.quarto/
 .Rproj.user
+
+**/*.quarto_ipynb
+
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Quarto outputs
+_book/
+_site/
+.quarto/
+
+# Logs y salidas pesadas
+*.log
+docs/**/out/*.log
