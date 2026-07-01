@@ -2,7 +2,7 @@
 title: "Inicio"
 ---
 
-# Presentación del Curso: Patrones Filogenéticos, Macroevolución y Adaptación
+# Presentación del Curso: Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias
 
 [![](images/inicio/presentacion.png){fig-align="center" width="500"}](docs/inicio/tempoModeEvolPCB.pdf)
 
@@ -20,6 +20,8 @@ Aquí puedes encontrar los temas del curso y sus respectivos enlaces:
 
 -   [Apuntes sobre RevBayes](https://ib-unisse.github.io/patrones_filogeneticos/chapters/revbayes.html)
 
+-   [Instalación de Docker](https://ib-unisse.github.io/patrones_filogeneticos/chapters/docker.html)
+
 -   [Comparación de modelos mediante Factores de Bayes](https://ib-unisse.github.io/patrones_filogeneticos/chapters/factor_bayes.html)
 
 ## Unidad 1: Patrones de diversificación
@@ -33,3 +35,8 @@ Aquí puedes encontrar los temas del curso y sus respectivos enlaces:
 
 -   [Introducción a la biogeografía filogenética con el modelo DEC](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_1.html)
 -   [Biogeografía Bayesiana de Islas (BIB)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_2.html)
+-   [Diversificación dependiente del rango geográfico](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_3.html)
+
+## Unidad 3: Patrones morfológicos
+-   [Introducción a patrones morfológicos ](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u3_intro_morphology_1.html)
+-   [Disparidad a lo largo del tiempo y coevolución de carácteres ](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u3_intro_morphology_2.html)

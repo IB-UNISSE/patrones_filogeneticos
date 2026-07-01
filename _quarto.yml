@@ -6,14 +6,14 @@ project:
     - images/**
 
 book:
-  title: "Patrones filogenéticos: macroevolución y adaptación"
+  title: "Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias"
   author: "Karen López, Ixchel González y Cristian Cervantes"
   date: today
   page-navigation: true
   search: true
   sidebar:
     logo: images/Logo_UNISSE_blanco.png
-    title: "Patrones filogenéticos"
+    title: "Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias"
     collapse-level: 1
     pinned: true
   repo-url: https://github.com/IB-UNISSE/patrones_filogeneticos
@@ -35,6 +35,11 @@ book:
       chapters:
         - chapters/u2_intro_biogeography_1.qmd
         - chapters/u2_intro_biogeography_2.qmd
+        - chapters/u2_intro_biogeography_3.qmd
+    - part: "Unidad 3: Patrones morfológicos"
+      chapters:
+        - chapters/u3_intro_morphology_1.qmd
+        - chapters/u3_intro_morphology_2.qmd
 
 format:
   html:

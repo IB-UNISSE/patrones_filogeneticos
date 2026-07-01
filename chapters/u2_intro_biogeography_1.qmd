@@ -8,6 +8,12 @@ execute:
   fig-height: 8   # Altura del gráfico
 ---
 
+[![](../images/u2_PatBio/IntoPatBio.png){fig-align="center" width="500"}](../docs/u2_PatBio/IntroPatBio.pdf)
+
+Haz clic en la imagen para ver el PDF de la presentación
+
+[🔗 Ver video en YouTube](https://www.youtube.com/watch?v=Xi_K30bthv8&t=6067s)
+
 ## **Introducción**
 
 Muchos procesos evolutivos fundamentales, como la adaptación, la especiación y la extinción, ocurren en un contexto espacial. Cuando no es posible observar directamente los aspectos históricos de este contexto espacial, como sucede en la mayoría de los casos, se pueden aplicar métodos de inferencia biogeográfica para estimar los rangos ancestrales de las especies.
@@ -250,7 +256,7 @@ Esto responde: Si la especie está en `A`, qué tan probable es que termine en e
 **En resumen**
 
 | Comparación          | `Q_DEC`                         | `tp_DEC`                                  |
-|------------------|------------------------|-------------------------------|
+|------------------|------------------------|------------------------------|
 | ¿Qué es?             | Matriz de tasas                 | Matriz de probabilidades                  |
 | ¿Qué mide?           | Velocidad de cambio instantáneo | Probabilidad de cambio tras cierto tiempo |
 | ¿Depende del tiempo? | ❌ No                           | ✅ Sí                                     |

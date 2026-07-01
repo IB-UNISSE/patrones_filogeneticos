@@ -1,0 +1,129 @@
+---
+title: "Instalación de Docker"
+format: html
+---
+
+# 🐳 Tutorial rápido: Instalar Docker en macOS, Linux y Windows
+
+## 🧑‍💻 Para **macOS**
+
+### ✅ Requisitos:
+
+-   macOS 10.15 o posterior
+
+    Chip Intel o Apple Silicon (M1, M2, M3)
+
+### 📦 Paso 1: Descargar Docker Desktop
+
+1.  Ve a: https://www.docker.com/products/docker-desktop
+
+2.  Haz clic en **"Download for Mac"**
+
+3.  Elige tu arquitectura:
+
+    -   Apple chip (M1/M2/M3)
+
+    -   Intel chip
+
+### 📥 Paso 2: Instalar Docker
+
+1.  Abre el `.dmg` descargado
+
+2.  Arrastra el ícono de Docker a **Aplicaciones**
+
+3.  Abre Docker desde **Launchpad** o Spotlight
+
+> Puede pedirte permiso para instalar herramientas adicionales (como `docker` en la terminal). Acepta todo.
+
+### 🧪 Paso 3: Verifica que funciona
+
+Abre una terminal y escribe:
+
+``` bash
+docker --version
+docker run hello-world
+```
+
+Si ves un mensaje tipo “Hello from Docker!”, ¡todo está bien!
+
+## 🧑‍💻 Para **Linux (Ubuntu/Debian)**
+
+### 📦 Paso 1: Instalar dependencias
+
+``` bash
+sudo apt update
+sudo apt install ca-certificates curl gnupg lsb-release
+```
+
+### 🔑 Paso 2: Agregar la clave de Docker
+
+``` bash
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+
+### 📄 Paso 3: Agregar el repositorio oficial
+
+``` bash
+echo \
+  "deb [arch=$(dpkg --print-architecture) \
+  signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+### 🚀 Paso 4: Instalar Docker
+
+``` bash
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+```
+
+### 👤 Paso 5 (opcional): Usar Docker sin `sudo`
+
+``` bash
+sudo usermod -aG docker $USER
+newgrp docker  # o cierra y vuelve a abrir tu sesión
+```
+
+### 🧪 Paso 6: Probar Docker
+
+``` bash
+docker --version
+docker run hello-world
+```
+
+Si ves un mensaje tipo “Hello from Docker!”, ¡todo está bien!
+
+## 🧑‍💻 Para Windows 10/11
+
+### ✅ Requisitos
+
+-   **Windows 10 Pro / Enterprise / Education** (versión 1903 o superior)
+
+-   **Windows 11 Home o Pro**
+
+    ⚠️ Si usas **Windows 10 Home**, también puedes instalar Docker Desktop gracias a WSL2 (subsistema de Linux para Windows).
+
+### 🐳 Paso 1: Descargar e instalar Docker Desktop
+
+1.  Ve a: https://www.docker.com/products/docker-desktop/
+
+2.  Haz clic en **"Download for Windows"**
+
+3.  Ejecuta el instalador y acepta todos los pasos
+
+4.  Docker instalará e integrará con WSL2 automáticamente
+
+### 🧪 Paso 3: Verifica que Docker funcione
+
+Abre **PowerShell** o **WSL (Ubuntu)** y ejecuta:
+
+``` bash
+docker --version
+docker run hello-world
+```
+
+Si ves "Hello from Docker!", ¡ya estás listo!
