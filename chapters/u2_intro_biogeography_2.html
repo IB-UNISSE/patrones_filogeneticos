@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Biogeografía Bayesiana de Islas (BIB) – Patrones filogenéticos: macroevolución y adaptación</title>
+<title>Biogeografía Bayesiana de Islas (BIB) – Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../chapters/u2_intro_biogeography_3.html" rel="next">
 <link href="../chapters/u2_intro_biogeography_1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -137,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Patrones filogenéticos</a> 
+      <a href="../">Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/IB-UNISSE/patrones_filogeneticos" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -230,6 +231,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="../chapters/u2_intro_biogeography_2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Biogeografía Bayesiana de Islas (BIB)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/u2_intro_biogeography_3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Diversificación dependiente del rango geográfico</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Unidad 3: Patrones morfológicos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/u3_intro_morphology_1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introducción a patrones morfológicos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/u3_intro_morphology_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Disparidad a lo largo del tiempo y coevolución de carácteres</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -277,6 +304,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../docs/u2_PatBio/BIB_Aplicaciones.pdf"><img src="../images/u2_PatBio/BIB.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></a></p>
+</figure>
+</div>
+<p>Haz clic en la imagen para ver el PDF de la presentación</p>
+<p><a href="https://www.youtube.com/embed/dsZ2owt0iCE?si=sjS-YbDEXdrfrVhr">🔗 Ver video en YouTube</a></p>
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción"><strong>Introducción</strong></h2>
 <p>En esta práctica, realizaremos un <strong>análisis biogeográfico bayesiano</strong> en <strong>RevBayes</strong> utilizando el <strong>modelo BIB</strong>, aplicado a un <strong>conjunto de datos empíricos</strong> compuesto por varios clados distribuidos en un <strong>mismo conjunto de áreas geográficas</strong>.</p>
@@ -307,13 +341,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="descarga-los-conjuntos-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="descarga-los-conjuntos-de-datos">Descarga los conjuntos de datos</h2>
 <p>Revisa el contenido de cada uno de estos archivos. Notarás que, a diferencia del modelo <strong>DEC</strong>, el modelo <strong>BIB trabaja directamente con alineamientos de secuencias de ADN</strong>. Esto significa que en este análisis vamos a <strong>inferir simultáneamente</strong> la <strong>filogenia</strong> (las relaciones evolutivas entre especies) y los <strong>patrones y tasas de evolución de los rangos geográficos</strong>.</p>
-<p><a href="../docs/u2_PatBio/BIB/Bystropogon.nex" download="">🌿 Bystropogon</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Calathus.nex" download="">🪲 Calathus</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Dolichoiulus.nex" download="">🐛 Dolichoiulus</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Lotus.nex" download="">🌸 Lotus</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Micromeria.nex" download="">🌺 Micromeria</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Pimelia.nex" download="">🐞 Pimelia</a></p>
-<p><a href="../docs/u2_PatBio/BIB/Psyllids.nex" download="">🪰 Psyllids</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Bystropogon.nex1" download="">🌿 Bystropogon</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Calathus.nex1" download="">🪲 Calathus</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Dolichoiulus.nex1" download="">🐛 Dolichoiulus</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Lotus.nex1" download="">🌸 Lotus</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Micromeria.nex1" download="">🌺 Micromeria</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Pimelia.nex1" download="">🐞 Pimelia</a></p>
+<p><a href="../docs/u2_PatBio/BIB/Psyllids.nex1" download="">🪰 Psyllids</a></p>
 <p>Cada archivo <code>.nex</code> contiene <strong>dos matrices</strong>:</p>
 <ol type="1">
 <li><p>La <strong>primera matriz</strong> incluye el <strong>alineamiento de secuencias de ADN</strong>, donde los estados de carácter son los nucleótidos (por ejemplo: A, C, T, G).</p></li>
@@ -1005,6 +1039,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../chapters/u2_intro_biogeography_3.html" class="pagination-link" aria-label="Diversificación dependiente del rango geográfico">
+        <span class="nav-page-text"><span class="chapter-title">Diversificación dependiente del rango geográfico</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
