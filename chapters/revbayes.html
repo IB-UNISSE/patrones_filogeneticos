@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/factor_bayes.html" rel="next">
+<link href="../chapters/docker.html" rel="next">
 <link href="../chapters/Rstudio.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -207,6 +207,11 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Instalación de Docker</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/factor_bayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Comparación de modelos mediante Factores de Bayes</span></a>
   </div>
 </li>
@@ -305,32 +310,35 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#por-qué-se-necesita-mcmc" id="toc-por-qué-se-necesita-mcmc" class="nav-link" data-scroll-target="#por-qué-se-necesita-mcmc">¿Por qué se necesita MCMC?</a></li>
   <li><a href="#cómo-funciona-mcmc" id="toc-cómo-funciona-mcmc" class="nav-link" data-scroll-target="#cómo-funciona-mcmc">¿Cómo funciona MCMC?</a></li>
-  <li><a href="#métodos-populares-de-mcmc" id="toc-métodos-populares-de-mcmc" class="nav-link" data-scroll-target="#métodos-populares-de-mcmc">Métodos populares de MCMC</a></li>
-  <li><a href="#cómo-saber-si-una-cadena-ha-convergido" id="toc-cómo-saber-si-una-cadena-ha-convergido" class="nav-link" data-scroll-target="#cómo-saber-si-una-cadena-ha-convergido">¿Cómo saber si una cadena ha convergido?</a></li>
+  <li><a href="#un-método-común-de-mcmc-metropolis-hastings" id="toc-un-método-común-de-mcmc-metropolis-hastings" class="nav-link" data-scroll-target="#un-método-común-de-mcmc-metropolis-hastings">Un método común de MCMC: Metropolis-Hastings</a></li>
   </ul></li>
+  <li><a href="#cómo-saber-si-una-cadena-ha-convergido" id="toc-cómo-saber-si-una-cadena-ha-convergido" class="nav-link" data-scroll-target="#cómo-saber-si-una-cadena-ha-convergido">¿Cómo saber si una cadena ha convergido?</a></li>
   <li><a href="#modelos-gráficos-en-revbayes" id="toc-modelos-gráficos-en-revbayes" class="nav-link" data-scroll-target="#modelos-gráficos-en-revbayes">Modelos Gráficos en RevBayes</a>
   <ul class="collapse">
-  <li><a href="#tipos-de-nodos-en-revbayes" id="toc-tipos-de-nodos-en-revbayes" class="nav-link" data-scroll-target="#tipos-de-nodos-en-revbayes">Tipos de Nodos en RevBayes</a>
+  <li><a href="#nodos-constantes" id="toc-nodos-constantes" class="nav-link" data-scroll-target="#nodos-constantes">Nodos constantes</a></li>
+  <li><a href="#nodos-estocásticos" id="toc-nodos-estocásticos" class="nav-link" data-scroll-target="#nodos-estocásticos">Nodos estocásticos</a></li>
+  <li><a href="#nodos-deterministas" id="toc-nodos-deterministas" class="nav-link" data-scroll-target="#nodos-deterministas">Nodos deterministas</a></li>
+  <li><a href="#nodos-observados-o-clamped" id="toc-nodos-observados-o-clamped" class="nav-link" data-scroll-target="#nodos-observados-o-clamped">Nodos observados o <em>clamped</em></a></li>
+  <li><a href="#plates" id="toc-plates" class="nav-link" data-scroll-target="#plates">Plates</a></li>
+  <li><a href="#operadores-de-asignación-en-revbayes" id="toc-operadores-de-asignación-en-revbayes" class="nav-link" data-scroll-target="#operadores-de-asignación-en-revbayes">Operadores de asignación en RevBayes</a></li>
+  </ul></li>
+  <li><a href="#ejemplo-micheladas-en-tepito" id="toc-ejemplo-micheladas-en-tepito" class="nav-link" data-scroll-target="#ejemplo-micheladas-en-tepito">📊 Ejemplo: Micheladas en Tepito</a>
   <ul class="collapse">
-  <li><a href="#nodos-constantes" id="toc-nodos-constantes" class="nav-link" data-scroll-target="#nodos-constantes">👉 <strong>Nodos Constantes</strong></a></li>
-  <li><a href="#nodos-estocásticos" id="toc-nodos-estocásticos" class="nav-link" data-scroll-target="#nodos-estocásticos">👉 <strong>Nodos Estocásticos</strong></a></li>
-  <li><a href="#nodos-deterministas" id="toc-nodos-deterministas" class="nav-link" data-scroll-target="#nodos-deterministas">👉 <strong>Nodos Deterministas</strong></a></li>
-  <li><a href="#nodos-clamped-observados" id="toc-nodos-clamped-observados" class="nav-link" data-scroll-target="#nodos-clamped-observados">👉 <strong>Nodos Clamped (Observados)</strong></a></li>
-  <li><a href="#nodos-plate" id="toc-nodos-plate" class="nav-link" data-scroll-target="#nodos-plate">👉 <strong>Nodos Plate</strong></a></li>
+  <li><a href="#definiendo-el-modelo" id="toc-definiendo-el-modelo" class="nav-link" data-scroll-target="#definiendo-el-modelo">🔹 1. Definiendo el modelo</a>
+  <ul class="collapse">
+  <li><a href="#distribución-prior" id="toc-distribución-prior" class="nav-link" data-scroll-target="#distribución-prior">📌 Distribución prior</a></li>
+  <li><a href="#verosimilitud-likelihood" id="toc-verosimilitud-likelihood" class="nav-link" data-scroll-target="#verosimilitud-likelihood">📌 Verosimilitud (<em>likelihood</em>)</a></li>
+  <li><a href="#qué-significa-cada-símbolo" id="toc-qué-significa-cada-símbolo" class="nav-link" data-scroll-target="#qué-significa-cada-símbolo">📌 ¿Qué significa cada símbolo?</a></li>
+  <li><a href="#posterior-bayesiana" id="toc-posterior-bayesiana" class="nav-link" data-scroll-target="#posterior-bayesiana">📌 Posterior bayesiana</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#comparación-entre-revbayes-y-r" id="toc-comparación-entre-revbayes-y-r" class="nav-link" data-scroll-target="#comparación-entre-revbayes-y-r">Comparación entre RevBayes y R</a></li>
-  <li><a href="#ejemplo-micheladas-en-tepito" id="toc-ejemplo-micheladas-en-tepito" class="nav-link" data-scroll-target="#ejemplo-micheladas-en-tepito">📊 Ejemplo Micheladas en Tepito</a>
+  <li><a href="#implementación-en-revbayes" id="toc-implementación-en-revbayes" class="nav-link" data-scroll-target="#implementación-en-revbayes">🔹 2. Implementación en RevBayes</a>
   <ul class="collapse">
-  <li><a href="#definiendo-el-modelo-en-revbayes" id="toc-definiendo-el-modelo-en-revbayes" class="nav-link" data-scroll-target="#definiendo-el-modelo-en-revbayes">🔹 1. Definiendo el Modelo en RevBayes</a>
-  <ul class="collapse">
-  <li><a href="#distribución-prior" id="toc-distribución-prior" class="nav-link" data-scroll-target="#distribución-prior">📌 <strong>Distribución Prior</strong></a></li>
-  <li><a href="#verosimilitud-likelihood" id="toc-verosimilitud-likelihood" class="nav-link" data-scroll-target="#verosimilitud-likelihood">📌 <strong>Verosimilitud (Likelihood)</strong></a></li>
-  <li><a href="#posterior-bayesiana" id="toc-posterior-bayesiana" class="nav-link" data-scroll-target="#posterior-bayesiana">📌 <strong>Posterior Bayesiana</strong></a></li>
+  <li><a href="#qué-está-haciendo-revbayes" id="toc-qué-está-haciendo-revbayes" class="nav-link" data-scroll-target="#qué-está-haciendo-revbayes">¿Qué está haciendo RevBayes?</a></li>
+  <li><a href="#qué-esperamos-obtener" id="toc-qué-esperamos-obtener" class="nav-link" data-scroll-target="#qué-esperamos-obtener">¿Qué esperamos obtener?</a></li>
   </ul></li>
-  <li><a href="#código-en-revbayes" id="toc-código-en-revbayes" class="nav-link" data-scroll-target="#código-en-revbayes">🔹 2. Código en RevBayes</a></li>
   <li><a href="#mini-ejercicio" id="toc-mini-ejercicio" class="nav-link" data-scroll-target="#mini-ejercicio">Mini-ejercicio</a></li>
-  </ul></li>
+  <li><a href="#recursos" id="toc-recursos" class="nav-link" data-scroll-target="#recursos">Recursos</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/revbayes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -358,343 +366,739 @@ window.Quarto = {
 
 <section id="introducción-a-la-inferencia-bayesiana" class="level1">
 <h1>Introducción a la Inferencia Bayesiana</h1>
-<p>La <strong>inferencia bayesiana</strong> es un enfoque de la estadística que permite actualizar nuestras creencias sobre un parámetro desconocido <strong>a medida que obtenemos nueva información</strong>. Se basa en el <strong>Teorema de Bayes</strong>, que nos dice cómo combinar la información previa con la evidencia observada.</p>
+<p>La <strong>inferencia bayesiana</strong> es un enfoque de la estadística que permite actualizar nuestra información sobre un parámetro desconocido a medida que observamos nuevos datos. Se basa en el <strong>Teorema de Bayes</strong>, que combina la información previa con la evidencia observada.</p>
 <p>El <strong>Teorema de Bayes</strong> se expresa matemáticamente como:</p>
 <p><span class="math display">\[
-P(\theta | D) = \frac{P(D | \theta) P(\theta)}{P(D)}
+P(\theta \mid D) =
+\frac{P(D \mid \theta)P(\theta)}{P(D)}
 \]</span></p>
+<p>donde:</p>
 <ul>
-<li><p>Donde: <span class="math inline">\(P(\theta | D)\)</span> es la <strong>probabilidad posterior</strong> del parámetro <span class="math inline">\(\theta\)</span> después de observar los datos <span class="math inline">\(D\)</span></p></li>
-<li><p><span class="math inline">\(P(D | \theta)\)</span> es la <strong>verosimilitud</strong>, la probabilidad de los datos <span class="math inline">\(D\)</span> dados un valor del parámetro <span class="math inline">\(\theta\)</span>.</p></li>
-<li><p><span class="math inline">\(P(\theta)\)</span> es la <strong>distribución prior</strong>, que refleja nuestra creencia sobre <span class="math inline">\(\theta\)</span> antes de observar los datos</p></li>
-<li><p><span class="math inline">\(P(D)\)</span> es la <strong>evidencia</strong>, un factor de normalización que garantiza que la probabilidad total sea 1.</p></li>
+<li><span class="math inline">\(P(\theta \mid D)\)</span> es la <strong>distribución posterior</strong> del parámetro <span class="math inline">\(\theta\)</span> después de observar los datos <span class="math inline">\(D\)</span>.</li>
+<li><span class="math inline">\(P(D \mid \theta)\)</span> es la <strong>verosimilitud (likelihood)</strong>: la probabilidad de observar los datos <span class="math inline">\(D\)</span> dado un valor del parámetro <span class="math inline">\(\theta\)</span>.</li>
+<li><span class="math inline">\(P(\theta)\)</span> es la <strong>distribución prior</strong>, que representa la información o supuestos sobre <span class="math inline">\(\theta\)</span> antes de observar los datos.</li>
+<li><span class="math inline">\(P(D)\)</span> es la <strong>evidencia</strong> o <strong>verosimilitud marginal</strong>, que actúa como factor de normalización.</li>
 </ul>
-<p>El <strong>objetivo de la inferencia bayesiana</strong> es calcular la <strong>distribución posterior</strong>, que nos proporciona una estimación más precisa del parámetro <span class="math inline">\(\theta\)</span> al incorporar tanto datos como conocimiento previo.</p>
+<p>El <strong>objetivo de la inferencia bayesiana</strong> es obtener la <strong>distribución posterior</strong>, que muestra qué valores del parámetro <span class="math inline">\(\theta\)</span> son más plausibles después de considerar tanto la información previa como los datos observados.</p>
 </section>
 <section id="diferencia-entre-inferencia-bayesiana-y-máxima-verosimilitud" class="level1">
 <h1>Diferencia entre Inferencia Bayesiana y Máxima Verosimilitud</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 39%">
-<col style="width: 41%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Enfoque</strong></th>
+<th></th>
 <th><strong>Máxima Verosimilitud (MV)</strong></th>
 <th><strong>Inferencia Bayesiana</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Pregunta clave</strong></td>
-<td>¿Cuál es el valor de <span class="math inline">\(\theta\)</span> que maximiza la probabilidad de los datos?</td>
-<td>¿Cómo cambia nuestra creencia sobre <span class="math inline">\(\theta\)</span> después de observar los datos?</td>
+<td><strong>Objetivo</strong></td>
+<td>Encontrar el valor de <span class="math inline">\(\theta\)</span> que maximiza <span class="math inline">\(P(D \mid \theta)\)</span></td>
+<td>Obtener <span class="math inline">\(P(\theta \mid D)\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Ecuación base</strong></td>
-<td><span class="math display">\[ \hat{\theta} = \arg\max_{\theta} P(D | \theta) \]</span></td>
-<td><span class="math display">\[ P(\theta | D) \propto P(D | \theta) P(\theta) \]</span></td>
+<td><strong>Prior</strong></td>
+<td>No</td>
+<td>Sí</td>
 </tr>
 <tr class="odd">
-<td><strong>Uso de información previa?</strong></td>
-<td>❌ No</td>
-<td>✅ Sí (usa una distribución prior)</td>
+<td><strong>Resultado principal</strong></td>
+<td>Estimación puntual de <span class="math inline">\(\theta\)</span></td>
+<td>Distribución posterior de <span class="math inline">\(\theta\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Resultado</strong></td>
-<td>Un solo valor óptimo para <span class="math inline">\(\theta\)</span></td>
-<td>Una distribución completa sobre <span class="math inline">\(\theta\)</span></td>
-</tr>
-<tr class="odd">
-<td><strong>Estimación de incertidumbre?</strong></td>
-<td>❌ No la estima</td>
-<td>✅ Sí, con la distribución posterior</td>
-</tr>
-<tr class="even">
-<td><strong>Flexibilidad con nuevos datos?</strong></td>
-<td>❌ No se actualiza fácilmente</td>
-<td>✅ Se actualiza dinámicamente con más datos</td>
+<td><strong>Incertidumbre</strong></td>
+<td>Se estima mediante procedimientos adicionales</td>
+<td>Está representada directamente por la distribución posterior</td>
 </tr>
 </tbody>
 </table>
+<p>En <strong>máxima verosimilitud</strong> buscamos el valor de <span class="math inline">\(\theta\)</span> que hace que los datos observados sean más probables. En <strong>inferencia bayesiana</strong> obtenemos una distribución de valores plausibles de <span class="math inline">\(\theta\)</span> después de considerar los datos.</p>
 </section>
 <section id="qué-es-revbayes" class="level1">
 <h1>¿Qué es RevBayes?</h1>
-<p>A diferencia de otros programas, <strong>RevBayes</strong> se basa en un <strong>lenguaje declarativo y probabilístico</strong>, lo que permite definir modelos gráficos y realizar inferencia mediante <strong>Markov Chain Monte Carlo (MCMC)</strong>.</p>
+<p><strong>RevBayes</strong> es un programa y lenguaje probabilístico diseñado para construir modelos estadísticos, especialmente modelos utilizados en inferencia filogenética bayesiana.</p>
 <p><strong>Principales características de RevBayes:</strong></p>
 <ul>
-<li><p>Utiliza <strong>modelos gráficos probabilísticos</strong>.</p></li>
-<li><p>Tiene una sintaxis similar a <strong>R</strong>, pero con mayor enfoque en la inferencia bayesiana.</p></li>
-<li><p>Permite definir relaciones entre variables mediante <strong>nodos</strong>.</p></li>
-<li><p>Utiliza <strong>muestreo MCMC</strong> para estimar distribuciones posteriores.</p></li>
+<li>Utiliza <strong>modelos gráficos probabilísticos</strong>.</li>
+<li>Su lenguaje, <strong>Rev</strong>, tiene una sintaxis que recuerda a R, pero sus operadores tienen significados específicos dentro del modelo probabilístico.</li>
+<li>Permite definir relaciones entre variables mediante <strong>nodos</strong>.</li>
+<li>Utiliza métodos de <strong>Markov Chain Monte Carlo (MCMC)</strong> para obtener muestras de distribuciones posteriores complejas.</li>
+<li>Permite construir modelos filogenéticos de manera modular y explícita.</li>
 </ul>
 </section>
 <section id="qué-es-el-muestreo-mcmc" class="level1">
 <h1>¿Qué es el Muestreo MCMC?</h1>
-<p>El <strong>Muestreo MCMC (Markov Chain Monte Carlo)</strong> es un conjunto de métodos computacionales utilizados para <strong>aproximar distribuciones de probabilidad complejas</strong>, especialmente en <strong>inferencia bayesiana</strong> y problemas donde el espacio de parámetros es muy grande.</p>
+<p>El <strong>MCMC (Markov Chain Monte Carlo)</strong> es un conjunto de métodos computacionales utilizados para obtener muestras de distribuciones de probabilidad complejas.</p>
+<p>En inferencia bayesiana se utiliza principalmente para <strong>aproximar la distribución posterior</strong> cuando esta no puede calcularse directamente.</p>
 <section id="por-qué-se-necesita-mcmc" class="level2">
 <h2 class="anchored" data-anchor-id="por-qué-se-necesita-mcmc">¿Por qué se necesita MCMC?</h2>
-<p>En inferencia bayesiana, la distribución posterior de un parámetro <span class="math inline">\(\theta\)</span> se calcula usando:</p>
+<p>La distribución posterior de un parámetro <span class="math inline">\(\theta\)</span> se obtiene mediante:</p>
 <p><span class="math display">\[
-P(\theta | D) = \frac{P(D | \theta) P(\theta)}{P(D)}
+P(\theta \mid D) =
+\frac{P(D \mid \theta)P(\theta)}{P(D)}
 \]</span></p>
-<p>Pero en la práctica, el denominador <span class="math inline">\(P(D)\)</span> es difícil de calcular, ya que requiere integrar sobre todos los valores posibles de <span class="math inline">\(\theta\)</span>:</p>
+<p>La evidencia <span class="math inline">\(P(D)\)</span> requiere integrar sobre todos los posibles valores del parámetro:</p>
 <p><span class="math display">\[
-P(D) = \int P(D | \theta) P(\theta) d\theta
+P(D) =
+\int P(D \mid \theta)P(\theta)\,d\theta
 \]</span></p>
-<p>Cuando el espacio de parámetros es muy grande, esta integral es imposible de resolver analíticamente. MCMC nos ayuda a aproximar la distribución posterior sin necesidad de calcular <span class="math inline">\(P(D)\)</span>.</p>
+<p>En modelos sencillos esta integral puede resolverse analíticamente, pero en modelos complejos puede ser muy difícil o computacionalmente intratable.</p>
+<p>MCMC permite obtener muestras de una distribución proporcional a:</p>
+<p><span class="math display">\[
+P(\theta \mid D)
+\propto
+P(D \mid \theta)P(\theta)
+\]</span></p>
+<p>sin necesidad de calcular directamente el término de normalización <span class="math inline">\(P(D)\)</span>.</p>
 </section>
 <section id="cómo-funciona-mcmc" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-funciona-mcmc">¿Cómo funciona MCMC?</h2>
-<p>MCMC <strong>simula valores</strong> de los parámetros siguiendo estos pasos:</p>
+<p>De manera general, un MCMC construye una <strong>cadena de valores de los parámetros</strong>:</p>
 <ol type="1">
-<li><p><strong>Empieza en un valor inicial</strong> .</p></li>
-<li><p><strong>Propone un nuevo valor</strong> basado en una distribución de transición.</p></li>
-<li><p><strong>Decide si acepta o rechaza</strong> según la regla de aceptación.</p></li>
-<li><p><strong>Repite el proceso muchas veces</strong> para construir una cadena de valores que sigan la distribución posterior.</p></li>
+<li><strong>Empieza en un valor inicial</strong> del parámetro.</li>
+<li><strong>Propone un nuevo valor</strong>.</li>
+<li><strong>Decide si acepta o rechaza</strong> la propuesta.</li>
+<li><strong>Repite el proceso muchas veces</strong>.</li>
 </ol>
-<p>🔹 <strong>Importante:</strong><br>
-Con suficientes iteraciones, la cadena <strong>converge</strong> a la distribución posterior, permitiendo estimar parámetros de manera precisa.</p>
+<p>Después de que la cadena alcanza una región estacionaria y explora adecuadamente el espacio de parámetros, las muestras retenidas pueden utilizarse para aproximar la <strong>distribución posterior</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un número grande de iteraciones por sí solo <strong>no garantiza</strong> que una cadena haya convergido. Es necesario evaluar su comportamiento mediante diagnósticos como las trazas y el tamaño de muestra efectivo (ESS).</p>
+</div>
+</div>
 </section>
-<section id="métodos-populares-de-mcmc" class="level2">
-<h2 class="anchored" data-anchor-id="métodos-populares-de-mcmc">Métodos populares de MCMC</h2>
-<p>Existen varias formas de implementar MCMC. Las más comunes son:</p>
-<p>✅ <strong>1. Algoritmo de Metropolis-Hastings</strong></p>
-<ul>
-<li><p>Propone un nuevo valor <span class="math inline">\(\theta^*\)</span>.</p></li>
-<li><p>Decide si lo acepta o no comparando la razón de aceptación:</p>
-<p><span class="math display">\[
-r = \frac{P(D | \theta^*) P(\theta^*)}{P(D | \theta) P(\theta)}
-\]</span></p>
-<ul>
-<li>Si <span class="math inline">\(r \geq 1\)</span>, acepta <span class="math inline">\(\theta^*\)</span>.</li>
-<li>Si <span class="math inline">\(r &lt; 1\)</span>, acepta <span class="math inline">\(\theta^*\)</span> con probabilidad <span class="math inline">\(r\)</span>.</li>
-</ul></li>
-</ul>
-<p>Se usa cuando no se conoce la forma exacta de la distribución posterior.</p>
+<section id="un-método-común-de-mcmc-metropolis-hastings" class="level2">
+<h2 class="anchored" data-anchor-id="un-método-común-de-mcmc-metropolis-hastings">Un método común de MCMC: Metropolis-Hastings</h2>
+<p>El algoritmo de <strong>Metropolis-Hastings</strong> es un método de MCMC que permite generar muestras de una distribución posterior.</p>
+<ol type="1">
+<li>Parte de un valor inicial del parámetro <span class="math inline">\(\theta\)</span>.</li>
+<li>Propone un nuevo valor <span class="math inline">\(\theta^*\)</span>.</li>
+<li>Evalúa qué tan probable es ese nuevo valor considerando los <strong>datos observados</strong> y la <strong>distribución prior</strong>.</li>
+<li>Decide si acepta o rechaza el nuevo valor.</li>
+<li>Repite este proceso muchas veces, formando una <strong>cadena de valores</strong>.</li>
+</ol>
+<p>El algoritmo favorece valores con mayor probabilidad posterior, pero también puede aceptar valores menos probables. Esto permite que la cadena explore diferentes regiones del espacio de parámetros y evita que quede atrapada en una sola región.</p>
+<p>Después de suficientes iteraciones y una adecuada exploración del espacio de parámetros, las muestras obtenidas pueden utilizarse para <strong>aproximar la distribución posterior</strong>.</p>
 </section>
-<section id="cómo-saber-si-una-cadena-ha-convergido" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-saber-si-una-cadena-ha-convergido">¿Cómo saber si una cadena ha convergido?</h2>
+</section>
+<section id="cómo-saber-si-una-cadena-ha-convergido" class="level1">
+<h1>¿Cómo saber si una cadena ha convergido?</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/rebvayes/53482247_2120318871350183_7589131882600595456_n.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
 </figure>
 </div>
-<p>Algunas técnicas comunes para evaluar la convergencia incluyen:</p>
+<p>Algunos diagnósticos útiles son:</p>
 <ul>
-<li><p><strong>Inspección visual de trazas</strong>: un gráfico de trazas muestra si la cadena ha alcanzado un comportamiento estable sin tendencias obvias.</p></li>
-<li><p><strong>Tamaño de muestra efectivo (Effective Sample Size, ESS)</strong>: Dado que las muestras en MCMC están correlacionadas, el número real de muestras independientes es menor que el número total de iteraciones. El tamaño de muestra efectivo (ESS) estima cuántas muestras independientes equivalentes hay en la cadena.</p></li>
+<li><strong>Inspección visual de las trazas:</strong> una buena traza fluctúa alrededor de una región estable y no presenta tendencias persistentes.</li>
+<li><strong>Tamaño de muestra efectivo (Effective Sample Size, ESS):</strong> las muestras consecutivas de un MCMC suelen estar correlacionadas. El ESS estima cuántas muestras independientes equivalentes contiene la cadena.</li>
 </ul>
-<p>Se calcula como:</p>
+<p>Una forma común de expresar el ESS es:</p>
 <p><span class="math display">\[
-ESS = \frac{N}{1 + 2 \sum \rho_k}
+ESS =
+\frac{N}
+{1 + 2\sum_{k=1}^{\infty}\rho_k}
 \]</span></p>
-<p>Donde <span class="math inline">\(N\)</span> es el número total de iteraciones y <span class="math inline">\(\rho_k\)</span> es la autocorrelación en el retraso <span class="math inline">\(k\)</span>. <strong>Un ESS alto (</strong><span class="math inline">\(ESS &gt; 200\)</span>) indica que la cadena ha explorado bien el espacio de parámetros y proporciona estimaciones confiables.</p>
-<p>Un ESS bajo sugiere que las muestras están altamente correlacionadas y que se necesitan más iteraciones o una mejor parametrización del algoritmo para obtener estimaciones más precisas.</p>
-<p>Para visualizar estos valores y generar gráficos, se puede utilizar <strong>Tracer</strong>, una herramienta que facilita el análisis de convergencia de cadenas MCMC. Se puede descargar en el siguiente enlace:</p>
+<p>donde <span class="math inline">\(N\)</span> es el número de muestras retenidas y <span class="math inline">\(\rho_k\)</span> es la autocorrelación para el retraso <span class="math inline">\(k\)</span>.</p>
+<p>Un <strong>ESS alto</strong> indica que la cadena contiene una mayor cantidad de información independiente. En filogenética, un valor de <strong>ESS &gt; 200</strong> se utiliza comúnmente como una referencia práctica de buen muestreo.</p>
+<p>Sin embargo, un ESS alto <strong>no demuestra por sí solo la convergencia</strong>. Debe interpretarse junto con las trazas y, cuando sea posible, con la comparación de cadenas independientes.</p>
+<p>Un ESS bajo puede indicar una alta autocorrelación, pocas iteraciones o movimientos MCMC poco eficientes.</p>
+<p>Para visualizar las trazas, el ESS y otros resúmenes de la posterior se puede utilizar <strong>Tracer</strong>:</p>
 <p><a href="https://github.com/beast-dev/tracer/releases/tag/v1.7.2">Tracer v1.7.2</a></p>
-</section>
 </section>
 <section id="modelos-gráficos-en-revbayes" class="level1">
 <h1>Modelos Gráficos en RevBayes</h1>
-<p>En RevBayes, un <strong>modelo gráfico</strong> representa la relación entre variables aleatorias en un modelo bayesiano. Cada variable en el modelo es representada por un <strong>nodo</strong>, y las relaciones entre ellas se representan como <strong>bordes en un grafo</strong>.</p>
+<p>En RevBayes, un <strong>modelo gráfico probabilístico</strong> representa las relaciones entre las variables de un modelo. Las variables se representan mediante <strong>nodos</strong> y sus dependencias mediante conexiones entre ellos.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/rebvayes/graphical_model_legend.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
 </figure>
 </div>
-<section id="tipos-de-nodos-en-revbayes" class="level2">
-<h2 class="anchored" data-anchor-id="tipos-de-nodos-en-revbayes">Tipos de Nodos en RevBayes</h2>
-<section id="nodos-constantes" class="level3">
-<h3 class="anchored" data-anchor-id="nodos-constantes">👉 <strong>Nodos Constantes</strong></h3>
+<p>RevBayes distingue tres tipos principales de nodos: <strong>constantes, estocásticos y deterministas</strong>. Además, un nodo estocástico puede fijarse a un valor observado mediante <code>clamp()</code>, y los <strong>plates</strong> representan estructuras repetidas.</p>
+<section id="nodos-constantes" class="level2">
+<h2 class="anchored" data-anchor-id="nodos-constantes">Nodos constantes</h2>
 <p>Son valores fijos dentro del modelo. No tienen incertidumbre.</p>
-<pre><code>n = 10  # Número de observaciones</code></pre>
+<pre class="text"><code>n &lt;- 10  # Número de observaciones</code></pre>
+<p>El operador <code>&lt;-</code> crea una <strong>variable constante</strong> dentro del modelo.</p>
 </section>
-<section id="nodos-estocásticos" class="level3">
-<h3 class="anchored" data-anchor-id="nodos-estocásticos">👉 <strong>Nodos Estocásticos</strong></h3>
-<p>Representan <strong>variables aleatorias</strong> con una distribución. Son los parámetros del modelo.</p>
-<pre><code>theta ~ dnBeta(2,2)  # Prior Beta(2,2)</code></pre>
-<p>En este caso, <code>theta</code> es una variable aleatoria con una distribución Beta.</p>
+<section id="nodos-estocásticos" class="level2">
+<h2 class="anchored" data-anchor-id="nodos-estocásticos">Nodos estocásticos</h2>
+<p>Representan <strong>variables aleatorias</strong> asociadas a una distribución de probabilidad.</p>
+<pre class="text"><code>theta ~ dnBeta(2,2)  # Prior Beta(2,2)</code></pre>
+<p>En este caso, <code>theta</code> es una variable estocástica con una distribución Beta.</p>
 </section>
-<section id="nodos-deterministas" class="level3">
-<h3 class="anchored" data-anchor-id="nodos-deterministas">👉 <strong>Nodos Deterministas</strong></h3>
-<p>Son <strong>valores calculados</strong> a partir de otros nodos.</p>
-<pre><code>mu := theta * n  # Media esperada</code></pre>
-<p>Aquí, <code>mu</code> se calcula a partir de <code>theta</code> y <code>n</code>.</p>
+<section id="nodos-deterministas" class="level2">
+<h2 class="anchored" data-anchor-id="nodos-deterministas">Nodos deterministas</h2>
+<p>Son valores calculados a partir de otros nodos del modelo.</p>
+<pre class="text"><code>mu := theta * n</code></pre>
+<p>Aquí, <code>mu</code> depende de los valores de <code>theta</code> y <code>n</code>.</p>
 </section>
-<section id="nodos-clamped-observados" class="level3">
-<h3 class="anchored" data-anchor-id="nodos-clamped-observados">👉 <strong>Nodos Clamped (Observados)</strong></h3>
-<p>Se utilizan para fijar valores observados en el modelo.</p>
-<pre><code>D ~ dnBinomial(n, theta)  # Modelo Binomial
-D.clamp(7)  # Observamos 7 éxitos</code></pre>
-<p>En este caso, <code>D</code> es una variable aleatoria Binomial, pero la fijamos en <code>7</code>.</p>
+<section id="nodos-observados-o-clamped" class="level2">
+<h2 class="anchored" data-anchor-id="nodos-observados-o-clamped">Nodos observados o <em>clamped</em></h2>
+<p>Los datos observados se incorporan fijando una variable estocástica a un valor mediante <code>.clamp()</code>.</p>
+<pre class="text"><code>D ~ dnBinomial(p=theta, size=n)
+D.clamp(7)</code></pre>
+<p>Aquí, <code>D</code> sigue una distribución Binomial, pero observamos exactamente <strong>7 éxitos</strong>.</p>
 </section>
-<section id="nodos-plate" class="level3">
-<h3 class="anchored" data-anchor-id="nodos-plate">👉 <strong>Nodos Plate</strong></h3>
-<p>Los <strong>plates</strong> se usan para <strong>repetir estructuras</strong> en modelos jerárquicos.</p>
-<pre><code>for (i in 1:10) {
+<section id="plates" class="level2">
+<h2 class="anchored" data-anchor-id="plates">Plates</h2>
+<p>Los <strong>plates</strong> representan una estructura del modelo que se repite varias veces. En RevBayes pueden implementarse mediante un ciclo <code>for</code>.</p>
+<pre class="text"><code>for (i in 1:10) {
     theta[i] ~ dnBeta(2,2)
 }</code></pre>
-<p>Aquí, estamos creando <strong>10 valores de <code>theta</code></strong>, cada uno con una distribución Beta(2,2).</p>
+<p>Aquí se crean 10 variables estocásticas <code>theta[i]</code>, todas con una distribución Beta(2,2).</p>
 </section>
-</section>
-</section>
-<section id="comparación-entre-revbayes-y-r" class="level1">
-<h1>Comparación entre RevBayes y R</h1>
-<p>RevBayes tiene una sintaxis similar a <strong>R</strong>, pero existen diferencias clave:</p>
+<section id="operadores-de-asignación-en-revbayes" class="level2">
+<h2 class="anchored" data-anchor-id="operadores-de-asignación-en-revbayes">Operadores de asignación en RevBayes</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 27%">
-<col style="width: 42%">
-<col style="width: 30%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
+<thead>
+<tr class="header">
+<th>Operador</th>
+<th>Uso</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td><strong>Característica</strong></td>
-<td><strong>RevBayes</strong></td>
-<td><strong>R</strong></td>
+<td><code>&lt;-</code></td>
+<td>Variable constante del modelo</td>
 </tr>
 <tr class="even">
-<td><strong>Declaración de variables</strong></td>
-<td><code>theta ~ dnBeta(2,2)</code></td>
-<td><code>theta &lt;- rbeta(1, 2, 2)</code></td>
+<td><code>~</code></td>
+<td>Variable estocástica</td>
 </tr>
 <tr class="odd">
-<td><strong>Estructuras de control</strong></td>
-<td><code>for (i in 1:10) {}</code></td>
-<td><code>for (i in 1:10) {}</code></td>
+<td><code>:=</code></td>
+<td>Variable determinista</td>
 </tr>
 <tr class="even">
-<td><strong>Funciones definidas</strong></td>
-<td><code>function myFunc(x) { return(x^2) }</code></td>
-<td><code>myFunc &lt;- function(x) { x^2 }</code></td>
+<td><code>.clamp()</code></td>
+<td>Fija datos observados a una variable estocástica</td>
 </tr>
 <tr class="odd">
-<td><strong>Asignación de valores</strong></td>
-<td><code>:=</code> para deterministas, <code>=</code> para constantes</td>
-<td><code>&lt;-</code> para todo</td>
-</tr>
-<tr class="even">
-<td><strong>Inferencia Bayesiana</strong></td>
-<td>Integrada con <code>mcmc()</code></td>
-<td>Necesita paquetes adicionales</td>
+<td><code>=</code></td>
+<td>Variable del <strong>workspace</strong>; no forma parte del modelo probabilístico</td>
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En RevBayes, <code>&lt;-</code> y <code>=</code> <strong>no son equivalentes</strong>. Por ejemplo, <code>n &lt;- 10</code> crea una constante del modelo, mientras que <code>moves[1] = ...</code> crea o modifica una variable utilizada por el programa para configurar la inferencia.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="ejemplo-micheladas-en-tepito" class="level1">
-<h1>📊 Ejemplo Micheladas en Tepito</h1>
-<p>Queremos estimar la probabilidad <strong>( p )</strong> de que un estudiante disfrute del ambiente en las <strong>micheladas en Tepito</strong>.</p>
-<p>Hemos recopilado información de estudiantes que visitaron el lugar:</p>
-<p>✔️ <strong>10 estudiantes fueron encuestados</strong><br>
-✔️ <strong>7 estudiantes disfrutaron el ambiente</strong>, <strong>3 no lo disfrutaron</strong><br>
-✔️ Queremos estimar la probabilidad de que <strong>tú</strong>, como nuevo visitante, disfrutes del ambiente.</p>
-<hr>
-<section id="definiendo-el-modelo-en-revbayes" class="level2">
-<h2 class="anchored" data-anchor-id="definiendo-el-modelo-en-revbayes">🔹 1. Definiendo el Modelo en RevBayes</h2>
+<h1>📊 Ejemplo: Micheladas en Tepito</h1>
+<p>Queremos estimar la probabilidad <span class="math inline">\(p\)</span> de que un estudiante disfrute del ambiente en las <strong>micheladas en Tepito</strong>.</p>
+<p>Hemos recopilado la siguiente información:</p>
+<ul>
+<li><strong>10 estudiantes fueron encuestados.</strong></li>
+<li><strong>7 disfrutaron el ambiente</strong> y <strong>3 no lo disfrutaron</strong>.</li>
+<li>Queremos estimar la probabilidad de éxito para <strong>un nuevo estudiante comparable con los estudiantes encuestados</strong>.</li>
+</ul>
+<section id="definiendo-el-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="definiendo-el-modelo">🔹 1. Definiendo el modelo</h2>
 <section id="distribución-prior" class="level3">
-<h3 class="anchored" data-anchor-id="distribución-prior">📌 <strong>Distribución Prior</strong></h3>
-<p>Antes de ver los datos, asumimos una <strong>creencia previa</strong> sobre la probabilidad <strong>( p )</strong>.<br>
-Utilizamos una <strong>distribución Beta(8,2)</strong>, basada en la suposición de que aproximadamente el <strong>80%</strong> de las personas disfrutarán del ambiente.</p>
+<h3 class="anchored" data-anchor-id="distribución-prior">📌 Distribución prior</h3>
+<p>Antes de observar los datos, necesitamos expresar qué valores de <span class="math inline">\(p\)</span> consideramos plausibles. Como <span class="math inline">\(p\)</span> es una <strong>probabilidad</strong>, solamente puede tomar valores entre 0 y 1.</p>
+<p>Por esta razón utilizamos una <strong>distribución Beta</strong>, ya que está definida en el intervalo <span class="math inline">\([0,1]\)</span> y es muy flexible para representar diferentes creencias previas sobre una probabilidad.</p>
+<p>En este ejemplo utilizaremos:</p>
 <p><span class="math display">\[
 p \sim \text{Beta}(8,2)
 \]</span></p>
-<p><a href="https://mikeryanmay.shinyapps.io/plotprior/">Página para visualizar las distribuciones para RevBayes</a>, pega el siguiente código en Rev code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">~</span> <span class="fu">dnBeta</span>(<span class="dv">8</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>La media de esta distribución es:</p>
+<section id="por-qué-elegimos-textbeta82" class="level4">
+<h4 class="anchored" data-anchor-id="por-qué-elegimos-textbeta82">¿Por qué elegimos <span class="math inline">\(\text{Beta}(8,2)\)</span>?</h4>
+<p>Los parámetros de una distribución Beta son <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span>:</p>
 <p><span class="math display">\[
-E[p] = \frac{\alpha}{\alpha + \beta} = \frac{8}{8+2} = 0.8
+p \sim \text{Beta}(\alpha,\beta)
 \]</span></p>
-<hr>
+<p>y su media es:</p>
+<p><span class="math display">\[
+E[p] =
+\frac{\alpha}{\alpha+\beta}
+\]</span></p>
+<p>Al elegir:</p>
+<p><span class="math display">\[
+\alpha=8
+\qquad\text{y}\qquad
+\beta=2
+\]</span></p>
+<p>obtenemos:</p>
+<p><span class="math display">\[
+E[p] =
+\frac{8}{8+2}
+=
+0.80
+\]</span></p>
+<p>Por lo tanto, <strong>antes de observar los datos de nuestra encuesta</strong>, estamos construyendo deliberadamente un prior cuya media se encuentra en <span class="math inline">\(p=0.80\)</span>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los valores 8 y 2 <strong>no provienen de los 10 estudiantes que vamos a analizar</strong>. Representan la información o creencia que asumimos <strong>antes</strong> de observar esos datos.</p>
+<p>En un análisis real, un prior podría justificarse con estudios previos, conocimiento experto o información disponible antes de recolectar los nuevos datos. Aquí elegimos <span class="math inline">\(\text{Beta}(8,2)\)</span> únicamente como un ejemplo didáctico.</p>
+</div>
+</div>
+<p>Los parámetros <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span> también controlan qué tan <strong>concentrada</strong> está la distribución. Por ejemplo:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 40%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Prior</th>
+<th style="text-align: right;">Media</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\text{Beta}(1,1)\)</span></td>
+<td style="text-align: right;">0.50</td>
+<td>Distribución uniforme: todos los valores de <span class="math inline">\(p\)</span> son igualmente plausibles</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\text{Beta}(4,1)\)</span></td>
+<td style="text-align: right;">0.80</td>
+<td>Centrada en 0.80, pero relativamente amplia</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\text{Beta}(8,2)\)</span></td>
+<td style="text-align: right;">0.80</td>
+<td>Centrada en 0.80, con concentración moderada</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\text{Beta}(16,4)\)</span></td>
+<td style="text-align: right;">0.80</td>
+<td>También centrada en 0.80, pero más concentrada</td>
+</tr>
+</tbody>
+</table>
+<p>Así, <strong>la media del prior y la confianza que ponemos alrededor de esa media son dos cosas diferentes</strong>.</p>
+<p><a href="https://mikeryanmay.shinyapps.io/plotprior/">Página para visualizar distribuciones prior de RevBayes</a></p>
+<p>En <strong>Rev code</strong>:</p>
+<pre class="text"><code>x ~ dnBeta(8, 2)</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La distribución Beta también es especialmente conveniente en este ejemplo porque es <strong>conjugada</strong> con la distribución Binomial. Esto significa que, si usamos un prior Beta y una verosimilitud Binomial, la posterior también será una distribución Beta.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="verosimilitud-likelihood" class="level3">
-<h3 class="anchored" data-anchor-id="verosimilitud-likelihood">📌 <strong>Verosimilitud (Likelihood)</strong></h3>
-<p>La verosimilitud describe la probabilidad de observar los datos dados un valor específico de <strong>( p )</strong>.<br>
-Como cada estudiante puede estar <strong>satisfecho (éxito)</strong> o <strong>insatisfecho (fracaso)</strong>, usamos una <strong>distribución Binomial</strong>:</p>
+<h3 class="anchored" data-anchor-id="verosimilitud-likelihood">📌 Verosimilitud (<em>likelihood</em>)</h3>
+<p>Como cada estudiante puede clasificarse como <strong>éxito</strong> o <strong>fracaso</strong>, utilizamos una distribución Binomial:</p>
 <p><span class="math display">\[
-k \sim \text{Binomial}(n = 10, p)
+k \sim \text{Binomial}(n=10,p)
 \]</span></p>
-<p>Donde: - ( k = 7 ) es el número de estudiantes satisfechos observados. - ( n = 10 ) es el número total de encuestados.</p>
-<hr>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(k=7\)</span> es el número de estudiantes que disfrutaron el ambiente.</li>
+<li><span class="math inline">\(n=10\)</span> es el número total de estudiantes encuestados.</li>
+</ul>
+<p>Si analizáramos estos datos únicamente mediante <strong>máxima verosimilitud</strong>, la estimación de <span class="math inline">\(p\)</span> sería:</p>
+<p><span class="math display">\[
+\hat{p}_{MV}
+=
+\frac{k}{n}
+=
+\frac{7}{10}
+=
+0.70
+\]</span></p>
+<p>Es decir, <strong>los datos por sí solos apuntan a un valor de 0.70</strong>.</p>
+</section>
+<section id="qué-significa-cada-símbolo" class="level3">
+<h3 class="anchored" data-anchor-id="qué-significa-cada-símbolo">📌 ¿Qué significa cada símbolo?</h3>
+<p>Antes de calcular la posterior, conviene identificar qué representa cada letra:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Símbolo</th>
+<th>Significado</th>
+<th>En este ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(p\)</span></td>
+<td>Parámetro que queremos estimar</td>
+<td>Probabilidad de que un estudiante disfrute el ambiente</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(D\)</span></td>
+<td>Datos observados</td>
+<td>7 disfrutaron y 3 no, de 10 estudiantes</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(P(p)\)</span></td>
+<td><strong>Prior</strong></td>
+<td>Lo que asumimos sobre <span class="math inline">\(p\)</span> antes de observar estos datos</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(P(D \mid p)\)</span></td>
+<td><strong>Likelihood</strong></td>
+<td>Qué tan probables serían los datos si <span class="math inline">\(p\)</span> tuviera cierto valor</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(P(p \mid D)\)</span></td>
+<td><strong>Posterior</strong></td>
+<td>Lo que sabemos sobre <span class="math inline">\(p\)</span> después de observar los datos</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(P(D)\)</span></td>
+<td><strong>Evidencia</strong></td>
+<td>Factor que normaliza la distribución posterior</td>
+</tr>
+</tbody>
+</table>
+<p>La barra vertical <code>|</code> se lee como <strong>“dado”</strong>.</p>
+<p>Por ejemplo:</p>
+<p><span class="math display">\[
+P(D \mid p)
+\]</span></p>
+<p>se lee:</p>
+<blockquote class="blockquote">
+<p>Probabilidad de observar los datos <span class="math inline">\(D\)</span>, dado un valor de <span class="math inline">\(p\)</span>.</p>
+</blockquote>
+<p>Mientras que:</p>
+<p><span class="math display">\[
+P(p \mid D)
+\]</span></p>
+<p>se lee:</p>
+<blockquote class="blockquote">
+<p>Probabilidad de los posibles valores de <span class="math inline">\(p\)</span>, dados los datos <span class="math inline">\(D\)</span>.</p>
+</blockquote>
+<p>Por eso, una forma sencilla de recordar el Teorema de Bayes es:</p>
+<p><span class="math display">\[
+\text{Posterior}
+\propto
+\text{Likelihood}
+\times
+\text{Prior}
+\]</span></p>
+<p>Es decir:</p>
+<blockquote class="blockquote">
+<p><strong>Lo que sabemos después de observar los datos depende de lo que dicen los datos y de la información que teníamos antes.</strong></p>
+</blockquote>
+<section id="qué-significan-alpha-beta-n-y-k" class="level4">
+<h4 class="anchored" data-anchor-id="qué-significan-alpha-beta-n-y-k">¿Qué significan <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(n\)</span> y <span class="math inline">\(k\)</span>?</h4>
+<p>En nuestro prior:</p>
+<p><span class="math display">\[
+p \sim \text{Beta}(\alpha,\beta)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span> son los <strong>parámetros de la distribución Beta</strong>.</li>
+<li>En este ejemplo usamos <span class="math inline">\(\alpha=8\)</span> y <span class="math inline">\(\beta=2\)</span>.</li>
+</ul>
+<p>En los datos:</p>
+<ul>
+<li><span class="math inline">\(n\)</span> es el número total de observaciones: <span class="math inline">\(n=10\)</span>.</li>
+<li><span class="math inline">\(k\)</span> es el número de éxitos observados: <span class="math inline">\(k=7\)</span>.</li>
+<li><span class="math inline">\(n-k\)</span> es el número de fracasos: <span class="math inline">\(10-7=3\)</span>.</li>
+</ul>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[
+\text{Prior:}\qquad \text{Beta}(8,2)
+\]</span></p>
+<p><span class="math display">\[
+\text{Datos:}\qquad 7\text{ éxitos y }3\text{ fracasos}
+\]</span></p>
+<p>En un modelo Beta-Binomial, los parámetros se actualizan de esta forma:</p>
+<p><span class="math display">\[
+\text{Beta}(\alpha,\beta)
+\longrightarrow
+\text{Beta}(\alpha+k,\beta+n-k)
+\]</span></p>
+<p>Para nuestro ejemplo:</p>
+<p><span class="math display">\[
+\text{Beta}(8,2)
+\longrightarrow
+\text{Beta}(8+7,2+3)
+\longrightarrow
+\text{Beta}(15,5)
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No estamos sumando probabilidades. Estamos actualizando los <strong>parámetros de la distribución Beta</strong> con la información contenida en los datos observados.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="posterior-bayesiana" class="level3">
-<h3 class="anchored" data-anchor-id="posterior-bayesiana">📌 <strong>Posterior Bayesiana</strong></h3>
-<p>Aplicamos el <strong>Teorema de Bayes</strong>:</p>
+<h3 class="anchored" data-anchor-id="posterior-bayesiana">📌 Posterior bayesiana</h3>
+<p>Ahora aplicamos el Teorema de Bayes:</p>
 <p><span class="math display">\[
-P(p | D) \propto P(D | p) P(p)
+P(p \mid D)
+\propto
+P(D \mid p)P(p)
 \]</span></p>
-<p>Dado que usamos un <strong>prior Beta</strong> y una <strong>verosimilitud Binomial</strong>, la posterior también sigue una <strong>distribución Beta</strong> con parámetros actualizados:</p>
+<p>Como el prior es <strong>Beta</strong> y los datos siguen una <strong>Binomial</strong>, podemos actualizar los parámetros directamente:</p>
 <p><span class="math display">\[
-p | D \sim \text{Beta}(8+7, 2+3) = \text{Beta}(15,5)
+p \mid D
+\sim
+\text{Beta}(\alpha+k,\beta+n-k)
 \]</span></p>
-<p>La <strong>media de la posterior</strong> nos da la mejor estimación después de observar los datos:</p>
+<p>Sustituyendo los valores de nuestro ejemplo:</p>
 <p><span class="math display">\[
-E[p] = \frac{15}{15 + 5} = 0.75
+p \mid D
+\sim
+\text{Beta}(8+7,2+3)
+=
+\text{Beta}(15,5)
 \]</span></p>
-<p>Esto significa que, <strong>después de observar que 7 de 10 estudiantes disfrutaron el ambiente</strong>, nuestra mejor estimación de la probabilidad de que tú disfrutes del ambiente es <strong>75%</strong>.</p>
-<hr>
+<p>La media posterior es:</p>
+<p><span class="math display">\[
+E[p \mid D]
+=
+\frac{15}{15+5}
+=
+0.75
+\]</span></p>
+<p>Podemos resumir lo que ocurrió como:</p>
+<p><span class="math display">\[
+\underbrace{0.80}_{\text{prior}}
+\quad
+\longrightarrow
+\quad
+\underbrace{0.70}_{\text{datos / MV}}
+\quad
+\longrightarrow
+\quad
+\underbrace{0.75}_{\text{posterior}}
+\]</span></p>
+<p>Los datos modificaron nuestra información previa: la posterior queda entre lo que sugería el prior y lo que sugieren los datos.</p>
+<p>Bajo este modelo, para un nuevo estudiante comparable con los estudiantes encuestados, la probabilidad posterior predictiva de éxito es <strong>0.75</strong>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En este ejemplo <strong>no necesitamos MCMC para conocer la posterior</strong>, porque el modelo Beta-Binomial tiene una solución analítica: <span class="math inline">\(\text{Beta}(15,5)\)</span>.</p>
+<p>Esto lo hace especialmente útil para aprender MCMC: ya conocemos la respuesta y podemos comprobar si RevBayes recupera aproximadamente la misma distribución posterior.</p>
+</div>
+</div>
 </section>
 </section>
-<section id="código-en-revbayes" class="level2">
-<h2 class="anchored" data-anchor-id="código-en-revbayes">🔹 2. Código en RevBayes</h2>
-<p>A continuación, presentamos el código en <strong>RevBayes</strong> para implementar este modelo y ejecutar un análisis MCMC.</p>
+</section>
+<section id="implementación-en-revbayes" class="level1">
+<h1>🔹 2. Implementación en RevBayes</h1>
+<p>El siguiente código implementa exactamente el mismo modelo y utiliza MCMC para obtener muestras de la posterior.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/rebvayes/binomial_graphical_model.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Modelo Grafico" width="250"></p>
+<p><img src="../images/rebvayes/binomial_graphical_model.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Modelo gráfico Beta-Binomial" width="250"></p>
 </figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># RevBayes - Algoritmo de Metropolis-Hastings para estimar</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># la probabilidad de disfrutar el ambiente en las micheladas de Tepito</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode .bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># RevBayes - MCMC para estimar la probabilidad de</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># disfrutar el ambiente en las micheladas de Tepito</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos observados</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>total_clientes <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># Número total de encuestados</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>satisfechos <span class="ot">&lt;-</span> <span class="dv">7</span>      <span class="co"># Número de estudiantes que disfrutaron el ambiente</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">total_clientes</span> <span class="op">&lt;</span>- 10</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">satisfechos</span> <span class="op">&lt;</span>- 7</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar la distribución prior</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># Basado en la creencia previa de 80% satisfacción</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>beta  <span class="ot">&lt;-</span> <span class="dv">2</span>   <span class="co"># Complemento del prior</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>p <span class="sc">~</span> <span class="fu">dnBeta</span>(alpha, beta)  <span class="co"># Prior Beta(8,2)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Prior</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">alpha</span> <span class="op">&lt;</span>- 8   <span class="co"># Define, junto con beta, la forma y concentración del prior</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">beta</span>  <span class="op">&lt;</span>- 2</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">p</span> ~ dnBeta<span class="er">(</span><span class="ex">alpha,</span> beta<span class="kw">)</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir la propuesta de MCMC con Metropolis-Hastings</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>moves[<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">mvSlide</span>(p, <span class="at">delta=</span><span class="fl">0.1</span>, <span class="at">weight=</span><span class="dv">1</span>)  <span class="co"># Movimiento en la distribución de p</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento MCMC para proponer nuevos valores de p</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="va">moves</span><span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="ex">=</span> mvSlide<span class="er">(</span><span class="ex">p,</span> delta=0.1, weight=1<span class="kw">)</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar el modelo de verosimilitud (distribución Binomial)</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>k <span class="sc">~</span> <span class="fu">dnBinomial</span>(p, total_clientes)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">k.clamp</span>(satisfechos)  <span class="co"># Fijar la observación de 7 estudiantes satisfechos</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Verosimilitud</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">k</span> ~ dnBinomial<span class="er">(</span><span class="ex">p,</span> total_clientes<span class="kw">)</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">k.clamp</span><span class="er">(</span><span class="ex">satisfechos</span><span class="kw">)</span></span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el modelo</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>my_model <span class="ot">=</span> <span class="fu">model</span>(p)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir el modelo</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="ex">my_model</span> = model<span class="er">(</span><span class="ex">p</span><span class="kw">)</span></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir monitores para el MCMC</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>monitors[<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"micheladas_MH.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB)  <span class="co"># Guardar resultados</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>monitors[<span class="dv">2</span>] <span class="ot">=</span> <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">100</span>, p)  <span class="co"># Mostrar progreso cada 100 generaciones</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el análisis MCMC con Metropolis-Hastings</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>analysis <span class="ot">=</span> <span class="fu">mcmc</span>(my_model, monitors, moves)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitores</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="va">monitors</span><span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="ex">=</span> mnModel<span class="er">(</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">filename</span><span class="op">=</span><span class="st">"micheladas_MH.log"</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="va">printgen</span><span class="op">=</span>10,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="va">separator</span><span class="op">=</span>TAB</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar el MCMC con 100,000 iteraciones</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="fu">analysis.run</span>(<span class="dv">100000</span>)</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el resumen de los operadores de MCMC</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">analysis.operatorSummary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="va">monitors</span><span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="ex">=</span> mnScreen<span class="er">(</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">printgen</span><span class="op">=</span>100,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="ex">p</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el análisis MCMC</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="ex">analysis</span> = mcmc<span class="er">(</span><span class="ex">my_model,</span> monitors, moves<span class="kw">)</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-burnin para ajustar automáticamente el movimiento</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="ex">analysis.burnin</span><span class="er">(</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="va">generations</span><span class="op">=</span>10000,</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="va">tuningInterval</span><span class="op">=</span>200</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestreo de la posterior</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="ex">analysis.run</span><span class="er">(</span><span class="ex">100000</span><span class="kw">)</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen de los operadores</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="fu">analysis.operatorSummary()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="qué-está-haciendo-revbayes" class="level2">
+<h2 class="anchored" data-anchor-id="qué-está-haciendo-revbayes">¿Qué está haciendo RevBayes?</h2>
+<p>La relación entre la teoría y el código es:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>RevBayes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prior</td>
+<td><code>p ~ dnBeta(alpha, beta)</code></td>
+</tr>
+<tr class="even">
+<td>Propuesta MCMC</td>
+<td><code>mvSlide(p, delta=0.1, weight=1)</code></td>
+</tr>
+<tr class="odd">
+<td>Likelihood</td>
+<td><code>k ~ dnBinomial(p, total_clientes)</code></td>
+</tr>
+<tr class="even">
+<td>Datos observados</td>
+<td><code>k.clamp(satisfechos)</code></td>
+</tr>
+<tr class="odd">
+<td>Modelo completo</td>
+<td><code>model(p)</code></td>
+</tr>
+<tr class="even">
+<td>Guardar muestras</td>
+<td><code>mnModel(...)</code></td>
+</tr>
+<tr class="odd">
+<td>Mostrar progreso</td>
+<td><code>mnScreen(...)</code></td>
+</tr>
+<tr class="even">
+<td>Ajustar el movimiento</td>
+<td><code>analysis.burnin(...)</code></td>
+</tr>
+<tr class="odd">
+<td>Ejecutar MCMC</td>
+<td><code>analysis.run(...)</code></td>
+</tr>
+</tbody>
+</table>
+<p>El comando:</p>
+<pre class="text"><code>moves[1] = mvSlide(p, delta=0.1, weight=1)</code></pre>
+<p>define un movimiento que propone nuevos valores de <span class="math inline">\(p\)</span> durante el MCMC. El argumento <code>delta</code> controla el tamaño de la ventana utilizada para proponer nuevos valores.</p>
+<p>El pre-burnin:</p>
+<pre class="text"><code>analysis.burnin(generations=10000, tuningInterval=200)</code></pre>
+<p>permite que RevBayes ajuste automáticamente parámetros del movimiento antes de realizar el muestreo principal.</p>
 </section>
-<section id="mini-ejercicio" class="level2">
-<h2 class="anchored" data-anchor-id="mini-ejercicio">Mini-ejercicio</h2>
+<section id="qué-esperamos-obtener" class="level2">
+<h2 class="anchored" data-anchor-id="qué-esperamos-obtener">¿Qué esperamos obtener?</h2>
+<p>Como conocemos analíticamente que:</p>
+<p><span class="math display">\[
+p \mid D \sim \text{Beta}(15,5)
+\]</span></p>
+<p>al abrir <code>micheladas_MH.log</code> en <strong>Tracer</strong> esperamos observar:</p>
+<ul>
+<li>una distribución posterior centrada aproximadamente alrededor de <strong>0.75</strong>;</li>
+<li>una traza estable, sin tendencias evidentes;</li>
+<li>un ESS suficientemente alto para <span class="math inline">\(p\)</span>.</li>
+</ul>
+<p>El objetivo no es obtener exactamente <code>0.75</code> en cada muestra. El MCMC genera una <strong>distribución de valores de <span class="math inline">\(p\)</span></strong>, cuya media debería aproximarse a la media teórica de la posterior.</p>
+</section>
+</section>
+<section id="mini-ejercicio" class="level1">
+<h1>Mini-ejercicio</h1>
 <ol type="1">
-<li><p><strong>Crea un script</strong> para RevBayes (<code>.Rev</code>) utilizando <code>Visual Studio Code</code> y copia el codigo.</p></li>
-<li><p><strong>Modifica el prior</strong> <code>dnBeta(alpha, beta)</code> con los valores que reflejen tu creencia sobre la probabilidad de satisfacción.</p></li>
-<li><p><strong>Guarda el archivo <code>micheladas_MH.log</code></strong> en la carpeta asiganada para guardar resultados.</p></li>
-<li><p><strong>Guarda el script</strong> en la carpeta de <code>scripts</code>.</p></li>
-<li><p><strong>Ejecuta el análisis</strong> MCMC en RevBayes.</p></li>
-<li><p><strong>Visualiza los resultados</strong> usando <code>Tracer</code> para observar la distribución posterior.</p></li>
+<li><strong>Crea un script</strong> de RevBayes (<code>.Rev</code>) en Visual Studio Code y copia el código del ejemplo.</li>
+<li><strong>Ejecuta el análisis</strong> con el prior original <code>Beta(8,2)</code>.</li>
+<li>Abre <code>micheladas_MH.log</code> en <strong>Tracer</strong> y observa:
+<ul>
+<li>la traza de <span class="math inline">\(p\)</span>;</li>
+<li>la media posterior;</li>
+<li>el intervalo creíble del 95%;</li>
+<li>el ESS.</li>
+</ul></li>
+<li>Comprueba si la media obtenida por MCMC se aproxima al valor teórico de <strong>0.75</strong>.</li>
+<li><strong>Modifica el prior</strong> <code>dnBeta(alpha,beta)</code> y predice, antes de correr el análisis, hacia dónde esperas que cambie la posterior.</li>
+<li>Ejecuta nuevamente el MCMC y compara los resultados.</li>
+<li>Discute cómo cambian la posterior y su incertidumbre al modificar el prior.</li>
 </ol>
-
-
 </section>
+<section id="recursos" class="level1">
+<h1>Recursos</h1>
+<ul>
+<li><a href="https://revbayes.github.io/tutorials/mcmc/binomial.html">Tutorial oficial: Introduction to MCMC using RevBayes</a></li>
+<li><a href="https://revbayes.github.io/tutorials/intro/graph_models">Tutorial oficial: Introduction to Graphical Models</a></li>
+<li><a href="https://revbayes.github.io/tutorials/intro/rev.html">Rev Language Syntax</a></li>
+<li><a href="https://revbayes.github.io/tutorials/mcmc_troubleshooting/">RevBayes: diagnóstico de MCMC</a></li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1110,8 +1514,8 @@ E[p] = \frac{15}{15 + 5} = 0.75
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/factor_bayes.html" class="pagination-link" aria-label="Comparación de modelos mediante Factores de Bayes">
-        <span class="nav-page-text"><span class="chapter-title">Comparación de modelos mediante Factores de Bayes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/docker.html" class="pagination-link" aria-label="Instalación de Docker">
+        <span class="nav-page-text"><span class="chapter-title">Instalación de Docker</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
