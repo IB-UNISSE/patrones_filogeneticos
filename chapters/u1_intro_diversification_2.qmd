@@ -72,13 +72,13 @@ resbd[[2]]  # Verosimilitud del modelo
 
 Aquí probamos un modelo en el que la tasa cambia en un tiempo $t_{1}$
 
-| Parámetro    | Significado                                                         |
-|--------------------|----------------------------------------------------|
-| `time`       | Edades de los nodos terminales                                      |
-| `c(0.8, 1)`  | c($\rho$, Intervalo de discretización del tiempo)                   |
-| `grid`       | Intervalo de discretización del tiempo                              |
-| `start, end` | Rango de tiempo para el análisis                                    |
-| `ME=FALSE`   | No se consideran eventos de extinción masiva                        |
+| Parámetro | Significado |
+|----|----|
+| `time` | Edades de los nodos terminales |
+| `c(0.8, 1)` | c($\rho$, Intervalo de discretización del tiempo) |
+| `grid` | Intervalo de discretización del tiempo |
+| `start, end` | Rango de tiempo para el análisis |
+| `ME=FALSE` | No se consideran eventos de extinción masiva |
 | `survival=1` | Se asume que todas las especies sobrevivientes han sido muestreadas |
 
 ```{r, results='hide'}
@@ -94,7 +94,7 @@ resoneshift[[2]]  # Muestra solo la verosimilitud del modelo con un cambio en la
 **Interpretación**
 
 | Índice | Parámetro estimado | Descripción                                    |
-|------------------|------------------|------------------------------------|
+|--------|--------------------|------------------------------------------------|
 | **1**  | 62.95893           | Verosimilitud (log-likelihood)                 |
 | **2**  | 0.99526            | Turnover antes del cambio **(**$\epsilon_0$)   |
 | **3**  | 0.08528            | Turnover después del cambio **(**$\epsilon_1$) |
@@ -122,7 +122,7 @@ restwoshift[[2]]
 **Interpretación**
 
 | Índice | Valor        | Descripción                                            |
-|------------------|------------------|-------------------------------------|
+|--------|--------------|--------------------------------------------------------|
 | **1**  | 60.45200     | Verosimilitud (log-likelihood)                         |
 | **2**  | 7.427444e-08 | Turnover antes del primer cambio **(**$\epsilon_0$)    |
 | **3**  | 0.01840      | Turnover antes del segundo cambio **(**$\epsilon_1$)   |

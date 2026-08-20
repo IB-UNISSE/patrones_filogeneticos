@@ -2,8 +2,8 @@ project:
   type: book
   output-dir: _book
   resources:
-    - "docs/**/!(*.log)"
-    - "images/**"
+    - docs/**
+    - images/**
 
 book:
   title: "Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias"
