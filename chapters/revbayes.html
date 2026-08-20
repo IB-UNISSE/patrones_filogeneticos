@@ -303,7 +303,8 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introducción-a-la-inferencia-bayesiana" id="toc-introducción-a-la-inferencia-bayesiana" class="nav-link active" data-scroll-target="#introducción-a-la-inferencia-bayesiana">Introducción a la Inferencia Bayesiana</a></li>
+  <li><a href="#presentación-introducción-a-la-inferencia-bayesia" id="toc-presentación-introducción-a-la-inferencia-bayesia" class="nav-link active" data-scroll-target="#presentación-introducción-a-la-inferencia-bayesia">Presentación: Introducción a la Inferencia Bayesia</a></li>
+  <li><a href="#introducción-a-la-inferencia-bayesiana" id="toc-introducción-a-la-inferencia-bayesiana" class="nav-link" data-scroll-target="#introducción-a-la-inferencia-bayesiana">Introducción a la Inferencia Bayesiana</a></li>
   <li><a href="#diferencia-entre-inferencia-bayesiana-y-máxima-verosimilitud" id="toc-diferencia-entre-inferencia-bayesiana-y-máxima-verosimilitud" class="nav-link" data-scroll-target="#diferencia-entre-inferencia-bayesiana-y-máxima-verosimilitud">Diferencia entre Inferencia Bayesiana y Máxima Verosimilitud</a></li>
   <li><a href="#qué-es-revbayes" id="toc-qué-es-revbayes" class="nav-link" data-scroll-target="#qué-es-revbayes">¿Qué es RevBayes?</a></li>
   <li><a href="#qué-es-el-muestreo-mcmc" id="toc-qué-es-el-muestreo-mcmc" class="nav-link" data-scroll-target="#qué-es-el-muestreo-mcmc">¿Qué es el Muestreo MCMC?</a>
@@ -364,6 +365,15 @@ window.Quarto = {
 </header>
 
 
+<section id="presentación-introducción-a-la-inferencia-bayesia" class="level1">
+<h1>Presentación: Introducción a la Inferencia Bayesia</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../docs/revbayes/intro_bayesian_and_revbayes_ES.pdf"><img src="../images/rebvayes/bayes.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></a></p>
+</figure>
+</div>
+<p>Haz clic en la imagen para ver el PDF de la presentación</p>
+</section>
 <section id="introducción-a-la-inferencia-bayesiana" class="level1">
 <h1>Introducción a la Inferencia Bayesiana</h1>
 <p>La <strong>inferencia bayesiana</strong> es un enfoque de la estadística que permite actualizar nuestra información sobre un parámetro desconocido a medida que observamos nuevos datos. Se basa en el <strong>Teorema de Bayes</strong>, que combina la información previa con la evidencia observada.</p>
@@ -675,9 +685,9 @@ Important
 <p>Los parámetros <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span> también controlan qué tan <strong>concentrada</strong> está la distribución. Por ejemplo:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 30%">
-<col style="width: 40%">
-<col style="width: 30%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -950,7 +960,7 @@ Important
 <p><img src="../images/rebvayes/binomial_graphical_model.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Modelo gráfico Beta-Binomial" width="250"></p>
 </figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode .bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># RevBayes - MCMC para estimar la probabilidad de</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># disfrutar el ambiente en las micheladas de Tepito</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------------------------------</span></span>
@@ -1068,7 +1078,7 @@ p \mid D \sim \text{Beta}(15,5)
 <li>una traza estable, sin tendencias evidentes;</li>
 <li>un ESS suficientemente alto para <span class="math inline">\(p\)</span>.</li>
 </ul>
-<p>El objetivo no es obtener exactamente <code>0.75</code> en cada muestra. El MCMC genera una <strong>distribución de valores de <span class="math inline">\(p\)</span></strong>, cuya media debería aproximarse a la media teórica de la posterior.</p>
+<p>El objetivo no es obtener exactamente <code>0.75</code> en cada muestra. El MCMC genera una <strong>distribución de valores de</strong> <span class="math inline">\(p\)</span>, cuya media debería aproximarse a la media teórica de la posterior.</p>
 </section>
 </section>
 <section id="mini-ejercicio" class="level1">

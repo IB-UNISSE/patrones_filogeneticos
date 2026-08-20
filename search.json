@@ -364,7 +364,7 @@
     "href": "chapters/revbayes.html",
     "title": "Apuntes sobre RevBayes",
     "section": "",
-    "text": "Introducción a la Inferencia Bayesiana\nLa inferencia bayesiana es un enfoque de la estadística que permite actualizar nuestra información sobre un parámetro desconocido a medida que observamos nuevos datos. Se basa en el Teorema de Bayes, que combina la información previa con la evidencia observada.\nEl Teorema de Bayes se expresa matemáticamente como:\n\\[\nP(\\theta \\mid D) =\n\\frac{P(D \\mid \\theta)P(\\theta)}{P(D)}\n\\]\ndonde:\nEl objetivo de la inferencia bayesiana es obtener la distribución posterior, que muestra qué valores del parámetro \\(\\theta\\) son más plausibles después de considerar tanto la información previa como los datos observados.",
+    "text": "Presentación: Introducción a la Inferencia Bayesia\nHaz clic en la imagen para ver el PDF de la presentación",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Apuntes sobre RevBayes</span>"
     ]
@@ -920,7 +920,7 @@
     "href": "chapters/u1_intro_diversification.html#calcular-la-media-y-el-intervalo-de-hpd-highest-posterior-density",
     "title": "Introducción al proceso de diversificación",
     "section": "Calcular la media y el intervalo de HPD (Highest Posterior Density)",
-    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09142362    0.05919603    0.13341000",
+    "text": "Calcular la media y el intervalo de HPD (Highest Posterior Density)\n\n# Calcular la media posterior y el HPD del 95%\nsummary_stats &lt;- summarizeTrace(mcmc_trace, vars=\"birth_rate\")\nprint(summary_stats)\n\n$birth_rate\n$birth_rate$trace_1\n         mean        median           MAP  quantile_2.5 quantile_97.5 \n   0.09313312    0.09214016    0.09141646    0.05919603    0.13341000",
     "crumbs": [
       "Unidad 1: Patrones de diversificación",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Introducción al proceso de diversificación</span>"
