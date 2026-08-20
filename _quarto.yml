@@ -2,8 +2,8 @@ project:
   type: book
   output-dir: _book
   resources:
-    - docs/**
-    - images/**
+    - "docs/**/!(*.log)"
+    - "images/**"
 
 book:
   title: "Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias"
@@ -24,6 +24,7 @@ book:
     - chapters/commandline.qmd
     - chapters/Rstudio.qmd
     - chapters/revbayes.qmd
+    - chapters/docker.qmd
     - chapters/factor_bayes.qmd
     - part: "Unidad 1: Patrones de diversificación"
       chapters:

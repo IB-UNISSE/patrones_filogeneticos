@@ -10,7 +10,7 @@ execute:
 
 # Presentación: Introducción al proceso de diversificación
 
-[![](../images/u1_PatDiv/u1_PatDiv_1.png){fig-align="center" width="500"}](../docs/u1_PatDiv/IntroDiversificaciónPCB.pdf)
+[![](../images/u1_PatDiv/u1_PatDiv_1.png){fig-align="center" width="500"}](../docs/u1_PatDiv/2IntroDiversificaciónPCB_2027_2.pdf)
 
 Haz clic en la imagen para ver el PDF de la presentación
 
