@@ -654,7 +654,9 @@ window.Quarto = {
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">read.nexus</span>(<span class="st">"../docs/u1_PatDiv/subarbol_ingroup.nex"</span>)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar el árbol</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> <span class="fu">theme_tree</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(tree) <span class="sc">+</span> </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>() <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_text2</span>(<span class="fu">aes</span>(<span class="at">subset =</span> <span class="sc">!</span>isTip, <span class="at">label =</span> node), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.3</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -666,10 +668,10 @@ window.Quarto = {
 </section>
 <section id="obtención-de-los-tiempos-de-especiación" class="level2">
 <h2 class="anchored" data-anchor-id="obtención-de-los-tiempos-de-especiación">Obtención de los Tiempos de Especiación</h2>
-<p>Extraeremos y ordenaremos los tiempos de especiación (tiempos de ramificación) del árbol:</p>
+<p>Extraeremos y ordenaremos los tiempos de especiación del árbol:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener y ordenar los tiempos de especiación</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La función getx() extrae los tiempos de ramificación del árbol.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La función getx() extrae los tiempos para cada nodo del árbol.</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">getx</span>(tree), <span class="at">decreasing =</span> <span class="cn">TRUE</span>) <span class="co"># sort () rdena los tiempos en orden descendente.</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">unname</span>(times) <span class="co"># elimina los nombres de los elementos del vector para simplificar su manipulación.</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -686,7 +688,7 @@ window.Quarto = {
 <p>Definiremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="dv">22</span><span class="sc">/</span><span class="dv">26</span>  <span class="co"># Proporción de especies muestreadas (22 de 26 especies)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fl">0.2</span>   <span class="co"># Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fl">0.2</span>   <span class="co"># Tamaño de la ventana de búsqueda de cambios de tasa (en millones de años)</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">min</span>(times)   <span class="co"># Tiempo inicial para la búsqueda de cambios de tasa</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">max</span>(times)     <span class="co"># Tiempo final para la búsqueda de cambios de tasa</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -856,7 +858,7 @@ window.Quarto = {
 <pre><code>$birth_rate
 $birth_rate$trace_1
          mean        median           MAP  quantile_2.5 quantile_97.5 
-   0.09313312    0.09214016    0.09141646    0.05919603    0.13341000 </code></pre>
+   0.09313312    0.09214016    0.09145519    0.05919603    0.13341000 </code></pre>
 </div>
 </div>
 </section>
