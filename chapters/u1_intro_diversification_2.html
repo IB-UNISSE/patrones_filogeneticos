@@ -313,32 +313,49 @@ window.Quarto = {
   <li><a href="#modelo-de-nacimiento-muerte-sin-cambios" id="toc-modelo-de-nacimiento-muerte-sin-cambios" class="nav-link" data-scroll-target="#modelo-de-nacimiento-muerte-sin-cambios">Modelo de nacimiento-muerte sin cambios</a></li>
   <li><a href="#modelo-con-un-cambio" id="toc-modelo-con-un-cambio" class="nav-link" data-scroll-target="#modelo-con-un-cambio">Modelo con un cambio</a></li>
   <li><a href="#modelo-con-dos-cambios" id="toc-modelo-con-dos-cambios" class="nav-link" data-scroll-target="#modelo-con-dos-cambios">Modelo con dos cambios</a></li>
-  <li><a href="#comparación-de-modelos-usando-likelihood-ratio-test-lrt" id="toc-comparación-de-modelos-usando-likelihood-ratio-test-lrt" class="nav-link" data-scroll-target="#comparación-de-modelos-usando-likelihood-ratio-test-lrt">Comparación de modelos usando Likelihood Ratio Test (LRT)</a></li>
-  </ul></li>
-  <li><a href="#estimación-episódica-de-la-tasa-de-diversificación-con-revbayes" id="toc-estimación-episódica-de-la-tasa-de-diversificación-con-revbayes" class="nav-link" data-scroll-target="#estimación-episódica-de-la-tasa-de-diversificación-con-revbayes">Estimación Episódica de la Tasa de Diversificación con <strong>RevBayes</strong></a>
+  <li><a href="#comparación-de-modelos-usando-likelihood-ratio-test-lrt" id="toc-comparación-de-modelos-usando-likelihood-ratio-test-lrt" class="nav-link" data-scroll-target="#comparación-de-modelos-usando-likelihood-ratio-test-lrt">Comparación de modelos usando Likelihood Ratio Test (LRT)</a>
   <ul class="collapse">
-  <li><a href="#introducción-1" id="toc-introducción-1" class="nav-link" data-scroll-target="#introducción-1">Introducción</a></li>
+  <li><a href="#obtener-los-negative-log-likelihood-de-cada-modelo" id="toc-obtener-los-negative-log-likelihood-de-cada-modelo" class="nav-link" data-scroll-target="#obtener-los-negative-log-likelihood-de-cada-modelo">Obtener los negative log-likelihood de cada modelo</a></li>
+  <li><a href="#comparación-bd-vs.-bd-con-un-cambio" id="toc-comparación-bd-vs.-bd-con-un-cambio" class="nav-link" data-scroll-target="#comparación-bd-vs.-bd-con-un-cambio">Comparación BD vs.&nbsp;BD con un cambio</a></li>
+  <li><a href="#comparación-bd-con-un-cambio-vs.-bd-con-dos-cambios" id="toc-comparación-bd-con-un-cambio-vs.-bd-con-dos-cambios" class="nav-link" data-scroll-target="#comparación-bd-con-un-cambio-vs.-bd-con-dos-cambios">Comparación BD con un cambio vs.&nbsp;BD con dos cambios</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#estimación-episódica-de-las-tasas-de-diversificación-con-revbayes" id="toc-estimación-episódica-de-las-tasas-de-diversificación-con-revbayes" class="nav-link" data-scroll-target="#estimación-episódica-de-las-tasas-de-diversificación-con-revbayes">Estimación episódica de las tasas de diversificación con <strong>RevBayes</strong></a>
+  <ul class="collapse">
+  <li><a href="#introducción-1" id="toc-introducción-1" class="nav-link" data-scroll-target="#introducción-1">Introducción</a>
+  <ul class="collapse">
+  <li><a href="#qué-aporta-el-hsmrf" id="toc-qué-aporta-el-hsmrf" class="nav-link" data-scroll-target="#qué-aporta-el-hsmrf">¿Qué aporta el HSMRF?</a></li>
+  </ul></li>
   <li><a href="#lectura-del-árbol" id="toc-lectura-del-árbol" class="nav-link" data-scroll-target="#lectura-del-árbol">Lectura del árbol</a></li>
-  <li><a href="#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados." id="toc-definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados." class="nav-link" data-scroll-target="#definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.">Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.</a></li>
-  <li><a href="#definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación." id="toc-definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación." class="nav-link" data-scroll-target="#definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación.">Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.</a></li>
-  <li><a href="#definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala" id="toc-definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala" class="nav-link" data-scroll-target="#definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala">Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala</a></li>
-  <li><a href="#asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01" id="toc-asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01" class="nav-link" data-scroll-target="#asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01">Asignar distribuciones previas Half-Cauchy (dnHalfCauchy(0,1))</a></li>
-  <li><a href="#definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf." id="toc-definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf." class="nav-link" data-scroll-target="#definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf.">Definir las tasas iniciales de diversificación y extinción en el modelo HSMRF.</a></li>
-  <li><a href="#movimientos-eficientes-en-mcmc-para-explorar-estas-tasas" id="toc-movimientos-eficientes-en-mcmc-para-explorar-estas-tasas" class="nav-link" data-scroll-target="#movimientos-eficientes-en-mcmc-para-explorar-estas-tasas">Movimientos eficientes en MCMC para explorar estas tasas</a></li>
-  <li><a href="#modelar-la-diversificación-episódica" id="toc-modelar-la-diversificación-episódica" class="nav-link" data-scroll-target="#modelar-la-diversificación-episódica">Modelar la diversificación episódica</a></li>
-  <li><a href="#calcular-las-tasas-de-diversificación-y-extinción" id="toc-calcular-las-tasas-de-diversificación-y-extinción" class="nav-link" data-scroll-target="#calcular-las-tasas-de-diversificación-y-extinción">Calcular las tasas de diversificación y extinción</a></li>
-  <li><a href="#movimientos-de-mcmc-para-el-modelo-hsmrf" id="toc-movimientos-de-mcmc-para-el-modelo-hsmrf" class="nav-link" data-scroll-target="#movimientos-de-mcmc-para-el-modelo-hsmrf">Movimientos de MCMC para el Modelo HSMRF</a></li>
-  <li><a href="#configuración-de-los-intervalos-de-tiempo" id="toc-configuración-de-los-intervalos-de-tiempo" class="nav-link" data-scroll-target="#configuración-de-los-intervalos-de-tiempo">Configuración de los Intervalos de Tiempo</a></li>
-  <li><a href="#corrección-por-muestreo-incompleto" id="toc-corrección-por-muestreo-incompleto" class="nav-link" data-scroll-target="#corrección-por-muestreo-incompleto">Corrección por Muestreo Incompleto</a></li>
-  <li><a href="#inicializando-el-nodo-estocástico-del-árbol-de-tiempos" id="toc-inicializando-el-nodo-estocástico-del-árbol-de-tiempos" class="nav-link" data-scroll-target="#inicializando-el-nodo-estocástico-del-árbol-de-tiempos">Inicializando el Nodo Estocástico del Árbol de Tiempos</a></li>
-  <li><a href="#asignando-datos-observados-al-árbol" id="toc-asignando-datos-observados-al-árbol" class="nav-link" data-scroll-target="#asignando-datos-observados-al-árbol">Asignando Datos Observados al Árbol</a></li>
-  <li><a href="#creando-el-modelo-completo" id="toc-creando-el-modelo-completo" class="nav-link" data-scroll-target="#creando-el-modelo-completo">Creando el Modelo Completo</a></li>
-  <li><a href="#configuración-de-los-monitores" id="toc-configuración-de-los-monitores" class="nav-link" data-scroll-target="#configuración-de-los-monitores">Configuración de los Monitores</a></li>
-  <li><a href="#creación-de-monitores-para-las-tasas-de-diversificación-y-extinción" id="toc-creación-de-monitores-para-las-tasas-de-diversificación-y-extinción" class="nav-link" data-scroll-target="#creación-de-monitores-para-las-tasas-de-diversificación-y-extinción">Creación de Monitores para las Tasas de diversificación y Extinción</a></li>
-  <li><a href="#creación-de-un-monitor-en-pantalla" id="toc-creación-de-un-monitor-en-pantalla" class="nav-link" data-scroll-target="#creación-de-un-monitor-en-pantalla">Creación de un Monitor en Pantalla</a></li>
+  <li><a href="#definir-los-vectores-de-movimientos-y-monitores" id="toc-definir-los-vectores-de-movimientos-y-monitores" class="nav-link" data-scroll-target="#definir-los-vectores-de-movimientos-y-monitores">Definir los vectores de movimientos y monitores</a></li>
+  <li><a href="#definir-el-número-de-intervalos-temporales" id="toc-definir-el-número-de-intervalos-temporales" class="nav-link" data-scroll-target="#definir-el-número-de-intervalos-temporales">Definir el número de intervalos temporales</a>
+  <ul class="collapse">
+  <li><a href="#visualización-de-los-intervalos" id="toc-visualización-de-los-intervalos" class="nav-link" data-scroll-target="#visualización-de-los-intervalos">Visualización de los intervalos</a></li>
+  </ul></li>
+  <li><a href="#hiperparámetro-de-escala-global-del-hsmrf" id="toc-hiperparámetro-de-escala-global-del-hsmrf" class="nav-link" data-scroll-target="#hiperparámetro-de-escala-global-del-hsmrf">Hiperparámetro de escala global del HSMRF</a>
+  <ul class="collapse">
+  <li><a href="#calcular-el-hiperparámetro-con-revgadgets" id="toc-calcular-el-hiperparámetro-con-revgadgets" class="nav-link" data-scroll-target="#calcular-el-hiperparámetro-con-revgadgets">Calcular el hiperparámetro con RevGadgets</a></li>
+  </ul></li>
+  <li><a href="#prior-sobre-la-escala-global" id="toc-prior-sobre-la-escala-global" class="nav-link" data-scroll-target="#prior-sobre-la-escala-global">Prior sobre la escala global</a></li>
+  <li><a href="#tasas-de-especiación-y-extinción-en-el-presente" id="toc-tasas-de-especiación-y-extinción-en-el-presente" class="nav-link" data-scroll-target="#tasas-de-especiación-y-extinción-en-el-presente">Tasas de especiación y extinción en el presente</a></li>
+  <li><a href="#movimientos-mcmc-para-las-tasas-presentes" id="toc-movimientos-mcmc-para-las-tasas-presentes" class="nav-link" data-scroll-target="#movimientos-mcmc-para-las-tasas-presentes">Movimientos MCMC para las tasas presentes</a></li>
+  <li><a href="#modelar-los-cambios-entre-intervalos" id="toc-modelar-los-cambios-entre-intervalos" class="nav-link" data-scroll-target="#modelar-los-cambios-entre-intervalos">Modelar los cambios entre intervalos</a></li>
+  <li><a href="#reconstruir-las-tasas-de-cada-intervalo" id="toc-reconstruir-las-tasas-de-cada-intervalo" class="nav-link" data-scroll-target="#reconstruir-las-tasas-de-cada-intervalo">Reconstruir las tasas de cada intervalo</a></li>
+  <li><a href="#movimientos-mcmc-específicos-del-hsmrf" id="toc-movimientos-mcmc-específicos-del-hsmrf" class="nav-link" data-scroll-target="#movimientos-mcmc-específicos-del-hsmrf">Movimientos MCMC específicos del HSMRF</a></li>
+  <li><a href="#configuración-de-los-intervalos-de-tiempo" id="toc-configuración-de-los-intervalos-de-tiempo" class="nav-link" data-scroll-target="#configuración-de-los-intervalos-de-tiempo">Configuración de los intervalos de tiempo</a></li>
+  <li><a href="#corrección-por-muestreo-incompleto" id="toc-corrección-por-muestreo-incompleto" class="nav-link" data-scroll-target="#corrección-por-muestreo-incompleto">Corrección por muestreo incompleto</a></li>
+  <li><a href="#definir-el-proceso-de-nacimiento-muerte-episódico" id="toc-definir-el-proceso-de-nacimiento-muerte-episódico" class="nav-link" data-scroll-target="#definir-el-proceso-de-nacimiento-muerte-episódico">Definir el proceso de nacimiento-muerte episódico</a></li>
+  <li><a href="#asignar-el-árbol-observado" id="toc-asignar-el-árbol-observado" class="nav-link" data-scroll-target="#asignar-el-árbol-observado">Asignar el árbol observado</a></li>
+  <li><a href="#crear-el-modelo-completo" id="toc-crear-el-modelo-completo" class="nav-link" data-scroll-target="#crear-el-modelo-completo">Crear el modelo completo</a></li>
+  <li><a href="#configuración-de-los-monitores" id="toc-configuración-de-los-monitores" class="nav-link" data-scroll-target="#configuración-de-los-monitores">Configuración de los monitores</a>
+  <ul class="collapse">
+  <li><a href="#monitor-de-todos-los-parámetros" id="toc-monitor-de-todos-los-parámetros" class="nav-link" data-scroll-target="#monitor-de-todos-los-parámetros">Monitor de todos los parámetros</a></li>
+  <li><a href="#monitores-de-tasas-y-tiempos" id="toc-monitores-de-tasas-y-tiempos" class="nav-link" data-scroll-target="#monitores-de-tasas-y-tiempos">Monitores de tasas y tiempos</a></li>
+  </ul></li>
+  <li><a href="#monitor-en-pantalla" id="toc-monitor-en-pantalla" class="nav-link" data-scroll-target="#monitor-en-pantalla">Monitor en pantalla</a></li>
   <li><a href="#configuración-del-mcmc" id="toc-configuración-del-mcmc" class="nav-link" data-scroll-target="#configuración-del-mcmc">Configuración del MCMC</a></li>
   <li><a href="#ejecutar-el-mcmc" id="toc-ejecutar-el-mcmc" class="nav-link" data-scroll-target="#ejecutar-el-mcmc">Ejecutar el MCMC</a></li>
-  <li><a href="#visualización-de-las-tasas-de-diversificación" id="toc-visualización-de-las-tasas-de-diversificación" class="nav-link" data-scroll-target="#visualización-de-las-tasas-de-diversificación">Visualización de las tasas de diversificación</a></li>
+  <li><a href="#visualización-de-las-tasas-de-especiación-y-extinción" id="toc-visualización-de-las-tasas-de-especiación-y-extinción" class="nav-link" data-scroll-target="#visualización-de-las-tasas-de-especiación-y-extinción">Visualización de las tasas de especiación y extinción</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u1_intro_diversification_2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -410,7 +427,7 @@ window.Quarto = {
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener y ordenar los tiempos de especiación</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La función getx() extrae los tiempos de ramificación del árbol.</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">getx</span>(tree), <span class="at">decreasing =</span> <span class="cn">TRUE</span>) <span class="co"># sort () rdena los tiempos en orden descendente.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">getx</span>(tree), <span class="at">decreasing =</span> <span class="cn">TRUE</span>) <span class="co"># sort() ordena los tiempos en orden descendente.</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">unname</span>(times) <span class="co"># elimina los nombres de los elementos del vector para simplificar su manipulación.</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -439,12 +456,43 @@ window.Quarto = {
 <pre><code>[1] "startest"
 [1] "test"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>resbd[[<span class="dv">2</span>]]  <span class="co"># Verosimilitud del modelo</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>resbd[[<span class="dv">2</span>]] </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] 7.002138e+01 3.102841e-07 8.909817e-02</code></pre>
 </div>
 </div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Índice</th>
+<th>Parámetro estimado</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>70.02138</td>
+<td><strong>−log</strong>L (<em>negative log-likelihood</em>) del modelo</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td><span class="math inline">\(3.10 \times 10^{-7}\)</span></td>
+<td>Turnover (<span class="math inline">\(\epsilon = \mu/\lambda\)</span>)</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0.08910</td>
+<td>Diversificación neta (<span class="math inline">\(r = \lambda - \mu\)</span>)</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="modelo-con-un-cambio" class="level2">
 <h2 class="anchored" data-anchor-id="modelo-con-un-cambio">Modelo con un cambio</h2>
@@ -463,11 +511,11 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td><code>time</code></td>
-<td>Edades de los nodos terminales</td>
+<td>Tiempos de ramificación (<em>branching/speciation times</em>) del árbol.</td>
 </tr>
 <tr class="even">
-<td><code>c(0.8, 1)</code></td>
-<td>c(<span class="math inline">\(\rho\)</span>, Intervalo de discretización del tiempo)</td>
+<td><code>c(rho, 1)</code></td>
+<td><strong>rho</strong> indica que se ha muestreado el 80 % de las especies actuales. El segundo valor, 1, corresponde al evento/cambio considerado en el pasado.</td>
 </tr>
 <tr class="odd">
 <td><code>grid</code></td>
@@ -483,30 +531,26 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td><code>survival=1</code></td>
-<td>Se asume que todas las especies sobrevivientes han sido muestreadas</td>
+<td>La verosimilitud se condiciona a la supervivencia del proceso; específicamente, a la supervivencia de los dos linajes existentes en la raíz.</td>
 </tr>
 </tbody>
 </table>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>resoneshift <span class="ot">&lt;-</span> <span class="fu">bd.shifts.optim</span>(times, <span class="fu">c</span>(rho, <span class="dv">1</span>), grid, start, end, <span class="at">ME=</span><span class="cn">FALSE</span>, <span class="at">survival=</span><span class="dv">1</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>resoneshift[[<span class="dv">2</span>]]  <span class="co"># Verosimilitud del modelo con un cambio en la tasa</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>resoneshift[[<span class="dv">2</span>]][[<span class="dv">2</span>]]  <span class="co"># Verosimilitud del modelo con un cambio en la tasa</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[1] 7.002138e+01 3.102841e-07 8.909817e-02
-
-[[2]]
-[1] 6.295893e+01 9.952613e-01 8.527988e-02 1.001768e-04 1.594866e-01
+<pre><code>[1] 6.295893e+01 9.952613e-01 8.527988e-02 1.001768e-04 1.594866e-01
 [6] 6.125229e+00</code></pre>
 </div>
 </div>
 <p><strong>Interpretación</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 26%">
-<col style="width: 63%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -519,7 +563,7 @@ window.Quarto = {
 <tr class="odd">
 <td><strong>1</strong></td>
 <td>62.95893</td>
-<td>Verosimilitud (log-likelihood)</td>
+<td><strong>−log</strong>L (<em>negative log-likelihood</em>) del modelo. Valores menores indican mejor ajuste.</td>
 </tr>
 <tr class="even">
 <td><strong>2</strong></td>
@@ -564,33 +608,25 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="modelo-con-dos-cambios">Modelo con dos cambios</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>restwoshift <span class="ot">&lt;-</span> <span class="fu">bd.shifts.optim</span>(times, <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="dv">1</span>,<span class="dv">1</span>), grid, start, end, <span class="at">ME=</span><span class="cn">FALSE</span>, <span class="at">survival=</span><span class="dv">1</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>restwoshift[[<span class="dv">2</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>restwoshift[[<span class="dv">2</span>]][[<span class="dv">3</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[1] 6.984598e+01 2.752173e-07 9.230017e-02
-
-[[2]]
-[1] 6.300085e+01 3.082460e-02 9.309168e-08 1.887393e-02 1.612077e-01
-[6] 6.125229e+00
-
-[[3]]
-[1]  6.045200e+01  7.427444e-08  1.840255e-02  1.040200e+00  2.028774e-02
+<pre><code>[1]  6.045200e+01  7.427444e-08  1.840255e-02  1.040200e+00  2.028774e-02
 [6]  1.244237e-01 -2.968324e-02  6.125229e+00  1.472523e+01</code></pre>
 </div>
 </div>
 <p><strong>Interpretación</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 17%">
-<col style="width: 71%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Índice</th>
-<th>Valor</th>
+<th>Parámetro estimado</th>
 <th>Descripción</th>
 </tr>
 </thead>
@@ -598,47 +634,47 @@ window.Quarto = {
 <tr class="odd">
 <td><strong>1</strong></td>
 <td>60.45200</td>
-<td>Verosimilitud (log-likelihood)</td>
+<td><strong>−log</strong>L (<em>negative log-likelihood</em>) del modelo. Valores menores indican mejor ajuste.</td>
 </tr>
 <tr class="even">
 <td><strong>2</strong></td>
-<td>7.427444e-08</td>
-<td>Turnover antes del primer cambio <strong>(</strong><span class="math inline">\(\epsilon_0\)</span>)</td>
+<td><span class="math inline">\(7.43 \times 10^{-8}\)</span></td>
+<td>Turnover antes del primer cambio (<span class="math inline">\(\epsilon_0 = \mu_0/\lambda_0\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
 <td>0.01840</td>
-<td>Turnover antes del segundo cambio <strong>(</strong><span class="math inline">\(\epsilon_1\)</span>)</td>
+<td>Turnover entre el primer y el segundo cambio (<span class="math inline">\(\epsilon_1 = \mu_1/\lambda_1\)</span>)</td>
 </tr>
 <tr class="even">
 <td><strong>4</strong></td>
 <td>1.04020</td>
-<td>Turnover después del segundo cambio <strong>(</strong><span class="math inline">\(\epsilon_2\)</span>)</td>
+<td>Turnover después del segundo cambio (<span class="math inline">\(\epsilon_2 = \mu_2/\lambda_2\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>5</strong></td>
 <td>0.02028</td>
-<td>Diversificación antes del primer cambio <strong>(</strong><span class="math inline">\(r_0\)</span>)</td>
+<td>Diversificación neta antes del primer cambio (<span class="math inline">\(r_0 = \lambda_0 - \mu_0\)</span>)</td>
 </tr>
 <tr class="even">
 <td><strong>6</strong></td>
 <td>0.12442</td>
-<td>Diversificación antes del segundo cambio <strong>(</strong><span class="math inline">\(r_1\)</span>)</td>
+<td>Diversificación neta entre el primer y el segundo cambio (<span class="math inline">\(r_1 = \lambda_1 - \mu_1\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>7</strong></td>
 <td>-0.02968</td>
-<td>Diversificación despues del segundo cambio <strong>(</strong><span class="math inline">\(r_2\)</span>)</td>
+<td>Diversificación neta después del segundo cambio (<span class="math inline">\(r_2 = \lambda_2 - \mu_2\)</span>)</td>
 </tr>
 <tr class="even">
 <td><strong>8</strong></td>
 <td>6.12523</td>
-<td>Tiempo del primer cambio <span class="math inline">\(t_1\)</span></td>
+<td>Tiempo del primer cambio (<span class="math inline">\(t_1\)</span>)</td>
 </tr>
 <tr class="odd">
 <td><strong>9</strong></td>
 <td>14.72523</td>
-<td>Tiempo del segundo cambio <span class="math inline">\(t_1\)</span></td>
+<td>Tiempo del segundo cambio (<span class="math inline">\(t_2\)</span>)</td>
 </tr>
 </tbody>
 </table>
@@ -701,106 +737,156 @@ window.Quarto = {
 </section>
 <section id="comparación-de-modelos-usando-likelihood-ratio-test-lrt" class="level2">
 <h2 class="anchored" data-anchor-id="comparación-de-modelos-usando-likelihood-ratio-test-lrt">Comparación de modelos usando Likelihood Ratio Test (LRT)</h2>
-<p><strong>¿Qué es la prueba LRT?</strong> Es una prueba estadística para comparar modelos anidados, es decir, modelos donde uno es una versión simplificada del otro (por ejemplo, el modelo de nacimiento-muerte puro vs.&nbsp;un modelo con cambios en la tasa).</p>
-<p>Se calcula con la siguiente fórmula:</p>
-<p><span class="math inline">\(LR = 2 * (\mathcal{L}_{modelo más simple} - \mathcal{L}_{modelo más complejo})\)</span></p>
-<p>Donde: - Un <strong>p-valor</strong> menor a <strong>0.05</strong> indica que el modelo más complejo es significativamente mejor que el más simple.</p>
-<p>Obtener las Verosimilitudes de cada modelo</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Verosimilitud birth-death</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>resbd[[<span class="dv">2</span>]][[<span class="dv">1</span>]][<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 70.02138</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Verosimilitud birth-death un cambio</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>resoneshift[[<span class="dv">2</span>]][[<span class="dv">1</span>]][<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 70.02138</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Verosimilitud birth-death dos cambios</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>restwoshift[[<span class="dv">2</span>]][[<span class="dv">1</span>]][<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 69.84598</code></pre>
-</div>
-</div>
-<p><strong>Comparación BD vs BD un cambio</strong></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ChiSq1 <span class="ot">=</span> <span class="dv">2</span> <span class="sc">*</span> (resbd[[<span class="dv">2</span>]][[<span class="dv">1</span>]][<span class="dv">1</span>] <span class="sc">-</span> resoneshift[[<span class="dv">2</span>]][[<span class="dv">1</span>]][<span class="dv">1</span>])</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ChiSq1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pchiSq1 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(ChiSq1, <span class="at">df=</span><span class="dv">3</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>pchiSq1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
-</div>
-</div>
-<p><strong>Resultados</strong>:</p>
+<p><strong>¿Qué es la prueba LRT?</strong><br>
+La prueba de razón de verosimilitudes (<em>Likelihood Ratio Test</em>, LRT) permite comparar modelos anidados, es decir, modelos donde uno representa una versión más simple del otro.</p>
+<p>En este caso se comparan:</p>
 <ul>
-<li><p><span class="math inline">\(LR = 0\)</span> → No hay diferencia en la verosimilitud entre el modelo BD y BD con un cambio.</p></li>
-<li><p><span class="math inline">\(p_{valor} = 0\)</span> → Indica que <strong>no hay mejora significativa</strong> en el modelo con un cambio en la tasa.</p></li>
+<li>un modelo birth-death sin cambios en las tasas,</li>
+<li>un modelo birth-death con un cambio en las tasas,</li>
+<li>un modelo birth-death con dos cambios en las tasas.</li>
 </ul>
-<p><strong>Comparación BD un cambio vs BD dos cambios</strong></p>
+<p>TreePar reporta el <strong>negative log-likelihood</strong> (<span class="math inline">\(-\log L\)</span>). Por lo tanto, el estadístico LRT se calcula como:</p>
+<p><span class="math display">\[
+LR =
+2 \left[
+(-\log L)_{\text{modelo simple}}
+-
+(-\log L)_{\text{modelo complejo}}
+\right]
+\]</span></p>
+<p>Un valor grande de <span class="math inline">\(LR\)</span> indica que el modelo más complejo presenta un mejor ajuste.</p>
+<p>El <strong>p-valor</strong> se obtiene con la cola superior de una distribución <span class="math inline">\(\chi^2\)</span>:</p>
+<p>Un <strong>p-valor menor a 0.05</strong> indica que el modelo más complejo mejora significativamente el ajuste.</p>
+<section id="obtener-los-negative-log-likelihood-de-cada-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="obtener-los-negative-log-likelihood-de-cada-modelo">Obtener los negative log-likelihood de cada modelo</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ChiSq2 <span class="ot">=</span> <span class="dv">2</span> <span class="sc">*</span> (resoneshift[[<span class="dv">2</span>]][[<span class="dv">1</span>]][<span class="dv">1</span>] <span class="sc">-</span> restwoshift[[<span class="dv">2</span>]][[<span class="dv">1</span>]][<span class="dv">1</span>])</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ChiSq2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Birth-death sin cambios</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>nll_bd <span class="ot">&lt;-</span> resbd[[<span class="dv">2</span>]][[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>nll_bd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3508041</code></pre>
+<pre><code>[1] 70.02138</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pchiSq2 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(ChiSq2, <span class="at">df=</span><span class="dv">3</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>pchiSq2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Birth-death con un cambio</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nll_1shift <span class="ot">&lt;-</span> resoneshift[[<span class="dv">2</span>]][[<span class="dv">2</span>]][<span class="dv">1</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>nll_1shift</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.04979325</code></pre>
+<pre><code>[1] 62.95893</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Birth-death con dos cambios</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nll_2shift <span class="ot">&lt;-</span> restwoshift[[<span class="dv">2</span>]][[<span class="dv">3</span>]][<span class="dv">1</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>nll_2shift</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60.452</code></pre>
+</div>
+</div>
+<p>Los valores obtenidos son:</p>
+<ul>
+<li>Modelo BD sin cambios: <span class="math inline">\(-\log L = 70.02138\)</span></li>
+<li>Modelo con un cambio: <span class="math inline">\(-\log L = 62.95893\)</span></li>
+<li>Modelo con dos cambios: <span class="math inline">\(-\log L = 60.45200\)</span></li>
+</ul>
+</section>
+<section id="comparación-bd-vs.-bd-con-un-cambio" class="level3">
+<h3 class="anchored" data-anchor-id="comparación-bd-vs.-bd-con-un-cambio">Comparación BD vs.&nbsp;BD con un cambio</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>LR1 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (nll_bd <span class="sc">-</span> nll_1shift)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>LR1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14.12491</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>p_LR1 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(LR1, <span class="at">df =</span> <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>p_LR1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00273997</code></pre>
 </div>
 </div>
 <p><strong>Resultados:</strong></p>
 <ul>
-<li><p><span class="math inline">\(LR = 0.3508\)</span> → Hay una pequeña diferencia en la verosimilitud entre el modelo BD con un cambio y el modelo BD con dos cambios.</p></li>
-<li><p><span class="math inline">\(p_{valor} = 0.0498\)</span> → Justo en el límite del umbral de significancia <span class="math inline">\((0.05)\)</span>, lo que indica que el modelo con dos cambios podría ser significativamente mejor.</p></li>
+<li><span class="math inline">\(LR = 14.12491\)</span></li>
+<li><span class="math inline">\(p \approx 0.00274\)</span></li>
 </ul>
+<p>El modelo birth-death con <strong>un cambio en las tasas</strong> presenta un ajuste significativamente mejor que el modelo sin cambios.</p>
+</section>
+<section id="comparación-bd-con-un-cambio-vs.-bd-con-dos-cambios" class="level3">
+<h3 class="anchored" data-anchor-id="comparación-bd-con-un-cambio-vs.-bd-con-dos-cambios">Comparación BD con un cambio vs.&nbsp;BD con dos cambios</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>LR2 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (nll_1shift <span class="sc">-</span> nll_2shift)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>LR2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.013857</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>p_LR2 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(LR2, <span class="at">df =</span> <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>p_LR2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1707853</code></pre>
+</div>
+</div>
+<p><strong>Resultados:</strong></p>
+<ul>
+<li><span class="math inline">\(LR = 5.01386\)</span></li>
+<li><span class="math inline">\(p \approx 0.171\)</span></li>
+</ul>
+<p>No existe evidencia suficiente para concluir que el modelo con <strong>dos cambios</strong> mejora significativamente al modelo con un solo cambio.</p>
 </section>
 </section>
-<section id="estimación-episódica-de-la-tasa-de-diversificación-con-revbayes" class="level1">
-<h1>Estimación Episódica de la Tasa de Diversificación con <strong>RevBayes</strong></h1>
+</section>
+<section id="estimación-episódica-de-las-tasas-de-diversificación-con-revbayes" class="level1">
+<h1>Estimación episódica de las tasas de diversificación con <strong>RevBayes</strong></h1>
 <section id="introducción-1" class="level2">
 <h2 class="anchored" data-anchor-id="introducción-1">Introducción</h2>
-<p>El modelo de nacimiento-muerte epísodico es un proceso en el cual las tasas de diversificación varían epísodicamente a lo largo del tiempo y se modelan como tasas constantes por intervalos de tiempo (Stadler 2011; Höhna 2015). Siguiendo el tutorial oficial <a href="https://revbayes.github.io/tutorials/divrate/ebd.html#fig_EBD_GM">Episodic Diversification Rate Estimation</a>.</p>
-<p>Asumimos que las tasas transformadas logarítmicamente siguen una distribución previa de campo aleatorio de Markov en forma de herradura (Horseshoe Markov random field, HSMRF) según Magee et al.&nbsp;(2020).</p>
+<p>El modelo de nacimiento-muerte episódico (<em>episodic birth-death</em>, EBD) permite que las tasas de especiación (<span class="math inline">\(\lambda\)</span>) y extinción (<span class="math inline">\(\mu\)</span>) cambien a lo largo del tiempo. El tiempo se divide en intervalos y, dentro de cada intervalo, las tasas se consideran constantes.</p>
+<p>En este ejercicio seguimos el tutorial oficial de RevBayes <a href="https://revbayes.github.io/tutorials/divrate/ebd.html">Episodic Diversification Rate Estimation</a> y utilizamos un <strong>Horseshoe Markov random field (HSMRF)</strong> para modelar los cambios temporales en las tasas.</p>
+<p>La idea central del HSMRF es modelar los <strong>cambios entre las tasas de intervalos consecutivos en escala logarítmica</strong>. Para la especiación, por ejemplo:</p>
+<p><span class="math display">\[
+\Delta_i =
+\log(\lambda_i)-\log(\lambda_{i-1})
+\]</span></p>
+<p>y de forma análoga para la extinción:</p>
+<p><span class="math display">\[
+\Delta_i =
+\log(\mu_i)-\log(\mu_{i-1})
+\]</span></p>
+<p>El prior HSMRF favorece que la mayoría de estos cambios sean pequeños:</p>
+<p><span class="math display">\[
+\Delta_i \approx 0
+\]</span></p>
+<p>pero permite ocasionalmente cambios grandes. De esta manera, el modelo puede representar largos periodos con tasas relativamente estables y algunos episodios con cambios pronunciados.</p>
+<section id="qué-aporta-el-hsmrf" class="level3">
+<h3 class="anchored" data-anchor-id="qué-aporta-el-hsmrf">¿Qué aporta el HSMRF?</h3>
 <ul>
-<li><p><strong>Tasas transformadas logarítmicamente</strong>:</p>
-<ul>
-<li><p>En muchos modelos evolutivos, las tasas de diversificación y extinción pueden variar en órdenes de magnitud.</p></li>
-<li><p>Para modelar mejor estos cambios, se toma el logaritmo de las tasas en lugar de usarlas directamente.</p></li>
-<li><p>Esto ayuda a evitar valores negativos y hace que la distribución de las tasas sea más manejable.</p></li>
-</ul></li>
-<li><p><strong>Distribución previa (prior) de campo aleatorio de Markov en forma de herradura (HSMRF)</strong>:</p>
-<ul>
-<li><p><strong>Distribución previa (prior)</strong>: En un enfoque bayesiano, los parámetros desconocidos (como las tasas de especiación/extinción) tienen distribuciones previas que reflejan nuestras creencias antes de ver los datos.</p></li>
-<li><p><strong>Campo aleatorio de Markov (Markov Random Field, MRF)</strong>: Este término indica que las tasas en un intervalo de tiempo dependen de las tasas en el intervalo anterior. En otras palabras, las tasas están autocorrelacionadas temporalmente.</p></li>
-<li><p><strong>Forma de herradura (Horseshoe)</strong>: Es un tipo de distribución previa diseñada para manejar datos donde algunos valores pueden ser cercanos a cero (relativamente constantes), pero también permite valores extremos (cambios bruscos en las tasas).</p></li>
-<li><p><strong>¿Por qué se usa?</strong> El HSMRF permite capturar patrones donde las tasas cambian lentamente la mayor parte del tiempo, pero ocasionalmente pueden dar saltos grandes, lo cual es biológicamente realista en muchos sistemas evolutivos.</p></li>
-</ul></li>
+<li><strong>Escala logarítmica:</strong> permite modelar tasas positivas que pueden variar varios órdenes de magnitud.</li>
+<li><strong>Dependencia temporal:</strong> la tasa de un intervalo se construye a partir de la tasa del intervalo anterior.</li>
+<li><strong>Regularización:</strong> la mayoría de los cambios entre intervalos son favorecidos a ser pequeños.</li>
+<li><strong>Adaptabilidad local:</strong> algunos intervalos pueden presentar cambios grandes cuando los datos los apoyan.</li>
 </ul>
+</section>
 </section>
 <section id="lectura-del-árbol" class="level2">
 <h2 class="anchored" data-anchor-id="lectura-del-árbol">Lectura del árbol</h2>
 <p>Comenzamos cargando el árbol filogenético <a href="https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification.html">previamente filtrado</a>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el árbol filogenético desde un archivo en formato NEXUS</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="st">"../docs/u1_PatDiv/subarbol_ingroup.nex"</span>)[<span class="dv">1</span>]</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer la información taxonómica del árbol</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a> taxa <span class="ot">&lt;-</span> <span class="fu">T.taxa</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">T</span> <span class="op">&lt;</span>- readTrees<span class="er">(</span><span class="st">"../docs/u1_PatDiv/subarbol_ingroup.nex"</span><span class="kw">)</span><span class="ex">[1]</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">taxa</span> <span class="op">&lt;</span>- T.taxa<span class="er">(</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados." class="level2">
-<h2 class="anchored" data-anchor-id="definir-vectores-para-almacenar-los-movimientos-de-mcmc-y-los-monitores-de-resultados.">Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>moves    <span class="ot">=</span> <span class="fu">VectorMoves</span>()</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="definir-los-vectores-de-movimientos-y-monitores" class="level2">
+<h2 class="anchored" data-anchor-id="definir-los-vectores-de-movimientos-y-monitores">Definir los vectores de movimientos y monitores</h2>
+<p>Los movimientos controlarán cómo la cadena MCMC propone nuevos valores para los parámetros, mientras que los monitores almacenarán los resultados.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">moves</span>    = VectorMoves<span class="er">(</span><span class="kw">)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">monitors</span> = VectorMonitors<span class="er">(</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación." class="level2">
-<h2 class="anchored" data-anchor-id="definir-el-número-de-intervalos-en-los-que-dividiremos-el-tiempo-para-modelar-la-diversificación.">Definir el número de intervalos en los que dividiremos el tiempo para modelar la diversificación.</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>NUM_INTERVALS <span class="ot">=</span> <span class="dv">10</span>  <span class="co"># Número total de intervalos de tiempo</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>NUM_BREAKS <span class="sc">:</span><span class="er">=</span> NUM_INTERVALS <span class="sc">-</span> <span class="dv">1</span>  <span class="co"># Número de puntos de cambio entre intervalos</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="definir-el-número-de-intervalos-temporales" class="level2">
+<h2 class="anchored" data-anchor-id="definir-el-número-de-intervalos-temporales">Definir el número de intervalos temporales</h2>
+<p>Dividiremos la historia del árbol en <strong>10 intervalos</strong>. Diez intervalos generan nueve límites internos o puntos de separación entre intervalos.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NUM_INTERVALS</span> = 10</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NUM_BREAKS</span> := NUM_INTERVALS <span class="at">-</span> 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Por tanto:</p>
+<p><span class="math display">\[
+10\ \text{intervalos}
+\quad\Longrightarrow\quad
+9\ \text{límites internos}
+\]</span></p>
+<section id="visualización-de-los-intervalos" class="level3">
+<h3 class="anchored" data-anchor-id="visualización-de-los-intervalos">Visualización de los intervalos</h3>
+<p>El siguiente gráfico es únicamente una representación de cómo se divide el tiempo del árbol en intervalos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -811,219 +897,421 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala" class="level2">
-<h2 class="anchored" data-anchor-id="definimos-distribuciones-previas-sobre-las-tasas-dentro-del-modelo-hsmrf-de-nacimiento-muerte.-parámetros-globales-de-escala">Definimos distribuciones previas sobre las tasas dentro del modelo HSMRF de nacimiento-muerte. Parámetros globales de escala</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hiperprior para controlar la variabilidad global de las tasas de diversificación y extinción</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>speciation_global_scale_hyperprior <span class="ot">&lt;-</span> <span class="fl">0.044</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>extinction_global_scale_hyperprior <span class="ot">&lt;-</span> <span class="fl">0.044</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Estos hiperpriors controlan la <strong>variabilidad global</strong> de las tasas de diversificación y extinción:</p>
-<ul>
-<li><p>Un <strong>valor mayor</strong> permite <strong>más cambios abruptos</strong> entre intervalos.</p></li>
-<li><p>Un <strong>valor menor</strong> suaviza las tasas a lo largo del tiempo.</p></li>
-</ul>
-<p>Función <code>setMRFGlobalScaleHyperpriorNShifts()</code> del paquete <code>RevGadgets</code> en <strong>R</strong> para calcular el hiperprior automáticamente.</p>
+</section>
+<section id="hiperparámetro-de-escala-global-del-hsmrf" class="level2">
+<h2 class="anchored" data-anchor-id="hiperparámetro-de-escala-global-del-hsmrf">Hiperparámetro de escala global del HSMRF</h2>
+<p>El HSMRF necesita un parámetro que controle la <strong>variabilidad global de los cambios de tasa</strong> a través del tiempo.</p>
+<p>En este análisis utilizamos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">speciation_global_scale_hyperprior</span> <span class="op">&lt;</span>- 0.044</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">extinction_global_scale_hyperprior</span> <span class="op">&lt;</span>- 0.044</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El valor <code>0.044</code> <strong>no representa una tasa de especiación ni de extinción</strong>. Es un factor de calibración del prior HSMRF.</p>
+<p>Su valor depende del número de episodios o intervalos utilizados. En el tutorial oficial de RevBayes, para <strong>10 intervalos</strong> se utiliza:</p>
+<p><span class="math display">\[
+0.044
+\]</span></p>
+<p>Si cambiamos el número de intervalos, debemos recalcular este valor.</p>
+<section id="calcular-el-hiperparámetro-con-revgadgets" class="level3">
+<h3 class="anchored" data-anchor-id="calcular-el-hiperparámetro-con-revgadgets">Calcular el hiperparámetro con RevGadgets</h3>
+<p>En <strong>R</strong>, el paquete <code>RevGadgets</code> proporciona la función:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Ejecutar en R, no agregar a RevBayes!!!</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Calcula el hiperprior que utilizaremos en RevBayes</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 numero intervalos</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="do">## "HSMRF" Horseshoe Markov random field </span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setMRFGlobalScaleHyperpriorNShifts</span>(<span class="dv">10</span>, <span class="st">"HSMRF"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setMRFGlobalScaleHyperpriorNShifts</span>(</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_episodes =</span> <span class="dv">10</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"HSMRF"</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.04446432</code></pre>
 </div>
 </div>
+<p>La función calcula el valor del hiperparámetro de escala global para un HSMRF con el número indicado de episodios.</p>
+<p>Con los valores por defecto, <code>RevGadgets</code> calibra el prior considerando un número esperado de cambios efectivos y define como cambio efectivo una modificación suficientemente grande entre tasas de episodios adyacentes.</p>
 </section>
-<section id="asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01" class="level2">
-<h2 class="anchored" data-anchor-id="asignar-distribuciones-previas-half-cauchy-dnhalfcauchy01">Asignar distribuciones previas Half-Cauchy (dnHalfCauchy(0,1))</h2>
-<p>Se asignan a los parámetros de escala global, esto permite valores pequeños pero también acepta valores más grandes ocasionalmente.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuciones previas de Cauchy truncadas para los parámetros de escala global</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>speciation_global_scale <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>extinction_global_scale <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf." class="level2">
-<h2 class="anchored" data-anchor-id="definir-las-tasas-iniciales-de-diversificación-y-extinción-en-el-modelo-hsmrf.">Definir las tasas iniciales de diversificación y extinción en el modelo HSMRF.</h2>
-<p>En este enfoque, comenzamos con la tasa de diversificación y extinción en el presente y luego modelamos cómo cambian hacia el pasado.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir tasas iniciales de diversificación y extinción en el presente</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>log_speciation_at_present <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="fl">10.0</span>,<span class="fl">10.0</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">log_speciation_at_present.setValue</span>(<span class="fl">0.0</span>)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>log_extinction_at_present <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="fl">10.0</span>,<span class="fl">10.0</span>)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">log_extinction_at_present.setValue</span>(<span class="sc">-</span><span class="fl">1.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>¿Por qué se usa <code>dnUniform(-10.0,10.0)</code>?</strong></p>
-<p>Se establece una distribución uniforme como prior para las tasas iniciales de diversificación y extinción.</p>
-<ul>
-<li>Como estamos modelando las tasas en <strong>escala logarítmica</strong>, esto implica que los valores de especiación/extinción reales estarán entre:
-<ul>
-<li>(e^{-10}) (casi 0, evolución extremadamente lenta)</li>
-<li>(e^{10}) (tasa de diversificación muy rápida)</li>
-</ul></li>
-<li>Permitir este rango amplio cubre la mayoría de los valores posibles sin asumir un conocimiento previo específico sobre la tasa de diversificación en el presente.</li>
-</ul>
-<p><strong>¿Por qué los valores iniciales <code>0.0</code> y <code>-1.0</code>?</strong></p>
-<ul>
-<li><code>log_speciation_at_present.setValue(0.0)</code>: Equivale a establecer la tasa inicial de diversificación en (<span class="math inline">\(e^0 = 1.0\)</span>), lo cual es un punto razonable para comenzar.</li>
-<li><code>log_extinction_at_present.setValue(-1.0)</code>: Equivale a una tasa inicial de extinción de (<span class="math inline">\(e^{-1} \approx 0.37\)</span>), lo que implica que la extinción es menor que la diversificación en el punto de partida.</li>
-</ul>
-</section>
-<section id="movimientos-eficientes-en-mcmc-para-explorar-estas-tasas" class="level2">
-<h2 class="anchored" data-anchor-id="movimientos-eficientes-en-mcmc-para-explorar-estas-tasas">Movimientos eficientes en MCMC para explorar estas tasas</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScaleBactrian</span>(log_speciation_at_present,<span class="at">weight=</span><span class="dv">5</span>))</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScaleBactrian</span>(log_extinction_at_present,<span class="at">weight=</span><span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="modelar-la-diversificación-episódica" class="level2">
-<h2 class="anchored" data-anchor-id="modelar-la-diversificación-episódica">Modelar la diversificación episódica</h2>
-<p>En el código de RevBayes para modelar la diversificación episódica, se utiliza un bucle <code>for</code> para definir los cambios en las tasas de diversificación y extinción en cada intervalo de tiempo.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_BREAKS) {</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Variabilidad local en cada intervalo</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  sigma_speciation[i] <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  sigma_extinction[i] <span class="sc">~</span> <span class="fu">dnHalfCauchy</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Se inicializan valores aleatorios en un rango de 0.005 a 0.1, para evitar valores extremos en el inicio del MCMC</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  sigma_speciation[i]<span class="fu">.setValue</span>(<span class="fu">runif</span>(<span class="dv">1</span>,<span class="fl">0.005</span>,<span class="fl">0.1</span>)[<span class="dv">1</span>])</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  sigma_extinction[i]<span class="fu">.setValue</span>(<span class="fu">runif</span>(<span class="dv">1</span>,<span class="fl">0.005</span>,<span class="fl">0.1</span>)[<span class="dv">1</span>])</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Especificar los cambios en log-diversificación y log-extinción mediante una distribución normal</span></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  delta_log_speciation[i] <span class="sc">~</span> <span class="fu">dnNormal</span>( <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_speciation[i]<span class="sc">*</span>speciation_global_scale<span class="sc">*</span>speciation_global_scale_hyperprior )</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  delta_log_extinction[i] <span class="sc">~</span> <span class="fu">dnNormal</span>( <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span>sigma_extinction[i]<span class="sc">*</span>extinction_global_scale<span class="sc">*</span>extinction_global_scale_hyperprior )</span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="calcular-las-tasas-de-diversificación-y-extinción" class="level2">
-<h2 class="anchored" data-anchor-id="calcular-las-tasas-de-diversificación-y-extinción">Calcular las tasas de diversificación y extinción</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>speciation <span class="sc">:</span><span class="er">=</span> <span class="fu">fnassembleContinuousMRF</span>(log_speciation_at_present, delta_log_speciation, <span class="at">initialValueIsLogScale=</span><span class="cn">TRUE</span>, <span class="at">order=</span><span class="dv">1</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>extinction <span class="sc">:</span><span class="er">=</span> <span class="fu">fnassembleContinuousMRF</span>(log_extinction_at_present, delta_log_extinction, <span class="at">initialValueIsLogScale=</span><span class="cn">TRUE</span>, <span class="at">order=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="movimientos-de-mcmc-para-el-modelo-hsmrf" class="level2">
-<h2 class="anchored" data-anchor-id="movimientos-de-mcmc-para-el-modelo-hsmrf">Movimientos de MCMC para el Modelo HSMRF</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento para los cambios en log-escala de diversificación y extinción</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvEllipticalSliceSamplingSimple</span>(delta_log_speciation, <span class="at">weight=</span><span class="dv">5</span>, <span class="at">tune=</span><span class="cn">FALSE</span>))</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvEllipticalSliceSamplingSimple</span>(delta_log_extinction, <span class="at">weight=</span><span class="dv">5</span>, <span class="at">tune=</span><span class="cn">FALSE</span>))</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento Gibbs para los hiperparámetros globales y locales</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvHSRFHyperpriorsGibbs</span>(speciation_global_scale, sigma_speciation , delta_log_speciation , speciation_global_scale_hyperprior, <span class="at">propGlobalOnly=</span><span class="fl">0.75</span>, <span class="at">weight=</span><span class="dv">10</span>))</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvHSRFHyperpriorsGibbs</span>(extinction_global_scale, sigma_extinction , delta_log_extinction , extinction_global_scale_hyperprior, <span class="at">propGlobalOnly=</span><span class="fl">0.75</span>, <span class="at">weight=</span><span class="dv">10</span>))</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento de intercambio entre intervalos adyacentes</span></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvHSRFIntervalSwap</span>(delta_log_speciation, sigma_speciation, <span class="at">weight=</span><span class="dv">5</span>))</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>(<span class="fu">mvHSRFIntervalSwap</span>(delta_log_extinction, sigma_extinction, <span class="at">weight=</span><span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Se utilizan <strong>tres tipos principales de movimientos</strong> en este código:</p>
-<ol type="1">
-<li><p><strong>Muestreo Elíptico Slice (<code>mvEllipticalSliceSamplingSimple</code>)</strong></p>
-<ul>
-<li><p>Optimiza la exploración de los cambios en log-escala de las tasas de diversificación y extinción.</p></li>
-<li><p>Funciona bien en modelos con alta correlación entre parámetros.</p></li>
-</ul></li>
-<li><p><strong>Muestreo Gibbs (<code>mvHSRFHyperpriorsGibbs</code>)</strong></p>
-<ul>
-<li><p>Se usa para actualizar los hiperparámetros globales y locales del modelo.</p></li>
-<li><p>Permite ajustes eficientes en la escala de variabilidad de las tasas.</p></li>
-</ul></li>
-<li><p><strong>Intercambio de intervalos (<code>mvHSRFIntervalSwap</code>)</strong></p>
-<ul>
-<li><p>Intercambia valores entre intervalos de tiempo adyacentes.</p></li>
-<li><p>Ayuda a evitar que la cadena de MCMC se quede atrapada en un estado subóptimo.</p></li>
-</ul></li>
-</ol>
-</section>
-<section id="configuración-de-los-intervalos-de-tiempo" class="level2">
-<h2 class="anchored" data-anchor-id="configuración-de-los-intervalos-de-tiempo">Configuración de los Intervalos de Tiempo</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>interval_times <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">T.rootAge</span>() <span class="sc">*</span> <span class="fu">seq</span>(<span class="dv">1</span>, NUM_BREAKS, <span class="dv">1</span>)<span class="sc">/</span>NUM_INTERVALS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><p><strong><code>T.rootAge()</code></strong> → Obtiene la edad de la raíz del árbol filogenético (es decir, el tiempo en el pasado en que el linaje común más reciente existió).</p></li>
-<li><p><strong><code>seq(1, NUM_BREAKS, 1)</code></strong> → Genera una secuencia de números del <code>1</code> al <code>NUM_BREAKS</code> (el número de puntos de cambio entre intervalos).</p></li>
-<li><p><strong>Multiplica la raíz del árbol <code>T.rootAge()</code> por esta secuencia</strong> para escalar los intervalos al tiempo evolutivo real.</p></li>
-<li><p><strong>Divide entre <code>NUM_INTERVALS</code></strong> para normalizar y hacer que los intervalos sean de igual tamaño.</p></li>
-<li><p><strong><code>abs(...)</code></strong> → Convierte los valores a positivos porque las edades van en dirección del presente al pasado.</p></li>
-</ul>
-</section>
-<section id="corrección-por-muestreo-incompleto" class="level2">
-<h2 class="anchored" data-anchor-id="corrección-por-muestreo-incompleto">Corrección por Muestreo Incompleto</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fu">T.ntips</span>()<span class="sc">/</span><span class="dv">26</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="inicializando-el-nodo-estocástico-del-árbol-de-tiempos" class="level2">
-<h2 class="anchored" data-anchor-id="inicializando-el-nodo-estocástico-del-árbol-de-tiempos">Inicializando el Nodo Estocástico del Árbol de Tiempos</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>timetree <span class="sc">~</span> <span class="fu">dnEpisodicBirthDeath</span>(<span class="at">rootAge=</span><span class="fu">T.rootAge</span>(), <span class="at">lambdaRates=</span>speciation, <span class="at">lambdaTimes=</span>interval_times, <span class="at">muRates=</span>extinction, <span class="at">muTimes=</span>interval_times, <span class="at">rho=</span>rho, <span class="at">samplingStrategy=</span><span class="st">"uniform"</span>, <span class="at">condition=</span><span class="st">"survival"</span>, <span class="at">taxa=</span>taxa)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="asignando-datos-observados-al-árbol" class="level2">
-<h2 class="anchored" data-anchor-id="asignando-datos-observados-al-árbol">Asignando Datos Observados al Árbol</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clamp</span>(T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="creando-el-modelo-completo" class="level2">
-<h2 class="anchored" data-anchor-id="creando-el-modelo-completo">Creando el Modelo Completo</h2>
-<p>Encuentra todas las conexiones en la red bayesiana y las agrupa en un solo objeto <code>model()</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(rho)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="configuración-de-los-monitores" class="level2">
-<h2 class="anchored" data-anchor-id="configuración-de-los-monitores">Configuración de los Monitores</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"../output/Eupomphini_EBD.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Crea un monitor (<code>mnModel</code>) que guarda los valores de todos los parámetros del modelo</strong>.<br>
-✔ Guarda los resultados en el archivo <code>"output/primates_EBD.log"</code>.<br>
-✔ <strong><code>printgen=10</code></strong> → Especifica que se guardará un estado cada 10 generaciones.<br>
-✔ <strong><code>separator=TAB</code></strong> → Usa tabulaciones para separar los valores en el archivo de salida.</p>
-</section>
-<section id="creación-de-monitores-para-las-tasas-de-diversificación-y-extinción" class="level2">
-<h2 class="anchored" data-anchor-id="creación-de-monitores-para-las-tasas-de-diversificación-y-extinción">Creación de Monitores para las Tasas de diversificación y Extinción</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasas de especiación</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"../output/Eupomphini_EBD_speciation_rates.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, speciation))</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalos de tiempo de especiación</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"../output/Eupomphini_EBD_speciation_times.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, interval_times))</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasas de extinción</span></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"../output/Eupomphini_EBD_extinction_rates.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, extinction))</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Intervalos de tiempo de extinción</span></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnFile</span>(<span class="at">filename=</span><span class="st">"../output/Eupomphini_EBD_extinction_times.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>, <span class="at">separator =</span> TAB, interval_times))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="creación-de-un-monitor-en-pantalla" class="level2">
-<h2 class="anchored" data-anchor-id="creación-de-un-monitor-en-pantalla">Creación de un Monitor en Pantalla</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>(<span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">1000</span>, extinction_global_scale, speciation_global_scale))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="configuración-del-mcmc" class="level2">
-<h2 class="anchored" data-anchor-id="configuración-del-mcmc">Configuración del MCMC</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">2</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Crea el objeto MCMC <code>mymcmc</code></strong> que utilizará:</p>
-<ul>
-<li><p><strong><code>mymodel</code></strong> → El modelo definido anteriormente.</p></li>
-<li><p><strong><code>monitors</code></strong> → Los monitores configurados.</p></li>
-<li><p><strong><code>moves</code></strong> → Los movimientos de MCMC definidos antes.</p></li>
-<li><p><strong><code>nruns=2</code></strong> → Ejecuta <strong>dos cadenas independientes de MCMC</strong>.</p></li>
-<li><p><strong><code>combine="mixed"</code></strong> → Mezcla las cadenas al final del proceso para mejorar la estimación de parámetros.</p></li>
-</ul>
-</section>
-<section id="ejecutar-el-mcmc" class="level2">
-<h2 class="anchored" data-anchor-id="ejecutar-el-mcmc">Ejecutar el MCMC</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">50000</span>, <span class="at">tuningInterval=</span><span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="visualización-de-las-tasas-de-diversificación" class="level2">
-<h2 class="anchored" data-anchor-id="visualización-de-las-tasas-de-diversificación">Visualización de las tasas de diversificación</h2>
-<p>Finalmente, generamos un gráfico que muestra cómo las tasas de diversificación y extinción han cambiado a lo largo del tiempo.</p>
+<section id="prior-sobre-la-escala-global" class="level2">
+<h2 class="anchored" data-anchor-id="prior-sobre-la-escala-global">Prior sobre la escala global</h2>
+<p>La escala global se modela mediante una distribución Half-Cauchy:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">speciation_global_scale</span> ~ dnHalfCauchy<span class="er">(</span><span class="ex">0,1</span><span class="kw">)</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">extinction_global_scale</span> ~ dnHalfCauchy<span class="er">(</span><span class="ex">0,1</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar la ruta de los archivos de salida </span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>speciation_time_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_times.log"</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>speciation_rate_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_rates.log"</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>extinction_time_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_times.log"</span></span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>extinction_rate_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_rates.log"</span></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer y procesar los datos</span></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>rates <span class="ot">&lt;-</span> <span class="fu">processDivRates</span>(<span class="at">speciation_time_log =</span> speciation_time_file,</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">speciation_rate_log =</span> speciation_rate_file,</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">extinction_time_log =</span> extinction_time_file,</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>                         <span class="at">extinction_rate_log =</span> extinction_rate_file,</span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">burnin =</span> <span class="fl">0.25</span>, <span class="co"># Se descarta el 25% inicial de las iteraciones como burn-in</span></span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">summary =</span> <span class="st">"median"</span>)  <span class="co"># Se toman las tasas medianas como resumen</span></span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar las tasas atravez del tiempo</span></span>
-<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plotDivRates</span>(<span class="at">rates =</span> rates) <span class="sc">+</span></span>
-<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Millions of years ago"</span>) <span class="sc">+</span></span>
-<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Rate per million years"</span>)</span>
-<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="u1_intro_diversification_2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La distribución Half-Cauchy concentra una cantidad importante de probabilidad cerca de cero, pero conserva una cola larga que permite valores mayores.</p>
+<p>En <code>dnHalfCauchy(0,1)</code>, el 1 no significa que la distribución vaya de 0 a 1.</p>
+<p>Significa:</p>
+<p>0 = parámetro de ubicación</p>
+<p>1 = parámetro de escala</p>
+</section>
+<section id="tasas-de-especiación-y-extinción-en-el-presente" class="level2">
+<h2 class="anchored" data-anchor-id="tasas-de-especiación-y-extinción-en-el-presente">Tasas de especiación y extinción en el presente</h2>
+<p>El modelo comienza con las tasas en el presente y construye las tasas de los intervalos anteriores avanzando hacia el pasado.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">log_speciation_at_present</span> ~ dnUniform<span class="er">(</span><span class="ex">-10.0,10.0</span><span class="kw">)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">log_speciation_at_present.setValue</span><span class="er">(</span><span class="ex">0.0</span><span class="kw">)</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="ex">log_extinction_at_present</span> ~ dnUniform<span class="er">(</span><span class="ex">-10.0,10.0</span><span class="kw">)</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ex">log_extinction_at_present.setValue</span><span class="er">(</span><span class="ex">-1.0</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="movimientos-mcmc-para-las-tasas-presentes" class="level2">
+<h2 class="anchored" data-anchor-id="movimientos-mcmc-para-las-tasas-presentes">Movimientos MCMC para las tasas presentes</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">moves.append</span><span class="er">(</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mvScaleBactrian</span><span class="er">(</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">log_speciation_at_present,</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">weight</span> = 5</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="ex">moves.append</span><span class="er">(</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mvScaleBactrian</span><span class="er">(</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">log_extinction_at_present,</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">weight</span> = 5</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Estos movimientos permiten actualizar durante el MCMC los parámetros correspondientes a las tasas presentes.</p>
+</section>
+<section id="modelar-los-cambios-entre-intervalos" class="level2">
+<h2 class="anchored" data-anchor-id="modelar-los-cambios-entre-intervalos">Modelar los cambios entre intervalos</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="kw">(</span><span class="ex">i</span> in 1:NUM_BREAKS<span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">sigma_speciation</span><span class="op">[</span>i<span class="op">]</span> <span class="ex">~</span> dnHalfCauchy<span class="er">(</span><span class="ex">0,1</span><span class="kw">)</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">sigma_extinction</span><span class="op">[</span>i<span class="op">]</span> <span class="ex">~</span> dnHalfCauchy<span class="er">(</span><span class="ex">0,1</span><span class="kw">)</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">sigma_speciation</span><span class="op">[</span>i<span class="op">]</span><span class="ex">.setValue</span><span class="er">(</span><span class="ex">runif</span><span class="er">(</span><span class="ex">1,0.005,0.1</span><span class="kw">)</span><span class="ex">[1]</span><span class="kw">)</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">sigma_extinction</span><span class="op">[</span>i<span class="op">]</span><span class="ex">.setValue</span><span class="er">(</span><span class="ex">runif</span><span class="er">(</span><span class="ex">1,0.005,0.1</span><span class="kw">)</span><span class="ex">[1]</span><span class="kw">)</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">delta_log_speciation</span><span class="op">[</span>i<span class="op">]</span> <span class="ex">~</span> dnNormal<span class="er">(</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mean</span> = 0,</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sd</span> = sigma_speciation<span class="pp">[</span><span class="ss">i</span><span class="pp">]</span> <span class="pp">*</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>         <span class="ex">speciation_global_scale</span> <span class="pp">*</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>         <span class="ex">speciation_global_scale_hyperprior</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">delta_log_extinction</span><span class="op">[</span>i<span class="op">]</span> <span class="ex">~</span> dnNormal<span class="er">(</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mean</span> = 0,</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sd</span> = sigma_extinction<span class="pp">[</span><span class="ss">i</span><span class="pp">]</span> <span class="pp">*</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>         <span class="ex">extinction_global_scale</span> <span class="pp">*</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>         <span class="ex">extinction_global_scale_hyperprior</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La desviación estándar de cada cambio depende de:</p>
+<p><span class="math display">\[
+\sigma_i
+\times
+\text{global scale}
+\times
+\text{global scale hyperprior}
+\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u1_intro_diversification_2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Cuando <span class="math inline">\(\sigma_i\)</span> es pequeño, la distribución Normal queda muy estrecha alrededor de 0, por lo que el modelo favorece que:</p>
+<p><span class="math display">\[
+\Delta_i \approx 0
+\]</span></p>
+<p>Esto significa que la tasa cambia muy poco entre dos intervalos consecutivos.</p>
+<p>Cuando <span class="math inline">\(\sigma_i\)</span> es grande, la distribución Normal se ensancha y permite valores positivos o negativos de mayor magnitud para <span class="math inline">\(\Delta_i\)</span>, es decir, cambios más pronunciados en la tasa entre intervalos consecutivos.</p>
+</section>
+<section id="reconstruir-las-tasas-de-cada-intervalo" class="level2">
+<h2 class="anchored" data-anchor-id="reconstruir-las-tasas-de-cada-intervalo">Reconstruir las tasas de cada intervalo</h2>
+<p>RevBayes utiliza <code>fnassembleContinuousMRF()</code> para acumular estos cambios a partir de un valor inicial y reconstruir las tasas de cada intervalo.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">speciation</span> := fnassembleContinuousMRF<span class="er">(</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">log_speciation_at_present,</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">delta_log_speciation,</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">initialValueIsLogScale</span> = TRUE,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">order</span> = 1</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="ex">extinction</span> := fnassembleContinuousMRF<span class="er">(</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">log_extinction_at_present,</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">delta_log_extinction,</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">initialValueIsLogScale</span> = TRUE,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">order</span> = 1</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="movimientos-mcmc-específicos-del-hsmrf" class="level2">
+<h2 class="anchored" data-anchor-id="movimientos-mcmc-específicos-del-hsmrf">Movimientos MCMC específicos del HSMRF</h2>
+<p>El HSMRF requiere movimientos que aprovechen la estructura jerárquica del modelo.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">moves.append</span><span class="er">(</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mvEllipticalSliceSamplingSimple</span><span class="er">(</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">delta_log_speciation,</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">weight</span> = 5,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">tune</span> = FALSE</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="ex">moves.append</span><span class="er">(</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mvEllipticalSliceSamplingSimple</span><span class="er">(</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">delta_log_extinction,</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">weight</span> = 5,</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">tune</span> = FALSE</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="ex">moves.append</span><span class="er">(</span></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mvHSRFHyperpriorsGibbs</span><span class="er">(</span></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">speciation_global_scale,</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sigma_speciation,</span></span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>    <span class="ex">delta_log_speciation,</span></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>    <span class="ex">speciation_global_scale_hyperprior,</span></span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>    <span class="ex">propGlobalOnly</span> = 0.75,</span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>    <span class="ex">weight</span> = 10</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="ex">moves.append</span><span class="er">(</span></span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mvHSRFHyperpriorsGibbs</span><span class="er">(</span></span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>    <span class="ex">extinction_global_scale,</span></span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sigma_extinction,</span></span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>    <span class="ex">delta_log_extinction,</span></span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>    <span class="ex">extinction_global_scale_hyperprior,</span></span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>    <span class="ex">propGlobalOnly</span> = 0.75,</span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>    <span class="ex">weight</span> = 10</span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a><span class="ex">moves.append</span><span class="er">(</span></span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mvHSRFIntervalSwap</span><span class="er">(</span></span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>    <span class="ex">delta_log_speciation,</span></span>
+<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sigma_speciation,</span></span>
+<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>    <span class="ex">weight</span> = 5</span>
+<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a><span class="ex">moves.append</span><span class="er">(</span></span>
+<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mvHSRFIntervalSwap</span><span class="er">(</span></span>
+<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a>    <span class="ex">delta_log_extinction,</span></span>
+<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sigma_extinction,</span></span>
+<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a>    <span class="ex">weight</span> = 5</span>
+<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Movimiento</th>
+<th>Parámetros que actualiza</th>
+<th>Función principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mvEllipticalSliceSamplingSimple</code></td>
+<td><span class="math inline">\(\Delta_i\)</span></td>
+<td>Actualiza conjuntamente los cambios en log-tasa.</td>
+</tr>
+<tr class="even">
+<td><code>mvHSRFHyperpriorsGibbs</code></td>
+<td>Escala global, <span class="math inline">\(\sigma_i\)</span> y <span class="math inline">\(\Delta_i\)</span></td>
+<td>Actualiza la estructura jerárquica del HSMRF mediante Gibbs sampling.</td>
+</tr>
+<tr class="odd">
+<td><code>mvHSRFIntervalSwap</code></td>
+<td>Pares <span class="math inline">\((\Delta_i,\sigma_i)\)</span></td>
+<td>Intercambia configuraciones entre intervalos temporales.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="configuración-de-los-intervalos-de-tiempo" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-de-los-intervalos-de-tiempo">Configuración de los intervalos de tiempo</h2>
+<p>Ahora definimos las edades que separan los diez intervalos.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">interval_times</span> <span class="op">&lt;</span>- abs<span class="er">(</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">T.rootAge()</span> <span class="ex">*</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span><span class="er">(</span><span class="ex">1,</span> NUM_BREAKS, 1<span class="kw">)</span> <span class="ex">/</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">NUM_INTERVALS</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Donde:</p>
+<ul>
+<li><code>T.rootAge()</code> obtiene la edad de la raíz.</li>
+<li><code>seq(1, NUM_BREAKS, 1)</code> genera los nueve límites internos entre los diez intervalos.</li>
+<li>La división entre <code>NUM_INTERVALS</code> distribuye esos límites de manera equidistante a lo largo de la edad de la raíz.</li>
+<li><code>abs()</code> garantiza que las edades de los límites se expresen como valores positivos.</li>
+</ul>
+<p>Los tiempos representan edades que aumentan <strong>desde el presente hacia el pasado</strong>, donde el presente corresponde a tiempo 0.</p>
+</section>
+<section id="corrección-por-muestreo-incompleto" class="level2">
+<h2 class="anchored" data-anchor-id="corrección-por-muestreo-incompleto">Corrección por muestreo incompleto</h2>
+<p>Si el árbol contiene 22 de las 26 especies conocidas del grupo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rho</span> <span class="op">&lt;</span>- T.ntips<span class="er">(</span><span class="kw">)</span><span class="ex">/26</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>entonces:</p>
+<p><span class="math display">\[
+\rho =
+\frac{22}{26}
+\approx 0.846
+\]</span></p>
+<p>Este parámetro permite incorporar el muestreo taxonómico incompleto al modelo.</p>
+</section>
+<section id="definir-el-proceso-de-nacimiento-muerte-episódico" class="level2">
+<h2 class="anchored" data-anchor-id="definir-el-proceso-de-nacimiento-muerte-episódico">Definir el proceso de nacimiento-muerte episódico</h2>
+<p>Ahora utilizamos las tasas de especiación y extinción estimadas para definir el árbol de tiempos.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">timetree</span> ~ dnEpisodicBirthDeath<span class="er">(</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">rootAge</span> = T.rootAge<span class="er">(</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">lambdaRates</span> = speciation,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">lambdaTimes</span> = interval_times,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">muRates</span> = extinction,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">muTimes</span> = interval_times,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">rho</span> = rho,</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">samplingStrategy</span> = <span class="st">"uniform"</span>,</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">condition</span> = <span class="st">"survival"</span>,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">taxa</span> = taxa</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquí:</p>
+<ul>
+<li><code>lambdaRates</code> contiene las tasas de especiación por intervalo;</li>
+<li><code>muRates</code> contiene las tasas de extinción por intervalo;</li>
+<li><code>lambdaTimes</code> y <code>muTimes</code> indican los límites temporales;</li>
+<li><code>rho</code> representa la fracción de especies actuales muestreadas;</li>
+<li><code>samplingStrategy="uniform"</code> supone muestreo uniforme entre las especies actuales;</li>
+<li><code>condition="survival"</code> condiciona el proceso a su supervivencia.</li>
+</ul>
+</section>
+<section id="asignar-el-árbol-observado" class="level2">
+<h2 class="anchored" data-anchor-id="asignar-el-árbol-observado">Asignar el árbol observado</h2>
+<p>El árbol es nuestro dato observado. Por ello se fija al nodo estocástico mediante <code>clamp()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">timetree.clamp</span><span class="er">(</span><span class="ex">T</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Conceptualmente, el modelo evalúa qué valores de las tasas hacen más probable el árbol observado.</p>
+</section>
+<section id="crear-el-modelo-completo" class="level2">
+<h2 class="anchored" data-anchor-id="crear-el-modelo-completo">Crear el modelo completo</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mymodel</span> = model<span class="er">(</span><span class="ex">speciation</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La función <code>model()</code> recorre las conexiones de la red probabilística y construye el objeto que utilizará el MCMC.</p>
+</section>
+<section id="configuración-de-los-monitores" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-de-los-monitores">Configuración de los monitores</h2>
+<section id="monitor-de-todos-los-parámetros" class="level3">
+<h3 class="anchored" data-anchor-id="monitor-de-todos-los-parámetros">Monitor de todos los parámetros</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">monitors.append</span><span class="er">(</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnModel</span><span class="er">(</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">filename</span> = <span class="st">"../output/Eupomphini_EBD.log"</span>,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">printgen</span> = 10,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">separator</span> = TAB</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Este monitor:</p>
+<ul>
+<li>guarda los parámetros del modelo en <code>../output/Eupomphini_EBD.log</code>;</li>
+<li>registra un estado cada 10 generaciones;</li>
+<li>utiliza tabulaciones como separador.</li>
+</ul>
+</section>
+<section id="monitores-de-tasas-y-tiempos" class="level3">
+<h3 class="anchored" data-anchor-id="monitores-de-tasas-y-tiempos">Monitores de tasas y tiempos</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">monitors.append</span><span class="er">(</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnFile</span><span class="er">(</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">filename</span> = <span class="st">"../output/Eupomphini_EBD_speciation_rates.log"</span>,</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">printgen</span> = 10,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">separator</span> = TAB,</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">speciation</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="ex">monitors.append</span><span class="er">(</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnFile</span><span class="er">(</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">filename</span> = <span class="st">"../output/Eupomphini_EBD_speciation_times.log"</span>,</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">printgen</span> = 10,</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    <span class="ex">separator</span> = TAB,</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">interval_times</span></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a><span class="ex">monitors.append</span><span class="er">(</span></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnFile</span><span class="er">(</span></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>    <span class="ex">filename</span> = <span class="st">"../output/Eupomphini_EBD_extinction_rates.log"</span>,</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>    <span class="ex">printgen</span> = 10,</span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>    <span class="ex">separator</span> = TAB,</span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>    <span class="ex">extinction</span></span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a><span class="ex">monitors.append</span><span class="er">(</span></span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnFile</span><span class="er">(</span></span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a>    <span class="ex">filename</span> = <span class="st">"../output/Eupomphini_EBD_extinction_times.log"</span>,</span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a>    <span class="ex">printgen</span> = 10,</span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a>    <span class="ex">separator</span> = TAB,</span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a>    <span class="ex">interval_times</span></span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="monitor-en-pantalla" class="level2">
+<h2 class="anchored" data-anchor-id="monitor-en-pantalla">Monitor en pantalla</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">monitors.append</span><span class="er">(</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnScreen</span><span class="er">(</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">printgen</span> = 1000,</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">extinction_global_scale,</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">speciation_global_scale</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">)</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Cada 1000 generaciones se muestran en pantalla los valores de las escalas globales de especiación y extinción.</p>
+</section>
+<section id="configuración-del-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-del-mcmc">Configuración del MCMC</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mymcmc</span> = mcmc<span class="er">(</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mymodel,</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">monitors,</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">moves,</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">nruns</span> = 2,</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">combine</span> = <span class="st">"mixed"</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>mymodel</code> contiene el modelo probabilístico.</li>
+<li><code>monitors</code> especifica qué información se almacenará.</li>
+<li><code>moves</code> contiene los movimientos utilizados para explorar el espacio de parámetros.</li>
+<li><code>nruns=2</code> ejecuta dos corridas independientes.</li>
+<li><code>combine="mixed"</code> combina las muestras de las corridas en la salida.</li>
+</ul>
+<p>Las corridas independientes permiten evaluar la <strong>convergencia</strong> del análisis. Combinar las muestras no sustituye la evaluación de convergencia.</p>
+</section>
+<section id="ejecutar-el-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="ejecutar-el-mcmc">Ejecutar el MCMC</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mymcmc.run</span><span class="er">(</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">generations</span> = 50000</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="visualización-de-las-tasas-de-especiación-y-extinción" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-de-las-tasas-de-especiación-y-extinción">Visualización de las tasas de especiación y extinción</h2>
+<p>Finalmente, utilizamos <strong>RevGadgets</strong> en R para resumir las muestras posteriores y visualizar las tasas a través del tiempo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>speciation_time_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_times.log"</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>speciation_rate_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_speciation_rates.log"</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>extinction_time_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_times.log"</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>extinction_rate_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/div_epi/Eupomphini_EBD_extinction_rates.log"</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>rates <span class="ot">&lt;-</span> <span class="fu">processDivRates</span>(</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">speciation_time_log =</span> speciation_time_file,</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">speciation_rate_log =</span> speciation_rate_file,</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">extinction_time_log =</span> extinction_time_file,</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">extinction_rate_log =</span> extinction_rate_file,</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">burnin =</span> <span class="fl">0.25</span>,</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">summary =</span> <span class="st">"median"</span></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plotDivRates</span>(<span class="at">rates =</span> rates) <span class="sc">+</span></span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Millions of years ago"</span>) <span class="sc">+</span></span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Rate per million years"</span>)</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u1_intro_diversification_2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
