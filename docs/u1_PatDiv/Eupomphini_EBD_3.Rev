@@ -76,7 +76,7 @@ monitors.append(mnScreen(printgen=1000, extinction_global_scale, speciation_glob
 
 ### ejecutar power posterior distributions
 pow_p = powerPosterior(mymodel, moves, monitors, "../output/Eupomphini_EBD/Eupomphini_EBD_3_powp.out", cats=50, sampleFreq=10)
-pow_p.burnin(generations=50000,tuningInterval=200)
+pow_p.burnin(generations=50000)
 pow_p.run(generations=5000)
 
 ### usar stepping-stone sampling para calcular marginal likelihoods

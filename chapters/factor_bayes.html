@@ -341,8 +341,8 @@ window.Quarto = {
 <p><strong>Problema al elegir modelos:</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 40%">
-<col style="width: 59%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -372,10 +372,6 @@ BF(M_0, M_1) = \frac{P(X | M_0)}{P(X | M_1)}
 </ul>
 <p><strong>Interpretación intuitiva:</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 80%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Valor del BF</th>
@@ -485,7 +481,7 @@ BF(M_0, M_1) = \frac{P(X | M_0)}{P(X | M_1)}
 </ul>
 <p><strong>Importante: hacer “burn-in” antes de empezar:</strong></p>
 <p>Antes de empezar el análisis real, hacemos un burn-in para que la simulación no empiece desde un valor raro, sino desde un lugar donde ya la MCMC está estable.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pow_p.burnin</span>(<span class="at">generations=</span><span class="dv">10000</span>, <span class="at">tuningInterval=</span><span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pow_p.burnin</span>(<span class="at">generations=</span><span class="dv">10000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Corre 10,000 generaciones antes de empezar a recolectar datos.</li>
 <li>Ajusta los movimientos cada 1000 generaciones.</li>
@@ -531,9 +527,9 @@ K = ln[BF(M_0, M_1)] = ln[P(X | M_0)] - ln[P(X | M_1)]
 <p><strong>Paso 3. Interpretar K:</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 45%">
-<col style="width: 29%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -566,11 +562,6 @@ K = ln[BF(M_0, M_1)] = ln[P(X | M_0)] - ln[P(X | M_1)]
 <p><strong>Ejemplo (con números inventados para ilustrar):</strong></p>
 <p><strong>Tabla 1. Probabilidades marginales:</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 37%">
-<col style="width: 30%">
-<col style="width: 31%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Modelo</th>
@@ -625,8 +616,8 @@ K = ln[BF(M_0, M_1)] = ln[P(X | M_0)] - ln[P(X | M_1)]
 </table>
 <p>💡 En el ejemplo:</p>
 <ul>
-<li><p>Con <strong><span class="math inline">\(K\)</span> = 2.2 (SS)</strong> → Evidencia <strong>sustancial a favor de <span class="math inline">\(M_0\)</span></strong>.</p></li>
-<li><p>Con <strong><span class="math inline">\(K\)</span> = 1.6 (PS)</strong> → También evidencia <strong>sustancial a favor de <span class="math inline">\(M_0\)</span></strong>.</p></li>
+<li><p>Con <span class="math inline">\(K\)</span> = 2.2 (SS) → Evidencia <strong>sustancial a favor de</strong> <span class="math inline">\(M_0\)</span>.</p></li>
+<li><p>Con <span class="math inline">\(K\)</span> = 1.6 (PS) → También evidencia <strong>sustancial a favor de</strong> <span class="math inline">\(M_0\)</span>.</p></li>
 </ul>
 
 
