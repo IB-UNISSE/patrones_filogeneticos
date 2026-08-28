@@ -254,17 +254,19 @@ library(TreePar)
 tree <- read.nexus("../docs/u1_PatDiv/subarbol_ingroup.nex")
 
 # Visualizar el árbol
-ggtree(tree) + theme_tree()
+ggtree(tree) + 
+  theme_tree() +
+   geom_text2(aes(subset = !isTip, label = node), hjust = -0.3) 
 
 ```
 
 ## Obtención de los Tiempos de Especiación
 
-Extraeremos y ordenaremos los tiempos de especiación (tiempos de ramificación) del árbol:
+Extraeremos y ordenaremos los tiempos de especiación del árbol:
 
 ```{r}
 # Obtener y ordenar los tiempos de especiación
-# La función getx() extrae los tiempos de ramificación del árbol.
+# La función getx() extrae los tiempos para cada nodo del árbol.
 times <- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.
 times <- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.
 print(times)
@@ -276,7 +278,7 @@ Definiremos los parámetros necesarios para el análisis de cambios en las tasas
 
 ```{r}
 rho <- 22/26  # Proporción de especies muestreadas (22 de 26 especies)
-grid <- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)
+grid <- 0.2   # Tamaño de la ventana de búsqueda de cambios de tasa (en millones de años)
 start <- min(times)   # Tiempo inicial para la búsqueda de cambios de tasa
 end <- max(times)     # Tiempo final para la búsqueda de cambios de tasa
 ```
