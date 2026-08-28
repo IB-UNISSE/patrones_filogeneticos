@@ -12,8 +12,8 @@ Cuando trabajamos con datos es común tener **varios modelos posibles** que podr
 
 **Problema al elegir modelos:**
 
-| Si usamos un modelo muy simple            | Si usamos un modelo muy complejo                                |
-|-----------------------------|-------------------------------------------|
+| Si usamos un modelo muy simple | Si usamos un modelo muy complejo |
+|----|----|
 | ❌ No captura toda la información (sesgo) | ❌ Se ajusta demasiado a los datos (sobreajuste, alta varianza) |
 
 Por eso, necesitamos una manera objetiva de decidir qué modelo es mejor.
@@ -35,8 +35,8 @@ Donde:
 
 **Interpretación intuitiva:**
 
-| Valor del BF | Interpretación                                           |
-|--------------|----------------------------------------------------------|
+| Valor del BF | Interpretación                                      |
+|--------------|-----------------------------------------------------|
 | $BF > 1$     | Los datos favorecen el **modelo** $M_0$ sobre $M_1$ |
 | $BF < 1$     | Los datos favorecen el **modelo** $M_1$ sobre $M_0$ |
 
@@ -147,7 +147,7 @@ pow_p = powerPosterior(mymodel, moves, monitors, "output/model1.out", cats=50)
 Antes de empezar el análisis real, hacemos un burn-in para que la simulación no empiece desde un valor raro, sino desde un lugar donde ya la MCMC está estable.
 
 ``` r
-pow_p.burnin(generations=10000, tuningInterval=1000)
+pow_p.burnin(generations=10000)
 ```
 
 -   Corre 10,000 generaciones antes de empezar a recolectar datos.
@@ -217,11 +217,11 @@ $$
 
 **Paso 3. Interpretar K:**
 
-| Valor de $K$ | Interpretación                          | Modelo preferido         |
-|------------------|---------------------------------|---------------------|
-| $K > 1$            | Soporte a favor de M0                   | M0 (modelo simple)       |
-| $K < -1$           | Soporte a favor de M1                   | M1 (modelo complejo)     |
-| $-1 < K < 1$       | Sin preferencia clara entre los modelos | Ninguno claramente mejor |
+| Valor de $K$ | Interpretación | Modelo preferido |
+|----|----|----|
+| $K > 1$ | Soporte a favor de M0 | M0 (modelo simple) |
+| $K < -1$ | Soporte a favor de M1 | M1 (modelo complejo) |
+| $-1 < K < 1$ | Sin preferencia clara entre los modelos | Ninguno claramente mejor |
 
 > **Nota:** Para convertirlo a Factor de Bayes "real", solo elevas $e^k$, pero normalmente usamos $K$ directamente para comparar.
 
@@ -229,24 +229,23 @@ $$
 
 **Tabla 1. Probabilidades marginales:**
 
-| Modelo                                   | Path Sampling (lnL)               | Stepping-Stone (lnL)              |
-|---------------------------|----------------------|-----------------------|
-| $M_0$ - Diversificación con 3 intervalos | -120.5                            | -119.8                            |
-| $M_1$ - Diversificación con 5 intervalos | -122.1                            | -122.0                            |
-| $K$                                | $(-120.5) - (-122.1) = 1.6$ | $(-119.8) - (-122.0) = 2.2$ |
+| Modelo | Path Sampling (lnL) | Stepping-Stone (lnL) |
+|----|----|----|
+| $M_0$ - Diversificación con 3 intervalos | -120.5 | -119.8 |
+| $M_1$ - Diversificación con 5 intervalos | -122.1 | -122.0 |
+| $K$ | $(-120.5) - (-122.1) = 1.6$ | $(-119.8) - (-122.0) = 2.2$ |
 
 **Interpretación según la escala de Jeffreys:**
 
-| Valor de $K$   | Interpretación          |
-|------------|-------------------------|
-| 0 a 1.16   | Mención mínima (débil). |
-| 1.16 a 2.3 | Evidencia sustancial.   |
-| 2.3 a 4.6  | Evidencia fuerte.       |
-| > 4.6     | Evidencia decisiva.     |
+| Valor de $K$ | Interpretación          |
+|--------------|-------------------------|
+| 0 a 1.16     | Mención mínima (débil). |
+| 1.16 a 2.3   | Evidencia sustancial.   |
+| 2.3 a 4.6    | Evidencia fuerte.       |
+| \> 4.6       | Evidencia decisiva.     |
 
 💡 En el ejemplo:
 
--   Con **$K$ = 2.2 (SS)** → Evidencia **sustancial a favor de $M_0$**.
+-   Con $K$ = 2.2 (SS) → Evidencia **sustancial a favor de** $M_0$.
 
--   Con **$K$ = 1.6 (PS)** → También evidencia **sustancial a favor de $M_0$**.
-
+-   Con $K$ = 1.6 (PS) → También evidencia **sustancial a favor de** $M_0$.

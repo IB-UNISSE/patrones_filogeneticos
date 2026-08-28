@@ -32,7 +32,7 @@ El **objetivo de la inferencia bayesiana** es obtener la **distribución posteri
 # Diferencia entre Inferencia Bayesiana y Máxima Verosimilitud
 
 |   | **Máxima Verosimilitud (MV)** | **Inferencia Bayesiana** |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | **Objetivo** | Encontrar el valor de $\theta$ que maximiza $P(D \mid \theta)$ | Obtener $P(\theta \mid D)$ |
 | **Prior** | No | Sí |
 | **Resultado principal** | Estimación puntual de $\theta$ | Distribución posterior de $\theta$ |
@@ -208,7 +208,7 @@ Aquí se crean 10 variables estocásticas `theta[i]`, todas con una distribució
 ## Operadores de asignación en RevBayes
 
 | Operador | Uso |
-|------------------------------------|------------------------------------|
+|----|----|
 | `<-` | Variable constante del modelo |
 | `~` | Variable estocástica |
 | `:=` | Variable determinista |
@@ -286,7 +286,7 @@ En un análisis real, un prior podría justificarse con estudios previos, conoci
 Los parámetros $\alpha$ y $\beta$ también controlan qué tan **concentrada** está la distribución. Por ejemplo:
 
 | Prior | Media | Interpretación |
-|------------------------|-----------------------:|------------------------|
+|----|---:|----|
 | $\text{Beta}(1,1)$ | 0.50 | Distribución uniforme: todos los valores de $p$ son igualmente plausibles |
 | $\text{Beta}(4,1)$ | 0.80 | Centrada en 0.80, pero relativamente amplia |
 | $\text{Beta}(8,2)$ | 0.80 | Centrada en 0.80, con concentración moderada |
@@ -338,7 +338,7 @@ Es decir, **los datos por sí solos apuntan a un valor de 0.70**.
 Antes de calcular la posterior, conviene identificar qué representa cada letra:
 
 | Símbolo | Significado | En este ejemplo |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | $p$ | Parámetro que queremos estimar | Probabilidad de que un estudiante disfrute el ambiente |
 | $D$ | Datos observados | 7 disfrutaron y 3 no, de 10 estudiantes |
 | $P(p)$ | **Prior** | Lo que asumimos sobre $p$ antes de observar estos datos |
