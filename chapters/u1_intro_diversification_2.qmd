@@ -70,7 +70,7 @@ resbd[[2]]
 
 | Índice | Parámetro estimado | Descripción |
 |------------------------|------------------------|------------------------|
-| **1** | 70.02138 | **−log**L (*negative log-likelihood*) del modelo|
+| **1** | 70.02138 | **−log**L (*negative log-likelihood*) del modelo |
 | **2** | $3.10 \times 10^{-7}$ | Turnover ($\epsilon = \mu/\lambda$) |
 | **3** | 0.08910 | Diversificación neta ($r = \lambda - \mu$) |
 
@@ -187,14 +187,14 @@ p_tree + p_tasas + plot_layout(ncol = 1, heights = c(1, 1.5))
 
 ## Comparación de modelos usando Likelihood Ratio Test (LRT)
 
-**¿Qué es la prueba LRT?**  
+**¿Qué es la prueba LRT?**\
 La prueba de razón de verosimilitudes (*Likelihood Ratio Test*, LRT) permite comparar modelos anidados, es decir, modelos donde uno representa una versión más simple del otro.
 
 En este caso se comparan:
 
-- un modelo birth-death sin cambios en las tasas,
-- un modelo birth-death con un cambio en las tasas,
-- un modelo birth-death con dos cambios en las tasas.
+-   un modelo birth-death sin cambios en las tasas,
+-   un modelo birth-death con un cambio en las tasas,
+-   un modelo birth-death con dos cambios en las tasas.
 
 TreePar reporta el **negative log-likelihood** ($-\log L$). Por lo tanto, el estadístico LRT se calcula como:
 
@@ -231,9 +231,9 @@ nll_2shift
 
 Los valores obtenidos son:
 
-- Modelo BD sin cambios: $-\log L = 70.02138$
-- Modelo con un cambio: $-\log L = 62.95893$
-- Modelo con dos cambios: $-\log L = 60.45200$
+-   Modelo BD sin cambios: $-\log L = 70.02138$
+-   Modelo con un cambio: $-\log L = 62.95893$
+-   Modelo con dos cambios: $-\log L = 60.45200$
 
 ### Comparación BD vs. BD con un cambio
 
@@ -247,8 +247,8 @@ p_LR1
 
 **Resultados:**
 
-- $LR = 14.12491$
-- $p \approx 0.00274$
+-   $LR = 14.12491$
+-   $p \approx 0.00274$
 
 El modelo birth-death con **un cambio en las tasas** presenta un ajuste significativamente mejor que el modelo sin cambios.
 
@@ -264,8 +264,8 @@ p_LR2
 
 **Resultados:**
 
-- $LR = 5.01386$
-- $p \approx 0.171$
+-   $LR = 5.01386$
+-   $p \approx 0.171$
 
 No existe evidencia suficiente para concluir que el modelo con **dos cambios** mejora significativamente al modelo con un solo cambio.
 
@@ -301,16 +301,16 @@ pero permite ocasionalmente cambios grandes. De esta manera, el modelo puede rep
 
 ### ¿Qué aporta el HSMRF?
 
-- **Escala logarítmica:** permite modelar tasas positivas que pueden variar varios órdenes de magnitud.
-- **Dependencia temporal:** la tasa de un intervalo se construye a partir de la tasa del intervalo anterior.
-- **Regularización:** la mayoría de los cambios entre intervalos son favorecidos a ser pequeños.
-- **Adaptabilidad local:** algunos intervalos pueden presentar cambios grandes cuando los datos los apoyan.
+-   **Escala logarítmica:** permite modelar tasas positivas que pueden variar varios órdenes de magnitud.
+-   **Dependencia temporal:** la tasa de un intervalo se construye a partir de la tasa del intervalo anterior.
+-   **Regularización:** la mayoría de los cambios entre intervalos son favorecidos a ser pequeños.
+-   **Adaptabilidad local:** algunos intervalos pueden presentar cambios grandes cuando los datos los apoyan.
 
 ## Lectura del árbol
 
 Comenzamos cargando el árbol filogenético [previamente filtrado](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification.html).
 
-```bash
+``` bash
 T <- readTrees("../docs/u1_PatDiv/subarbol_ingroup.nex")[1]
 taxa <- T.taxa()
 ```
@@ -319,7 +319,7 @@ taxa <- T.taxa()
 
 Los movimientos controlarán cómo la cadena MCMC propone nuevos valores para los parámetros, mientras que los monitores almacenarán los resultados.
 
-```bash
+``` bash
 moves    = VectorMoves()
 monitors = VectorMonitors()
 ```
@@ -328,7 +328,7 @@ monitors = VectorMonitors()
 
 Dividiremos la historia del árbol en **10 intervalos**. Diez intervalos generan nueve límites internos o puntos de separación entre intervalos.
 
-```bash
+``` bash
 NUM_INTERVALS = 10
 NUM_BREAKS := NUM_INTERVALS - 1
 ```
@@ -352,7 +352,7 @@ library(ggplot2)
 
 tree <- read.nexus("../docs/u1_PatDiv/subarbol_ingroup.nex")
 
-NUM_INTERVALS <- 10
+NUM_INTERVALS <- 9
 
 tree_depth <- max(node.depth.edgelength(tree))
 
@@ -386,7 +386,7 @@ El HSMRF necesita un parámetro que controle la **variabilidad global de los cam
 
 En este análisis utilizamos:
 
-```bash
+``` bash
 speciation_global_scale_hyperprior <- 0.044
 extinction_global_scale_hyperprior <- 0.044
 ```
@@ -422,7 +422,7 @@ Con los valores por defecto, `RevGadgets` calibra el prior considerando un núme
 
 La escala global se modela mediante una distribución Half-Cauchy:
 
-```bash
+``` bash
 speciation_global_scale ~ dnHalfCauchy(0,1)
 extinction_global_scale ~ dnHalfCauchy(0,1)
 ```
@@ -468,7 +468,7 @@ Significa:
 
 El modelo comienza con las tasas en el presente y construye las tasas de los intervalos anteriores avanzando hacia el pasado.
 
-```bash
+``` bash
 log_speciation_at_present ~ dnUniform(-10.0,10.0)
 log_speciation_at_present.setValue(0.0)
 
@@ -478,7 +478,7 @@ log_extinction_at_present.setValue(-1.0)
 
 ## Movimientos MCMC para las tasas presentes
 
-```bash
+``` bash
 moves.append(
   mvScaleBactrian(
     log_speciation_at_present,
@@ -498,7 +498,7 @@ Estos movimientos permiten actualizar durante el MCMC los parámetros correspond
 
 ## Modelar los cambios entre intervalos
 
-```bash
+``` bash
 for (i in 1:NUM_BREAKS) {
 
   sigma_speciation[i] ~ dnHalfCauchy(0,1)
@@ -523,7 +523,6 @@ for (i in 1:NUM_BREAKS) {
 }
 ```
 
-
 La desviación estándar de cada cambio depende de:
 
 $$
@@ -533,6 +532,7 @@ $$
 \times
 \text{global scale hyperprior}
 $$
+
 ```{r, echo=FALSE}
 library(tidyverse)
 
@@ -615,7 +615,7 @@ Cuando $\sigma_i$ es grande, la distribución Normal se ensancha y permite valor
 
 RevBayes utiliza `fnassembleContinuousMRF()` para acumular estos cambios a partir de un valor inicial y reconstruir las tasas de cada intervalo.
 
-```bash
+``` bash
 speciation := fnassembleContinuousMRF(
   log_speciation_at_present,
   delta_log_speciation,
@@ -630,11 +630,12 @@ extinction := fnassembleContinuousMRF(
   order = 1
 )
 ```
+
 ## Movimientos MCMC específicos del HSMRF
 
 El HSMRF requiere movimientos que aprovechen la estructura jerárquica del modelo.
 
-```bash
+``` bash
 moves.append(
   mvEllipticalSliceSamplingSimple(
     delta_log_speciation,
@@ -691,7 +692,7 @@ moves.append(
 ```
 
 | Movimiento | Parámetros que actualiza | Función principal |
-|---|---|---|
+|------------------------|------------------------|------------------------|
 | `mvEllipticalSliceSamplingSimple` | $\Delta_i$ | Actualiza conjuntamente los cambios en log-tasa. |
 | `mvHSRFHyperpriorsGibbs` | Escala global, $\sigma_i$ y $\Delta_i$ | Actualiza la estructura jerárquica del HSMRF mediante Gibbs sampling. |
 | `mvHSRFIntervalSwap` | Pares $(\Delta_i,\sigma_i)$ | Intercambia configuraciones entre intervalos temporales. |
@@ -700,7 +701,7 @@ moves.append(
 
 Ahora definimos las edades que separan los diez intervalos.
 
-```bash
+``` bash
 interval_times <- abs(
   T.rootAge() *
   seq(1, NUM_BREAKS, 1) /
@@ -710,10 +711,10 @@ interval_times <- abs(
 
 Donde:
 
-- `T.rootAge()` obtiene la edad de la raíz.
-- `seq(1, NUM_BREAKS, 1)` genera los nueve límites internos entre los diez intervalos.
-- La división entre `NUM_INTERVALS` distribuye esos límites de manera equidistante a lo largo de la edad de la raíz.
-- `abs()` garantiza que las edades de los límites se expresen como valores positivos.
+-   `T.rootAge()` obtiene la edad de la raíz.
+-   `seq(1, NUM_BREAKS, 1)` genera los nueve límites internos entre los diez intervalos.
+-   La división entre `NUM_INTERVALS` distribuye esos límites de manera equidistante a lo largo de la edad de la raíz.
+-   `abs()` garantiza que las edades de los límites se expresen como valores positivos.
 
 Los tiempos representan edades que aumentan **desde el presente hacia el pasado**, donde el presente corresponde a tiempo 0.
 
@@ -721,7 +722,7 @@ Los tiempos representan edades que aumentan **desde el presente hacia el pasado*
 
 Si el árbol contiene 22 de las 26 especies conocidas del grupo:
 
-```bash
+``` bash
 rho <- T.ntips()/26
 ```
 
@@ -739,7 +740,7 @@ Este parámetro permite incorporar el muestreo taxonómico incompleto al modelo.
 
 Ahora utilizamos las tasas de especiación y extinción estimadas para definir el árbol de tiempos.
 
-```bash
+``` bash
 timetree ~ dnEpisodicBirthDeath(
   rootAge = T.rootAge(),
   lambdaRates = speciation,
@@ -755,18 +756,18 @@ timetree ~ dnEpisodicBirthDeath(
 
 Aquí:
 
-- `lambdaRates` contiene las tasas de especiación por intervalo;
-- `muRates` contiene las tasas de extinción por intervalo;
-- `lambdaTimes` y `muTimes` indican los límites temporales;
-- `rho` representa la fracción de especies actuales muestreadas;
-- `samplingStrategy="uniform"` supone muestreo uniforme entre las especies actuales;
-- `condition="survival"` condiciona el proceso a su supervivencia.
+-   `lambdaRates` contiene las tasas de especiación por intervalo;
+-   `muRates` contiene las tasas de extinción por intervalo;
+-   `lambdaTimes` y `muTimes` indican los límites temporales;
+-   `rho` representa la fracción de especies actuales muestreadas;
+-   `samplingStrategy="uniform"` supone muestreo uniforme entre las especies actuales;
+-   `condition="survival"` condiciona el proceso a su supervivencia.
 
 ## Asignar el árbol observado
 
 El árbol es nuestro dato observado. Por ello se fija al nodo estocástico mediante `clamp()`:
 
-```bash
+``` bash
 timetree.clamp(T)
 ```
 
@@ -774,7 +775,7 @@ Conceptualmente, el modelo evalúa qué valores de las tasas hacen más probable
 
 ## Crear el modelo completo
 
-```bash
+``` bash
 mymodel = model(speciation)
 ```
 
@@ -784,7 +785,7 @@ La función `model()` recorre las conexiones de la red probabilística y constru
 
 ### Monitor de todos los parámetros
 
-```bash
+``` bash
 monitors.append(
   mnModel(
     filename = "../output/Eupomphini_EBD.log",
@@ -796,13 +797,13 @@ monitors.append(
 
 Este monitor:
 
-- guarda los parámetros del modelo en `../output/Eupomphini_EBD.log`;
-- registra un estado cada 10 generaciones;
-- utiliza tabulaciones como separador.
+-   guarda los parámetros del modelo en `../output/Eupomphini_EBD.log`;
+-   registra un estado cada 10 generaciones;
+-   utiliza tabulaciones como separador.
 
 ### Monitores de tasas y tiempos
 
-```bash
+``` bash
 monitors.append(
   mnFile(
     filename = "../output/Eupomphini_EBD_speciation_rates.log",
@@ -842,7 +843,7 @@ monitors.append(
 
 ## Monitor en pantalla
 
-```bash
+``` bash
 monitors.append(
   mnScreen(
     printgen = 1000,
@@ -856,7 +857,7 @@ Cada 1000 generaciones se muestran en pantalla los valores de las escalas global
 
 ## Configuración del MCMC
 
-```bash
+``` bash
 mymcmc = mcmc(
   mymodel,
   monitors,
@@ -866,17 +867,17 @@ mymcmc = mcmc(
 )
 ```
 
-- `mymodel` contiene el modelo probabilístico.
-- `monitors` especifica qué información se almacenará.
-- `moves` contiene los movimientos utilizados para explorar el espacio de parámetros.
-- `nruns=2` ejecuta dos corridas independientes.
-- `combine="mixed"` combina las muestras de las corridas en la salida.
+-   `mymodel` contiene el modelo probabilístico.
+-   `monitors` especifica qué información se almacenará.
+-   `moves` contiene los movimientos utilizados para explorar el espacio de parámetros.
+-   `nruns=2` ejecuta dos corridas independientes.
+-   `combine="mixed"` combina las muestras de las corridas en la salida.
 
 Las corridas independientes permiten evaluar la **convergencia** del análisis. Combinar las muestras no sustituye la evaluación de convergencia.
 
 ## Ejecutar el MCMC
 
-```bash
+``` bash
 mymcmc.run(
   generations = 50000
 )
@@ -909,5 +910,3 @@ p <- plotDivRates(rates = rates) +
 
 p
 ```
-
-
