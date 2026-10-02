@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/u1_intro_diversification_5.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-13f3b9144cfbd4bffe19d1212ca92176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ae5d55f8a41ff9e4654feece7b8084e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -162,7 +163,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias</a> 
@@ -536,17 +538,17 @@ ABC &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; e_C &amp; e_B &amp; e_A &amp; - \\
 <h3 class="anchored" data-anchor-id="construcción-de-una-matriz-de-tasa-dec-en-revbayes.">🧠 Construcción de una matriz de tasa DEC en RevBayes.</h3>
 <p>Ejecutar en <code>rb</code> los siguientes comandos:</p>
 <p>Definir el número de áreas:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n_areas <span class="ot">&lt;-</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n_areas <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="anagenesis-matriz-de-tasas-q" class="level2">
 <h2 class="anchored" data-anchor-id="anagenesis-matriz-de-tasas-q">Anagenesis: Matriz de tasas <span class="math inline">\(Q\)</span></h2>
 <p><strong>Matriz de dispersión:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        dr[i][j] <span class="ot">&lt;-</span> <span class="fl">1.0</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>¿Qué está haciendo este código?</strong></p>
 <ol type="1">
 <li><p>Se define una <strong>matriz cuadrada</strong> de tamaño <span class="math inline">\(3x3\)</span> (porque hay 3 áreas).</p></li>
@@ -554,12 +556,12 @@ ABC &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; e_C &amp; e_B &amp; e_A &amp; - \\
 <li><p>Se asume que la dispersión <strong>no depende de la dirección</strong> (<code>A → B</code> es igual que <code>B → A</code>).</p></li>
 </ol>
 <p><strong>Matriz de extirpación:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        er[i][j] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    er[i][i] <span class="ot">&lt;-</span> <span class="fl">1.0</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>¿Qué está haciendo este código?</strong></p>
 <ol type="1">
 <li><p>Se define una <strong>matriz cuadrada</strong> de tamaño <span class="math inline">\(3x3\)</span> (porque hay 3 áreas).</p></li>
@@ -570,8 +572,8 @@ ABC &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; e_C &amp; e_B &amp; e_A &amp; - \\
 </ol>
 <p><strong>Crear la matriz Q_DEC:</strong></p>
 <p>Con las matrices <code>dr</code> y <code>er</code> creadas, ahora vas a construir la <strong>matriz Q_DEC</strong>, que define <strong>las tasas de cambio entre todos los estados posibles de rango geográfico</strong>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Q_DEC <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDECRateMatrix</span>(<span class="at">dispersalRates=</span>dr, <span class="at">extirpationRates=</span>er)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Q_DEC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Q_DEC <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDECRateMatrix</span>(<span class="at">dispersalRates=</span>dr, <span class="at">extirpationRates=</span>er)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Q_DEC</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Esto hace lo siguiente:</p>
 <ul>
 <li><p>Calcula automáticamente las <strong>64 combinaciones</strong> de transiciones posibles entre los <strong>8 estados</strong> (con 3 áreas, hay <span class="math inline">\(2^3 = 8\)</span> estados).</p></li>
@@ -582,8 +584,8 @@ ABC &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; e_C &amp; e_B &amp; e_A &amp; - \\
 </ul></li>
 </ul>
 <p><strong>Crear la matriz de probabilidades de transición:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tp_DEC <span class="ot">&lt;-</span> <span class="fu">Q_DEC.getTransitionProbabilities</span>(<span class="at">rate=</span><span class="fl">0.2</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tp_DEC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tp_DEC <span class="ot">&lt;-</span> <span class="fu">Q_DEC.getTransitionProbabilities</span>(<span class="at">rate=</span><span class="fl">0.2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tp_DEC</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Estás calculando la matriz de probabilidades de transición a lo largo de una rama del árbol de longitud 0.2 unidades de tiempo (por ejemplo, millones de años).</p>
 <p><strong>Veamos esta fila:</strong></p>
 <table class="caption-top table">
@@ -669,11 +671,11 @@ ABC &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; e_C &amp; e_B &amp; e_A &amp; - \\
 <section id="codificar-eventos-cladogenéticos-en-dec" class="level2">
 <h2 class="anchored" data-anchor-id="codificar-eventos-cladogenéticos-en-dec">Codificar eventos cladogenéticos en DEC</h2>
 <p>Cuando una especie se divide en dos nuevas especies (cladogénesis), su rango geográfico también se hereda de diferentes formas.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>clado_event_types <span class="ot">=</span> [ <span class="st">"s"</span>, <span class="st">"a"</span> ]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>clado_event_types <span class="ot">=</span> [ <span class="st">"s"</span>, <span class="st">"a"</span> ]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>clado_event_probs <span class="ot">&lt;-</span> <span class="fu">simplex</span>( <span class="dv">1</span>, <span class="dv">1</span> )</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>P_DEC <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDECCladoProbs</span>(<span class="at">eventProbs=</span>clado_event_probs,</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">eventTypes=</span>clado_event_types,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">numCharacters=</span>n_areas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">numCharacters=</span>n_areas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li><code>clado_event_types = [ "s", "a" ]</code></li>
 </ol>
@@ -855,7 +857,7 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <p><a href="../docs/u2_PatBio/silversword.tre" download="">📥 Descargar Árbol Filogenético</a></p>
 <p><a href="../docs/u2_PatBio/silversword.n4.range.nex" download="">📥 Descargar matriz de datos con los rangos codificados de cada especie.</a></p>
 <p><strong>Crea un scrip para RevBayes y copia el siguiente codigo.</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># definir rutas de los archivos y ruta de salida</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># definir rutas de los archivos y ruta de salida</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>range_fn <span class="ot">=</span> <span class="st">"../data/silversword.n4.range.nex"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tree_fn  <span class="ot">=</span> <span class="st">"../data/silversword.tre"</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>out_fn   <span class="ot">=</span> <span class="st">"../output/DEC/simple"</span></span>
@@ -890,59 +892,59 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>n_gen <span class="ot">=</span> <span class="dv">3000</span></span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelos del árbol filogenético #</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># leer el árbol filogenético</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(tree_fn)[<span class="dv">1</span>]</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># leer el árbol filogenético</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(tree_fn)[<span class="dv">1</span>]</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Eventos Anagenéticos #</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span>
 <span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="do">##########################</span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelos biogeográficos #</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="do">##########################</span></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa global del proceso biogeográfico</span></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co"># El modelo incluye un parámetro que controla la velocidad global </span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># de los cambios biogeográficos a lo largo de las ramas del árbol</span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>rate_bg <span class="sc">~</span> <span class="fu">dnLoguniform</span>(<span class="fl">1E-4</span>,<span class="fl">1E2</span>)</span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="fu">rate_bg.setValue</span>(<span class="fl">1E-2</span>)</span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(rate_bg, <span class="at">weight=</span><span class="dv">4</span>) )</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa global del proceso biogeográfico</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co"># El modelo incluye un parámetro que controla la velocidad global </span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co"># de los cambios biogeográficos a lo largo de las ramas del árbol</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>rate_bg <span class="sc">~</span> <span class="fu">dnLoguniform</span>(<span class="fl">1E-4</span>,<span class="fl">1E2</span>)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="fu">rate_bg.setValue</span>(<span class="fl">1E-2</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(rate_bg, <span class="at">weight=</span><span class="dv">4</span>) )</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa relativa de dispersión</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicialmente se supone que todas las rutas de dispersión tienen el mismo peso relativo</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>dispersal_rate <span class="ot">&lt;-</span> <span class="fl">1.0</span></span>
 <span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa relativa de dispersión</span></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicialmente se supone que todas las rutas de dispersión tienen el mismo peso relativo</span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>dispersal_rate <span class="ot">&lt;-</span> <span class="fl">1.0</span></span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co"># construir la matriz de tasas de dispersión relativa</span></span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>        dr[i][j] <span class="ot">&lt;-</span> dispersal_rate</span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa relativa de extirpación</span></span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>log_sd <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Media en escala logarítmica.</span></span>
-<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Esta parametrización hace que la media de la distribución</span></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="co"># lognormal en la escala original sea igual a 1.</span></span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>log_mean <span class="ot">&lt;-</span> <span class="fu">ln</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span>log_sd<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="co"># La distribución solo permite valores positivos y está centrada,</span></span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="co"># en promedio, alrededor de 1.</span></span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>extirpation_rate <span class="sc">~</span> <span class="fu">dnLognormal</span>(<span class="at">mean=</span>log_mean, <span class="at">sd=</span>log_sd)</span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(extirpation_rate, <span class="at">weight=</span><span class="dv">2</span>) )</span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="co"># construir la matriz de tasas de extirpación relativa</span></span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>        er[i][j] <span class="ot">&lt;-</span> <span class="fl">0.0</span>       </span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    er[i][i] <span class="sc">:</span><span class="er">=</span> extirpation_rate</span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a><span class="co"># construir la matriz de tasas del modelo DEC (Q)</span></span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>Q_DEC <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDECRateMatrix</span>(<span class="at">dispersalRates=</span>dr,</span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>                         <span class="at">extirpationRates=</span>er)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co"># construir la matriz de tasas de dispersión relativa</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>        dr[i][j] <span class="ot">&lt;-</span> dispersal_rate</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa relativa de extirpación</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>log_sd <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Media en escala logarítmica.</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Esta parametrización hace que la media de la distribución</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="co"># lognormal en la escala original sea igual a 1.</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>log_mean <span class="ot">&lt;-</span> <span class="fu">ln</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span>log_sd<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="co"># La distribución solo permite valores positivos y está centrada,</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="co"># en promedio, alrededor de 1.</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>extirpation_rate <span class="sc">~</span> <span class="fu">dnLognormal</span>(<span class="at">mean=</span>log_mean, <span class="at">sd=</span>log_sd)</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(extirpation_rate, <span class="at">weight=</span><span class="dv">2</span>) )</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="co"># construir la matriz de tasas de extirpación relativa</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_areas) {</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>        er[i][j] <span class="ot">&lt;-</span> <span class="fl">0.0</span>       </span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    er[i][i] <span class="sc">:</span><span class="er">=</span> extirpation_rate</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="co"># construir la matriz de tasas del modelo DEC (Q)</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>Q_DEC <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDECRateMatrix</span>(<span class="at">dispersalRates=</span>dr,</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>                         <span class="at">extirpationRates=</span>er)</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>                           </span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a><span class="do">##########################</span></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Eventos cladogenéticos # </span></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a><span class="do">##########################</span></span>
 <span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>                           </span>
 <span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a><span class="co"># construir la matriz de probabilidades de eventos cladogenéticos</span></span>
 <span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>clado_event_types <span class="ot">&lt;-</span> [ <span class="st">"s"</span>, <span class="st">"a"</span> ]</span>
@@ -951,72 +953,76 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>                         <span class="at">eventTypes=</span>clado_event_types,</span>
 <span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>                         <span class="at">numCharacters=</span>n_areas)</span>
 <span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="co"># modelo de cadena de Markov continua (CTMC) filogenética con eventos cladogenéticos</span></span>
-<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>m_bg <span class="sc">~</span> <span class="fu">dnPhyloCTMCClado</span>(<span class="at">tree=</span>tree,</span>
-<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Q=</span>Q_DEC,</span>
-<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>                           <span class="at">cladoProbs=</span>P_DEC,</span>
-<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>                           <span class="at">branchRates=</span>rate_bg,</span>
-<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>                           <span class="at">type=</span><span class="st">"NaturalNumbers"</span>,</span>
-<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>                           <span class="at">nSites=</span><span class="dv">1</span>)</span>
-<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a><span class="co"># fijar (clamp) los datos observados de rangos al modelo</span></span>
-<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a><span class="fu">m_bg.clamp</span>(dat_range_n)</span>
-<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a><span class="do">#############</span></span>
-<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitores #</span></span>
-<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a><span class="do">#############</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="do">###############</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo CTMC # </span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="do">###############</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a><span class="co"># modelo de cadena de Markov continua (CTMC) filogenética con eventos cladogenéticos</span></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>m_bg <span class="sc">~</span> <span class="fu">dnPhyloCTMCClado</span>(<span class="at">tree=</span>tree,</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Q=</span>Q_DEC,</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>                           <span class="at">cladoProbs=</span>P_DEC,</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>                           <span class="at">branchRates=</span>rate_bg,</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>                           <span class="at">type=</span><span class="st">"NaturalNumbers"</span>,</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>                           <span class="at">nSites=</span><span class="dv">1</span>)</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="co"># fijar (clamp) los datos observados de rangos al modelo</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a><span class="fu">m_bg.clamp</span>(dat_range_n)</span>
 <span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">100</span>, rate_bg) )</span>
-<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">file=</span>out_fn<span class="sc">+</span><span class="st">".model.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>) )</span>
-<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnFile</span>(tree, <span class="at">filename=</span>out_fn<span class="sc">+</span><span class="st">".tre"</span>, <span class="at">printgen=</span><span class="dv">10</span>) )</span>
-<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnJointConditionalAncestralState</span>(<span class="at">tree=</span>tree,</span>
-<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">ctmc=</span>m_bg,</span>
-<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">type=</span><span class="st">"NaturalNumbers"</span>,</span>
-<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">withTips=</span>true,</span>
-<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">withStartStates=</span>true,</span>
-<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">filename=</span>out_fn<span class="sc">+</span><span class="st">".states.log"</span>,</span>
-<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">printgen=</span><span class="dv">10</span>) )</span>
-<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnStochasticCharacterMap</span>(<span class="at">ctmc=</span>m_bg,</span>
-<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">filename=</span>out_fn<span class="sc">+</span><span class="st">".stoch.log"</span>,</span>
-<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">printgen=</span><span class="dv">100</span>) )</span>
-<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a><span class="do">############</span></span>
-<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="co"># Análisis #</span></span>
-<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a><span class="do">############</span></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a><span class="do">#############</span></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitores #</span></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a><span class="do">#############</span></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">100</span>, rate_bg) )</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">file=</span>out_fn<span class="sc">+</span><span class="st">".model.log"</span>, <span class="at">printgen=</span><span class="dv">10</span>) )</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnFile</span>(tree, <span class="at">filename=</span>out_fn<span class="sc">+</span><span class="st">".tre"</span>, <span class="at">printgen=</span><span class="dv">10</span>) )</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnJointConditionalAncestralState</span>(<span class="at">tree=</span>tree,</span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">ctmc=</span>m_bg,</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">type=</span><span class="st">"NaturalNumbers"</span>,</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">withTips=</span>true,</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">withStartStates=</span>true,</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">filename=</span>out_fn<span class="sc">+</span><span class="st">".states.log"</span>,</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">printgen=</span><span class="dv">10</span>) )</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnStochasticCharacterMap</span>(<span class="at">ctmc=</span>m_bg,</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">filename=</span>out_fn<span class="sc">+</span><span class="st">".stoch.log"</span>,</span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">printgen=</span><span class="dv">100</span>) )</span>
 <span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="co"># construir el objeto de análisis del modelo a partir del grafo del modelo</span></span>
-<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(m_bg)</span>
-<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a><span class="co"># crear el objeto de análisis MCMC</span></span>
-<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves)</span>
-<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a><span class="co"># ejecutar el análisis MCMC</span></span>
-<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(n_gen)</span>
-<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a><span class="co"># salir de revbayes</span></span>
-<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="fu">quit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="do">############</span></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a><span class="co"># Análisis #</span></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="do">############</span></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a><span class="co"># construir el objeto de análisis del modelo a partir del grafo del modelo</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(m_bg)</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="co"># crear el objeto de análisis MCMC</span></span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves)</span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="co"># ejecutar el análisis MCMC</span></span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(n_gen)</span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a><span class="co"># salir de revbayes</span></span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a><span class="fu">quit</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="procesar-y-visualizar-los-resultados" class="level2">
 <h2 class="anchored" data-anchor-id="procesar-y-visualizar-los-resultados"><strong>Procesar y visualizar los resultados</strong></h2>
 <p>Paso 1: Abre una nueva sesión de RevBayes y crea variables con los nombres de los archivos generados:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>out_str <span class="ot">=</span> <span class="st">"../output/DEC/simple"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>out_str <span class="ot">=</span> <span class="st">"../output/DEC/simple"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>out_state_fn <span class="ot">=</span> out_str <span class="sc">+</span> <span class="st">".states.log"</span>   <span class="co"># Archivo con los estados ancestrales</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>out_tree_fn  <span class="ot">=</span> out_str <span class="sc">+</span> <span class="st">".tre"</span>          <span class="co"># Árboles muestreados del posterior</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>out_mcc_fn   <span class="ot">=</span> out_str <span class="sc">+</span> <span class="st">".mcc.tre"</span>      <span class="co"># Árbol de máxima credibilidad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>out_mcc_fn   <span class="ot">=</span> out_str <span class="sc">+</span> <span class="st">".mcc.tre"</span>      <span class="co"># Árbol de máxima credibilidad</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Paso 2: Este paso <strong>resume los árboles del posterior</strong> (salvando la variabilidad) en <strong>un solo árbol representativo</strong>, útil para visualizar:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tree_trace <span class="ot">=</span> <span class="fu">readTreeTrace</span>(<span class="at">file=</span>out_tree_fn, <span class="at">treetype=</span><span class="st">"clock"</span>)  <span class="co"># Leer los árboles</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tree_trace <span class="ot">=</span> <span class="fu">readTreeTrace</span>(<span class="at">file=</span>out_tree_fn, <span class="at">treetype=</span><span class="st">"clock"</span>)  <span class="co"># Leer los árboles</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tree_trace.setBurnin</span>(<span class="fl">0.25</span>)          <span class="co"># Eliminar 25% como burn-in</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n_burn <span class="ot">=</span> <span class="fu">tree_trace.getBurnin</span>()     <span class="co"># Guardar el número de árboles descartados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n_burn <span class="ot">=</span> <span class="fu">tree_trace.getBurnin</span>()     <span class="co"># Guardar el número de árboles descartados</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>💡 Aunque en este análisis usaste un árbol fijo, este paso es <strong>importante cuando el árbol se infiere</strong> y varía entre muestras (ej. posterior bayesiano completo).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mcc_tree <span class="ot">=</span> <span class="fu">mccTree</span>(tree_trace, <span class="at">file=</span>out_mcc_fn)  <span class="co"># Crear y guardar el árbol MCC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mcc_tree <span class="ot">=</span> <span class="fu">mccTree</span>(tree_trace, <span class="at">file=</span>out_mcc_fn)  <span class="co"># Crear y guardar el árbol MCC</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Paso 3: Cargar los estados ancestrales reconstruidos</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>state_trace <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="at">file=</span>out_state_fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>state_trace <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="at">file=</span>out_state_fn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Este archivo contiene las <strong>probabilidades posteriores de los estados en los nodos</strong> del árbol.</p>
 <p>Paso 4: Cargar los árboles anotados con estados ancestrales</p>
 <p>⚠️ Aquí es importante usar <code>readAncestralStateTreeTrace</code> y <strong>no</strong> <code>readTreeTrace</code>, para mantener las anotaciones:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tree_trace <span class="ot">=</span> <span class="fu">readAncestralStateTreeTrace</span>(<span class="at">file=</span>out_tree_fn, <span class="at">treetype=</span><span class="st">"clock"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tree_trace <span class="ot">=</span> <span class="fu">readAncestralStateTreeTrace</span>(<span class="at">file=</span>out_tree_fn, <span class="at">treetype=</span><span class="st">"clock"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Paso 5: Generar el árbol con estados ancestrales</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>anc_tree <span class="ot">=</span> <span class="fu">ancestralStateTree</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>anc_tree <span class="ot">=</span> <span class="fu">ancestralStateTree</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree=</span>mcc_tree,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ancestral_state_trace_vector=</span>state_trace,</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree_trace=</span>tree_trace,</span>
@@ -1024,7 +1030,7 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">file=</span>out_str <span class="sc">+</span> <span class="st">".ase.tre"</span>,</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">burnin=</span>n_burn,</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">site=</span><span class="dv">1</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="graficar-en-r-con-revgadgets" class="level2">
 <h2 class="anchored" data-anchor-id="graficar-en-r-con-revgadgets">Graficar en R con RevGadgets</h2>
@@ -1033,7 +1039,7 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <li><p><strong>Copia y pega</strong> exactamente el siguiente contenido</p></li>
 <li><p><strong>Guarda el archivo</strong> dentro de la carpeta de resultados de tu análisis DEC con el nombre `range_colors.txt`</p></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>range,color</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>range,color</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">"K"</span>,<span class="st">"#7570b3"</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">"O"</span>,<span class="st">"#e7298a"</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">"M"</span>,<span class="st">"#66a61e"</span></span>
@@ -1048,14 +1054,14 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="st">"KOH"</span>,<span class="st">"#d95f02"</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="st">"KMH"</span>,<span class="st">"royalblue"</span></span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="st">"OMH"</span>,<span class="st">"#666666"</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="st">"KOMH"</span>,<span class="st">"darkviolet"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="st">"KOMH"</span>,<span class="st">"darkviolet"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Este script define dos funciones auxiliares que se usan para <strong>visualizar los resultados</strong> de un análisis de biogeografía (por ejemplo, con el modelo DEC), específicamente para:</p>
 <ul>
 <li><p>Mostrar los <strong>estados ancestrales</strong> como gráficos de pastel (pie charts) sobre el árbol filogenético.</p></li>
 <li><p>Añadir <strong>información geológica</strong>, como los tiempos de formación de las islas hawaianas, sobre el eje temporal del árbol.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las bibliotecas necesarias</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las bibliotecas necesarias</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
@@ -1111,11 +1117,11 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Devolver etiquetas y colores</span></span>
 <span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>( <span class="fu">list</span>(<span class="at">state_labels=</span>st_lbl, <span class="at">state_colors=</span>st_colors) )</span>
-<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Este script en R <strong>genera una figura</strong> que muestra un árbol filogenético anotado con los <strong>estados ancestrales geográficos</strong>(rango de distribución de cada nodo) inferidos con el modelo DEC en RevBayes. Utiliza gráficos de pastel (pie charts) para representar <strong>la incertidumbre en la reconstrucción</strong> de rangos geográficos a lo largo del árbol evolutivo, y añade <strong>información temporal sobre la formación de las islas hawaianas</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nombres de archivo</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nombres de archivo</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># archivo de salida para la figura final en PDF</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plot_fn <span class="ot">=</span> <span class="st">"../docs/u2_PatBio/output/DEC/simple.range.pdf"</span> </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># árbol con estados ancestrales (generado en RevBayes)</span></span>
@@ -1134,7 +1140,7 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>ase <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(tree_fn,</span>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># Estas etiquetas numéricas deben coincidir con</span></span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># las del archivo original de datos de entrada.</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">state_labels =</span> state_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">state_labels =</span> state_labels)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   |                                              
@@ -1142,7 +1148,7 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
   |                                              
   |========================================| 100%</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graficar los estados ancestrales como gráficos de pastel (pie charts)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graficar los estados ancestrales como gráficos de pastel (pie charts)</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pp  <span class="ot">&lt;-</span> <span class="fu">plotAncStatesPie</span>(<span class="at">t =</span> ase,</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># incluir los estados del nodo raíz</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">include_start_states=</span>T, </span>
@@ -1206,7 +1212,7 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 <span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> pp <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"left"</span>)</span>
 <span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="co"># mostrar gráfico final</span></span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>pp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1214,8 +1220,8 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># guardar el gráfico como archivo PDF</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">file=</span>plot_fn, <span class="at">plot=</span>pp, <span class="at">device=</span><span class="st">"pdf"</span>, <span class="at">height=</span><span class="dv">7</span>, <span class="at">width=</span><span class="dv">10</span>, <span class="at">useDingbats=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># guardar el gráfico como archivo PDF</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">file=</span>plot_fn, <span class="at">plot=</span>pp, <span class="at">device=</span><span class="st">"pdf"</span>, <span class="at">height=</span><span class="dv">7</span>, <span class="at">width=</span><span class="dv">10</span>, <span class="at">useDingbats=</span>F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -1274,13 +1280,14 @@ Ejemplo: <code>ABC → (AB, C)</code></p></li>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
