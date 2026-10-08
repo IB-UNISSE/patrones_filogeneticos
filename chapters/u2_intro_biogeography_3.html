@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/u3_intro_morphology_1.html" rel="next">
-<link href="../chapters/u2_intro_biogeography_2.html" rel="prev">
+<link href="../chapters/u2_intro_biogeography_2.html" rel="next">
+<link href="../chapters/u2_intro_biogeography_1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -178,11 +178,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Instalación de Docker</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/factor_bayes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Comparación de modelos mediante Factores de Bayes</span></a>
   </div>
 </li>
@@ -238,12 +233,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/u2_intro_biogeography_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biogeografía Bayesiana de Islas (BIB)</span></a>
+  <a href="../chapters/u2_intro_biogeography_3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Diversificación dependiente del rango geográfico</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/u2_intro_biogeography_3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Diversificación dependiente del rango geográfico</span></a>
+  <a href="../chapters/u2_intro_biogeography_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biogeografía Bayesiana de Islas (BIB)</span></a>
   </div>
 </li>
       </ul>
@@ -280,23 +275,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><strong>Introducción</strong></a></li>
-  <li><a href="#parámetros-del-modelo-geosse" id="toc-parámetros-del-modelo-geosse" class="nav-link" data-scroll-target="#parámetros-del-modelo-geosse">Parámetros del modelo GeoSSE</a></li>
+  <li><a href="#parámetros-del-modelo-geosse" id="toc-parámetros-del-modelo-geosse" class="nav-link" data-scroll-target="#parámetros-del-modelo-geosse">Parámetros del modelo GeoSSE</a>
+  <ul class="collapse">
+  <li><a href="#diagrama-de-transición" id="toc-diagrama-de-transición" class="nav-link" data-scroll-target="#diagrama-de-transición">Diagrama de transición</a></li>
+  </ul></li>
   <li><a href="#geosse-como-modelo-sse" id="toc-geosse-como-modelo-sse" class="nav-link" data-scroll-target="#geosse-como-modelo-sse">GeoSSE como modelo SSE</a></li>
   <li><a href="#aplicación-del-modelo-geosse-en-revbayes" id="toc-aplicación-del-modelo-geosse-en-revbayes" class="nav-link" data-scroll-target="#aplicación-del-modelo-geosse-en-revbayes">Aplicación del modelo GeoSSE en RevBayes</a></li>
-  <li><a href="#usar-phylo_docker" id="toc-usar-phylo_docker" class="nav-link" data-scroll-target="#usar-phylo_docker">🐳 Usar Phylo_Docker</a>
+  <li><a href="#acceso-al-servidor" id="toc-acceso-al-servidor" class="nav-link" data-scroll-target="#acceso-al-servidor">Acceso al servidor</a></li>
+  <li><a href="#imagen-de-revbayes-tensorphylo" id="toc-imagen-de-revbayes-tensorphylo" class="nav-link" data-scroll-target="#imagen-de-revbayes-tensorphylo">Imagen de RevBayes + TensorPhylo</a>
   <ul class="collapse">
-  <li><a href="#paso-1-descargar-la-imagen-según-tu-procesador" id="toc-paso-1-descargar-la-imagen-según-tu-procesador" class="nav-link" data-scroll-target="#paso-1-descargar-la-imagen-según-tu-procesador">📥 Paso 1: Descargar la imagen según tu procesador</a></li>
-  <li><a href="#paso-2-obtener-los-datos-de-la-imagen-phylo_docker" id="toc-paso-2-obtener-los-datos-de-la-imagen-phylo_docker" class="nav-link" data-scroll-target="#paso-2-obtener-los-datos-de-la-imagen-phylo_docker">📥 Paso 2: Obtener los datos de la imagen Phylo_Docker</a></li>
-  <li><a href="#paso-3-ejecutar-el-contenedor-con-un-volumen" id="toc-paso-3-ejecutar-el-contenedor-con-un-volumen" class="nav-link" data-scroll-target="#paso-3-ejecutar-el-contenedor-con-un-volumen">🚀 Paso 3: Ejecutar el contenedor con un volumen</a></li>
+  <li><a href="#comprobar-tensorphylo" id="toc-comprobar-tensorphylo" class="nav-link" data-scroll-target="#comprobar-tensorphylo">Comprobar TensorPhylo</a></li>
   </ul></li>
-  <li><a href="#geosse-en-revbayes" id="toc-geosse-en-revbayes" class="nav-link" data-scroll-target="#geosse-en-revbayes">🚀 GeoSSE en RevBayes</a>
+  <li><a href="#datos-de-entrada" id="toc-datos-de-entrada" class="nav-link" data-scroll-target="#datos-de-entrada">Datos de entrada</a>
   <ul class="collapse">
-  <li><a href="#archivos-necesarios" id="toc-archivos-necesarios" class="nav-link" data-scroll-target="#archivos-necesarios">📂 1. Archivos necesarios</a></li>
-  <li><a href="#iniciar-o-reingresar-al-contenedor" id="toc-iniciar-o-reingresar-al-contenedor" class="nav-link" data-scroll-target="#iniciar-o-reingresar-al-contenedor">🚪 2. Iniciar (o reingresar) al contenedor</a></li>
-  <li><a href="#navega-a-la-carpeta-donde-está-tu-script" id="toc-navega-a-la-carpeta-donde-está-tu-script" class="nav-link" data-scroll-target="#navega-a-la-carpeta-donde-está-tu-script">🏠 3. Navega a la carpeta donde está tu script</a></li>
-  <li><a href="#correr-el-script-.rev-desde-revbayes" id="toc-correr-el-script-.rev-desde-revbayes" class="nav-link" data-scroll-target="#correr-el-script-.rev-desde-revbayes">📜 4. Correr el script <code>.Rev</code> desde RevBayes</a></li>
+  <li><a href="#árbol-filogenético" id="toc-árbol-filogenético" class="nav-link" data-scroll-target="#árbol-filogenético">Árbol filogenético</a></li>
+  <li><a href="#matriz-biogeográfica" id="toc-matriz-biogeográfica" class="nav-link" data-scroll-target="#matriz-biogeográfica">Matriz biogeográfica</a></li>
   </ul></li>
-  <li><a href="#código-en-r-para-graficar" id="toc-código-en-r-para-graficar" class="nav-link" data-scroll-target="#código-en-r-para-graficar">🧬 Código en R para graficar</a></li>
+  <li><a href="#preparar-el-directorio-de-trabajo" id="toc-preparar-el-directorio-de-trabajo" class="nav-link" data-scroll-target="#preparar-el-directorio-de-trabajo">Preparar el directorio de trabajo</a></li>
+  <li><a href="#geosse-en-revbayes" id="toc-geosse-en-revbayes" class="nav-link" data-scroll-target="#geosse-en-revbayes">GeoSSE en RevBayes</a>
+  <ul class="collapse">
+  <li><a href="#cargar-tensorphylo" id="toc-cargar-tensorphylo" class="nav-link" data-scroll-target="#cargar-tensorphylo">Cargar TensorPhylo</a></li>
+  <li><a href="#definir-las-rutas" id="toc-definir-las-rutas" class="nav-link" data-scroll-target="#definir-las-rutas">Definir las rutas</a></li>
+  <li><a href="#leer-la-filogenia" id="toc-leer-la-filogenia" class="nav-link" data-scroll-target="#leer-la-filogenia">Leer la filogenia</a></li>
+  <li><a href="#leer-los-datos-biogeográficos" id="toc-leer-los-datos-biogeográficos" class="nav-link" data-scroll-target="#leer-los-datos-biogeográficos">Leer los datos biogeográficos</a></li>
+  <li><a href="#especiación-dentro-de-regiones" id="toc-especiación-dentro-de-regiones" class="nav-link" data-scroll-target="#especiación-dentro-de-regiones">Especiación dentro de regiones</a></li>
+  <li><a href="#extinción" id="toc-extinción" class="nav-link" data-scroll-target="#extinción">Extinción</a></li>
+  <li><a href="#especiación-entre-regiones" id="toc-especiación-entre-regiones" class="nav-link" data-scroll-target="#especiación-entre-regiones">Especiación entre regiones</a></li>
+  <li><a href="#dispersión" id="toc-dispersión" class="nav-link" data-scroll-target="#dispersión">Dispersión</a></li>
+  <li><a href="#matriz-de-tasas-anagenéticas" id="toc-matriz-de-tasas-anagenéticas" class="nav-link" data-scroll-target="#matriz-de-tasas-anagenéticas">Matriz de tasas anagenéticas</a></li>
+  <li><a href="#eventos-cladogenéticos" id="toc-eventos-cladogenéticos" class="nav-link" data-scroll-target="#eventos-cladogenéticos">Eventos cladogenéticos</a></li>
+  <li><a href="#frecuencias-iniciales" id="toc-frecuencias-iniciales" class="nav-link" data-scroll-target="#frecuencias-iniciales">Frecuencias iniciales</a></li>
+  <li><a href="#definir-el-proceso-geosse" id="toc-definir-el-proceso-geosse" class="nav-link" data-scroll-target="#definir-el-proceso-geosse">Definir el proceso GeoSSE</a></li>
+  <li><a href="#configuración-de-la-mcmc" id="toc-configuración-de-la-mcmc" class="nav-link" data-scroll-target="#configuración-de-la-mcmc">Configuración de la MCMC</a></li>
+  <li><a href="#movimientos-de-la-mcmc" id="toc-movimientos-de-la-mcmc" class="nav-link" data-scroll-target="#movimientos-de-la-mcmc">Movimientos de la MCMC</a></li>
+  <li><a href="#monitores" id="toc-monitores" class="nav-link" data-scroll-target="#monitores">Monitores</a></li>
+  <li><a href="#guardar-las-etiquetas-de-los-estados" id="toc-guardar-las-etiquetas-de-los-estados" class="nav-link" data-scroll-target="#guardar-las-etiquetas-de-los-estados">Guardar las etiquetas de los estados</a></li>
+  <li><a href="#ejecutar-la-mcmc" id="toc-ejecutar-la-mcmc" class="nav-link" data-scroll-target="#ejecutar-la-mcmc">Ejecutar la MCMC</a></li>
+  <li><a href="#reconstrucción-de-estados-ancestrales" id="toc-reconstrucción-de-estados-ancestrales" class="nav-link" data-scroll-target="#reconstrucción-de-estados-ancestrales">Reconstrucción de estados ancestrales</a></li>
+  <li><a href="#ejecutar-el-script-completo" id="toc-ejecutar-el-script-completo" class="nav-link" data-scroll-target="#ejecutar-el-script-completo">Ejecutar el script completo</a></li>
+  <li><a href="#descargar-los-resultados-a-nuestra-computadora" id="toc-descargar-los-resultados-a-nuestra-computadora" class="nav-link" data-scroll-target="#descargar-los-resultados-a-nuestra-computadora">Descargar los resultados a nuestra computadora</a></li>
+  <li><a href="#graficar-los-estados-ancestrales-en-r" id="toc-graficar-los-estados-ancestrales-en-r" class="nav-link" data-scroll-target="#graficar-los-estados-ancestrales-en-r">Graficar los estados ancestrales en R</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u2_intro_biogeography_3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -324,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../docs/u2_PatBio/GeoSSE_ClaSSE.pdf"><img src="../images/u2_PatBio/geosse.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></a></p>
+<p><a href="../docs/u2_PatBio/geosse/geoSSE.pdf"><img src="../images/u2_PatBio/GeoSEE.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></a></p>
 </figure>
 </div>
 <p>Haz clic en la imagen para ver el PDF de la presentación</p>
@@ -348,207 +367,652 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>La <strong>especiación dentro de una región</strong> y la <strong>especiación entre regiones</strong> son procesos cladogenéticos que generan nuevos linajes filogenéticos. Estos eventos pueden resultar en especies hijas que ocupan rangos diferentes al de la especie ancestral.</p></li>
 <li><p>La <strong>extinción</strong> y la <strong>dispersión</strong>, en cambio, son procesos anagenéticos que ocurren a lo largo de las ramas del árbol filogenético. La extinción y la especiación dentro de regiones ocurren en una sola región, mientras que la dispersión y la especiación entre regiones involucran dos o más regiones.</p></li>
 </ul>
-<p>⚠️ <strong>Nota:</strong> El modelo estándar de GeoSSE <strong>no permite</strong> otros tipos de eventos evolutivos. Por ejemplo, <strong>no se permite</strong> que una especie ancestral con un rango amplio produzca dos hijas que <strong>ambas conserven el rango completo</strong> (es decir, no se permite especiación con simpatría total en rangos amplios). Además, GeoSSE solo permite que ocurra <strong>un único evento</strong> por instante de tiempo.</p>
+<p>⚠️ <strong>Nota:</strong> El modelo estándar de GeoSSE <strong>no permite</strong> otros tipos de eventos evolutivos. Por ejemplo, <strong>no se permite</strong> que una especie ancestral con un rango amplio produzca dos hijas que <strong>ambas conserven el rango completo</strong>. Además, GeoSSE solo permite que ocurra <strong>un único evento</strong> por instante de tiempo.</p>
 </section>
 <section id="parámetros-del-modelo-geosse" class="level2">
 <h2 class="anchored" data-anchor-id="parámetros-del-modelo-geosse">Parámetros del modelo GeoSSE</h2>
 <p>El modelo <strong>GeoSSE</strong> permite que <strong>cada región o par de regiones</strong> tenga su propia tasa para cada uno de los procesos evolutivos.</p>
-<p>Por ejemplo:</p>
 <ul>
-<li><p>La tasa de <strong>especiación dentro de la región A</strong> puede ser distinta de la tasa de <strong>especiación dentro de la región B</strong>.</p></li>
-<li><p>La tasa de <strong>dispersión de A a B</strong> no tiene por qué ser igual a la tasa de <strong>dispersión de B a A</strong>.</p></li>
+<li><code>rw</code>: <strong>Vector de tasas de especiación dentro de cada región</strong></li>
+<li><code>re</code>: <strong>Vector de tasas de extinción para cada región</strong></li>
+<li><code>rb</code>: <strong>Matriz de tasas de especiación entre regiones</strong></li>
+<li><code>rd</code>: <strong>Matriz de tasas de dispersión entre regiones</strong></li>
 </ul>
-<p><strong>Representación de las tasas en el modelo</strong></p>
-<p>Al construir el modelo GeoSSE en RevBayes, representaremos estas tasas mediante vectores y matrices:</p>
-<ul>
-<li><p><code>rw</code>: <strong>Vector de tasas de especiación dentro de cada región</strong></p></li>
-<li><p><code>re</code>: <strong>Vector de tasas de extinción para cada región</strong></p></li>
-<li><p><code>rb</code>: <strong>Matriz de tasas de especiación entre regiones</strong></p></li>
-<li><p><code>rd</code>: <strong>Matriz de tasas de dispersión entre regiones</strong></p></li>
-</ul>
-<p><strong>Diagrama de transición</strong></p>
+<section id="diagrama-de-transición" class="level3">
+<h3 class="anchored" data-anchor-id="diagrama-de-transición">Diagrama de transición</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/u2_PatBio/geosse_model.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
 </figure>
 </div>
-<p>El diagrama de transición del modelo GeoSSE para <strong>dos regiones</strong> (basado en la Figura 1 de Goldberg et al.&nbsp;2011) muestra:</p>
+<p>El diagrama de transición del modelo GeoSSE para <strong>dos regiones</strong> muestra:</p>
 <ul>
-<li><p>Procesos <strong>anagenéticos</strong> (extinción y dispersión) representados con <strong>flechas punteadas</strong>.</p></li>
-<li><p>Procesos <strong>cladogenéticos</strong> (especiación dentro y entre regiones) representados con <strong>flechas continuas</strong>.</p></li>
+<li>Procesos <strong>anagenéticos</strong> (extinción y dispersión) representados con <strong>flechas punteadas</strong>.</li>
+<li>Procesos <strong>cladogenéticos</strong> (especiación dentro y entre regiones) representados con <strong>flechas continuas</strong>.</li>
 </ul>
-<p>Este esquema facilita visualizar cómo los linajes cambian de estado y cómo se forman nuevos linajes bajo diferentes escenarios geográficos.</p>
+</section>
 </section>
 <section id="geosse-como-modelo-sse" class="level2">
 <h2 class="anchored" data-anchor-id="geosse-como-modelo-sse">GeoSSE como modelo SSE</h2>
-<p>El modelo GeoSSE forma parte de una clase más amplia de modelos conocidos como <strong>modelos SSE (State-dependent Speciation and Extinction)</strong>. Estos modelos permiten que el <strong>estado de un carácter discreto</strong> (en este caso, el rango geográfico) influya en las tasas de:</p>
+<p>El modelo GeoSSE forma parte de una clase más amplia de modelos conocidos como <strong>modelos SSE (State-dependent Speciation and Extinction)</strong>. Estos modelos permiten que el <strong>estado de un carácter discreto</strong> influya en las tasas de especiación, extinción y transición entre estados.</p>
+<p>Otros ejemplos importantes incluyen:</p>
 <ul>
-<li><p>Especiación</p></li>
-<li><p>Extinción</p></li>
-<li><p>Transición entre estados</p></li>
+<li><a href="https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_4.html"><strong>BiSSE</strong></a></li>
+<li><a href="https://revbayes.github.io/tutorials/sse/classe.html"><strong>ClaSSE</strong></a></li>
 </ul>
-<p>Otros ejemplos importantes de modelos SSE incluyen:</p>
-<ul>
-<li><p><a href="https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_4.html"><strong>BiSSE</strong></a>: para caracteres binarios (e.g., presencia/ausencia de una característica)</p></li>
-<li><p><a href="https://revbayes.github.io/tutorials/sse/classe.html"><strong>ClaSSE</strong></a>: permite cambios en el estado del carácter durante eventos de cladogénesis</p></li>
-</ul>
-<p>El modelo GeoSSE es en realidad un caso especial del modelo ClaSSE, <strong>estructurado y parametrizado específicamente para escenarios biogeográficos</strong>.</p>
+<p>GeoSSE es un caso especial de ClaSSE, <strong>estructurado y parametrizado para escenarios biogeográficos</strong>.</p>
 </section>
 <section id="aplicación-del-modelo-geosse-en-revbayes" class="level2">
 <h2 class="anchored" data-anchor-id="aplicación-del-modelo-geosse-en-revbayes">Aplicación del modelo GeoSSE en RevBayes</h2>
-<p>Este tutorial explica paso a paso cómo realizar un análisis GeoSSE en <strong>RevBayes</strong>. Utilizaremos como ejemplo el caso del género <strong>Kadua</strong>, distribuido en las islas de Hawái.<br>
-En particular, se considerarán dos regiones:</p>
+<p>En esta práctica utilizaremos como ejemplo al género <strong>Kadua</strong>, distribuido en las islas de Hawái, considerando dos regiones:</p>
 <ul>
-<li><p><strong>Islas antiguas</strong></p></li>
-<li><p><strong>Islas jóvenes</strong></p></li>
+<li><strong>Islas antiguas</strong></li>
+<li><strong>Islas jóvenes</strong></li>
 </ul>
-<blockquote class="blockquote">
-<p>📝 <strong>Nota</strong>: Aunque este tutorial se basa en un análisis biogeográfico con dos regiones, el modelo está diseñado para ser <strong>escalable a más regiones</strong>. En general, <a href="https://revbayes.github.io/tutorials/geosse/">GeoSSE</a> puede aplicarse hasta a 8 regiones (lo que implica 255 combinaciones posibles de rangos), aunque pueden requerirse <strong>optimizaciones adicionales</strong>.</p>
-</blockquote>
-<p>En este caso, agrupar las islas hawaianas en solo dos categorías nos permite <strong>enumerar fácilmente todas las tasas del modelo</strong> y facilitar la implementación.</p>
+<p>La práctica se realizará en un <strong>servidor GNU/Linux</strong>. Durante la clase se proporcionarán el usuario, contraseña y dirección del servidor.</p>
 </section>
-<section id="usar-phylo_docker" class="level2">
-<h2 class="anchored" data-anchor-id="usar-phylo_docker">🐳 Usar Phylo_Docker</h2>
-<section id="paso-1-descargar-la-imagen-según-tu-procesador" class="level3">
-<h3 class="anchored" data-anchor-id="paso-1-descargar-la-imagen-según-tu-procesador">📥 Paso 1: Descargar la imagen según tu procesador</h3>
-<p>💻 Si estás en una <strong>Mac con chip Apple (M1, M2, M3)</strong></p>
-<p>Tu arquitectura es <code>arm64</code>. Ejecuta en la terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull sswiston/phylo_docker:slim_arm64</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>🖥️ Si estás en una <strong>PC con procesador Intel o AMD</strong></p>
-<p>Tu arquitectura es <code>amd64</code> (también llamada <code>x86_64</code>). Ejecuta:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull sswiston/phylo_docker:slim_amd64</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="acceso-al-servidor" class="level2">
+<h2 class="anchored" data-anchor-id="acceso-al-servidor">Acceso al servidor</h2>
+<p>Desde una terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> usuario@servidor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Los archivos de datos y el script de la práctica se encuentran en:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/scratch_sda/GeoSSE/shared</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Podemos revisarlos con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /srv/scratch_sda/GeoSSE/shared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Deberás observar al menos:</p>
+<pre class="text"><code>geosse.Rev
+kadua_range_n2.nex
+kadua.tre</code></pre>
 </section>
-<section id="paso-2-obtener-los-datos-de-la-imagen-phylo_docker" class="level3">
-<h3 class="anchored" data-anchor-id="paso-2-obtener-los-datos-de-la-imagen-phylo_docker">📥 Paso 2: Obtener los datos de la imagen Phylo_Docker</h3>
-<p>Conocer los datos de la imagen con el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="imagen-de-revbayes-tensorphylo" class="level2">
+<h2 class="anchored" data-anchor-id="imagen-de-revbayes-tensorphylo">Imagen de RevBayes + TensorPhylo</h2>
+<p>Para esta práctica utilizaremos una imagen de <strong>Apptainer/SIF</strong> preparada específicamente con:</p>
 <ul>
-<li><p><strong>Imagen Docker</strong>: <code>sswiston/phylo_docker</code></p></li>
-<li><p><strong>TAG</strong>: <code>basic_arm64</code></p></li>
-<li><p><strong>ID de imagen</strong>: <code>e7447322ee8d</code></p></li>
+<li><strong>RevBayes 1.4.1</strong></li>
+<li><strong>TensorPhylo</strong></li>
+<li>arquitectura <code>x86_64</code></li>
+<li>soporte para <strong>AVX2</strong></li>
+<li>compilación compatible con procesadores tipo <strong>Intel Haswell/Broadwell o posteriores</strong></li>
 </ul>
+<p>La imagen utilizada en esta práctica fue publicada en Docker Hub:</p>
+<p><a href="https://hub.docker.com/r/ccervantess/revbayes"><strong>ccervantess/revbayes:1.4.1-tensorphylo-avx2</strong></a></p>
+<p>Para esta práctica <strong>no es necesario descargar la imagen</strong>, porque ya se encuentra disponible en el servidor en:</p>
+<pre class="text"><code>/srv/scratch_sda/GeoSSE/shared/rb_tp_1.4.1.sif</code></pre>
+<p>Por lo tanto, todos los usuarios ejecutarán directamente la misma imagen compartida.</p>
+<p>Si se desea utilizar la imagen en otro servidor o computadora con <strong>Apptainer</strong>, puede descargarse desde Docker Hub con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> pull <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  rb_1.4.1_tensorphylo_avx2.sif <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  oras://docker.io/ccervantess/revbayes:1.4.1-tensorphylo-avx2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Podemos comprobar que RevBayes funciona con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  rb_1.4.1_tensorphylo_avx2.sif <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  rb <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La salida deberá indicar:</p>
+<pre class="text"><code>RevBayes version (1.4.1)</code></pre>
+<p>La estructura general del comando es:</p>
+<pre class="text"><code>apptainer exec IMAGEN.sif PROGRAMA ARGUMENTOS</code></pre>
+<section id="comprobar-tensorphylo" class="level3">
+<h3 class="anchored" data-anchor-id="comprobar-tensorphylo">Comprobar TensorPhylo</h3>
+<p>Podemos iniciar RevBayes de manera interactiva utilizando directamente la imagen compartida:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec <span class="dt">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  rb_1.4.1_tensorphylo_avx2.sif <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  rb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Dentro de RevBayes cargamos el plugin:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loadPlugin</span>(<span class="st">"TensorPhylo"</span>, <span class="st">"/.plugins"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>TensorPhylo está instalado dentro de la imagen como:</p>
+<pre class="text"><code>/.plugins/libTensorPhylo.so</code></pre>
+<p>Si el plugin carga correctamente, RevBayes regresará al prompt <code>&gt;</code>.</p>
+<p>Podemos comprobar que una de las funciones proporcionadas por TensorPhylo está disponible:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="st">"dnGLHBDSP"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para salir de RevBayes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="paso-3-ejecutar-el-contenedor-con-un-volumen" class="level3">
-<h3 class="anchored" data-anchor-id="paso-3-ejecutar-el-contenedor-con-un-volumen">🚀 Paso 3: Ejecutar el contenedor con un volumen</h3>
-<p>Un <strong>volumen</strong> permite compartir archivos entre tu sistema operativo y el contenedor de Docker. En este caso, vas a montar la carpeta del proyecto en el contenedor para que puedas editar y guardar tus archivos desde afuera y usarlos dentro del contenedor.</p>
-<p>Abre la Terminal y ejecuta:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> phylodocker <span class="at">-v</span> /Users/cristoichkov/Documents/patrones_filogeneticos:/home/patrones_filogeneticos sswiston/phylo_docker:slim_arm64 /bin/sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Esto te abrirá una terminal dentro del contenedor.</strong></p>
-<p>🔍 Explicación parte por parte:</p>
+</section>
+<section id="datos-de-entrada" class="level2">
+<h2 class="anchored" data-anchor-id="datos-de-entrada">Datos de entrada</h2>
+<p>Para ejecutar el análisis necesitamos únicamente dos archivos de datos:</p>
+<ul>
+<li><code>kadua.tre</code>: árbol filogenético calibrado.</li>
+<li><code>kadua_range_n2.nex</code>: matriz de presencia/ausencia por región.</li>
+</ul>
+<section id="árbol-filogenético" class="level3">
+<h3 class="anchored" data-anchor-id="árbol-filogenético">Árbol filogenético</h3>
+<p>Podemos revisar el árbol con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> /srv/scratch_sda/GeoSSE/shared/kadua.tre</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Está escrito en formato <strong>Newick</strong> y contiene las relaciones filogenéticas y longitudes de rama.</p>
+</section>
+<section id="matriz-biogeográfica" class="level3">
+<h3 class="anchored" data-anchor-id="matriz-biogeográfica">Matriz biogeográfica</h3>
+<p>Podemos revisar la matriz con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /srv/scratch_sda/GeoSSE/shared/kadua_range_n2.nex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Cada fila corresponde a una especie y cada columna a una región.</p>
+<p>Para dos regiones:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 37%">
-<col style="width: 62%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Parte</th>
-<th>Significado</th>
+<th>Rango</th>
+<th>Vector</th>
+<th>Interpretación</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>docker run</code></td>
-<td>Ejecuta un nuevo contenedor</td>
+<td>A</td>
+<td><code>10</code></td>
+<td>presente solo en A</td>
 </tr>
 <tr class="even">
-<td><code>-it</code></td>
-<td>Modo interactivo + terminal (equivale a <code>--interactive --tty</code>)</td>
+<td>B</td>
+<td><code>01</code></td>
+<td>presente solo en B</td>
 </tr>
 <tr class="odd">
-<td><code>--name</code></td>
-<td>Asignar un nombre al contenedor</td>
-</tr>
-<tr class="even">
-<td><code>-v /Users/pc:/home/contenedor</code></td>
-<td>[ruta_local]:[ruta_en_el_contenedor]</td>
-</tr>
-<tr class="odd">
-<td><code>sswiston/phylo_docker:slim_arm64</code></td>
-<td>Imagen que vas a ejecutar <code>arm64</code> o <code>amd64</code></td>
-</tr>
-<tr class="even">
-<td><code>/bin/sh</code></td>
-<td>Ruta al programa shell estándar</td>
+<td>AB</td>
+<td><code>11</code></td>
+<td>presente en ambas</td>
 </tr>
 </tbody>
 </table>
-<p>🔸 Para salir del contenedor:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>▶️ Volver a entrar a un contenedor ya creado</p>
-<p>1.- Verifica que el contenedor existe:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>2.- Inicia el contenedor de nuevo:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> start <span class="at">-ai</span> phylodocker</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El rango vacío <code>00</code> no se considera, por lo que con dos regiones tenemos:</p>
+<p>[ 2^2 - 1 = 3 ]</p>
+<p>rangos posibles.</p>
+</section>
+</section>
+<section id="preparar-el-directorio-de-trabajo" class="level2">
+<h2 class="anchored" data-anchor-id="preparar-el-directorio-de-trabajo">Preparar el directorio de trabajo</h2>
+<p>Primero crearemos una carpeta de trabajo en nuestro <code>home</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/GeoSSE/data</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/GeoSSE/output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora copiamos los dos archivos de entrada:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /srv/scratch_sda/GeoSSE/shared/kadua.tre ~/GeoSSE/data/</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /srv/scratch_sda/GeoSSE/shared/kadua_range_n2.nex ~/GeoSSE/data/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>También podemos copiar el script completo para ejecutarlo al final:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /srv/scratch_sda/GeoSSE/shared/geosse.Rev ~/GeoSSE/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Entramos al directorio:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/GeoSSE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La estructura será:</p>
+<pre class="text"><code>GeoSSE/
+├── data/
+│   ├── kadua.tre
+│   └── kadua_range_n2.nex
+├── output/
+└── geosse.Rev</code></pre>
+</section>
+<section id="geosse-en-revbayes" class="level1">
+<h1>GeoSSE en RevBayes</h1>
+<section id="cargar-tensorphylo" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-tensorphylo">Cargar TensorPhylo</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loadPlugin</span>(<span class="st">"TensorPhylo"</span>, <span class="st">"/.plugins"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="definir-las-rutas" class="level2">
+<h2 class="anchored" data-anchor-id="definir-las-rutas">Definir las rutas</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FILESYSTEM</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>fp          <span class="ot">=</span> <span class="st">"./"</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>dat_fp      <span class="ot">=</span> fp <span class="sc">+</span> <span class="st">"data/"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>out_fp      <span class="ot">=</span> fp <span class="sc">+</span> <span class="st">"output/"</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>bg_fn       <span class="ot">=</span> dat_fp <span class="sc">+</span> <span class="st">"kadua_range_n2.nex"</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>phy_fn      <span class="ot">=</span> dat_fp <span class="sc">+</span> <span class="st">"kadua.tre"</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>lbl_fn      <span class="ot">=</span> out_fp <span class="sc">+</span> <span class="st">"kadua_range_label.txt"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>bg_fn</code> y <code>phy_fn</code> son los archivos de entrada.</p>
+<p><code>lbl_fn</code> será un <strong>archivo de salida</strong> generado por el propio análisis.</p>
+</section>
+<section id="leer-la-filogenia" class="level2">
+<h2 class="anchored" data-anchor-id="leer-la-filogenia">Leer la filogenia</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PHYLOGENETIC DATA</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>phy         <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(phy_fn)[<span class="dv">1</span>]</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>tree_height <span class="ot">&lt;-</span> <span class="fu">phy.rootAge</span>()</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>taxa        <span class="ot">=</span> <span class="fu">phy.taxa</span>()</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>num_taxa    <span class="ot">=</span> <span class="fu">taxa.size</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li><p><code>-a</code> lo adjunta a la terminal</p></li>
-<li><p><code>-i</code> lo pone en modo interactivo</p></li>
+<li><code>phy</code>: árbol filogenético.</li>
+<li><code>tree_height</code>: edad de la raíz.</li>
+<li><code>taxa</code>: nombres de los taxones.</li>
+<li><code>num_taxa</code>: número de taxones.</li>
 </ul>
-<p>⏹️ Para detener un contenedor:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop phylodocker</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>🧽 Para <strong>eliminar</strong> un contenedor:</p>
-<p>Antes de poder borrar una imagen, debes eliminar <strong>todos los contenedores</strong> que la usen. Eliminar el contenedor:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm phylodocker</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>🗑️ Para eliminar una <strong>imagen Docker</strong>:</p>
-<ol type="1">
-<li>Verifica imágenes disponibles:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="2" type="1">
-<li>Elimina la imagen:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rmi sswiston/phylo_docker:basic_arm64</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
+<section id="leer-los-datos-biogeográficos" class="level2">
+<h2 class="anchored" data-anchor-id="leer-los-datos-biogeográficos">Leer los datos biogeográficos</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BIOGEOGRAPHIC DATA</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>bg_01 <span class="ot">=</span> <span class="fu">readDiscreteCharacterData</span>(bg_fn)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bg_01.show</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Los datos originales están codificados como presencia/ausencia por región.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>num_regions <span class="ot">=</span> <span class="fu">bg_01.nchar</span>()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>num_ranges  <span class="ot">=</span> <span class="fu">abs</span>(<span class="dv">2</span><span class="sc">^</span>num_regions <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>num_pairs   <span class="ot">=</span> num_regions<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> num_regions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Con dos regiones:</p>
+<pre class="text"><code>num_regions = 2
+num_ranges  = 3
+num_pairs   = 2</code></pre>
+<p>Ahora transformamos la matriz binaria al formato requerido por GeoSSE:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>bg_dat <span class="ot">=</span> <span class="fu">formatDiscreteCharacterData</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    bg_01,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">format=</span><span class="st">"GeoSSE"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">numStates=</span>num_ranges</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La secuencia es:</p>
+<pre class="text"><code>kadua_range_n2.nex
+        ↓
+readDiscreteCharacterData()
+        ↓
+      bg_01
+        ↓
+formatDiscreteCharacterData()
+        ↓
+      bg_dat</code></pre>
 </section>
-<section id="geosse-en-revbayes" class="level2">
-<h2 class="anchored" data-anchor-id="geosse-en-revbayes">🚀 GeoSSE en RevBayes</h2>
-<section id="archivos-necesarios" class="level3">
-<h3 class="anchored" data-anchor-id="archivos-necesarios">📂 1. Archivos necesarios</h3>
-<p>Descarga y guarda los archvios en tu carpeta de proyecto</p>
+<section id="especiación-dentro-de-regiones" class="level2">
+<h2 class="anchored" data-anchor-id="especiación-dentro-de-regiones">Especiación dentro de regiones</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WITHIN-REGION SPECIATION</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>rho_w <span class="sc">~</span> <span class="fu">dnExp</span>(<span class="dv">1</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>m_w_simplex <span class="sc">~</span> <span class="fu">dnDirichlet</span>(<span class="fu">rep</span>(<span class="dv">1</span>, num_regions))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>m_w <span class="sc">:</span><span class="er">=</span> m_w_simplex <span class="sc">*</span> num_regions</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>r_w <span class="sc">:</span><span class="er">=</span> rho_w <span class="sc">*</span> m_w</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>rho_w</code> representa una tasa base de especiación dentro de regiones.</p>
+<p><code>m_w_simplex</code> permite que cada región tenga un peso relativo diferente.</p>
+<p>Finalmente:</p>
+<p>[ r_w = _w m_w ]</p>
+<p>produce las tasas específicas para cada región.</p>
+</section>
+<section id="extinción" class="level2">
+<h2 class="anchored" data-anchor-id="extinción">Extinción</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EXTINCTION</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>rho_e <span class="sc">~</span> <span class="fu">dnExp</span>(<span class="dv">1</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>m_e_simplex <span class="sc">~</span> <span class="fu">dnDirichlet</span>(<span class="fu">rep</span>(<span class="dv">1</span>, num_regions))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>m_e <span class="sc">:</span><span class="er">=</span> m_e_simplex <span class="sc">*</span> num_regions</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>r_e <span class="sc">:</span><span class="er">=</span> rho_e <span class="sc">*</span> m_e</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora definimos la tasa de extinción completa del linaje para cada rango:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_ranges) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    mu[i] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&lt;=</span> num_regions) {</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        mu[i] <span class="sc">:</span><span class="er">=</span> r_e[i]</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Los rangos amplios reciben inicialmente una tasa de extinción completa igual a cero porque para desaparecer completamente deben perder primero todas sus regiones.</p>
+</section>
+<section id="especiación-entre-regiones" class="level2">
+<h2 class="anchored" data-anchor-id="especiación-entre-regiones">Especiación entre regiones</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BETWEEN-REGION SPECIATION</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>rho_b <span class="sc">~</span> <span class="fu">dnExp</span>(<span class="dv">1</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>m_b_simplex <span class="sc">~</span> <span class="fu">dnDirichlet</span>(<span class="fu">rep</span>(<span class="dv">1</span>, num_pairs<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>m_b_idx <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_regions) {</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    m_b[i][i] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_regions) {</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (i <span class="sc">&lt;</span> j) {</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>            m_b[i][j] <span class="sc">:</span><span class="er">=</span> <span class="fu">abs</span>(</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>                m_b_simplex[m_b_idx] <span class="sc">*</span> num_pairs</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>            m_b[j][i] <span class="sc">:</span><span class="er">=</span> <span class="fu">abs</span>(</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>                m_b_simplex[m_b_idx] <span class="sc">*</span> num_pairs</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>            m_b_idx <span class="sc">+</span><span class="er">=</span> <span class="dv">1</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>        r_b[i][j] <span class="sc">:</span><span class="er">=</span> rho_b <span class="sc">*</span> m_b[i][j]</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La especiación entre regiones es <strong>simétrica</strong>:</p>
+<p>[ b_{A,B}=b_{B,A} ]</p>
+</section>
+<section id="dispersión" class="level2">
+<h2 class="anchored" data-anchor-id="dispersión">Dispersión</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DISPERSAL</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>rho_d <span class="sc">~</span> <span class="fu">dnExp</span>(<span class="dv">1</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>m_d_simplex <span class="sc">~</span> <span class="fu">dnDirichlet</span>(<span class="fu">rep</span>(<span class="dv">1</span>, num_pairs))</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>m_d_idx <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_regions) {</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    m_d[i][i] <span class="ot">&lt;-</span> <span class="fl">0.0</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_regions) {</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (i <span class="sc">!=</span> j) {</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>            m_d[i][j] <span class="sc">:</span><span class="er">=</span> <span class="fu">abs</span>(</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>                m_d_simplex[m_d_idx<span class="sc">++</span>] <span class="sc">*</span> num_pairs</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>        r_d[i][j] <span class="sc">:</span><span class="er">=</span> rho_d <span class="sc">*</span> m_d[i][j]</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A diferencia de la especiación entre regiones, la dispersión puede ser <strong>asimétrica</strong>:</p>
+<p>[ d_{A,B} d_{B,A} ]</p>
+</section>
+<section id="matriz-de-tasas-anagenéticas" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-tasas-anagenéticas">Matriz de tasas anagenéticas</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANAGENETIC RATE MATRIX</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>Q_bg <span class="sc">:</span><span class="er">=</span> <span class="fu">fnBiogeographyRateMatrix</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dispersalRates=</span>r_d,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">extirpationRates=</span>r_e,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">maxRangeSize=</span>num_regions</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esta matriz reúne los procesos que ocurren <strong>a lo largo de las ramas</strong>:</p>
 <ul>
-<li><p><a href="../docs/u2_PatBio/geosse/kadua.tre" download="">Árbol filogenético calibrado</a></p></li>
-<li><p><a href="../docs/u2_PatBio/geosse/kadua_range_n2.nex" download="">Matriz de presencia/ausencia por región</a></p></li>
-<li><p><a href="../docs/u2_PatBio/geosse/geosse.Rev" download="">Script GeoSSE</a></p></li>
+<li>dispersión;</li>
+<li>extirpación.</li>
 </ul>
+<p>Podemos revisar cómo RevBayes representa los rangos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Q_bg.getStateDescriptions</span>()[<span class="dv">1</span>]</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Q_bg.getStateDescriptions</span>()[<span class="dv">2</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Q_bg.getStateDescriptions</span>()[<span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para dos regiones esperamos:</p>
+<pre class="text"><code>10
+01
+11</code></pre>
 </section>
-<section id="iniciar-o-reingresar-al-contenedor" class="level3">
-<h3 class="anchored" data-anchor-id="iniciar-o-reingresar-al-contenedor">🚪 2. Iniciar (o reingresar) al contenedor</h3>
-<p>Si el contenedor ya existe pero está detenido, puedes <strong>volver a entrar</strong> con:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> start <span class="at">-ai</span> phylodocker</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="eventos-cladogenéticos" class="level2">
+<h2 class="anchored" data-anchor-id="eventos-cladogenéticos">Eventos cladogenéticos</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CLADOGENETIC RATE MATRIX</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>clado_map <span class="sc">:</span><span class="er">=</span> <span class="fu">fnBiogeographyCladoEventsBD</span>(</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">speciation_rates=</span>[rho_w,rho_b],</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">within_region_features=</span>m_w,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">between_region_features=</span>m_b,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_range_size=</span>num_regions,</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_subrange_split_size=</span>num_regions</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>De aquí obtenemos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="sc">:</span><span class="er">=</span> <span class="fu">clado_map.getSpeciationRateSumPerState</span>()</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>omega  <span class="sc">:</span><span class="er">=</span> <span class="fu">clado_map.getCladogeneticProbabilityMatrix</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>lambda</code>: tasa total de especiación para cada estado.</li>
+<li><code>omega</code>: probabilidades de los distintos resultados cladogenéticos.</li>
+</ul>
+<p>Podemos hacer algunas comprobaciones:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clado_map.getRate</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>) <span class="sc">==</span> r_w[<span class="dv">1</span>]</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>r_w[<span class="dv">1</span>] <span class="sc">==</span> lambda[<span class="dv">1</span>]</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">clado_map.getRate</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">==</span> r_w[<span class="dv">2</span>]</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>r_w[<span class="dv">2</span>] <span class="sc">==</span> lambda[<span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="navega-a-la-carpeta-donde-está-tu-script" class="level3">
-<h3 class="anchored" data-anchor-id="navega-a-la-carpeta-donde-está-tu-script">🏠 3. Navega a la carpeta donde está tu script</h3>
-<p>Ya dentro del contenedor, ve a la carpeta donde guardaste el script <code>.Rev</code>. Por ejemplo:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/patrones_filogeneticos/scripts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="frecuencias-iniciales" class="level2">
+<h2 class="anchored" data-anchor-id="frecuencias-iniciales">Frecuencias iniciales</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PI</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>pi_base <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, num_ranges)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>pi <span class="ot">&lt;-</span> <span class="fu">simplex</span>(pi_base)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Con esto asignamos la misma probabilidad inicial a todos los rangos posibles.</p>
 </section>
-<section id="correr-el-script-.rev-desde-revbayes" class="level3">
-<h3 class="anchored" data-anchor-id="correr-el-script-.rev-desde-revbayes">📜 4. Correr el script <code>.Rev</code> desde RevBayes</h3>
-<p>Una vez dentro de la carpeta de scripts, ejecuta:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rb</span> geosse.Rev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="definir-el-proceso-geosse" class="level2">
+<h2 class="anchored" data-anchor-id="definir-el-proceso-geosse">Definir el proceso GeoSSE</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TREE</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>timetree <span class="sc">~</span> <span class="fu">dnGLHBDSP</span>(</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">rootAge     =</span> tree_height,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">lambda      =</span> lambda,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu          =</span> mu,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">eta         =</span> Q_bg,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">omega       =</span> omega,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pi          =</span> pi,</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">rho         =</span> <span class="dv">1</span>,</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">condition   =</span> <span class="st">"time"</span>,</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">taxa        =</span> taxa,</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">nStates     =</span> num_ranges,</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">nProc       =</span> <span class="dv">4</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ahora fijamos el modelo a nuestros datos observados:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clamp</span>(phy)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">timetree.clampCharData</span>(bg_dat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El árbol observado entra mediante:</p>
+<pre class="text"><code>kadua.tre
+   ↓
+readTrees()
+   ↓
+phy
+   ↓
+timetree.clamp(phy)</code></pre>
+<p>Los rangos observados entran mediante:</p>
+<pre class="text"><code>kadua_range_n2.nex
+        ↓
+bg_01
+        ↓
+bg_dat
+        ↓
+timetree.clampCharData(bg_dat)</code></pre>
 </section>
+<section id="configuración-de-la-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-de-la-mcmc">Configuración de la MCMC</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MCMC SETUP</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>n_gen    <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>n_burn   <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>printgen <span class="ot">=</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Nota:</strong> Esta MCMC es corta y se utiliza únicamente con fines de práctica.</p>
+</blockquote>
 </section>
-<section id="código-en-r-para-graficar" class="level2">
-<h2 class="anchored" data-anchor-id="código-en-r-para-graficar">🧬 Código en R para graficar</h2>
+<section id="movimientos-de-la-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="movimientos-de-la-mcmc">Movimientos de la MCMC</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MCMC MOVES</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>mvi <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mvScale</span>(rho_w, <span class="at">weight=</span><span class="dv">1</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mvScale</span>(rho_e, <span class="at">weight=</span><span class="dv">1</span>)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mvScale</span>(rho_b, <span class="at">weight=</span><span class="dv">1</span>)</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mvScale</span>(rho_d, <span class="at">weight=</span><span class="dv">1</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mvSimplex</span>(m_e_simplex, <span class="at">weight=</span><span class="fu">m_e.size</span>())</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mvSimplex</span>(m_w_simplex, <span class="at">weight=</span><span class="fu">m_w.size</span>())</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mvSimplex</span>(m_b_simplex, <span class="at">weight=</span><span class="fu">m_b_simplex.size</span>())</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mvSimplex</span>(m_d_simplex, <span class="at">weight=</span><span class="fu">m_d_simplex.size</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La expresión:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>mv[mvi<span class="sc">++</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>usa el valor actual de <code>mvi</code> como índice y después aumenta <code>mvi</code> en uno.</p>
+</section>
+<section id="monitores" class="level2">
+<h2 class="anchored" data-anchor-id="monitores">Monitores</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MCMC MONITORS</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>mni <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>mn[mni<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mnScreen</span>(</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">printgen=</span>printgen</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>mn[mni<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mnModel</span>(</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">printgen=</span>printgen,</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">filename=</span>out_fp <span class="sc">+</span> <span class="st">"model.log"</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>mn[mni<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mnJointConditionalAncestralState</span>(</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">glhbdsp=</span>timetree,</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree=</span>timetree,</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">printgen=</span>printgen,</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">withTips=</span>true,</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">withStartStates=</span>true,</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">type=</span><span class="st">"NaturalNumbers"</span>,</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">filename=</span>out_fp <span class="sc">+</span> <span class="st">"states.log"</span></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>mn[mni<span class="sc">++</span>] <span class="ot">=</span> <span class="fu">mnStochasticCharacterMap</span>(</span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">glhbdsp=</span>timetree,</span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">printgen=</span>printgen,</span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">filename=</span>out_fp <span class="sc">+</span> <span class="st">"stoch.log"</span></span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>De manera análoga:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>mn[mni<span class="sc">++</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>usa el índice actual de <code>mni</code> y luego lo incrementa.</p>
+</section>
+<section id="guardar-las-etiquetas-de-los-estados" class="level2">
+<h2 class="anchored" data-anchor-id="guardar-las-etiquetas-de-los-estados">Guardar las etiquetas de los estados</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># STATE LABELS</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"index,range</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">file=</span>lbl_fn</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>state_labels <span class="ot">=</span> <span class="fu">Q_bg.getStateDescriptions</span>()</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">state_labels.size</span>()) {</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write</span>(</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>        (i<span class="dv">-1</span>),</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">","</span>,</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>        state_labels[i],</span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">file=</span>lbl_fn,</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">append=</span>true,</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">separator=</span><span class="st">""</span></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Este bloque genera automáticamente:</p>
+<pre class="text"><code>output/kadua_range_label.txt</code></pre>
+<p>con una estructura como:</p>
+<pre class="text"><code>index,range
+0,10
+1,01
+2,11</code></pre>
+<p>Por lo tanto, este archivo <strong>no es un dato de entrada</strong>.</p>
+</section>
+<section id="ejecutar-la-mcmc" class="level2">
+<h2 class="anchored" data-anchor-id="ejecutar-la-mcmc">Ejecutar la MCMC</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MCMC START</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">=</span> <span class="fu">model</span>(m_w)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>ch <span class="ot">=</span> <span class="fu">mcmc</span>(</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    mv,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    mn,</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    mdl</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ch.burnin</span>(</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    n_burn,</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuningInterval=</span><span class="dv">50</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ch.run</span>(n_gen)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reconstrucción-de-estados-ancestrales" class="level2">
+<h2 class="anchored" data-anchor-id="reconstrucción-de-estados-ancestrales">Reconstrucción de estados ancestrales</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANCESTRAL STATES</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>f_burn <span class="ot">=</span> <span class="fl">0.2</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>x_stoch <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">file=</span>out_fp <span class="sc">+</span> <span class="st">"stoch.log"</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>x_states <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">file=</span>out_fp <span class="sc">+</span> <span class="st">"states.log"</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Resumimos los mapas de caracteres:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarizeCharacterMaps</span>(</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    x_stoch,</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    timetree,</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">file=</span>out_fp <span class="sc">+</span> <span class="st">"events.tsv"</span>,</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">burnin=</span>f_burn</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Y generamos el árbol con la reconstrucción ancestral:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>state_tree <span class="ot">=</span> <span class="fu">ancestralStateTree</span>(</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree=</span>timetree,</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ancestral_state_trace_vector=</span>x_states,</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">include_start_states=</span>true,</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">file=</span>out_fp <span class="sc">+</span> <span class="st">"ase.tre"</span>,</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">summary_statistic=</span><span class="st">"MAP"</span>,</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">reconstruction=</span><span class="st">"marginal"</span>,</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">burnin=</span>f_burn,</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nStates=</span><span class="dv">3</span>,</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">site=</span><span class="dv">1</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="fu">writeNexus</span>(</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>    state_tree,</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">filename=</span>out_fp <span class="sc">+</span> <span class="st">"ase.tre"</span></span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"DONE"</span>)</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ejecutar-el-script-completo" class="level2">
+<h2 class="anchored" data-anchor-id="ejecutar-el-script-completo">Ejecutar el script completo</h2>
+<p>Desde <code>~/GeoSSE</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec <span class="dt">\</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  /srv/scratch_sda/GeoSSE/shared/rb_1.4.1_tensorphylo_avx2.sif <span class="dt">\</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  rb geosse.Rev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Al terminar podemos revisar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> output/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Deberán aparecer archivos como:</p>
+<pre class="text"><code>model.log
+states.log
+stoch.log
+events.tsv
+ase.tre
+kadua_range_label.txt</code></pre>
+</section>
+<section id="descargar-los-resultados-a-nuestra-computadora" class="level2">
+<h2 class="anchored" data-anchor-id="descargar-los-resultados-a-nuestra-computadora">Descargar los resultados a nuestra computadora</h2>
+<p>Los resultados permanecen en el servidor dentro de:</p>
+<pre class="text"><code>~/GeoSSE/output/</code></pre>
+<p>Para descargarlos utilizaremos <code>scp</code>.</p>
+<blockquote class="blockquote">
+<p><strong>Importante:</strong> este comando debe ejecutarse desde una terminal de <strong>nuestra computadora</strong>, no desde la sesión SSH del servidor.</p>
+</blockquote>
+<p>Para descargar todo el directorio:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> usuario@servidor:~/GeoSSE/output ./GeoSSE_output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La estructura general es:</p>
+<pre class="text"><code>scp -r origen destino</code></pre>
+<p>Para descargar un solo archivo, por ejemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> usuario@servidor:~/GeoSSE/output/ase.tre .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>El punto <code>.</code> significa <strong>el directorio actual de nuestra computadora</strong>.</p>
+</section>
+<section id="graficar-los-estados-ancestrales-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="graficar-los-estados-ancestrales-en-r">Graficar los estados ancestrales en R</h2>
+<p>Una vez descargado <code>ase.tre</code>, podemos visualizarlo con <strong>RevGadgets</strong>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías necesarias</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ruta al árbol con estados ancestrales</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>tree_file <span class="ot">&lt;-</span> <span class="st">"../docs/u2_PatBio/geosse/out/ase.tre"</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer los estados ancestrales e interpretar los valores</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(tree_file, </span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">state_labels =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"Islas antiguas"</span>, </span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"Islas jóvenes"</span>, </span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"Ambas regiones"</span>))</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los estados ancestrales más probables (MAP)</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plotAncStatesMAP</span>(<span class="at">t =</span> states,</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">node_size =</span> <span class="dv">2</span>,</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">node_size_as =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>tree_file <span class="ot">&lt;-</span> <span class="st">"../docs/u2_PatBio/geosse/out/ase.tre"</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  tree_file,</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">state_labels =</span> <span class="fu">c</span>(</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"0"</span> <span class="ot">=</span> <span class="st">"Islas antiguas"</span>,</span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"Islas jóvenes"</span>,</span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"Ambas regiones"</span></span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plotAncStatesMAP</span>(</span>
+<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">t =</span> states,</span>
+<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">node_size =</span> <span class="dv">2</span>,</span>
+<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">node_size_as =</span> <span class="cn">NULL</span></span>
+<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -559,6 +1023,7 @@ En particular, se considerarán dos regiones:</p>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -969,13 +1434,13 @@ En particular, se considerarán dos regiones:</p>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/u2_intro_biogeography_2.html" class="pagination-link" aria-label="Biogeografía Bayesiana de Islas (BIB)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Biogeografía Bayesiana de Islas (BIB)</span></span>
+      <a href="../chapters/u2_intro_biogeography_1.html" class="pagination-link" aria-label="Introducción a la biogeografía filogenética con el modelo DEC">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Introducción a la biogeografía filogenética con el modelo DEC</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/u3_intro_morphology_1.html" class="pagination-link" aria-label="Introducción a patrones morfológicos">
-        <span class="nav-page-text"><span class="chapter-title">Introducción a patrones morfológicos</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/u2_intro_biogeography_2.html" class="pagination-link" aria-label="Biogeografía Bayesiana de Islas (BIB)">
+        <span class="nav-page-text"><span class="chapter-title">Biogeografía Bayesiana de Islas (BIB)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
