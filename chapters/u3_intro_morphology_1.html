@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,15 +68,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/u2_intro_biogeography_3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ae5d55f8a41ff9e4654feece7b8084e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-13f3b9144cfbd4bffe19d1212ca92176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -163,8 +162,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias</a> 
@@ -308,7 +306,7 @@ window.Quarto = {
   <li><a href="#qué-implica-eso-para-tu-análisis" id="toc-qué-implica-eso-para-tu-análisis" class="nav-link" data-scroll-target="#qué-implica-eso-para-tu-análisis">📌 ¿Qué implica eso para tu análisis?</a></li>
   <li><a href="#el-script-de-posterior-mcmc_bm.rev" id="toc-el-script-de-posterior-mcmc_bm.rev" class="nav-link" data-scroll-target="#el-script-de-posterior-mcmc_bm.rev">1️⃣ El <strong>script de posterior</strong> (<code>mcmc_BM.Rev</code>)</a></li>
   <li><a href="#el-script-de-prior-mcmc_bm_prior.rev" id="toc-el-script-de-prior-mcmc_bm_prior.rev" class="nav-link" data-scroll-target="#el-script-de-prior-mcmc_bm_prior.rev">2️⃣ El <strong>script de prior</strong> (<code>mcmc_BM_prior.Rev</code>)</a></li>
-  <li><a href="#interpretación-de-la-gráfica-de-sigma2" id="toc-interpretación-de-la-gráfica-de-sigma2" class="nav-link" data-scroll-target="#interpretación-de-la-gráfica-de-sigma2">📈 Interpretación de la gráfica de <span class="math inline">\(\sigma^2\)</span></a></li>
+  <li><a href="#gráfica-de-sigma2" id="toc-gráfica-de-sigma2" class="nav-link" data-scroll-target="#gráfica-de-sigma2">📈 Gráfica de <span class="math inline">\(\sigma^2\)</span></a></li>
   </ul></li>
   <li><a href="#modelo-ornstein-uhlenbeck-ou-simple-en-revbayes" id="toc-modelo-ornstein-uhlenbeck-ou-simple-en-revbayes" class="nav-link" data-scroll-target="#modelo-ornstein-uhlenbeck-ou-simple-en-revbayes">Modelo Ornstein-Uhlenbeck (OU) simple en RevBayes</a>
   <ul class="collapse">
@@ -318,6 +316,10 @@ window.Quarto = {
   <li><a href="#script-de-prior-mcmc_ou_prior.rev" id="toc-script-de-prior-mcmc_ou_prior.rev" class="nav-link" data-scroll-target="#script-de-prior-mcmc_ou_prior.rev">2️⃣ <strong>Script de prior</strong> (<code>mcmc_OU_prior.Rev</code>)</a></li>
   <li><a href="#qué-nos-dice-1" id="toc-qué-nos-dice-1" class="nav-link" data-scroll-target="#qué-nos-dice-1">🔍 ¿Qué nos dice?</a></li>
   <li><a href="#visualización-de-parámetros-del-modelo-ornstein-uhlenbeck-ou" id="toc-visualización-de-parámetros-del-modelo-ornstein-uhlenbeck-ou" class="nav-link" data-scroll-target="#visualización-de-parámetros-del-modelo-ornstein-uhlenbeck-ou">📊 <strong>Visualización de parámetros del modelo Ornstein-Uhlenbeck (OU)</strong></a></li>
+  <li><a href="#cómo-interpretar-las-distribuciones-a-priori-y-posterior" id="toc-cómo-interpretar-las-distribuciones-a-priori-y-posterior" class="nav-link" data-scroll-target="#cómo-interpretar-las-distribuciones-a-priori-y-posterior">¿Cómo interpretar las distribuciones a priori y posterior?</a></li>
+  <li><a href="#parámetros-y-cantidades-derivadas" id="toc-parámetros-y-cantidades-derivadas" class="nav-link" data-scroll-target="#parámetros-y-cantidades-derivadas">Parámetros y cantidades derivadas</a></li>
+  <li><a href="#visualización-de-la-relación-entre-alpha-y-sigma2" id="toc-visualización-de-la-relación-entre-alpha-y-sigma2" class="nav-link" data-scroll-target="#visualización-de-la-relación-entre-alpha-y-sigma2">Visualización de la relación entre <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span></a></li>
+  <li><a href="#ejercicio-interpretación-de-los-resultados" id="toc-ejercicio-interpretación-de-los-resultados" class="nav-link" data-scroll-target="#ejercicio-interpretación-de-los-resultados">Ejercicio: interpretación de los resultados</a></li>
   </ul></li>
   <li><a href="#modelos-de-evolución-de-caracteres-discretos" id="toc-modelos-de-evolución-de-caracteres-discretos" class="nav-link" data-scroll-target="#modelos-de-evolución-de-caracteres-discretos">Modelos de evolución de caracteres discretos</a>
   <ul class="collapse">
@@ -397,8 +399,8 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="qué-implica-eso-para-tu-análisis">📌 ¿Qué implica eso para tu análisis?</h3>
 <p>Cuando tú analizas, por ejemplo, el <strong>volumen del élitro</strong>, estás suponiendo que ese carácter cambia aleatoriamente en el tiempo, pero a un ritmo que depende de <span class="math inline">\(\sigma^2\)</span>. Entonces:</p>
 <ul>
-<li><p>Un <span class="math inline">\(\sigma^2\)</span> alto → el rasgo cambia mucho a lo largo del árbol → <strong>evolución rápida</strong> del carácter.</p></li>
-<li><p>Un <span class="math inline">\(\sigma^2\)</span> bajo → el rasgo cambia poco → <strong>evolución lenta o conservada</strong>.</p></li>
+<li><p>Mayor <span class="math inline">\(\sigma^2\)</span> : mayor acumulación esperada de varianza evolutiva por unidad de tiempo.</p></li>
+<li><p>Menor <span class="math inline">\(\sigma^2\)</span> : menor acumulación esperada de varianza evolutiva por unidad de tiempo.</p></li>
 </ul>
 <hr>
 <p>En análisis bayesianos, queremos estimar la probabilidad de un parámetro (como <span class="math inline">\(\sigma^2\)</span>, la tasa de evolución bajo el modelo Browniano) después de ver los datos. Para eso, necesitamos comparar dos cosas:</p>
@@ -410,7 +412,7 @@ window.Quarto = {
 <li><p>Fija los datos con <code>X.clamp(data)</code>.</p></li>
 <li><p>Nos dice: 👉 <em>¿Qué valores de</em> <span class="math inline">\(\sigma^2\)</span> son más probables ahora que hemos visto los datos?</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de RevBayes: Inferencia bayesiana de tasas de evolución bajo un </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># modelo de Movimiento Browniano con tasa constante</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
@@ -481,7 +483,7 @@ window.Quarto = {
 <span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">3000</span>)</span>
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Finalizar</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="el-script-de-prior-mcmc_bm_prior.rev" class="level3">
 <h3 class="anchored" data-anchor-id="el-script-de-prior-mcmc_bm_prior.rev">2️⃣ El <strong>script de prior</strong> (<code>mcmc_BM_prior.Rev</code>)</h3>
@@ -490,7 +492,7 @@ window.Quarto = {
 <li><p>Omite los datos con <code>mymodel.ignoreAllData()</code>.</p></li>
 <li><p>Nos dice: 👉 <em>¿Qué creíamos posible sobre</em> <span class="math inline">\(\sigma^2\)</span> antes de ver los datos?</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de RevBayes: Muestreo de la distribución a priori del modelo </span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># de Movimiento Browniano con tasa constante</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
@@ -546,12 +548,12 @@ window.Quarto = {
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">3000</span>)</span>
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Finalizar</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="interpretación-de-la-gráfica-de-sigma2" class="level3">
-<h3 class="anchored" data-anchor-id="interpretación-de-la-gráfica-de-sigma2">📈 Interpretación de la gráfica de <span class="math inline">\(\sigma^2\)</span></h3>
+<section id="gráfica-de-sigma2" class="level3">
+<h3 class="anchored" data-anchor-id="gráfica-de-sigma2">📈 Gráfica de <span class="math inline">\(\sigma^2\)</span></h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer archivos</span></span>
@@ -563,7 +565,7 @@ window.Quarto = {
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">plotTrace</span>(<span class="fu">list</span>(simple_BM_posterior), <span class="at">vars=</span><span class="fu">c</span>(<span class="st">"sigma2"</span>, <span class="st">"sigma2_prior"</span>))</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]</code></pre>
 </div>
@@ -575,13 +577,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Eje X: valores del parámetro <span class="math inline">\(\sigma^2\)</span> (tasa evolutiva).</p>
-<p>Eje Y: densidad de probabilidad.</p>
-<p>Línea roja (sigma2_prior): lo que asumías posible antes de ver los datos.</p>
-<p>Línea azul (sigma2): lo que los datos te dicen que es más probable.</p>
-<p>✅ Interpretación esperada: Si la curva azul (posterior) está desplazada respecto a la roja, significa que tus datos aportaron información nueva.</p>
-<p>Si la curva azul es más estrecha, implica que la incertidumbre sobre <span class="math inline">\(\sigma^2\)</span> se redujo gracias a los datos.</p>
-<p>Si las dos curvas son similares, puede que tus datos no sean muy informativos para este modelo.</p>
+<p>Observa las distribuciones a priori (rojo) y posterior (azul) de la tasa evolutiva <span class="math inline">\(\sigma^2\)</span> obtenidas bajo el modelo de movimiento browniano (BM).</p>
+<p>¿Qué diferencias observas entre ambas distribuciones? ¿Qué nos indican sobre la información que aportan los datos morfológicos?</p>
+<p>¿En qué intervalo se concentra la mayor densidad de probabilidad de la distribución posterior?</p>
+<p>Considerando que la distribución a priori de <span class="math inline">\(\sigma^2\)</span> está limitada al intervalo de <span class="math inline">\(0.00001 a 0.1\)</span>, ¿observas algún posible problema con la estimación posterior?</p>
+<p>¿Qué modificación realizarías en el modelo para comprobar si la distribución a priori está restringiendo la estimación de <span class="math inline">\(\sigma^2\)</span>?</p>
 </section>
 </section>
 <section id="modelo-ornstein-uhlenbeck-ou-simple-en-revbayes" class="level2">
@@ -590,7 +590,7 @@ window.Quarto = {
 <ul>
 <li><p><strong>θ (theta):</strong> valor óptimo hacia el cual evoluciona el carácter.</p></li>
 <li><p><strong>σ²:</strong> tasa de variación aleatoria (igual que en BM).</p></li>
-<li><p><strong>α (alpha):</strong> fuerza de atracción hacia el valor óptimo. Cuanto mayor es α, más fuertemente el carácter es “jalado” hacia θ.</p>
+<li><p><strong>α (alpha):</strong> intensidad de atracción hacia el óptimo.</p>
 <ul>
 <li>A veces se le llama el <strong>parámetro de “banda elástica”</strong>.</li>
 </ul></li>
@@ -605,7 +605,7 @@ window.Quarto = {
 <li><p>Utiliza tanto el modelo como los datos observados.</p></li>
 <li><p>Fija los datos con:</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">X.clamp</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">X.clamp</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="qué-nos-dice" class="level3">
 <h3 class="anchored" data-anchor-id="qué-nos-dice">🔍 ¿Qué nos dice?</h3>
@@ -613,7 +613,7 @@ window.Quarto = {
 <li><p>¿Qué valores de los parámetros (alpha, sigma², theta) son más probables después de ver los datos?</p></li>
 <li><p>Nos permite inferir la historia evolutiva del rasgo bajo un modelo que considera evidencia empírica.</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo de Ornstein-Uhlenbeck simple para caracteres continuos</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimación del valor óptimo evolutivo (theta), la tasa de adaptación (alpha)</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># y la tasa de evolución estocástica (sigma2) en un árbol calibrado</span></span>
@@ -737,7 +737,7 @@ window.Quarto = {
 <span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">50000</span>)</span>
 <span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Salir del entorno de RevBayes</span></span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="script-de-prior-mcmc_ou_prior.rev" class="level3">
 <h3 class="anchored" data-anchor-id="script-de-prior-mcmc_ou_prior.rev">2️⃣ <strong>Script de prior</strong> (<code>mcmc_OU_prior.Rev</code>)</h3>
@@ -745,7 +745,7 @@ window.Quarto = {
 <li><p>No usa los datos observados.</p></li>
 <li><p>Omite los datos con:</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymodel.ignoreAllData</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymodel.ignoreAllData</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="qué-nos-dice-1" class="level3">
 <h3 class="anchored" data-anchor-id="qué-nos-dice-1">🔍 ¿Qué nos dice?</h3>
@@ -753,7 +753,7 @@ window.Quarto = {
 <li><p>¿Qué creíamos posible sobre los parámetros (<code>alpha</code>, <code>sigma²</code>, <code>theta</code>) <strong>antes de ver los datos</strong>, solo con la estructura del modelo?</p></li>
 <li><p>Nos permite <strong>explorar los supuestos previos</strong> y compararlos con la distribución posterior (para ver cuánto aportaron los datos).</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestreo desde la distribución a priori del modelo de Ornstein-Uhlenbeck</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># No se usa la información observada (sin clamp), útil para comparar con posterior</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
@@ -842,12 +842,12 @@ window.Quarto = {
 <span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">50000</span>)</span>
 <span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Finalizar</span></span>
-<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="visualización-de-parámetros-del-modelo-ornstein-uhlenbeck-ou" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-de-parámetros-del-modelo-ornstein-uhlenbeck-ou">📊 <strong>Visualización de parámetros del modelo Ornstein-Uhlenbeck (OU)</strong></h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías para trazar y organizar gráficos</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías para trazar y organizar gráficos</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -887,7 +887,7 @@ window.Quarto = {
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.81</span>))</span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar una cuadrícula con los parámetros clave</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(alpha_plot, theta_plot, sigma_plot, p_th_plot, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(alpha_plot, theta_plot, sigma_plot, p_th_plot, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -896,28 +896,59 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>📌 ¿Cómo interpretar los gráficos? Cada gráfico muestra dos curvas:</p>
-<p>🔵 Posterior (azul): qué valores son más probables después de ver los datos.</p>
-<p>🔴 Prior (rojo): qué valores eran posibles antes de ver los datos.</p>
-<p>Diferencias claras entre ambas curvas indican que los datos aportaron información real sobre ese parámetro.</p>
-<p>📈 ¿Por qué visualizar la distribución conjunta de alpha y sigma2? En el modelo de Ornstein-Uhlenbeck (OU), los caracteres tienden a una distribución estacionaria que es normal con:</p>
-<p>Media: θ (el valor óptimo)</p>
-<p>Varianza: <span class="math inline">\(\sigma^2/(2\alpha)\)</span></p>
-<p>Esto significa que <span class="math inline">\(\sigma^2\)</span> (la tasa de evolución estocástica) y <span class="math inline">\(\alpha\)</span> (la fuerza de atracción hacia el óptimo) actúan conjuntamente para determinar la dispersión del rasgo en el tiempo.</p>
-<p>⚠️ ¿Cuál es el problema? Si las ramas del árbol son largas o si los datos son poco informativos, es difícil estimar <span class="math inline">\(\sigma^2\)</span> y <span class="math inline">\(\alpha\)</span> por separado, porque pueden compensarse entre sí:</p>
-<p>Un valor alto de <span class="math inline">\(\sigma^2\)</span> puede “verse igual” que un valor bajo de <span class="math inline">\(\alpha\)</span>, y viceversa.</p>
-<p>Esto se refleja como una correlación negativa entre ambos parámetros en la distribución posterior.</p>
-<p>📊 ¿Qué hacer? Graficar la distribución conjunta te permite ver si están correlacionados, lo cual es una señal de que no deberías interpretar σ² o α individualmente.</p>
-<p>✅ Código en R para graficar la correlación</p>
+</section>
+<section id="cómo-interpretar-las-distribuciones-a-priori-y-posterior" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-interpretar-las-distribuciones-a-priori-y-posterior">¿Cómo interpretar las distribuciones a priori y posterior?</h3>
+<p>Cada gráfica muestra dos distribuciones:</p>
+<ul>
+<li>🔴 <strong>A priori (rojo):</strong> describe los valores plausibles para un parámetro antes de incorporar los datos morfológicos, según la distribución que especificamos.</li>
+<li>🔵 <strong>Posterior (azul):</strong> describe los valores plausibles después de incorporar los datos, condicionados al árbol filogenético, al modelo OU y a las distribuciones a priori.</li>
+</ul>
+<p>Las diferencias entre ambas curvas ayudan a reconocer <strong>cuánto se actualizaron nuestras estimaciones</strong>. Observa tanto su desplazamiento como la amplitud de cada distribución: una posterior más concentrada indica menor incertidumbre. <strong>Que la posterior sea distinta de la prior no demuestra, por sí solo, que el modelo OU represente correctamente el proceso evolutivo.</strong></p>
+</section>
+<section id="parámetros-y-cantidades-derivadas" class="level3">
+<h3 class="anchored" data-anchor-id="parámetros-y-cantidades-derivadas">Parámetros y cantidades derivadas</h3>
+<p>Recordemos que los parámetros principales del modelo OU son:</p>
+<ul>
+<li><strong><span class="math inline">\(\theta\)</span>:</strong> valor óptimo hacia el cual tiende el carácter.</li>
+<li><strong><span class="math inline">\(\alpha\)</span>:</strong> intensidad de atracción hacia ese óptimo.</li>
+<li><strong><span class="math inline">\(\sigma^2\)</span>:</strong> tasa de variación evolutiva estocástica.</li>
+</ul>
+<p>Para un proceso OU con <span class="math inline">\(\alpha&gt;0\)</span>, <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\sigma^2\)</span> constantes, la distribución estacionaria es normal, con:</p>
+<p><span class="math display">\[
+\text{Media}=\theta,\qquad
+V_{\infty}=\frac{\sigma^2}{2\alpha}.
+\]</span></p>
+<p>Esto significa que <strong><span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span> intervienen conjuntamente en la dispersión del carácter</strong>. Si mantenemos constante la varianza estacionaria, un aumento de <span class="math inline">\(\alpha\)</span> debe acompañarse de un aumento de <span class="math inline">\(\sigma^2\)</span>. Sin embargo, <strong>no debemos asumir que la correlación posterior es necesariamente positiva o negativa</strong>: su dirección y magnitud dependen de los datos y del modelo.</p>
+<p><strong>¿Qué representa <span class="math inline">\(p_{th}\)</span>?</strong> Es una cantidad derivada que describe la <strong>reducción proporcional de la varianza esperada bajo OU respecto a BM</strong>, al comparar procesos con la misma tasa <span class="math inline">\(\sigma^2\)</span> y el mismo intervalo de tiempo <span class="math inline">\(T\)</span>, suponiendo que el carácter comienza en el óptimo:</p>
+<p><span class="math display">\[
+p_{th}=1-\frac{1-e^{-2\alpha T}}{2\alpha T}.
+\]</span></p>
+<p>En esta práctica, <span class="math inline">\(T\)</span> corresponde a la altura del árbol. Por ejemplo, <span class="math inline">\(p_{th}=0.30\)</span> significa que la varianza esperada bajo OU es un <strong>30 % menor</strong> que bajo BM en esas condiciones. <strong>No es una probabilidad ni una medición directa de selección natural.</strong></p>
+</section>
+<section id="visualización-de-la-relación-entre-alpha-y-sigma2" class="level3">
+<h3 class="anchored" data-anchor-id="visualización-de-la-relación-entre-alpha-y-sigma2">Visualización de la relación entre <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span></h3>
+<p>Algunas combinaciones de <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span> pueden producir dispersiones parecidas, especialmente cuando los datos son poco informativos. Por eso es útil representar sus valores posteriores conjuntamente y examinar si existe una asociación entre ambos parámetros.</p>
+<p>El siguiente código lee las muestras de la distribución posterior de OU (puedes ajustar la ruta si tus resultados están en otra carpeta):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los valores posteriores de alpha vs sigma²</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(samples_OU, <span class="fu">aes</span>(<span class="at">x=</span>alpha, <span class="at">y=</span>sigma2)) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>(alpha), <span class="at">y =</span> <span class="fu">expression</span>(sigma<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Distribución conjunta de α y σ²"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución posterior del modelo OU: primera traza</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>samples_OU <span class="ot">&lt;-</span> <span class="fu">readTrace</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../docs/u1_PatDiv/output/morpho/simple_OU.log"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">burnin =</span> <span class="fl">0.25</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)[[<span class="dv">1</span>]]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Relación entre los parámetros estimados</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(samples_OU, <span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> sigma2)) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(alpha),</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(sigma<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución posterior conjunta de α y σ²"</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -925,14 +956,33 @@ window.Quarto = {
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlación descriptiva entre las muestras posteriores</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(samples_OU<span class="sc">$</span>alpha, samples_OU<span class="sc">$</span>sigma2, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7653447</code></pre>
 </div>
-<p>🧠 Interpretación:</p>
+</div>
+<p><strong>¿Cómo leer la nube de puntos?</strong></p>
 <ul>
-<li><p>Si los puntos forman una nube diagonal descendente, entonces hay correlación negativa.</p></li>
-<li><p>Si los puntos forman una nube diagonal ascendente, entonces hay correlación positiva.</p></li>
-<li><p>En ese caso, no debes interpretar <span class="math inline">\(\alpha\)</span> o <span class="math inline">\(\sigma^2\)</span> por separado, porque los datos no permiten distinguir su efecto individual.</p></li>
-<li><p>Esto es esperado en árboles con ramas largas o con pocos datos informativos.</p></li>
+<li>Una tendencia ascendente sugiere <strong>asociación positiva</strong>.</li>
+<li>Una tendencia descendente sugiere <strong>asociación negativa</strong>.</li>
+<li>Una nube sin orientación clara sugiere <strong>asociación lineal débil o ausente</strong>.</li>
 </ul>
+<p>Una asociación fuerte puede indicar que los parámetros están relacionados en su estimación y que conviene <strong>interpretarlos conjuntamente</strong>. La correlación, por sí sola, no demuestra falta de identificabilidad ni permite establecer un mecanismo biológico.</p>
+</section>
+<section id="ejercicio-interpretación-de-los-resultados" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicio-interpretación-de-los-resultados">Ejercicio: interpretación de los resultados</h3>
+<p>Observa las gráficas de las distribuciones a priori (rojo) y posterior (azul) de <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma^2\)</span> y <span class="math inline">\(p_{th}\)</span>, así como la nube de puntos entre <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span>. Responde:</p>
+<ol type="1">
+<li><p><strong>Comparación de distribuciones.</strong> ¿Qué diferencias observas entre las distribuciones a priori y posterior de <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\sigma^2\)</span>? Considera el desplazamiento, la dispersión y el sobrelapamiento de las curvas.</p></li>
+<li><p><strong>Atracción hacia el óptimo.</strong> La distribución posterior de <span class="math inline">\(\alpha\)</span> se concentra cerca de cero. ¿Qué implica esto para la fuerza de atracción hacia el óptimo evolutivo? ¿A qué otro modelo se aproxima OU cuando <span class="math inline">\(\alpha\to 0\)</span>?</p></li>
+<li><p><strong>Óptimo estimado.</strong> ¿Qué valor aproximado de <span class="math inline">\(\theta\)</span> favorecen los datos morfológicos? ¿Qué representa biológicamente este parámetro <strong>bajo los supuestos del modelo</strong>?</p></li>
+<li><p><strong>Reducción de varianza.</strong> ¿Qué representa <span class="math inline">\(p_{th}\)</span> y cómo se relaciona con <span class="math inline">\(\alpha\)</span>? Según las gráficas, ¿la reducción relativa de varianza favorecida por la posterior es mayor o menor que la sugerida por la prior?</p></li>
+<li><p><strong>Relación entre parámetros.</strong> Al graficar conjuntamente los valores posteriores de <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span>, ¿observas una asociación positiva, negativa o poco clara? ¿Por qué es importante examinar esa relación antes de interpretar ambos parámetros por separado?</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Para discutir:</strong> Una posterior diferente de la prior indica que nuestras estimaciones se actualizaron al incorporar los datos, pero no demuestra por sí sola que el modelo OU sea el mecanismo evolutivo verdadero. Antes de interpretar los resultados también es necesario comprobar la convergencia y el muestreo adecuado de las cadenas MCMC.</p>
+</blockquote>
 </section>
 </section>
 <section id="modelos-de-evolución-de-caracteres-discretos" class="level2">
@@ -963,145 +1013,145 @@ Q = \begin{pmatrix}
 <p>📥 Puedes descargar el archivo .nex con la matriz de caracteres discretos en el siguiente enlace:</p>
 <p><a href="../docs/u1_PatDiv/output/morpho/primates_solitariness.nex" download="">📥 Descargar matriz de caracteres discretos</a></p>
 <p>Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################}</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo en RevBayes: Inferencia de estados ancestrales y tasas de evolución </span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># morfológica bajo un modelo de tasas iguales de Markov (ERM)</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">#############################</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de los datos #</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="do">#############################</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre del carácter morfológico a analizar (modificable)</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>CHARACTER <span class="ot">=</span> <span class="st">"solitariness"</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>NUM_STATES <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar la matriz de datos morfológicos discretos</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>morpho <span class="ot">&lt;-</span> <span class="fu">readDiscreteCharacterData</span>(<span class="st">"data/primates_"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">".nex"</span>)</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear vectores para movimientos y monitores del MCMC</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>moves    <span class="ot">=</span> <span class="fu">VectorMoves</span>()</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="do">###################</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el árbol   #</span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="do">###################</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el árbol filogenético (en este caso, uno fijo)</span></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: readTrees devuelve un vector de árboles, por eso tomamos el primero</span></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>phylogeny <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="st">"data/primates_tree.nex"</span>)[<span class="dv">1</span>]</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar el modelo de tasas #</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir una tasa global μ con distribución exponencial</span></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="co"># La media está basada en la longitud del árbol (10 eventos esperados)</span></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>rate_pr <span class="sc">:</span><span class="er">=</span> <span class="fu">phylogeny.treeLength</span>() <span class="sc">/</span> <span class="dv">10</span></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>mu <span class="sc">~</span> <span class="fu">dnExp</span>(rate_pr)</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento para proponer nuevos valores de mu durante el MCMC</span></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(mu, <span class="at">weight=</span><span class="dv">2</span>) )</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear vector de tasas (en el modelo ERM todas las tasas son iguales)</span></span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>NUM_RATES <span class="ot">=</span> NUM_STATES <span class="sc">*</span> (NUM_STATES <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_RATES) {</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    rate[i] <span class="sc">:</span><span class="er">=</span> mu</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir la matriz de tasas Q   #</span></span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar la matriz de tasas para el modelo de caracteres morfológicos</span></span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>Q_morpho <span class="sc">:</span><span class="er">=</span> <span class="fu">fnFreeK</span>(rate, <span class="at">rescale=</span>false)</span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="do">##########################################</span></span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar frecuencias en la raíz     #</span></span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="do">##########################################</span></span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos una distribución uniforme (1,1) como prior para los estados en la raíz</span></span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>rf_prior <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, NUM_STATES)</span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">simplex</span>(rf_prior)</span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo evolutivo CTMC #</span></span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el modelo de evolución morfológica bajo un proceso CTMC</span></span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>phyMorpho <span class="sc">~</span> <span class="fu">dnPhyloCTMC</span>(<span class="at">tree=</span>phylogeny, <span class="at">Q=</span>Q_morpho, <span class="at">rootFrequencies=</span>rf, <span class="at">type=</span><span class="st">"Standard"</span>)</span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Fijar los datos observados al modelo</span></span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a><span class="fu">phyMorpho.clamp</span>(morpho)</span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear objeto del modelo #</span></span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el objeto global del modelo a partir del árbol</span></span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(phylogeny)</span>
-<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
-<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar monitores #</span></span>
-<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
-<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Monitor del modelo completo (mu, etc.)</span></span>
-<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"output/"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">"_ERM.log"</span>, <span class="at">printgen=</span><span class="dv">1</span>) )</span>
-<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Monitor en pantalla para seguimiento en vivo</span></span>
-<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">100</span>) )</span>
-<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Monitor de estados ancestrales condicionales conjuntos</span></span>
-<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnJointConditionalAncestralState</span>(<span class="at">tree=</span>phylogeny,</span>
-<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">ctmc=</span>phyMorpho,</span>
-<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">filename=</span><span class="st">"output/"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">"_ERM.states.txt"</span>,</span>
-<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">type=</span><span class="st">"Standard"</span>,</span>
-<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">printgen=</span><span class="dv">1</span>,</span>
-<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">withTips=</span>true,</span>
-<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">withStartStates=</span>false) )</span>
-<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a><span class="do">###############################</span></span>
-<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurar y correr el MCMC #</span></span>
-<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="do">###############################</span></span>
-<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar el objeto MCMC</span></span>
-<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">2</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span>
-<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar la cadena MCMC por 25,000 generaciones</span></span>
-<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">25000</span>, <span class="at">tuningInterval=</span><span class="dv">200</span>)</span>
-<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="do">########################################</span></span>
-<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Procesar y guardar estados ancestrales #</span></span>
-<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="do">########################################</span></span>
-<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo de estados ancestrales estimados</span></span>
-<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>anc_states <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="st">"output/"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">"_ERM.states.txt"</span>)</span>
-<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear árbol anotado con probabilidades posteriores de estados ancestrales</span></span>
-<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>anc_tree <span class="ot">=</span> <span class="fu">ancestralStateTree</span>(<span class="at">tree=</span>phylogeny,</span>
-<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ancestral_state_trace_vector=</span>anc_states,</span>
-<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>                              <span class="at">include_start_states=</span>false,</span>
-<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>                              <span class="at">file=</span><span class="st">"output/"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">"_ase_ERM.tree"</span>,</span>
-<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>                              <span class="at">burnin=</span><span class="fl">0.25</span>,</span>
-<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>                              <span class="at">summary_statistic=</span><span class="st">"MAP"</span>,</span>
-<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>                              <span class="at">site=</span><span class="dv">1</span>)</span>
-<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Salir de RevBayes</span></span>
-<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo en RevBayes: Inferencia de estados ancestrales y tasas de evolución </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># morfológica bajo un modelo de tasas iguales de Markov (ERM)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="do">#############################</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de los datos #</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">#############################</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre del carácter morfológico a analizar (modificable)</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>CHARACTER <span class="ot">=</span> <span class="st">"solitariness"</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>NUM_STATES <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar la matriz de datos morfológicos discretos</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>morpho <span class="ot">&lt;-</span> <span class="fu">readDiscreteCharacterData</span>(<span class="st">"data/primates_"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">".nex"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear vectores para movimientos y monitores del MCMC</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>moves    <span class="ot">=</span> <span class="fu">VectorMoves</span>()</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="do">###################</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el árbol   #</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="do">###################</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el árbol filogenético (en este caso, uno fijo)</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: readTrees devuelve un vector de árboles, por eso tomamos el primero</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>phylogeny <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="st">"data/primates_tree.nex"</span>)[<span class="dv">1</span>]</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar el modelo de tasas #</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir una tasa global μ con distribución exponencial</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co"># La media está basada en la longitud del árbol (10 eventos esperados)</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>rate_pr <span class="sc">:</span><span class="er">=</span> <span class="fu">phylogeny.treeLength</span>() <span class="sc">/</span> <span class="dv">10</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>mu <span class="sc">~</span> <span class="fu">dnExp</span>(rate_pr)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Movimiento para proponer nuevos valores de mu durante el MCMC</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(mu, <span class="at">weight=</span><span class="dv">2</span>) )</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear vector de tasas (en el modelo ERM todas las tasas son iguales)</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>NUM_RATES <span class="ot">=</span> NUM_STATES <span class="sc">*</span> (NUM_STATES <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>NUM_RATES) {</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    rate[i] <span class="sc">:</span><span class="er">=</span> mu</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir la matriz de tasas Q   #</span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar la matriz de tasas para el modelo de caracteres morfológicos</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>Q_morpho <span class="sc">:</span><span class="er">=</span> <span class="fu">fnFreeK</span>(rate, <span class="at">rescale=</span>false)</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="do">##########################################</span></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar frecuencias en la raíz     #</span></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="do">##########################################</span></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos una distribución uniforme (1,1) como prior para los estados en la raíz</span></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>rf_prior <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, NUM_STATES)</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">simplex</span>(rf_prior)</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo evolutivo CTMC #</span></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el modelo de evolución morfológica bajo un proceso CTMC</span></span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>phyMorpho <span class="sc">~</span> <span class="fu">dnPhyloCTMC</span>(<span class="at">tree=</span>phylogeny, <span class="at">Q=</span>Q_morpho, <span class="at">rootFrequencies=</span>rf, <span class="at">type=</span><span class="st">"Standard"</span>)</span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Fijar los datos observados al modelo</span></span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="fu">phyMorpho.clamp</span>(morpho)</span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear objeto del modelo #</span></span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el objeto global del modelo a partir del árbol</span></span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">=</span> <span class="fu">model</span>(phylogeny)</span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar monitores #</span></span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a><span class="do">#########################</span></span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Monitor del modelo completo (mu, etc.)</span></span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">filename=</span><span class="st">"output/"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">"_ERM.log"</span>, <span class="at">printgen=</span><span class="dv">1</span>) )</span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Monitor en pantalla para seguimiento en vivo</span></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnScreen</span>(<span class="at">printgen=</span><span class="dv">100</span>) )</span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Monitor de estados ancestrales condicionales conjuntos</span></span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnJointConditionalAncestralState</span>(<span class="at">tree=</span>phylogeny,</span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">ctmc=</span>phyMorpho,</span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">filename=</span><span class="st">"output/"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">"_ERM.states.txt"</span>,</span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">type=</span><span class="st">"Standard"</span>,</span>
+<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">printgen=</span><span class="dv">1</span>,</span>
+<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">withTips=</span>true,</span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">withStartStates=</span>false) )</span>
+<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a><span class="do">###############################</span></span>
+<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurar y correr el MCMC #</span></span>
+<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="do">###############################</span></span>
+<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar el objeto MCMC</span></span>
+<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">2</span>, <span class="at">combine=</span><span class="st">"mixed"</span>)</span>
+<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar la cadena MCMC por 25,000 generaciones</span></span>
+<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">25000</span>, <span class="at">tuningInterval=</span><span class="dv">200</span>)</span>
+<span id="cb13-107"><a href="#cb13-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a><span class="do">########################################</span></span>
+<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Procesar y guardar estados ancestrales #</span></span>
+<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a><span class="do">########################################</span></span>
+<span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo de estados ancestrales estimados</span></span>
+<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a>anc_states <span class="ot">=</span> <span class="fu">readAncestralStateTrace</span>(<span class="st">"output/"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">"_ERM.states.txt"</span>)</span>
+<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear árbol anotado con probabilidades posteriores de estados ancestrales</span></span>
+<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a>anc_tree <span class="ot">=</span> <span class="fu">ancestralStateTree</span>(<span class="at">tree=</span>phylogeny,</span>
+<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ancestral_state_trace_vector=</span>anc_states,</span>
+<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a>                              <span class="at">include_start_states=</span>false,</span>
+<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a>                              <span class="at">file=</span><span class="st">"output/"</span> <span class="sc">+</span> CHARACTER <span class="sc">+</span> <span class="st">"_ase_ERM.tree"</span>,</span>
+<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a>                              <span class="at">burnin=</span><span class="fl">0.25</span>,</span>
+<span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a>                              <span class="at">summary_statistic=</span><span class="st">"MAP"</span>,</span>
+<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a>                              <span class="at">site=</span><span class="dv">1</span>)</span>
+<span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Salir de RevBayes</span></span>
+<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="visualización-de-estados-ancestrales-en-r-con-revgadgets" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-de-estados-ancestrales-en-r-con-revgadgets">🧬 Visualización de estados ancestrales en R con RevGadgets</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar la librería necesaria</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar el archivo del árbol con estados ancestrales</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>tree_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/morpho/solitariness_ase_ERM.tree"</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificamos los nombres de los estados que se mostrarán en el árbol. Puedes modificarlos según los caracteres analizados.</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ase <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(tree_file,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">state_labels =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"grupo"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"solitario"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar la librería necesaria</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar el archivo del árbol con estados ancestrales</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>tree_file <span class="ot">&lt;-</span> <span class="st">"../docs/u1_PatDiv/output/morpho/solitariness_ase_ERM.tree"</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificamos los nombres de los estados que se mostrarán en el árbol. Puedes modificarlos según los caracteres analizados.</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>ase <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(tree_file,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">state_labels =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"grupo"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"solitario"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   |                                              
@@ -1109,15 +1159,15 @@ Q = \begin{pmatrix}
   |                                              
   |========================================| 100%</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los estados ancestrales como colores en nodos (MAP)</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada nodo del árbol mostrará su estado más probable (MAP).</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># El color representa el estado, y el tamaño del nodo representa su probabilidad posterior</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plotAncStatesMAP</span>(<span class="at">t =</span> ase,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.92</span>, <span class="fl">0.81</span>))</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los estados ancestrales como colores en nodos (MAP)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada nodo del árbol mostrará su estado más probable (MAP).</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># El color representa el estado, y el tamaño del nodo representa su probabilidad posterior</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plotAncStatesMAP</span>(<span class="at">t =</span> ase,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.92</span>, <span class="fl">0.81</span>))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1125,15 +1175,15 @@ Q = \begin{pmatrix}
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar la figura en PDF</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"primates_solitariness_ASE_ERM_MAP.pdf"</span>, p1, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">9</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (Opcional) Mostrar incertidumbre con gráficos de pastel</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plotAncStatesPie</span>(<span class="at">t =</span> ase,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.92</span>, <span class="fl">0.81</span>))</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar la figura en PDF</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"primates_solitariness_ASE_ERM_MAP.pdf"</span>, p1, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">9</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (Opcional) Mostrar incertidumbre con gráficos de pastel</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plotAncStatesPie</span>(<span class="at">t =</span> ase,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.92</span>, <span class="fl">0.81</span>))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1141,8 +1191,8 @@ Q = \begin{pmatrix}
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar la figura en PDF</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"primates_solitariness_ASE_ERM_MAP_2.pdf"</span>, p2, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar la figura en PDF</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"primates_solitariness_ASE_ERM_MAP_2.pdf"</span>, p2, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1202,14 +1252,13 @@ Q = \begin{pmatrix}
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
