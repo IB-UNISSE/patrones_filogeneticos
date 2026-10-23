@@ -319,7 +319,6 @@ window.Quarto = {
   <li><a href="#cómo-interpretar-las-distribuciones-a-priori-y-posterior" id="toc-cómo-interpretar-las-distribuciones-a-priori-y-posterior" class="nav-link" data-scroll-target="#cómo-interpretar-las-distribuciones-a-priori-y-posterior">¿Cómo interpretar las distribuciones a priori y posterior?</a></li>
   <li><a href="#parámetros-y-cantidades-derivadas" id="toc-parámetros-y-cantidades-derivadas" class="nav-link" data-scroll-target="#parámetros-y-cantidades-derivadas">Parámetros y cantidades derivadas</a></li>
   <li><a href="#visualización-de-la-relación-entre-alpha-y-sigma2" id="toc-visualización-de-la-relación-entre-alpha-y-sigma2" class="nav-link" data-scroll-target="#visualización-de-la-relación-entre-alpha-y-sigma2">Visualización de la relación entre <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span></a></li>
-  <li><a href="#ejercicio-interpretación-de-los-resultados" id="toc-ejercicio-interpretación-de-los-resultados" class="nav-link" data-scroll-target="#ejercicio-interpretación-de-los-resultados">Ejercicio: interpretación de los resultados</a></li>
   </ul></li>
   <li><a href="#modelos-de-evolución-de-caracteres-discretos" id="toc-modelos-de-evolución-de-caracteres-discretos" class="nav-link" data-scroll-target="#modelos-de-evolución-de-caracteres-discretos">Modelos de evolución de caracteres discretos</a>
   <ul class="collapse">
@@ -577,11 +576,6 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Observa las distribuciones a priori (rojo) y posterior (azul) de la tasa evolutiva <span class="math inline">\(\sigma^2\)</span> obtenidas bajo el modelo de movimiento browniano (BM).</p>
-<p>¿Qué diferencias observas entre ambas distribuciones? ¿Qué nos indican sobre la información que aportan los datos morfológicos?</p>
-<p>¿En qué intervalo se concentra la mayor densidad de probabilidad de la distribución posterior?</p>
-<p>Considerando que la distribución a priori de <span class="math inline">\(\sigma^2\)</span> está limitada al intervalo de <span class="math inline">\(0.00001 a 0.1\)</span>, ¿observas algún posible problema con la estimación posterior?</p>
-<p>¿Qué modificación realizarías en el modelo para comprobar si la distribución a priori está restringiendo la estimación de <span class="math inline">\(\sigma^2\)</span>?</p>
 </section>
 </section>
 <section id="modelo-ornstein-uhlenbeck-ou-simple-en-revbayes" class="level2">
@@ -969,20 +963,6 @@ p_{th}=1-\frac{1-e^{-2\alpha T}}{2\alpha T}.
 <li>Una nube sin orientación clara sugiere <strong>asociación lineal débil o ausente</strong>.</li>
 </ul>
 <p>Una asociación fuerte puede indicar que los parámetros están relacionados en su estimación y que conviene <strong>interpretarlos conjuntamente</strong>. La correlación, por sí sola, no demuestra falta de identificabilidad ni permite establecer un mecanismo biológico.</p>
-</section>
-<section id="ejercicio-interpretación-de-los-resultados" class="level3">
-<h3 class="anchored" data-anchor-id="ejercicio-interpretación-de-los-resultados">Ejercicio: interpretación de los resultados</h3>
-<p>Observa las gráficas de las distribuciones a priori (rojo) y posterior (azul) de <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma^2\)</span> y <span class="math inline">\(p_{th}\)</span>, así como la nube de puntos entre <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span>. Responde:</p>
-<ol type="1">
-<li><p><strong>Comparación de distribuciones.</strong> ¿Qué diferencias observas entre las distribuciones a priori y posterior de <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\sigma^2\)</span>? Considera el desplazamiento, la dispersión y el sobrelapamiento de las curvas.</p></li>
-<li><p><strong>Atracción hacia el óptimo.</strong> La distribución posterior de <span class="math inline">\(\alpha\)</span> se concentra cerca de cero. ¿Qué implica esto para la fuerza de atracción hacia el óptimo evolutivo? ¿A qué otro modelo se aproxima OU cuando <span class="math inline">\(\alpha\to 0\)</span>?</p></li>
-<li><p><strong>Óptimo estimado.</strong> ¿Qué valor aproximado de <span class="math inline">\(\theta\)</span> favorecen los datos morfológicos? ¿Qué representa biológicamente este parámetro <strong>bajo los supuestos del modelo</strong>?</p></li>
-<li><p><strong>Reducción de varianza.</strong> ¿Qué representa <span class="math inline">\(p_{th}\)</span> y cómo se relaciona con <span class="math inline">\(\alpha\)</span>? Según las gráficas, ¿la reducción relativa de varianza favorecida por la posterior es mayor o menor que la sugerida por la prior?</p></li>
-<li><p><strong>Relación entre parámetros.</strong> Al graficar conjuntamente los valores posteriores de <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span>, ¿observas una asociación positiva, negativa o poco clara? ¿Por qué es importante examinar esa relación antes de interpretar ambos parámetros por separado?</p></li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Para discutir:</strong> Una posterior diferente de la prior indica que nuestras estimaciones se actualizaron al incorporar los datos, pero no demuestra por sí sola que el modelo OU sea el mecanismo evolutivo verdadero. Antes de interpretar los resultados también es necesario comprobar la convergencia y el muestreo adecuado de las cadenas MCMC.</p>
-</blockquote>
 </section>
 </section>
 <section id="modelos-de-evolución-de-caracteres-discretos" class="level2">
