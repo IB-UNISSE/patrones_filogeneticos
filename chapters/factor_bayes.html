@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,15 +68,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/revbayes.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ae5d55f8a41ff9e4654feece7b8084e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-13f3b9144cfbd4bffe19d1212ca92176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -163,8 +162,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias</a> 
@@ -279,11 +277,6 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/u3_intro_morphology_1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introducción a patrones morfológicos</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/u3_intro_morphology_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Disparidad a lo largo del tiempo y coevolución de carácteres</span></a>
   </div>
 </li>
       </ul>
@@ -470,35 +463,35 @@ BF(M_0, M_1) = \frac{P(X | M_0)}{P(X | M_1)}
 <h2 class="anchored" data-anchor-id="descarga-el-script-para-este-ejercicio">Descarga el script para este ejercicio:</h2>
 <p>📥 <a href="../docs/u1_PatDiv/Eupomphini_EBD_3.Rev">Diversificacion de Eupomphini con tres intervalos</a></p>
 <p><strong>Comando para definir el análisis de power-posterior:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pow_p <span class="ot">=</span> <span class="fu">powerPosterior</span>(mymodel, moves, monitors, <span class="st">"output/model1.out"</span>, <span class="at">cats=</span><span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pow_p <span class="ot">=</span> <span class="fu">powerPosterior</span>(mymodel, moves, monitors, <span class="st">"output/model1.out"</span>, <span class="at">cats=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>cats=50: número de piedras (50 pasos entre prior y posterior).</li>
 </ul>
 <p><strong>Importante: hacer “burn-in” antes de empezar:</strong></p>
 <p>Antes de empezar el análisis real, hacemos un burn-in para que la simulación no empiece desde un valor raro, sino desde un lugar donde ya la MCMC está estable.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pow_p.burnin</span>(<span class="at">generations=</span><span class="dv">10000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pow_p.burnin</span>(<span class="at">generations=</span><span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Corre 10,000 generaciones antes de empezar a recolectar datos.</li>
 <li>Ajusta los movimientos cada 1000 generaciones.</li>
 </ul>
 <p><strong>Ahora, correr el análisis de power-posterior:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pow_p.run</span>(<span class="at">generations=</span><span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pow_p.run</span>(<span class="at">generations=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Corre 1,000 generaciones por cada piedra (por cada valor de β).</li>
 <li>Con 50 piedras (cats), harás 50 simulaciones MCMC distintas (una por cada β).</li>
 </ul>
 <p><strong>Cuando termina, hacer el cálculo de Stepping-Stone Sampling:</strong> Ya que se guardaron los resultados de cada piedra en el archivo, podemos crear un objeto para calcular la verosimilitud marginal por Stepping-Stone:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ss <span class="ot">=</span> <span class="fu">steppingStoneSampler</span>(<span class="at">file=</span><span class="st">"output/model1.out"</span>, <span class="at">powerColumnName=</span><span class="st">"power"</span>, <span class="at">likelihoodColumnName=</span><span class="st">"likelihood"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ss <span class="ot">=</span> <span class="fu">steppingStoneSampler</span>(<span class="at">file=</span><span class="st">"output/model1.out"</span>, <span class="at">powerColumnName=</span><span class="st">"power"</span>, <span class="at">likelihoodColumnName=</span><span class="st">"likelihood"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>powerColumnName: nombre de la columna con los β (normalmente “power”).</li>
 <li>likelihoodColumnName: nombre de la columna con las verosimilitudes (normalmente “likelihood”).</li>
 </ul>
 <p><strong>Para obtener la verosimilitud marginal por Stepping-Stone Sampling:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="st">"Stepping stone marginal likelihood:</span><span class="sc">\t</span><span class="st">"</span>, <span class="fu">ss.marginal</span>() )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="st">"Stepping stone marginal likelihood:</span><span class="sc">\t</span><span class="st">"</span>, <span class="fu">ss.marginal</span>() )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Si quieres también Path Sampling (opcional y recomendable para comparar):</strong> Usa el mismo archivo para crear un estimador con path sampling:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ps <span class="ot">=</span> <span class="fu">pathSampler</span>(<span class="at">file=</span><span class="st">"output/model1.out"</span>, <span class="at">powerColumnName=</span><span class="st">"power"</span>, <span class="at">likelihoodColumnName=</span><span class="st">"likelihood"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ps <span class="ot">=</span> <span class="fu">pathSampler</span>(<span class="at">file=</span><span class="st">"output/model1.out"</span>, <span class="at">powerColumnName=</span><span class="st">"power"</span>, <span class="at">likelihoodColumnName=</span><span class="st">"likelihood"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Para calcular la verosimilitud marginal por Path Sampling:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="st">"Path-sampling marginal likelihood:</span><span class="sc">\t</span><span class="st">"</span>, <span class="fu">ps.marginal</span>() )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="st">"Path-sampling marginal likelihood:</span><span class="sc">\t</span><span class="st">"</span>, <span class="fu">ps.marginal</span>() )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="cómo-comparamos-los-modelos-con-factores-de-bayes" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-comparamos-los-modelos-con-factores-de-bayes">¿Cómo comparamos los modelos con Factores de Bayes?</h2>
@@ -670,14 +663,13 @@ K = ln[BF(M_0, M_1)] = ln[P(X | M_0)] - ln[P(X | M_1)]
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
