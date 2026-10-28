@@ -1,0 +1,91 @@
+################################################################################
+# BM dependiente del habitat en Haemulidae
+# Adaptacion docente del tutorial y de los scripts de Michael R. May
+# https://revbayes.github.io/tutorials/cont_traits/state_dependent_bm
+# Ejecutar desde la carpeta que contiene data, scripts y output.
+################################################################################
+
+# 1. Leer el arbol y seleccionar el caracter continuo
+character <- 1
+T <- readTrees("data/haemulidae.nex")[1]
+tree <- T
+ntips <- tree.ntips()
+nbranches <- 2 * ntips - 2
+
+cont <- readContinuousCharacterData("data/haemulidae_trophic_traits.nex")
+cont.excludeAll()
+cont.includeCharacter(character)
+
+# 0 = fuera de arrecife; 1 = arrecife
+disc <- readDiscreteCharacterData("data/haemulidae_habitat.nex")
+num_disc_states <- disc.getStateDescriptions().size()
+
+moves = VectorMoves()
+monitors = VectorMonitors()
+
+# 2. Modelo de evolucion del habitat
+Q <- fnJC(num_disc_states)
+lambda ~ dnLoguniform(1e-3, 2)
+moves.append(mvScale(lambda, weight=1.0))
+
+# Aumento de datos para muestrear las historias del habitat
+X ~ dnPhyloCTMCDASiteIID(tree, Q, branchRates=lambda,
+                       type="Standard", nSites=1)
+
+# Registrar los movimientos ANTES de clamp para compatibilidad.
+# Discussion 894: github.com/revbayes/revbayes/discussions/894
+moves.append(mvCharacterHistory(ctmc=X, qmap_site=Q,
+    graph="node", proposal="rejection", weight=20.0))
+moves.append(mvCharacterHistory(ctmc=X, qmap_site=Q,
+    graph="branch", proposal="rejection", weight=20.0))
+X.clamp(disc)
+
+# Contabilizar cambios de habitat, distintos de los cambios de tasa de fondo
+for (i in 1:nbranches) {
+    num_changes[i] := sum(X.numCharacterChanges(i))
+}
+total_num_changes := sum(num_changes)
+
+# 3. Escala comun de la tasa de varianza
+beta ~ dnLoguniform(1e-3, 1)
+moves.append(mvScale(beta, weight=1.0))
+
+# 4. Multiplicadores relativos de la tasa de varianza
+concentration <- 1.0
+proportional_zeta ~ dnDirichlet(rep(concentration, num_disc_states))
+moves.append(mvBetaSimplex(proportional_zeta, weight=1.0))
+
+# Con dos estados, zeta[1] + zeta[2] = 2
+zeta := proportional_zeta * num_disc_states
+zeta_estado_0 := zeta[1]
+zeta_estado_1 := zeta[2]
+ratio_state_1_0 := zeta_estado_1 / zeta_estado_0
+
+# Componente del habitat ponderado por el tiempo en cada estado
+for (i in 1:nbranches) {
+    state_branch_rate[i] := sum(X.relativeTimeInStates(i,1) * zeta)
+}
+
+# 5. Tasas absolutas por estado y tasa de cada rama
+overall_rate := beta * zeta
+tasa_estado_0 := beta * zeta_estado_0
+tasa_estado_1 := beta * zeta_estado_1
+branch_rates := state_branch_rate * beta
+
+# branch_rates es una tasa de VARIANZA; la funcion recibe su raiz cuadrada
+Y ~ dnPhyloBrownianREML(tree, branchRates=branch_rates^0.5)
+Y.clamp(cont)
+
+# 6. Modelo y monitores
+mymodel = model(zeta)
+monitors.append(mnModel(filename="output/state_dependent_BM.log",
+                        printgen=10))
+monitors.append(mnScreen(printgen=1000, beta, zeta, ratio_state_1_0,
+                         total_num_changes))
+
+# 7. Una cadena de demostracion
+# Para la interpretacion final, repetir de forma independiente en otra carpeta.
+mymcmc = mcmc(mymodel, monitors, moves, nruns=1)
+mymcmc.burnin(generations=1000, tuningInterval=100)
+mymcmc.run(generations=50000)
+q()
