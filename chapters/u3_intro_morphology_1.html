@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/u2_intro_biogeography_3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-13f3b9144cfbd4bffe19d1212ca92176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ae5d55f8a41ff9e4654feece7b8084e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -162,7 +163,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias</a> 
@@ -255,7 +257,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/u2_intro_biogeography_1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introducción a patrones morfológicos</span></a>
+  <a href="../chapters/u2_intro_biogeography_1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introducción a la biogeografía filogenética con el modelo DEC</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -281,7 +283,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/u3_intro_morphology_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Disparidad a lo largo del tiempo y coevolución de carácteres</span></a>
+  <a href="../chapters/u3_intro_morphology_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Estimación de tasas brownianas dependientes del estado</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/u3_intro_morphology_3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Paleobotánica y estimación de tiempos de divergencia mediante RevBayes</span></a>
   </div>
 </li>
       </ul>
@@ -411,7 +418,7 @@ window.Quarto = {
 <li><p>Fija los datos con <code>X.clamp(data)</code>.</p></li>
 <li><p>Nos dice: 👉 <em>¿Qué valores de</em> <span class="math inline">\(\sigma^2\)</span> son más probables ahora que hemos visto los datos?</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de RevBayes: Inferencia bayesiana de tasas de evolución bajo un </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># modelo de Movimiento Browniano con tasa constante</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
@@ -482,7 +489,7 @@ window.Quarto = {
 <span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">3000</span>)</span>
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Finalizar</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="el-script-de-prior-mcmc_bm_prior.rev" class="level3">
 <h3 class="anchored" data-anchor-id="el-script-de-prior-mcmc_bm_prior.rev">2️⃣ El <strong>script de prior</strong> (<code>mcmc_BM_prior.Rev</code>)</h3>
@@ -491,7 +498,7 @@ window.Quarto = {
 <li><p>Omite los datos con <code>mymodel.ignoreAllData()</code>.</p></li>
 <li><p>Nos dice: 👉 <em>¿Qué creíamos posible sobre</em> <span class="math inline">\(\sigma^2\)</span> antes de ver los datos?</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de RevBayes: Muestreo de la distribución a priori del modelo </span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># de Movimiento Browniano con tasa constante</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
@@ -547,12 +554,12 @@ window.Quarto = {
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">3000</span>)</span>
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Finalizar</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="gráfica-de-sigma2" class="level3">
 <h3 class="anchored" data-anchor-id="gráfica-de-sigma2">📈 Gráfica de <span class="math inline">\(\sigma^2\)</span></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer archivos</span></span>
@@ -564,7 +571,7 @@ window.Quarto = {
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">plotTrace</span>(<span class="fu">list</span>(simple_BM_posterior), <span class="at">vars=</span><span class="fu">c</span>(<span class="st">"sigma2"</span>, <span class="st">"sigma2_prior"</span>))</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]</code></pre>
 </div>
@@ -599,7 +606,7 @@ window.Quarto = {
 <li><p>Utiliza tanto el modelo como los datos observados.</p></li>
 <li><p>Fija los datos con:</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">X.clamp</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">X.clamp</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="qué-nos-dice" class="level3">
 <h3 class="anchored" data-anchor-id="qué-nos-dice">🔍 ¿Qué nos dice?</h3>
@@ -607,7 +614,7 @@ window.Quarto = {
 <li><p>¿Qué valores de los parámetros (alpha, sigma², theta) son más probables después de ver los datos?</p></li>
 <li><p>Nos permite inferir la historia evolutiva del rasgo bajo un modelo que considera evidencia empírica.</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo de Ornstein-Uhlenbeck simple para caracteres continuos</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimación del valor óptimo evolutivo (theta), la tasa de adaptación (alpha)</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># y la tasa de evolución estocástica (sigma2) en un árbol calibrado</span></span>
@@ -731,7 +738,7 @@ window.Quarto = {
 <span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">50000</span>)</span>
 <span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Salir del entorno de RevBayes</span></span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="script-de-prior-mcmc_ou_prior.rev" class="level3">
 <h3 class="anchored" data-anchor-id="script-de-prior-mcmc_ou_prior.rev">2️⃣ <strong>Script de prior</strong> (<code>mcmc_OU_prior.Rev</code>)</h3>
@@ -739,7 +746,7 @@ window.Quarto = {
 <li><p>No usa los datos observados.</p></li>
 <li><p>Omite los datos con:</p></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymodel.ignoreAllData</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mymodel.ignoreAllData</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="qué-nos-dice-1" class="level3">
 <h3 class="anchored" data-anchor-id="qué-nos-dice-1">🔍 ¿Qué nos dice?</h3>
@@ -747,7 +754,7 @@ window.Quarto = {
 <li><p>¿Qué creíamos posible sobre los parámetros (<code>alpha</code>, <code>sigma²</code>, <code>theta</code>) <strong>antes de ver los datos</strong>, solo con la estructura del modelo?</p></li>
 <li><p>Nos permite <strong>explorar los supuestos previos</strong> y compararlos con la distribución posterior (para ver cuánto aportaron los datos).</p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestreo desde la distribución a priori del modelo de Ornstein-Uhlenbeck</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># No se usa la información observada (sin clamp), útil para comparar con posterior</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
@@ -836,12 +843,12 @@ window.Quarto = {
 <span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">50000</span>)</span>
 <span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Finalizar</span></span>
-<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="visualización-de-parámetros-del-modelo-ornstein-uhlenbeck-ou" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-de-parámetros-del-modelo-ornstein-uhlenbeck-ou">📊 <strong>Visualización de parámetros del modelo Ornstein-Uhlenbeck (OU)</strong></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías para trazar y organizar gráficos</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías para trazar y organizar gráficos</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -881,7 +888,7 @@ window.Quarto = {
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.81</span>))</span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar una cuadrícula con los parámetros clave</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(alpha_plot, theta_plot, sigma_plot, p_th_plot, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(alpha_plot, theta_plot, sigma_plot, p_th_plot, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -925,7 +932,7 @@ p_{th}=1-\frac{1-e^{-2\alpha T}}{2\alpha T}.
 <p>Algunas combinaciones de <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\sigma^2\)</span> pueden producir dispersiones parecidas, especialmente cuando los datos son poco informativos. Por eso es útil representar sus valores posteriores conjuntamente y examinar si existe una asociación entre ambos parámetros.</p>
 <p>El siguiente código lee las muestras de la distribución posterior de OU (puedes ajustar la ruta si tus resultados están en otra carpeta):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución posterior del modelo OU: primera traza</span></span>
@@ -942,7 +949,7 @@ p_{th}=1-\frac{1-e^{-2\alpha T}}{2\alpha T}.
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(alpha),</span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(sigma<span class="sc">^</span><span class="dv">2</span>),</span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución posterior conjunta de α y σ²"</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -950,8 +957,8 @@ p_{th}=1-\frac{1-e^{-2\alpha T}}{2\alpha T}.
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlación descriptiva entre las muestras posteriores</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(samples_OU<span class="sc">$</span>alpha, samples_OU<span class="sc">$</span>sigma2, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlación descriptiva entre las muestras posteriores</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(samples_OU<span class="sc">$</span>alpha, samples_OU<span class="sc">$</span>sigma2, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.7653447</code></pre>
 </div>
@@ -993,7 +1000,7 @@ Q = \begin{pmatrix}
 <p>📥 Puedes descargar el archivo .nex con la matriz de caracteres discretos en el siguiente enlace:</p>
 <p><a href="../docs/u1_PatDiv/output/morpho/primates_solitariness.nex" download="">📥 Descargar matriz de caracteres discretos</a></p>
 <p>Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################}</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo en RevBayes: Inferencia de estados ancestrales y tasas de evolución </span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># morfológica bajo un modelo de tasas iguales de Markov (ERM)</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
@@ -1117,12 +1124,12 @@ Q = \begin{pmatrix}
 <span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a>                              <span class="at">site=</span><span class="dv">1</span>)</span>
 <span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Salir de RevBayes</span></span>
-<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="visualización-de-estados-ancestrales-en-r-con-revgadgets" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-de-estados-ancestrales-en-r-con-revgadgets">🧬 Visualización de estados ancestrales en R con RevGadgets</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar la librería necesaria</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar la librería necesaria</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1131,7 +1138,7 @@ Q = \begin{pmatrix}
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificamos los nombres de los estados que se mostrarán en el árbol. Puedes modificarlos según los caracteres analizados.</span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>ase <span class="ot">&lt;-</span> <span class="fu">processAncStates</span>(tree_file,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">state_labels =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"grupo"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"solitario"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">state_labels =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"grupo"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"solitario"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   |                                              
@@ -1139,7 +1146,7 @@ Q = \begin{pmatrix}
   |                                              
   |========================================| 100%</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los estados ancestrales como colores en nodos (MAP)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los estados ancestrales como colores en nodos (MAP)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Cada nodo del árbol mostrará su estado más probable (MAP).</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># El color representa el estado, y el tamaño del nodo representa su probabilidad posterior</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plotAncStatesMAP</span>(<span class="at">t =</span> ase,</span>
@@ -1147,7 +1154,7 @@ Q = \begin{pmatrix}
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.92</span>, <span class="fl">0.81</span>))</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1155,7 +1162,7 @@ Q = \begin{pmatrix}
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar la figura en PDF</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar la figura en PDF</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"primates_solitariness_ASE_ERM_MAP.pdf"</span>, p1, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">9</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (Opcional) Mostrar incertidumbre con gráficos de pastel</span></span>
@@ -1163,7 +1170,7 @@ Q = \begin{pmatrix}
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tree_layout =</span> <span class="st">"rect"</span>,</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tip_labels_size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.92</span>, <span class="fl">0.81</span>))</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1171,8 +1178,8 @@ Q = \begin{pmatrix}
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar la figura en PDF</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"primates_solitariness_ASE_ERM_MAP_2.pdf"</span>, p2, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar la figura en PDF</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"primates_solitariness_ASE_ERM_MAP_2.pdf"</span>, p2, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -1232,13 +1239,14 @@ Q = \begin{pmatrix}
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1592,8 +1600,8 @@ Q = \begin{pmatrix}
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/u3_intro_morphology_2.html" class="pagination-link" aria-label="Disparidad a lo largo del tiempo y coevolución de carácteres">
-        <span class="nav-page-text"><span class="chapter-title">Disparidad a lo largo del tiempo y coevolución de carácteres</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/u3_intro_morphology_2.html" class="pagination-link" aria-label="Estimación de tasas brownianas dependientes del estado">
+        <span class="nav-page-text"><span class="chapter-title">Estimación de tasas brownianas dependientes del estado</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
