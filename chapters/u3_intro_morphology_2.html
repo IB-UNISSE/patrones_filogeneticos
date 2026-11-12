@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,15 +68,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/u3_intro_morphology_1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ae5d55f8a41ff9e4654feece7b8084e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-13f3b9144cfbd4bffe19d1212ca92176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -91,7 +90,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No se han encontrado resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -120,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -163,8 +162,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias</a> 
@@ -311,7 +309,7 @@ window.Quarto = {
   <li><a href="#comparación-final-de-los-modelos" id="toc-comparación-final-de-los-modelos" class="nav-link" data-scroll-target="#comparación-final-de-los-modelos">Comparación final de los modelos</a></li>
   <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -537,7 +535,7 @@ Comprobación de las cadenas
 <p>Guarda este bloque como <strong><code>mcmc_state_dependent_BM.Rev</code></strong>. La tasa de fondo es común a todas las ramas y el hábitat modifica la tasa mediante <code>zeta</code>.</p>
 <section id="script-de-revbayes" class="level3">
 <h3 class="anchored" data-anchor-id="script-de-revbayes">Script de RevBayes</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BM dependiente del habitat en Haemulidae</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptacion docente del tutorial y de los scripts de Michael R. May</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://revbayes.github.io/tutorials/cont_traits/state_dependent_bm</span></span>
@@ -626,13 +624,13 @@ Comprobación de las cadenas
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>mymcmc <span class="ot">=</span> <span class="fu">mcmc</span>(mymodel, monitors, moves, <span class="at">nruns=</span><span class="dv">1</span>)</span>
 <span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.burnin</span>(<span class="at">generations=</span><span class="dv">1000</span>, <span class="at">tuningInterval=</span><span class="dv">100</span>)</span>
 <span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="fu">mymcmc.run</span>(<span class="at">generations=</span><span class="dv">50000</span>)</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="lectura-de-la-salida-en-r" class="level3">
 <h3 class="anchored" data-anchor-id="lectura-de-la-salida-en-r">Lectura de la salida en R</h3>
 <p>Lee <code>state_dependent_BM.log</code> desde la carpeta de resultados. La variable <code>carpeta_salida</code> identifica su ubicación y puede sustituirse por una ruta propia.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>leer_resultados <span class="ot">&lt;-</span> <span class="cf">function</span>(archivo, <span class="at">descarte =</span> <span class="fl">0.25</span>) {</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>leer_resultados <span class="ot">&lt;-</span> <span class="cf">function</span>(archivo, <span class="at">descarte =</span> <span class="fl">0.25</span>) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(descarte) <span class="sc">||</span> <span class="fu">length</span>(descarte) <span class="sc">!=</span> <span class="dv">1</span>L <span class="sc">||</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.finite</span>(descarte) <span class="sc">||</span> descarte <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">||</span> descarte <span class="sc">&gt;=</span> <span class="dv">1</span>) {</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"El descarte debe ser un número entre 0 y 1, sin incluir 1."</span>)</span>
@@ -665,14 +663,14 @@ Comprobación de las cadenas
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> <span class="fu">leer_resultados</span>(<span class="fu">file.path</span>(carpeta_salida, <span class="st">"state_dependent_BM.log"</span>))</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>simple<span class="sc">$</span>R <span class="ot">&lt;-</span> simple<span class="sc">$</span>zeta_estado_1 <span class="sc">/</span> simple<span class="sc">$</span>zeta_estado_0</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>resumen_simple <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">quantile</span>(simple<span class="sc">$</span>R, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>resumen_simple <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">quantile</span>(simple<span class="sc">$</span>R, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="resultados-tasas-entre-hábitats" class="level3">
 <h3 class="anchored" data-anchor-id="resultados-tasas-entre-hábitats">Resultados: tasas entre hábitats</h3>
 <p>Cada curva representa la <strong>incertidumbre posterior de una tasa evolutiva</strong>, no la distribución de tamaños de los peces. La tasa se expresa en la escala del carácter y por unidad de longitud del árbol.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(<span class="fu">c</span>(<span class="st">"tasa_0"</span>, <span class="st">"tasa_1"</span>) <span class="sc">%in%</span> <span class="fu">names</span>(simple))) {</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(<span class="fu">c</span>(<span class="st">"tasa_0"</span>, <span class="st">"tasa_1"</span>) <span class="sc">%in%</span> <span class="fu">names</span>(simple))) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"El primer archivo debe contener beta para calcular las tasas por hábitat."</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tasas <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
@@ -685,7 +683,7 @@ Comprobación de las cadenas
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Arrecife"</span> <span class="ot">=</span> <span class="st">"#B46621"</span>, <span class="st">"Fuera de arrecife"</span> <span class="ot">=</span> <span class="st">"#246A8A"</span>)) <span class="sc">+</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>(<span class="st">"Tasa de varianza "</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span>), <span class="at">y =</span> <span class="st">"Densidad"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Hábitat"</span>, <span class="at">fill =</span> <span class="st">"Hábitat"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Hábitat"</span>, <span class="at">fill =</span> <span class="st">"Hábitat"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -732,7 +730,7 @@ R=\frac{\text{tasa en arrecife}}{\text{tasa fuera de arrecife}}.
 <p>En este modelo se sustituye <code>beta</code> por una tasa de fondo que puede cambiar entre ramas. Para una misma tasa de fondo, el efecto relativo del hábitat sigue siendo <code>zeta[2] / zeta[1]</code>. El salto reversible de este script corresponde a <strong>cambios de fondo en ramas</strong>, y no a una comparación entre presencia y ausencia de efecto del hábitat.</p>
 <section id="script-de-revbayes-1" class="level3">
 <h3 class="anchored" data-anchor-id="script-de-revbayes-1">Script de RevBayes</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################################################################</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BM dependiente del habitat en Haemulidae</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adaptacion docente del tutorial y de los scripts de Michael R. May</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://revbayes.github.io/tutorials/cont_traits/state_dependent_bm</span></span>
@@ -849,25 +847,25 @@ R=\frac{\text{tasa en arrecife}}{\text{tasa fuera de arrecife}}.
 <span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>treetrace <span class="ot">=</span> <span class="fu">readTreeTrace</span>(<span class="st">"output/relaxed_state_dependent_BM.trees"</span>,</span>
 <span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>                         <span class="at">treetype=</span><span class="st">"clock"</span>, <span class="at">burnin=</span><span class="fl">0.25</span>)</span>
 <span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>map_tree <span class="ot">=</span> <span class="fu">mapTree</span>(treetrace, <span class="st">"output/relaxed_state_dependent_BM_MAP.tre"</span>)</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="resultados-efecto-del-hábitat-con-variación-de-fondo" class="level3">
 <h3 class="anchored" data-anchor-id="resultados-efecto-del-hábitat-con-variación-de-fondo">Resultados: efecto del hábitat con variación de fondo</h3>
 <p>Lee ahora <code>relaxed_state_dependent_BM.log</code>. La razón compara los hábitats <strong>manteniendo igual el componente de fondo</strong>; no es un cociente de tasas promedio de grupos de ramas.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fondo <span class="ot">&lt;-</span> <span class="fu">leer_resultados</span>(<span class="fu">file.path</span>(carpeta_salida, <span class="st">"relaxed_state_dependent_BM.log"</span>))</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fondo <span class="ot">&lt;-</span> <span class="fu">leer_resultados</span>(<span class="fu">file.path</span>(carpeta_salida, <span class="st">"relaxed_state_dependent_BM.log"</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fondo<span class="sc">$</span>R <span class="ot">&lt;-</span> fondo<span class="sc">$</span>zeta_estado_1 <span class="sc">/</span> fondo<span class="sc">$</span>zeta_estado_0</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>resumen_fondo <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">quantile</span>(fondo<span class="sc">$</span>R, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>resumen_fondo <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">quantile</span>(fondo<span class="sc">$</span>R, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fondo, <span class="fu">aes</span>(R)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fondo, <span class="fu">aes</span>(R)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">colour =</span> <span class="st">"#B46621"</span>, <span class="at">fill =</span> <span class="st">"#B46621"</span>, <span class="at">alpha =</span> <span class="fl">0.15</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">linewidth =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Razón de tasas: arrecife / fuera de arrecife (escala logarítmica)"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Densidad"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Densidad"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -915,7 +913,7 @@ R=\frac{\text{tasa en arrecife}}{\text{tasa fuera de arrecife}}.
 </table>
 <p>Esta figura utiliza <code>relaxed_state_dependent_BM_MAP.tre</code>, generado al terminar el segundo script. Se requieren también <code>RevGadgets</code> y <code>gridExtra</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>archivo_arbol <span class="ot">&lt;-</span> <span class="fu">file.path</span>(carpeta_salida, <span class="st">"relaxed_state_dependent_BM_MAP.tre"</span>)</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>archivo_arbol <span class="ot">&lt;-</span> <span class="fu">file.path</span>(carpeta_salida, <span class="st">"relaxed_state_dependent_BM_MAP.tre"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>paquetes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"RevGadgets"</span>, <span class="st">"gridExtra"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>disponibles <span class="ot">&lt;-</span> <span class="fu">vapply</span>(paquetes, requireNamespace, <span class="fu">logical</span>(<span class="dv">1</span>), <span class="at">quietly =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -953,7 +951,7 @@ R=\frac{\text{tasa en arrecife}}{\text{tasa fuera de arrecife}}.
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(disponibles)) {</span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Paquetes necesarios: "</span>, <span class="fu">paste</span>(paquetes[<span class="sc">!</span>disponibles], <span class="at">collapse =</span> <span class="st">", "</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -970,11 +968,11 @@ R=\frac{\text{tasa en arrecife}}{\text{tasa fuera de arrecife}}.
 <h2 class="anchored" data-anchor-id="comparación-final-de-los-modelos">Comparación final de los modelos</h2>
 <p>La siguiente tabla reúne únicamente el contraste central entre hábitats. Compara la mediana y el intervalo creíble de colas iguales del 95 % de R.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>modelos <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"Dependiente del hábitat"</span> <span class="ot">=</span> simple<span class="sc">$</span>R,</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>modelos <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"Dependiente del hábitat"</span> <span class="ot">=</span> simple<span class="sc">$</span>R,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Con variación de fondo"</span> <span class="ot">=</span> fondo<span class="sc">$</span>R)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>resumen <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">vapply</span>(modelos, quantile, <span class="fu">numeric</span>(<span class="dv">3</span>), <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)))</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(resumen) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Límite inferior 95 %"</span>, <span class="st">"Mediana"</span>, <span class="st">"Límite superior 95 %"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resumen, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Razón de tasas entre hábitats"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resumen, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Razón de tasas entre hábitats"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Razón de tasas entre hábitats</caption>
@@ -1071,14 +1069,13 @@ R=\frac{\text{tasa en arrecife}}{\text{tasa fuera de arrecife}}.
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1442,5 +1439,5 @@ R=\frac{\text{tasa en arrecife}}{\text{tasa fuera de arrecife}}.
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

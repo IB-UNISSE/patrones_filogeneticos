@@ -337,6 +337,14 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#generación-de-árboles-resumen" id="toc-generación-de-árboles-resumen" class="nav-link" data-scroll-target="#generación-de-árboles-resumen">Generación de árboles resumen</a></li>
   </ul></li>
+  <li><a href="#posprocesamiento-de-los-resultados-en-r" id="toc-posprocesamiento-de-los-resultados-en-r" class="nav-link" data-scroll-target="#posprocesamiento-de-los-resultados-en-r">Posprocesamiento de los resultados en R</a>
+  <ul class="collapse">
+  <li><a href="#lectura-de-los-resultados" id="toc-lectura-de-los-resultados" class="nav-link" data-scroll-target="#lectura-de-los-resultados">Lectura de los resultados</a></li>
+  <li><a href="#evaluación-de-la-cadena-mcmc" id="toc-evaluación-de-la-cadena-mcmc" class="nav-link" data-scroll-target="#evaluación-de-la-cadena-mcmc">Evaluación de la cadena MCMC</a></li>
+  <li><a href="#distribución-posterior-del-tiempo-de-origen" id="toc-distribución-posterior-del-tiempo-de-origen" class="nav-link" data-scroll-target="#distribución-posterior-del-tiempo-de-origen">Distribución posterior del tiempo de origen</a></li>
+  <li><a href="#exploración-de-topologías-con-rwty" id="toc-exploración-de-topologías-con-rwty" class="nav-link" data-scroll-target="#exploración-de-topologías-con-rwty">Exploración de topologías con RWTY</a></li>
+  <li><a href="#visualización-del-árbol-mcc-con-revgadgets" id="toc-visualización-del-árbol-mcc-con-revgadgets" class="nav-link" data-scroll-target="#visualización-del-árbol-mcc-con-revgadgets">Visualización del árbol MCC con RevGadgets</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
@@ -446,10 +454,6 @@ window.Quarto = {
 </table>
 <p><strong>Scripts individuales de RevBayes</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Script</th>
@@ -482,8 +486,8 @@ window.Quarto = {
 <td><a href="../docs/u3_PatMorph/paleobotany/tutorial_evolution_2022/scripts/morph_clock_model.Rev" download="">Descargar archivo</a></td>
 </tr>
 <tr class="odd">
-<td>Posprocesamiento en R (<code>r_post_processing.R</code>)</td>
-<td><a href="../docs/u3_PatMorph/paleobotany/tutorial_evolution_2022/scripts/r_post_processing.R" download="">Descargar script de R</a></td>
+<td>Posprocesamiento en R</td>
+<td><a href="#posprocesamiento-de-los-resultados-en-r">Ver los bloques de código R integrados en esta página</a></td>
 </tr>
 </tbody>
 </table>
@@ -890,9 +894,193 @@ window.Quarto = {
 <p>Tal vez también queramos observar el <strong>árbol de máxima probabilidad a posteriori (MAP, Maximum a Posteriori)</strong>: el árbol de la muestra que tiene la probabilidad posterior más alta. No es un árbol de consenso, sino uno de los árboles de nuestra muestra.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get the Maximum a posteriori tree (MAP)</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mapTree</span>(full_trees, output_filename <span class="sc">+</span> <span class="st">"MAP_tree.tre"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Ahora puedes visualizar tus árboles en FigTree y tus resultados en Tracer. En la carpeta <code>scripts/</code> también encontrarás el <a href="../docs/u3_PatMorph/paleobotany/tutorial_evolution_2022/scripts/r_post_processing.R">script de posprocesamiento en R (<code>r_post_processing.R</code>)</a>, que utiliza el paquete <a href="https://revbayes.github.io/tutorials/intro/revgadgets.html">RevGadgets</a> para generar una gráfica como la siguiente:</p>
-<p><img src="../images/u3_PatMorph/paleobotany/figura_03.png" class="img-fluid"></p>
-<p>Fig. 3. Árbol MCC resultante del análisis de este tutorial.</p>
+<hr>
+</section>
+</section>
+<section id="posprocesamiento-de-los-resultados-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="posprocesamiento-de-los-resultados-en-r">Posprocesamiento de los resultados en R</h2>
+<p>Una vez finalizada la MCMC, revisaremos el comportamiento de la cadena, la incertidumbre en las estimaciones temporales y los árboles muestreados. Utilizaremos los resultados de <code>output/run_1/</code>.</p>
+<section id="lectura-de-los-resultados" class="level3">
+<h3 class="anchored" data-anchor-id="lectura-de-los-resultados">Lectura de los resultados</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías necesarias</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rwty)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Carpeta de resultados del tutorial</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>ruta <span class="ot">&lt;-</span> <span class="st">"../docs/u3_PatMorph/paleobotany/tutorial_evolution_2022/output/run_1"</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo de parámetros</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>parametros <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="fu">file.path</span>(ruta, <span class="st">"params.log"</span>), <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Descartar el 10 % inicial de las muestras guardadas</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>burnin <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">nrow</span>(parametros) <span class="sc">*</span> <span class="fl">0.10</span>)</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> parametros[<span class="sc">-</span><span class="fu">seq_len</span>(burnin), ]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="evaluación-de-la-cadena-mcmc" class="level3">
+<h3 class="anchored" data-anchor-id="evaluación-de-la-cadena-mcmc">Evaluación de la cadena MCMC</h3>
+<p>La traza permite reconocer tendencias y problemas de mezcla. El tamaño efectivo de muestra (ESS) resume la autocorrelación de las estimaciones.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Traza del tiempo de origen del proceso FBD</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(parametros<span class="sc">$</span>Iteration, parametros<span class="sc">$</span>origin_time,</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">xlab =</span> <span class="st">"Generación"</span>, <span class="at">ylab =</span> <span class="st">"Tiempo de origen (Ma)"</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> parametros<span class="sc">$</span>Iteration[burnin <span class="sc">+</span> <span class="dv">1</span>], <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u3_intro_morphology_3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ESS para parámetros seleccionados</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(<span class="fu">mcmc</span>(posterior[, <span class="fu">c</span>(<span class="st">"origin_time"</span>, <span class="st">"lambda"</span>, <span class="st">"mu"</span>, <span class="st">"psi"</span>)]))</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>ess</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>origin_time      lambda          mu         psi 
+  221.28109    30.54076    30.53758   864.99325 </code></pre>
+</div>
+</div>
+</section>
+<section id="distribución-posterior-del-tiempo-de-origen" class="level3">
+<h3 class="anchored" data-anchor-id="distribución-posterior-del-tiempo-de-origen">Distribución posterior del tiempo de origen</h3>
+<p><code>origin_time</code> es la edad de origen del proceso FBD; no representa necesariamente la edad del nodo raíz.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen posterior del tiempo de origen</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(posterior<span class="sc">$</span>origin_time, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     2.5%       50%     97.5% 
+ 86.37701  94.10230 100.07180 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar la distribución posterior</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(posterior, <span class="fu">aes</span>(<span class="at">x =</span> origin_time)) <span class="sc">+</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"grey75"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(posterior<span class="sc">$</span>origin_time), <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo de origen (Ma)"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u3_intro_morphology_3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exploración-de-topologías-con-rwty" class="level3">
+<h3 class="anchored" data-anchor-id="exploración-de-topologías-con-rwty">Exploración de topologías con RWTY</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer los árboles y asociarlos con params.log</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>my_chains <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">run_1 =</span> <span class="fu">load.trees</span>(</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="fu">file.path</span>(ruta, <span class="st">"tree.trees"</span>),</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">logfile =</span> <span class="fu">file.path</span>(ruta, <span class="st">"params.log"</span>),</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">format =</span> <span class="st">"revbayes"</span>,</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">trim =</span> <span class="dv">2</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Reading trees..."</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "10 generations per tree..."
+[1] "Unrooting, this may take a while..."
+[1] "Reading parameter values from params.log"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descartar el 10 % de los árboles conservados</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>burnin_arboles <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">length</span>(my_chains[[<span class="dv">1</span>]]<span class="sc">$</span>trees) <span class="sc">*</span> <span class="fl">0.10</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distancias topológicas a lo largo de la MCMC</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">makeplot.topology</span>(my_chains, <span class="at">burnin =</span> burnin_arboles,</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">approx.ess =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Creating trace for tree topologies"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$trace.plot</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u3_intro_morphology_3_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$density.plot</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u3_intro_morphology_3_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Representar los árboles en el espacio de topologías</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>espacio <span class="ot">&lt;-</span> <span class="fu">makeplot.treespace</span>(my_chains, <span class="at">burnin =</span> burnin_arboles,</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">n.points =</span> <span class="dv">100</span>, <span class="at">fill.color =</span> <span class="st">"Likelihood"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Creating treespace plots"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>espacio<span class="sc">$</span>treespace.points.plot</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u3_intro_morphology_3_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamaño efectivo de muestra aproximado para las topologías</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">topological.approx.ess</span>(my_chains, <span class="at">burnin =</span> burnin_arboles)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Calculating approximate ESS with sampling intervals from 1 to 100"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  operator approx.ess chain
+1        =   597.9342 run_1</code></pre>
+</div>
+</div>
+</section>
+<section id="visualización-del-árbol-mcc-con-revgadgets" class="level3">
+<h3 class="anchored" data-anchor-id="visualización-del-árbol-mcc-con-revgadgets">Visualización del árbol MCC con RevGadgets</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el árbol de máxima credibilidad de clados (MCC)</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>archivo_mcc <span class="ot">&lt;-</span> <span class="fu">file.path</span>(ruta, <span class="st">"MCC_tree.tre"</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>arbol_mcc <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="at">paths =</span> archivo_mcc)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                              
+  |                                        |   0%
+  |                                              
+  |========================================| 100%</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el árbol y los intervalos de edad de los nodos</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plotTree</span>(<span class="at">tree =</span> arbol_mcc,</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">timeline =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">geo_units =</span> <span class="fu">list</span>(<span class="st">"epochs"</span>, <span class="st">"periods"</span>),</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">node_age_bars =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">age_bars_colored_by =</span> <span class="st">"posterior"</span>,</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">tip_labels_italics =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.6</span>))</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="u3_intro_morphology_3_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Los diagnósticos corresponden a una sola cadena. Para evaluar la concordancia entre corridas, es necesario repetir el análisis de forma independiente.</p>
 <p><strong>Nota importante:</strong> Recuerda que, antes de hacer inferencias a partir de los árboles obtenidos en tu análisis, debes asegurarte de que la <strong>MCMC haya convergido</strong>. Si no sabes con certeza qué significa esto, consulta <a href="https://revbayes.github.io/tutorials/convergence/">este tutorial</a>. Además, incluso si tu MCMC ha convergido, eso solo significa que tus resultados son precisos dado tu modelo y tus distribuciones a priori, no que tu modelo sea preciso. Para evaluar esto, necesitas comparar modelos y analizar su adecuación. ¡Esta observación no pretende desanimarte a aplicar este tipo de modelos a tus datos! Al contrario, pretende animarte a seguir explorando estos métodos en <a href="https://revbayes.github.io/tutorials/ted_workflow/">tutoriales más avanzados</a>, donde aprenderás a comparar modelos y evaluar su adecuación a tus datos.</p>
 <hr>
 <p><strong><em>Notas finales para reflexionar</em>:</strong> La respuesta a muchas de las preguntas anteriores sobre qué modelo es mejor depende de nuestros datos. La manera de abordar estas preguntas es mediante la <strong>comparación de modelos</strong> (para responder <em>cuál de los modelos competidores es mejor</em>) y la <strong>adecuación del modelo</strong> (para responder <em>si los supuestos de nuestro modelo son razonables</em>).</p>
