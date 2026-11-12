@@ -6,7 +6,7 @@ ESTRUCTURA
   data/alignments/: ITS, trnLF, waxy (FASTA)
   data/morphology.nexus: caracteres morfológicos
   data/taxa.tsv: terminales y edades
-  scripts/: script principal y cinco componentes RevBayes
+  scripts/: seis scripts de RevBayes y r_post_processing.R (R)
   output/run_1/: destino para archivos de salida
 
 Los cinco datos provienen de los archivos distribuidos con este capítulo.
@@ -21,3 +21,7 @@ EJECUCIÓN
 
 Los scripts están destinados a una actividad docente; no se ejecutaron ni
 validaron con una instalación local de RevBayes al preparar este paquete.
+
+POSPROCESAMIENTO EN R
+El archivo scripts/r_post_processing.R se conserva exactamente como el original.
+Contiene rutas y ejemplos que deben adaptarse a la carpeta y resultados propios.

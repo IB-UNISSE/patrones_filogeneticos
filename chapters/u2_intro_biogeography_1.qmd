@@ -1,673 +1,752 @@
 ---
-title: "Introducción a patrones morfológicos"
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    code-copy: true
+title: "Introducción a la biogeografía filogenética con el modelo DEC"
+format: html
 execute:
-  echo: true
-  warning: false
-  message: false
-  fig-width: 12
-  fig-height: 8
+  echo: true   # Muestra el código
+  warning: false  # Oculta advertencias
+  fig-width: 12   # Ancho del gráfico
+  fig-height: 8   # Altura del gráfico
 ---
 
-# Presentación: Introducción a patrones morfológicos
+[![](../images/u2_PatBio/biogeo_DEC_img.png){fig-align="center" width="500"}](../docs/u2_PatBio/biogeo_DEC.pdf)
 
-[![](../images/u3_PatMorph/Evl_car.png){fig-align="center" width="500"}](../docs/u3_PatMorph/Evolucion_caracteres.pdf)
+## **Introducción**
 
-Haz clic en la imagen para consultar la presentación.
+Muchos procesos evolutivos fundamentales, como la adaptación, la especiación y la extinción, ocurren en un contexto espacial. Cuando no es posible observar directamente los aspectos históricos de este contexto espacial, como sucede en la mayoría de los casos, se pueden aplicar métodos de inferencia biogeográfica para estimar los rangos ancestrales de las especies.
 
-## Introducción
+Estos métodos combinan información filogenética, molecular y geográfica para modelar la distribución de especies como el resultado de procesos biogeográficos. Sin embargo, modelar estos procesos requiere de un análisis detallado, considerando aspectos como:
 
-En biología evolutiva, los caracteres de los organismos pueden representarse como rasgos **discretos** (por ejemplo, el tipo de dieta, el hábitat o el sistema de apareamiento) o **continuos** (como el tamaño corporal, la longitud de una estructura o la masa corporal). Analizar cómo estos caracteres han cambiado a lo largo del tiempo nos ayuda a estudiar los patrones que han moldeado la diversidad biológica actual.
+-   Cómo se heredan los rangos tras eventos de especiación.
 
-La reconstrucción de estados ancestrales permite estimar los valores o estados que pudieron tener los ancestros comunes de las especies actuales. Para ello, utilizamos modelos estadísticos que describen cómo evolucionan los caracteres sobre un árbol filogenético.
+-   Cómo los eventos geológicos pueden influir en las tasas de dispersión.
 
-**Objetivo de la sesión:** conocer los componentes básicos de dos modelos de evolución de caracteres continuos, **movimiento browniano (BM)** y **Ornstein–Uhlenbeck (OU)**, mediante la estimación de parámetros en RevBayes y su interpretación con R. Al final se conserva un ejercicio complementario de evolución de caracteres discretos, cuya teoría se abordará posteriormente.
+-   Qué factores afectan las tasas de dispersión y extirpación (extinción local).
 
-## Modelos de evolución de caracteres continuos
+Uno de los principales desafíos técnicos en la modelización de la evolución de rangos geográficos es traducir estos procesos naturales en procesos estocásticos que sean manejables en un contexto de inferencia. Este tutorial proporciona una introducción a algunos de estos modelos y describe cómo realizar una inferencia bayesiana de la biogeografía histórica utilizando el modelo de [**Dispersión-Extinción-Cladogénesis (DEC)** en RevBayes](https://revbayes.github.io/tutorials/biogeo/biogeo_intro.html).
 
-Los modelos de esta práctica pertenecen a la familia de **modelos gaussianos**: bajo sus supuestos, los valores del carácter pueden describirse mediante distribuciones normales condicionadas por el tiempo evolutivo y la filogenia.
+## **Descripción del Modelo de Dispersión-Extinción-Cladogénesis (DEC)**
 
-- **Movimiento browniano (BM):** representa cambios estocásticos del carácter sin una dirección preferida. La varianza de los cambios es proporcional al tiempo. En esta práctica estimaremos una sola tasa de evolución compartida por todas las ramas.
-- **Ornstein–Uhlenbeck (OU):** incorpora, además del componente estocástico, una tendencia hacia un valor óptimo del carácter. En esta práctica utilizaremos un único óptimo, constante en todo el árbol.
+El modelo **DEC** modela la evolución de rangos como un proceso discreto (Ree et al. 2005; Ree y Smith 2008). Este modelo incluye tres componentes clave:
 
-En ambos casos, el árbol filogenético se considera **conocido y fijo**. Las estimaciones estarán condicionadas a ese árbol y a las distribuciones a priori elegidas. Un buen ajuste de un modelo no demuestra por sí mismo un mecanismo evolutivo específico.
+1.  **Caracteres de Rango:** Representación de la distribución de una especie como un conjunto de áreas discretas.
 
-### Datos morfológicos de Eupomphini
+2.  **Evolución Anagenética del Rango:** Cambios en el rango geográfico dentro de una línea evolutiva antes de un evento de especiación.
 
-Utilizaremos datos morfológicos del trabajo [*Analyses of head and thorax in Eupomphini (Meloidae) suggest that complex behaviors are not associated to changes in general shape*](https://doi.org/10.1111/1749-4877.12708). La matriz `med_geiger.nex` contiene **21 taxones** y **4 caracteres continuos**: **volumen de élitros**, **volumen del abdomen**, **amplitud** y **convexidad**, en ese orden. El archivo `subarbol_ingroup_morph.nex` contiene la filogenia utilizada en la práctica.
+3.  **Evolución Cladogenética del Rango:** Cambios en la distribución de la especie durante eventos de especiación.
 
-Descarga los archivos de trabajo:
+A continuación, se presentan los posibles eventos modelados en DEC:
 
-- [📥 Árbol filogenético (`subarbol_ingroup_morph.nex`)](../docs/u1_PatDiv/output/morpho/subarbol_ingroup_morph.nex)
-- [📥 Matriz de caracteres continuos (`med_geiger.nex`)](../docs/u1_PatDiv/output/morpho/med_geiger.nex)
+![](https://ixchelgzlzr.github.io/filo_bayes_UNAM/docs/biogeo/figures/fig_range_evol_events.png){fig-align="center" width="600"}
 
+### **Eventos Anagenéticos (cambios dentro de una misma línea evolutiva):**
 
-## Modelo browniano (BM) de tasa constante en RevBayes
+-   **(a) Dispersión:** Una especie expande su rango al colonizar una nueva área.
 
-El **movimiento browniano** supone que un carácter cambia de manera estocástica, sin una tendencia sistemática hacia valores mayores o menores.
+-   **(b) Extirpación (o extinción local):** Una especie pierde una de sus áreas previamente habitadas.
 
-Para una rama de duración $t$:
+### **Eventos Cladogenéticos (cambios en la distribución durante la especiación):**
+
+-   **(c) Simpatría restringida:** Si el ancestro estaba restringido a un solo territorio, ambas especies descendientes heredan esa misma área.
+
+-   **(d) Simpatría parcial:** Si el ancestro tenía un rango amplio, una de las especies descendientes hereda el rango ancestral, mientras que la otra se restringe a una sola de sus áreas.
+
+-   **(e) Alopatría (o vicarianza):** Si el ancestro tenía un rango amplio, cada especie descendiente hereda un subconjunto diferente de ese rango.
+
+-   **(f) Simpatría generalizada:** Ambas especies descendientes heredan el mismo rango amplio del ancestro.
+
+-   **(g) Dispersión por salto (o especiación fundadora):** Una especie descendiente hereda el rango ancestral mientras que la otra coloniza una nueva área previamente no ocupada.
+
+Estos eventos permiten modelar de manera realista cómo evolucionan las distribuciones geográficas a lo largo del tiempo en un contexto filogenético.
+
+## **Caracteres de Rango Discretos en el Modelo DEC**
+
+El modelo **DEC** interpreta los rangos de los taxones como **datos de presencia-ausencia**. Es decir, representa en qué áreas una especie está presente o ausente a lo largo de múltiples regiones discretas.
+
+Por ejemplo, supongamos que trabajamos con tres áreas geográficas: **A, B y C**.\
+Si una especie se encuentra en las áreas **A y C**, su rango se puede representar como **AC**. Este rango se codifica mediante un **vector binario de longitud 3**, donde:
+
+-   **1** indica presencia en un área.
+
+-   **0** indica ausencia en un área.
+
+Para el rango **AC**, la representación en bits sería `101`. Esta notación también puede transformarse en un número entero utilizando su representación binaria:
+
+-   `101` en binario equivale a **5** en decimal.
+
+### **Ejemplo de Representaciones Discretas de Rangos**
+
+A continuación, se muestra cómo se representan distintos rangos para un análisis con tres áreas (**A, B y C**):
+
+| **Rango** | **Bits** | **Número de áreas** | **Valor entero** |
+|-----------|----------|---------------------|------------------|
+| (vacío)   | `000`    | 0                   | 0                |
+| A         | `100`    | 1                   | 1                |
+| B         | `010`    | 1                   | 2                |
+| C         | `001`    | 1                   | 3                |
+| AB        | `110`    | 2                   | 4                |
+| AC        | `101`    | 2                   | 5                |
+| BC        | `011`    | 2                   | 6                |
+| ABC       | `111`    | 3                   | 7                |
+
+### **Evolución Anagenética del Rango en el Modelo DEC**
+
+La **anagénesis** se refiere a la evolución de los rangos geográficos que ocurre **entre eventos de especiación**, es decir, dentro de una misma línea evolutiva.
+
+Existen dos tipos principales de eventos anagenéticos:
+
+1.  **Dispersión (Figura 1a):** Ocurre cuando una especie coloniza una nueva área.
+
+2.  **Extirpación o extinción local (Figura 1b):** Ocurre cuando una especie pierde una de sus áreas previamente ocupadas.
+
+Dado que el modelo DEC usa rangos discretos, la anagénesis se modela utilizando una **cadena de Markov de tiempo continuo (CTMC)**. En este modelo:
+
+-   La probabilidad de que un rango cambie de estado (de $i$ a $j$) en un tiempo $t$ se calcula mediante **exponenciación de matrices**, según la ecuación:
+
+    $$ P_{ij}(t) = [exp(Qt)]_{ij} $$
+
+donde:
+
+-   $Q$ es la **matriz de tasas instantáneas**, que define las tasas de cambio entre todos los pares de estados.
+
+-   $P$ es la **matriz de probabilidad de transición**.
+
+-   $i$ y $j$ representan diferentes rangos, los cuales se codifican como conjuntos de áreas ocupadas por una especie.
+
+-   La probabilidad **integra todas las posibles trayectorias** de cambios de estado en el tiempo $t$.
+
+## **Definición de la Matriz de Tasas (Q)**
+
+Podemos definir la matriz $Q$ de anagénesis en términos de tasas de **extinción local (**$e$) y **dispersión (**$d$). Para tres áreas geográficas ($A$, $B$, $C$), la matriz de tasas de evolución anagenética tiene la siguiente estructura:
 
 $$
-E[\Delta X] = 0
+Q =
+\begin{array}{c|cccccccc}
+   & \emptyset & A & B & C & AB & AC & BC & ABC \\
+\hline
+\emptyset & - & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+A & e_A & - & 0 & 0 & d_{AB} & d_{AC} & 0 & 0 \\
+B & e_B& 0 & - & 0 & d_{BA} & 0 & d_{BC} & 0 \\
+C & e_C & 0 & 0 & - & 0 & d_{CA} & d_{CB} & 0 \\
+AB & 0 & e_B & e_A & 0 & - & 0 & 0 & d_{AC} + d_{BC} \\
+AC & 0 & e_C & 0 & e_A & 0 & - & 0 & d_{AB} + d_{CB} \\
+BC & 0 & 0 & e_C & e_B & 0 & 0 & - & d_{BA} + d_{CA} \\
+ABC & 0 & 0 & 0 & 0 & e_C & e_B & e_A & - \\
+\end{array}
 $$
 
-$$
-\operatorname{Var}(\Delta X)=\sigma^2 t
-$$
+donde:
 
-Donde:
+-   $e = (eA, eB, eC)$ representan las tasas de extinción local por área.
 
-- $t$ es la longitud temporal de la rama.
-- $\sigma^2$ es la **tasa de varianza evolutiva** por unidad de tiempo.
-- $\Delta X$ es el cambio del carácter durante esa rama.
+-   $d = (dAB, dAC, dBC, dBA, dCA, dCB)$ representan las tasas de dispersión entre pares de áreas.
 
-Un valor mayor de $\sigma^2$ implica una mayor dispersión esperada de los cambios **a la misma escala temporal y para el mismo tipo de carácter**. No significa necesariamente que la evolución haya sido causada por deriva genética.
+-   **El rango vacío (**$∅$) es un estado absorbente: cualquier linaje que pierda todas sus áreas se mantiene en ese estado de manera permanente.
 
-En un análisis bayesiano, contrastamos dos distribuciones:
+### 🧠 Construcción de una matriz de tasa DEC en RevBayes.
 
-- **A priori (prior):** valores considerados plausibles para $\sigma^2$ antes de condicionar el modelo a los datos observados.
-- **Posterior:** valores plausibles para $\sigma^2$ después de incorporar los datos y el modelo.
+Ejecutar en `rb` los siguientes comandos:
 
-### 1. Script de la distribución posterior (`mcmc_BM.Rev`)
+Definir el número de áreas:
 
-Este análisis utiliza la filogenia, los valores observados y una distribución a priori para estimar $\sigma^2$.
+``` r
+n_areas <- 3
+```
 
-En `data.includeCharacter(trait)` podemos elegir cualquiera de los cuatro caracteres, indicando `trait <- 1`, `2`, `3` o `4`.
+## Anagenesis: Matriz de tasas $Q$
 
-La prior de $\sigma^2$ se amplía respecto del ejemplo original para evitar que el límite superior de 0.1 restrinja innecesariamente las estimaciones de los caracteres 1 y 2.
+Matriz de dispersión:
 
-```r
-################################################################################
-# mcmc_BM.Rev
-# Inferencia bayesiana de la tasa de evolución bajo BM de tasa constante
-################################################################################
+``` r
+for (i in 1:n_areas) {
+    for (j in 1:n_areas) {
+        dr[i][j] <- 1.0
+    }
+}
+```
 
-# 1. Datos y filogenia
-trait <- 1
-T <- readTrees("../data/subarbol_ingroup_morph.nex")[1]
-data <- readContinuousCharacterData("../data/med_geiger.nex")
-data.excludeAll()
-data.includeCharacter(trait)
+**¿Qué está haciendo este código?**
 
-# 2. Movimientos y monitores
-moves    = VectorMoves()
+1.  Se define una **matriz cuadrada** de tamaño $3x3$ (porque hay 3 áreas).
+
+2.  Se llena con $1.0$ en todas las posiciones $dr[i][j]$, lo que significa **que todas las áreas están conectadas por igual**.
+
+3.  Se asume que la dispersión **no depende de la dirección** (`A → B` es igual que `B → A`).
+
+**Matriz de dispersión:**
+
+``` r
+for (i in 1:n_areas) {
+    for (j in 1:n_areas) {
+        dr[i][j] <- 1.0
+    }
+}
+```
+
+**¿Qué está haciendo este código?**
+
+1.  Se define una **matriz cuadrada** de tamaño $3x3$ (porque hay 3 áreas).
+
+2.  Se llena con $1.0$ en todas las posiciones $dr[i][j]$, lo que significa **que todas las áreas están conectadas por igual**.
+
+3.  Se asume que la dispersión **no depende de la dirección** (`A → B` es igual que `B → A`).
+
+**Matriz de extirpación:**
+
+``` r
+for (i in 1:n_areas) {
+    for (j in 1:n_areas) {
+        er[i][j] <- 0.0
+    }
+    er[i][i] <- 1.0
+}
+```
+
+**¿Qué está haciendo este código?**
+
+1.  Se define una **matriz cuadrada** de tamaño $3x3$ (porque hay 3 áreas).
+
+2.  Inicializa toda la matriz $er$ con 0.0 **(asumiendo que no hay extirpación entre diferentes áreas)**.
+
+3.  Pone $1.0$ en la diagonal de la matriz $(A → ∅, B → ∅, C → ∅)$.
+
+4.  Esto significa que cada área tiene una **tasa de extirpación de 1.0** por sí misma.
+
+5.  **No hay extirpación cruzada** ($A → B$ no ocurre, solo $A → ∅$).
+
+**Crear la matriz Q_DEC:**
+
+Con las matrices `dr` y `er` creadas, ahora vas a construir la **matriz Q_DEC**, que define **las tasas de cambio entre todos los estados posibles de rango geográfico**.
+
+``` r
+Q_DEC := fnDECRateMatrix(dispersalRates=dr, extirpationRates=er)
+Q_DEC
+```
+
+Esto hace lo siguiente:
+
+-   Calcula automáticamente las **64 combinaciones** de transiciones posibles entre los **8 estados** (con 3 áreas, hay $2^3 = 8$ estados).
+
+-   Llena la matriz `Q_DEC (8x8)` con tasas basadas en:
+
+    -   La matriz de **dispersión** `dr`: para agregar áreas al rango actual.
+
+    -   La matriz de **extirpación** `er`: para quitar áreas del rango actual.
+
+**Crear la matriz de probabilidades de transición:**
+
+``` r
+tp_DEC <- Q_DEC.getTransitionProbabilities(rate=0.2)
+tp_DEC
+```
+
+Estás calculando la matriz de probabilidades de transición a lo largo de una rama del árbol de longitud 0.2 unidades de tiempo (por ejemplo, millones de años).
+
+**Veamos esta fila:**
+
+| De `A` hacia...  | `A`   | `B`   | `C`   | `AB`  | `AC`  | `BC`  | `ABC` |
+|------------------|-------|-------|-------|-------|-------|-------|-------|
+| **Probabilidad** | 0.673 | 0.013 | 0.013 | 0.123 | 0.123 | 0.005 | 0.050 |
+
+Esto responde: Si la especie está en `A`, qué tan probable es que termine en esos otros estados después de tiempo `t = 0.2`?
+
+**En resumen**
+
+| Comparación | `Q_DEC` | `tp_DEC` |
+|------------------|------------------------|------------------------------|
+| ¿Qué es? | Matriz de tasas | Matriz de probabilidades |
+| ¿Qué mide? | Velocidad de cambio instantáneo | Probabilidad de cambio tras cierto tiempo |
+| ¿Depende del tiempo? | ❌ No | ✅ Sí |
+| ¿Cómo se calcula? | Directamente de `dr` y `er` | Usando exp⁡(Q⋅t)exp(Q⋅t) |
+| ¿Para qué se usa? | Construir el modelo DEC | Simular evolución, inferir cambios |
+
+## Codificar eventos cladogenéticos en DEC
+
+Cuando una especie se divide en dos nuevas especies (cladogénesis), su rango geográfico también se hereda de diferentes formas.
+
+``` r
+clado_event_types = [ "s", "a" ]
+clado_event_probs <- simplex( 1, 1 )
+P_DEC := fnDECCladoProbs(eventProbs=clado_event_probs,
+                         eventTypes=clado_event_types,
+                         numCharacters=n_areas)
+```
+
+1.  `clado_event_types = [ "s", "a" ]`
+
+Define **qué tipos de eventos cladogenéticos** vas a permitir en el modelo.
+
+-   `"s"` = **Subset sympatry**\
+    Una especie hereda **todo el rango**, la otra solo **una parte** (un área individual).\
+    Ejemplo: `ABC → (ABC, A)`
+
+-   `"a"` = **Allopatry**\
+    El rango se **divide** en dos partes complementarias.\
+    Ejemplo: `ABC → (AB, C)`
+
+2.  `clado_event_probs <- simplex(1, 1)`
+
+Esto crea un vector de **probabilidades normalizadas** (que suman 1).
+
+📌 Como pusiste `1, 1`, estás diciendo:
+
+-   `"s"` tendrá **50% de probabilidad**
+
+-   `"a"` tendrá **50% de probabilidad**
+
+💡 Si hubieras puesto `simplex(2, 1)`, la probabilidad sería:
+
+-   `"s"` = 2/3
+
+-   `"a"` = 1/3
+
+3.  `P_DEC := fnDECCladoProbs(...)`
+
+Esta función genera la **matriz de probabilidades cladogenéticas**, combinando los tipos de eventos (`"s"`, `"a"`) con sus probabilidades (`50%-50%`), para todos los **estados posibles** del rango, de acuerdo al número de áreas (`n_areas`).
+
+📊 **¿Qué incluye `P_DEC`?**
+
+Una matriz **sparse** (dispersa) donde cada fila representa:
+
+`(estado_ancestral → sp_izquierda, sp_derecha) = probabilidad`
+
+Ejemplo:
+
+`(7 -> 7, 1) = 0.0833  # ABC → (ABC, A)  ← subset sympatry`
+
+`(7 -> 6, 1) = 0.0833  # ABC → (AB, A)   ← allopatry`
+
+`(7 -> 4, 3) = 0.0833  # ABC → (A, BC)   ← allopatry`
+
+Como usaste `"s"` y `"a"` con probabilidades iguales, **se reparten equitativamente** entre todos los eventos posibles válidos bajo cada categoría.
+
+### ⚠️ **Aspectos clave a considerar**
+
+-   El modelo DEC escala **exponencialmente** con el número de áreas:
+
+    -   $3$ áreas → 8×8 anagenético, $8^3 = 512$ eventos cladogenéticos
+
+    -   $10$ áreas → $1024 × 1024$ (ya es muy pesado)
+
+    -   $20$ áreas → ¡matrices enormes! No viable computacionalmente.
+
+## Espadas plateadas (Tribu Madiinae), un grupo endémico de Hawái.
+
+-   Un grupo joven (\~5 millones de años) y diverso de \~50 especies/subespecies
+
+-   Se originaron en el continente (EE.UU. occidental), pero **radiaron en las islas hawaianas**
+
+-   Son ideales para estudios porque:
+
+    -   Las islas hawaianas se formaron de manera **cronológica** (K → O → M → H)
+
+    -   Hay buen registro de distribución y filogenia.
+
+    ![](https://revbayes.github.io/tutorials/biogeo/figures/fig_hawaii_areas.png){fig-align="center" width="550"}
+
+🗺️ **Áreas geográficas usadas**
+
+Para simplificar, el tutorial usa solo **4 áreas** (con posibles combinaciones):
+
+| Código binario | Áreas           | Tamaño | Estado (índice) |
+|----------------|-----------------|--------|-----------------|
+| `0000`         | Ninguna (∅)     | 0      | 0               |
+| `1000`         | K (Kauai/Nihoa) | 1      | 1               |
+| `0100`         | O (Oahu)        | 1      | 2               |
+| `0010`         | M (Maui Nui)    | 1      | 3               |
+| `0001`         | H (Hawai‘i)     | 1      | 4               |
+| `1100`         | KO              | 2      | 5               |
+| `1010`         | KM              | 2      | 6               |
+| `0110`         | OM              | 2      | 7               |
+| `1001`         | KH              | 2      | 8               |
+| `0101`         | OH              | 2      | 9               |
+| `0011`         | MH              | 2      | 10              |
+| `1110`         | KOM             | 3      | 11              |
+| `1101`         | KOH             | 3      | 12              |
+| `1011`         | KMH             | 3      | 13              |
+| `0111`         | OMH             | 3      | 14              |
+| `1111`         | KOMH            | 4      | 15              |
+
+📌 Cada uno de estos estados representa un **rango posible** que puede ocupar una especie.
+
+**Descargar los archivos necesarios**
+
+<a href="../docs/u2_PatBio/silversword.tre" download>📥 Descargar Árbol Filogenético</a>
+
+<a href="../docs/u2_PatBio/silversword.n4.range.nex" download>📥 Descargar matriz de datos con los rangos codificados de cada especie.</a>
+
+**Crea un scrip para RevBayes y copia el siguiente codigo.**
+
+``` r
+# definir rutas de los archivos y ruta de salida
+range_fn = "../data/silversword.n4.range.nex"
+tree_fn  = "../data/silversword.tre"
+out_fn   = "../output/DEC/simple"
+
+# leer datos de presencia-ausencia (binarios 0/1) de los rangos geográficos
+dat_range_01 = readDiscreteCharacterData(range_fn)
+
+# convertir los rangos binarios en números naturales (formato requerido por DEC)
+dat_range_n = formatDiscreteCharacterData(dat_range_01, "DEC")
+
+# comparar los caracteres (rangos) de dos taxones
+dat_range_01[1]
+dat_range_n[1]
+
+# dimensiones de los datos (número de áreas y estados posibles)
+n_areas  = dat_range_01.nchar()
+n_states = floor(2^n_areas)
+
+# obtener las descripciones de los estados convertidos
+state_desc = dat_range_n.getStateDescriptions()
+
+# escribir las descripciones de los estados en un archivo
+state_desc_str = "state,range\n"
+for (i in 1:state_desc.size())
+{
+    state_desc_str += (i-1) + "," + state_desc[i] + "\n"
+}
+write(state_desc_str, file=out_fn+".state_labels.txt")
+
+# variables auxiliares (para guardar movimientos, monitores y número de generaciones)
+moves = VectorMoves()
 monitors = VectorMonitors()
-tree <- T
+n_gen = 3000
 
-# 3. Tasa de varianza evolutiva: sigma2 = sigma^2
-sigma2 ~ dnLoguniform(1e-5, 1.0)
-moves.append( mvScale(sigma2, weight=1.0) )
+##################################
+# Modelos del árbol filogenético #
+##################################
 
-# 4. Modelo browniano con verosimilitud REML
-# La función recibe sigma = sqrt(sigma2), no sigma2.
-X ~ dnPhyloBrownianREML(tree, branchRates=sqrt(sigma2))
+# leer el árbol filogenético
+tree <- readTrees(tree_fn)[1]
 
-# 5. Condicionar el modelo a los datos observados
-X.clamp(data)
-mymodel = model(sigma2)
+##########################
+# Modelos biogeográficos #
+##########################
 
-# 6. Monitores
-monitors.append( mnModel(filename="../out/morpho/simple_BM.log", printgen=10) )
-monitors.append( mnScreen(printgen=100, sigma2) )
+# multiplicador de la tasa de eventos biogeográficos
+rate_bg ~ dnLoguniform(1E-4,1E2)
+rate_bg.setValue(1E-2)
+moves.append( mvScale(rate_bg, weight=4) )
 
-# 7. MCMC: dos ejecuciones
-mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
-mymcmc.run(generations=10000)
+# tasa de dispersión relativa
+dispersal_rate <- 1.0
 
-q()
-```
-
-**¿Qué hace `X.clamp(data)`?** Fija los valores observados del carácter al nodo de datos. Esto hace que la verosimilitud de esos datos influya en la distribución posterior de $\sigma^2$.
-
-**¿Qué significa REML aquí?** Es un procedimiento eficiente para calcular la verosimilitud del modelo continuo sin estimar explícitamente todos los estados internos. En esta práctica su objetivo es estimar los parámetros de evolución del carácter, no reconstruir estados ancestrales continuos.
-
-### 2. Script de la distribución a priori (`mcmc_BM_prior.Rev`)
-
-Utilizaremos **la misma prior** de $\sigma^2$, pero sin condicionar el modelo a los datos observados. La instrucción `mymodel.ignoreAllData()` permite recorrer la distribución a priori del modelo.
-
-```r
-################################################################################
-# mcmc_BM_prior.Rev
-# Muestreo de la distribución a priori de sigma2 bajo BM
-################################################################################
-
-T <- readTrees("../data/subarbol_ingroup_morph.nex")[1]
-tree <- T
-
-moves    = VectorMoves()
-monitors = VectorMonitors()
-
-# Misma prior que en el análisis posterior
-sigma2 ~ dnLoguniform(1e-5, 1.0)
-moves.append( mvScale(sigma2, weight=1.0) )
-
-X ~ dnPhyloBrownianREML(tree, branchRates=sqrt(sigma2))
-
-mymodel = model(sigma2)
-mymodel.ignoreAllData()
-
-monitors.append( mnModel(filename="../out/morpho/simple_BM_prior.log", printgen=10) )
-monitors.append( mnScreen(printgen=100, sigma2) )
-
-mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
-mymcmc.run(generations=10000)
-
-q()
-```
-
-### 3. Visualización de la prior y la posterior de $\sigma^2$ en R
-
-Para evitar confundir muestras de la prior con muestras de la posterior, construiremos una tabla con una columna que identifique su procedencia y compararemos las densidades. Descartaremos inicialmente un **25 % de las muestras** de cada análisis como burn-in; esta proporción es ilustrativa y no sustituye la revisión de las trazas MCMC.
-
-```{r}
-#| label: configurar-rutas-trazas
-#| include: false
-
-# Este bloque se reutiliza para BM y OU.
-rutas_resultados <- c(
-  "../docs/u1_PatDiv/output/morpho",
-  "../out/morpho"
-)
-
-buscar_archivo <- function(nombre) {
-  opciones <- file.path(rutas_resultados, nombre)
-  disponibles <- opciones[file.exists(opciones)]
-  if (length(disponibles) == 0) NA_character_ else disponibles[[1]]
+# construir la matriz de tasas de dispersión relativa
+for (i in 1:n_areas) {
+    for (j in 1:n_areas) {
+        dr[i][j] <- dispersal_rate
+    }
 }
 
-leer_traza <- function(nombre, burnin = 0.25) {
-  ruta <- buscar_archivo(nombre)
-  if (is.na(ruta)) return(NULL)
-  if (!requireNamespace("RevGadgets", quietly = TRUE)) {
-    message("Instala RevGadgets para leer las trazas de RevBayes.")
-    return(NULL)
-  }
-  resultado <- RevGadgets::readTrace(ruta, burnin = burnin)
-  if (is.data.frame(resultado)) return(resultado)
-  do.call(rbind, lapply(resultado, as.data.frame))
+# luego, definir la tasa de extirpación (extinción local) relativa por área
+log_sd <- 0.5
+log_mean <- ln(1) - 0.5*log_sd^2
+extirpation_rate ~ dnLognormal(mean=log_mean, sd=log_sd)
+moves.append( mvScale(extirpation_rate, weight=2) )
+
+# construir la matriz de tasas de extirpación relativa
+for (i in 1:n_areas) {
+    for (j in 1:n_areas) {
+        er[i][j] <- 0.0       
+    }
+    er[i][i] := extirpation_rate
 }
+
+# construir la matriz de tasas del modelo DEC (Q)
+Q_DEC := fnDECRateMatrix(dispersalRates=dr,
+                         extirpationRates=er)
+                           
+# construir la matriz de probabilidades de eventos cladogenéticos
+clado_event_types <- [ "s", "a" ]
+clado_event_probs <- simplex(1,1)
+P_DEC := fnDECCladoProbs(eventProbs=clado_event_probs,
+                         eventTypes=clado_event_types,
+                         numCharacters=n_areas)
+
+# modelo de cadena de Markov continua (CTMC) filogenética con eventos cladogenéticos
+m_bg ~ dnPhyloCTMCClado(tree=tree,
+                           Q=Q_DEC,
+                           cladoProbs=P_DEC,
+                           branchRates=rate_bg,
+                           type="NaturalNumbers",
+                           nSites=1)
+    
+# fijar (clamp) los datos observados de rangos al modelo
+m_bg.clamp(dat_range_n)
+
+#############
+# Monitores #
+#############
+
+monitors.append( mnScreen(printgen=100, rate_bg) )
+monitors.append( mnModel(file=out_fn+".model.log", printgen=10) )
+monitors.append( mnFile(tree, filename=out_fn+".tre", printgen=10) )
+monitors.append( mnJointConditionalAncestralState(tree=tree,
+                                                  ctmc=m_bg,
+                                                  type="NaturalNumbers",
+                                                  withTips=true,
+                                                  withStartStates=true,
+                                                  filename=out_fn+".states.log",
+                                                  printgen=10) )
+monitors.append( mnStochasticCharacterMap(ctmc=m_bg,
+                                          filename=out_fn+".stoch.log",
+                                          printgen=100) )
+
+############
+# Análisis #
+############
+
+# construir el objeto de análisis del modelo a partir del grafo del modelo
+mymodel = model(m_bg)
+
+# crear el objeto de análisis MCMC
+mymcmc = mcmc(mymodel, monitors, moves)
+
+# ejecutar el análisis MCMC
+mymcmc.run(n_gen)
+
+# salir de revbayes
+quit()
 ```
 
-```{r}
-#| label: grafica-bm-prior-posterior
-#| fig-cap: "Distribuciones a priori y posterior de la tasa de evolución bajo BM."
+## **Procesar y visualizar los resultados**
 
-library(ggplot2)
+Paso 1: Abre una nueva sesión de RevBayes y crea variables con los nombres de los archivos generados:
 
-bm_post  <- leer_traza("simple_BM.log")
-bm_prior <- leer_traza("simple_BM_prior.log")
-
-if (!is.null(bm_post) && !is.null(bm_prior)) {
-  tasas_bm <- rbind(
-    data.frame(sigma2 = bm_prior$sigma2, distribucion = "A priori"),
-    data.frame(sigma2 = bm_post$sigma2,  distribucion = "Posterior")
-  )
-
-  ggplot(tasas_bm, aes(x = sigma2, fill = distribucion, colour = distribucion)) +
-    geom_density(alpha = 0.20) +
-    labs(x = expression(sigma^2), y = "Densidad",
-         fill = "Distribución", colour = "Distribución") +
-    theme_minimal()
-} else {
-  message("Las trazas BM aún no están disponibles: ejecuta primero los scripts de RevBayes.")
-}
+``` r
+out_str = "../output/DEC/simple"
+out_state_fn = out_str + ".states.log"   # Archivo con los estados ancestrales
+out_tree_fn  = out_str + ".tre"          # Árboles muestreados del posterior
+out_mcc_fn   = out_str + ".mcc.tre"      # Árbol de máxima credibilidad
 ```
 
-**Interpretación:**
+Paso 2: Este paso **resume los árboles del posterior** (salvando la variabilidad) en **un solo árbol representativo**, útil para visualizar:
 
-- Si la posterior es más concentrada que la prior, los datos redujeron la incertidumbre sobre $\sigma^2$.
-- Si la posterior está cerca de un límite de la prior, conviene revisar los límites elegidos.
-- Si ambas distribuciones son muy similares, los datos podrían contener poca información para estimar este parámetro.
-- Antes de interpretar los resultados definitivos debemos verificar que las cadenas MCMC hayan explorado adecuadamente la posterior (trazas, mezcla y tamaño efectivo de muestra, ESS).
-
-**Actividad breve:** cambia `trait <- 1` por otro carácter y repite los análisis. ¿El valor estimado de $\sigma^2$ cambia? ¿Se puede comparar directamente su magnitud entre caracteres medidos en escalas diferentes?
-
-## Modelo Ornstein–Uhlenbeck (OU) simple en RevBayes
-
-El modelo de **Ornstein–Uhlenbeck (OU)** extiende BM agregando una tendencia hacia un valor óptimo $\theta$. La evolución sigue siendo estocástica, pero ahora incorpora una fuerza de atracción:
-
-$$
-dX(t)=\alpha[\theta-X(t)]\,dt+\sigma\,dB(t)
-$$
-
-Los tres parámetros principales son:
-
-| Parámetro | Interpretación |
-|---|---|
-| $\theta$ (*theta*) | Valor óptimo hacia el que tiende el carácter. |
-| $\alpha$ (*alpha*) | Intensidad de atracción hacia el óptimo, en unidades inversas de tiempo. |
-| $\sigma^2$ (*sigma2*) | Varianza de difusión estocástica por unidad de tiempo. |
-
-Si $\alpha=0$, OU se reduce a BM. En esta práctica suponemos que existe **un único óptimo constante para todos los linajes**. OU puede representar selección estabilizadora, pero estimar $\alpha>0$ no constituye por sí solo una demostración de selección natural.
-
-### Vida media filogenética y varianza estacionaria
-
-La **vida media filogenética** expresa cuánto tarda en reducirse a la mitad la influencia del valor ancestral sobre el valor esperado del carácter:
-
-$$
-t_{1/2}=\frac{\ln(2)}{\alpha}
-$$
-
-No representa un tiempo exacto para alcanzar $\theta$: el proceso continúa sujeto a fluctuaciones estocásticas.
-
-Bajo un OU homogéneo, a tiempos suficientemente largos, la varianza se aproxima a:
-
-$$
-V_{\infty}=\frac{\sigma^2}{2\alpha}
-$$
-
-Esta expresión muestra que $\alpha$ y $\sigma^2$ pueden compensarse: valores más altos de ambos parámetros pueden producir la misma varianza estacionaria. Por ello, es útil examinar **su distribución posterior conjunta**.
-
-### 1. Script de la distribución posterior (`mcmc_OU.Rev`)
-
-Conservaremos la prior log-uniforme de $\sigma^2$ utilizada en BM, para mantener el ejercicio sencillo. Para $\alpha$ utilizaremos una **prior lognormal** centrada, en términos de su **mediana**, en una vida media filogenética equivalente a la mitad de la altura del árbol.
-
-**Detalle de parametrización:** en RevBayes, `dnLognormal(mean, sd)` recibe la media **en escala logarítmica**. Por ello debe utilizarse `ln(...)` al especificar la mediana deseada de $\alpha$.
-
-```r
-################################################################################
-# mcmc_OU.Rev
-# Inferencia de parámetros de OU de óptimo único
-################################################################################
-
-# 1. Datos y filogenia
-trait <- 1
-T <- readTrees("../data/subarbol_ingroup_morph.nex")[1]
-data <- readContinuousCharacterData("../data/med_geiger.nex")
-data.excludeAll()
-data.includeCharacter(trait)
-
-tree <- T
-root_age := tree.rootAge()
-
-moves    = VectorMoves()
-monitors = VectorMonitors()
-
-# 2. Componente estocástico: sigma2
-sigma2 ~ dnLoguniform(1e-5, 1.0)
-moves.append( mvScale(sigma2, weight=2.0) )
-
-# 3. Atracción hacia el óptimo: alpha
-# Mediana de alpha = ln(2)/(root_age/2)
-# Equivale a mediana de t_half = root_age/2.
-# dnLognormal utiliza el logaritmo de la mediana.
-alpha_median := ln(2.0) / (0.5 * root_age)
-alpha ~ dnLognormal(ln(alpha_median), 1.1748)
-moves.append( mvScale(alpha, weight=2.0) )
-
-# 4. Óptimo del carácter: theta
-# Intervalo amplio para las escalas de los cuatro caracteres de esta matriz.
-theta ~ dnUniform(-10.0, 10.0)
-moves.append( mvSlide(theta, weight=2.0) )
-
-# 5. Movimiento multivariado para mejorar la mezcla MCMC
-avmvn_move = mvAVMVN(weight=5, waitBeforeLearning=500, waitBeforeUsing=1000)
-avmvn_move.addVariable(sigma2)
-avmvn_move.addVariable(alpha)
-avmvn_move.addVariable(theta)
-moves.append(avmvn_move)
-
-# 6. Cantidades derivadas para interpretar OU
-t_half := ln(2.0) / alpha
-vy := sigma2 / (2.0 * alpha)
-
-# Fracción de reducción de varianza acumulada respecto de BM
-# bajo las condiciones particulares de este modelo (0 a 1).
-p_th := 1.0 - (1.0 - exp(-2.0 * alpha * root_age)) / (2.0 * alpha * root_age)
-
-# 7. Verosimilitud del modelo OU, con REML
-# Se supone que en la raíz el carácter inicia en theta.
-X ~ dnPhyloOrnsteinUhlenbeckREML(
-  tree, alpha, theta, sqrt(sigma2), rootStates=theta
-)
-X.clamp(data)
-
-mymodel = model(theta)
-
-# 8. Monitores
-monitors.append( mnModel(filename="../out/morpho/simple_OU.log", printgen=10) )
-monitors.append( mnScreen(printgen=1000, sigma2, alpha, theta) )
-
-# 9. MCMC
-mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
-mymcmc.run(generations=50000)
-
-q()
+``` r
+tree_trace = readTreeTrace(file=out_tree_fn, treetype="clock")  # Leer los árboles
+tree_trace.setBurnin(0.25)          # Eliminar 25% como burn-in
+n_burn = tree_trace.getBurnin()     # Guardar el número de árboles descartados
 ```
 
-**Supuesto importante:** `rootStates=theta` fija el estado del carácter en la raíz al óptimo. En esta práctica no estimamos de manera independiente ese estado ancestral.
+💡 Aunque en este análisis usaste un árbol fijo, este paso es **importante cuando el árbol se infiere** y varía entre muestras (ej. posterior bayesiano completo).
 
-### 2. Script de la distribución a priori (`mcmc_OU_prior.Rev`)
-
-Se conservan **exactamente las mismas priors** de $\sigma^2$, $\alpha$ y $\theta$, pero no se condiciona el modelo a los caracteres observados.
-
-```r
-################################################################################
-# mcmc_OU_prior.Rev
-# Muestreo de las distribuciones a priori del modelo OU
-################################################################################
-
-T <- readTrees("../data/subarbol_ingroup_morph.nex")[1]
-tree <- T
-root_age := tree.rootAge()
-
-moves    = VectorMoves()
-monitors = VectorMonitors()
-
-# Mismas priors que en mcmc_OU.Rev
-sigma2 ~ dnLoguniform(1e-5, 1.0)
-moves.append( mvScale(sigma2, weight=2.0) )
-
-alpha_median := ln(2.0) / (0.5 * root_age)
-alpha ~ dnLognormal(ln(alpha_median), 1.1748)
-moves.append( mvScale(alpha, weight=2.0) )
-
-theta ~ dnUniform(-10.0, 10.0)
-moves.append( mvSlide(theta, weight=2.0) )
-
-avmvn_move = mvAVMVN(weight=5, waitBeforeLearning=500, waitBeforeUsing=1000)
-avmvn_move.addVariable(sigma2)
-avmvn_move.addVariable(alpha)
-avmvn_move.addVariable(theta)
-moves.append(avmvn_move)
-
-# Variables derivadas
-t_half := ln(2.0) / alpha
-vy := sigma2 / (2.0 * alpha)
-p_th := 1.0 - (1.0 - exp(-2.0 * alpha * root_age)) / (2.0 * alpha * root_age)
-
-X ~ dnPhyloOrnsteinUhlenbeckREML(
-  tree, alpha, theta, sqrt(sigma2), rootStates=theta
-)
-
-mymodel = model(theta)
-mymodel.ignoreAllData()
-
-monitors.append( mnModel(filename="../out/morpho/simple_OU_prior.log", printgen=10) )
-monitors.append( mnScreen(printgen=1000, sigma2, alpha, theta) )
-
-mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
-mymcmc.run(generations=50000)
-
-q()
+``` r
+mcc_tree = mccTree(tree_trace, file=out_mcc_fn)  # Crear y guardar el árbol MCC
 ```
 
-### 3. Visualización de parámetros de OU en R
+Paso 3: Cargar los estados ancestrales reconstruidos
 
-Compararemos las distribuciones a priori y posterior de $\alpha$, $\theta$, $\sigma^2$ y la fracción $p_{th}$. También observaremos la distribución de la vida media filogenética $t_{1/2}$.
-
-```{r}
-#| label: grafica-ou-prior-posterior
-#| fig-cap: "Distribuciones a priori y posterior de los parámetros de OU."
-
-library(ggplot2)
-
-ou_post  <- leer_traza("simple_OU.log")
-ou_prior <- leer_traza("simple_OU_prior.log")
-
-if (!is.null(ou_post) && !is.null(ou_prior)) {
-  graficar_parametro <- function(parametro, nombre) {
-    datos <- rbind(
-      data.frame(valor = ou_prior[[parametro]], distribucion = "A priori"),
-      data.frame(valor = ou_post[[parametro]],  distribucion = "Posterior")
-    )
-    ggplot(datos, aes(x = valor, fill = distribucion, colour = distribucion)) +
-      geom_density(alpha = 0.20) +
-      labs(x = nombre, y = "Densidad", fill = "Distribución",
-           colour = "Distribución") +
-      theme_minimal()
-  }
-
-  p_alpha  <- graficar_parametro("alpha", "alpha")
-  p_theta  <- graficar_parametro("theta", "theta")
-  p_sigma2 <- graficar_parametro("sigma2", "sigma²")
-  p_pth    <- graficar_parametro("p_th", "Reducción de varianza (fracción)")
-
-  if (requireNamespace("gridExtra", quietly = TRUE)) {
-    gridExtra::grid.arrange(p_alpha, p_theta, p_sigma2, p_pth, ncol = 2)
-  } else {
-    print(p_alpha)
-    print(p_theta)
-    print(p_sigma2)
-    print(p_pth)
-  }
-} else {
-  message("Las trazas OU aún no están disponibles: ejecuta primero los scripts de RevBayes.")
-}
+``` r
+state_trace = readAncestralStateTrace(file=out_state_fn)
 ```
 
-```{r}
-#| label: grafica-vida-media-ou
-#| fig-cap: "Distribuciones de la vida media filogenética (escala logarítmica)."
+Este archivo contiene las **probabilidades posteriores de los estados en los nodos** del árbol.
 
-if (!is.null(ou_post) && !is.null(ou_prior)) {
-  datos_vida_media <- rbind(
-    data.frame(t_half = ou_prior$t_half, distribucion = "A priori"),
-    data.frame(t_half = ou_post$t_half,  distribucion = "Posterior")
-  )
+Paso 4: Cargar los árboles anotados con estados ancestrales
 
-  ggplot(datos_vida_media, aes(x = t_half, fill = distribucion,
-                               colour = distribucion)) +
-    geom_density(alpha = 0.20) +
-    scale_x_log10() +
-    labs(x = "Vida media filogenética (escala log10)",
-         y = "Densidad", fill = "Distribución", colour = "Distribución") +
-    theme_minimal()
-}
+⚠️ Aquí es importante usar `readAncestralStateTreeTrace` y **no** `readTreeTrace`, para mantener las anotaciones:
+
+``` r
+tree_trace = readAncestralStateTreeTrace(file=out_tree_fn, treetype="clock")
 ```
 
-**Guía de interpretación:**
+Paso 5: Generar el árbol con estados ancestrales
 
-- **$\theta$:** ¿en qué región de valores se concentra el óptimo estimado?
-- **$\alpha$:** ¿qué valores de intensidad de atracción son compatibles con los datos?
-- **$\sigma^2$:** ¿qué tan amplia es la distribución de la tasa estocástica?
-- **$t_{1/2}$:** ¿cuánto tarda en disminuir a la mitad la influencia del estado ancestral sobre el valor esperado del carácter?
-- **$p_{th}$:** ¿qué fracción de la varianza esperada bajo BM se reduce en este modelo OU durante un intervalo equivalente a la altura del árbol? Multiplica por 100 para expresarla como porcentaje. No es una medida directa de la intensidad de selección natural.
-
-### 4. Relación entre $\alpha$ y $\sigma^2$
-
-```{r}
-#| label: correlacion-ou
-#| fig-cap: "Distribución posterior conjunta de alpha y sigma2."
-
-if (!is.null(ou_post)) {
-  ggplot(ou_post, aes(x = alpha, y = sigma2)) +
-    geom_point(alpha = 0.25, size = 0.8) +
-    theme_minimal() +
-    labs(x = expression(alpha), y = expression(sigma^2),
-         title = "Distribución posterior conjunta")
-}
-```
-
-Como $V_{\infty}=\sigma^2/(2\alpha)$, una misma varianza estacionaria puede explicarse con valores mayores de **ambos** parámetros. Por esta razón, es posible encontrar **correlación positiva** entre $\alpha$ y $\sigma^2$ en la posterior. Sin embargo, su dirección e intensidad deben observarse en los resultados; no están garantizadas para todos los conjuntos de datos.
-
-**Actividad breve:** identifica si los parámetros están correlacionados. ¿Qué implicaría esto para interpretar por separado la tasa estocástica y la fuerza de atracción hacia el óptimo?
-
-### Reflexión final sobre BM y OU
-
-En esta sesión no realizaremos una comparación formal de modelos. Nuestro objetivo es **comprender sus parámetros y practicar su estimación**. Recordemos que observar una concentración posterior para $\alpha$ o $\theta$ no demuestra por sí solo selección estabilizadora: las conclusiones están condicionadas al modelo y al árbol utilizados.
-
----
-
-## Modelos de evolución de caracteres discretos
-
-> **Actividad complementaria:** conservamos este ejercicio como una introducción operativa a RevBayes para caracteres discretos. La teoría de cadenas de Markov, modelos de transición y reconstrucción de estados ancestrales se revisará en una sesión posterior.
-
-Los modelos de evolución morfológica discreta son útiles para inferir la historia de caracteres con estados definidos, como tipos de dieta o sistemas de apareamiento. También permiten formular hipótesis sobre transiciones **reversibles**, **asimétricas** o **irreversibles**. Por ejemplo, pueden utilizarse para estudiar hipótesis relacionadas con la **ley de Dollo**, que considera restricciones sobre la recuperación evolutiva de ciertos caracteres complejos.
-
-Además, permiten **estimar estados ancestrales** a partir de los estados observados en especies actuales y de un árbol filogenético. En un enfoque probabilístico, la incertidumbre sobre las historias no observadas se incorpora mediante el modelo evolutivo, en lugar de escoger una única historia sin incertidumbre.
-
-### Estimación de estados ancestrales en primates
-
-Trabajaremos con un carácter discreto binario relacionado con la vida solitaria en primates:
-
-- **0:** vida en grupo.
-- **1:** vida solitaria.
-
-Nuestro objetivo inmediato es reconstruir los estados ancestrales bajo un **modelo de tasas iguales (ERM)**. La comparación con modelos de tasas diferentes o irreversibles quedará para una práctica posterior.
-
-Para dos estados, el modelo ERM utiliza la matriz de tasas:
-
-$$
-Q=\begin{pmatrix}
--\mu & \mu \\
-\mu & -\mu
-\end{pmatrix}
-$$
-
-Equivale a escribir los elementos diagonales como $-(k-1)\mu$ cuando $k=2$. Las entradas fuera de la diagonal indican la tasa instantánea de cambio entre estados. Es una versión sencilla del modelo de Markov para caracteres discretos, conceptualmente análoga al modelo simétrico más simple de sustitución de nucleótidos.
-
-En este ejercicio **fijamos** las probabilidades en la raíz en $(0.5,0.5)$; no las estimamos como parámetros adicionales.
-
-Descarga los archivos de trabajo:
-
-- [📥 Árbol de primates (`primates_tree.nex`)](../docs/u1_PatDiv/output/morpho/primates_tree.nex)
-- [📥 Matriz de estados (`primates_solitariness.nex`)](../docs/u1_PatDiv/output/morpho/primates_solitariness.nex)
-
-Copia ambos archivos a `data/` antes de ejecutar el script.
-
-### 1. Script de RevBayes para el modelo ERM (`mcmc_ERM.Rev`)
-
-```r
-################################################################################
-# mcmc_ERM.Rev
-# Estimación de tasas y estados ancestrales bajo un modelo ERM de dos estados
-################################################################################
-
-# 1. Datos
-CHARACTER = "solitariness"
-NUM_STATES = 2
-
-morpho <- readDiscreteCharacterData("../data/primates_" + CHARACTER + ".nex")
-phylogeny <- readTrees("../data/primates_tree.nex")[1]
-
-moves    = VectorMoves()
-monitors = VectorMonitors()
-
-# 2. Tasa global de transición
-# dnExp usa una TASA lambda, de modo que E[mu] = 1/lambda.
-# Este valor fija aproximadamente 10 transiciones esperadas en el árbol
-# bajo la prior, en el sentido ilustrativo del tutorial original.
-rate_pr := phylogeny.treeLength() / 10.0
-mu ~ dnExp(rate_pr)
-moves.append( mvScale(mu, weight=2.0) )
-
-# 3. Construcción de la matriz Q (todas las transiciones con tasa mu)
-NUM_RATES = NUM_STATES * (NUM_STATES - 1)
-for (i in 1:NUM_RATES) {
-  rate[i] := mu
-}
-Q_morpho := fnFreeK(rate, rescale=false)
-
-# 4. Frecuencias fijas e iguales en la raíz
-rf_prior <- rep(1, NUM_STATES)
-rf <- simplex(rf_prior)
-
-# 5. Modelo de Markov en tiempo continuo condicionado a los datos
-phyMorpho ~ dnPhyloCTMC(
-  tree=phylogeny,
-  Q=Q_morpho,
-  rootFrequencies=rf,
-  type="Standard"
-)
-phyMorpho.clamp(morpho)
-
-mymodel = model(phylogeny)
-
-# 6. Monitores
-monitors.append( mnModel(
-  filename="../out/morpho/solitariness_ERM.log", printgen=10
-) )
-monitors.append( mnScreen(printgen=1000, mu) )
-
-# Muestrear estados ancestrales condicionales en los nodos
-monitors.append( mnJointConditionalAncestralState(
-  tree=phylogeny,
-  ctmc=phyMorpho,
-  filename="../out/morpho/solitariness_ERM.states.txt",
-  type="Standard",
-  printgen=10,
-  withTips=true,
-  withStartStates=false
-) )
-
-# 7. MCMC
-mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
-mymcmc.run(generations=25000, tuningInterval=200)
-
-# 8. Resumen de estados ancestrales en un árbol anotado
-anc_states = readAncestralStateTrace(
-  "../out/morpho/solitariness_ERM.states.txt"
-)
-
+``` r
 anc_tree = ancestralStateTree(
-  tree=phylogeny,
-  ancestral_state_trace_vector=anc_states,
-  include_start_states=false,
-  file="../out/morpho/solitariness_ase_ERM.tree",
-  burnin=0.25,
-  summary_statistic="MAP",
-  site=1
+    tree=mcc_tree,
+    ancestral_state_trace_vector=state_trace,
+    tree_trace=tree_trace,
+    include_start_states=true,
+    file=out_str + ".ase.tre",
+    burnin=n_burn,
+    site=1
 )
-
-q()
 ```
 
-**¿Qué produce el script?** Un registro de la tasa $\mu$ y un árbol anotado que resume la reconstrucción de estados ancestrales. Los estados de los nodos internos son inferencias **condicionadas al árbol, al modelo ERM y a los datos observados**, no observaciones directas del pasado.
+## Graficar en R con RevGadgets
 
-### 2. Visualización de estados ancestrales en R con RevGadgets
+-   **Abre un editor de texto** (ejemplo *VSCode* )
 
-En este caso sí mostraremos la reconstrucción sobre la filogenia. Podemos visualizar el estado de máxima probabilidad posterior (**MAP**) o las probabilidades de ambos estados mediante gráficos circulares.
+-   **Copia y pega** exactamente el siguiente contenido
+
+-   **Guarda el archivo** dentro de la carpeta de resultados de tu análisis DEC con el nombre \`range_colors.txt\`
+
+``` r
+range,color
+"K","#7570b3"
+"O","#e7298a"
+"M","#66a61e"
+"H","#e6ab02"
+"KO","orchid"
+"KM","firebrick3"
+"OM","green"
+"KH","cyan"
+"OH","cadetblue3"
+"MH","tomato"
+"KOM","aquamarine2"
+"KOH","#d95f02"
+"KMH","royalblue"
+"OMH","#666666"
+"KOMH","darkviolet"
+```
+
+Este script define dos funciones auxiliares que se usan para **visualizar los resultados** de un análisis de biogeografía (por ejemplo, con el modelo DEC), específicamente para:
+
+-   Mostrar los **estados ancestrales** como gráficos de pastel (pie charts) sobre el árbol filogenético.
+
+-   Añadir **información geológica**, como los tiempos de formación de las islas hawaianas, sobre el eje temporal del árbol.
 
 ```{r}
-#| label: graficas-estados-ancestrales
-#| fig-cap: "Reconstrucción de estados ancestrales del carácter de vida solitaria en primates."
+# Cargar las bibliotecas necesarias
+library(RevGadgets)
+library(ggplot2)
+library(ggtree)
 
-ruta_arbol_ase <- buscar_archivo("solitariness_ase_ERM.tree")
+# Función para añadir líneas verticales que marcan los tiempos de formación de las islas
+add_island_times = function(p, x_offset) {
+    t = "dashed"
+    p = p + geom_vline(xintercept=x_offset-5.05, color="#7570b3", linetype=t)
+    p = p + geom_vline(xintercept=x_offset-5.15, color="#7570b3", linetype=t)
+    p = p + geom_vline(xintercept=x_offset-2.2, color="#e7298a", linetype=t)
+    p = p + geom_vline(xintercept=x_offset-3.7, color="#e7298a", linetype=t)
+    p = p + geom_vline(xintercept=x_offset-1.3, color="#66a61e", linetype=t)
+    p = p + geom_vline(xintercept=x_offset-1.8, color="#66a61e", linetype=t)
+    p = p + geom_vline(xintercept=x_offset-0.3, color="#e6ab02", linetype=t)
+    p = p + geom_vline(xintercept=x_offset-0.7, color="#e6ab02", linetype=t)
+    return(p)
+}
 
-if (!is.na(ruta_arbol_ase) && requireNamespace("RevGadgets", quietly = TRUE)) {
-  library(ggplot2)
+# Función para construir etiquetas y colores de los estados ancestrales
+make_states = function(label_fn, color_fn, fp="./") {
 
-  ase <- RevGadgets::processAncStates(
-    ruta_arbol_ase,
-    state_labels = c("0" = "grupo", "1" = "solitario")
-  )
+    # Leer la tabla de colores para cada rango geográfico
+    range_color_list = read.csv(color_fn, header=T, sep=",", colClasses="character")
 
-  # Estado MAP en cada nodo
-  p1 <- RevGadgets::plotAncStatesMAP(
-    t = ase, tree_layout = "rect", tip_labels_size = 1
-  ) + theme(legend.position = c(0.92, 0.81))
+    # Extraer los nombres de las áreas individuales (por ejemplo: "K", "O", "M", "H")
+    area_names = unlist(sapply(range_color_list$range, function(y) { if (nchar(y)==1) { return(y) } }))
 
-  print(p1)
-  ggsave("primates_solitariness_ASE_ERM_MAP.pdf", p1,
-         width = 11, height = 9)
+    # Leer el archivo con las etiquetas de los estados codificados (binarios)
+    state_descriptions = read.csv(label_fn, header=T, sep=",", colClasses="character")
 
-  # Representación alternativa de la incertidumbre
-  p2 <- RevGadgets::plotAncStatesPie(
-    t = ase, tree_layout = "rect", tip_labels_size = 1
-  ) + theme(legend.position = c(0.92, 0.81))
+    # Convertir los rangos codificados como "1010" en nombres como "KM"
+    range_labels = sapply(state_descriptions$range[2:nrow(state_descriptions)],
+        function(x) {
+            present = as.vector(gregexpr(pattern="1", x)[[1]])
+            paste( area_names[present], collapse="")
+        })
 
-  print(p2)
-  ggsave("primates_solitariness_ASE_ERM_Pie.pdf", p2,
-         width = 11, height = 9)
-} else {
-  message("El árbol anotado de estados ancestrales todavía no está disponible.")
+    # Asignar un color a cada rango
+    range_colors = range_color_list$color[ match(range_labels, range_color_list$range) ]
+
+    # Generar listas con las etiquetas y los colores por estado
+    idx = 1
+    st_lbl = list()
+    st_colors = c()
+    for (j in 1:(nrow(state_descriptions)-1)) {
+        st_lbl[[ as.character(j) ]] = range_labels[j]
+        st_colors[j] = range_colors[j]
+    }
+    
+    # Añadir color para estados misceláneos o desconocidos
+    st_colors[ length(st_colors)+1 ] = "lightgray"
+    st_lbl[["misc."]] = "misc."
+    
+    # Devolver etiquetas y colores
+    return( list(state_labels=st_lbl, state_colors=st_colors) )
 }
 ```
 
-**Para interpretar la figura:** el estado MAP es el estado individual con mayor probabilidad posterior en un nodo; no implica necesariamente certeza. Los gráficos de pastel conservan la información sobre la incertidumbre entre los dos estados.
+Este script en R **genera una figura** que muestra un árbol filogenético anotado con los **estados ancestrales geográficos**(rango de distribución de cada nodo) inferidos con el modelo DEC en RevBayes. Utiliza gráficos de pastel (pie charts) para representar **la incertidumbre en la reconstrucción** de rangos geográficos a lo largo del árbol evolutivo, y añade **información temporal sobre la formación de las islas hawaianas**.
 
----
+```{r}
+# nombres de archivo
+# archivo de salida para la figura final en PDF
+plot_fn = "../docs/u2_PatBio/output/DEC/simple.range.pdf" 
+# árbol con estados ancestrales (generado en RevBayes)
+tree_fn = "../docs/u2_PatBio/output/DEC/simple.ase.tre" 
+# archivo con las etiquetas de los estados (rango binario → etiquetas)
+label_fn = "../docs/u2_PatBio/output/DEC/simple.state_labels.txt"
+# archivo con los colores para cada rango
+color_fn = "../docs/u2_PatBio/output/DEC/range_colors.txt"
 
-## Referencias y materiales de apoyo
+# obtener etiquetas de estado y colores de estado
+states = make_states(label_fn, color_fn)
+state_labels = states$state_labels
+state_colors = states$state_colors
 
-- [RevBayes: Simple Brownian Rate Estimation](https://revbayes.github.io/tutorials/cont_traits/simple_bm.html).
-- [RevBayes: Simple Ornstein–Uhlenbeck Models](https://revbayes.github.io/tutorials/cont_traits/simple_ou.html).
-- [RevBayes: Discrete morphology – Ancestral State Estimation](https://revbayes.github.io/tutorials/morph_ase/ase).
-- [Documentación de `dnLognormal`](https://revbayes.github.io/documentation/dnLognormal.html) y [documentación de `dnExponential`](https://revbayes.github.io/documentation/dnExponential.html).
+# procesar los estados ancestrales
+ase <- processAncStates(tree_fn,
+                        # Estas etiquetas numéricas deben coincidir con
+                        # las del archivo original de datos de entrada.
+                        state_labels = state_labels)
 
+# graficar los estados ancestrales como gráficos de pastel (pie charts)
+pp  <- plotAncStatesPie(t = ase,
+                        # incluir los estados del nodo raíz
+                         include_start_states=T, 
+                        # mostrar etiquetas de los estados
+                         state_labels=state_labels,
+                        # asignar los colores definidos
+                         state_colors=state_colors, 
+                        # tamaño de las etiquetas en los extremos (tips)
+                         tip_label_size=2.5,
+                        # distancia de desplazamiento de las etiquetas
+                         tip_label_offset=0.1,
+                        # sin etiquetas numéricas en los nodos
+                         node_label_size=0, 
+                        # sin etiquetas en los hombros
+                         shoulder_label_size=0, 
+                        # mostrar leyenda de probabilidades posteriores
+                         show_posterior_legend=T, 
+                        # tamaño de los círculos en los extremos (tips)
+                         tip_pie_diameter=0.5, 
+                         # tamaño de los círculos en los nodos
+                         node_pie_diameter=2.0,
+                        # ajuste horizontal de los gráficos de pastel
+                         pie_nudge_x=0.03, 
+                        # ajuste vertical de los gráficos de pastel
+                         pie_nudge_y=0.16, 
+                         alpha=1) + # opacidad
+
+  # mover la leyenda de estados
+  theme(legend.position = c(0.1, 0.75))
+
+
+# obtener las dimensiones del gráfico
+ # obtener el valor máximo del eje x (altura del árbol)
+x_phy = max(pp$data$x)
+ # espacio extra para las etiquetas de las hojas
+x_label = 3.5 
+ # edad inicial del eje (debe ser mayor a la raíz del árbol)
+x_start = 7  
+# inicio del eje x
+x0 = -(x_start - x_phy) 
+# fin del eje x
+x1 = x_phy + x_label 
+
+# añadir eje cronológico
+pp = pp + theme_tree2()
+pp = pp + labs(x="Edad (Ma)")
+
+# modificar límites del eje x
+pp = pp + coord_cartesian(xlim=c(x0,x1), expand=TRUE)
+
+# agregar marcas al eje y etiquetas de islas como eje secundario
+island_axis = sec_axis(~ ., breaks=x_phy-c(5.1, 2.95, 1.55, 0.5), labels=c("+K","+O","+M","+H") )
+x_breaks = seq(0,x_start,1) + x0
+x_labels = rev(seq(0,x_start,1))
+pp = pp + scale_x_continuous(breaks=x_breaks, labels=x_labels, sec.axis=island_axis)
+
+# dibujar líneas verticales que marcan los tiempos de formación de islas
+pp = add_island_times(pp, x_phy)
+
+# configurar la posición de la leyenda
+pp = pp + theme(legend.position="left")
+
+# mostrar gráfico final
+pp
+
+# guardar el gráfico como archivo PDF
+ggsave(file=plot_fn, plot=pp, device="pdf", height=7, width=10, useDingbats=F)
+```

@@ -1,5 +1,13 @@
-El tutorial menciona un script de posprocesamiento en R, disponible en el repositorio original:
+El script r_post_processing.R ya esta incluido en esta carpeta.
+
+Se reproduce SIN MODIFICACIONES a partir del archivo del tutorial original:
 https://github.com/ixchelgzlzr/evolution_workshop/blob/main/scripts/r_post_processing.R
-Ese script contiene rutas y nombres de salida particulares del equipo de la autora.
-Los scripts .Rev incluidos en esta carpeta se ensamblaron usando, sin cambios,
-los fragmentos de código mostrados en el capítulo en español.
+
+IMPORTANTE: el codigo del autor contiene rutas absolutas (PATH) y nombres de
+archivos/cadenas de ejemplo que no corresponden necesariamente a los archivos
+generados por el script principal incluido. Antes de ejecutarlo, cada estudiante
+debe adaptar los directorios, los nombres de archivo y las dependencias de R.
+No se ha probado su ejecucion.
+
+Los seis scripts .Rev incluidos se ensamblaron de los bloques mostrados en el
+capitulo traducido y no se alteraron en esta actualizacion.
