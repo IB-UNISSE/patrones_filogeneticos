@@ -20,19 +20,19 @@ En GeoSSE, el "estado" de un linaje representa su rango geográfico, el cual pue
 
 Los linajes pueden dividirse y cambiar de estado a lo largo del tiempo evolutivo mediante cuatro procesos fundamentales:
 
-1. **Especiación entre regiones (b).-** Este evento ocurre cuando una especie con un rango amplio (por ejemplo, **AB**) se divide en dos especies, cada una ocupando una sola de las regiones. Por ejemplo, el ancestro con rango **AB** se divide en especies hijas con rangos **A** y **B**. Este proceso es **simétrico**: la separación entre **A y B** es equivalente a la separación entre **B y A**.
+1.  **Especiación entre regiones (b).-** Este evento ocurre cuando una especie con un rango amplio (por ejemplo, **AB**) se divide en dos especies, cada una ocupando una sola de las regiones. Por ejemplo, el ancestro con rango **AB** se divide en especies hijas con rangos **A** y **B**. Este proceso es **simétrico**: la separación entre **A y B** es equivalente a la separación entre **B y A**.
 
-2. **Dispersión entre regiones (d).-** La dispersión permite que una especie expanda su rango geográfico hacia una nueva región. La tasa de expansión es la **suma** de las tasas de dispersión entre cada par de regiones. Por ejemplo, una especie con rango **A** que se dispersa hacia **B** terminará con rango **AB**.
+2.  **Dispersión entre regiones (d).-** La dispersión permite que una especie expanda su rango geográfico hacia una nueva región. La tasa de expansión es la **suma** de las tasas de dispersión entre cada par de regiones. Por ejemplo, una especie con rango **A** que se dispersa hacia **B** terminará con rango **AB**.
 
-3. **Especiación dentro de una región (w).-** Este evento genera dos linajes hijos, donde uno hereda **todo** el rango ancestral (que puede ser una o más regiones), y el otro hereda **una sola** región del rango ancestral. Por ejemplo, si la especie ancestral tenía el rango **AB**, una hija podría conservar **AB**, mientras que la otra tendría **A**.
+3.  **Especiación dentro de una región (w).-** Este evento genera dos linajes hijos, donde uno hereda **todo** el rango ancestral (que puede ser una o más regiones), y el otro hereda **una sola** región del rango ancestral. Por ejemplo, si la especie ancestral tenía el rango **AB**, una hija podría conservar **AB**, mientras que la otra tendría **A**.
 
-4. **Extinción local** (*extirpación*) **(e).-** La extinción hace que una especie pierda una región de su rango geográfico. Por ejemplo, una especie con rango **AB** puede extinguirse en la región **A**, quedando con rango **B**.
+4.  **Extinción local** (*extirpación*) **(e).-** La extinción hace que una especie pierda una región de su rango geográfico. Por ejemplo, una especie con rango **AB** puede extinguirse en la región **A**, quedando con rango **B**.
 
 ![](/images/u2_PatBio/exampletree.png){fig-align="center" width="450"}
 
-- La **especiación dentro de una región** y la **especiación entre regiones** son procesos cladogenéticos que generan nuevos linajes filogenéticos. Estos eventos pueden resultar en especies hijas que ocupan rangos diferentes al de la especie ancestral.
+-   La **especiación dentro de una región** y la **especiación entre regiones** son procesos cladogenéticos que generan nuevos linajes filogenéticos. Estos eventos pueden resultar en especies hijas que ocupan rangos diferentes al de la especie ancestral.
 
-- La **extinción** y la **dispersión**, en cambio, son procesos anagenéticos que ocurren a lo largo de las ramas del árbol filogenético. La extinción y la especiación dentro de regiones ocurren en una sola región, mientras que la dispersión y la especiación entre regiones involucran dos o más regiones.
+-   La **extinción** y la **dispersión**, en cambio, son procesos anagenéticos que ocurren a lo largo de las ramas del árbol filogenético. La extinción y la especiación dentro de regiones ocurren en una sola región, mientras que la dispersión y la especiación entre regiones involucran dos o más regiones.
 
 ⚠️ **Nota:** El modelo estándar de GeoSSE **no permite** otros tipos de eventos evolutivos. Por ejemplo, **no se permite** que una especie ancestral con un rango amplio produzca dos hijas que **ambas conserven el rango completo**. Además, GeoSSE solo permite que ocurra **un único evento** por instante de tiempo.
 
@@ -42,8 +42,8 @@ Los linajes pueden dividirse y cambiar de estado a lo largo del tiempo evolutivo
 
 El diagrama de transición del modelo GeoSSE para **dos regiones** resume los cuatro procesos fundamentales:
 
-- Procesos **anagenéticos**: extirpación y dispersión, representados con **flechas punteadas**.
-- Procesos **cladogenéticos**: especiación dentro de regiones y especiación entre regiones, representados con **flechas continuas**.
+-   Procesos **anagenéticos**: extirpación y dispersión, representados con **flechas punteadas**.
+-   Procesos **cladogenéticos**: especiación dentro de regiones y especiación entre regiones, representados con **flechas continuas**.
 
 Este diagrama permite visualizar primero **qué puede ocurrir con un linaje**. A continuación veremos cómo se parametrizan esas posibilidades en RevBayes.
 
@@ -51,31 +51,31 @@ Este diagrama permite visualizar primero **qué puede ocurrir con un linaje**. A
 
 El modelo **GeoSSE** considera cuatro familias de **tasas elementales**:
 
-- `rw`: especiación **dentro de una región**.
-- `re`: extinción local o **extirpación**.
-- `rb`: especiación **entre regiones**.
-- `rd`: **dispersión** entre regiones.
+-   `rw`: especiación **dentro de una región**.
+-   `re`: extinción local o **extirpación**.
+-   `rb`: especiación **entre regiones**.
+-   `rd`: **dispersión** entre regiones.
 
 Aquí hablamos únicamente de **cómo se organizan las tasas elementales por región o por pares de regiones**. Más adelante, RevBayes utilizará estas tasas para construir estructuras de nivel superior como `Q_bg`, `clado_map`, `lambda` y `omega`.
 
 En este ejemplo tenemos **dos regiones geográficas**:
 
-```text
+``` text
 Regiones
 A          B
 ```
 
 pero tres posibles **estados de distribución** para un linaje:
 
-```text
+``` text
 A        B        AB
 10       01       11
 ```
 
 Es importante distinguir ambos niveles:
 
-- **A y B son regiones geográficas.**
-- **A, B y AB son estados de distribución de los linajes.**
+-   **A y B son regiones geográficas.**
+-   **A, B y AB son estados de distribución de los linajes.**
 
 ### Especiación dentro de una región: `rw`
 
@@ -83,14 +83,14 @@ La tasa `rw` está asociada a **una región individual**.
 
 Para dos regiones tenemos:
 
-```text
+``` text
 rw(A)
 rw(B)
 ```
 
 Por ejemplo:
 
-```text
+``` text
         A
         │
         ●
@@ -102,7 +102,7 @@ Por ejemplo:
 
 y:
 
-```text
+``` text
         B
         │
         ●
@@ -114,7 +114,7 @@ y:
 
 Si el ancestro ocupa ambas regiones, una especiación dentro de una región también puede producir:
 
-```text
+``` text
         AB
         │
         ●
@@ -124,7 +124,7 @@ Si el ancestro ocupa ambas regiones, una especiación dentro de una región tamb
 
 o:
 
-```text
+``` text
         AB
         │
         ●
@@ -146,7 +146,7 @@ $$
 
 La tasa `re` también está asociada a **una región individual**, porque representa la pérdida de esa región del rango de una especie.
 
-```text
+``` text
 AB  ── pérdida de A ──>  B
               re(A)
 
@@ -156,7 +156,7 @@ AB  ── pérdida de B ──>  A
 
 Si la especie ocupa una sola región, perderla implica la extinción completa del linaje:
 
-```text
+``` text
 A  ── re(A) ──>  extinción
 B  ── re(B) ──>  extinción
 ```
@@ -175,7 +175,7 @@ $$
 
 La especiación entre regiones involucra **un par de regiones**:
 
-```text
+``` text
         AB
         │
         ●
@@ -205,14 +205,14 @@ $$
 
 La dispersión también involucra dos regiones, pero ahora existe una dirección:
 
-```text
+``` text
 A  ────────>  AB
      d(A,B)
 ```
 
 frente a:
 
-```text
+``` text
 B  ────────>  AB
      d(B,A)
 ```
@@ -236,7 +236,7 @@ $$
 ### Resumen de las tasas elementales
 
 | Proceso | Ejemplo | Depende de | Organización elemental |
-|:--|:--|:--|:--|
+|:---|:---|:---|:---|
 | Especiación dentro de región (`rw`) | `A → A + A` | una región | vector por región |
 | Extirpación (`re`) | `AB → B` por pérdida de A | una región | vector por región |
 | Especiación entre regiones (`rb`) | `AB → A + B` | par de regiones sin dirección | matriz simétrica entre regiones |
@@ -244,7 +244,7 @@ $$
 
 En forma esquemática:
 
-```text
+``` text
 UNA REGIÓN
     │
     ├── rw
@@ -256,14 +256,14 @@ DOS REGIONES
     └── rd   A→B o B→A, con dirección
 ```
 
-::: {.callout-note}
+::: callout-note
 ## Tasas elementales ≠ estructuras finales del modelo
 
 La clasificación anterior describe solamente cómo están organizadas `rw`, `re`, `rb` y `rd`.
 
 Después, RevBayes transforma y combina esas tasas:
 
-```text
+``` text
 TASAS ELEMENTALES
        │
        ├── re  +  rd
@@ -300,8 +300,8 @@ El modelo GeoSSE forma parte de una clase más amplia de modelos conocidos como 
 
 Otros ejemplos importantes incluyen:
 
-- [**BiSSE**](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_4.html)
-- [**ClaSSE**](https://revbayes.github.io/tutorials/sse/classe.html)
+-   [**BiSSE**](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_4.html)
+-   [**ClaSSE**](https://revbayes.github.io/tutorials/sse/classe.html)
 
 GeoSSE es un caso especial de ClaSSE, **estructurado y parametrizado para escenarios biogeográficos**.
 
@@ -309,8 +309,8 @@ GeoSSE es un caso especial de ClaSSE, **estructurado y parametrizado para escena
 
 En esta práctica utilizaremos como ejemplo al género **Kadua**, distribuido en las islas de Hawái, considerando dos regiones:
 
-- **Islas antiguas**
-- **Islas jóvenes**
+-   **Islas antiguas**
+-   **Islas jóvenes**
 
 La práctica se realizará en un **servidor GNU/Linux**. Durante la clase se proporcionarán el usuario, contraseña y dirección del servidor.
 
@@ -318,25 +318,25 @@ La práctica se realizará en un **servidor GNU/Linux**. Durante la clase se pro
 
 Desde una terminal:
 
-```bash
+``` bash
 ssh usuario@servidor
 ```
 
 Los archivos de datos y el script de la práctica se encuentran en:
 
-```bash
+``` bash
 /srv/scratch_sda/GeoSSE/shared
 ```
 
 Podemos revisarlos con:
 
-```bash
+``` bash
 ls /srv/scratch_sda/GeoSSE/shared
 ```
 
 Deberás observar al menos:
 
-```text
+``` text
 geosse.Rev
 kadua_range_n2.nex
 kadua.tre
@@ -346,11 +346,11 @@ kadua.tre
 
 Para esta práctica utilizaremos una imagen de **Apptainer/SIF** preparada específicamente con:
 
-- **RevBayes 1.4.1**
-- **TensorPhylo**
-- arquitectura `x86_64`
-- soporte para **AVX2**
-- compilación compatible con procesadores tipo **Intel Haswell/Broadwell o posteriores**
+-   **RevBayes 1.4.1**
+-   **TensorPhylo**
+-   arquitectura `x86_64`
+-   soporte para **AVX2**
+-   compilación compatible con procesadores tipo **Intel Haswell/Broadwell o posteriores**
 
 La imagen utilizada en esta práctica fue publicada en Docker Hub:
 
@@ -358,7 +358,7 @@ La imagen utilizada en esta práctica fue publicada en Docker Hub:
 
 Para esta práctica **no es necesario descargar la imagen**, porque ya se encuentra disponible en el servidor en:
 
-```text
+``` text
 /srv/scratch_sda/GeoSSE/shared/rb_tp_1.4.1.sif
 ```
 
@@ -366,7 +366,7 @@ Por lo tanto, todos los usuarios ejecutarán directamente la misma imagen compar
 
 Si se desea utilizar la imagen en otro servidor o computadora con **Apptainer**, puede descargarse desde Docker Hub con:
 
-```bash
+``` bash
 apptainer pull \
   rb_1.4.1_tensorphylo_avx2.sif \
   oras://docker.io/ccervantess/revbayes:1.4.1-tensorphylo-avx2
@@ -374,7 +374,7 @@ apptainer pull \
 
 Podemos comprobar que RevBayes funciona con:
 
-```bash
+``` bash
 apptainer exec \
   /srv/scratch_sda/GeoSSE/shared/rb_tp_1.4.1.sif \
   rb --version
@@ -382,13 +382,13 @@ apptainer exec \
 
 La salida deberá indicar:
 
-```text
+``` text
 RevBayes version (1.4.1)
 ```
 
 La estructura general del comando es:
 
-```text
+``` text
 apptainer exec IMAGEN.sif PROGRAMA ARGUMENTOS
 ```
 
@@ -396,7 +396,7 @@ apptainer exec IMAGEN.sif PROGRAMA ARGUMENTOS
 
 Podemos iniciar RevBayes de manera interactiva utilizando directamente la imagen compartida:
 
-```bash
+``` bash
 apptainer exec \
   /srv/scratch_sda/GeoSSE/shared/rb_tp_1.4.1.sif \
   rb
@@ -404,13 +404,13 @@ apptainer exec \
 
 Dentro de RevBayes cargamos el plugin:
 
-```r
+``` r
 loadPlugin("TensorPhylo", "/.plugins")
 ```
 
 TensorPhylo está instalado dentro de la imagen como:
 
-```text
+``` text
 /.plugins/libTensorPhylo.so
 ```
 
@@ -418,13 +418,13 @@ Si el plugin carga correctamente, RevBayes regresará al prompt `>`.
 
 Podemos comprobar que una de las funciones proporcionadas por TensorPhylo está disponible:
 
-```r
+``` r
 help("dnGLHBDSP")
 ```
 
 Para salir de RevBayes:
 
-```r
+``` r
 q()
 ```
 
@@ -432,14 +432,14 @@ q()
 
 Para ejecutar el análisis necesitamos únicamente dos archivos de datos:
 
-- `kadua.tre`: árbol filogenético calibrado.
-- `kadua_range_n2.nex`: matriz de presencia/ausencia por región.
+-   `kadua.tre`: árbol filogenético calibrado.
+-   `kadua_range_n2.nex`: matriz de presencia/ausencia por región.
 
 ### Árbol filogenético
 
 Podemos revisar el árbol con:
 
-```bash
+``` bash
 head /srv/scratch_sda/GeoSSE/shared/kadua.tre
 ```
 
@@ -449,7 +449,7 @@ Está escrito en formato **Newick** y contiene las relaciones filogenéticas y l
 
 Podemos revisar la matriz con:
 
-```bash
+``` bash
 cat /srv/scratch_sda/GeoSSE/shared/kadua_range_n2.nex
 ```
 
@@ -457,17 +457,15 @@ Cada fila corresponde a una especie y cada columna a una región.
 
 Para dos regiones:
 
-| Rango | Vector | Interpretación |
-|---|---|---|
-| A | `10` | presente solo en A |
-| B | `01` | presente solo en B |
-| AB | `11` | presente en ambas |
+| Rango | Vector | Interpretación     |
+|-------|--------|--------------------|
+| A     | `10`   | presente solo en A |
+| B     | `01`   | presente solo en B |
+| AB    | `11`   | presente en ambas  |
 
 El rango vacío `00` no se considera, por lo que con dos regiones tenemos:
 
-\[
-2^2 - 1 = 3
-\]
+\[ 2\^2 - 1 = 3 \]
 
 rangos posibles.
 
@@ -475,33 +473,33 @@ rangos posibles.
 
 Primero crearemos una carpeta de trabajo en nuestro `home`:
 
-```bash
+``` bash
 mkdir -p ~/GeoSSE/data
 mkdir -p ~/GeoSSE/output
 ```
 
 Ahora copiamos los dos archivos de entrada:
 
-```bash
+``` bash
 cp /srv/scratch_sda/GeoSSE/shared/kadua.tre ~/GeoSSE/data/
 cp /srv/scratch_sda/GeoSSE/shared/kadua_range_n2.nex ~/GeoSSE/data/
 ```
 
 También podemos copiar el script completo para ejecutarlo al final:
 
-```bash
+``` bash
 cp /srv/scratch_sda/GeoSSE/shared/geosse.Rev ~/GeoSSE/
 ```
 
 Entramos al directorio:
 
-```bash
+``` bash
 cd ~/GeoSSE
 ```
 
 La estructura será:
 
-```text
+``` text
 GeoSSE/
 ├── data/
 │   ├── kadua.tre
@@ -514,13 +512,13 @@ GeoSSE/
 
 ## Cargar TensorPhylo
 
-```r
+``` r
 loadPlugin("TensorPhylo", "/.plugins")
 ```
 
 ## Definir las rutas
 
-```r
+``` r
 # FILESYSTEM
 
 fp          = "./"
@@ -538,7 +536,7 @@ lbl_fn      = out_fp + "kadua_range_label.txt"
 
 ## Leer la filogenia
 
-```r
+``` r
 # PHYLOGENETIC DATA
 
 phy         <- readTrees(phy_fn)[1]
@@ -547,14 +545,14 @@ taxa        = phy.taxa()
 num_taxa    = taxa.size()
 ```
 
-- `phy`: árbol filogenético.
-- `tree_height`: edad de la raíz.
-- `taxa`: nombres de los taxones.
-- `num_taxa`: número de taxones.
+-   `phy`: árbol filogenético.
+-   `tree_height`: edad de la raíz.
+-   `taxa`: nombres de los taxones.
+-   `num_taxa`: número de taxones.
 
 ## Leer los datos biogeográficos
 
-```r
+``` r
 # BIOGEOGRAPHIC DATA
 
 bg_01 = readDiscreteCharacterData(bg_fn)
@@ -563,7 +561,7 @@ bg_01.show()
 
 Los datos originales están codificados como presencia/ausencia por región.
 
-```r
+``` r
 num_regions = bg_01.nchar()
 num_ranges  = abs(2^num_regions - 1)
 num_pairs   = num_regions^2 - num_regions
@@ -571,7 +569,7 @@ num_pairs   = num_regions^2 - num_regions
 
 Con dos regiones:
 
-```text
+``` text
 num_regions = 2
 num_ranges  = 3
 num_pairs   = 2
@@ -579,7 +577,7 @@ num_pairs   = 2
 
 Ahora transformamos la matriz binaria al formato requerido por GeoSSE:
 
-```r
+``` r
 bg_dat = formatDiscreteCharacterData(
     bg_01,
     format="GeoSSE",
@@ -591,8 +589,8 @@ bg_dat = formatDiscreteCharacterData(
 
 En el código, cada familia de tasas se construye en dos pasos:
 
-1. `rho_x` define la **escala general** del proceso.
-2. `m_x` distribuye esa escala entre regiones o pares de regiones.
+1.  `rho_x` define la **escala general** del proceso.
+2.  `m_x` distribuye esa escala entre regiones o pares de regiones.
 
 El producto genera las tasas utilizadas por el modelo:
 
@@ -602,11 +600,11 @@ $$
 
 Por ejemplo, si `rho_w = 0.2` y `m_w = [1.4, 0.6]`, entonces:
 
-```text
+``` text
 r_w = [0.28, 0.12]
 ```
 
-::: {.callout-important}
+::: callout-important
 ## Dos significados diferentes de `rho`
 
 `rho_w`, `rho_e`, `rho_b` y `rho_d` son parámetros de **tasas evolutivas**.
@@ -618,7 +616,7 @@ Los valores mostrados inmediatamente después de definir una variable con `~` so
 
 ## Especiación dentro de regiones
 
-```r
+``` r
 # WITHIN-REGION SPECIATION
 
 rho_w ~ dnExp(1)
@@ -631,10 +629,9 @@ r_w := rho_w * m_w
 
 Aquí `rho_w` define la escala general de la especiación dentro de regiones y `m_w` reparte esa escala entre A y B. El resultado `r_w` contiene una tasa para cada región.
 
-
 ## Extinción
 
-```r
+``` r
 # EXTINCTION
 
 rho_e ~ dnExp(1)
@@ -647,7 +644,7 @@ r_e := rho_e * m_e
 
 Ahora definimos la tasa de extinción completa del linaje para cada rango:
 
-```r
+``` r
 for (i in 1:num_ranges) {
 
     mu[i] <- 0.0
@@ -660,15 +657,14 @@ for (i in 1:num_ranges) {
 
 Aquí conviene distinguir dos niveles:
 
-- `r_e` describe la **pérdida de una región**.
-- `mu` contiene la tasa de **extinción completa del linaje** para cada estado.
+-   `r_e` describe la **pérdida de una región**.
+-   `mu` contiene la tasa de **extinción completa del linaje** para cada estado.
 
 Por eso, para un rango amplio como AB, `mu=0`: perder solo A o solo B no elimina al linaje, sino que produce una transición de rango que será representada en `Q_bg`.
 
-
 ## Especiación entre regiones
 
-```r
+``` r
 # BETWEEN-REGION SPECIATION
 
 rho_b ~ dnExp(1)
@@ -703,9 +699,7 @@ for (i in 1:num_regions) {
 
 La especiación entre regiones es **simétrica**:
 
-\[
-b_{A,B}=b_{B,A}
-\]
+\[ b\_{A,B}=b\_{B,A} \]
 
 ### Índice para los pares de regiones
 
@@ -713,7 +707,7 @@ b_{A,B}=b_{B,A}
 
 El condicional `if (i < j)` evita contar dos veces el mismo par y asigna el mismo valor a:
 
-```text
+``` text
 m_b[A][B]
 m_b[B][A]
 ```
@@ -722,7 +716,7 @@ m_b[B][A]
 
 ## Dispersión
 
-```r
+``` r
 # DISPERSAL
 
 rho_d ~ dnExp(1)
@@ -751,12 +745,9 @@ for (i in 1:num_regions) {
 
 A diferencia de la especiación entre regiones, la dispersión puede ser **asimétrica**:
 
-\[
-d_{A,B} \neq d_{B,A}
-\]
+\[ d\_{A,B} \neq d\_{B,A} \]
 
 En dispersión se recorren **pares dirigidos**: A → B y B → A. Por eso `m_d_simplex` contiene un peso para cada dirección. `m_d_idx++` usa el elemento actual y después avanza al siguiente.
-
 
 ### De las tasas elementales a las estructuras del modelo
 
@@ -764,7 +755,7 @@ Hasta aquí hemos definido tasas por **región** o por **pares de regiones**. A 
 
 ## `Q_bg`: matriz de transición anagenética
 
-```r
+``` r
 # ANAGENETIC RATE MATRIX
 
 Q_bg := fnBiogeographyRateMatrix(
@@ -778,7 +769,7 @@ Q_bg := fnBiogeographyRateMatrix(
 
 Podemos revisar cómo RevBayes representa los rangos:
 
-```r
+``` r
 Q_bg.getStateDescriptions()[1]
 Q_bg.getStateDescriptions()[2]
 Q_bg.getStateDescriptions()[3]
@@ -786,7 +777,7 @@ Q_bg.getStateDescriptions()[3]
 
 Para dos regiones esperamos:
 
-```text
+``` text
 10
 01
 11
@@ -794,10 +785,9 @@ Para dos regiones esperamos:
 
 Por ejemplo, `Q_bg` permite transiciones como A → AB por dispersión o AB → A por extirpación en B. Los eventos de los nodos se especifican por separado mediante `clado_map`.
 
-
 ## `clado_map`: eventos cladogenéticos
 
-```r
+``` r
 # CLADOGENETIC RATE MATRIX
 
 clado_map := fnBiogeographyCladoEventsBD(
@@ -813,30 +803,29 @@ clado_map := fnBiogeographyCladoEventsBD(
 
 De aquí obtenemos:
 
-```r
+``` r
 lambda := clado_map.getSpeciationRateSumPerState()
 omega  := clado_map.getCladogeneticProbabilityMatrix()
 ```
 
-- `lambda`: tasa total de especiación para cada estado ancestral.
-- `omega`: probabilidades relativas de los distintos resultados cladogenéticos, **dado que ocurre una especiación**.
+-   `lambda`: tasa total de especiación para cada estado ancestral.
+-   `omega`: probabilidades relativas de los distintos resultados cladogenéticos, **dado que ocurre una especiación**.
 
 ### Interpretación de `clado_map`, `lambda` y `omega`
 
 La función `fnBiogeographyCladoEventsBD(...)` **construye un mapa de eventos de especiación permitidos y sus tasas**, no una lista de eventos históricos que ya hayan ocurrido. Sus argumentos cumplen funciones distintas:
 
 | Argumento | ¿Qué controla? |
-|:--|:--|
+|:---|:---|
 | `speciation_rates=[rho_w,rho_b]` | Escalas base de especiación dentro de regiones y entre regiones |
 | `within_region_features=m_w` | Heterogeneidad de especiación dentro de regiones |
 | `between_region_features=m_b` | Heterogeneidad de separación entre pares de regiones |
 | `max_range_size=num_regions` | Tamaño máximo del rango ancestral representado |
 | `max_subrange_split_size=num_regions` | Tamaño máximo de subrangos descendientes admitidos por la función |
 
-
 ## Frecuencias iniciales
 
-```r
+``` r
 # PI
 
 pi_base <- rep(1, num_ranges)
@@ -847,7 +836,7 @@ Con esto asignamos la misma probabilidad inicial a todos los rangos posibles.
 
 ## Definir el proceso GeoSSE
 
-```r
+``` r
 # TREE
 
 timetree ~ dnGLHBDSP(
@@ -867,7 +856,7 @@ timetree ~ dnGLHBDSP(
 
 Ahora fijamos el modelo a nuestros datos observados:
 
-```r
+``` r
 timetree.clamp(phy)
 timetree.clampCharData(bg_dat)
 ```
@@ -878,10 +867,9 @@ El análisis combina: **`Q_bg`**, que describe cambios anagenéticos de rango; *
 
 En el argumento `rho=1` de `dnGLHBDSP` sí hablamos de una **fracción de muestreo taxonómico de 100 %** bajo el supuesto del ejercicio; no debe confundirse con las variables `rho_w`, `rho_e`, `rho_b` y `rho_d` de tasas base.
 
-
 ## Configuración de la MCMC
 
-```r
+``` r
 # MCMC SETUP
 
 n_gen    = 1000
@@ -893,7 +881,7 @@ printgen = 10
 
 ## Movimientos de la MCMC
 
-```r
+``` r
 # MCMC MOVES
 
 mv = VectorMoves()
@@ -916,16 +904,15 @@ mv[mvi++] = mvSimplex(m_d_simplex, weight=m_d_simplex.size())
 
 La expresión:
 
-```r
+``` r
 mv[mvi++]
 ```
 
 usa el valor actual de `mvi` como índice y después aumenta `mvi` en uno.
 
-
 ## Monitores
 
-```r
+``` r
 # MCMC MONITORS
 
 mn = VectorMonitors()
@@ -959,16 +946,15 @@ mn[mni++] = mnStochasticCharacterMap(
 
 De manera análoga:
 
-```r
+``` r
 mn[mni++]
 ```
 
 usa el índice actual de `mni` y luego lo incrementa.
 
-
 ## Guardar las etiquetas de los estados
 
-```r
+``` r
 # STATE LABELS
 
 write(
@@ -994,13 +980,13 @@ for (i in 1:state_labels.size()) {
 
 Este bloque genera automáticamente:
 
-```text
+``` text
 output/kadua_range_label.txt
 ```
 
 con una estructura como:
 
-```text
+``` text
 index,range
 0,10
 1,01
@@ -1011,7 +997,7 @@ Por lo tanto, este archivo **no es un dato de entrada**.
 
 ## Ejecutar la MCMC
 
-```r
+``` r
 # MCMC START
 
 mdl = model(m_w)
@@ -1032,7 +1018,7 @@ ch.run(n_gen)
 
 ## Reconstrucción de estados ancestrales
 
-```r
+``` r
 # ANCESTRAL STATES
 
 f_burn = 0.2
@@ -1048,7 +1034,7 @@ x_states = readAncestralStateTrace(
 
 Resumimos los mapas de caracteres:
 
-```r
+``` r
 summarizeCharacterMaps(
     x_stoch,
     timetree,
@@ -1059,7 +1045,7 @@ summarizeCharacterMaps(
 
 Y generamos el árbol con la reconstrucción ancestral:
 
-```r
+``` r
 state_tree = ancestralStateTree(
     tree=timetree,
     ancestral_state_trace_vector=x_states,
@@ -1085,7 +1071,7 @@ q()
 
 Desde `~/GeoSSE`:
 
-```bash
+``` bash
 apptainer exec \
   /srv/scratch_sda/GeoSSE/shared/rb_tp_1.4.1.sif \
   rb geosse.Rev
@@ -1093,13 +1079,13 @@ apptainer exec \
 
 Al terminar podemos revisar:
 
-```bash
+``` bash
 ls -lh output/
 ```
 
 Deberán aparecer archivos como:
 
-```text
+``` text
 model.log
 states.log
 stoch.log
@@ -1112,7 +1098,7 @@ kadua_range_label.txt
 
 Los resultados permanecen en el servidor dentro de:
 
-```text
+``` text
 ~/GeoSSE/output/
 ```
 
@@ -1122,19 +1108,19 @@ Para descargarlos utilizaremos `scp`.
 
 Para descargar todo el directorio:
 
-```bash
+``` bash
 scp -r usuario@servidor:~/GeoSSE/output ./GeoSSE_output
 ```
 
 La estructura general es:
 
-```text
+``` text
 scp -r origen destino
 ```
 
 Para descargar un solo archivo, por ejemplo:
 
-```bash
+``` bash
 scp usuario@servidor:~/GeoSSE/output/ase.tre .
 ```
 

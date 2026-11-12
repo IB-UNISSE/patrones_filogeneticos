@@ -583,11 +583,11 @@ suppressMessages(capture.output(
 
 ## 🔍 Comparación entre los tres gráficos
 
-| Tipo de gráfico                               | Qué muestra                                 | Cómo lo calcula RevBayes                                                                            | Cómo interpretarlo                                                            |
-|-----------------------------------------------|---------------------------------------------|-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| **1. MAP (Maximum a posteriori)**             | El **estado más probable** en cada nodo     | Toma el estado con mayor probabilidad posterior en cada nodo (modo de la distribución)              | Muestra una sola hipótesis del estado ancestral más probable                  |
-| **2. Pie charts (probabilidades marginales)** | Un **resumen de incertidumbre** por nodo    | Calcula la probabilidad marginal para cada estado posible en cada nodo                              | Cada pastel refleja cuán confiable es la inferencia (incertidumbre explícita) |
-| **3. Simmap (mapeo estocástico)**             | **Historias evolutivas completas** en ramas | Simula trayectorias de cambio a lo largo del árbol, incluyendo **el cuándo** y **dónde** ocurrieron | Muestra posibles escenarios evolutivos, no solo los nodos                     |
+| Tipo de gráfico | Qué muestra | Cómo lo calcula RevBayes | Cómo interpretarlo |
+|----|----|----|----|
+| **1. MAP (Maximum a posteriori)** | El **estado más probable** en cada nodo | Toma el estado con mayor probabilidad posterior en cada nodo (modo de la distribución) | Muestra una sola hipótesis del estado ancestral más probable |
+| **2. Pie charts (probabilidades marginales)** | Un **resumen de incertidumbre** por nodo | Calcula la probabilidad marginal para cada estado posible en cada nodo | Cada pastel refleja cuán confiable es la inferencia (incertidumbre explícita) |
+| **3. Simmap (mapeo estocástico)** | **Historias evolutivas completas** en ramas | Simula trayectorias de cambio a lo largo del árbol, incluyendo **el cuándo** y **dónde** ocurrieron | Muestra posibles escenarios evolutivos, no solo los nodos |
 
 El siguiente gráfico representa la **distribución posterior** de la probabilidad de que **dos tasas de transición** sean **iguales**.\
 
