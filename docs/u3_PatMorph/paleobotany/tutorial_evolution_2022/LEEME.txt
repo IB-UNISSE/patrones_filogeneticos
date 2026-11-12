@@ -1,0 +1,23 @@
+TUTORIAL — PALEOBOTÁNICA Y DATACIÓN POR EVIDENCIA TOTAL (RevBayes)
+Autoría del tutorial original: Ixchel González-Ramírez.
+Repositorio del material original: https://github.com/ixchelgzlzr/evolution_workshop
+
+ESTRUCTURA
+  data/alignments/: ITS, trnLF, waxy (FASTA)
+  data/morphology.nexus: caracteres morfológicos
+  data/taxa.tsv: terminales y edades
+  scripts/: script principal y cinco componentes RevBayes
+  output/run_1/: destino para archivos de salida
+
+Los cinco datos provienen de los archivos distribuidos con este capítulo.
+Los seis scripts .Rev fueron ensamblados a partir de los bloques de código que
+aparecen en el capítulo traducido, conservando el contenido de cada bloque.
+
+EJECUCIÓN
+1. Descomprime este ZIP. Sitúate dentro de tutorial_evolution_2022.
+2. Con RevBayes instalado, desde ese directorio ejecuta:
+       rb scripts/TED_tutorial_evolution.Rev
+3. Comprueba convergencia antes de interpretar resultados.
+
+Los scripts están destinados a una actividad docente; no se ejecutaron ni
+validaron con una instalación local de RevBayes al preparar este paquete.

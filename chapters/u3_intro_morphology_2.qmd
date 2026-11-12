@@ -1,676 +1,610 @@
 ---
-title: "Disparidad a lo largo del tiempo y coevolución de carácteres"
+title: "Estimación de tasas brownianas dependientes del estado"
+subtitle: "Modelos brownianos dependientes del estado y variación de fondo"
+lang: es
 format: html
+toc: true
+toc-depth: 2
+code-copy: true
+code-overflow: wrap
 execute:
-  echo: true   # Muestra el código
-  warning: false  # Oculta advertencias
-  fig-width: 12   # Ancho del gráfico
-  fig-height: 8   # Altura del gráfico
+  echo: true
+  warning: false
+  message: false
+  fig-width: 10
+  fig-height: 5
 ---
 
-[![](../images/u3_PatMorph/DTT_Coevol.PNG){fig-align="center" width="500"}](../docs/u3_PatMorph/DTT_Coevol.pdf)
+## Introducción
 
-Haz clic en la imagen para ver el PDF de la presentación
+En un modelo de **movimiento browniano de tasa constante**, un carácter continuo evoluciona con una sola tasa de acumulación de varianza, $\sigma^2$, en todas las ramas del árbol. Sin embargo, algunas preguntas biológicas requieren evaluar si esa tasa se relaciona con otro carácter, como el hábitat, la dieta o el sistema de apareamiento.
 
-## Análisis de Disparity-Through-Time (DTT) con geiger en R
+Por ejemplo, podemos preguntarnos si el tamaño corporal evoluciona a distinta tasa en peces que viven en arrecifes y en peces de otros hábitats. Para responder, necesitamos modelar tanto el **carácter continuo** como la **historia evolutiva del hábitat**, que es un carácter discreto.
 
-En biología evolutiva, el término disparidad describe la variación morfológica o funcional entre especies dentro de un clado. A diferencia de la diversidad taxonómica (cuántas especies hay), la disparidad nos dice cuán distintas son las especies entre sí en cuanto a rasgos cuantitativos.
+Analizaremos datos de **Haemulidae** para estudiar esa asociación. Primero ajustaremos un BM cuya tasa depende del hábitat. Después incorporaremos **variación de fondo entre linajes**, para permitir diferencias de tasa adicionales a las asociadas con ese carácter.
 
-El análisis de Disparity-Through-Time (DTT) permite rastrear cómo esta disparidad ha cambiado a lo largo de la historia evolutiva de un grupo. Es una herramienta útil para identificar patrones como radiaciones adaptativas (alta disparidad al inicio) o conservadurismo morfológico (baja disparidad durante la evolución).
+## Datos
 
-El paquete geiger en R ofrece la función dtt() para realizar este tipo de análisis comparando la trayectoria empírica de la disparidad con simulaciones bajo un modelo de evolución neutral (modelo Browniano, por defecto).
+Trabajaremos con un árbol fijo de **49 taxones**, una matriz de **nueve caracteres continuos** y un carácter discreto de hábitat. Los nombres de los taxones coinciden entre los tres archivos.
 
-### ¿Qué hace la función `dtt()`?
+| Archivo | Contenido |
+| --- | --- |
+| `haemulidae.nex` | Árbol filogenético enraizado |
+| `haemulidae_trophic_traits.nex` | Matriz de caracteres continuos |
+| `haemulidae_habitat.nex` | Hábitat codificado como 0 o 1 |
 
-La función `dtt()` toma un árbol filogenético y una matriz de rasgos cuantitativos, y calcula:
+El hábitat está codificado como:
 
--   La **disparidad promedio** en diferentes puntos del tiempo evolutivo.
+- **0:** fuera de arrecife, con 18 especies.
+- **1:** arrecife, con 31 especies.
 
--   Un conjunto de simulaciones bajo evolución Browniana para comparar con los datos reales.
+El primer carácter corresponde al **logaritmo del tamaño corporal**. Conservaremos los valores en la escala suministrada. Los archivos no declaran por sí solos la unidad original de tamaño.
 
--   El **índice MDI** (*Morphological Disparity Index*), que resume si la disparidad observada es mayor o menor que la esperada bajo el modelo nulo.
+| Índice | Carácter |
+| --- | --- |
+| 1 | Tamaño corporal |
+| 2 | Masa del aductor |
+| 3 | Proceso ascendente |
+| 4 | Longitud de las branquiespinas |
+| 5 | Anchura del ojo |
+| 6 | Longitud bucal |
+| 7 | Anchura bucal |
+| 8 | Altura de la cabeza |
+| 9 | Longitud de la cabeza |
 
-### ¿Qué devuelve `dtt()`?
+### Descarga de archivos
 
-La función `dtt()` retorna una lista con los siguientes elementos:
+<a href="../docs/u3_PatMorph/haemulidae.nex" download>📥 Descargar árbol filogenético</a>
 
--   `dtt`: Disparidad promedio para los clados.
+<a href="../docs/u3_PatMorph/haemulidae_trophic_traits.nex" download>📥 Descargar matriz de caracteres continuos</a>
 
--   `times`: Tiempos correspondientes a cada valor de disparidad en el análisis DTT.
+<a href="../docs/u3_PatMorph/haemulidae_habitat.nex" download>📥 Descargar matriz de hábitat</a>
 
--   `sim`: Valores de disparidad a lo largo del tiempo para cada uno de los datasets simulados bajo el modelo nulo.
+La distancia entre la raíz y las puntas es aproximadamente **1** en el árbol suministrado. Por eso expresaremos las tasas por unidad de longitud del árbol. No utilizaremos millones de años sin comprobar la calibración y el reescalamiento originales.
 
--   `MDI`: Valor del **Morphological Disparity Index**, que corresponde al área entre la curva DTT empírica y la mediana de las curvas simuladas.
+## Modelos de movimiento browniano
 
-Descarga del Árbol Filogenético y la matriz de caracteres continuos
+En movimiento browniano, la varianza del cambio aumenta con la tasa y con el tiempo:
 
-📥 Puedes descargar el archivo .tre con el árbol en el siguiente enlace:
+$$
+\operatorname{Var}(\Delta Y)=\sigma^2t.
+$$
 
-<a href="../docs/u1_PatDiv/output/morpho/subarbol_ingroup_morph.nex" download>📥 Descargar árbol filogenético</a>
+Una tasa $\sigma^2$ mayor permite cambios más grandes **en ambas direcciones**. No significa que el tamaño corporal necesariamente aumente.
 
-📥 Puedes descargar el archivo .nex con la matriz de caracteres continuos en el siguiente enlace:
+Compararemos estos modelos:
 
-<a href="../docs/u1_PatDiv/output/morpho/med_geiger.nex" download>📥 Descargar matriz de caracteres continuos</a>
+| Modelo | Qué permite |
+| --- | --- |
+| Dependiente del hábitat | Tasas diferentes entre los dos hábitats |
+| Con variación de fondo | El efecto del hábitat y diferencias adicionales de tasa entre linajes |
 
-Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.
+La comparación permite evaluar si la diferencia entre hábitats se mantiene al incorporar otras diferencias de tasa entre linajes.
+
+
+### Parámetros e historia del hábitat
+
+La tasa de una rama depende de la **fracción de tiempo** que permanece en cada estado, no únicamente del hábitat de la especie en su punta. Con dos hábitats:
+
+$$
+\sigma_i^2 = \beta\left[\tau_i(0)\zeta_0+\tau_i(1)\zeta_1\right],
+\qquad \operatorname{Var}(\Delta Y_i)=t_i\sigma_i^2.
+$$
+
+Aquí, $\tau_i(0)+\tau_i(1)=1$. RevBayes estima las historias del hábitat junto con los parámetros del carácter continuo, por lo que las tasas incorporan incertidumbre sobre esas historias.
+
+| Variable en el script | Significado |
+| --- | --- |
+| `lambda` | Escala de velocidad del proceso de cambio del hábitat |
+| `Q` | Matriz relativa del modelo Mk simétrico para el hábitat |
+| `X` | Estados e historia del hábitat; los estados observados se fijan con `clamp` |
+| `beta` | Escala global de **varianza** del BM sin variación de fondo |
+| `zeta[1]`, `zeta[2]` | Multiplicadores relativos de los estados 0 y 1, con media 1 |
+| `state_branch_rate` | Promedio de los multiplicadores del hábitat ponderado por el tiempo en cada estado |
+| `beta_root` | Escala inicial de varianza de fondo del segundo modelo |
+| `background_rates` | Tasas de fondo que se heredan y pueden cambiar entre ramas |
+| `branch_rates` | Tasas efectivas de varianza por rama |
+| `razon_tasas` | Cociente arrecife / fuera de arrecife |
+
+En estos scripts, `beta` y `zeta` ya representan una tasa de varianza y sus multiplicadores: **no se elevan otra vez al cuadrado**. A `dnPhyloBrownianREML` se le proporciona la raíz cuadrada de `branch_rates`, como exige su parametrización.
+
+Las priors propuestas son opciones iniciales. Sus límites dependen de la escala del carácter y del árbol; conviene revisar sensibilidad y si las muestras se acumulan cerca de esos límites.
+
+<details>
+<summary>Comprobación de las cadenas</summary>
+
+Los scripts realizan 5 000 generaciones iniciales de ajuste y después guardan muestras durante 50 000 generaciones, cada 10 generaciones. Esta longitud es un punto de partida: el tiempo de ejecución y la convergencia pueden diferir entre modelos.
+
+Antes de interpretar las densidades, abre los `.log` en Tracer y revisa las trazas de `Posterior`, `Likelihood`, `lambda`, `zeta_estado_0`, `zeta_estado_1` y `razon_tasas`; revisa también `beta` o `beta_root` y, para el segundo modelo, `num_rate_changes`. Busca trazas estables, mezcla adecuada y un tamaño efectivo de muestra suficiente (como referencia inicial, ESS mayor que 200 para los parámetros de interés). Repite cada modelo en sesiones independientes, con nombres de salida distintos, y comprueba que los resúmenes concuerden. Si no ocurre, prolonga las cadenas y revisa las propuestas y las priors.
+
+La fase `burnin()` de los scripts no se registra como posterior. El descarte adicional del 25 % que usamos abajo se aplica a las muestras guardadas durante `run()` y debe ajustarse según las trazas.
+
+</details>
 
 ```{r}
-# --------------------------------------
-# Análisis Disparity-Through-Time (DTT)
-# Variable: Volumen de Élitros
-# --------------------------------------
+#| label: configuracion
+#| include: false
 
-# 📦 Cargar paquetes necesarios
-library(geiger)   # para el análisis DTT
-library(ape)      # para leer árboles filogenéticos en formato NEXUS
-library(ggplot2)  # para graficar con estilo profesional
-library(dplyr)    # para manipulación de datos
-library(tidyr)    # para transformación de datos en formato largo
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  stop('Instala ggplot2 con install.packages("ggplot2").')
+}
+library(ggplot2)
 
-# 🌳 Leer el árbol filogenético en formato NEXUS
-tree <- read.nexus("../docs/u3_PatMorph/subarbol_ingroup_morph.nex")
+entrada <- knitr::current_input(dir = TRUE)
+carpeta_qmd <- if (is.null(entrada) || !nzchar(entrada)) {
+  getwd()
+} else dirname(normalizePath(entrada, mustWork = FALSE))
 
-# 📊 Leer la matriz de rasgos continuos (NEXUS como tabla de texto)
-data_df <- read.table("../docs/u3_PatMorph/med_geiger.nex", 
-                      skip = 6,    # omitir cabecera hasta el bloque MATRIX
-                      nrows = 21,  # número de taxones
-                      fill = TRUE, 
-                      stringsAsFactors = FALSE)
-
-# 🏷️ Asignar nombres a las columnas de la matriz
-colnames(data_df) <- c("taxa", "v_elitros", "v_abdomen", "amplitud", "convexidad")
-
-# 🧬 Extraer la variable 'v_elitros' y asignar nombres
-v_elitros <- data_df$v_elitros
-names(v_elitros) <- data_df$taxa
-
-# 🧪 Ejecutar análisis DTT con 1000 simulaciones bajo evolución Browniana
-dtt_v_elitros <- geiger::dtt(
-  tree,
-  v_elitros,
-  calculateMDIp = TRUE,      # calcula el p-valor empírico
-  plot=FALSE,
-  mdi.range = c(0, 1),       # usa toda la profundidad del árbol
-  nsim = 1000                # número de simulaciones
+# Rutas editables; se admiten rutas relativas o absolutas.
+opciones <- c(
+  file.path(carpeta_qmd, "..", "docs", "u3_PatMorph", "out"),
+  file.path(carpeta_qmd, "docs", "u3_PatMorph", "out"),
+  file.path(getwd(), "docs", "u3_PatMorph", "out"),
+  file.path(carpeta_qmd, "out"),
+  carpeta_qmd
 )
-
-# 📉 Extraer resultados del análisis
-mdi_val <- as.numeric(dtt_v_elitros$MDI)     # valor del índice MDI
-p_val   <- dtt_v_elitros$MDIp                # p-valor empírico
-empirical <- dtt_v_elitros$dtt               # curva de disparidad observada
-sim_df <- as.data.frame(dtt_v_elitros$sim)   # disparidad simulada
-sim_df$time <- dtt_v_elitros$times           # tiempos de ramificación
-
-# 🔄 Reorganizar las simulaciones a formato largo (long format)
-sim_df_long <- sim_df %>%
-  pivot_longer(cols = -time, names_to = "rep", values_to = "disparity") %>%
-  mutate(type = "Simulated")
-
-# 🔵 Crear data frame para la curva observada
-emp_df <- data.frame(
-  time = dtt_v_elitros$times,
-  disparity = dtt_v_elitros$dtt,
-  type = "Empirical"
-)
-
-# 📊 Calcular resumen estadístico de las simulaciones (mediana y percentiles)
-summary_df <- sim_df %>%
-  pivot_longer(cols = -time, names_to = "rep", values_to = "disparity") %>%
-  group_by(time) %>%
-  summarise(
-    median = median(disparity),
-    lower = quantile(disparity, 0.025),
-    upper = quantile(disparity, 0.975)
-  )
-
-# 📈 Graficar resultado del análisis DTT con ggplot2
-ggplot() +
-  # Sombreado gris para el intervalo de simulaciones (2.5% - 97.5%)
-  geom_ribbon(data = summary_df, aes(x = time, ymin = lower, ymax = upper),
-              fill = "gray80", alpha = 0.5) +
-  
-  # Línea discontinua: mediana de simulaciones
-  geom_line(data = summary_df, aes(x = time, y = median),
-            linetype = "dashed", color = "gray12", size = 0.8) +
-  
-  # Línea azul sólida: trayectoria empírica de disparidad
-  geom_line(data = emp_df, aes(x = time, y = disparity),
-            color = "dodgerblue", size = 1) +
-  
-  # 🧾 Texto con valores de MDI y p-value en la esquina superior derecha
-  annotate("text",
-           x = 0.98,
-           y = max(summary_df$upper, na.rm = TRUE),
-           hjust = 1,
-           label = paste0(
-             "MDI = ", round(mdi_val, 6), "\n",
-             "p-value = ", signif(p_val, 3)
-           ),
-           size = 4.5) +
-  
-  # Títulos y etiquetas de ejes
-  labs(
-    title = "Volumen de Élitros",
-    x = "Relative Time", y = "Disparity"
-  ) +
-  theme_minimal(base_size = 14)  # Tema limpio y legible
-
-```
-
-🔎 dtt_res\$MDI: Morphological Disparity Index ¿Qué es? Es un índice resumen que mide cuán diferente es la trayectoria de disparidad observada a lo largo del tiempo en comparación con lo que esperaríamos bajo un modelo nulo de evolución (típicamente, modelo Browniano).
-
-¿Cómo se interpreta? Esencialmente, mide el área entre la curva empírica de disparidad y la mediana de las curvas simuladas.
-
-Valor positivo: la disparidad se acumuló más tempranamente que lo esperado.
-
-Puede sugerir una radiación adaptativa temprana.
-
-Valor negativo: la disparidad se acumuló más tardíamente de lo esperado.
-
-Puede indicar conservadurismo morfológico temprano, o una diversificación más reciente de formas.
-
-📊 dtt_res\$MDIp: p-valor empírico del MDI ¿Qué es? Es la proporción de simulaciones en las que el valor de MDI fue igual o más extremo (en valor absoluto) que el MDI observado.
-
-¿Cómo se interpreta? Este valor te dice si el patrón de disparidad observado se desvía significativamente de lo que esperaríamos por azar bajo evolución neutral.
-
-p \< 0.05: resultado significativo → la trayectoria observada no es compatible con el modelo Browniano (hay señal de evolución no neutral).
-
-p ≥ 0.05: no hay suficiente evidencia para rechazar el modelo nulo.
-
-## Correlación entre caracteres morfológicos discretos
-
-Evaluaremos la correlación entre caracteres morfológicos discretos en un contexto filogenético siguiendo el tutorial de [RevBayes](https://revbayes.github.io/tutorials/morph_ase/corr.html). Utilizaremos un conjunto de datos de primates que incluye varios caracteres codificados como binarios, tales como: **periodo de actividad, tipo de hábitat, comportamiento solitario, uso del sustrato terrestre, número de machos por grupo, sistema de apareamiento y tipo de dieta**. Algunos de estos caracteres pueden estar evolutivamente correlacionados —por ejemplo, el tipo de hábitat y el uso del sustrato terrestre—, pero ¿cómo podemos probar estadísticamente si esta dependencia existe?
-
-Para probar si dos caracteres discretos binarios (por ejemplo, *hábitat* y *uso del sustrato terrestre*) están correlacionados en su evolución, combinamos ambos caracteres en un solo carácter con **cuatro estados posibles**:
-
--   `00`: A = 0, B = 0
-
--   `01`: A = 0, B = 1
-
--   `10`: A = 1, B = 0
-
--   `11`: A = 1, B = 1
-
-### 🔹 Matriz de evolución independiente
-
-Esta matriz modela dos caracteres **A** y **B** que evolucionan de manera **independiente**, con sus respectivas tasas de ganancia ($\alpha$) y pérdida ($\beta$).
-
-$$
-Q =
-\begin{array}{c|cccc}
-     & 00 & 10 & 01 & 11 \\
-\hline
-00 & -    & \alpha_A & \alpha_B & 0 \\
-10 & \beta_A & -    & 0 & \alpha_B \\
-01 & \beta_B & 0 & -    & \alpha_A \\
-11 & 0 & \beta_A & \beta_B & -
-\end{array}
-$$
-
-------------------------------------------------------------------------
-
-### 🔸 Matriz de evolución correlacionada
-
-Aquí permitimos que la tasa de cambio de un carácter **dependa del estado del otro carácter**, resultando en 8 parámetros independientes $\mu_{i,j}$.
-
-$$
-Q =
-\begin{array}{c|cccc}
-     & 00 & 10 & 01 & 11 \\
-\hline
-00 & -     & \mu_{1,2} & \mu_{1,3} & 0 \\
-10 & \mu_{2,1} & -     & 0 & \mu_{2,4} \\
-01 & \mu_{3,1} & 0 & -     & \mu_{3,4} \\
-11 & 0 & \mu_{4,2} & \mu_{4,3} & -
-\end{array}
-$$
-
-------------------------------------------------------------------------
-
-## Interpretación
-
-Cada fila y columna corresponde a los estados `00`, `10`, `01`, `11`, respectivamente. Por ejemplo:
-
--   $\mu_{1,2}$ representa la transición de `00` a `10` (ganancia de A cuando B=0),
--   $\mu_{3,4}$ representa la transición de `01` a `11` (ganancia de A cuando B=1).
-
-**Hipótesis evolutiva:** La locomoción terrestre (A=1) podría haber evolucionado con mayor probabilidad en especies que ya habitaban entornos abiertos (B=1), donde moverse por el suelo puede ser más eficiente o seguro. Por lo tanto, si $\mu_{1,2} \ne \mu_{3,4}$ entonces la ganancia del carácter "terrestre" depende del estado del hábitat, lo que sugiere una correlación evolutiva entre ambos caracteres.
-
-Comparando pares de parámetros podemos evaluar si hay dependencia:
-
-| Comparación               | ¿Qué se prueba?                             |
-|---------------------------|---------------------------------------------|
-| $\mu_{1,2} \ne \mu_{3,4}$ | Si la ganancia de A depende del estado de B |
-| $\mu_{2,1} \ne \mu_{4,3}$ | Si la pérdida de A depende del estado de B  |
-| $\mu_{1,3} \ne \mu_{2,4}$ | Si la ganancia de B depende del estado de A |
-| $\mu_{3,1} \ne \mu_{4,2}$ | Si la pérdida de B depende del estado de A  |
-
-Realizaremos estas pruebas utilizando un enfoque bayesiano basado en **cadenas de Markov con salto reversible** (*Reversible Jump Markov Chain Monte Carlo*, RJ-MCMC). Este método permite explorar modelos con diferente número de parámetros y estimar directamente si ciertas tasas de transición entre caracteres son estadísticamente distinguibles —es decir, si hay **correlación evolutiva** entre caracteres.
-
-Descarga del Árbol Filogenético y la matriz de caracteres discretos
-
-📥 Puedes descargar el archivo .tre con el árbol en el siguiente enlace:
-
-<a href="../docs/u3_PatMorph/primates_tree.nex" download>📥 Descargar árbol filogenético</a>
-
-📥 Puedes descargar los archivos .nex con las matrices de caracteres discretos en el siguiente enlace:
-
-<a href="../docs/u3_PatMorph/primates_solitariness.nex" download>📥 Descargar matriz de caracteres discretos "solitariness"</a>
-
-<a href="../docs/u3_PatMorph/primates_terrestrially.nex" download>📥 Descargar matriz de caracteres discretos "terrestrially"</a>
-
-Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.
-
-``` r
-################################################################################
-# Ejemplo en RevBayes: Prueba de correlación entre caracteres discretos
-# Autor: Sebastian Höhna 
-################################################################################
-
-#######################
-# Cargar los datos
-#######################
-
-# Nombres de los caracteres a comparar
-CHARACTER_A = "solitariness"
-CHARACTER_B = "terrestrially"
-
-# Ambos caracteres son binarios
-NUM_STATES_A = 2
-NUM_STATES_B = 2
-
-# Leer los datos morfológicos desde archivos NEXUS
-morpho_A <- readDiscreteCharacterData("../data/primates_"+CHARACTER_A+".nex")
-morpho_B <- readDiscreteCharacterData("../data/primates_"+CHARACTER_B+".nex")
-
-# Combinar los dos caracteres en uno compuesto con 4 estados: 00, 01, 10, 11
-morpho = combineCharacter( morpho_A, morpho_B )
-
-# Inicializar los vectores de movimientos y monitores
-moves    = VectorMoves()
-monitors = VectorMonitors()
-
-##############
-# Modelo de árbol
-##############
-
-# Usamos una topología fija para el árbol filogenético de primates
-phylogeny <- readTrees("../data/primates_tree.nex")[1]
-
-#########################
-# Modelo de tasas (matriz Q)
-#########################
-
-# Asumimos que todas las tasas de cambio son independientes y tienen distribución exponencial
-rate_pr := phylogeny.treeLength() / 10
-
-# Inicializar la matriz de tasas (4x4) con ceros
-for (i in 1:4) {
-    for (j in 1:4) {
-        rates[i][j] <- 0.0
-    }
+existen <- file.exists(file.path(opciones, "state_dependent_BM.log"))
+carpeta_salida <- if (any(existen)) {
+  normalizePath(opciones[which(existen)[1]], mustWork = TRUE)
+} else {
+  stop("No se encontró state_dependent_BM.log. Ajusta carpeta_salida a su ubicación.")
 }
 
-# Mezcla para el modelo con salto reversible (Reversible Jump MCMC)
-mix_prob <- 0.5
+leer_resultados <- function(archivo, descarte = 0.25) {
+  x <- read.delim(archivo, check.names = FALSE, comment.char = "#")
+  if (nrow(x) < 20) stop("Hay pocos registros en: ", archivo)
+  if (!is.finite(descarte) || descarte < 0 || descarte >= 1) {
+    stop("El descarte debe estar entre 0 y 1, sin incluir 1.")
+  }
+  for (j in 1:2) {
+    destino <- paste0("zeta_estado_", j - 1)
+    candidatas <- c(destino, paste0("zeta[", j, "]"),
+                    paste0("zeta.", j), paste0("zeta.", j, "."))
+    origen <- candidatas[candidatas %in% names(x)]
+    if (!length(origen)) stop("Falta la tasa relativa del estado ", j - 1,
+                              " en: ", archivo)
+    x[[destino]] <- x[[origen[1]]]
+    if (!is.numeric(x[[destino]]) || any(!is.finite(x[[destino]])) ||
+        any(x[[destino]] <= 0)) stop("Valores inválidos en: ", destino)
+  }
+  primero <- floor(nrow(x) * descarte) + 1L
+  x <- x[seq.int(primero, nrow(x)), , drop = FALSE]
+  if ("beta" %in% names(x)) {
+    if (!is.numeric(x$beta) || any(!is.finite(x$beta)) || any(x$beta <= 0)) {
+      stop("Valores inválidos en beta: ", archivo)
+    }
+    x$tasa_0 <- x$beta * x$zeta_estado_0
+    x$tasa_1 <- x$beta * x$zeta_estado_1
+  }
+  x
+}
+```
 
-# Definir las tasas de ganancia y pérdida para cada carácter condicionado al estado del otro
-# A depende de B
-rate_gain_A_when_B0 ~ dnExponential( rate_pr )
-rate_gain_A_when_B1 ~ dnReversibleJumpMixture(rate_gain_A_when_B0, dnExponential( rate_pr ), mix_prob)
-rate_loss_A_when_B0 ~ dnExponential( rate_pr )
-rate_loss_A_when_B1 ~ dnReversibleJumpMixture(rate_loss_A_when_B0, dnExponential( rate_pr ), mix_prob)
+## Modelo dependiente del hábitat
 
-# B depende de A
-rate_gain_B_when_A0 ~ dnExponential( rate_pr )
-rate_gain_B_when_A1 ~ dnReversibleJumpMixture(rate_gain_B_when_A0, dnExponential( rate_pr ), mix_prob)
-rate_loss_B_when_A0 ~ dnExponential( rate_pr )
-rate_loss_B_when_A1 ~ dnReversibleJumpMixture(rate_loss_B_when_A0, dnExponential( rate_pr ), mix_prob)
+Guarda este bloque como **`mcmc_state_dependent_BM.Rev`**. La tasa de fondo es común a todas las ramas y el hábitat modifica la tasa mediante `zeta`.
 
-# Variables lógicas para saber si las tasas son iguales (sirve para resumir posterior)
-prob_gain_A_indep := ifelse( rate_gain_A_when_B0 == rate_gain_A_when_B1, 1.0, 0.0 )
-prob_loss_A_indep := ifelse( rate_loss_A_when_B0 == rate_loss_A_when_B1, 1.0, 0.0 )
-prob_gain_B_indep := ifelse( rate_gain_B_when_A0 == rate_gain_B_when_A1, 1.0, 0.0 )
-prob_loss_B_indep := ifelse( rate_loss_B_when_A0 == rate_loss_B_when_A1, 1.0, 0.0 )
+### Script de RevBayes
 
-# Agregar los movimientos para ajustar las tasas
-moves.append( mvScale( rate_gain_A_when_B0, weight=2 ) )
-moves.append( mvScale( rate_gain_A_when_B1, weight=2 ) )
-moves.append( mvScale( rate_loss_A_when_B0, weight=2 ) )
-moves.append( mvScale( rate_loss_A_when_B1, weight=2 ) )
-moves.append( mvScale( rate_gain_B_when_A0, weight=2 ) )
-moves.append( mvScale( rate_gain_B_when_A1, weight=2 ) )
-moves.append( mvScale( rate_loss_B_when_A0, weight=2 ) )
-moves.append( mvScale( rate_loss_B_when_A1, weight=2 ) )
+```r
+################################################################################
+# BM dependiente del habitat en Haemulidae
+# Adaptacion docente del tutorial y de los scripts de Michael R. May
+# https://revbayes.github.io/tutorials/cont_traits/state_dependent_bm
+# Ejecutar desde la carpeta que contiene data, scripts y output.
+################################################################################
 
-# Movimientos para permitir o no la diferenciación entre tasas (Reversible Jump)
-moves.append( mvRJSwitch(rate_gain_A_when_B1, weight=2.0) )
-moves.append( mvRJSwitch(rate_loss_A_when_B1, weight=2.0) )
-moves.append( mvRJSwitch(rate_gain_B_when_A1, weight=2.0) )
-moves.append( mvRJSwitch(rate_loss_B_when_A1, weight=2.0) )
+# 1. Leer el arbol y seleccionar el caracter continuo
+character <- 1
+T <- readTrees("haemulidae.nex")[1]
+tree <- T
+ntips <- tree.ntips()
+nbranches <- 2 * ntips - 2
 
-# Asignar las tasas a la matriz Q
-rates[1][2] := rate_gain_A_when_B0  # 00 → 10
-rates[1][3] := rate_gain_B_when_A0  # 00 → 01
-rates[2][1] := rate_loss_A_when_B0  # 10 → 00
-rates[2][4] := rate_gain_B_when_A1  # 10 → 11
-rates[3][1] := rate_loss_B_when_A0  # 01 → 00
-rates[3][4] := rate_gain_A_when_B1  # 01 → 11
-rates[4][2] := rate_loss_B_when_A1  # 11 → 10
-rates[4][3] := rate_loss_A_when_B1  # 11 → 01
+cont <- readContinuousCharacterData("haemulidae_trophic_traits.nex")
+cont.excludeAll()
+cont.includeCharacter(character)
 
-# Definir matriz Q final
-Q_morpho := fnFreeK(rates, rescaled=FALSE)
+# 0 = fuera de arrecife; 1 = arrecife
+disc <- readDiscreteCharacterData("haemulidae_habitat.nex")
+num_disc_states <- disc.getStateDescriptions().size()
 
-#####################################
-# Frecuencias de estado raíz
-#####################################
+moves = VectorMoves()
+monitors = VectorMonitors()
 
-rf_prior <- rep(1, NUM_STATES_A * NUM_STATES_B)
-rf ~ dnDirichlet(rf_prior)
+# 2. Modelo de evolucion del habitat
+Q <- fnJC(num_disc_states)
+lambda ~ dnLoguniform(1e-3, 2)
+moves.append(mvScale(lambda, weight=1.0))
 
-# Movimientos para explorar las frecuencias de raíz
-moves.append( mvBetaSimplex(rf, weight=2) )
-moves.append( mvDirichletSimplex(rf, weight=2) )
+# Aumento de datos para muestrear las historias del habitat
+X ~ dnPhyloCTMCDASiteIID(tree, Q, branchRates=lambda,
+                       type="Standard", nSites=1)
 
-##########################
-# Modelo CTMC completo
-##########################
+# Registrar los movimientos ANTES de clamp para compatibilidad.
+# Discussion 894: github.com/revbayes/revbayes/discussions/894
+moves.append(mvCharacterHistory(ctmc=X, qmap_site=Q,
+    graph="node", proposal="rejection", weight=20.0))
+moves.append(mvCharacterHistory(ctmc=X, qmap_site=Q,
+    graph="branch", proposal="rejection", weight=20.0))
 
-# Definir modelo de carácter morfológico sobre el árbol
-phyMorpho ~ dnPhyloCTMC(tree=phylogeny, Q=Q_morpho, rootFrequencies=rf, type="NaturalNumbers")
-phyMorpho.clamp(morpho)
+# Contabilizar cambios de habitat, distintos de los cambios de tasa de fondo
+for (i in 1:nbranches) {
+    num_changes[i] := sum(X.numCharacterChanges(i))
+}
+total_num_changes := sum(num_changes)
 
-########
-# MCMC #
-########
+# 3. Escala comun de la tasa de varianza
+beta ~ dnLoguniform(1e-3, 1)
+moves.append(mvScale(beta, weight=1.0))
 
-# Crear el modelo
-mymodel = model(phylogeny)
+# 4. Multiplicadores relativos de la tasa de varianza
+concentration <- 1.0
+proportional_zeta ~ dnDirichlet(rep(concentration, num_disc_states))
+moves.append(mvBetaSimplex(proportional_zeta, weight=1.0))
 
-# Monitores de salida
-monitors.append( mnModel(filename="../out/RJ/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.log", printgen=1) )
-monitors.append( mnScreen(printgen=100) )
-monitors.append( mnJointConditionalAncestralState(tree=phylogeny,
-                                                  ctmc=phyMorpho,
-                                                  filename="../out/RJ/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.states.txt",
-                                                  type="NaturalNumbers",
-                                                  printgen=1,
-                                                  withTips=true,
-                                                  withStartStates=false) )
-monitors.append( mnStochasticCharacterMap(ctmc=phyMorpho,
-                                          filename="../out/RJ/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_stoch_char_map.log",
-                                          printgen=1,
-                                          include_simmap=true) )
+# Con dos estados, zeta[1] + zeta[2] = 2
+zeta := proportional_zeta * num_disc_states
+zeta_estado_0 := zeta[1]
+zeta_estado_1 := zeta[2]
+ratio_state_1_0 := zeta_estado_1 / zeta_estado_0
 
-# Configurar MCMC
-mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
+# Componente del habitat ponderado por el tiempo en cada estado
+for (i in 1:nbranches) {
+    state_branch_rate[i] := sum(X.relativeTimeInStates(i,1) * zeta)
+}
 
-# Ejecutar el análisis
-mymcmc.run(generations=5000, tuningInterval=200)
+# 5. Tasas absolutas por estado y tasa de cada rama
+overall_rate := beta * zeta
+tasa_estado_0 := beta * zeta_estado_0
+tasa_estado_1 := beta * zeta_estado_1
+branch_rates := state_branch_rate * beta
 
-#############################
-# Reconstrucción ancestral
-#############################
+# branch_rates es una tasa de VARIANZA; la funcion recibe su raiz cuadrada
+Y ~ dnPhyloBrownianREML(tree, branchRates=branch_rates^0.5)
+Y.clamp(cont)
 
-# Leer resultados de estados ancestrales condicionales
-anc_states = readAncestralStateTrace("../out/RJ/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.states.txt")
-anc_tree = ancestralStateTree(tree=phylogeny,
-                              ancestral_state_trace_vector=anc_states,
-                              include_start_states=false,
-                              file="../out/RJ/"+CHARACTER_A+"_"+CHARACTER_B+"_ase_corr_RJ.tree",
-                              burnin=0.25,
-                              summary_statistic="MAP",
-                              site=1,
-                              nStates=NUM_STATES_A * NUM_STATES_B)
+# 6. Modelo y monitores
+mymodel = model(zeta)
+monitors.append(mnModel(filename="output/state_dependent_BM.log",
+                        printgen=10))
+monitors.append(mnScreen(printgen=1000, beta, zeta, ratio_state_1_0,
+                         total_num_changes))
 
-# Leer historias de carácter simuladas (stochastic mapping)
-anc_states_stoch_map = readAncestralStateTrace("../out/RJ/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_stoch_char_map.log")
-
-# Crear árboles resumen de mapeo estocástico
-char_map_tree = characterMapTree(tree=phylogeny,
-                 ancestral_state_trace_vector=anc_states_stoch_map,
-                 character_file="../out/RJ/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_marginal_character.tree",
-                 posterior_file="../out/RJ/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_marginal_posterior.tree",
-                 burnin=0.25,
-                 num_time_slices=500)
-
-# Salir de RevBayes
+# 7. Una cadena de demostracion
+# Para la interpretacion final, repetir de forma independiente en otra carpeta.
+mymcmc = mcmc(mymodel, monitors, moves, nruns=1)
+mymcmc.burnin(generations=1000, tuningInterval=100)
+mymcmc.run(generations=50000)
 q()
 ```
 
+### Lectura de la salida en R
+
+Lee `state_dependent_BM.log` desde la carpeta de resultados. La variable `carpeta_salida` identifica su ubicación y puede sustituirse por una ruta propia.
+
 ```{r}
-################################################################################
-# Script en R para graficar estados ancestrales inferidos
-# mediante un modelo CTMC correlacionado en RevBayes
-# Autor original: Sebastian Höhna
-################################################################################
+#| label: leer-modelo-habitat
 
-# Cargar librerías necesarias
-library(RevGadgets)
-library(ggplot2)
+leer_resultados <- function(archivo, descarte = 0.25) {
+  if (!is.numeric(descarte) || length(descarte) != 1L ||
+      !is.finite(descarte) || descarte < 0 || descarte >= 1) {
+    stop("El descarte debe ser un número entre 0 y 1, sin incluir 1.")
+  }
+  if (!file.exists(archivo)) stop("No se encontró: ", archivo)
+  x <- read.delim(archivo, check.names = FALSE, comment.char = "#")
+  if (nrow(x) < 20) stop("Hay pocos registros en: ", archivo)
+  for (j in 1:2) {
+    destino <- paste0("zeta_estado_", j - 1)
+    candidatas <- c(destino, paste0("zeta[", j, "]"),
+                    paste0("zeta.", j), paste0("zeta.", j, "."))
+    origen <- candidatas[candidatas %in% names(x)]
+    if (!length(origen)) stop("Falta la tasa relativa del estado ", j - 1,
+                              " en: ", archivo)
+    x[[destino]] <- x[[origen[1]]]
+    if (!is.numeric(x[[destino]]) || any(!is.finite(x[[destino]])) ||
+        any(x[[destino]] <= 0)) stop("Valores inválidos en: ", destino)
+  }
+  primero <- floor(nrow(x) * descarte) + 1L
+  x <- x[seq.int(primero, nrow(x)), , drop = FALSE]
+  if ("beta" %in% names(x)) {
+    if (!is.numeric(x$beta) || any(!is.finite(x$beta)) || any(x$beta <= 0)) {
+      stop("Valores inválidos en beta: ", archivo)
+    }
+    x$tasa_0 <- x$beta * x$zeta_estado_0
+    x$tasa_1 <- x$beta * x$zeta_estado_1
+  }
+  x
+}
 
-# Nombres de los caracteres utilizados en el análisis
-CHARACTER_A <- "solitariness"
-CHARACTER_B <- "terrestrially"
+simple <- leer_resultados(file.path(carpeta_salida, "state_dependent_BM.log"))
+simple$R <- simple$zeta_estado_1 / simple$zeta_estado_0
+resumen_simple <- unname(quantile(simple$R, c(0.025, 0.5, 0.975)))
+```
 
-# Etiquetas para los estados combinados: 00, 01, 10, 11
-STATE_LABELS <- c(
-  "0" = "grupo - arborícola",
-  "1" = "grupo - terrestre",
-  "2" = "solitario - arborícola",
-  "3" = "solitario - terrestre"
+
+### Resultados: tasas entre hábitats
+
+Cada curva representa la **incertidumbre posterior de una tasa evolutiva**, no la distribución de tamaños de los peces. La tasa se expresa en la escala del carácter y por unidad de longitud del árbol.
+
+```{r}
+#| label: tasas-por-habitat
+#| fig-cap: "Tasas de varianza del tamaño corporal bajo el modelo dependiente del hábitat."
+
+if (!all(c("tasa_0", "tasa_1") %in% names(simple))) {
+  stop("El primer archivo debe contener beta para calcular las tasas por hábitat.")
+}
+tasas <- rbind(
+  data.frame(tasa = simple$tasa_0, habitat = "Fuera de arrecife"),
+  data.frame(tasa = simple$tasa_1, habitat = "Arrecife")
 )
+ggplot(tasas, aes(tasa, colour = habitat, fill = habitat)) +
+  geom_density(alpha = 0.15, linewidth = 0.9, bounds = c(0, Inf)) +
+  scale_colour_manual(values = c("Arrecife" = "#B46621", "Fuera de arrecife" = "#246A8A")) +
+  scale_fill_manual(values = c("Arrecife" = "#B46621", "Fuera de arrecife" = "#246A8A")) +
+  theme_minimal() +
+  labs(x = expression("Tasa de varianza " * sigma^2), y = "Densidad",
+       colour = "Hábitat", fill = "Hábitat")
+```
 
-# Leer archivo de árbol anotado con estimaciones de estados ancestrales (MAP)
-tree_file <- paste0("../docs/u3_PatMorph/out/", CHARACTER_A, "_", CHARACTER_B, "_ase_corr_RJ.tree")
+Las curvas situadas hacia valores mayores corresponden a tasas más altas. La amplitud de cada distribución muestra la incertidumbre de su estimación.
 
-# Procesar los estados ancestrales
-ase <- processAncStates(tree_file, state_labels = STATE_LABELS)
+Para resumir la diferencia, calcularemos una **razón de tasas**:
 
-# 📌 Gráfico 1: Estados más probables (MAP) en nodos
-p <- plotAncStatesMAP(t = ase,
-                      tree_layout = "rect",
-                      tip_labels_size = 1) +
-     theme(legend.position = c(0.92, 0.81))  # mover la leyenda
+$$
+R=\frac{\text{tasa en arrecife}}{\text{tasa fuera de arrecife}}.
+$$
 
-# Guardar en PDF
-ggsave(paste0("../docs/u3_PatMorph/out/Primates_", CHARACTER_A, "_", CHARACTER_B, "_ASE_corr_RJ_MAP.pdf"),
-       p, width = 11, height = 9)
+| Valor de R | Interpretación |
+| --- | --- |
+| Mayor que 1 | Mayor tasa en arrecife |
+| Menor que 1 | Mayor tasa fuera de arrecife |
+| Igual a 1 | Tasas iguales |
 
-p
+Por ejemplo, $R=3$ indica una tasa tres veces mayor en arrecife. **No significa que los peces sean tres veces más grandes.**
 
-# 📌 Gráfico 2: Pie charts con probabilidades marginales
-p <- plotAncStatesPie(t = ase,
-                      tree_layout = "rect",
-                      tip_labels_size = 1) +
-     theme(legend.position = c(0.92, 0.81))
+La mediana de la razón en este modelo es **`r round(resumen_simple[2], 2)`**, con intervalo creíble de colas iguales del 95 % entre **`r round(resumen_simple[1], 2)`** y **`r round(resumen_simple[3], 2)`**. Si el intervalo queda por encima de 1, la tasa en arrecife es mayor bajo este modelo; si incluye 1, hay incertidumbre sobre la dirección de la diferencia.
 
-ggsave(paste0("../docs/u3_PatMorph/out/Primates_", CHARACTER_A, "_", CHARACTER_B, "_ASE_corr_RJ_Pie.pdf"),
-       p, width = 11, height = 9)
 
-p
+## Modelo con variación de fondo
+
+Guarda este bloque como **`mcmc_relaxed_state_dependent_BM.Rev`**. Incluye de nuevo la lectura de datos y la historia del hábitat para poder ejecutarlo por separado.
+
+En este modelo se sustituye `beta` por una tasa de fondo que puede cambiar entre ramas. Para una misma tasa de fondo, el efecto relativo del hábitat sigue siendo `zeta[2] / zeta[1]`. El salto reversible de este script corresponde a **cambios de fondo en ramas**, y no a una comparación entre presencia y ausencia de efecto del hábitat.
+
+### Script de RevBayes
+
+```r
 ################################################################################
-# Parte 2: Visualización del mapeo estocástico (simmap)
+# BM dependiente del habitat en Haemulidae
+# Adaptacion docente del tutorial y de los scripts de Michael R. May
+# https://revbayes.github.io/tutorials/cont_traits/state_dependent_bm
+# Ejecutar desde la carpeta que contiene data, scripts y output.
 ################################################################################
 
-library(plotrix)
-library(phytools)
+# 1. Leer el arbol y seleccionar el caracter continuo
+character <- 1
+T <- readTrees("haemulidae.nex")[1]
+tree <- T
+ntips <- tree.ntips()
+nbranches <- 2 * ntips - 2
 
-# Función para crear colores transparentes (útil para simmap)
-t_col <- function(color, percent = 50, name = NULL) {
-  rgb.val <- col2rgb(color)
-  rgb(rgb.val[1], rgb.val[2], rgb.val[3],
-      max = 255,
-      alpha = (100 - percent) * 255 / 100,
-      names = name)
+cont <- readContinuousCharacterData("haemulidae_trophic_traits.nex")
+cont.excludeAll()
+cont.includeCharacter(character)
+
+# 0 = fuera de arrecife; 1 = arrecife
+disc <- readDiscreteCharacterData("haemulidae_habitat.nex")
+num_disc_states <- disc.getStateDescriptions().size()
+
+moves = VectorMoves()
+monitors = VectorMonitors()
+
+# 2. Modelo de evolucion del habitat
+Q <- fnJC(num_disc_states)
+lambda ~ dnLoguniform(1e-3, 2)
+moves.append(mvScale(lambda, weight=1.0))
+
+# Aumento de datos para muestrear las historias del habitat
+X ~ dnPhyloCTMCDASiteIID(tree, Q, branchRates=lambda,
+                       type="Standard", nSites=1)
+
+# Registrar los movimientos ANTES de clamp para compatibilidad.
+# Discussion 894: github.com/revbayes/revbayes/discussions/894
+moves.append(mvCharacterHistory(ctmc=X, qmap_site=Q,
+    graph="node", proposal="rejection", weight=20.0))
+moves.append(mvCharacterHistory(ctmc=X, qmap_site=Q,
+    graph="branch", proposal="rejection", weight=20.0))
+
+# Contabilizar cambios de habitat, distintos de los cambios de tasa de fondo
+for (i in 1:nbranches) {
+    num_changes[i] := sum(X.numCharacterChanges(i))
+}
+total_num_changes := sum(num_changes)
+
+# 3. Tasas de fondo heredadas entre ramas
+beta_root ~ dnLoguniform(1e-3, 1)
+moves.append(mvScale(beta_root, weight=1.0))
+
+expected_number_of_shifts <- 5
+rate_shift_probability <- expected_number_of_shifts / nbranches
+
+# Multiplicador lognormal con media 1 en la escala original
+sd = 0.578
+rate_shift_distribution = dnLognormal(-sd^2/2, sd)
+
+for (i in nbranches:1) {
+    # El multiplicador puede ser exactamente 1 o seguir la lognormal.
+    branch_rate_multiplier[i] ~ dnReversibleJumpMixture(
+        1, rate_shift_distribution, Probability(1 - rate_shift_probability))
+
+    if (tree.isRoot(tree.parent(i))) {
+        background_rates[i] := beta_root * branch_rate_multiplier[i]
+    } else {
+        background_rates[i] := background_rates[tree.parent(i)] *
+                               branch_rate_multiplier[i]
+    }
+
+    branch_rate_shift[i] := ifelse(branch_rate_multiplier[i] == 1, 0, 1)
+    moves.append(mvRJSwitch(branch_rate_multiplier[i], weight=1))
+    moves.append(mvScale(branch_rate_multiplier[i], weight=1))
+}
+num_rate_changes := sum(branch_rate_shift)
+
+# 4. Multiplicadores relativos de la tasa de varianza
+concentration <- 1.0
+proportional_zeta ~ dnDirichlet(rep(concentration, num_disc_states))
+moves.append(mvBetaSimplex(proportional_zeta, weight=1.0))
+
+# Con dos estados, zeta[1] + zeta[2] = 2
+zeta := proportional_zeta * num_disc_states
+zeta_estado_0 := zeta[1]
+zeta_estado_1 := zeta[2]
+ratio_state_1_0 := zeta_estado_1 / zeta_estado_0
+
+# Componente del habitat ponderado por el tiempo en cada estado
+for (i in 1:nbranches) {
+    state_branch_rate[i] := sum(X.relativeTimeInStates(i,1) * zeta)
 }
 
-# Leer archivo de simulación de historias de carácter (RevBayes)
-character_file <- paste0("../docs/u3_PatMorph/out/", CHARACTER_A, "_", CHARACTER_B, "_corr_RJ_marginal_character.tree")
-sim2 <- read.simmap(file = character_file, format = "phylip")
+# 5. Combinar el componente del habitat con la tasa de fondo
+branch_rates := state_branch_rate * background_rates
+Y ~ dnPhyloBrownianREML(tree, branchRates=branch_rates^0.5)
+Y.clamp(cont)
 
-# Determinar los estados únicos presentes en las historias simuladas
-colors <- vector()
-for (i in 1:length(sim2$maps)) {
-  colors <- c(colors, names(sim2$maps[[i]]))
-}
-colors <- sort(as.numeric(unique(colors)))
-col_idx <- colors + 1  # Para indexar correctamente
-cols <- setNames(rainbow(length(colors), start = 0.0, end = 0.9), colors)
+# 6. Registrar parametros y los tres componentes de tasa por rama
+mymodel = model(zeta)
+monitors.append(mnModel(filename="output/relaxed_state_dependent_BM.log",
+                        printgen=10))
+monitors.append(mnScreen(printgen=1000, beta_root, zeta, ratio_state_1_0,
+                         num_rate_changes, total_num_changes))
+monitors.append(mnExtNewick(
+    filename="output/relaxed_state_dependent_BM.trees",
+    isNodeParameter=TRUE, printgen=10, separator=TAB,
+    tree=tree, state_branch_rate, background_rates, branch_rates))
 
-# Crear colores con distintos niveles de transparencia
-col_names <- names(cols)
-base_cols <- c("#fa7850", "#005ac8")  # naranja y azul
-alpha_scale <- c(75, 10)  # diferentes niveles de transparencia
-cols <- c()
-index <- 1
-for (i in 1:2) {
-  for (bc in base_cols) {
-    cols[index] <- t_col(bc, percent = alpha_scale[i], name = paste0(i, "_", bc))
-    index <- index + 1
+# 7. MCMC
+mymcmc = mcmc(mymodel, monitors, moves, nruns=1)
+mymcmc.burnin(generations=1000, tuningInterval=100)
+mymcmc.run(generations=20000)
+
+# 8. Resumir las anotaciones posteriores con descarte explicito
+treetrace = readTreeTrace("output/relaxed_state_dependent_BM.trees",
+                         treetype="clock", burnin=0.25)
+map_tree = mapTree(treetrace, "output/relaxed_state_dependent_BM_MAP.tre")
+q()
+```
+
+### Resultados: efecto del hábitat con variación de fondo
+
+Lee ahora `relaxed_state_dependent_BM.log`. La razón compara los hábitats **manteniendo igual el componente de fondo**; no es un cociente de tasas promedio de grupos de ramas.
+
+```{r}
+#| label: leer-modelo-fondo
+
+fondo <- leer_resultados(file.path(carpeta_salida, "relaxed_state_dependent_BM.log"))
+fondo$R <- fondo$zeta_estado_1 / fondo$zeta_estado_0
+resumen_fondo <- unname(quantile(fondo$R, c(0.025, 0.5, 0.975)))
+```
+
+```{r}
+#| label: razon-modelo-fondo
+#| fig-cap: "Razón de tasas en el modelo con variación de fondo. La línea en 1 representa igualdad entre hábitats."
+
+ggplot(fondo, aes(R)) +
+  geom_density(colour = "#B46621", fill = "#B46621", alpha = 0.15,
+               linewidth = 0.9) +
+  scale_x_log10(breaks = c(0.1, 0.3, 1, 3, 10, 30, 100)) +
+  geom_vline(xintercept = 1, linetype = "dashed") +
+  theme_minimal() +
+  labs(x = "Razón de tasas: arrecife / fuera de arrecife (escala logarítmica)",
+       y = "Densidad")
+```
+
+Las etiquetas del eje siguen siendo valores de R. La mediana es **`r round(resumen_fondo[2], 2)`**, con intervalo creíble de colas iguales del 95 % entre **`r round(resumen_fondo[1], 2)`** y **`r round(resumen_fondo[3], 2)`**. Los valores mayores que 1 indican una tasa mayor en arrecife.
+
+### Tasas por rama
+
+Los tres paneles representan **el mismo árbol**. Cambia la variable utilizada para colorear sus ramas:
+
+| Panel | Variable | Interpretación |
+| --- | --- | --- |
+| Hábitat | `state_branch_rate` | Multiplicador relativo según el tiempo que la rama pasa en cada hábitat |
+| Fondo | `background_rates` | Tasa de fondo heredada entre ramas, con posibles cambios adicionales |
+| Total | `branch_rates` | Producto del componente del hábitat y la tasa de fondo; determina la tasa de varianza del BM |
+
+Esta figura utiliza `relaxed_state_dependent_BM_MAP.tre`, generado al terminar el segundo script. Se requieren también `RevGadgets` y `gridExtra`.
+
+```{r}
+#| label: arboles-modelo-fondo
+#| fig-width: 15
+#| fig-height: 8
+#| fig-cap: "Componente del hábitat, tasa de fondo y tasa total. Cada panel tiene su propia escala de colores."
+
+archivo_arbol <- file.path(carpeta_salida, "relaxed_state_dependent_BM_MAP.tre")
+paquetes <- c("RevGadgets", "gridExtra")
+disponibles <- vapply(paquetes, requireNamespace, logical(1), quietly = TRUE)
+
+if (file.exists(archivo_arbol) && all(disponibles)) {
+  # Capturar el progreso de lectura para que no aparezca en la página.
+  invisible(capture.output(arbol_tasas <- RevGadgets::readTrees(archivo_arbol)))
+
+  state_rates <- RevGadgets::plotTree(
+    arbol_tasas, color_branch_by = "state_branch_rate",
+    tip_labels_size = 2, legend_x = 0.2
+  ) + ggplot2::ggtitle("Componente del hábitat")
+
+  background_rates <- RevGadgets::plotTree(
+    arbol_tasas, color_branch_by = "background_rates",
+    tip_labels_size = 2, legend_x = 0.2
+  ) + ggplot2::ggtitle("Tasa de fondo")
+
+  overall_rates <- RevGadgets::plotTree(
+    arbol_tasas, color_branch_by = "branch_rates",
+    tip_labels_size = 2, legend_x = 0.2
+  ) + ggplot2::ggtitle("Tasa total")
+
+  figura_tasas <- gridExtra::arrangeGrob(
+    state_rates, background_rates, overall_rates, nrow = 1
+  )
+  grid::grid.draw(figura_tasas)
+
+  # Opcional: guardar la figura en PDF.
+  # ggplot2::ggsave(file.path(carpeta_salida, "relaxed_state_dependent_BM.pdf"),
+  #                 plot = figura_tasas, width = 15, height = 8)
+} else {
+  if (!file.exists(archivo_arbol)) {
+    cat("No se encontró el árbol resumen: ", archivo_arbol, "\n")
+  }
+  if (!all(disponibles)) {
+    cat("Paquetes necesarios: ", paste(paquetes[!disponibles], collapse = ", "), "\n")
   }
 }
-cols <- cols[col_idx]
-names(cols) <- col_names
-colors <- cols
-
-# 📌 Crear PDF con el mapeo estocástico
-pdf(paste0("../docs/u3_PatMorph/out/Primates_", CHARACTER_A, "_", CHARACTER_B, "_corr_RJ_simmap.pdf"))
-
-# Graficar el árbol con las historias simuladas
-plotSimmap(sim2, cols, fsize = 0.5, lwd = 1, split.vertical = TRUE, ftype = "i")
-
-# Añadir leyenda con etiquetas y colores
-x <- 0
-y <- 225
-leg <- STATE_LABELS
-leg <- leg[col_idx]
-y <- y - (0:(length(leg) - 1)) * 10
-x <- rep(x, length(y))
-text(x + 0.005, y, leg, pos = 4, cex = 1.15)
-mapply(draw.circle, x = x, y = y, col = colors, MoreArgs = list(nv = 200, radius = 1, border = "white"))
-
-# Cerrar archivo PDF
-dev.off()
 ```
+
+Lee cada panel con su propia leyenda. El componente del hábitat es relativo; el fondo y la tasa total están en la escala de varianza. Una rama con tasa alta permite cambios más dispersos, sin indicar por sí sola un aumento del tamaño corporal. El árbol resumen no muestra toda la incertidumbre posterior.
+
+
+## Comparación final de los modelos
+
+La siguiente tabla reúne únicamente el contraste central entre hábitats. Compara la mediana y el intervalo creíble de colas iguales del 95 % de R.
 
 ```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-width: 10
-#| fig-height: 8
+#| label: tabla-razones
 
-# Graficar el árbol con las historias simuladas
-plotSimmap(sim2, cols, fsize = 0.5, lwd = 1, split.vertical = TRUE, ftype = "i")
-
-# Añadir leyenda con etiquetas y colores
-x <- 0
-y <- 225
-leg <- STATE_LABELS
-leg <- leg[col_idx]
-y <- y - (0:(length(leg) - 1)) * 10
-x <- rep(x, length(y))
-text(x + 0.005, y, leg, pos = 4, cex = 1.15)
-
-# Suprimir la salida del mapeo de círculos
-suppressMessages(capture.output(
-  mapply(draw.circle, x = x, y = y, col = colors,
-         MoreArgs = list(nv = 200, radius = 1, border = "white"))
-))
+modelos <- list("Dependiente del hábitat" = simple$R,
+                "Con variación de fondo" = fondo$R)
+resumen <- t(vapply(modelos, quantile, numeric(3), probs = c(0.025, 0.5, 0.975)))
+colnames(resumen) <- c("Límite inferior 95 %", "Mediana", "Límite superior 95 %")
+knitr::kable(resumen, digits = 2, caption = "Razón de tasas entre hábitats")
 ```
 
-## 🔍 Comparación entre los tres gráficos
+Si el intervalo queda por encima de **1** en ambos modelos, la tasa en arrecife es mayor bajo ambos. Si incluye **1**, hay incertidumbre sobre la dirección de la diferencia; no demuestra igualdad. Al añadir variación de fondo, revisa si la razón cambia y si la conclusión sobre el hábitat se mantiene. La asociación estimada **no demuestra causalidad**.
 
-| Tipo de gráfico                               | Qué muestra                                 | Cómo lo calcula RevBayes                                                                            | Cómo interpretarlo                                                            |
-|-----------------------------------------------|---------------------------------------------|-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| **1. MAP (Maximum a posteriori)**             | El **estado más probable** en cada nodo     | Toma el estado con mayor probabilidad posterior en cada nodo (modo de la distribución)              | Muestra una sola hipótesis del estado ancestral más probable                  |
-| **2. Pie charts (probabilidades marginales)** | Un **resumen de incertidumbre** por nodo    | Calcula la probabilidad marginal para cada estado posible en cada nodo                              | Cada pastel refleja cuán confiable es la inferencia (incertidumbre explícita) |
-| **3. Simmap (mapeo estocástico)**             | **Historias evolutivas completas** en ramas | Simula trayectorias de cambio a lo largo del árbol, incluyendo **el cuándo** y **dónde** ocurrieron | Muestra posibles escenarios evolutivos, no solo los nodos                     |
 
-El siguiente gráfico representa la **distribución posterior** de la probabilidad de que **dos tasas de transición** sean **iguales**.\
+## Referencias
 
-Estas tasas corresponden a:
+May, M. R. [State-Dependent Brownian Rate Estimation](https://revbayes.github.io/tutorials/cont_traits/state_dependent_bm).
 
--   Ganancia de A dependiendo de B
 
--   Pérdida de A dependiendo de B
-
--   Ganancia de B dependiendo de A
-
--   Pérdida de B dependiendo de A
-
-```{r}
-# Cargar librerías necesarias
-library(RevGadgets)
-library(ggplot2)
-
-# Nombres de los caracteres analizados
-CHARACTER_A <- "solitariness"
-CHARACTER_B <- "terrestrially"
-
-# Ruta del archivo de salida del MCMC (log)
-file <- paste0("../docs/u3_PatMorph/out/", CHARACTER_A, "_", CHARACTER_B, "_corr_RJ.log")
-
-# Leer el archivo de trazas y descartar el 25% inicial como burnin
-trace_qual <- readTrace(path = file, burnin = 0.25)
-
-# Umbrales de Bayes Factor (Kass y Raftery 1995):
-# BF = 3.2 (moderado), 10 (fuerte), 100 (muy fuerte)
-BF <- c(3.2, 10, 100)
-
-# Convertir Bayes Factors a probabilidades posteriores
-# Fórmula: p = BF / (1 + BF)
-p <- BF / (1 + BF)
-
-# Crear el gráfico con las distribuciones posteriores de probabilidad de independencia
-p <- plotTrace(
-        trace = trace_qual,
-        vars = c("prob_gain_A_indep", "prob_gain_B_indep",
-                 "prob_loss_A_indep", "prob_loss_B_indep")
-     )[[1]] +  # obtener el primer gráfico (si se genera como lista)
-     
-     # Limitar eje Y entre 0 y 1
-     ylim(0, 1) +
-
-     # Línea negra: punto de corte en 0.5
-     geom_hline(yintercept = 0.5, linetype = "solid", color = "black") +
-
-     # Líneas rojas para valores de p y 1-p derivados de Bayes Factor
-     geom_hline(yintercept = p, linetype = c("longdash", "dashed", "dotted"), color = "red") +
-     geom_hline(yintercept = 1 - p, linetype = c("longdash", "dashed", "dotted"), color = "red") +
-
-     # Ajustar posición de la leyenda
-     theme(legend.position = c(0.40, 0.825))
-
-# Guardar el gráfico como PDF
-ggsave(
-  paste0("Primates_", CHARACTER_A, "_", CHARACTER_B, "_corr_RJ.pdf"),
-  p,
-  width = 5,
-  height = 5
-)
-
-p
-```
-
-### 🧩 Interpretación de la figura: Probabilidad de independencia de tasas de ganancia o pérdida
-
-Esta figura muestra la probabilidad posterior de que las tasas de ganancia o pérdida de un carácter sean independientes del estado del otro carácter. Es decir, si el valor es cercano a:
-
--   1 → el modelo favorece que las tasas sean iguales en ambos contextos ⇒ no hay correlación evolutiva
-
--   0 → el modelo favorece que las tasas sean distintas ⇒ sí hay correlación evolutiva
-
-Líneas horizontales en el gráfico:
-
--   Línea negra sólida (0.5): representa la distribución a priori del modelo (sin información de los datos).
-
--   Líneas rojas (según BF):
-
-    -   Línea discontinua larga: evidencia débil (BF \< 3.2)
-
-    -   Línea discontinua media: evidencia moderada (3.2 \< BF \< 10)
-
-    -   Línea punteada fina: evidencia fuerte (10 \< BF \< 100)
+May, M. R. y Moore, B. R. (2020). *A Bayesian Approach for Inferring the Impact of a Discrete Character on Rates of Continuous-Character Evolution in the Presence of Background-Rate Variation*. Systematic Biology, 69, 530–544. [DOI 10.1093/sysbio/syz069](https://doi.org/10.1093/sysbio/syz069).

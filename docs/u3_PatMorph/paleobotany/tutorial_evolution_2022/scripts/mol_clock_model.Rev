@@ -1,0 +1,22 @@
+# draw the clock mean such as its log distribution is uniform
+mole_clock_rate_mean ~ dnLoguniform(1e-10, 1e1)
+moves.append( mvScale(mole_clock_rate_mean) )
+mole_clock_rate_mean.setValue(1e-7)
+# draw the standard deviation from an exponential
+mole_clock_rate_sd ~ dnExponential(abs(1 / H))
+moves.append( mvScale(mole_clock_rate_sd) )
+
+# the branch-specific rates
+for(i in 1:nbranch) {
+  # draw the log of the rate
+  mole_branch_rates[i] ~ dnLognormal(
+    ln(mole_clock_rate_mean) - mole_clock_rate_sd * mole_clock_rate_sd * 0.5, mole_clock_rate_sd)
+  moves.append( mvScale(mole_branch_rates[i]) )
+}
+
+# the mean of the branch rate
+mole_branch_rate_mean := mean(mole_branch_rates)
+
+# add branch rates to joint scale move on tree
+moves[tree_scale_move_index].addVariable(mole_branch_rates, up=true)
+moves[tree_scale_move_index].addVariable(mole_clock_rate_mean, up=true)

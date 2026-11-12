@@ -1,5 +1,5 @@
 ---
-title: "Introducción a modelos State Speciaction-Extinción (SSE)"
+title: "Modelos SSE: Hidden State Speciation and Extinction (HISSE)"
 format: html
 execute:
   echo: true   # Muestra el código
@@ -8,403 +8,11 @@ execute:
   fig-height: 8   # Altura del gráfico
 ---
 
-# Presentación: Introducción a modelos State Speciaction-Extinción (SSE)
+# Presentación: Introducción a Hidden State Speciation and Extinction (HISSE)
 
-[![](../images/u1_PatDiv/u1_PatDiv_5.png){fig-align="center" width="500"}](../docs/u1_PatDiv/5_ModSSE.pdf)
+[![](../images/u1_PatDiv/u1_PatDiv_7.png){fig-align="center" width="500"}](../docs/u1_PatDiv/HiSSE.pdf)
 
 Haz clic en la imagen para ver el PDF de la presentación
-
-Analizaremos si las tasas de diversificación están asociadas al tipo de hospedero en los escarabajos meloidos (Meloidae). Las subfamilias Nemognathinae y Meloinae presentan un ciclo de vida complejo, caracterizado por múltiples metamorfosis y estrategias de parasitoidismo. La mayoría de los géneros y tribus dentro de estas subfamilias son parasitoides de abejas, incluyendo especies foréticas y no foréticas. Sin embargo, dos tribus han adoptado una estrategia distinta, alimentándose de huevos de saltamontes. Estas diferencias en las estrategias de vida están asociadas con marcadas variaciones en la riqueza de especies entre clados ([López-Estrada et al., 2019](https://onlinelibrary.wiley.com/doi/full/10.1111/mec.16390)).
-
-# Modelo BiSSE (Binary state speciation and extinction, [Madisson et al. 2007](https://academic.oup.com/sysbio/article/56/5/701/1694265))
-
-BiSSE el modelo de especiación y extinción dependendiente de un caracter binario y es un proceso estocástico que se forma de la composición de dos procesos de nacimiento y muerte. Los dos procesos se conectan a través de dos tasas de cambio conocidas como las tasas de transición. El supuesto más importante del modelo BiSSE es que cada estado tiene su propia tasa de especiación $\lambda$ y su propia tasa de extinción $\mu$ que representan el momento en el cuál un linaje se divide en dos o se extingue. Este es un supuesto muy importante porque la implicación es que la acumulación (o la falta de acumulación) de linajes es el resultado del valor del estado. Pueden encontrar mas información en el material del taller [Filo-Bayes](https://ixchelgzlzr.github.io/filo_bayes_UNAM/) - [BISSE](https://ixchelgzlzr.github.io/filo_bayes_UNAM/docs/discrete/SSEmodels.html).
-
-**Escarabajos meloidos**
-
-![](/images/u1_PatDiv/u1_PatDiv_6.png){fig-align="center" width="550"}
-
-Las transiciones entre estados ocurren a tasas $q_{01}$ (de abeja a saltamontes) y $q_{10}$ (de saltamontes a abeja). Cada estado tiene su propia tasa de especiación ($\lambda_0, \lambda_1$) y extinción ($\mu_0, \mu_1$).
-
-**Matriz de tasas de transición (**$Q$)
-
-La matriz de transición $Q$ define la probabilidad de cambio entre estados en un tiempo infinitesimal:
-
-$$
-Q =
-\begin{bmatrix}
-  -q_{01} & q_{01} \\
-  q_{10} & -q_{10}
-\end{bmatrix}
-$$
-
-Donde:
-
--   $q_{01}$: es la tasa de transición de hospedero abeja a hospedero saltamontes.
-
--   $q_{10}$: es la tasa de transición de hospedero saltamontes a hospedero abeja.
-
--   La diagonal contiene los valores negativos de las tasas de salida de cada estado ($-q_{01}$ y $-q_{10}$), de modo que cada fila suma cero.
-
-**Parámetros en el modelo BiSSE**
-
-El modelo incluye seis parámetros fundamentales:
-
--   $\lambda_0$: tasa de especiación en el estado 0 (hospedero abeja)
-
--   $\lambda_1$: tasa de especiación en el estado 1 (hospedero saltamontes)
-
--   $\mu_0$: tasa de extinción en el estado 0
-
--   $\mu_1$: tasa de extinción en el estado 1
-
--   $q_{01}$: tasa de cambio de hospedero abeja a hospedero saltamontes
-
--   $q_{10}$: tasa de cambio de hospedero saltamontes a hospedero abeja
-
-## Descarga del Árbol Filogenético y la matriz codificada
-
-📥 Puedes descargar el archivo **.tre** con el árbol en el siguiente enlace:
-
-<a href="../docs/u1_PatDiv/ConLyttini.tre" download>📥 Descargar Árbol Filogenético</a>
-
-📥 Puedes descargar el archivo **.nex** con la matriz codificada en el siguiente enlace:
-
-<a href="../docs/u1_PatDiv/Traits_conLyttini_01.nex" download>📥 Descargar Matriz Codificada</a>
-
-Guarda los archivos en la carpeta correspondiente y verifica su ubicación antes de continuar.
-
-## Carga de la filogenia y los datos
-
-Crea un script `.Rev` y copia el codigo de la siguiente sección:
-
-``` r
-# Leer el arbol
-T <- readTrees("../data/ConLyttini.tre")[1]
-
-# Leer la matriz de caracteres
-datos <- readCharacterData("../data/Traits_conLyttini_01.nex")
-```
-
-## Definir el número de estados en los modelos BISSE
-
-``` r
-NUM_STATES = 2
-```
-
-## Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.
-
-``` r
-moves    = VectorMoves()
-monitors = VectorMonitors()
-```
-
-## Valores de la log-normal
-
-De acuerdo con Nee et al. (1994) el número esperado de linajes en la corona de un clado con `n` taxones bajo un proceso de nacimiento y muerte en el tiempo `t` es:
-
-$(\lambda - \mu) = \frac{In(n)/2}{t}$
-
-En donde: `n` = es el número de especies y `t` = es la edad de la filogenia
-
-``` r
-# Definimos una a priori log normal
-rate_mean <- ln(ln(3000.0/2.0) / T.rootAge())
-
-# Con una varianza que es amplia
-rate_sd <- 0.587405
-
-for (i in 1:NUM_STATES) {
-# lognormales de las especiaciones
-  log_speciation[i] ~ dnNormal(mean=rate_mean, sd=rate_sd) 
-  speciation[i] := exp(log_speciation[i])
-  moves.append(mvSlide(log_speciation[i], delta=0.20, tune=true, weight=3.0))
-
-# lognormales de las extinciones
-  log_extinction[i] ~ dnNormal(mean=rate_mean, sd=rate_sd)  
-  extinction[i] := exp(log_extinction[i])
-  moves.append(mvSlide(log_extinction[i], delta=0.20, tune=true, weight=3.0))
-}
-```
-
-## Definir la **matriz de tasas de transición** entre los estados del carácter
-
-``` r
-# Calcula la suma de todas las longitudes de las ramas del árbol filogenético
-# Dividido por 10: Esto asume que en promedio ocurren 10 cambios de estado a lo largo del árbol
-rate_pr := T.treeLength() / 10
-```
-
-## Definición de las tasas de transición
-
-``` r
-# Tasa de transición de estado 1 → estado 2 
-rate_12 ~ dnExp(rate_pr)
-
-# Tasa de transición de estado 2 → estado 1 
-rate_21 ~ dnExp(rate_pr)
-
-# Definición de movimientos 
-moves.append(mvScale(rate_12, weight=2))
-moves.append(mvScale(rate_21, weight=2))
-```
-
-**¿Por qué usar una exponencial?**
-
--   La distribución exponencial es adecuada para modelar **tasas de transición** porque impone la condición de que siempre sean **positivas**.
-
--   También asigna **mayor probabilidad a valores pequeños**, lo que significa que los cambios de estado no ocurren demasiado rápido.
-
-## Creación de la matriz de tasas de transición
-
-``` r
-rate_matrix := fnFreeBinary([rate_12, rate_21 ], rescaled=false)
-```
-
-## Frecuencias del estado en la raíz
-
-``` r
-rate_category_prior ~ dnDirichlet(rep(1,NUM_STATES))
-moves.append(mvDirichletSimplex(rate_category_prior, tune=true, weight=2))
-```
-
-## Fijar la edad de la raíz
-
-``` r
-root <- T.rootAge()
-```
-
-## Definir $\rho$ : Proporción de especies muestreadas
-
-``` r
-rho <- T.ntips()/3000
-```
-
-## Construcción del árbol evolutivo generado a partir de un proceso de nacimiento y muerte dependiente del carácter
-
-``` r
-timetree ~ dnCDBDP(rootAge = root, speciationRates = speciation, extinctionRates = extinction, Q = rate_matrix, pi = rate_category_prior, delta = 1.0, rho = rho, condition = "time")
-```
-
-🔹 **Parámetros del proceso de nacimiento y muerte (`dnCDBDP`)**:
-
--   **`rootAge = root`** → Se fija la edad de la raíz usando `root = T.rootAge()`.
-
--   **`speciationRates = speciation`** → Se usa la tasa de especiación (`λ`).
-
--   **`extinctionRates = extinction`** → Se usa la tasa de extinción (`μ`).
-
--   **`Q = rate_matrix`** → Usa la **matriz de tasas de transición** de caracteres (`rate_12`, `rate_21`).
-
--   **`pi = rate_category_prior`** → Usa la distribución **a priori** de los estados en la raíz.
-
--   **`delta = 1.0`** → Parámetro de ajuste para la distribución de tiempos de especiación/extinción.
-
--   **`rho = rho`** → Probabilidad de muestreo de especies (`rho = T.ntips()/3000`).
-
--   **`condition = "time"`** → Condiciona el proceso a un tiempo de raíz fijo.
-
-## Fijar (`clamp`) los datos observados
-
-``` r
-timetree.clamp(T)
-timetree.clampCharData(datos)
-```
-
-## Creación del modelo
-
-``` r
-### workspace model wrapper ###
-mymodel = model(rate_matrix)
-```
-
-## Configuración de los monitores
-
-Los **monitores** guardan los resultados en archivos o los imprimen en pantalla.
-
-``` r
-monitors.append(mnModel(filename="../out/Bisse/mitos_BiSSE_clyttini.log", printgen=1))
-monitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="Standard", printgen=1, withTips=true, withStartStates=false, filename="../out/Bisse/anc_states_MITOS_BiSSE_clyttini.log"))
-monitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename="../out/Bisse/SCHM_BiSSE_clyttini.log"))
-monitors.append(mnScreen(printgen=10, rate_12, rate_21, speciation, extinction))
-```
-
-## **Inicializar y Ejecutar el MCMC**
-
-Con el modelo y los monitores listos, creamos el **objeto MCMC** e iniciamos la simulación.
-
-``` r
-mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random")
-```
-
--   `mymodel`: hace referencia al modelo que estás analizando.
-
--   `monitors`: son las variables que se registrarán en el archivo de salida.
-
--   `moves`: operadores MCMC que proponen cambios en los parámetros del modelo.
-
--   `nruns=1`: solo una cadena MCMC (puedes usar más si deseas una inferencia más robusta).
-
--   `moveschedule="random"`: ejecuta los operadores en orden aleatorio para evitar sesgos en la exploración del espacio de parámetros.
-
-## Ejecutar el MCMC
-
-``` r
-mymcmc.run(generations=400)
-```
-
-## Generar un árbol anotado con los estados ancestrales (MAP)
-
-``` r
-anc_states = readAncestralStateTrace("../out/Bisse/anc_states_MITOS_BiSSE_clyttini.log")
-
-anc_tree = ancestralStateTree(tree=T, ancestral_state_trace_vector=anc_states, include_start_states=false, file="../out/Bisse/mitos_bisse_anc_states_results.tree", burnin=0.2, summary_statistic="MAP", site=1)
-```
-
-## Generar un mapeo estocástico de caracteres (Stochastic Character Mapping)
-
-``` r
-anc_state_trace = readAncestralStateTrace("../out/Bisse/SCHM_BiSSE_clyttini.log")
-
-characterMapTree(tree=T, ancestral_state_trace_vector=anc_state_trace, character_file="../out/Bisse/mitos_bisse_stoch_map_character.tree", posterior_file="../out/Bisse/mitos_bisse_stoch_map_posterior.tree", burnin=0.2, reconstruction="marginal")
-```
-
-## Visualización en R con RevGadgets
-
-```{r, , results='hide'}
-library(tidyverse)
-library(RevGadgets)
-library(ggtree)
-
-# Cargar el archivo de estados ancestrales
-bisse_file <- paste0("../docs/u1_PatDiv/output/bisse/mitos_bisse_anc_states_results.tree")
-p_anc <- processAncStates(bisse_file)
-
-# Definir paleta de colores personalizada
-traitcols <- c("#F29494", "#5FD9D9")  
-
-# Generar el gráfico con estados 
-plot <- plotAncStatesMAP(p_anc,
-        tree_layout = "rect",
-        tip_labels_size = 1) +
-        # Aplicar la paleta de colores
-        scale_color_manual(values = traitcols) +
-        scale_fill_manual(values = traitcols) +
-        # Modificar leyenda y otros elementos de ggplot2
-        theme(legend.position = c(0.1, 0.85),
-              legend.key.size = unit(0.3, 'cm'), # Tamaño de la clave de la leyenda
-              legend.title = element_text(size = 6), # Tamaño del título de la leyenda
-              legend.text = element_text(size = 4))  # Tamaño del texto de la leyenda
-
-# Mostrar el gráfico
-plot
-
-# Generar el gráfico con ramas coloreadas por estado ancestral
-plot_2 <- ggtree(p_anc, layout = "rectangular", aes(color = anc_state_1)) +
-  scale_color_manual(name = "Estado", values = traitcols) +  
-  theme_minimal() +
-  ggtitle("BISSE") +
-  theme(legend.position = c(0.1, 0.85),
-        legend.key.size = unit(0.3, 'cm'), # Tamaño de la clave de la leyenda
-        legend.title = element_text(size = 6), # Tamaño del título de la leyenda
-        legend.text = element_text(size = 4))  # Tamaño del texto de la leyenda
-
-# Mostrar el gráfico
-plot_2
-
-```
-
-## Graficar las tasas de transición
-
-```{r}
-library(tidyverse)
-
-# Leer el archivo de salida de RevBayes
-bisse <- read.table("../docs/u1_PatDiv/output/bisse/mitos_BiSSE_clyttini.log", header = TRUE)
-
-# Definir colores para los estados 0 y 1
-traitcols <- c("#F29494", "#5FD9D9")  
-
-# Crear un dataframe con solo las tasas de transición
-transition_rates <- data.frame(
-  dens = c(bisse$rate_12, bisse$rate_21), 
-  rate = rep(c("0", "1"), each = length(bisse$rate_12))
-)
-
-# Crear un gráfico de violín para las tasas de transición
-violin_transitions <- ggplot(transition_rates, aes(x = rate, y = dens, fill = rate)) +
-  geom_violin(trim = FALSE) +
-  labs(title = "Tasas de Transición", x = "Estado", y = "Tasa") +
-  scale_fill_manual(name = "Estado", values = traitcols) +
-  theme_classic()
-
-# Mostrar la gráfica
-violin_transitions
-```
-
-## Graficar las tasas de diversificación neta
-
-```{r}
-# Calcular la tasa de diversificación neta: especiación - extinción
-netdiversification_rates <- data.frame(
-  dens = c(bisse$speciation.1. - bisse$extinction.1.,
-           bisse$speciation.2. - bisse$extinction.2.),
-  rate = rep(c("0", "1"), each = length(bisse$speciation.1.))
-)
-
-# Convertir la variable de estado en factor
-netdiversification_rates$rate <- factor(netdiversification_rates$rate, levels = c("0", "1"))
-
-# Crear el gráfico de violín para tasas de diversificación neta
-violin_diversification <- ggplot(netdiversification_rates, aes(x = rate, y = dens, fill = rate)) +
-  geom_violin(trim = FALSE) +
-  labs(title = "Tasas de Diversificación Neta", x = "Estado", y = "Tasa") +
-  scale_fill_manual(name = "Estado", values = traitcols) +
-  theme_classic()
-
-# Mostrar la gráfica
-violin_diversification
-```
-
-## Graficar tasas de especiación
-
-```{r}
-# Crear un dataframe con tasas de especiación para cada estado
-speciation_rates <- data.frame(
-  dens = c(bisse$speciation.1.,  bisse$speciation.2.), 
-  rate = rep(c("0", "1"), each = length(bisse$speciation.1.))
-)
-
-# Crear gráfico de violín para las tasas de especiación
-violin_speciation <- ggplot(speciation_rates, aes(x = rate, y = dens, fill = rate)) +
-  geom_violin(trim = FALSE) +
-  labs(title = "Tasas de Especiación", x = "Estado", y = "Tasa de Especiación") +
-  scale_fill_manual(name = "Estado", values = traitcols) +
-  theme_classic()
-
-# Mostrar la gráfica
-violin_speciation
-```
-
-## Graficar tasas de extinción
-
-```{r}
-# Crear un dataframe con tasas de extinción para cada estado
-extinction_rates <- data.frame(
-  dens = c(bisse$extinction.1., bisse$extinction.2.), 
-  rate = rep(c("0", "1"), each = length(bisse$extinction.1.))
-)
-
-# Crear gráfico de violín para tasas de extinción
-violin_extinction <- ggplot(extinction_rates, aes(x = rate, y = dens, fill = rate)) +
-  geom_violin(trim = FALSE) +
-  labs(title = "Tasas de Extinción", x = "Estado", y = "Tasa de Extinción") +
-  scale_fill_manual(name = "Estado", values = traitcols) +
-  theme_classic()
-
-# Mostrar la gráfica
-violin_extinction
-```
 
 # Modelo de diversificación con estados escondidos (HISSE)
 
@@ -434,283 +42,836 @@ $$
 
 La matriz `Q` muestra cómo los estados observables y ocultos interactúan, ayudando a inferir **cómo los cambios de carácter afectan la especiación y extinción**.
 
-## Carga de la filogenia y los datos
+**Simulación bajo el modelo HiSSE**
+
+El siguiente script simula un proceso bajo el modelo **HiSSE (Hidden State Speciation and Extinction)**. En este caso se consideran dos estados observados (`0` y `1`) asociados con dos estados ocultos (`A` y `B`), generando cuatro combinaciones posibles:
+
+-   `0A`
+
+-   `0B`
+
+-   `1A`
+
+-   `1B`
+
+📥 Puedes descargar el script en el siguiente enlace:
+
+<a href="../docs/u1_PatDiv/HiSSE.R" download>📥 Descargar script de simulación HiSSE</a>
+
+## **Script -** HiSSE en RevBayes
 
 Crea un script `.Rev` y copia el codigo de la siguiente sección:
 
-``` r
-# Leer el arbol
-T <- readTrees("../data/ConLyttini.tre")[1]
+``` bash
+# ============================================================
+# HiSSE en RevBayes
+# Character-Dependent Birth-Death Process con estados ocultos
+# ============================================================
 
-# Leer la matriz de caracteres
-datos <- readCharacterData("../data/Traits_conLyttini_01.nex")
-```
 
-## Definir el número de estados en los modelos HISSE y paremetros globales
+# ------------------------------------------------------------
+# 1. LECTURA DEL ÁRBOL Y DE LOS DATOS DE CARACTERES
+# ------------------------------------------------------------
 
-``` r
-NUM_TOTAL_SPECIES     = 3000.0
-NUM_STATES            = 2
-NUM_HIDDEN            = 2
-NUM_RATES             = NUM_STATES * NUM_HIDDEN
-H                     = 0.587405
-# Expansión de los Datos para Incluir Estados Ocultos 
+# Leer el árbol filogenético.
+# readTrees() devuelve un vector de árboles, por eso se selecciona [1].
+T <- readTrees("datos/hisse/ConLyttini.tre")[1]
+
+# Leer la matriz de caracteres observados.
+# En este ejemplo se asume un carácter binario con estados 0 y 1.
+datos <- readCharacterData("datos/hisse/Traits_conLyttini_01.nex")
+
+
+# ------------------------------------------------------------
+# 2. PARÁMETROS GENERALES DEL MODELO
+# ------------------------------------------------------------
+
+# Número total aproximado de especies del grupo.
+# Este valor se usa posteriormente para calcular la fracción de muestreo.
+NUM_TOTAL_SPECIES = 3000.0
+
+# Número de estados observados del carácter.
+# Por ejemplo:
+# 0 = ausencia del carácter
+# 1 = presencia del carácter
+NUM_STATES = 2
+
+# Número de estados ocultos.
+# En este caso:
+# A y B
+NUM_HIDDEN = 2
+
+# Número total de categorías del modelo HiSSE.
+#
+# Estados observados:
+#   0
+#   1
+#
+# Estados ocultos:
+#   A
+#   B
+#
+# Combinaciones:
+#   0A
+#   1A
+#   0B
+#   1B
+#
+# Por tanto:
+# NUM_RATES = 2 x 2 = 4
+NUM_RATES = NUM_STATES * NUM_HIDDEN
+
+# Parámetro que controla la escala del prior jerárquico
+# asociado a las diferencias entre estados ocultos.
+H = 0.587405
+
+
+# ------------------------------------------------------------
+# 3. EXPANSIÓN DE LOS DATOS PARA INCLUIR ESTADOS OCULTOS
+# ------------------------------------------------------------
+
+# Los datos originales contienen únicamente los estados
+# observados 0 y 1.
+#
+# HiSSE introduce estados ocultos que no se observan
+# directamente en las puntas.
+#
+# expandCharacters() expande el espacio de estados para permitir
+# combinaciones como:
+#
+#   0A
+#   1A
+#   0B
+#   1B
+#
+# Los estados ocultos quedan como desconocidos en las puntas
+# y serán inferidos por el modelo.
 data_exp <- datos.expandCharacters(NUM_HIDDEN)
-```
 
-## Definir vectores para almacenar los movimientos de MCMC y los monitores de resultados.
 
-``` r
-moves    = VectorMoves()
+# ------------------------------------------------------------
+# 4. VECTORES PARA MOVIMIENTOS Y MONITORES
+# ------------------------------------------------------------
+
+# Vector donde se almacenarán los movimientos MCMC.
+moves = VectorMoves()
+
+# Vector donde se almacenarán los monitores.
 monitors = VectorMonitors()
-```
 
-## Extraer información del árbol filogenético
 
-``` r
+# ------------------------------------------------------------
+# 5. INFORMACIÓN BÁSICA DEL ÁRBOL
+# ------------------------------------------------------------
+
+# Obtener los taxones presentes en el árbol.
 taxa <- T.taxa()
+
+# Longitud total del árbol:
+# suma de todas las longitudes de rama.
 tree_length <- T.treeLength()
-```
 
-## Definir la Media de las Tasas de Especiación y Extinción
-
-``` r
+# Valor inicial aproximado para una tasa de diversificación.
+#
+# Esta cantidad no se utiliza directamente como prior,
+# pero sirve como referencia y posteriormente como valor inicial.
 rate_mean <- (NUM_TOTAL_SPECIES - 2) / tree_length
-```
 
-✅ Calcula la **media esperada de las tasas de especiación y extinción** basada en el número total de especies y la longitud del árbol.
 
-## Especiación y Extinción Oculta (Hidden Speciation Rates)
+# ------------------------------------------------------------
+# 6. COMPONENTE DE ESTADOS OCULTOS PARA LAS TASAS
+# ------------------------------------------------------------
 
-``` r
+# El modelo separa las tasas en dos componentes:
+#
+#   tasa final =
+#       componente del estado observado
+#       x
+#       componente del estado oculto
+#
+# Por ejemplo:
+#
+# λ_0A = λ_0 * h_A
+# λ_0B = λ_0 * h_B
+#
+# Esto permite que los estados ocultos modifiquen las tasas
+# de especiación y extinción.
+
+
+# Media en escala logarítmica de la distribución lognormal
+# de los multiplicadores asociados a estados ocultos.
+#
+# ln(1) = 0
+#
+# Por tanto, antes de la normalización, los multiplicadores
+# están centrados alrededor de 1.
 ln_speciation_hidden_mean <- ln(1.0)
 ln_extinction_hidden_mean <- ln(1.0)
-```
 
-✅ Define la media logarítmica de las tasas ocultas de especiación como 1.0 en una escala relativa. ✔️ Esto significa que los valores generados serán proporcionales, y no absolutos.
 
-## Variación en las Tasas Ocultas de Especiación y Extinción
+# ------------------------------------------------------------
+# 7. VARIACIÓN ENTRE ESTADOS OCULTOS
+# ------------------------------------------------------------
 
-``` r
+# Desviación estándar de los multiplicadores de especiación
+# entre los estados ocultos.
+#
+# Se asigna un prior exponencial.
 speciation_hidden_sd ~ dnExponential(1.0 / H)
+
+# Desviación estándar equivalente para extinción.
 extinction_hidden_sd ~ dnExponential(1.0 / H)
-```
 
-## Movimiento MCMC para Optimizar la Desviación Estándar
 
-``` r
-moves.append(mvScale(speciation_hidden_sd, lambda=1, tune=true, weight=2.0))
-moves.append(mvScale(extinction_hidden_sd, lambda=1, tune=true, weight=2.0))
-```
+# Movimientos MCMC para estos parámetros.
+moves.append(
+    mvScale(
+        speciation_hidden_sd,
+        lambda=1,
+        tune=true,
+        weight=2.0
+    )
+)
 
-## Definir la Distribución de las Tasas Ocultas
+moves.append(
+    mvScale(
+        extinction_hidden_sd,
+        lambda=1,
+        tune=true,
+        weight=2.0
+    )
+)
 
-``` r
-speciation_hidden_unormalized := fnDiscretizeDistribution(dnLognormal(ln_speciation_hidden_mean, speciation_hidden_sd), NUM_HIDDEN)
-extinction_hidden_unormalized := fnDiscretizeDistribution(dnLognormal(ln_extinction_hidden_mean, extinction_hidden_sd), NUM_HIDDEN)
-```
 
-✅ Se genera un conjunto de tasas ocultas de especiación a partir de una distribución lognormal.
+# ------------------------------------------------------------
+# 8. CONSTRUCCIÓN DE MULTIPLICADORES PARA ESTADOS OCULTOS
+# ------------------------------------------------------------
 
-## Normalización de las Tasas Ocultas
+# Se discretiza una distribución lognormal en NUM_HIDDEN categorías.
+#
+# Con dos estados ocultos, se generan dos multiplicadores:
+#
+#   h_A
+#   h_B
+#
+# para especiación.
+speciation_hidden_unormalized :=
+    fnDiscretizeDistribution(
+        dnLognormal(
+            ln_speciation_hidden_mean,
+            speciation_hidden_sd
+        ),
+        NUM_HIDDEN
+    )
 
-``` r
-speciation_hidden := speciation_hidden_unormalized / mean(speciation_hidden_unormalized)
-extinction_hidden := extinction_hidden_unormalized / mean(extinction_hidden_unormalized)
-```
+# Lo mismo para extinción.
+extinction_hidden_unormalized :=
+    fnDiscretizeDistribution(
+        dnLognormal(
+            ln_extinction_hidden_mean,
+            extinction_hidden_sd
+        ),
+        NUM_HIDDEN
+    )
 
-✅ Se normalizan las tasas ocultas dividiéndolas por su media, para que el promedio sea 1.0. ✔️ Esto garantiza que los valores sean relativos y comparables entre estados.
 
-## Definir Tasas de Especiación para Estados Observables
+# ------------------------------------------------------------
+# 9. NORMALIZACIÓN DE LOS MULTIPLICADORES OCULTOS
+# ------------------------------------------------------------
 
-``` r
+# Se dividen los multiplicadores entre su media.
+#
+# De esta manera:
+#
+# mean(speciation_hidden) = 1
+#
+# y
+#
+# mean(extinction_hidden) = 1
+#
+# Esto evita que la componente oculta cambie arbitrariamente
+# la escala global de las tasas.
+speciation_hidden :=
+    speciation_hidden_unormalized /
+    mean(speciation_hidden_unormalized)
+
+extinction_hidden :=
+    extinction_hidden_unormalized /
+    mean(extinction_hidden_unormalized)
+
+
+# ------------------------------------------------------------
+# 10. TASAS ASOCIADAS AL CARÁCTER OBSERVADO
+# ------------------------------------------------------------
+
+# Se estima una tasa base de especiación y extinción
+# para cada estado observado.
+#
+# En un carácter binario:
+#
+# speciation_observed[1] = λ_0
+# speciation_observed[2] = λ_1
+#
+# extinction_observed[1] = μ_0
+# extinction_observed[2] = μ_1
+
 for (i in 1:NUM_STATES) {
-    speciation_observed[i] ~ dnLoguniform( 1E-6, 1E2)
-    speciation_observed[i].setValue( (NUM_TOTAL_SPECIES-2) / tree_length )
-    moves.append( mvScale(speciation_observed[i], lambda=1.0, tune=true, weight=3.0) )
-        ### Create a loguniform distributed variable for the extinction rate
-    extinction_observed[i] ~ dnLoguniform( 1E-6, 1E2)
-    extinction_observed[i].setValue( speciation_observed[i] / 10.0 )
-    moves.append( mvScale(extinction_observed[i], lambda=1.0, tune=true, weight=3.0) )
+
+    # --------------------------------------------------------
+    # Especiación
+    # --------------------------------------------------------
+
+    # Prior log-uniforme muy amplio.
+    #
+    # Permite explorar tasas entre:
+    #
+    # 10^-6 y 10^2
+    speciation_observed[i] ~ dnLoguniform(1E-6, 1E2)
+
+    # Valor inicial de la cadena.
+    #
+    # Esto NO modifica el prior.
+    # Solo indica el punto desde donde empieza la MCMC.
+    speciation_observed[i].setValue(
+        (NUM_TOTAL_SPECIES - 2) / tree_length
+    )
+
+    # Movimiento multiplicativo apropiado para parámetros positivos.
+    moves.append(
+        mvScale(
+            speciation_observed[i],
+            lambda=1.0,
+            tune=true,
+            weight=3.0
+        )
+    )
+
+
+    # --------------------------------------------------------
+    # Extinción
+    # --------------------------------------------------------
+
+    # Prior log-uniforme para la tasa de extinción.
+    extinction_observed[i] ~ dnLoguniform(1E-6, 1E2)
+
+    # Inicialmente se fija la tasa de extinción
+    # en una décima parte de la especiación.
+    extinction_observed[i].setValue(
+        speciation_observed[i] / 10.0
+    )
+
+    moves.append(
+        mvScale(
+            extinction_observed[i],
+            lambda=1.0,
+            tune=true,
+            weight=3.0
+        )
+    )
 }
-```
 
-## Cálculo de las Tasas Combinadas
 
-``` r
+# ------------------------------------------------------------
+# 11. COMBINACIÓN DE ESTADOS OBSERVADOS Y OCULTOS
+# ------------------------------------------------------------
+
+# Las tasas finales dependen de:
+#
+#   estado observado
+#   x
+#   estado oculto
+#
+# Para dos estados observados y dos ocultos:
+#
+# index 1 = 0A
+# index 2 = 1A
+# index 3 = 0B
+# index 4 = 1B
+
 for (j in 1:NUM_HIDDEN) {
+
     for (i in 1:NUM_STATES) {
-        index = i+(j*NUM_STATES)-NUM_STATES
-        speciation[index] := speciation_observed[i] * speciation_hidden[j]
-        extinction[index] := extinction_observed[i] * extinction_hidden[j]
+
+        # Convertir la combinación (i,j)
+        # en una posición del vector.
+        index = i + (j * NUM_STATES) - NUM_STATES
+
+        # Tasa de especiación final.
+        speciation[index] :=
+            speciation_observed[i] *
+            speciation_hidden[j]
+
+        # Tasa de extinción final.
+        extinction[index] :=
+            extinction_observed[i] *
+            extinction_hidden[j]
     }
 }
-```
 
-## Definir la Matriz de Transición entre Estados Observables
 
-``` r
+# ------------------------------------------------------------
+# 12. TRANSICIONES ENTRE ESTADOS OBSERVADOS
+# ------------------------------------------------------------
+
+# Parámetro del prior exponencial para las tasas
+# de transición entre estados observados.
 rate_pr := T.treeLength() / 10
-for ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {
+
+# Para dos estados observados existen dos posibles transiciones:
+#
+# 0 -> 1
+# 1 -> 0
+#
+# NUM_STATES * (NUM_STATES - 1)
+#
+# = 2 * 1
+# = 2
+for (i in 1:(NUM_STATES * (NUM_STATES - 1))) {
+
     transition_rates[i] ~ dnExp(rate_pr)
-    moves.append( mvScale(transition_rates[i], lambda=0.50, tune=true, weight=3.0) )
+
+    moves.append(
+        mvScale(
+            transition_rates[i],
+            lambda=0.50,
+            tune=true,
+            weight=3.0
+        )
+    )
 }
-```
 
-## Definir la Matriz de Transición entre Estados Ocultos
 
-``` r
+# ------------------------------------------------------------
+# 13. TRANSICIÓN ENTRE ESTADOS OCULTOS
+# ------------------------------------------------------------
+
+# Una tasa común controla los cambios entre estados ocultos:
+#
+# A <-> B
 hidden_rate ~ dnExponential(rate_pr)
-moves.append( mvScale(hidden_rate, lambda=0.5, tune=true, weight=5) )
+
+moves.append(
+    mvScale(
+        hidden_rate,
+        lambda=0.5,
+        tune=true,
+        weight=5
+    )
+)
+
+
+# Construir el vector de tasas de transición
+# entre estados ocultos.
+#
+# Con dos estados ocultos:
+#
+# A -> B
+# B -> A
+#
+# comparten el mismo valor hidden_rate.
 for (i in 1:(NUM_HIDDEN * (NUM_HIDDEN - 1))) {
     R[i] := hidden_rate
 }
-```
 
-## Crear la Matriz de Transición `Q` Combinada
 
-``` r
-rate_matrix := fnHiddenStateRateMatrix(transition_rates, R, rescaled=false)
-```
+# ------------------------------------------------------------
+# 14. MATRIZ DE TRANSICIÓN HIDDEN-STATE
+# ------------------------------------------------------------
 
-## Definir la Distribución de los Estados en la Raíz
+# Construir la matriz de tasas Q combinando:
+#
+# transition_rates
+#     transiciones entre estados observados
+#
+# R
+#     transiciones entre estados ocultos
+#
+# rescaled=false indica que la matriz no se reescala
+# automáticamente.
+rate_matrix :=
+    fnHiddenStateRateMatrix(
+        transition_rates,
+        R,
+        rescaled=false
+    )
 
-``` r
-rate_category_prior ~ dnDirichlet( rep(1,NUM_RATES) )
-```
 
-## Optimización con Movimientos MCMC
+# ------------------------------------------------------------
+# 15. FRECUENCIAS EN LA RAÍZ
+# ------------------------------------------------------------
 
-``` r
-moves.append( mvBetaSimplex(rate_category_prior, tune=true, weight=2) )
-moves.append( mvDirichletSimplex(rate_category_prior, tune=true, weight=2) )
-```
+# Prior Dirichlet para las probabilidades iniciales
+# de los cuatro estados posibles en la raíz:
+#
+# 0A
+# 1A
+# 0B
+# 1B
+#
+# rep(1, NUM_RATES) genera:
+#
+# [1,1,1,1]
+#
+# que corresponde a un Dirichlet simétrico.
+rate_category_prior ~
+    dnDirichlet(
+        rep(1, NUM_RATES)
+    )
 
-## Definir la Edad de la Raíz del Árbol
 
-``` r
+# Movimientos MCMC sobre el simplex.
+moves.append(
+    mvBetaSimplex(
+        rate_category_prior,
+        tune=true,
+        weight=2
+    )
+)
+
+moves.append(
+    mvDirichletSimplex(
+        rate_category_prior,
+        tune=true,
+        weight=2
+    )
+)
+
+
+# ------------------------------------------------------------
+# 16. EDAD DE LA RAÍZ
+# ------------------------------------------------------------
+
+# Obtener la edad de la raíz del árbol observado.
 root <- T.rootAge()
-```
 
-## Definir la Probabilidad de Muestreo de Especies ($\rho$)
 
-``` r
-rho <- T.ntips()/3000.0
-```
+# ------------------------------------------------------------
+# 17. FRACCIÓN DE MUESTREO
+# ------------------------------------------------------------
 
-## Definir el Árbol Bajo un Proceso de Diversificación Dependiente del Estado
+# rho representa la proporción de especies existentes
+# incluidas en el árbol.
+#
+# Por ejemplo, si:
+#
+# árbol = 300 especies
+# total esperado = 3000 especies
+#
+# rho = 300 / 3000 = 0.10
+#
+# es decir, se ha muestreado aproximadamente el 10 %.
+rho <- T.ntips() / 3000.0
 
-``` r
-timetree ~ dnCDBDP( rootAge = root, speciationRates = speciation, extinctionRates = extinction, Q = rate_matrix, delta = 1.0, pi = rate_category_prior, rho = rho, condition = "survival")
-```
 
-✔️ **Parámetros clave:**
+# ------------------------------------------------------------
+# 18. PROCESO DE NACIMIENTO-MUERTE DEPENDIENTE DEL ESTADO
+# ------------------------------------------------------------
 
--   **`rootAge = root`** → La edad de la raíz se fija a la edad del árbol observado.
+# Esta es la parte central del modelo HiSSE.
+#
+# dnCDBDP =
+# Character-Dependent Birth-Death Process
+#
+# El proceso utiliza:
+#
+# speciationRates
+#     tasas de especiación de los estados 0A,1A,0B,1B
+#
+# extinctionRates
+#     tasas de extinción correspondientes
+#
+# Q
+#     matriz de transición entre estados
+#
+# pi
+#     probabilidades de los estados en la raíz
+#
+# rho
+#     fracción de muestreo
+#
+# condition="survival"
+#     condiciona el proceso a que el linaje haya sobrevivido
+#     hasta el presente.
 
--   **`speciationRates = speciation`** → Tasas de especiación combinadas (`λ`), que incluyen efectos de los estados ocultos.
+timetree ~ dnCDBDP(
+    rootAge = root,
+    speciationRates = speciation,
+    extinctionRates = extinction,
+    Q = rate_matrix,
+    delta = 1.0,
+    pi = rate_category_prior,
+    rho = rho,
+    condition = "survival"
+)
 
--   **`extinctionRates = extinction`** → Tasas de extinción combinadas (`μ`), modeladas de la misma manera.
 
--   **`Q = rate_matrix`** → Matriz de tasas de transición entre estados (`0A ↔ 1A`, `0B ↔ 1B`, etc.).
+# ------------------------------------------------------------
+# 19. CONDICIONAR EL MODELO AL ÁRBOL OBSERVADO
+# ------------------------------------------------------------
 
--   **`delta = 1.0`** → Modelo estándar en el que las tasas de diversificación dependen completamente del estado.
-
--   **`pi = rate_category_prior`** → Prior de las probabilidades de estado en la raíz.
-
--   **`rho = rho`** → Ajuste por sesgo de muestreo de especies.
-
--   **`condition = "survival"`** → Se modela solo en árboles que han sobrevivido hasta el presente.
-
-## Ajustar el Modelo a la Filogenia Observada
-
-``` r
+# El árbol no se estima:
+# se fija al árbol filogenético observado.
 timetree.clamp(T)
-```
 
-## Ajustar el Modelo a los Datos de Caracteres
 
-``` r
+# ------------------------------------------------------------
+# 20. CONDICIONAR EL MODELO A LOS CARACTERES OBSERVADOS
+# ------------------------------------------------------------
+
+# Asociar los estados observados de las especies
+# al proceso de nacimiento-muerte.
 timetree.clampCharData(data_exp)
-```
 
-## Definir el Modelo en RevBayes
 
-``` r
+# ------------------------------------------------------------
+# 21. CONSTRUIR EL MODELO
+# ------------------------------------------------------------
+
+# Construir el grafo probabilístico completo.
 mymodel = model(rate_matrix)
-```
 
-## **Configurar Monitores para Guardar Resultados**
 
-``` r
-# Monitor Principal del Modelo
-monitors.append( mnModel(filename="../out/Hisse/mitos_HiSSE_clyttini_TUTscript.log", printgen=1) )
+# ------------------------------------------------------------
+# 22. MONITOR PRINCIPAL
+# ------------------------------------------------------------
 
-# Monitor de Estados Ancestrales
-monitors.append(mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="NaturalNumbers", printgen=1, withTips=true, withStartStates=false, filename="../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log"))
+# Guardar en archivo los parámetros del modelo.
+#
+# printgen=1 significa que se guarda cada generación.
+monitors.append(
+    mnModel(
+        filename=
+        "salida/hisse/mitos_HiSSE_clyttini_TUTscript.log",
+        printgen=1
+    )
+)
 
-# Monitor de Mapeo Estocástico de Caracteres
-monitors.append(mnStochasticCharacterMap(cdbdp=timetree, printgen=10, filename="../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log", include_simmap=true))
 
-# Monitor en Pantalla
-monitors.append(mnScreen(printgen=10, speciation_observed, extinction_observed))
-```
+# ------------------------------------------------------------
+# 23. RECONSTRUCCIÓN DE ESTADOS ANCESTRALES
+# ------------------------------------------------------------
 
-## Configurar el Algoritmo MCMC
+# Guardar muestras de los estados ancestrales
+# condicionados al árbol y al modelo HiSSE.
+#
+# type="NaturalNumbers"
+# indica que los estados se almacenan como números enteros.
+#
+# withTips=true
+# incluye también los estados de las puntas.
+#
+# withStartStates=false
+# no incluye los estados al inicio de cada rama.
+monitors.append(
+    mnJointConditionalAncestralState(
+        tree=timetree,
+        cdbdp=timetree,
+        type="NaturalNumbers",
+        printgen=1,
+        withTips=true,
+        withStartStates=false,
+        filename=
+        "salida/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log"
+    )
+)
 
-``` r
-### workspace mcmc
-mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random", combine="mixed")
-```
 
-## Ejecutar el MCMC
+# ------------------------------------------------------------
+# 24. MAPEO ESTOCÁSTICO DE CARACTERES
+# ------------------------------------------------------------
 
-``` r
-mymcmc.run(generations=400)
-```
+# Generar historias completas de cambio de estado
+# a lo largo de las ramas.
+#
+# A diferencia de una reconstrucción nodal,
+# el stochastic character mapping permite inferir:
+#
+# - dónde ocurrió un cambio
+# - cuándo ocurrió
+# - cuántos cambios ocurrieron
+# - qué estados ocuparon cada segmento de rama
+#
+# include_simmap=true
+# guarda el resultado en formato SIMMAP.
+monitors.append(
+    mnStochasticCharacterMap(
+        cdbdp=timetree,
+        printgen=10,
+        filename=
+        "salida/hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log",
+        include_simmap=true
+    )
+)
 
-## Cargar la Trazabilidad de los Estados Ancestrales
 
-``` r
-anc_states2 = readAncestralStateTrace("../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log")
-```
+# ------------------------------------------------------------
+# 25. MONITOR EN PANTALLA
+# ------------------------------------------------------------
 
-## Construcción del Árbol con Estados Ancestrales
+# Mostrar durante la ejecución las tasas asociadas
+# a los estados observados.
+#
+# Cada 10 generaciones se imprimen:
+#
+# λ_0
+# λ_1
+# μ_0
+# μ_1
+monitors.append(
+    mnScreen(
+        printgen=10,
+        speciation_observed,
+        extinction_observed
+    )
+)
 
-``` r
-anc_tree = ancestralStateTree(tree=T, ancestral_state_trace_vector = anc_states2, include_start_states=false, file = "../out/Hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree", burnin = 2, summary_statistic = "MAP", site=1)
-```
 
-## Definir Parámetros para la Resumir Estados Ancestrales
+# ------------------------------------------------------------
+# 26. CONFIGURACIÓN DE LA MCMC
+# ------------------------------------------------------------
 
-``` r
+# Construir la cadena MCMC.
+#
+# nruns=1
+#     una sola corrida
+#
+# moveschedule="random"
+#     movimientos seleccionados aleatoriamente
+#
+# combine="mixed"
+#     configuración utilizada para combinar información
+#     en modelos de este tipo.
+mymcmc = mcmc(
+    mymodel,
+    monitors,
+    moves,
+    nruns=1,
+    moveschedule="random",
+    combine="mixed"
+)
+
+
+# ------------------------------------------------------------
+# 27. EJECUTAR LA MCMC
+# ------------------------------------------------------------
+
+# Aquí se usan únicamente 400 generaciones.
+#
+# Esto puede servir para:
+#
+# - comprobar que el script funciona
+# - probar rutas
+# - revisar monitores
+# - depurar errores
+#
+# NO es suficiente para una inferencia final.
+mymcmc.run(
+    generations=400
+)
+
+
+# ============================================================
+# POSTPROCESAMIENTO
+# ============================================================
+
+
+# ------------------------------------------------------------
+# 28. LEER LAS MUESTRAS DE ESTADOS ANCESTRALES
+# ------------------------------------------------------------
+
+anc_states2 =
+    readAncestralStateTrace(
+        "salida/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.log"
+    )
+
+
+# ------------------------------------------------------------
+# 29. RESUMIR LOS ESTADOS ANCESTRALES EN UN ÁRBOL
+# ------------------------------------------------------------
+
+# Construir un árbol donde cada nodo recibe el estado
+# ancestral con mayor probabilidad posterior.
+#
+# summary_statistic="MAP"
+#
+# MAP =
+# Maximum A Posteriori
+#
+# selecciona el estado con mayor probabilidad posterior
+# para cada nodo.
+anc_tree =
+    ancestralStateTree(
+        tree=T,
+        ancestral_state_trace_vector=anc_states2,
+        include_start_states=false,
+        file=
+        "salida/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree",
+        burnin=2,
+        summary_statistic="MAP",
+        site=1
+    )
+
+
+# ------------------------------------------------------------
+# 30. PARÁMETROS PARA EL MAPEO ESTOCÁSTICO
+# ------------------------------------------------------------
+
+# Número de muestras iniciales que se descartan.
 burnin=10
-n_time_slices = 500
-```
 
-✅ **`burnin = 25`** → Descarta las **primeras 25 iteraciones** del MCMC antes de hacer el resumen.\
-✅ **`n_time_slices = 500`** → Divide el árbol en **500 segmentos de tiempo** para interpolar los cambios de estado.
+# Número de intervalos utilizados para resumir
+# probabilidades a lo largo de las ramas.
+n_time_slices=500
 
-## Leer la Historia del Carácter Inferida por Mapeo Estocástico
 
-``` r
-anc_states_SCHM = readAncestralStateTrace("../out/Hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log")
-```
+# ------------------------------------------------------------
+# 31. LEER LOS STOCHASTIC CHARACTER MAPS
+# ------------------------------------------------------------
 
-## Crear el Árbol de Mapeo Estocástico de Caracteres
+anc_states_SCHM =
+    readAncestralStateTrace(
+        "salida/hisse/stoch_char_map_mitos_HiSSE_clyttini_TUTscript.log"
+    )
 
-``` r
-char_map_tree = characterMapTree(tree=T, 
-                 ancestral_state_trace_vector=anc_states_SCHM, 
-                 character_file="../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_char.tree", 
-                 posterior_file="../out/Hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_post.tree", 
-                 burnin=burnin, 
-                 num_time_slices=n_time_slices)
+
+# ------------------------------------------------------------
+# 32. RESUMIR LOS MAPAS ESTOCÁSTICOS
+# ------------------------------------------------------------
+
+# characterMapTree() resume las historias simuladas
+# de cambio de carácter.
+#
+# Produce dos archivos:
+#
+# character_file
+#     árbol con reconstrucciones/mapeos marginales
+#
+# posterior_file
+#     árbol con probabilidades posteriores asociadas
+#
+# Esto permite visualizar cómo cambian los estados
+# a lo largo de las ramas.
+char_map_tree =
+    characterMapTree(
+        tree=T,
+        ancestral_state_trace_vector=anc_states_SCHM,
+        character_file=
+        "salida/hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_char.tree",
+        posterior_file=
+        "salida/hisse/stoch_mitos_HiSSE_clyttini_TUTscriptmarginal_post.tree",
+        burnin=burnin,
+        num_time_slices=n_time_slices
+    )
 ```
 
 ## Visualización en R con RevGadgets
 
 ```{r, results='hide'}
+library(RevGadgets)
+library(ggplot2)
+library(ggtree)
+library(grid)
+
 # Cargar el archivo de estados ancestrales
 hisse_file <- paste0("../docs/u1_PatDiv/output/hisse/anc_states_mitos_HiSSE_clyttini_TUTscript.tree")
 
@@ -749,6 +910,7 @@ plot_hisse_2 <- ggtree(p_anc_hisse, layout = "rectangular", aes(color = anc_stat
 plot_hisse_2
 ```
 
+
 ## Graficar las tasas de diversificación neta
 
 ```{r}
@@ -760,10 +922,21 @@ traitcols <- c("#F29494", "#5FD9D9", "#9DD962", "#D48DF2")  # Rojo para estado 0
 
 # Calcular la tasa de diversificación neta: especiación - extinción
 netdiversification_rates <- data.frame(
-  dens = c(hisse$speciation_observed.1. - hisse$extinction_observed.1.,
-           hisse$speciation_observed.2. - hisse$extinction_observed.2.,
-           hisse$speciation_hidden.1. - hisse$extinction_hidden.1.,
-           hisse$speciation_hidden.2. - hisse$extinction_hidden.2.),
+  dens = c(
+    # 0A
+    hisse$speciation.1. - hisse$extinction.1.,
+
+    # 1A
+    hisse$speciation.2. - hisse$extinction.2.,
+
+    # 0B
+    hisse$speciation.3. - hisse$extinction.3.,
+
+    # 1B
+    hisse$speciation.4. - hisse$extinction.4.
+
+  ),
+  
   rate = rep(c("0A", "1A", "0B", "1B"), each = length(hisse$speciation_observed.1.))
   )
 
@@ -785,17 +958,48 @@ violin_diversification
 
 ```{r}
 # Crear un dataframe con tasas de especiación para cada estado
+# Tasas de especiación finales de HiSSE
 speciation_rates <- data.frame(
-  dens = c(hisse$speciation_observed.1.,  hisse$speciation_observed.2.,
-           hisse$speciation_hidden.1., hisse$speciation_hidden.2.), 
-  rate = rep(c("0A", "1A", "0B", "1B"), each = length(hisse$speciation_observed.1.))
+  dens = c(
+    # 0A
+    hisse$speciation.1.,
+    
+    # 1A
+    hisse$speciation.2.,
+    
+    # 0B
+    hisse$speciation.3.,
+    
+    # 1B
+    hisse$speciation.4.
+  ),
+  
+  rate = rep(
+    c("0A", "1A", "0B", "1B"),
+    each = nrow(hisse)
+  )
+)
+
+speciation_rates$rate <- factor(
+  speciation_rates$rate,
+  levels = c("0A", "1A", "0B", "1B")
 )
 
 # Crear gráfico de violín para las tasas de especiación
-violin_speciation <- ggplot(speciation_rates, aes(x = rate, y = dens, fill = rate)) +
+violin_speciation <- ggplot(
+  speciation_rates,
+  aes(x = rate, y = dens, fill = rate)
+) +
   geom_violin(trim = FALSE) +
-  labs(title = "Tasas de Especiación", x = "Estado", y = "Tasa de Especiación") +
-  scale_fill_manual(name = "Estado", values = traitcols) +
+  labs(
+    title = "Tasas de Especiación",
+    x = "Estado",
+    y = "Tasa de Especiación"
+  ) +
+  scale_fill_manual(
+    name = "Estado",
+    values = traitcols
+  ) +
   theme_classic()
 
 # Mostrar la gráfica
@@ -807,16 +1011,46 @@ violin_speciation
 ```{r}
 # Crear un dataframe con tasas de extinción para cada estado
 extinction_rates <- data.frame(
-  dens = c(hisse$extinction_observed.1., hisse$extinction_observed.2.,
-           hisse$extinction_hidden.1., hisse$extinction_hidden.2.), 
-  rate = rep(c("0A", "1A", "0B", "1B"), each = length(hisse$extinction_observed.1.))
+  dens = c(
+    # 0A
+    hisse$extinction.1.,
+    
+    # 1A
+    hisse$extinction.2.,
+    
+    # 0B
+    hisse$extinction.3.,
+    
+    # 1B
+    hisse$extinction.4.
+  ),
+  
+  rate = rep(
+    c("0A", "1A", "0B", "1B"),
+    each = nrow(hisse)
+  )
+)
+
+extinction_rates$rate <- factor(
+  extinction_rates$rate,
+  levels = c("0A", "1A", "0B", "1B")
 )
 
 # Crear gráfico de violín para tasas de extinción
-violin_extinction <- ggplot(extinction_rates, aes(x = rate, y = dens, fill = rate)) +
+violin_extinction <- ggplot(
+  extinction_rates,
+  aes(x = rate, y = dens, fill = rate)
+) +
   geom_violin(trim = FALSE) +
-  labs(title = "Tasas de Extinción", x = "Estado", y = "Tasa de Extinción") +
-  scale_fill_manual(name = "Estado", values = traitcols) +
+  labs(
+    title = "Tasas de Extinción",
+    x = "Estado",
+    y = "Tasa de Extinción"
+  ) +
+  scale_fill_manual(
+    name = "Estado",
+    values = traitcols
+  ) +
   theme_classic()
 
 # Mostrar la gráfica

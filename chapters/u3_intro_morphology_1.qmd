@@ -8,6 +8,12 @@ execute:
   fig-height: 8   # Altura del gráfico
 ---
 
+# Presentación: Introducción a patrones morfológicos
+
+[![](../images/u3_PatMorph/Evl_car.png){fig-align="center" width="500"}](../docs/u3_PatMorph/Evolucion_caracteres.pdf)
+
+Haz clic en la imagen para ver el PDF de la presentación
+
 ## **Introducción**
 
 En biología evolutiva, los caracteres de los organismos pueden representarse como rasgos discretos (como tipo de dieta, hábitat o sistema de apareamiento) o continuos (como tamaño corporal, longitud del ala o temperatura óptima). Analizar cómo estos caracteres han cambiado a lo largo del tiempo nos permite inferir los procesos que han moldeado la diversidad biológica actual.
@@ -60,9 +66,9 @@ $$ Var(cambio-del-carácter) = \sigma^2 * t $$
 
 Cuando tú analizas, por ejemplo, el **volumen del élitro**, estás suponiendo que ese carácter cambia aleatoriamente en el tiempo, pero a un ritmo que depende de $\sigma^2$. Entonces:
 
--   Un $\sigma^2$ alto → el rasgo cambia mucho a lo largo del árbol → **evolución rápida** del carácter.
+-   Mayor $\sigma^2$ : mayor acumulación esperada de varianza evolutiva por unidad de tiempo.
 
--   Un $\sigma^2$ bajo → el rasgo cambia poco → **evolución lenta o conservada**.
+-   Menor $\sigma^2$ : menor acumulación esperada de varianza evolutiva por unidad de tiempo.
 
 ------------------------------------------------------------------------
 
@@ -219,7 +225,7 @@ mymcmc.run(generations=3000)
 q()
 ```
 
-### 📈 Interpretación de la gráfica de $\sigma^2$
+### 📈 Gráfica de $\sigma^2$
 
 ```{r}
 library(RevGadgets)
@@ -237,20 +243,6 @@ plot <- plotTrace(list(simple_BM_posterior), vars=c("sigma2", "sigma2_prior"))
 plot
 ```
 
-Eje X: valores del parámetro $\sigma^2$ (tasa evolutiva).
-
-Eje Y: densidad de probabilidad.
-
-Línea roja (sigma2_prior): lo que asumías posible antes de ver los datos.
-
-Línea azul (sigma2): lo que los datos te dicen que es más probable.
-
-✅ Interpretación esperada: Si la curva azul (posterior) está desplazada respecto a la roja, significa que tus datos aportaron información nueva.
-
-Si la curva azul es más estrecha, implica que la incertidumbre sobre $\sigma^2$ se redujo gracias a los datos.
-
-Si las dos curvas son similares, puede que tus datos no sean muy informativos para este modelo.
-
 ## Modelo Ornstein-Uhlenbeck (OU) simple en RevBayes
 
 El modelo de **Ornstein-Uhlenbeck (OU)** extiende el modelo de Movimiento Browniano (BM) al asumir que el carácter evoluciona **hacia un valor óptimo** (θ), en lugar de cambiar al azar.
@@ -259,7 +251,7 @@ El modelo de **Ornstein-Uhlenbeck (OU)** extiende el modelo de Movimiento Browni
 
 -   **σ²:** tasa de variación aleatoria (igual que en BM).
 
--   **α (alpha):** fuerza de atracción hacia el valor óptimo. Cuanto mayor es α, más fuertemente el carácter es “jalado” hacia θ.
+-   **α (alpha):** intensidad de atracción hacia el óptimo.
 
     -   A veces se le llama el **parámetro de "banda elástica"**.
 
@@ -566,52 +558,77 @@ p_th_plot <- plotTrace(list(samples_OU), vars = c("p_th", "p_th_prior"))[[1]] +
 grid.arrange(alpha_plot, theta_plot, sigma_plot, p_th_plot, nrow = 1)
 ```
 
-📌 ¿Cómo interpretar los gráficos? Cada gráfico muestra dos curvas:
+### ¿Cómo interpretar las distribuciones a priori y posterior?
 
-🔵 Posterior (azul): qué valores son más probables después de ver los datos.
+Cada gráfica muestra dos distribuciones:
 
-🔴 Prior (rojo): qué valores eran posibles antes de ver los datos.
+- 🔴 **A priori (rojo):** describe los valores plausibles para un parámetro antes de incorporar los datos morfológicos, según la distribución que especificamos.
+- 🔵 **Posterior (azul):** describe los valores plausibles después de incorporar los datos, condicionados al árbol filogenético, al modelo OU y a las distribuciones a priori.
 
-Diferencias claras entre ambas curvas indican que los datos aportaron información real sobre ese parámetro.
+Las diferencias entre ambas curvas ayudan a reconocer **cuánto se actualizaron nuestras estimaciones**. Observa tanto su desplazamiento como la amplitud de cada distribución: una posterior más concentrada indica menor incertidumbre. **Que la posterior sea distinta de la prior no demuestra, por sí solo, que el modelo OU represente correctamente el proceso evolutivo.**
 
-📈 ¿Por qué visualizar la distribución conjunta de alpha y sigma2? En el modelo de Ornstein-Uhlenbeck (OU), los caracteres tienden a una distribución estacionaria que es normal con:
+### Parámetros y cantidades derivadas
 
-Media: θ (el valor óptimo)
+Recordemos que los parámetros principales del modelo OU son:
 
-Varianza: $\sigma^2/(2\alpha)$
+- **$\theta$:** valor óptimo hacia el cual tiende el carácter.
+- **$\alpha$:** intensidad de atracción hacia ese óptimo.
+- **$\sigma^2$:** tasa de variación evolutiva estocástica.
 
-Esto significa que $\sigma^2$ (la tasa de evolución estocástica) y $\alpha$ (la fuerza de atracción hacia el óptimo) actúan conjuntamente para determinar la dispersión del rasgo en el tiempo.
+Para un proceso OU con $\alpha>0$, $\theta$ y $\sigma^2$ constantes, la distribución estacionaria es normal, con:
 
-⚠️ ¿Cuál es el problema? Si las ramas del árbol son largas o si los datos son poco informativos, es difícil estimar $\sigma^2$ y $\alpha$ por separado, porque pueden compensarse entre sí:
+$$
+\text{Media}=\theta,\qquad
+V_{\infty}=\frac{\sigma^2}{2\alpha}.
+$$
 
-Un valor alto de $\sigma^2$ puede “verse igual” que un valor bajo de $\alpha$, y viceversa.
+Esto significa que **$\alpha$ y $\sigma^2$ intervienen conjuntamente en la dispersión del carácter**. Si mantenemos constante la varianza estacionaria, un aumento de $\alpha$ debe acompañarse de un aumento de $\sigma^2$. Sin embargo, **no debemos asumir que la correlación posterior es necesariamente positiva o negativa**: su dirección y magnitud dependen de los datos y del modelo.
 
-Esto se refleja como una correlación negativa entre ambos parámetros en la distribución posterior.
+**¿Qué representa $p_{th}$?** Es una cantidad derivada que describe la **reducción proporcional de la varianza esperada bajo OU respecto a BM**, al comparar procesos con la misma tasa $\sigma^2$ y el mismo intervalo de tiempo $T$, suponiendo que el carácter comienza en el óptimo:
 
-📊 ¿Qué hacer? Graficar la distribución conjunta te permite ver si están correlacionados, lo cual es una señal de que no deberías interpretar σ² o α individualmente.
+$$
+p_{th}=1-\frac{1-e^{-2\alpha T}}{2\alpha T}.
+$$
 
-✅ Código en R para graficar la correlación
+En esta práctica, $T$ corresponde a la altura del árbol. Por ejemplo, $p_{th}=0.30$ significa que la varianza esperada bajo OU es un **30 % menor** que bajo BM en esas condiciones. **No es una probabilidad ni una medición directa de selección natural.**
+
+### Visualización de la relación entre $\alpha$ y $\sigma^2$
+
+Algunas combinaciones de $\alpha$ y $\sigma^2$ pueden producir dispersiones parecidas, especialmente cuando los datos son poco informativos. Por eso es útil representar sus valores posteriores conjuntamente y examinar si existe una asociación entre ambos parámetros.
+
+El siguiente código lee las muestras de la distribución posterior de OU (puedes ajustar la ruta si tus resultados están en otra carpeta):
 
 ```{r}
+library(RevGadgets)
 library(ggplot2)
 
-# Graficar los valores posteriores de alpha vs sigma²
-ggplot(samples_OU, aes(x=alpha, y=sigma2)) +
+# Distribución posterior del modelo OU: primera traza
+samples_OU <- readTrace(
+  "../docs/u1_PatDiv/output/morpho/simple_OU.log",
+  burnin = 0.25
+)[[1]]
+
+# Relación entre los parámetros estimados
+ggplot(samples_OU, aes(x = alpha, y = sigma2)) +
   geom_point(alpha = 0.4, color = "steelblue") +
   theme_minimal() +
-  labs(x = expression(alpha), y = expression(sigma^2),
-       title = "Distribución conjunta de α y σ²")
+  labs(
+    x = expression(alpha),
+    y = expression(sigma^2),
+    title = "Distribución posterior conjunta de α y σ²"
+  )
+
+# Correlación descriptiva entre las muestras posteriores
+cor(samples_OU$alpha, samples_OU$sigma2, use = "complete.obs")
 ```
 
-🧠 Interpretación:
+**¿Cómo leer la nube de puntos?**
 
--   Si los puntos forman una nube diagonal descendente, entonces hay correlación negativa.
+- Una tendencia ascendente sugiere **asociación positiva**.
+- Una tendencia descendente sugiere **asociación negativa**.
+- Una nube sin orientación clara sugiere **asociación lineal débil o ausente**.
 
--   Si los puntos forman una nube diagonal ascendente, entonces hay correlación positiva.
-
--   En ese caso, no debes interpretar $\alpha$ o $\sigma^2$ por separado, porque los datos no permiten distinguir su efecto individual.
-
--   Esto es esperado en árboles con ramas largas o con pocos datos informativos.
+Una asociación fuerte puede indicar que los parámetros están relacionados en su estimación y que conviene **interpretarlos conjuntamente**. La correlación, por sí sola, no demuestra falta de identificabilidad ni permite establecer un mecanismo biológico.
 
 ## Modelos de evolución de caracteres discretos
 

@@ -1,0 +1,173 @@
+---
+title: "Estimación de Eventos de Extinción Masiva"
+format: html
+execute:
+  echo: true   # Muestra el código
+  warning: false  # Oculta advertencias
+  fig-width: 12   # Ancho del gráfico
+  fig-height: 8   # Altura del gráfico
+---
+
+# Presentación: Estimación de Eventos de Extinción Masiva
+
+[![](../images/u1_PatDiv/VMAG_EM-CLASE_V0.png){fig-align="center" width="500"}](../docs/u1_PatDiv/VMAG_EM-CLASE_V0.pdf)
+
+Haz clic en la imagen para ver el PDF de la presentación
+
+# Estimación de Eventos de Extinción Masiva con `treepar` en R
+
+La extinción masiva es un proceso clave en la evolución de la biodiversidad, marcando periodos en los que un gran número de especies desaparece en un corto intervalo de tiempo. La detección de estos eventos en filogenias permite inferir patrones históricos de diversificación y evaluar cómo la biodiversidad ha respondido a cambios ambientales y evolutivos a lo largo del tiempo.
+
+El enfoque de `treepar` se basa en la estimación de tasas de especiación ($\lambda$) y extinción ($\mu$) a lo largo del tiempo en una filogenia dada. La función clave, `bd.shifts.optim`, utiliza métodos de máxima verosimilitud para encontrar los puntos en el tiempo en los que estas tasas cambiaron significativamente. Al habilitar la opción de extinciones masivas (`ME = TRUE`), el modelo permite detectar periodos en los que la tasa de supervivencia de las especies disminuyó abruptamente, lo que puede indicar una extinción masiva.
+
+## Cargar librerías y el árbol filogenético
+
+```{r}
+# Cargar las librerías necesarias
+library(ape)       
+library(TreePar)
+library(tidyverse)
+library(ggtree)
+
+# Cargar el árbol desde un archivo Nexus
+tree <- read.nexus("../docs/u1_PatDiv/subarbol_ingroup.nex")
+
+# Visualizar el árbol
+ggtree(tree) + theme_tree()
+```
+
+## Obtención de los tiempos de diversificación
+
+Extraeremos y ordenaremos los tiempos de diversificación (tiempos de ramificación) del árbol:
+
+```{r}
+# Obtener y ordenar los tiempos de especiación
+# La función getx() extrae los tiempos de ramificación del árbol.
+times <- sort(getx(tree), decreasing = TRUE) # sort () rdena los tiempos en orden descendente.
+times <- unname(times) # elimina los nombres de los elementos del vector para simplificar su manipulación.
+print(times)
+```
+
+## Configuración de Parámetros para el Análisis
+
+Definiremos los parámetros necesarios para el análisis de cambios en las tasas de diversificación:
+
+```{r}
+rho <- 22/26  # Proporción de especies muestreadas (22 de 26 especies)
+grid <- 0.2   # Tamaño de la grilla de búsqueda de cambios de tasa (en millones de años)
+start <- min(times)   # Tiempo inicial para la búsqueda de cambios de tasa
+end <- max(times)     # Tiempo final para la búsqueda de cambios de tasa
+```
+
+## Modelo con un Evento de Extinción Masiva
+
+```{r, results='hide'}
+# Ejecutar la optimización con detección de extinción masiva
+res_MEE <- bd.shifts.optim(times, c(rho, 1), grid, start, end, ME = TRUE, survival = 1) # Activar detección de extinciones masivas
+```
+
+```{r, echo=FALSE}
+# Revisar los resultados
+res_MEE[[2]]
+```
+
+**Interpretación**
+
+| Índice | Parámetro estimado | Descripción |
+|------------------------|------------------------|------------------------|
+| **1** | 68.1746 | Verosimilitud (log-likelihood) |
+| **2** | 1.195857e-07 | Turnover **(**$\epsilon$) |
+| **3** | 0.1246163 | Diversificación **(**$r$) |
+| **4** | 0.3649862 | Probabilidad de que una especie tenga 0 descendientes **(**$\rho_1$) |
+| **5** | 0.925229 | Tiempo antes del evento **(**$t_1$) |
+
+## Modelo con dos Eventos de Extinción Masiva
+
+```{r, results='hide'}
+# Ejecutar la optimización con detección de extinción masiva
+res_MEE2 <- bd.shifts.optim(times, c(rho, 1, 1), grid, start, end, ME = TRUE, survival = 1) # Activar detección de extinciones masivas
+```
+
+```{r, echo=FALSE}
+# Revisar los resultados
+res_MEE2[[2]]
+```
+
+**Interpretación**
+
+| Índice | Parámetro estimado | Descripción |
+|------------------------|------------------------|------------------------|
+| **1** | 66.03778 | Verosimilitud (log-likelihood) |
+| **2** | 6.878473e-08 | Turnover **(**$\epsilon$) |
+| **3** | 0.2676687 | Diversificación **(**$r$) |
+| **4** | 0.07137593 | Probabilidad de que una especie tenga 0 descendientes **(**$\rho_1$) |
+| **5** | 0.7086373 | Probabilidad de que una especie tenga 0 descendientes **(**$\rho_2$) |
+| **6** | 0.9252293 | Tiempo antes del evento **(**$t_1$) |
+| **7** | 9.525229 | Tiempo después del evento **(**$t_2$) |
+
+**Comparación MEE un evento vs MEE dos cambio**
+
+```{r}
+## Verosimilitud MEE un evento
+res_MEE[[2]][[2]][1]
+## Verosimilitud MEE dos eventos
+res_MEE2[[2]][[3]][1]
+```
+
+```{r}
+ChiSq1 = 2 * (res_MEE[[2]][[2]][1] - res_MEE2[[2]][[3]][1])
+ChiSq1
+dgf <- 6 - 4
+pchiSq1 <- pchisq(ChiSq1, df=dgf)
+pchiSq1
+```
+
+**Interpretación de los resultados**
+
+1.  Chi-cuadrado (ChiSq1) = 4.273639
+
+    -   Esto representa cuánto mejor se ajusta el modelo con 2 eventos en comparación con el modelo con 1 evento.
+
+2.  Grados de libertad = 2
+
+    -   Se obtiene de la diferencia en el número de parámetros entre ambos modelos (6 - 4 = 2).
+
+3.  p-value = 0.8819704
+
+    -   El p-valor es alto ($>0.05$), lo que indica que NO hay evidencia suficiente para preferir el modelo con 2 eventos de extinción sobre el modelo con 1 evento.
+
+    -   Esto sugiere que el modelo con 1 evento de extinción es suficiente para explicar los datos, y agregar un segundo evento no mejora significativamente el ajuste del modelo.
+
+```{r}
+
+# Edades de los eventos de extinción
+t0 <- 0.9252293
+t1 <- 9.525229
+
+# Construir el árbol
+p <- ggtree(tree)
+
+# Transformar la escala:
+# presente = 0; pasado = valores negativos
+p <- revts(p)
+
+# Graficar los eventos
+p +
+  geom_vline(
+    xintercept = c(-t1, -t0),
+    linetype = "dashed",
+    linewidth = 1
+  ) +
+  annotate(
+    "text",
+    x = c(-t1, -t0),
+    y = Ntip(tree) + 1,
+    label = c(
+      "Evento 2\n9.53 Ma",
+      "Evento 1\n0.93 Ma"
+    ),
+    hjust = -0.1,
+    size = 4
+  ) +
+  theme_tree2()
+```

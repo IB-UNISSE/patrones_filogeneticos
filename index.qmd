@@ -20,24 +20,22 @@ Aquí puedes encontrar los temas del curso y sus respectivos enlaces:
 
 -   [Apuntes sobre RevBayes](https://ib-unisse.github.io/patrones_filogeneticos/chapters/revbayes.html)
 
--   [Instalación de Docker](https://ib-unisse.github.io/patrones_filogeneticos/chapters/docker.html)
-
 -   [Comparación de modelos mediante Factores de Bayes](https://ib-unisse.github.io/patrones_filogeneticos/chapters/factor_bayes.html)
 
 ## Unidad 1: Patrones de diversificación
 
 -   [Introducción al proceso de diversificación](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification.html)
 -   [Modelos con cambios en las Tasas de diversificación](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_2.html)
--   [Estimación de Eventos de Extinción Masiva](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_3.html)
--   [Introducción a modelos State Speciaction-Extinción (SSE)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_4.html)
+-   [Modelos SSE: Binary State Speciation and Extinction (BISSE)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_3.html)
+-   [Modelos SSE: Hidden State Speciation and Extinction (HISSE)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_4.html)
+-   [Estimación de Eventos de Extinción Masiva](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u1_intro_diversification_5.html)
 
-## Unidad 1: Patrones biogeográficos
+## Unidad 2: Patrones biogeográficos
 
 -   [Introducción a la biogeografía filogenética con el modelo DEC](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_1.html)
--   [Biogeografía Bayesiana de Islas (BIB)](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_2.html)
 -   [Diversificación dependiente del rango geográfico](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u2_intro_biogeography_3.html)
 
 ## Unidad 3: Patrones morfológicos
 
 -   [Introducción a patrones morfológicos](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u3_intro_morphology_1.html)
--   [Disparidad a lo largo del tiempo y coevolución de carácteres](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u3_intro_morphology_2.html)
+-   [Estimación de tasas brownianas dependientes del estado](https://ib-unisse.github.io/patrones_filogeneticos/chapters/u3_intro_morphology_2.html)

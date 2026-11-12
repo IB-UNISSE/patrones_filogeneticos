@@ -24,7 +24,6 @@ book:
     - chapters/commandline.qmd
     - chapters/Rstudio.qmd
     - chapters/revbayes.qmd
-    - chapters/docker.qmd
     - chapters/factor_bayes.qmd
     - part: "Unidad 1: Patrones de diversificación"
       chapters:
@@ -32,15 +31,16 @@ book:
         - chapters/u1_intro_diversification_2.qmd
         - chapters/u1_intro_diversification_3.qmd
         - chapters/u1_intro_diversification_4.qmd
+        - chapters/u1_intro_diversification_5.qmd
     - part: "Unidad 2: Patrones biogeográficos"
       chapters:
         - chapters/u2_intro_biogeography_1.qmd
-        - chapters/u2_intro_biogeography_2.qmd
         - chapters/u2_intro_biogeography_3.qmd
     - part: "Unidad 3: Patrones morfológicos"
       chapters:
         - chapters/u3_intro_morphology_1.qmd
         - chapters/u3_intro_morphology_2.qmd
+        - chapters/u3_intro_morphology_3.qmd
 
 format:
   html:

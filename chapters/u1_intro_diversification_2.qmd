@@ -69,7 +69,7 @@ resbd[[2]]
 ```
 
 | Índice | Parámetro estimado | Descripción |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | **1** | 70.02138 | **−log**L (*negative log-likelihood*) del modelo |
 | **2** | $3.10 \times 10^{-7}$ | Turnover ($\epsilon = \mu/\lambda$) |
 | **3** | 0.08910 | Diversificación neta ($r = \lambda - \mu$) |
@@ -86,6 +86,8 @@ Aquí probamos un modelo en el que la tasa cambia en un tiempo $t_{1}$
 | `start, end` | Rango de tiempo para el análisis |
 | `ME=FALSE` | No se consideran eventos de extinción masiva |
 | `survival=1` | La verosimilitud se condiciona a la supervivencia del proceso; específicamente, a la supervivencia de los dos linajes existentes en la raíz. |
+
+esoneshift
 
 ```{r, results='hide'}
 resoneshift <- bd.shifts.optim(times, c(rho, 1), grid, start, end, ME=FALSE, survival=1)
