@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,15 +68,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/u3_intro_morphology_2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ae5d55f8a41ff9e4654feece7b8084e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-13f3b9144cfbd4bffe19d1212ca92176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -91,7 +90,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No se han encontrado resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -120,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -163,8 +162,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../images/Logo_UNISSE_blanco.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Modelos probabilísticos en Biología Evolutiva: diversificación, morfología, biogeografía y tendencias</a> 
@@ -347,7 +345,7 @@ window.Quarto = {
   </ul></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -495,7 +493,7 @@ window.Quarto = {
 <section id="organización-de-los-directorios" class="level3">
 <h3 class="anchored" data-anchor-id="organización-de-los-directorios">Organización de los directorios</h3>
 <p>Los archivos proporcionados con este tutorial tienen una estructura específica que facilita la claridad y la organización. Para evitar problemas, <strong>no modifiques la estructura proporcionada</strong>. La carpeta principal se llama <code>tutorial_evolution_2022</code>. Todos los scripts están preparados para ejecutarse desde este directorio principal. Puedes ejecutar el análisis completo abriendo tu terminal en la carpeta <code>tutorial_evolution_2022</code> y ejecutando el siguiente comando:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rb scripts<span class="sc">/</span>TED_tutorial_evolution.Rev</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rb scripts<span class="sc">/</span>TED_tutorial_evolution.Rev</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Sin embargo, el objetivo del tutorial es explicar algunos detalles del código y cómo refleja nuestras decisiones de modelado y distribuciones a priori. Por eso vale la pena tomarse el tiempo necesario y ejecutar el análisis paso a paso.</p>
 <p>El directorio principal contiene tres subdirectorios: <code>data</code>, <code>scripts</code> y <code>output</code>. La carpeta <code>data</code> contiene los alineamientos moleculares, los datos morfológicos y la lista de terminales con información sobre la edad de todos ellos, representada en dos columnas: la edad estratigráfica máxima y la mínima. Puedes explorar la estructura de cada archivo abriéndolo con tu editor de texto. La carpeta <code>scripts</code> contiene todo nuestro código y la carpeta <code>output</code> es donde se almacenarán todos los archivos de resultados.</p>
 <hr>
@@ -504,14 +502,14 @@ window.Quarto = {
 <section id="el-script-principal" class="level2">
 <h2 class="anchored" data-anchor-id="el-script-principal">El script principal</h2>
 <p>Como mencionamos, un análisis bayesiano TED es modular: existen componentes naturales —que constituyen modelos por sí mismos— que se integran en un modelo más grande y complejo. La organización de los scripts refleja esa modularidad. Existe un script principal, <code>TED_tutorial_evolution.Rev</code>, que reúne los distintos componentes llamándolos mediante la función <code>source()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example, don't run this code</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example, don't run this code</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I am running another script called "my_other_script.Rev"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"my_other_script.Rev"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"my_other_script.Rev"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Comencemos con el script principal. Abre el script <strong>TED_tutorial_evolution.Rev</strong> en tu editor de texto. Puedes seguir el tutorial copiando y pegando los fragmentos de código en tu terminal. Asegúrate de ejecutar el código desde la carpeta <code>tutorial_evolution_2022</code>.</p>
 <section id="lectura-y-preparación-de-los-datos" class="level3">
 <h3 class="anchored" data-anchor-id="lectura-y-preparación-de-los-datos">Lectura y preparación de los datos</h3>
 <p>Comenzaremos leyendo todos los datos: las secuencias, los datos morfológicos y los datos de los taxones. También obtendremos información útil, como el número de alineamientos, el número de taxones, el número de ramas del árbol y el número de fósiles en el conjunto de datos.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the sequence data</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the sequence data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get the name of our files</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">v</span>(</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/alignments/ITS_aligned.fasta"</span>,</span>
@@ -541,17 +539,17 @@ window.Quarto = {
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (taxa[i]<span class="fu">.getMinAge</span>() <span class="sc">!=</span> <span class="dv">0</span>) {</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    num_fossils <span class="ot">=</span> num_fossils <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cuando utilizamos más de un marcador molecular, como en este ejemplo, es frecuente que algunos terminales no estén representados en todos los alineamientos; sin embargo, RevBayes requiere que todos los alineamientos contengan los mismos taxones. El siguiente <em>bucle for</em> garantiza que todos los terminales estén presentes en todos los alineamientos.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the alignments do not have the total number of taxa,</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the alignments do not have the total number of taxa,</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to manually add missing taxa to the sequence data:</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>naln) {</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> moledata[i]</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">x.addMissingTaxa</span>(taxa)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  moledata[i] <span class="ot">=</span> x</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A continuación, prepararemos los datos morfológicos. A diferencia de los datos moleculares, que tienen <strong>única y siempre</strong> cuatro estados posibles de carácter (A, C, G, T), los caracteres morfológicos pueden tener un <strong>número diferente de estados</strong>. Más adelante utilizaremos un modelo Mk para la evolución morfológica, que requiere particionar los datos morfológicos según su número de estados. Lo haremos con un bucle for que recorre los posibles números de estados y conserva únicamente los caracteres que presentan un número dado de estados.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, we add missing taxa to the morphological data</span></span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, we add missing taxa to the morphological data</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">morphdata.addMissingTaxa</span>(taxa)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># partition morphological data by number of states</span></span>
@@ -580,28 +578,28 @@ window.Quarto = {
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the number of morphological partitions</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>num_morph_parts <span class="ot">=</span> <span class="fu">morph_partitions.size</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>num_morph_parts <span class="ot">=</span> <span class="fu">morph_partitions.size</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¡Ahora nuestros datos están preparados!</p>
 </section>
 <section id="algunas-particularidades-de-revbayes" class="level3">
 <h3 class="anchored" data-anchor-id="algunas-particularidades-de-revbayes">Algunas particularidades de RevBayes</h3>
 <p>Una parte importante de la escritura de código en RevBayes consiste en especificar los <strong>movimientos (moves)</strong> que utilizará la cadena de Markov Monte Carlo (MCMC) para <strong>proponer cambios</strong> en los valores de los parámetros que estamos estimando. Siempre especificamos al menos un movimiento por parámetro y, en ocasiones, podemos utilizar movimientos que operan sobre más de un parámetro a la vez (por ejemplo, aumentando el valor de uno y disminuyendo el de otro). Normalmente especificamos los movimientos justo después de definir la distribución a priori del parámetro. Mantendremos un registro de todos los movimientos que utilizaremos en nuestro análisis almacenándolos en un solo contenedor: <strong>un vector de movimientos</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create empty vector of moves</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create empty vector of moves</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we will fill it as we specify moves</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>moves <span class="ot">=</span> <span class="fu">VectorMoves</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>moves <span class="ot">=</span> <span class="fu">VectorMoves</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A medida que la MCMC explora el espacio de parámetros, registra los valores de los parámetros que estamos estimando mediante <strong>monitores (monitors)</strong> (funciones que normalmente guardan variables en un archivo). De manera similar al contenedor de movimientos, necesitamos un contenedor para los monitores:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># monitors vector</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># monitors vector</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>monitors <span class="ot">=</span> <span class="fu">VectorMonitors</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El siguiente fragmento de código almacenará en memoria el número <span class="math inline">\(H\)</span>, que posee algunas propiedades matemáticas interesantes, como <span class="math inline">\(\pi\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convenient constants</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>H <span class="ot">=</span> <span class="fu">ln</span>(<span class="dv">10</span>) <span class="sc">/</span> (<span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convenient constants</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>H <span class="ot">=</span> <span class="fu">ln</span>(<span class="dv">10</span>) <span class="sc">/</span> (<span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¡Ya estamos listos para comenzar a especificar nuestro modelo! Si quieres saber más sobre los movimientos, puedes seguir el tutorial <a href="https://revbayes.github.io/tutorials/mcmc/binomial.html">Introducción a MCMC utilizando RevBayes</a>.</p>
 </section>
 </section>
 <section id="el-modelo-de-árbol-temporal" class="level2">
 <h2 class="anchored" data-anchor-id="el-modelo-de-árbol-temporal">1) El modelo de árbol temporal</h2>
 <p>El primer componente del modelo es el modelo de árbol. En el script principal lo llamamos mediante:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/time_tree_model.Rev"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/time_tree_model.Rev"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Para consultar el script, ve a <code>tutorial_evolution_2022/scripts/time_tree_model.Rev</code>. Utilizaremos un árbol basado en un <strong>proceso de nacimiento y muerte fosilizado (Fossilized Birth-Death Process)</strong> (comúnmente llamado <strong>árbol FBD</strong>). En pocas palabras, el proceso de nacimiento y muerte fosilizado más sencillo tiene tres parámetros:</p>
 <ul>
 <li><p>la <strong>tasa de nacimiento <span class="math inline">\(\lambda\)</span></strong> (= especiación cladogenética).</p></li>
@@ -612,54 +610,54 @@ window.Quarto = {
 <p><strong><em>Notas para reflexionar</em>:</strong> ¿Qué opinas? ¿Es un modelo satisfactorio?</p>
 <p>En el tutorial de hoy utilizaremos un proceso FBD de <strong>tasa constante</strong>, en el que la especiación, la extinción y la fosilización son constantes a través del tiempo y entre linajes. Sin embargo, este modelo puede extenderse para incorporar variación en las tasas. Si te interesa conocer más sobre el proceso FBD, te recomiendo consultar <a href="https://revbayes.github.io/tutorials/fbd/fbd_specimen.html">este</a> tutorial y <a href="https://revbayes.github.io/tutorials/ted_workflow/">este</a> otro tutorial.</p>
 <p>Comencemos especificando algunos datos particulares de nuestro conjunto. Primero, dado que no hemos muestreado todos los taxones actuales, especificaremos un parámetro de fracción de muestreo, <strong>rho</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # First we specify some dataset-specific parameters</span></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # First we specify some dataset-specific parameters</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>extant_taxa <span class="ot">=</span> <span class="dv">9</span>                 <span class="co"># total number of extant taxa in the tree</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>total_taxa  <span class="ot">=</span> <span class="dv">2800</span>              <span class="co"># total number of extant taxa in the group</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> extant_taxa<span class="sc">/</span>total_taxa   <span class="co"># sampling fraction</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> extant_taxa<span class="sc">/</span>total_taxa   <span class="co"># sampling fraction</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="el-tiempo-de-origen" class="level3">
 <h3 class="anchored" data-anchor-id="el-tiempo-de-origen">1.1. El tiempo de origen</h3>
 <p>El modelo de árbol temporal requiere especificar un parámetro para el momento en que comienza el proceso FBD. En este caso, especificaremos un tiempo de origen para el linaje troncal que dio lugar a nuestro grupo focal (Solanaceae) y a nuestro grupo externo (Convolvulaceae, representado en nuestros datos por <em>Ipomoea batatas</em>). Especificaremos la edad de ese clado a partir del trabajo de <a href="https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.13264">Magallón et al.&nbsp;(2015)</a>, quienes infirieron una edad del grupo corona de Solanaceae con un intervalo HPD del 95 % entre 85.91 y 100.4 millones de años (Ma). Sin otra información disponible, utilizaremos una distribución a priori uniforme para <code>origin_time</code>, que abarque ese intervalo de edades. También agregaremos un movimiento para este parámetro.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>origin_min <span class="ot">=</span> <span class="fl">85.91</span></span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>origin_min <span class="ot">=</span> <span class="fl">85.91</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>origin_max <span class="ot">=</span> <span class="fl">100.34</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>origin_time <span class="sc">~</span> <span class="fu">dnUniform</span>(origin_min, origin_max)    <span class="co"># Prior</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvSlide</span>( origin_time, <span class="at">weight =</span> <span class="dv">5</span>) )  <span class="co"># Moves</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvSlide</span>( origin_time, <span class="at">weight =</span> <span class="dv">5</span>) )  <span class="co"># Moves</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong><em>Notas para reflexionar</em>:</strong> ¿Se te ocurre otra manera de especificar el punto de inicio del proceso FBD? ¿Utilizarías otra fuente de información?</p>
 </section>
 <section id="tasas-constantes-de-especiación-y-extinción" class="level3">
 <h3 class="anchored" data-anchor-id="tasas-constantes-de-especiación-y-extinción">1.2. Tasas constantes de especiación y extinción</h3>
 <p>Como mencionamos, utilizaremos el modelo de árbol FBD más sencillo, uno en el que las tasas no varían a través del tiempo ni entre linajes. Comenzaremos especificando una <strong>distribución a priori empírica</strong> (es decir, informada por nuestros datos) para la tasa de diversificación, de modo que, en promedio, dé lugar al número total de taxones que observamos actualmente en Solanaceae. La desviación estándar de esta distribución es <span class="math inline">\(H\)</span>, lo que implica que la verdadera tasa de diversificación se encuentra dentro de un orden de magnitud de la media a priori.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empirical prior on the diversification rate</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empirical prior on the diversification rate</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>diversification_prior_mean <span class="ot">&lt;-</span> <span class="fu">ln</span>(total_taxa) <span class="sc">/</span> origin_time</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>diversification_prior_sd   <span class="ot">&lt;-</span> H</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the diversification rate</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>diversification <span class="sc">~</span> <span class="fu">dnLognormal</span>( <span class="fu">ln</span>(diversification_prior_mean) <span class="sc">-</span> diversification_prior_sd <span class="sc">*</span> diversification_prior_sd <span class="sc">*</span> <span class="fl">0.5</span>, diversification_prior_sd)</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># moves on the diversification rate</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(diversification, <span class="at">weight =</span> <span class="fl">1.0</span>) )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(diversification, <span class="at">weight =</span> <span class="fl">1.0</span>) )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Obtendremos la <strong>tasa relativa de extinción</strong> de una distribución a priori uniforme que va de 0 a 1. La tasa de extinción no puede ser negativa. Y si fuese mayor que 1, probablemente no tendríamos ningún linaje en el presente. Después agregamos un movimiento para la tasa relativa de extinción.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the relative extinction rate</span></span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the relative extinction rate</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>relext <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvSlide</span>(relext, <span class="at">weight =</span> <span class="fl">1.0</span>) )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvSlide</span>(relext, <span class="at">weight =</span> <span class="fl">1.0</span>) )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>En este ejemplo optamos por parametrizar nuestro modelo comenzando con distribuciones a priori para la tasa de diversificación y la tasa relativa de extinción, porque es más fácil especificar una distribución a priori para la diversificación que para la especiación. Después transformamos las tasas de diversificación y de extinción relativa en tasas de <strong>especiación</strong> y <strong>extinción</strong>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to speciation and extinction</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to speciation and extinction</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>lambda <span class="sc">:</span><span class="er">=</span> <span class="fu">abs</span>(diversification <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> relext))</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mu     <span class="sc">:</span><span class="er">=</span> <span class="fu">abs</span>(lambda <span class="sc">*</span> relext)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mu     <span class="sc">:</span><span class="er">=</span> <span class="fu">abs</span>(lambda <span class="sc">*</span> relext)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong><em>Notas para reflexionar</em>:</strong> ¿Qué tipos de acontecimientos evolutivos podríamos incorporar si permitimos que estas tasas varíen? ¿Son relevantes esos acontecimientos en todos los casos empíricos?</p>
 </section>
 <section id="la-tasa-constante-de-fosilización" class="level3">
 <h3 class="anchored" data-anchor-id="la-tasa-constante-de-fosilización">1.3. La tasa constante de fosilización</h3>
 <p>Una vez más, utilizamos un modelo de tasa constante; por lo tanto, suponemos que la tasa de fosilización es constante a través del tiempo y entre linajes. Utilizaremos una distribución a priori empírica centrada en una tasa de fosilización tal que, en promedio, esperemos observar el mismo número de fósiles que en nuestro conjunto de datos empíricos:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empirical prior on the fossilization rate</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empirical prior on the fossilization rate</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fossilization_prior_mean <span class="ot">&lt;-</span> num_fossils <span class="sc">*</span> diversification_prior_mean <span class="sc">/</span> (<span class="fu">exp</span>(diversification_prior_mean <span class="sc">*</span> origin_time) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>fossilization_prior_sd   <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> H</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>fossilization_prior_sd   <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> H</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Después obtenemos la tasa de fosilización <span class="math inline">\(\psi\)</span> de una distribución lognormal y agregamos algunos movimientos para este parámetro:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the fossilization rate</span></span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the fossilization rate</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>psi <span class="sc">~</span> <span class="fu">dnLognormal</span>( <span class="fu">ln</span>(fossilization_prior_mean) <span class="sc">-</span> fossilization_prior_sd <span class="sc">*</span> fossilization_prior_sd <span class="sc">*</span> <span class="fl">0.5</span>, fossilization_prior_sd)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add moves</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(psi, <span class="at">weight =</span> <span class="fl">1.0</span>) )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(psi, <span class="at">weight =</span> <span class="fl">1.0</span>) )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora que hemos definido todos los elementos de un árbol FBD (tiempo de inicio y tasas de especiación, extinción y fosilización), podemos crear nuestra distribución de árboles FBD <code>dnFBDP</code>, de la que muestrearemos nuestros árboles temporales:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the FBD tree</span></span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the FBD tree</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>timetree <span class="sc">~</span> <span class="fu">dnFBDP</span>(</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">originAge =</span> origin_time,</span>
@@ -669,22 +667,22 @@ window.Quarto = {
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">condition =</span> <span class="st">"survival"</span>,</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">taxa =</span> taxa,</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">rho =</span> rho</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Como con cualquier parámetro que estemos estimando, debemos configurar algunos movimientos sobre el árbol. De hecho, la topología del árbol es difícil de estimar, así que aplicaremos muchos movimientos sobre ella. Comencemos por la topología y las longitudes de rama:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proposals on the tree topology</span></span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proposals on the tree topology</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvSubtreeScale</span>(timetree, <span class="at">weight=</span>ntax<span class="sc">/</span><span class="fl">5.0</span>) )</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvFNPR</span>(timetree,                       <span class="at">weight =</span> ntax                      ) )</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvNarrow</span>(timetree,                     <span class="at">weight =</span> <span class="dv">5</span> <span class="sc">*</span> ntax                  ) )</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvNodeTimeSlideUniform</span>(timetree,       <span class="at">weight =</span> <span class="dv">5</span> <span class="sc">*</span> ntax                  ) )</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvSubtreeScale</span>(timetree,               <span class="at">weight =</span> <span class="dv">5</span> <span class="sc">*</span> ntax                  ) )</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvRootTimeSlideUniform</span>(timetree,       <span class="at">weight =</span> ntax, <span class="at">origin =</span> origin_time) )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvRootTimeSlideUniform</span>(timetree,       <span class="at">weight =</span> ntax, <span class="at">origin =</span> origin_time) )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Como en este modelo los fósiles pueden ser ancestros muestreados, agregaremos algunos movimientos para este parámetro y mantendremos un registro de él (es decir, almacenaremos esa variable en la memoria de nuestra computadora).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MCMC proposals on whether fossils are sampled ancestors</span></span>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MCMC proposals on whether fossils are sampled ancestors</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvCollapseExpandFossilBranch</span>(timetree, <span class="at">weight =</span> num_fossils, <span class="at">origin =</span> origin_time) )</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># keep track of number of sampled ancestors</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>num_sampled_ancestors <span class="sc">:</span><span class="er">=</span> <span class="fu">timetree.numSampledAncestors</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>num_sampled_ancestors <span class="sc">:</span><span class="er">=</span> <span class="fu">timetree.numSampledAncestors</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A continuación, agregaremos algunos movimientos sobre la edad de los fósiles para incorporar la incertidumbre estratigráfica que expresamos inicialmente en <code>taxa.tsv</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MCMC proposals on the fossil ages</span></span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MCMC proposals on the fossil ages</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>fossils <span class="ot">=</span> <span class="fu">timetree.getFossils</span>()</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">fossils.size</span>()) {</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -701,16 +699,16 @@ window.Quarto = {
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specify a proposal on the fossil age</span></span>
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moves.append</span>( <span class="fu">mvFossilTimeSlideUniform</span>(timetree, origin_time, fossils[i], <span class="at">weight =</span> <span class="fl">1.0</span>) )</span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Y nuestro último movimiento es un movimiento conjunto sobre el árbol y las tasas de rama. Los movimientos conjuntos son útiles cuando tenemos parámetros correlacionados.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a joint proposal for the tree (and later the branch rates)</span></span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a joint proposal for the tree (and later the branch rates)</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvUpDownScale</span>(<span class="at">weight=</span><span class="dv">10</span>, <span class="at">tuneTarget=</span><span class="fl">0.234</span>, <span class="at">lambda=</span><span class="fl">0.01</span>) )</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>tree_scale_move_index <span class="ot">=</span> <span class="fu">moves.size</span>()</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>moves[tree_scale_move_index]<span class="fu">.addVariable</span>(timetree,    <span class="at">up=</span>false)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>moves[tree_scale_move_index]<span class="fu">.addVariable</span>(origin_time, <span class="at">up=</span>false)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>moves[tree_scale_move_index]<span class="fu">.addVariable</span>(origin_time, <span class="at">up=</span>false)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Finalmente, mantendremos un registro de la longitud del árbol (TL) a lo largo de nuestro análisis, por lo que la agregaremos:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep track of the tree length</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>TL <span class="sc">:</span><span class="er">=</span> <span class="fu">timetree.treeLength</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep track of the tree length</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>TL <span class="sc">:</span><span class="er">=</span> <span class="fu">timetree.treeLength</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¡Hemos terminado de especificar nuestro modelo de árbol temporal!</p>
 <p><strong><em>Notas para reflexionar</em>:</strong> La <strong>tasa de fosilización</strong> es una variable que probablemente recibió un nombre poco adecuado. Muchos paleontólogos sostendrían que sería mejor llamarla <strong>tasa de recuperación de fósiles</strong>. ¿Qué opinas? ¿Tiene esto implicaciones para nuestras decisiones de modelado?</p>
 </section>
@@ -718,10 +716,10 @@ window.Quarto = {
 <section id="el-modelo-de-evolución-molecular" class="level2">
 <h2 class="anchored" data-anchor-id="el-modelo-de-evolución-molecular">2) El modelo de evolución molecular</h2>
 <p>De vuelta en el script principal, especificaremos nuestro <strong>modelo de evolución molecular</strong> (es decir, <strong>la manera</strong> en la que ocurren los cambios moleculares) con el siguiente fragmento de código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/mol_evol_model.Rev"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/mol_evol_model.Rev"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Revisemos el código. Ve a <code>tutorial_evolution_2022/scripts/mol_evol_model.Rev</code>. Utilizaremos un modelo estándar de evolución molecular <strong>GTR + Gamma</strong>, particionado por marcador. En nuestro modelo especificaremos una <strong>matriz Q</strong> (una matriz de tasas instantáneas) para cada marcador. Las matrices Q contienen la tasa a la que cada nucleótido cambia a otro nucleótido en un instante determinado (es decir, un intervalo de tiempo <strong>muy corto</strong>). Y, como esperamos que distintas posiciones de nuestro alineamiento cambien a tasas diferentes, utilizaremos una <strong>distribución gamma discretizada</strong> para incorporar esta variación.</p>
 <p>Como tenemos tres marcadores moleculares y necesitamos una matriz Q (<code>mole_Q</code>) y tasas de sitio moleculares (<code>mole_site_rates</code>) para cada uno, utilizaremos un bucle for en nuestro código. Observa que también agregaremos algunos movimientos para cada parámetro dentro del bucle.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q matrix per partition</span></span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q matrix per partition</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for each alignment</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>naln) {</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the stationary frequency</span></span>
@@ -741,57 +739,57 @@ window.Quarto = {
 <span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(alpha[i], <span class="at">lambda=</span><span class="fl">0.1</span>,  <span class="at">weight=</span><span class="fl">1.0</span>) )</span>
 <span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(alpha[i], <span class="at">lambda=</span><span class="dv">1</span>,    <span class="at">weight=</span><span class="fl">1.0</span>) )</span>
 <span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  mole_site_rates[i] <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDiscretizeGamma</span>( alpha[i], alpha[i], <span class="dv">4</span>)</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¡Además, esperamos que las tasas de evolución molecular varíen entre marcadores! Por lo tanto, incorporaremos esta variación creando un multiplicador de tasa (<code>mole_relative_rates</code>) que después utilizaremos para escalar la tasa de sustitución entre loci.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we allow different markers evolve at different rates</span></span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we allow different markers evolve at different rates</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># relative-rate multipliers</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>mole_proportional_rates <span class="sc">~</span> <span class="fu">dnDirichlet</span>(<span class="fu">rep</span>(<span class="dv">1</span>, naln))</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvBetaSimplex</span>(mole_proportional_rates, <span class="at">weight =</span> naln) )</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># rescale the rates so the mean is 1</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>mole_relative_rates <span class="sc">:</span><span class="er">=</span> <span class="fu">abs</span>(mole_proportional_rates <span class="sc">*</span> naln)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>mole_relative_rates <span class="sc">:</span><span class="er">=</span> <span class="fu">abs</span>(mole_proportional_rates <span class="sc">*</span> naln)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>No he entrado en muchos detalles sobre el modelo de evolución molecular, pero, si quieres saber más, puedes visitar <a href="https://revbayes.github.io/tutorials/ctmc/">este tutorial</a> para obtener más información sobre los modelos de evolución molecular o <a href="https://revbayes.github.io/tutorials/partition/">este tutorial</a> para comprender por qué y cómo particionamos los datos moleculares.</p>
 <p><strong><em>Notas para reflexionar</em>:</strong> Como sucede con todos los componentes del modelo bayesiano TED, puedes elegir entre diferentes modelos y maneras de parametrizarlos. En términos prácticos, los parámetros de evolución molecular de un modelo GTR + G suelen estar entre los más fáciles de estimar dentro de este marco.</p>
 </section>
 <section id="el-modelo-de-reloj-molecular-lognormal-no-correlacionado-relajado" class="level2">
 <h2 class="anchored" data-anchor-id="el-modelo-de-reloj-molecular-lognormal-no-correlacionado-relajado">3) El modelo de reloj molecular: lognormal no correlacionado relajado</h2>
 <p>De regreso en el script principal, especificaremos nuestro <strong>modelo de reloj molecular</strong> (es decir, la <strong>tasa</strong> a la que ocurren los cambios moleculares por unidad de tiempo) llamando al script correspondiente:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/mol_clock_model.Rev"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/mol_clock_model.Rev"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Revisemos el código del script <code>scripts/mol_clock_model.Rev</code>. El <strong>modelo de reloj molecular</strong> describe la tasa a la que las secuencias evolucionan a lo largo de los linajes. En este tutorial utilizaremos un <strong>modelo de reloj lognormal no correlacionado (UCLN)</strong>. Este modelo supone que <strong>cada rama tiene su propia tasa</strong>; que esas tasas no están correlacionadas (a diferencia de los relojes locales, cuyas tasas dependen del clado) y que las tasas proceden de una distribución lognormal.</p>
 <p>Comencemos definiendo la distribución lognormal de la que obtendremos las tasas de rama. Para definirla necesitamos dos parámetros: la media (<code>mole_clock_rate_mean</code>) y la desviación estándar (<code>mole_clock_rate_sd</code>). Agregaremos movimientos para cada uno:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the clock mean such as its log distribution is uniform</span></span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the clock mean such as its log distribution is uniform</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>mole_clock_rate_mean <span class="sc">~</span> <span class="fu">dnLoguniform</span>(<span class="fl">1e-10</span>, <span class="fl">1e1</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(mole_clock_rate_mean) )</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mole_clock_rate_mean.setValue</span>(<span class="fl">1e-7</span>)</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the standard deviation from an exponential</span></span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>mole_clock_rate_sd <span class="sc">~</span> <span class="fu">dnExponential</span>(<span class="fu">abs</span>(<span class="dv">1</span> <span class="sc">/</span> H))</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(mole_clock_rate_sd) )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(mole_clock_rate_sd) )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora podemos obtener las tasas individuales de las ramas (<code>mole_branch_rates</code>) —y agregar algunos movimientos— utilizando un bucle for. Observa que todas las tasas individuales de rama se obtienen de la distribución compartida que especificamos anteriormente:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the branch-specific rates</span></span>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the branch-specific rates</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nbranch) {</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw the log of the rate</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  mole_branch_rates[i] <span class="sc">~</span> <span class="fu">dnLognormal</span>(</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ln</span>(mole_clock_rate_mean) <span class="sc">-</span> mole_clock_rate_sd <span class="sc">*</span> mole_clock_rate_sd <span class="sc">*</span> <span class="fl">0.5</span>, mole_clock_rate_sd)</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moves.append</span>( <span class="fu">mvScale</span>(mole_branch_rates[i]) )</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Calculemos ahora la media de todas las tasas moleculares de las ramas. Mantendremos un registro de este valor en los resultados de nuestro análisis.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean of the branch rate</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>mole_branch_rate_mean <span class="sc">:</span><span class="er">=</span> <span class="fu">mean</span>(mole_branch_rates)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean of the branch rate</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>mole_branch_rate_mean <span class="sc">:</span><span class="er">=</span> <span class="fu">mean</span>(mole_branch_rates)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¿Recuerdas el movimiento conjunto que empezamos a configurar en el modelo de árbol temporal? Terminemos de configurarlo para que proponga simultáneamente cambios en el árbol (lo que ya hicimos) y en las tasas de rama (lo que estamos haciendo aquí). Este movimiento tiene sentido porque podemos esperar que, dado un cierto número de sustituciones, si aumenta la tasa de sustitución (los cambios ocurren en menos tiempo), el árbol temporal deba ser más joven.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add branch rates to joint scale move on tree</span></span>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add branch rates to joint scale move on tree</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>moves[tree_scale_move_index]<span class="fu">.addVariable</span>(mole_branch_rates, <span class="at">up=</span>true)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>moves[tree_scale_move_index]<span class="fu">.addVariable</span>(mole_clock_rate_mean, <span class="at">up=</span>true)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>moves[tree_scale_move_index]<span class="fu">.addVariable</span>(mole_clock_rate_mean, <span class="at">up=</span>true)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong><em>Notas para reflexionar</em>:</strong> Los modelos de reloj son un componente muy importante de cualquier análisis de datación: infieren el número esperado de cambios de carácter por unidad de tiempo, lo que nos permite convertir las longitudes de rama expresadas en el número esperado de cambios (procedentes del modelo de evolución molecular) al tiempo que observamos en el árbol temporal. Los parámetros del modelo de reloj (las tasas de rama) son muy sensibles a nuestras distribuciones a priori y suelen ser difíciles de estimar. Puedes aprender más sobre los relojes moleculares <a href="https://revbayes.github.io/tutorials/clocks/">en este tutorial</a>.</p>
 <section id="la-ctmc-para-los-datos-moleculares" class="level3">
 <h3 class="anchored" data-anchor-id="la-ctmc-para-los-datos-moleculares">La CTMC para los datos moleculares</h3>
 <p>Hasta este punto del tutorial, hemos especificado por completo nuestro modelo molecular. Es decir, hemos establecido las distribuciones a priori y las relaciones entre todos los parámetros que describen cómo evolucionan las secuencias moleculares en el árbol temporal.</p>
 <p>Ahora utilizaremos la función <code>dnPhyloCTMC()</code> para crear una distribución de alineamientos que depende de los parámetros de nuestro modelo TED (el <strong>árbol temporal</strong> <code>timetree</code>; nuestros parámetros de evolución molecular <code>mole_Q</code>, <code>mole_site_rates</code> y <code>mole_relative_rates</code>; y nuestro parámetro del reloj molecular <code>mole_branch_rates</code>). Esta distribución define la probabilidad de los datos (los alineamientos) dados los valores de los parámetros, lo que en ocasiones se denomina función de verosimilitud (likelihood). Para asignar nuestro alineamiento observado a esta distribución, utilizamos <code>.clamp(data)</code>.</p>
 <p>Como puedes ver a continuación, lo hacemos para cada marcador mediante un bucle for:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the CTMC for molecular data</span></span>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the CTMC for molecular data</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>naln) {</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  seq[i] <span class="sc">~</span> <span class="fu">dnPhyloCTMC</span>(timetree, mole_Q[i], <span class="at">branchRates =</span> mole_branch_rates, <span class="at">siteRates =</span> mole_site_rates[i] <span class="sc">*</span> mole_relative_rates[i])</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  seq[i]<span class="fu">.clamp</span>( moledata[i] )</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="el-modelo-de-evolución-morfológica" class="level2">
@@ -799,16 +797,16 @@ window.Quarto = {
 <p>Ahora cambiemos de tema y pensemos en nuestro <strong>modelo de evolución morfológica</strong>. Tal como hicimos con los datos moleculares, especificaremos un modelo que describa <strong>cómo ocurren los cambios morfológicos</strong> en nuestros linajes.</p>
 <p>Vale la pena detenernos un momento para hablar de que los caracteres morfológicos son más difíciles de modelar porque no se pueden generalizar fácilmente. Por ejemplo, a diferencia de los caracteres moleculares, distintos caracteres morfológicos pueden presentar números diferentes de estados, y no está claro cuál es el mejor esquema de partición. Modelar con precisión la evolución de los caracteres morfológicos requiere experiencia en el grupo de estudio y en el modelado estadístico. Lo cierto es que la evolución morfológica es un campo de investigación activo y prometedor. Si quieres conocer más sobre este tema, puedes comenzar con <a href="https://revbayes.github.io/tutorials/morph_tree/">este tutorial</a>.</p>
 <p>Volviendo al script principal, ejecutaremos nuestro <strong>modelo Mk de evolución morfológica</strong> llamando al script:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/morph_evol_model.Rev"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/morph_evol_model.Rev"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puedes revisar el código de este componente del modelo bayesiano TED principal en <code>scripts/morph_evol_model.Rev</code>.</p>
 <p>Hoy utilizaremos el <strong>modelo Mk</strong> para nuestros caracteres morfológicos. Este modelo describe el cambio de un estado de carácter a otro mediante una matriz (similar a la matriz Q), de modo que necesitamos una matriz de 2 × 2 para modelar la evolución de un carácter con dos estados; una matriz de 3 × 3 para modelar la evolución de un carácter con tres estados, y así sucesivamente. Esa es la razón práctica por la que necesitábamos particionar nuestra matriz morfológica según el número de estados de carácter.</p>
 <p>Independientemente del número de estados, el modelo Mk supone que todos los cambios entre los estados de carácter ocurren a la <strong>misma tasa</strong>. Es una extensión del modelo JC de evolución de caracteres, razón por la cual utilizamos la función <code>fnJC</code>. Una vez más, observa que lo hacemos dentro de un bucle for, de modo que tenemos una <code>morph_Q</code> por cada partición de datos morfológicos.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for each morphological partition</span></span>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for each morphological partition</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_morph_parts) {</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    morph_Q[i] <span class="ot">&lt;-</span> <span class="fu">fnJC</span>(nc[i])</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>No esperamos que diferentes caracteres evolucionen a la misma tasa. Relajaremos este supuesto del modelo Mk agregando un multiplicador de tasa extraído de una distribución gamma discretizada. Esto es análogo al modelo <strong>+ Gamma</strong> de evolución molecular.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specifying the gamma parameter</span></span>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specifying the gamma parameter</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># number of categories</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>num_rate_cats_morph <span class="ot">=</span> <span class="dv">4</span>         </span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># prior</span></span>
@@ -816,84 +814,84 @@ window.Quarto = {
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># moves</span></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvScale</span>(morph_site_rate_alpha) )</span>
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># site rates</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>morph_site_rates <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDiscretizeGamma</span>(morph_site_rate_alpha, morph_site_rate_alpha, num_rate_cats_morph)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>morph_site_rates <span class="sc">:</span><span class="er">=</span> <span class="fu">fnDiscretizeGamma</span>(morph_site_rate_alpha, morph_site_rate_alpha, num_rate_cats_morph)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong><em>Notas para reflexionar</em>:</strong> ¿Qué otras particularidades tienen los conjuntos de datos morfológicos? Tal vez algunas relacionadas con la manera en que nosotros, los biólogos, recopilamos los datos. ¡Así es! ¡Tendemos a enfocarnos únicamente en los caracteres que varían entre los terminales! Te invito a leer sobre este <strong>sesgo de ascertainment (sesgo de selección de caracteres)</strong> <a href="https://revbayes.github.io/tutorials/morph_tree/#sec_ascertainment_bias">aquí</a>.</p>
 </section>
 <section id="el-modelo-de-reloj-morfológico" class="level2">
 <h2 class="anchored" data-anchor-id="el-modelo-de-reloj-morfológico">5) El modelo de reloj morfológico</h2>
 <p>De vuelta en el script principal, especificaremos nuestro <strong>modelo de reloj morfológico</strong> llamando al siguiente script:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/morph_clock_model.Rev"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/morph_clock_model.Rev"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>En ese script describiremos <strong>la tasa</strong> a la que evolucionan los caracteres morfológicos a lo largo de los linajes.</p>
 <p>Supondremos que la tasa media de evolución morfológica se obtiene de una distribución a priori loguniforme. Por lo tanto, estableceremos la distribución a priori y agregaremos algunos movimientos de la siguiente manera:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the log of the rate from a uniform distribution</span></span>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the log of the rate from a uniform distribution</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>morph_clock_rate_log <span class="sc">~</span> <span class="fu">dnUniform</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">1</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">moves.append</span>( <span class="fu">mvSlide</span>(morph_clock_rate_log) )</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">morph_clock_rate_log.setValue</span>(<span class="sc">-</span><span class="dv">7</span>)</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># exponentiate</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>morph_clock_rate <span class="sc">:</span><span class="er">=</span> <span class="fu">exp</span>(morph_clock_rate_log)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>morph_clock_rate <span class="sc">:</span><span class="er">=</span> <span class="fu">exp</span>(morph_clock_rate_log)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>En este tutorial supondremos que el reloj morfológico y el reloj molecular están <strong>correlacionados</strong>. Es decir, supondremos que un linaje cuyas secuencias evolucionan más rápido también tiene una morfología que evoluciona más rápido en comparación con otros linajes. Parametrizaremos esto definiendo las tasas morfológicas individuales de rama (<code>morph_branch_rates</code>) como una función de las tasas moleculares de rama (<code>mole_branch_rates</code>), escaladas por la tasa media de evolución morfológica relativa a la tasa media de evolución molecular.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the branch-specific morphological rates</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>morph_branch_rates <span class="sc">:</span><span class="er">=</span> morph_clock_rate<span class="sc">/</span>mole_branch_rate_mean <span class="sc">*</span> mole_branch_rates </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the branch-specific morphological rates</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>morph_branch_rates <span class="sc">:</span><span class="er">=</span> morph_clock_rate<span class="sc">/</span>mole_branch_rate_mean <span class="sc">*</span> mole_branch_rates </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong><em>Notas para reflexionar</em>:</strong> ¿Crees que las tasas de cambio molecular y morfológico están correlacionadas? ¿Cómo lo pondrías a prueba?</p>
 <section id="la-ctmc-para-los-datos-morfológicos" class="level3">
 <h3 class="anchored" data-anchor-id="la-ctmc-para-los-datos-morfológicos">La CTMC para los datos morfológicos</h3>
 <p>Como hicimos con la parte molecular del modelo, ahora debemos especificar nuestra CTMC para incorporar los datos morfológicos a nuestro modelo. De vuelta en el script principal, utilizaremos un bucle for para hacerlo con cada partición:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the CTMC for morphological data</span></span>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the CTMC for morphological data</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">morph_Q.size</span>()){</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  morph[i] <span class="sc">~</span> <span class="fu">dnPhyloCTMC</span>(timetree, morph_Q[i], <span class="at">branchRates =</span> morph_branch_rates, <span class="at">siteRates =</span> morph_site_rates, <span class="at">coding  =</span> <span class="st">"variable"</span>, <span class="at">type =</span> <span class="st">"Standard"</span>)</span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  morph[i]<span class="fu">.clamp</span> ( morph_partitions[i] )</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Observa que esta vez agregamos el argumento <code>coding = "variable"</code> para incorporar el hecho de que analizamos únicamente caracteres variables, y <code>type = "Standard"</code> para indicar a RevBayes que se trata de datos morfológicos categóricos y no de ADN.</p>
 </section>
 </section>
 <section id="ejecución-del-análisis" class="level2">
 <h2 class="anchored" data-anchor-id="ejecución-del-análisis">Ejecución del análisis</h2>
 <p>Lo último que tenemos que hacer es almacenar nuestro modelo completamente especificado, junto con los datos asociados, en un objeto llamado <code>my_model</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>my_model <span class="ot">=</span> <span class="fu">model</span>(timetree)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>my_model <span class="ot">=</span> <span class="fu">model</span>(timetree)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora que hemos <strong>especificado por completo</strong> nuestro <strong>modelo bayesiano TED</strong> (¡bien!), estamos listos para ejecutar el análisis. El código siguiente <strong><em>indica a RevBayes</em></strong> cómo ejecutar nuestra MCMC. Por ejemplo, durante cuánto tiempo (es decir, cuántas generaciones), con qué frecuencia y dónde guardar los resultados, y si debe mostrar información en la pantalla de nuestra computadora mientras se ejecuta el análisis.</p>
 <p>Antes de comenzar a definir estos parámetros, vale la pena mencionar que puedes consultar <a href="https://revbayes.github.io/tutorials/mcmc/binomial.html">este tutorial</a> si necesitas repasar qué es una MCMC y cómo funciona.</p>
 <p>Desde una perspectiva empírica, debes recordar que una <strong>MCMC</strong> (Markov chain Monte Carlo) utiliza un algoritmo (el algoritmo de Metropolis-Hastings) para <strong>proponer cambios</strong> (¡sí, aquí es donde entran en juego todos esos movimientos que configuraste!) en los parámetros de un modelo. El <strong>algoritmo de Metropolis-Hastings</strong> está diseñado para que los cambios propuestos se <strong>acepten siempre</strong> cuando aumentan la <strong>probabilidad posterior</strong> del parámetro y, en ocasiones, también cuando no la aumentan. Pero lo más importante es que la MCMC <em>visita</em> los valores de los parámetros <strong>de manera proporcional a su probabilidad posterior (PP)</strong>. Por lo tanto, los valores con una PP más alta se visitarán <strong>con mayor frecuencia</strong>. Así, cuando visualizamos la densidad de los valores visitados por la MCMC (por ejemplo, en Tracer), podemos obtener una estimación del valor del parámetro y del error asociado.</p>
 <p><img src="../images/u3_PatMorph/paleobotany/figura_02.png" class="img-fluid"></p>
 <p><strong>Fig. 2.</strong> Densidad marginal de un parámetro.</p>
 <p>Comencemos especificando dónde queremos almacenar los resultados del análisis. Los archivos se guardarán en un directorio llamado <code>output/run_1</code>. Tener una carpeta adicional (<code>run_1</code>) resulta especialmente útil cuando realizas varias ejecuciones de un mismo análisis. Por ejemplo, tal vez estés probando versiones ligeramente diferentes de un análisis que después quieres comparar.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specifying the output directory</span></span>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specifying the output directory</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>output_dir      <span class="ot">=</span> <span class="st">"output"</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>output_extra    <span class="ot">=</span> <span class="st">"run_1"</span> <span class="co"># change the name as you wish</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>output_filename <span class="ot">=</span> output_dir <span class="sc">+</span> <span class="st">"/"</span> <span class="sc">+</span> output_extra <span class="sc">+</span> <span class="st">"/"</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>output_filename <span class="ot">=</span> output_dir <span class="sc">+</span> <span class="st">"/"</span> <span class="sc">+</span> output_extra <span class="sc">+</span> <span class="st">"/"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Por lo general, la MCMC se ejecutará durante miles de generaciones. Podemos decidir si queremos almacenar o no cada valor de parámetro que visite la MCMC. Aquí guardaremos los valores cada 10 generaciones:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print generation every 10 iteration</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>printgen <span class="ot">&lt;-</span> <span class="dv">10</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print generation every 10 iteration</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>printgen <span class="ot">&lt;-</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>También necesitamos configurar los monitores (es decir, aquello de lo que la computadora mantendrá un registro). En principio, la MCMC puede ejecutarse sin almacenar <strong>ninguno</strong> de los estados que visita. Tenemos que indicarle que muestre los estados en la pantalla de nuestra computadora:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnScreen</span>(<span class="at">printgen =</span> printgen) )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnScreen</span>(<span class="at">printgen =</span> printgen) )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>En un archivo:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">filename  =</span> output_filename <span class="sc">+</span> <span class="st">"params.log"</span>, <span class="at">printgen =</span> printgen, <span class="at">exclude =</span> [<span class="st">"F"</span>]) )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnModel</span>(<span class="at">filename  =</span> output_filename <span class="sc">+</span> <span class="st">"params.log"</span>, <span class="at">printgen =</span> printgen, <span class="at">exclude =</span> [<span class="st">"F"</span>]) )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Y también queremos un archivo separado para los árboles:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnFile</span>(<span class="at">filename   =</span> output_filename <span class="sc">+</span> <span class="st">"tree.trees"</span>, <span class="at">printgen =</span> printgen, timetree) )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monitors.append</span>( <span class="fu">mnFile</span>(<span class="at">filename   =</span> output_filename <span class="sc">+</span> <span class="st">"tree.trees"</span>, <span class="at">printgen =</span> printgen, timetree) )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A continuación, indicaremos a la MCMC cuántas generaciones ejecutará. Una generación corresponde aproximadamente a realizar cada propuesta un número de veces proporcional a su peso. En este ejemplo ejecutaremos la MCMC durante 20 000 generaciones.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ITERATIONS <span class="ot">=</span> <span class="dv">20000</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ITERATIONS <span class="ot">=</span> <span class="dv">20000</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>RevBayes ofrece la opción de ejecutar una cadena de <strong>burn-in</strong>. Esta cadena optimiza los movimientos sobre los parámetros para conseguir una mezcla adecuada.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>BURNIN     <span class="ot">=</span> <span class="dv">1000</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>BURNIN     <span class="ot">=</span> <span class="dv">1000</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A continuación, almacenamos toda la información de nuestro análisis MCMC en un objeto llamado <code>my_mcmc</code>. Observa que los argumentos son el modelo, los monitores y los movimientos.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>my_mcmc <span class="ot">=</span> <span class="fu">mcmc</span>(my_model, monitors, moves)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>my_mcmc <span class="ot">=</span> <span class="fu">mcmc</span>(my_model, monitors, moves)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Primero ejecutamos nuestra cadena de burn-in:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mcmc.burnin</span>(BURNIN, <span class="at">tuningInterval=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mcmc.burnin</span>(BURNIN, <span class="at">tuningInterval=</span><span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¡Y ahora ejecutamos nuestra MCMC (¡bien!):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mcmc.run</span>(ITERATIONS)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mcmc.run</span>(ITERATIONS)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>En este punto, el análisis comenzará a ejecutarse y a mostrar en pantalla los valores de nuestros parámetros cada 10 generaciones. Si iniciaste el análisis al comienzo del tutorial ejecutando el script principal, puede que ya haya terminado. Si no, ten paciencia. Puede tardar un poco.</p>
 <section id="generación-de-árboles-resumen" class="level3">
 <h3 class="anchored" data-anchor-id="generación-de-árboles-resumen">Generación de árboles resumen</h3>
 <p>El último fragmento de código de nuestro script principal genera árboles resumen. Una vez que haya terminado la MCMC, leeremos el archivo que contiene los árboles. Observa que especificamos que estos árboles son árboles temporales con el argumento <code>"clock"</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Making a summary tree:</span></span>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Making a summary tree:</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read trace</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>full_trees <span class="ot">=</span> <span class="fu">readTreeTrace</span>(output_filename <span class="sc">+</span> <span class="st">"tree.trees"</span>, <span class="st">"clock"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>full_trees <span class="ot">=</span> <span class="fu">readTreeTrace</span>(output_filename <span class="sc">+</span> <span class="st">"tree.trees"</span>, <span class="st">"clock"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Después calculamos el <strong>árbol de máxima credibilidad de clados (MCC, Maximum Clade Credibility)</strong>. Se trata de un árbol de consenso que contiene los clados con el mayor soporte en nuestra muestra posterior de árboles (sí, ¡en nuestros 2 000 árboles muestreados!).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the Maximum credibility tree (MCC)</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mccTree</span>(full_trees, output_filename <span class="sc">+</span> <span class="st">"MCC_tree.tre"</span>, <span class="at">conditionalAges =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the Maximum credibility tree (MCC)</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mccTree</span>(full_trees, output_filename <span class="sc">+</span> <span class="st">"MCC_tree.tre"</span>, <span class="at">conditionalAges =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Tal vez también queramos observar el <strong>árbol de máxima probabilidad a posteriori (MAP, Maximum a Posteriori)</strong>: el árbol de la muestra que tiene la probabilidad posterior más alta. No es un árbol de consenso, sino uno de los árboles de nuestra muestra.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get the Maximum a posteriori tree (MAP)</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mapTree</span>(full_trees, output_filename <span class="sc">+</span> <span class="st">"MAP_tree.tre"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get the Maximum a posteriori tree (MAP)</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mapTree</span>(full_trees, output_filename <span class="sc">+</span> <span class="st">"MAP_tree.tre"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
@@ -903,7 +901,7 @@ window.Quarto = {
 <section id="lectura-de-los-resultados" class="level3">
 <h3 class="anchored" data-anchor-id="lectura-de-los-resultados">Lectura de los resultados</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías necesarias</span></span>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar las librerías necesarias</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rwty)</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RevGadgets)</span>
 <span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -917,17 +915,17 @@ window.Quarto = {
 <span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Descartar el 10 % inicial de las muestras guardadas</span></span>
 <span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>burnin <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">nrow</span>(parametros) <span class="sc">*</span> <span class="fl">0.10</span>)</span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> parametros[<span class="sc">-</span><span class="fu">seq_len</span>(burnin), ]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> parametros[<span class="sc">-</span><span class="fu">seq_len</span>(burnin), ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="evaluación-de-la-cadena-mcmc" class="level3">
 <h3 class="anchored" data-anchor-id="evaluación-de-la-cadena-mcmc">Evaluación de la cadena MCMC</h3>
 <p>La traza permite reconocer tendencias y problemas de mezcla. El tamaño efectivo de muestra (ESS) resume la autocorrelación de las estimaciones.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Traza del tiempo de origen del proceso FBD</span></span>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Traza del tiempo de origen del proceso FBD</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(parametros<span class="sc">$</span>Iteration, parametros<span class="sc">$</span>origin_time,</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">xlab =</span> <span class="st">"Generación"</span>, <span class="at">ylab =</span> <span class="st">"Tiempo de origen (Ma)"</span>)</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> parametros<span class="sc">$</span>Iteration[burnin <span class="sc">+</span> <span class="dv">1</span>], <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> parametros<span class="sc">$</span>Iteration[burnin <span class="sc">+</span> <span class="dv">1</span>], <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -935,9 +933,9 @@ window.Quarto = {
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ESS para parámetros seleccionados</span></span>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ESS para parámetros seleccionados</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">effectiveSize</span>(<span class="fu">mcmc</span>(posterior[, <span class="fu">c</span>(<span class="st">"origin_time"</span>, <span class="st">"lambda"</span>, <span class="st">"mu"</span>, <span class="st">"psi"</span>)]))</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>ess</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>ess</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>origin_time      lambda          mu         psi 
   221.28109    30.54076    30.53758   864.99325 </code></pre>
@@ -948,18 +946,18 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="distribución-posterior-del-tiempo-de-origen">Distribución posterior del tiempo de origen</h3>
 <p><code>origin_time</code> es la edad de origen del proceso FBD; no representa necesariamente la edad del nodo raíz.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen posterior del tiempo de origen</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(posterior<span class="sc">$</span>origin_time, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen posterior del tiempo de origen</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(posterior<span class="sc">$</span>origin_time, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     2.5%       50%     97.5% 
  86.37701  94.10230 100.07180 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar la distribución posterior</span></span>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar la distribución posterior</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(posterior, <span class="fu">aes</span>(<span class="at">x =</span> origin_time)) <span class="sc">+</span></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"grey75"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(posterior<span class="sc">$</span>origin_time), <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
 <span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo de origen (Ma)"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo de origen (Ma)"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -972,7 +970,7 @@ window.Quarto = {
 <section id="exploración-de-topologías-con-rwty" class="level3">
 <h3 class="anchored" data-anchor-id="exploración-de-topologías-con-rwty">Exploración de topologías con RWTY</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer los árboles y asociarlos con params.log</span></span>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer los árboles y asociarlos con params.log</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>my_chains <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">run_1 =</span> <span class="fu">load.trees</span>(</span>
 <span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="fu">file.path</span>(ruta, <span class="st">"tree.trees"</span>),</span>
@@ -980,7 +978,7 @@ window.Quarto = {
 <span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">format =</span> <span class="st">"revbayes"</span>,</span>
 <span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">trim =</span> <span class="dv">2</span></span>
 <span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Reading trees..."</code></pre>
 </div>
@@ -989,13 +987,13 @@ window.Quarto = {
 [1] "Unrooting, this may take a while..."
 [1] "Reading parameter values from params.log"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descartar el 10 % de los árboles conservados</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>burnin_arboles <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">length</span>(my_chains[[<span class="dv">1</span>]]<span class="sc">$</span>trees) <span class="sc">*</span> <span class="fl">0.10</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descartar el 10 % de los árboles conservados</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>burnin_arboles <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">length</span>(my_chains[[<span class="dv">1</span>]]<span class="sc">$</span>trees) <span class="sc">*</span> <span class="fl">0.10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distancias topológicas a lo largo de la MCMC</span></span>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distancias topológicas a lo largo de la MCMC</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">makeplot.topology</span>(my_chains, <span class="at">burnin =</span> burnin_arboles,</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">approx.ess =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">approx.ess =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Creating trace for tree topologies"</code></pre>
 </div>
@@ -1022,13 +1020,13 @@ $density.plot</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Representar los árboles en el espacio de topologías</span></span>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Representar los árboles en el espacio de topologías</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>espacio <span class="ot">&lt;-</span> <span class="fu">makeplot.treespace</span>(my_chains, <span class="at">burnin =</span> burnin_arboles,</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">n.points =</span> <span class="dv">100</span>, <span class="at">fill.color =</span> <span class="st">"Likelihood"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">n.points =</span> <span class="dv">100</span>, <span class="at">fill.color =</span> <span class="st">"Likelihood"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Creating treespace plots"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>espacio<span class="sc">$</span>treespace.points.plot</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>espacio<span class="sc">$</span>treespace.points.plot</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1038,23 +1036,23 @@ $density.plot</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamaño efectivo de muestra aproximado para las topologías</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">topological.approx.ess</span>(my_chains, <span class="at">burnin =</span> burnin_arboles)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamaño efectivo de muestra aproximado para las topologías</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">topological.approx.ess</span>(my_chains, <span class="at">burnin =</span> burnin_arboles)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Calculating approximate ESS with sampling intervals from 1 to 100"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  operator approx.ess chain
-1        =   597.9342 run_1</code></pre>
+1        =   428.9052 run_1</code></pre>
 </div>
 </div>
 </section>
 <section id="visualización-del-árbol-mcc-con-revgadgets" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-del-árbol-mcc-con-revgadgets">Visualización del árbol MCC con RevGadgets</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el árbol de máxima credibilidad de clados (MCC)</span></span>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el árbol de máxima credibilidad de clados (MCC)</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>archivo_mcc <span class="ot">&lt;-</span> <span class="fu">file.path</span>(ruta, <span class="st">"MCC_tree.tre"</span>)</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>arbol_mcc <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="at">paths =</span> archivo_mcc)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>arbol_mcc <span class="ot">&lt;-</span> <span class="fu">readTrees</span>(<span class="at">paths =</span> archivo_mcc)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   |                                              
@@ -1062,7 +1060,7 @@ $density.plot</code></pre>
   |                                              
   |========================================| 100%</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el árbol y los intervalos de edad de los nodos</span></span>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el árbol y los intervalos de edad de los nodos</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plotTree</span>(<span class="at">tree =</span> arbol_mcc,</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">timeline =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">geo_units =</span> <span class="fu">list</span>(<span class="st">"epochs"</span>, <span class="st">"periods"</span>),</span>
@@ -1071,7 +1069,7 @@ $density.plot</code></pre>
 <span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">tip_labels_italics =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.6</span>))</span>
 <span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1084,8 +1082,6 @@ $density.plot</code></pre>
 <p><strong>Nota importante:</strong> Recuerda que, antes de hacer inferencias a partir de los árboles obtenidos en tu análisis, debes asegurarte de que la <strong>MCMC haya convergido</strong>. Si no sabes con certeza qué significa esto, consulta <a href="https://revbayes.github.io/tutorials/convergence/">este tutorial</a>. Además, incluso si tu MCMC ha convergido, eso solo significa que tus resultados son precisos dado tu modelo y tus distribuciones a priori, no que tu modelo sea preciso. Para evaluar esto, necesitas comparar modelos y analizar su adecuación. ¡Esta observación no pretende desanimarte a aplicar este tipo de modelos a tus datos! Al contrario, pretende animarte a seguir explorando estos métodos en <a href="https://revbayes.github.io/tutorials/ted_workflow/">tutoriales más avanzados</a>, donde aprenderás a comparar modelos y evaluar su adecuación a tus datos.</p>
 <hr>
 <p><strong><em>Notas finales para reflexionar</em>:</strong> La respuesta a muchas de las preguntas anteriores sobre qué modelo es mejor depende de nuestros datos. La manera de abordar estas preguntas es mediante la <strong>comparación de modelos</strong> (para responder <em>cuál de los modelos competidores es mejor</em>) y la <strong>adecuación del modelo</strong> (para responder <em>si los supuestos de nuestro modelo son razonables</em>).</p>
-<hr>
-<p><strong>Agradecimientos:</strong> Gracias a <strong>Mike May</strong> y <strong>Carl Rothfels</strong> por su continua tutoría mientras avanzo en el mundo de la filogenética.</p>
 
 
 </section>
@@ -1144,14 +1140,13 @@ $density.plot</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1512,5 +1507,5 @@ $density.plot</code></pre>
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/edit/main/chapters/u3_intro_morphology_3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/IB-UNISSE/patrones_filogeneticos/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
